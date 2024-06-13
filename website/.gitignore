@@ -1,0 +1,7 @@
+
+*.DS_Store
+*.meta
+# */bun.lockb
+*/dist/
+
+node_modules/
