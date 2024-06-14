@@ -3,8 +3,8 @@ import { useEffect, useState, useCallback } from 'react'
 import { useTheme } from 'next-themes'
 
 import { cn } from '@utils'
-import { Button } from '@components/ui/button'
-import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@components/ui/command'
+import { Button } from '@shadcn/button'
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@shadcn/command'
 
 export function CommandMenu({ ...props }: any) {
   const [open, setOpen] = useState(false)

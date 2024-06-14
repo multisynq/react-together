@@ -27,6 +27,8 @@
       "@styles/*": ["./src/styles/*"],
       "@config/*": ["./src/config/*"],
       "@components/*": ["./src/components/*"],
+      "@shadcn/*": ["./src/components/ui/*"],
+      "@shadcn": ["./src/components/ui/index"],
     }
   }
 }

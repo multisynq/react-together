@@ -1,13 +1,16 @@
-// import Link from 'next/link'
+import { NavLink } from 'react-router-dom'
 
-// import { siteConfig } from '@/config/site'
+import { siteConfig } from '@/config'
 import { cn } from '@utils'
-import { CommandMenu } from '@components/command-menu'
-// import { Icons } from '@components/icons'
-import { MainNav } from '@components/main-nav'
-// import { MobileNav } from '@components/mobile-nav'
-// import { ModeToggle } from '@components/mode-toggle'
-import { buttonVariants } from '@components/ui/button'
+import { 
+  CommandMenu,
+  Icons,
+  MainNav,
+  // MobileNav,
+  // ModeToggle,
+} from '@components'
+
+import { buttonVariants} from '@shadcn/button'
 
 export function SiteHeader() {
   return (
@@ -20,18 +23,18 @@ export function SiteHeader() {
             <CommandMenu />
           </div>
           <nav className='flex items-center'>
-            {/* <Link href={siteConfig.links.github} target='_blank' rel='noreferrer'> */}
-            <div className={cn(buttonVariants({ variant: 'ghost' }), 'w-9 px-0')}>
-              {/* <Icons.gitHub className='h-4 w-4' /> */}
-              <span className='sr-only'>GitHub</span>
-            </div>
-            {/* </Link> */}
-            {/* <Link href={siteConfig.links.twitter} target='_blank' rel='noreferrer'> */}
-            <div className={cn(buttonVariants({ variant: 'ghost' }), 'w-9 px-0')}>
-              {/* <Icons.twitter className='h-3 w-3 fill-current' /> */}
-              <span className='sr-only'>Twitter</span>
-            </div>
-            {/* </Link> */}
+            <NavLink to={siteConfig.links.github} target='_blank' rel='noreferrer'>
+              <div className={cn(buttonVariants({ variant: 'ghost' }), 'w-9 px-0')}>
+                <Icons.gitHub className='h-4 w-4' />
+                <span className='sr-only'>GitHub</span>
+              </div>
+            </NavLink>
+            <NavLink to={siteConfig.links.twitter} target='_blank' rel='noreferrer'>
+              <div className={cn(buttonVariants({ variant: 'ghost' }), 'w-9 px-0')}>
+                <Icons.twitter className='h-3 w-3 fill-current' />
+                <span className='sr-only'>Twitter</span>
+              </div>
+            </NavLink>
             {/* <ModeToggle /> */}
           </nav>
         </div>

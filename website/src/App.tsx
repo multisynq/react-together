@@ -2,15 +2,12 @@ import './App.scss'
 import '@styles/globals.css'
 import '@styles/mdx.css'
 
-import { useState, createContext } from 'react'
 import { Helmet } from 'react-helmet'
+import { useState, createContext } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
 import { version } from '@package'
 import { Layout } from '@pages'
-
-// import {} from '@types'
-// import {} from '@components'
 
 export const MainContext = createContext({} as any)
 
