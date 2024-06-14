@@ -1,3 +1,4 @@
+import path from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import ViteYaml from '@modyfi/vite-plugin-yaml'
@@ -7,8 +8,13 @@ export default defineConfig({
   plugins: [
     ViteYaml(),
     react(),
-    tsconfigPaths(),
+    tsconfigPaths()
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
   base: './',
   build: {
     minify: true,
@@ -19,7 +25,7 @@ export default defineConfig({
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'index.css') return 'index.min.css'
-          return assetInfo.name;
+          return assetInfo.name
         },
       },
     },
