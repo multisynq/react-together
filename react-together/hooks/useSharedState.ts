@@ -8,18 +8,8 @@ import {
   useState
 } from 'react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
-import { isFunction } from './types'
+import getNewValue from './getNewValue'
 
-// Determines the new state value
-function getNewValue<T>(prev: T, newValueOrFn: SetStateAction<T>) {
-  let newValue: T
-  if (isFunction(newValueOrFn)) {
-    newValue = newValueOrFn(prev)
-  } else {
-    newValue = newValueOrFn
-  }
-  return newValue
-}
 
 export default function useSharedState<T>(
   rtid: string,

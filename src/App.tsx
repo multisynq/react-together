@@ -1,5 +1,7 @@
+import { PresenceDiv } from '../react-together'
 import SamplePage from './components/SamplePage'
 import SharedCountButton from './components/SharedCountButton'
+import TabsTogether from './components/TabsTogether'
 export default function App() {
   // const cities = [
   //   { name: 'New York', code: 'NY' },
@@ -18,7 +20,10 @@ export default function App() {
     <>
       {/* <ConnectedViews maxAvatars={2} /> */}
       <SamplePage />
+      {/* <PresenceDiv id="presence-div"> */}
+      <TabsTogether />
       <SharedCountButton />
+      {/* </PresenceDiv> */}
       {/* <PresenceDiv id="div">
         <SyncedTabs />
       </PresenceDiv>
