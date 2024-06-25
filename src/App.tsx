@@ -1,36 +1,25 @@
-import {
-  PresenceDiv,
-  SharedCheckbox,
-  SharedDropdown,
-  SharedInputSwitch,
-  SharedMultiSelect,
-  SharedRating,
-  SharedSelectButton,
-  SharedToggleButton,
-  SharedTriStateCheckbox
-} from '../react-together'
-import SyncedTabs from './components/SyncedTabs'
-
+import SamplePage from './components/SamplePage'
+import SharedCountButton from './components/SharedCountButton'
 export default function App() {
-  const cities = [
-    { name: 'New York', code: 'NY' },
-    { name: 'Rome', code: 'RM' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' }
-  ]
-  const items = [
-    { name: 'Option 1', value: 1 },
-    { name: 'Option 2', value: 2 },
-    { name: 'Option 3', value: 3, disabled: false }
-  ]
+  // const cities = [
+  //   { name: 'New York', code: 'NY' },
+  //   { name: 'Rome', code: 'RM' },
+  //   { name: 'London', code: 'LDN' },
+  //   { name: 'Istanbul', code: 'IST' },
+  //   { name: 'Paris', code: 'PRS' }
+  // ]
+  // const items = [
+  //   { name: 'Option 1', value: 1 },
+  //   { name: 'Option 2', value: 2 },
+  //   { name: 'Option 3', value: 3, disabled: false }
+  // ]
 
   return (
     <>
       {/* <ConnectedViews maxAvatars={2} /> */}
-      {/* <SamplePage /> */}
-      {/* <SharedCountButton /> */}
-      <PresenceDiv id="div">
+      <SamplePage />
+      <SharedCountButton />
+      {/* <PresenceDiv id="div">
         <SyncedTabs />
       </PresenceDiv>
       <SharedCheckbox rtid="checkbox" />
@@ -56,7 +45,7 @@ export default function App() {
         multiple
         display="chip"
       />
-      <SharedToggleButton rtid="toggle-button" />
+      <SharedToggleButton rtid="toggle-button" /> */}
       {/* <SharedKnob rtid="knob" /> */}
       {/* <SharedCalendar
         rtid="color-picker"
