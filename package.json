@@ -46,6 +46,7 @@
     "@vitejs/plugin-react-swc": "^3.5.0"
   },
   "dependencies": {
-    "@types/color-hash": "^2.0.0"
+    "@types/color-hash": "^2.0.0",
+    "primeicons": "^7.0.0"
   }
 }

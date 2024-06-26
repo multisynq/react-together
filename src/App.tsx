@@ -1,7 +1,7 @@
-import { PresenceDiv } from '../react-together'
+import { ReactTogetherManager } from '../react-together/components/ReactTogetherManager'
 import SamplePage from './components/SamplePage'
 import SharedCountButton from './components/SharedCountButton'
-import TabsTogether from './components/TabsTogether'
+import SyncedTabs from './components/SyncedTabs'
 export default function App() {
   // const cities = [
   //   { name: 'New York', code: 'NY' },
@@ -20,12 +20,13 @@ export default function App() {
     <>
       {/* <ConnectedViews maxAvatars={2} /> */}
       <SamplePage />
-      {/* <PresenceDiv id="presence-div"> */}
-      <TabsTogether />
+      {/* <PresenceDiv id="presence-div">
+      </PresenceDiv> */}
+      {/* <TabsTogether /> */}
+      <SyncedTabs />
       <SharedCountButton />
-      {/* </PresenceDiv> */}
+      <ReactTogetherManager />
       {/* <PresenceDiv id="div">
-        <SyncedTabs />
       </PresenceDiv>
       <SharedCheckbox rtid="checkbox" />
       <SharedTriStateCheckbox rtid="tristate-checkbox" />
@@ -50,13 +51,13 @@ export default function App() {
         multiple
         display="chip"
       />
-      <SharedToggleButton rtid="toggle-button" /> */}
-      {/* <SharedKnob rtid="knob" /> */}
-      {/* <SharedCalendar
+      <SharedToggleButton rtid="toggle-button" />
+      <SharedKnob rtid="knob" />
+      <SharedCalendar
         rtid="color-picker"
         dateFormat="yy/mm/dd"
         disabledDays={[0, 1]}
-        inline
+        // inline
         invalid
       /> */}
     </>

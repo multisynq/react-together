@@ -1,12 +1,22 @@
 import { CroquetRoot } from '@croquet/react'
+import { createContext, useState } from 'react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 
 type ReactTogetherSessionParams = {
   appId: string
   apiKey: string
-  name: string
-  password: string
 }
+
+export interface IReactTogetherContext {
+  createNewSession: () => void
+  leaveSession: () => void
+  isTogether: boolean
+  sessionName: string | null
+  sessionPassword: string | null
+}
+export const ReactTogetherContext = createContext<
+  IReactTogetherContext | undefined
+>(undefined)
 
 export type ReactTogetherProps = {
   children: ReactChildren
@@ -16,8 +26,26 @@ export default function ReactTogether({
   children,
   sessionParams
 }: ReactTogetherProps) {
-  const { appId, apiKey, name, password } = sessionParams
+  const { appId, apiKey } = sessionParams
 
+  const [sessionName, set_sessionName] = useState<null | string>(null)
+  const [sessionPassword, set_sessionPassword] = useState<null | string>(null)
+
+  const isTogether = sessionName !== null && sessionPassword !== null
+
+  const createNewSession = () => {
+    // TODO: Eventually these values will be random
+    // Do we want to add them to the URL? Maybe that could be an option passed to this function
+    const newSessionName = 'v0_session'
+    const newSessionPassword = 'pwd'
+    set_sessionName(newSessionName)
+    set_sessionPassword(newSessionPassword)
+  }
+
+  const leaveSession = () => {
+    set_sessionName(null)
+    set_sessionPassword(null)
+  }
   // TODO: eventually get circle from search param
   /*
     const sessionId = 
@@ -36,16 +64,33 @@ export default function ReactTogether({
   */
 
   return (
-    <CroquetRoot
-      sessionParams={{
-        model: ReactTogetherModel,
-        appId,
-        apiKey,
-        name,
-        password
+    <ReactTogetherContext.Provider
+      value={{
+        createNewSession,
+        leaveSession,
+        isTogether,
+        sessionName,
+        sessionPassword
       }}
     >
-      {children}
-    </CroquetRoot>
+      {sessionName !== null && sessionPassword !== null ? (
+        <CroquetRoot
+          sessionParams={{
+            model: ReactTogetherModel,
+            appId,
+            apiKey,
+            name: sessionName,
+            password: sessionPassword
+          }}
+        >
+          <>
+            Connected to session {sessionName}!!
+            {children}
+          </>
+        </CroquetRoot>
+      ) : (
+        children
+      )}
+    </ReactTogetherContext.Provider>
   )
 }

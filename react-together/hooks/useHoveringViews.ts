@@ -8,6 +8,7 @@ export default function useHoveringViews(
 ): [(instance: Element | null) => void, string[]] {
   const [ref, hovering] = useHover()
   const myViewId = useViewId()
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, set_hovering, allHovered] = useStateTogether(key, hovering)
 
   useEffect(() => {

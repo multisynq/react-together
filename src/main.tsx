@@ -14,9 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <ReactTogether
           sessionParams={{
             appId: import.meta.env['VITE_APP_ID'],
-            apiKey: import.meta.env['VITE_API_KEY'],
-            name: import.meta.env['VITE_NAME'],
-            password: import.meta.env['VITE_PASSWORD']
+            apiKey: import.meta.env['VITE_API_KEY']
           }}
         >
           <App />
