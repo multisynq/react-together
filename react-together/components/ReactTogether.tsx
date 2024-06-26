@@ -28,8 +28,14 @@ export default function ReactTogether({
 }: ReactTogetherProps) {
   const { appId, apiKey } = sessionParams
 
-  const [sessionName, set_sessionName] = useState<null | string>(null)
-  const [sessionPassword, set_sessionPassword] = useState<null | string>(null)
+  const [sessionName, set_sessionName] = useState<null | string>(
+    // import.meta.env.VITE_CROQUET_NAME || null
+    'Test session'
+  )
+  const [sessionPassword, set_sessionPassword] = useState<null | string>(
+    // import.meta.env.VITE_CROQUET_PASSWORD || null
+    '123'
+  )
 
   const isTogether = sessionName !== null && sessionPassword !== null
 

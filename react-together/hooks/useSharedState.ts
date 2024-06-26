@@ -10,7 +10,6 @@ import {
 import ReactTogetherModel from '../models/ReactTogetherModel'
 import getNewValue from './getNewValue'
 
-
 export default function useSharedState<T>(
   rtid: string,
   initial_value: T
@@ -31,7 +30,9 @@ export default function useSharedState<T>(
   const modelValue = model?.state.get(rtid) as T
 
   // This is the local state
-  const [value, set_value] = useState<T>(modelValue || initial_value)
+  const [value, set_value] = useState<T>(
+    modelValue !== undefined ? modelValue : initial_value
+  )
 
   if (view && model && session) {
     // @ts-expect-error: We know session has an id
