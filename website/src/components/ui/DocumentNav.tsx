@@ -1,23 +1,38 @@
 import { PanelMenu } from 'primereact/panelmenu'
+import { useNavigate } from 'react-router-dom'
 
 export default function DocumentNav() {
+  const navigate = useNavigate()
+
   const items = [
     {
       key: '0',
       label: 'Get Started',
       icon: 'pi pi-users',
+      command: () => {
+        navigate('/docs/get-started')
+      },
       items: [
         {
           key: '0_1',
           label: 'Introduction',
+          command: () => {
+            navigate('/docs/get-started/introduction')
+          },
         },
         {
           key: '0_2',
           label: 'Core Concept',
+          command: () => {
+            navigate('/docs/get-started/core-concept')
+          },
         },
         {
           key: '0_3',
           label: 'Configuration',
+          command: () => {
+            navigate('/docs/get-started/configuration')
+          },
         },
         {
           key: '0_4',
@@ -29,14 +44,23 @@ export default function DocumentNav() {
       key: '1',
       label: 'Components',
       icon: 'pi pi-server',
+      command: () => {
+        navigate('/docs/components')
+      },
       items: [
         {
           key: '1_0',
           label: 'Shared',
+          command: () => {
+            navigate('/docs/components/shared')
+          },
         },
         {
           key: '1_1',
           label: 'Together',
+          command: () => {
+            navigate('/docs/components/together')
+          },
         },
       ],
     },
@@ -44,14 +68,23 @@ export default function DocumentNav() {
       key: '2',
       label: 'Guides',
       icon: 'pi pi-calendar',
+      command: () => {
+        navigate('/docs/guides')
+      },
       items: [
         {
           key: '2_0',
           label: 'How-to',
+          command: () => {
+            navigate('/docs/guides/how-to')
+          },
         },
         {
           key: '2_1',
           label: 'Troubleshooting',
+          command: () => {
+            navigate('/docs/guides/troubleshooting')
+          },
         },
       ],
     },
@@ -82,7 +115,7 @@ export default function DocumentNav() {
   items.forEach(expandNode)
 
   return (
-    <div className='card flex flex-column align-items-center gap-3'>
+    <div className='hidden sm:block w-[200px] h-full'>
       <PanelMenu model={items} expandedKeys={expandedKeys} />
     </div>
   )

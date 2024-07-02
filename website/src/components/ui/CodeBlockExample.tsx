@@ -1,8 +1,7 @@
 import { CodeBlock } from './CodeBlock'
 
 export function CodeBlockExample() {
-  const sampleCode = `
-function greet(name) {
+  const sampleCode = `function greet(name) {
   console.log(\`Hello, \${name}!\`);
 }
 

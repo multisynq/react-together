@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 import { siteConfig } from '@/config'
 import { cn } from '@utils'
-import { 
+import {
   CommandMenu,
   Icons,
   MainNav,
@@ -10,7 +10,7 @@ import {
   // ModeToggle,
 } from '@components'
 
-import { buttonVariants} from '@shadcn/button'
+import { buttonVariants } from '@shadcn/button'
 
 export function SiteHeader() {
   return (

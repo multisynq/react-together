@@ -5,14 +5,6 @@ import DocumentDemoBox from '@components/ui/DocumentDemoBox'
 import DocumentNav from '@components/ui/DocumentNav'
 import PageNav from '@components/ui/PageNav'
 
-function DocNav() {
-  return (
-    <div className='hidden sm:block w-[200px] h-full'>
-      <DocumentNav />
-    </div>
-  )
-}
-
 function Page({ children }) {
   return <div className='flex max-w-[87rem] items-start gap-8 flex-1 h-full'>{children}</div>
 }
@@ -32,22 +24,13 @@ function PageDocument() {
   )
 }
 
-function PageDocNav() {
-  return (
-    <div className='hidden md:flex w-48 flex-col items-start gap-4 h-full'>
-      {' '}
-      <PageNav />
-    </div>
-  )
-}
-
 export function DocumentationPage() {
   return (
     <main className='flex justify-center items-start gap-12 self-stretch p-6 pr-8 pb-8 pl-8 h-screen'>
-      <DocNav />
+      <DocumentNav />
       <Page>
         <PageDocument />
-        <PageDocNav />
+        <PageNav />
       </Page>
     </main>
   )

@@ -4,10 +4,12 @@ import '@styles/mdx.css'
 
 import { Helmet } from 'react-helmet'
 import { useState, createContext } from 'react'
-import { BrowserRouter } from 'react-router-dom'
 
 import { version } from '@package'
 import { Layout } from '@pages'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HomePage } from './pages/HomePage'
+import { DocumentationPage } from './pages/DocumentationPage'
 
 export const MainContext = createContext({} as any)
 
@@ -23,7 +25,25 @@ export default function App() {
 
       <MainContext.Provider value={{}}>
         <BrowserRouter>
-          <Layout />
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <Layout>
+                  <HomePage />
+                </Layout>
+              }
+            />
+            <Route
+              path='/docs/*'
+              element={
+                <Layout>
+                  <DocumentationPage />
+                </Layout>
+              }
+            />
+            {/* <Route path='/docs/components' element={<div>Components thingy</div>} /> */}
+          </Routes>
         </BrowserRouter>
       </MainContext.Provider>
 

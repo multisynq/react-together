@@ -34,7 +34,7 @@ export default function DocumentationNav() {
   items.forEach(expandNode)
 
   return (
-    <div className='card flex flex-column align-items-center gap-3'>
+    <div className='hidden md:flex w-48 flex-col items-start h-full'>
       <PanelMenu model={items} expandedKeys={expandedKeys} className='w-full md:w-20rem' />
     </div>
   )
