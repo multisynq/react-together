@@ -6,7 +6,6 @@ export default function DocumentationNav() {
     {
       key: '0',
       label: 'On This Page',
-      icon: 'pi pi-users',
       items: [
         {
           key: '0_1',
@@ -35,7 +34,11 @@ export default function DocumentationNav() {
 
   return (
     <div className='hidden md:flex w-48 flex-col items-start h-full'>
-      <PanelMenu model={items} expandedKeys={expandedKeys} className='w-full md:w-20rem' />
+      <PanelMenu
+        model={items}
+        expandedKeys={expandedKeys}
+        className='w-full md:w-80 [&_.p-panelmenu-header-link]:py-2 [&_.p-panelmenu-header-link]:pl-0 [&_.p-panelmenu-content_.p-menuitem-link]:pl-0 [&_.p-submenu-icon]:hidden'
+      />
     </div>
   )
 }
