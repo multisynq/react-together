@@ -1,5 +1,6 @@
 import { ModeToggle } from '@components'
 import DocBreadCrumb from '@components/DocBreadCrumb'
+import { CodeBlockExample } from '@components/ui/CodeBlockExample'
 import DcoumentDemoBox from '@components/ui/DocumentDemoBox'
 import DocumentationNav from '@components/ui/DocumentNav'
 import PageNav from '@components/ui/PageNav'
@@ -28,6 +29,7 @@ function PageDocument() {
       </p>
 
       <DcoumentDemoBox />
+      <CodeBlockExample />
 
       <div>sampleCode</div>
     </div>
