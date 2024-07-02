@@ -83,7 +83,7 @@ export default function DocumentNav() {
 
   return (
     <div className='card flex flex-column align-items-center gap-3'>
-      <PanelMenu model={items} expandedKeys={expandedKeys} className='w-full md:w-20rem' />
+      <PanelMenu model={items} expandedKeys={expandedKeys} />
     </div>
   )
 }

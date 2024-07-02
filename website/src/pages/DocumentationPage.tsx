@@ -2,13 +2,13 @@ import { ModeToggle } from '@components'
 import DocBreadCrumb from '@components/DocBreadCrumb'
 import { CodeBlockExample } from '@components/ui/CodeBlockExample'
 import DcoumentDemoBox from '@components/ui/DocumentDemoBox'
-import DocumentationNav from '@components/ui/DocumentNav'
+import DocumentNav from '@components/ui/DocumentNav'
 import PageNav from '@components/ui/PageNav'
 
 function DocNav() {
   return (
     <div className='hidden sm:block w-[200px] h-full'>
-      <DocumentationNav />
+      <DocumentNav />
       {/* <DocumentationNav /> */}
     </div>
   )
@@ -30,8 +30,6 @@ function PageDocument() {
 
       <DcoumentDemoBox />
       <CodeBlockExample />
-
-      <div>sampleCode</div>
     </div>
   )
 }

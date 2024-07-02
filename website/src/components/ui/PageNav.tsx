@@ -1,4 +1,5 @@
 import { PanelMenu } from 'primereact/panelmenu'
+import React from 'react'
 
 export default function DocumentationNav() {
   const items = [
