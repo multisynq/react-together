@@ -1,6 +1,6 @@
 import { BreadCrumb } from 'primereact/breadcrumb'
 
-export default function DocBreadCrumb() {
+export default function DocumentBreadCrumb() {
   const items = [{ label: 'Get Started' }, { label: 'Introduction' }]
   const home = { label: 'Documentation' }
 
