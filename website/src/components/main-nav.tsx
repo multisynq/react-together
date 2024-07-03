@@ -15,30 +15,33 @@ export function MainNav() {
   const pathname = useLocation().pathname
 
   return (
-    <div className='mr-4 hidden md:flex'>
-      {/* <div className='mr-4 hidden md:flex'> */}
-      <NavLink to='/' className='mr-6 flex items-center space-x-2'>
-        <Icons.logo className='h-6 w-6' />
-        <span className='hidden font-bold sm:inline-block'>{siteConfig.name}</span>
-      </NavLink>
+    <>
+      {/* need to show only for doc or non home page */}
+      <Icons.menu className='h-6 w-6 text-primary md:hidden' />
+      <div className='mr-4 hidden md:flex'>
+        <NavLink to='/' className='mr-6 flex items-center space-x-2'>
+          <Icons.logo className='h-6 w-6' />
+          <span className='hidden font-bold sm:inline-block'>{siteConfig.name}</span>
+        </NavLink>
 
-      <nav className='flex items-center gap-4 text-sm lg:gap-6'>
-        {navConfig.map(({ to, exact, label, className }) => (
-          <NavLink
-            key={to}
-            {...{
-              to,
-              className: cn(
-                'transition-colors hover:text-foreground/80',
-                className,
-                exact ? pathname === to : pathname?.startsWith(to) ? 'text-foreground' : 'text-foreground/60'
-              ),
-            }}
-          >
-            {label}
-          </NavLink>
-        ))}
-      </nav>
-    </div>
+        <nav className='flex items-center gap-4 text-sm lg:gap-6'>
+          {navConfig.map(({ to, exact, label, className }) => (
+            <NavLink
+              key={to}
+              {...{
+                to,
+                className: cn(
+                  'transition-colors hover:text-foreground/80',
+                  className,
+                  exact ? pathname === to : pathname?.startsWith(to) ? 'text-foreground' : 'text-foreground/60'
+                ),
+              }}
+            >
+              {label}
+            </NavLink>
+          ))}
+        </nav>
+      </div>
+    </>
   )
 }
