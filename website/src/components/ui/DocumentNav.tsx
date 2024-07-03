@@ -115,7 +115,7 @@ export default function DocumentNav() {
   items.forEach(expandNode)
 
   return (
-    <div className='hidden sm:block w-[200px] h-full'>
+    <div className='w-[200px] h-full'>
       <PanelMenu
         model={items}
         expandedKeys={expandedKeys}

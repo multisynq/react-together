@@ -10,8 +10,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { DocumentationPage } from './pages/DocumentationPage'
 
-import { Layout } from '@pages'
-
 export const MainContext = createContext({} as any)
 
 export default function App() {

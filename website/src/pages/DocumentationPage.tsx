@@ -52,9 +52,11 @@ export function DocumentationPage() {
   const keyToLookupWith = `${slug1}/${slug2}`
   // const CompToUse = lookup[keyToLookupWith] || <div>unknown</div>
   return (
-    <main className='flex justify-center items-start gap-12 self-stretch p-6 pr-8 pb-8 pl-8 h-screen'>
+    <main className='flex justify-center items-start gap-12 self-stretch p-6 pr-8 pb-8 pl-8 h-screen relative'>
       {/* <div>{keyToLookupWith}</div> */}
-      <DocumentNav />
+      <div className='hidden sm:block w-[200px] '>
+        <DocumentNav />
+      </div>
       <Page>
         {/* <CompToUse /> */}
         <CoreConcept />

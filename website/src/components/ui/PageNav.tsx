@@ -33,11 +33,11 @@ export default function DocumentationNav() {
   items.forEach(expandNode)
 
   return (
-    <div className='hidden md:flex w-48 flex-col items-start h-full'>
+    <div className='hidden md:flex flex-col items-start h-full'>
       <PanelMenu
         model={items}
         expandedKeys={expandedKeys}
-        className='w-full md:w-80 [&_.p-panelmenu-header-link]:py-2 [&_.p-panelmenu-header-link]:pl-0 [&_.p-panelmenu-content_.p-menuitem-link]:pl-0 [&_.p-submenu-icon]:hidden'
+        className='w-full [&_.p-panelmenu-header-link]:py-2 [&_.p-panelmenu-header-link]:pl-0 [&_.p-panelmenu-content_.p-menuitem-link]:pl-0 [&_.p-submenu-icon]:hidden'
       />
     </div>
   )
