@@ -4,12 +4,13 @@ import '@styles/mdx.css'
 
 import { Helmet } from 'react-helmet'
 import { useState, createContext } from 'react'
-
+import { SiteHeader, SiteFooter } from '@components'
 import { version } from '@package'
-import { Layout } from '@pages'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { DocumentationPage } from './pages/DocumentationPage'
+
+import { Layout } from '@pages'
 
 export const MainContext = createContext({} as any)
 
@@ -20,30 +21,16 @@ export default function App() {
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'></link>
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'></link>
-        {/* <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet" /> */}
       </Helmet>
 
       <MainContext.Provider value={{}}>
         <BrowserRouter>
+          <SiteHeader />
           <Routes>
-            <Route
-              path='/'
-              element={
-                <Layout>
-                  <HomePage />
-                </Layout>
-              }
-            />
-            <Route
-              path='/docs/*'
-              element={
-                <Layout>
-                  <DocumentationPage />
-                </Layout>
-              }
-            />
-            {/* <Route path='/docs/components' element={<div>Components thingy</div>} /> */}
+            <Route path='/' element={<HomePage />} />
+            <Route path='/docs/:slug1/:slug2?' element={<DocumentationPage />} />
           </Routes>
+          <SiteFooter />
         </BrowserRouter>
       </MainContext.Provider>
 
