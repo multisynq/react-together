@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import 'primeicons/primeicons.css'
 
 export function CodeBlock({ language, code1, code2 }) {
   const [copySuccess, setCopySuccess] = useState(false)
@@ -8,7 +9,7 @@ export function CodeBlock({ language, code1, code2 }) {
 
   const copyToClipboard = () => {
     navigator.clipboard
-      .writeText(showCode1 ? code1 : code2)
+      .writeText(code2 && !showCode1 ? code2 : code1)
       .then(() => {
         setCopySuccess(true)
         setTimeout(() => setCopySuccess(false), 2000)
@@ -22,18 +23,24 @@ export function CodeBlock({ language, code1, code2 }) {
 
   return (
     <div className='relative w-full'>
-      <button
-        onClick={copyToClipboard}
-        className='absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-2 rounded text-sm'
-      >
-        {copySuccess ? 'Copied!' : 'Copy'}
-      </button>
-      <button
-        onClick={toggleCode}
-        className='absolute top-2 right-20 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-2 rounded text-sm'
-      >
-        Toggle Code
-      </button>
+      <div className='top-2 right-2 absolute flex gap-2'>
+        {code2 && (
+          <button
+            onClick={toggleCode}
+            className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded text-sm flex items-center justify-center'
+            title='Toggle Code'
+          >
+            <i className='pi pi-code' style={{ fontSize: '1rem' }}></i>
+          </button>
+        )}
+        <button
+          onClick={copyToClipboard}
+          className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded text-sm flex items-center justify-center'
+          title={copySuccess ? 'Copied!' : 'Copy'}
+        >
+          <i className={copySuccess ? 'pi pi-check' : 'pi pi-copy'} style={{ fontSize: '1rem' }}></i>
+        </button>
+      </div>
       <SyntaxHighlighter
         language={language}
         style={vscDarkPlus}
@@ -41,10 +48,12 @@ export function CodeBlock({ language, code1, code2 }) {
           padding: '20px',
           borderRadius: '5px',
           fontSize: '14px',
+          marginTop: 0,
+          marginBottom: 0,
         }}
         className='w-full'
       >
-        {showCode1 ? code1 : code2}
+        {code2 && !showCode1 ? code2 : code1}
       </SyntaxHighlighter>
     </div>
   )
