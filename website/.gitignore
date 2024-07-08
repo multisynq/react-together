@@ -7,3 +7,9 @@
 node_modules/
 
 dist/
+
+.env
+
+.vscode/settings.json
+
+bun.lockb

@@ -104,6 +104,9 @@ export default function DocumentNav() {
       ],
     },
   ]
+  // console log a list of item paths
+  const list = items.map((item) => {
+  })
 
   const expandedKeys = {}
   const expandNode = (node) => {

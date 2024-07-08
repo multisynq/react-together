@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.fake-browser {
+  width: 860px;
+  height: 500px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0px 10px #ccc;
+}
+.fake-browser .fake-browser-header {
+  background-color: #eee;
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+.fake-browser .fake-browser-header .action-btns {
+  min-width: 100px;
+}
+.fake-browser .fake-browser-header .action-btns span {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-left: 10px;
+  border-radius: 50%;
+  float: left;
+}
+.fake-browser .fake-browser-header .action-btns span:first-child {
+  background-color: red;
+}
+.fake-browser .fake-browser-header .action-btns span:nth-child(2) {
+  background-color: orange;
+}
+.fake-browser .fake-browser-header .action-btns span:nth-child(3) {
+  background-color: green;
+}
+.fake-browser .fake-browser-header .address-bar {
+  background-color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  flex: 1;
+}
+.fake-browser .fake-browser-header .address-bar input {
+  width: 100%;
+  border: none;
+  padding: 0;
+  outline: none;
+  font-size: 12px;
+}
+.fake-browser .fake-browser-header .setting-more {
+  min-width: 100px;
+  text-align: right;
+  padding-right: 15px;
+}
+.fake-browser .fake-browser-header .setting-more .more-btn {
+  position: relative;
+}
+.fake-browser .fake-browser-header .setting-more .more-btn,
+.fake-browser .fake-browser-header .setting-more .more-btn:before,
+.fake-browser .fake-browser-header .setting-more .more-btn:after {
+  display: inline-block;
+  height: 3px;
+  width: 20px;
+  border-radius: 2px;
+  background-color: #999;
+  vertical-align: middle;
+}
+.fake-browser .fake-browser-header .setting-more .more-btn:before, .fake-browser .fake-browser-header .setting-more .more-btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.fake-browser .fake-browser-header .setting-more .more-btn:before {
+  top: -6px;
+}
+.fake-browser .fake-browser-header .setting-more .more-btn:after {
+  bottom: -6px;
+}
+.fake-browser .fake-window-body {
+  flex: 1;
+  overflow: hidden;
+}
+.fake-browser .fake-window-body iframe {
+  width: 100%;
+  height: 100%;
+}
