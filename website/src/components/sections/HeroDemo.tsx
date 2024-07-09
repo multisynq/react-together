@@ -15,7 +15,7 @@ import {
   SharedSelectButton, 
   SharedToggleButton, 
   SharedTriStateCheckbox } from "react-together";
-import { ReactTogetherManager } from "react-together/components/ReactTogetherManager";
+// import { ReactTogetherManager } from "react-together/components/ReactTogetherManager";
 
 export function WithReactTogetherProvider({children}) {
   return (
@@ -32,15 +32,15 @@ export function WithReactTogetherProvider({children}) {
 
 export function HeroDemo() {
   return (
-    <div className='w-full aspect-video bg-white-100 mt-8'>
-      <div className="p-5">
+    <div className='w-full flex flex-wrap justify-center aspect-video bg-white-100 mt-8'>
+      <div className="justify-center ">
         <WithReactTogetherProvider>
           <FakeBrowser>
             <SyncedDemo />
           </FakeBrowser>
         </WithReactTogetherProvider>
       </div>
-      <div className="p-5">
+      <div className="mt-[3rem] justify-center">
         <WithReactTogetherProvider>
           <FakeBrowser>
             <SyncedDemo />
@@ -59,60 +59,99 @@ export function SyncedDemo() {
       { name: 'Paris', code: 'PRS' }
     ]
     const items = [
-      { name: 'Option 1', value: 1 },
-      { name: 'Option 2', value: 2 },
-      { name: 'Option 3', value: 3, disabled: false }
+      { name: 'A', value: 1 },
+      { name: 'B', value: 2 },
+      { name: 'C', value: 3 },
+      { name: 'D', value: 4 },
+      { name: '❤️', value: 6 },
     ]
   return (
-    <div className='p-3 w-full aspect-video bg-white-100 mt-8'>
+    <div className='px-3 w-full aspect-video bg-white-100 mt-4'>
 
-      <ConnectedViews maxAvatars={2} />
+      <div className="flex justify-center">
+        <ConnectedViews maxAvatars={2} />
+      </div>
       {/* <PresenceDiv id="presence-div"></PresenceDiv> */}
-      <SyncedTabs />
-      <SharedCountButton />
       {/* <ReactTogetherManager /> */}
-      <div style={{width:70, display: 'flex', flexDirection: 'row' }}>
-        <PresenceDiv id="div1">
-          <div className="mx-4 w-40 p-2 bg-blue-900 text-white">
+      <div className="flex flex-wrap gap-3 mt-4  justify-center">
+        <div className="w-[200px]!">
+          <SharedCountButton />
+        </div>
+        <PresenceDiv id="div1">{/* className="hover:outline hover:outline-slate-400 rounded-md">*/}
+          <div className="mx-4 w-40 p-2 bg-blue-900 text-white cursor-pointer text-center">
             Hover me!
           </div>
         </PresenceDiv>
         <PresenceDiv id="div2">
-          <div className="mx-4 w-40 p-2 bg-blue-900 text-white">
-            Hover me!
+          <div className="mx-4 w-40 p-2 bg-blue-900 text-white cursor-pointer text-center">
+            No, hover me!
           </div>
         </PresenceDiv>
         <PresenceDiv id="div3">
-          <div className="mx-4 w-40 p-2 bg-blue-900 text-white">
-            Hover me!
+          <div className="mx-4 w-40 p-2 bg-blue-900 text-white cursor-pointer text-center">
+            Hover!
           </div>
         </PresenceDiv>
       </div>
-      <SharedCheckbox rtid="checkbox" />
-      <SharedTriStateCheckbox rtid="tristate-checkbox" />
-      <SharedDropdown
-        rtid="dropdown"
-        options={cities}
-        optionLabel="name"
-        placeholder="Select a City"
-        className="w-full md:w-14rem"
-      />
-      <SharedRating rtid="shared-rating" tooltip="hello" />
-      <SharedInputSwitch rtid="input-switch" />
-      <SharedSelectButton
-        rtid="select-button"
-        options={items}
-        optionLabel="name"
-      />
-      <SharedMultiSelect
-        rtid="shared-multi-select"
-        options={cities}
-        optionLabel="name"
-        multiple
-        display="chip"
-      />
-      <SharedToggleButton rtid="toggle-button" />
-      <SharedKnob rtid="knob" />
+
+      <div className="flex flex-wrap gap-3 mt-3 justify-center">
+        <div className="content-center border p-1">
+          <SharedCheckbox rtid="checkbox" />
+        </div>
+        <div className="content-center border p-1">
+          <SharedTriStateCheckbox rtid="tristate-checkbox" />
+        </div>
+        <div className="content-center border p-1">
+          <SharedDropdown
+            rtid="dropdown"
+            options={cities}
+            optionLabel="name"
+            placeholder="Select a City"
+            className="w-full md:w-14rem"
+          />
+        </div>
+        <div className="content-center border p-1">
+          <SharedRating rtid="shared-rating" tooltip="hello" />
+        </div>
+        <div className="content-center border p-1 pt-2">
+          <SharedInputSwitch rtid="input-switch" />
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-3 mt-4  justify-center">
+
+        <div className="content-center border p-1">
+          <SharedSelectButton
+            rtid="select-button"
+            options={items}
+            optionLabel="name"
+            />
+        </div>
+        <div className="content-center border p-1">
+          <SharedMultiSelect
+            rtid="shared-multi-select"
+            options={cities}
+            optionLabel="name"
+            multiple
+            display="chip"
+          />
+        </div>
+        <div className="content-center border p-1">
+          <SharedToggleButton rtid="toggle-button" className="border rounded bg-slate-300"/>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-3 mt-4  justify-center">
+        <div className="content-center border p-1">
+          <SharedKnob rtid="knob1" />
+        </div>
+        <div className="content-center border p-1">
+          <SharedKnob rtid="knob2" />
+        </div>
+        <div className="content-center border p-1">
+          <SharedKnob rtid="knob3" />
+        </div>
+      </div>
       <SharedCalendar
         rtid="color-picker"
         dateFormat="yy/mm/dd"
@@ -120,6 +159,7 @@ export function SyncedDemo() {
         // inline
         invalid
       />
+      <SyncedTabs />
     </div>
   );
 }

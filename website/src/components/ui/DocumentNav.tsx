@@ -104,9 +104,13 @@ export default function DocumentNav() {
       ],
     },
   ]
-  // console log a list of item paths
+  // console log a list of tow-level item paths
   const list = items.map((item) => {
+    return item.items.map((subItem) => {
+      return `${item.label}/${subItem.label}`
+    })
   })
+  console.log('Docs:',list.flat())
 
   const expandedKeys = {}
   const expandNode = (node) => {

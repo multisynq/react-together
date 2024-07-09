@@ -19,7 +19,8 @@ export default function useHoveringViews(
   }, [set_hovering, hovering])
 
   const hoveringViews = Object.entries(allHovered)
-    .filter(([viewId, isHovering]) => viewId !== myViewId && isHovering)
+    // .filter(([viewId, isHovering]) => viewId !== myViewId && isHovering)
+    .filter(([_viewId, isHovering]) => isHovering)
     .map(([viewId]) => viewId)
 
   return [ref, hoveringViews]
