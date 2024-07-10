@@ -1,9 +1,3 @@
-.container {
-  display: flex;
-  justify-content: center;
-  padding-top: 100px;
-}
-
 .fake-browser {
   width: auto;
   height: auto;
