@@ -1,7 +1,7 @@
-import { HeroDemo } from "../components/sections/HeroDemo"
-import { PageHeader } from "../components/sections/PageHeader"
-import { FeatureBanner } from "../components/sections/FeatureBanner"
-import { InviteBanner } from "../components/sections/InviteBanner"
+import { HeroDemo } from '../components/sections/HeroDemo'
+import { PageHeader } from '../components/sections/PageHeader'
+import { FeatureBanner } from '../components/sections/FeatureBanner'
+import { InviteBanner } from '../components/sections/InviteBanner'
 
 export function HomePage() {
   return (
