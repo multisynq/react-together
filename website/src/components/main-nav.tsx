@@ -14,7 +14,7 @@ export function MainNav() {
   const pathname = useLocation().pathname
   return (
     <>
-      <div className='mr-4 hidden md:flex'>
+      <div className='mr-4 hidden md:flex w-full justify-between'>
         <NavLink to='/' className='mr-6 flex items-center space-x-2'>
           <Icons.logo className='h-6 w-6' />
           <span className='hidden font-bold sm:inline-block'>{siteConfig.name}</span>

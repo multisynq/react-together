@@ -19,7 +19,6 @@ export default function DocumentBreadCrumb({ currentPath }) {
 
   const home = {
     label: 'Documentation',
-    icon: 'pi pi-home',
     command: () => navigate('/docs'),
   }
 
