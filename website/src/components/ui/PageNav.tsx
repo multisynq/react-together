@@ -1,5 +1,4 @@
 import { PanelMenu } from 'primereact/panelmenu'
-import React from 'react'
 
 function scrollToElement(id) {
   const element = document.getElementById(id)
@@ -30,7 +29,7 @@ export default function PageNav({ items }) {
   const expandedKeys = { '0': true }
 
   return (
-    <div className='hidden md:flex md:w-[200px] flex-col items-start h-full'>
+    <div className='hidden md:block md:w-[200px] sticky top-20'>
       <PanelMenu
         model={navItems}
         expandedKeys={expandedKeys}

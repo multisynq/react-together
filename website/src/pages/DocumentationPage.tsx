@@ -152,13 +152,15 @@ export function DocumentationPage() {
       <div className='hidden sm:block w-[200px] '>
         <DocumentNav />
       </div>
-      <Page>
-        <div className='flex flex-col items-start gap-[1.4375rem] flex-1'>
+      <div className='flex-1'>
+        {' '}
+        {/* Wrapper for content */}
+        <div className='flex flex-col items-start gap-[1.4375rem]'>
           <DocumentBreadCrumb currentPath={keyToLookupWith} />
           {content}
         </div>
-        <PageNav items={navItems} />
-      </Page>
+      </div>
+      <PageNav items={navItems} />
     </main>
   )
 }
