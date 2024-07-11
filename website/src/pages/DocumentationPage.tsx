@@ -10,57 +10,154 @@ function Page({ children }) {
   return <div className='flex max-w-[87rem] items-start gap-8 flex-1 h-full'>{children}</div>
 }
 
-function PageDocument() {
-  return (
-    <div className='flex flex-col items-start gap-[1.4375rem] flex-1'>
+// function Introdcution() {
+//   return (
+//     <>
+//       <h3>Introdcution</h3>
+//       <p>
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
+//         Maecenas commodo blandit magna et tempus.
+//       </p>
+//       <DocumentDemoBox />
+//       <CodeBlockExample />
+//       <h3>Installation</h3>
+//       <p>
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
+//         Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor.
+//         Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur
+//         adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus.
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
+//         Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor.
+//         Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur
+//         adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus.
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
+//         Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor.
+//         Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur
+//         adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus.
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
+//         Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor.
+//         Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus.
+//       </p>
+//       <h3>Download</h3>
+//       <p>
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
+//         Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor.
+//         Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur
+//         adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus.
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
+//         Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor.
+//         Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur
+//         adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus.
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
+//         Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor.
+//         Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur
+//         adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus.
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
+//         Maecenas commodo blandit magna et tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor.
+//         Vestibulum dapibus molestie sem sed malesuada. Maecenas commodo blandit magna et tempus.
+//       </p>
+//       <h3>Context</h3>
+//       <p>
+//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
+//         Maecenas commodo blandit magna et tempus.
+//       </p>
+//     </>
+//   )
+// }
+function Introduction() {
+  const navItems = [
+    { key: 'introduction', label: 'Introduction' },
+    { key: 'installation', label: 'Installation' },
+    { key: 'download', label: 'Download' },
+    { key: 'context', label: 'Context' },
+  ]
+
+  return {
+    content: (
       <>
-        <DocumentBreadCrumb />
-        <h2>Introduction</h2>
+        <h3 id='introduction'>Introduction</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
-          Maecenas commodo blandit magna et tempus.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <h3 id='installation'>Installation</h3>
+        <h3 id='download'>Download</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <DocumentDemoBox />
         <CodeBlockExample />
+        <h3 id='context'>Context</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
       </>
-    </div>
-  )
+    ),
+    navItems,
+  }
 }
+
 function CoreConcept() {
   return (
-    <div className='flex flex-col items-start gap-[1.4375rem] flex-1'>
-      <>
-        <DocumentBreadCrumb />
-        <h2>Core Concept</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed massa tortor. Vestibulum dapibus molestie sem sed malesuada.
-          Maecenas commodo blandit magna et tempus.
-        </p>
-        <DocumentDemoBox />
-        <CodeBlockExample />
-      </>
-    </div>
+    <>
+      <p>Core Concept</p>
+    </>
+  )
+}
+function Configuration() {
+  return (
+    <>
+      <p>Configuration</p>
+    </>
+  )
+}
+function Playground() {
+  return (
+    <>
+      <p>Playgournd</p>
+    </>
   )
 }
 const lookup = {
-  'get-started/': PageDocument,
-  'get-started/introduction': PageDocument,
-  'core-concept': CoreConcept,
+  '': Introduction,
+  'get-started': Introduction,
+  'get-started/introduction': Introduction,
+  'get-started/core-concept': CoreConcept,
+  'get-started/configuration': Configuration,
+  'get-started/playground': Playground,
 }
+
 export function DocumentationPage() {
   const { slug1, slug2 } = useParams()
   const keyToLookupWith = `${slug1}/${slug2}`
-  // const CompToUse = lookup[keyToLookupWith] || <div>unknown</div>
+  const Component = lookup[keyToLookupWith] || (() => ({ content: <div>unknown</div>, navItems: [] }))
+  const { content, navItems } = Component()
+
   return (
-    <main className='flex justify-center items-start gap-12 self-stretch p-6 pr-8 pb-8 pl-8 h-screen relative'>
-      {/* <div>{keyToLookupWith}</div> */}
+    <main className='flex justify-center items-start gap-12 self-stretch p-6 pr-8 pb-8 pl-8 relative'>
       <div className='hidden sm:block w-[200px] '>
         <DocumentNav />
       </div>
       <Page>
-        {/* <CompToUse /> */}
-        <CoreConcept />
-        <PageNav />
+        <div className='flex flex-col items-start gap-[1.4375rem] flex-1'>
+          <DocumentBreadCrumb currentPath={keyToLookupWith} />
+          {content}
+        </div>
+        <PageNav items={navItems} />
       </Page>
     </main>
   )

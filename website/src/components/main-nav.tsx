@@ -4,15 +4,14 @@ import { Icons } from '@components'
 import { siteConfig } from '@config'
 
 const navConfig = [
-  { to: '/docs', exact: true, label: 'Examples' },
-  { to: '/docs/components', label: 'Components' },
-  { to: '/hello', label: 'Get Started' },
+  { to: '/docs/get-started/introduction', label: 'Documentation' },
+  // { to: '/docs/components', label: 'Components' },
+  // { to: '/hello', label: 'Get Started' },
   { to: siteConfig.links.github, label: 'GitHub', className: 'hidden lg:block' },
 ]
 
 export function MainNav() {
   const pathname = useLocation().pathname
-
   return (
     <>
       <div className='mr-4 hidden md:flex'>
@@ -21,7 +20,7 @@ export function MainNav() {
           <span className='hidden font-bold sm:inline-block'>{siteConfig.name}</span>
         </NavLink>
         <nav className='flex items-center gap-4 text-sm lg:gap-6'>
-          {navConfig.map(({ to, exact, label, className }) => (
+          {navConfig.map(({ to, label, className }) => (
             <NavLink
               key={to}
               {...{
@@ -29,7 +28,7 @@ export function MainNav() {
                 className: cn(
                   'transition-colors hover:text-foreground/80',
                   className,
-                  exact ? pathname === to : pathname?.startsWith(to) ? 'text-foreground' : 'text-foreground/60'
+                  pathname === to ? 'text-foreground' : 'text-foreground/60'
                 ),
               }}
             >
