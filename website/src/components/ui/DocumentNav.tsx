@@ -23,7 +23,7 @@ export default function DocumentNav() {
       { key: '4', label: 'Playground', path: 'playground' },
     ]),
     createMenuItem('1', 'Components', 'components', [
-      { key: '0', label: 'Shared', path: 'shared' },
+      { key: '0', label: 'Hooks', path: 'hooks' },
       { key: '1', label: 'Together', path: 'together' },
     ]),
     createMenuItem('2', 'Guides', 'guides', [
