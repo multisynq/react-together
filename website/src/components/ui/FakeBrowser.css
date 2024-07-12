@@ -1,12 +1,6 @@
-.container {
-  display: flex;
-  justify-content: center;
-  padding-top: 100px;
-}
-
 .fake-browser {
-  width: 860px;
-  height: 500px;
+  width: auto;
+  height: auto;
   border: 1px solid #ccc;
   border-radius: 4px;
   overflow: hidden;
@@ -71,8 +65,9 @@
   background-color: #999;
   vertical-align: middle;
 }
-.fake-browser .fake-browser-header .setting-more .more-btn:before, .fake-browser .fake-browser-header .setting-more .more-btn:after {
-  content: "";
+.fake-browser .fake-browser-header .setting-more .more-btn:before,
+.fake-browser .fake-browser-header .setting-more .more-btn:after {
+  content: '';
   position: absolute;
   left: 0;
 }

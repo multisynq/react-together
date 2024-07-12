@@ -1,4 +1,5 @@
 import './App.scss'
+import '@styles/Comps.scss'
 import '@styles/globals.css'
 import '@styles/mdx.css'
 
