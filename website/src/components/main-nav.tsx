@@ -15,7 +15,7 @@ export function MainNav() {
   return (
     <>
       <div className='mr-4 hidden md:flex w-full justify-between'>
-        <NavLink to='/' className='mr-6 flex items-center space-x-2'>
+        <NavLink to='/' className='mr-6 flex items-center space-x-2 text-gray-800 hover:text-gray-600 no-underline'>
           <Icons.logo className='h-6 w-6' />
           <span className='hidden font-bold sm:inline-block'>{siteConfig.name}</span>
         </NavLink>
