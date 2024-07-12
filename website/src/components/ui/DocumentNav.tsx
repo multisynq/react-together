@@ -46,11 +46,7 @@ export default function DocumentNav() {
 
   return (
     <div className='w-[200px] h-full'>
-      <PanelMenu
-        model={items}
-        expandedKeys={expandedKeys}
-        className='w-full [&_.p-panelmenu-header-link]:py-2 [&_.p-panelmenu-header-link]:pl-0 [&_.p-panelmenu-content_.p-menuitem-link]:pl-0 [&_.p-submenu-icon]:hidden'
-      />
+      <PanelMenu model={items} expandedKeys={expandedKeys} className='[&_.p-submenu-icon]:hidden' />
     </div>
   )
 }

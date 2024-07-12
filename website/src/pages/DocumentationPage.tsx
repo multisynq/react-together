@@ -22,6 +22,7 @@ function Introduction() {
     content: (
       <>
         <h3 id='introduction'>Introduction</h3>
+        <CodeBlockExample />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
           enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
@@ -35,6 +36,7 @@ function Introduction() {
           in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <h3 id='installation'>Installation</h3>
+        <CodeBlockExample />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
           enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
@@ -42,6 +44,7 @@ function Introduction() {
           in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <h3 id='download'>Download</h3>
+        <CodeBlockExample />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
           enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in

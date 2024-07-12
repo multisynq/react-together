@@ -22,5 +22,6 @@ export default function DocumentBreadCrumb({ currentPath }) {
     command: () => navigate('/docs'),
   }
 
-  return <BreadCrumb model={items} home={home} className='!pl-0 [&>ol]:!pl-0' />
+  // return <BreadCrumb model={items} home={home} className='rt-breadcrumb !pl-0 [&>ol]:!pl-0' />
+  return <BreadCrumb model={items} home={home} className='rt-breadcrumb' />
 }
