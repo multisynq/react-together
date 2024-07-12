@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "start": "vite --host",
     "dev": "vite --host",
     "build": "vite build",
     "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && rm -f package-lock.json && rm -f bun.lockb",
