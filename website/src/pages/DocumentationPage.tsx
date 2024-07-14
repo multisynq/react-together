@@ -6,7 +6,7 @@ import PageNav from '@components/ui/PageNav'
 import { useParams } from 'react-router-dom'
 import { ComponentReturn } from './Documentation/types'
 import { HooksComponent, hooksNavItems } from './Documentation/HooksComponent'
-import { IntroductionGetStarted, IntroNavItems } from './Documentation/introductionGetstarted'
+import { IntroductionGetStarted, IntroNavItems } from './Documentation/IntroductionGetStarted'
 
 function Page({ children }) {
   return <div className='flex max-w-[87rem] items-start gap-8 flex-1 h-full'>{children}</div>
@@ -54,10 +54,7 @@ function Configuration() {
 }
 
 function Playground() {
-  const navItems = [
-    { key: 'playground', label: 'playground' },
-    // Add more items as needed
-  ]
+  const navItems = [{ key: 'playground', label: 'playground' }]
 
   return {
     content: (
