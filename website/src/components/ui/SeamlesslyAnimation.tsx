@@ -9,12 +9,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,556; 
               0,278,278,0; 
+              556,0,0,0;
               556,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </rect>
@@ -25,12 +26,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,112.06414031982422; 
               0,56.03207015991211,56.03207015991211,0; 
+              112.06414031982422,0,0,0;
               112.06414031982422,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -41,12 +43,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,137.75836181640625; 
               0,68.87918090820312,68.87918090820312,0; 
-              137.75836181640625,0,0,0'
-            keyTimes='0; 0.5; 1'
+              137.75836181640625,0,0,0;
+              37.75836181640625,0,0,0'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -57,12 +60,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,134.10317993164062; 
               0,67.05158996582031,67.05158996582031,0; 
+              134.10317993164062,0,0,0;
               134.10317993164062,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -73,12 +77,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,197.08447265625; 
               0,98.542236328125,98.542236328125,0; 
+              197.08447265625,0,0,0;
               197.08447265625,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -86,12 +91,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,83.18392181396484; 
               0,41.59196090698242,41.59196090698242,0; 
+              83.18392181396484,0,0,0;
               83.18392181396484,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -102,12 +108,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,137.75848388671875; 
               0,68.87924194335938,68.87924194335938,0; 
+              137.75848388671875,0,0,0;
               137.75848388671875,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -118,12 +125,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,112.06419372558594; 
               0,56.03209686279297,56.03209686279297,0; 
+              112.06419372558594,0,0,0;
               112.06419372558594,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -134,12 +142,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,112.06420135498047; 
               0,56.032100677490234,56.032100677490234,0; 
+              112.06420135498047,0,0,0;
               112.06420135498047,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -147,12 +156,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,83.1839370727539; 
               0,41.59196853637695,41.59196853637695,0; 
+              83.1839370727539,0,0,0;
               83.1839370727539,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -163,12 +173,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,124.0350341796875; 
               0,62.01751708984375,62.01751708984375,0; 
+              124.0350341796875,0,0,0;
               124.0350341796875,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -179,12 +190,13 @@ export function SeamlesslyAnimation() {
           <animate
             attributeType='XML'
             attributeName='stroke-dasharray'
-            repeatCount='1'
-            dur='3.5s'
+            repeatCount='2'
+            dur='4s'
             values='0,0,0,22.833566665649414; 
               0,11.416783332824707,11.416783332824707,0; 
+              22.833566665649414,0,0,0;
               22.833566665649414,0,0,0'
-            keyTimes='0; 0.5; 1'
+            keyTimes='0; 0.5; 0.8; 1'
             fill='freeze'
           ></animate>
         </path>
@@ -199,12 +211,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,112.06414031982422; 
               0,56.03207015991211,56.03207015991211,0; 
+              112.06414031982422,0,0,0;
               112.06414031982422,0,0,0'
-          keyTimes='0; 0.5; 1'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
@@ -218,12 +231,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,137.75836181640625; 
               0,68.87918090820312,68.87918090820312,0; 
+              137.75836181640625,0,0,0;
               137.75836181640625,0,0,0'
-          keyTimes='0; 0.5; 1'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
@@ -237,12 +251,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,134.10317993164062; 
               0,67.05158996582031,67.05158996582031,0; 
+              134.10317993164062,0,0,0;
               134.10317993164062,0,0,0'
-          keyTimes='0; 0.5; 1'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
@@ -256,12 +271,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,197.08447265625; 
               0,98.542236328125,98.542236328125,0; 
+              197.08447265625,0,0,0;
               197.08447265625,0,0,0'
-          keyTimes='0; 0.5; 1'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
@@ -275,12 +291,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,83.18392181396484; 
               0,41.59196090698242,41.59196090698242,0; 
+              83.18392181396484,0,0,0;
               83.18392181396484,0,0,0'
-          keyTimes='0; 0.5; 1'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
@@ -294,12 +311,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,137.75848388671875; 
               0,68.87924194335938,68.87924194335938,0; 
+              137.75848388671875,0,0,0;
               137.75848388671875,0,0,0'
-          keyTimes='0; 0.5; 1'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
@@ -313,12 +331,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,112.06419372558594; 
               0,56.03209686279297,56.03209686279297,0; 
+              112.06419372558594,0,0,0;
               112.06419372558594,0,0,0'
-          keyTimes='0; 0.5; 1'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
@@ -332,12 +351,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,112.06420135498047; 
               0,56.032100677490234,56.032100677490234,0; 
+              112.06420135498047,0,0,0;
               112.06420135498047,0,0,0'
-          keyTimes='0; 0.5; 1'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
@@ -351,12 +371,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,83.1839370727539; 
               0,41.59196853637695,41.59196853637695,0; 
+              83.1839370727539,0,0,0;
               83.1839370727539,0,0,0'
-          keyTimes='0; 0.5; 1'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
@@ -370,12 +391,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,124.0350341796875; 
               0,62.01751708984375,62.01751708984375,0; 
-              124.0350341796875,0,0,0'
-          keyTimes='0; 0.5; 1'
+              124.0350341796875,0,0,0;
+              124.0350341796875,0,0,0;'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
@@ -389,12 +411,13 @@ export function SeamlesslyAnimation() {
         <animate
           attributeType='XML'
           attributeName='stroke-dasharray'
-          repeatCount='1'
-          dur='3.5s'
+          repeatCount='2'
+          dur='4s'
           values='0,0,0,22.833566665649414; 
               0,11.416783332824707,11.416783332824707,0; 
+              22.833566665649414,0,0,0;
               22.833566665649414,0,0,0'
-          keyTimes='0; 0.5; 1'
+          keyTimes='0; 0.5; 0.8; 1'
           fill='freeze'
         ></animate>
       </path>
