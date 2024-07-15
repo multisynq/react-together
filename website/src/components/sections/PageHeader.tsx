@@ -1,13 +1,18 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { InstallCodeBlock } from '@components/ui/InstallCodeBlock'
+import { SeamlesslyAnimation } from '@components/ui/SeamlesslyAnimation'
+// import { SeamlesslyAnim } from '../../images/SeamlesslyAnim.svg'
 
 export function PageHeader() {
   const sampleCode1 = `npm i reactTogether`
   return (
     <div className='flex flex-col items-center gap-2 max-w-[105rem]'>
       <span className='h-20'></span>
-      <h1 className='text-center max-w-[49.375rem]'>
-        Bring users together <span className='font-thin'>seamlessly.</span>
+      <h1 className='flex text-center'>
+        Bring users together{' '}
+        <span className='pl-2'>
+          <SeamlesslyAnimation />
+        </span>
       </h1>
       <p className='text-center max-w-[32rem] p-2.5'>
         Foster real-time collaboration with our React library, enabling users to interact and work together seamlessly.
