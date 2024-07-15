@@ -40,7 +40,7 @@ export function InstallCodeBlock({ language, code1 }) {
           marginTop: 0,
           marginBottom: 0,
         }}
-        className='w-full'
+        className='w-full border-[1.5px] border-black shadow-[1px_2px_0px_0px_#B8B8B8]'
       >
         {code1}
       </SyntaxHighlighter>

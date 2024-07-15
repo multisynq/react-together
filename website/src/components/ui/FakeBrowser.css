@@ -1,8 +1,8 @@
 .fake-browser {
   width: auto;
   height: auto;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1.5px solid #000000;
+  border-radius: 12px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -13,6 +13,7 @@
   height: 44px;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid black;
 }
 .fake-browser .fake-browser-header .action-btns {
   min-width: 100px;
@@ -24,6 +25,7 @@
   margin-left: 10px;
   border-radius: 50%;
   float: left;
+  border: 1px solid #000000;
 }
 .fake-browser .fake-browser-header .action-btns span:first-child {
   background-color: red;
@@ -39,6 +41,7 @@
   padding: 4px 10px;
   border-radius: 4px;
   flex: 1;
+  border: 1px solid #000000;
 }
 .fake-browser .fake-browser-header .address-bar input {
   width: 100%;
