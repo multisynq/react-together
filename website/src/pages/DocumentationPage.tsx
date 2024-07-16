@@ -81,6 +81,10 @@ function Hooks(): ComponentReturn {
   }
 }
 
+// function MainHooks(){
+//   content: <h
+// }
+
 const lookup = {
   '': Introduction,
   'get-started': Introduction,
@@ -88,6 +92,7 @@ const lookup = {
   'get-started/core-concept': CoreConcept,
   'get-started/configuration': Configuration,
   'get-started/playground': Playground,
+  // 'hooks/mainhooks': MainHooks,
   'components/hooks': Hooks,
 }
 

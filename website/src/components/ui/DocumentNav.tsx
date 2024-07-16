@@ -17,23 +17,32 @@ export default function DocumentNav() {
 
   const items = [
     createMenuItem('0', 'Get Started', 'get-started', [
-      { key: '1', label: 'Introduction', path: 'introduction' },
-      { key: '2', label: 'Core Concept', path: 'core-concept' },
-      { key: '3', label: 'Configuration', path: 'configuration' },
-      { key: '4', label: 'Playground', path: 'playground' },
+      { key: '0', label: 'Introduction', path: 'introduction' },
+      { key: '1', label: 'Configuration', path: 'configuration' },
+      // { key: '2', label: 'Core Concept', path: 'core-concept' },
+      // { key: '3', label: 'Playground', path: 'playground' },
     ]),
-    createMenuItem('1', 'Components', 'components', [
-      { key: '0', label: 'Get', path: 'get' },
-      { key: '0', label: 'Hooks', path: 'hooks' },
-      { key: '1', label: 'Together', path: 'together' },
-      { key: '2', label: 'Synced', path: 'synced' },
-      { key: '3', label: 'Shared', path: 'shared' },
+    createMenuItem('1', 'Hooks', 'hooks', [
+      { key: '0', label: 'Main Hooks', path: 'main-hooks' },
+      { key: '1', label: 'Session Hooks', path: 'session-hooks' },
+      { key: '2', label: 'Utility Hooks', path: 'utility-hooks' },
     ]),
-    createMenuItem('2', 'Guides', 'guides', [
-      { key: '0', label: 'How-to', path: 'how-to' },
-      { key: '1', label: 'Troubleshooting', path: 'troubleshooting' },
+    createMenuItem('2', 'Components', 'components', [
+      { key: '0', label: 'React Together', path: 'react-together' },
+      // { key: '1', label: 'Prime React', path: 'prime-react' },
+      // { key: '2', label: 'Ant Design', path: 'ant-design' },
+      // { key: '3', label: 'MUI', path: 'mui' },
+      // { key: '4', label: 'Shadcn', path: 'shadcn' },
     ]),
-    createMenuItem('3', 'License', '', [
+
+    createMenuItem('3', 'Discover', 'discover', [
+      { key: '0', label: 'About Us', path: 'about-us' },
+      { key: '1', label: 'Roadmap', path: 'roadmap' },
+      { key: '2', label: 'Source Code', path: 'source-code' },
+      { key: '3', label: 'Change Code', path: 'change-code' },
+      { key: '4', label: 'Support', path: 'support' },
+    ]),
+    createMenuItem('4', 'License', '', [
       { key: '0', label: 'License', path: 'license' },
       { key: '1', label: 'FAQ', path: 'faq' },
     ]),
