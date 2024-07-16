@@ -2,7 +2,7 @@ import 'primeicons/primeicons.css'
 import { SpeedDial } from 'primereact/speeddial'
 import { Tooltip } from 'primereact/tooltip'
 import useReactTogetherContext from '../hooks/useReactTogetherContext'
-import logo from '../multisynq.png'
+// import logo from '../multisynq.png'
 
 export function ReactTogetherManager() {
   const { isTogether, leaveSession, createNewSession } =
@@ -42,7 +42,8 @@ export function ReactTogetherManager() {
           padding: '0.1rem'
         }}
         buttonClassName="p-button-outlined"
-        showIcon={<img src={logo} style={{ width: '100%', height: '100%' }} />}
+        // showIcon={<img src={logo} style={{ width: '100%', height: '100%' }} />}
+        showIcon={<img src={undefined} style={{ width: '100%', height: '100%' }} />}
       ></SpeedDial>
     </>
   )

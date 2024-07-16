@@ -1,17 +1,17 @@
-import { TabPanel, TabView } from 'primereact/tabview'
-// import { useState } from 'react'
-import useStateTogether from '../../hooks/useStateTogether'
+// import { TabPanel, TabView } from 'primereact/tabview'
+// // import { useState } from 'react'
+// import useStateTogether from '../../hooks/useStateTogether'
 
-function NavTabs() {
-  const [idx, setIdx] = useStateTogether<number>('nt-idx', 0)
-  return (
-    <TabView activeIndex={idx} onTabChange={(e) => setIdx(e.index)}>
-      <TabPanel header="Tab1">Content Together 1</TabPanel>
-      <TabPanel header="Tab2">Content Together 2</TabPanel>
-      <TabPanel header="Tab3">Content Together 3</TabPanel>
-    </TabView>
-  )
-}
+// function NavTabs() {
+//   const [idx, setIdx] = useStateTogether<number>('nt-idx', 0)
+//   return (
+//     <TabView activeIndex={idx} onTabChange={(e) => setIdx(e.index)}>
+//       <TabPanel header="Tab1">Content Together 1</TabPanel>
+//       <TabPanel header="Tab2">Content Together 2</TabPanel>
+//       <TabPanel header="Tab3">Content Together 3</TabPanel>
+//     </TabView>
+//   )
+// }
 
 
 // To demo this, 
@@ -33,10 +33,10 @@ function NavTabs() {
 
 
 
-function Test() {
-  return (
-    <div>
-      <NavTabs />
-    </div>
-  )
-}
+// function Test() {
+//   return (
+//     <div>
+//       <NavTabs />
+//     </div>
+//   )
+// }
