@@ -5,8 +5,10 @@ import DocumentNav from '@components/ui/DocumentNav'
 import PageNav from '@components/ui/PageNav'
 import { useParams } from 'react-router-dom'
 import { ComponentReturn } from './Documentation/types'
-import { HooksComponent, hooksNavItems } from './Documentation/HooksComponent'
+import { MainHooksComponent, mainHooksNavItems } from './Documentation/MainHooksComponent'
 import { IntroductionGetStarted, IntroNavItems } from './Documentation/IntroductionGetStarted'
+import { SessionHooksComponent, sessionHooksNavItems } from './Documentation/SessionHooksComponent'
+import { ConfigurationGetStarted, ConfigNavItems } from './Documentation/ConfigurationGetStarted'
 
 function Page({ children }) {
   return <div className='flex max-w-[87rem] items-start gap-8 flex-1 h-full'>{children}</div>
@@ -37,19 +39,9 @@ function CoreConcept() {
 }
 
 function Configuration() {
-  const navItems = [
-    { key: 'configuration', label: 'Configuration' },
-    // Add more items as needed
-  ]
-
   return {
-    content: (
-      <>
-        <h3 id='configuration'>Configuration</h3>
-        <p>...</p>
-      </>
-    ),
-    navItems,
+    content: <ConfigurationGetStarted />,
+    navItems: ConfigNavItems,
   }
 }
 
@@ -74,13 +66,19 @@ function Introduction() {
   }
 }
 
-function Hooks(): ComponentReturn {
+function MainHooks(): ComponentReturn {
   return {
-    content: <HooksComponent />,
-    navItems: hooksNavItems,
+    content: <MainHooksComponent />,
+    navItems: mainHooksNavItems,
   }
 }
 
+function SessionHooks(): ComponentReturn {
+  return {
+    content: <SessionHooksComponent />,
+    navItems: sessionHooksNavItems,
+  }
+}
 // function MainHooks(){
 //   content: <h
 // }
@@ -89,11 +87,10 @@ const lookup = {
   '': Introduction,
   'get-started': Introduction,
   'get-started/introduction': Introduction,
-  'get-started/core-concept': CoreConcept,
   'get-started/configuration': Configuration,
   'get-started/playground': Playground,
-  // 'hooks/mainhooks': MainHooks,
-  'components/hooks': Hooks,
+  'hooks/main-hooks': MainHooks,
+  'hooks/session-hooks': SessionHooks,
 }
 
 export function DocumentationPage() {

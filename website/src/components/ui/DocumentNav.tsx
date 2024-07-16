@@ -25,11 +25,11 @@ export default function DocumentNav() {
     createMenuItem('1', 'Hooks', 'hooks', [
       { key: '0', label: 'Main Hooks', path: 'main-hooks' },
       { key: '1', label: 'Session Hooks', path: 'session-hooks' },
-      { key: '2', label: 'Utility Hooks', path: 'utility-hooks' },
+      // { key: '2', label: 'Utility Hooks', path: 'utility-hooks' },
     ]),
     createMenuItem('2', 'Components', 'components', [
       { key: '0', label: 'React Together', path: 'react-together' },
-      // { key: '1', label: 'Prime React', path: 'prime-react' },
+      { key: '1', label: 'Prime React', path: 'prime-react' },
       // { key: '2', label: 'Ant Design', path: 'ant-design' },
       // { key: '3', label: 'MUI', path: 'mui' },
       // { key: '4', label: 'Shadcn', path: 'shadcn' },

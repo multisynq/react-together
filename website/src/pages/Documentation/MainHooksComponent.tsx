@@ -2,7 +2,7 @@ import { NavItem } from './types'
 import { CodeBlockExample } from '@components/ui/CodeBlockExample'
 import DocumentDemoBox from '@components/ui/DocumentDemoBox'
 
-export const HooksComponent: React.FC = () => {
+export const MainHooksComponent: React.FC = () => {
   return (
     <>
       <h2>Main Hooks</h2>
@@ -23,7 +23,7 @@ export const HooksComponent: React.FC = () => {
   )
 }
 
-export const hooksNavItems: NavItem[] = [
+export const mainHooksNavItems: NavItem[] = [
   { key: 'overview', label: 'Overview' },
   { key: 'useSharedState', label: 'useSharedState' },
   { key: 'useStateTogether', label: 'useStateTogether' },
