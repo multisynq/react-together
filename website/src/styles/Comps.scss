@@ -6,6 +6,7 @@
   text-decoration: none;
   color: black;
   padding: 0;
+  font-weight: normal;
 }
 
 .p-panelmenu-header-content {
@@ -23,7 +24,7 @@
     }
   }
   .p-panelmenu-content {
-    border-radius: 0;
+    border-radius: 0px;
     .p-menuitem-link {
       padding: 8px;
     }
@@ -43,4 +44,22 @@ ul.p-panelmenu-root-list.p-submenu-list {
 
 nav.flex a {
   text-decoration: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+// .custom-scrollbar::-webkit-scrollbar-track {
+//   background: #f1f1f1;
+// }
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 8px;
+  border: black solid 1px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
