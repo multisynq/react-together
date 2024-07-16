@@ -19,7 +19,7 @@ export function PageHeader() {
       </p>
       <span className='h-8' />
       <div className='flex gap-2'>
-        <div className='px-4 py-2 bg-blue-300 text-black rounded-lg shadow-[1px_2px_0px_0px_#B8B8B8] text-center flex items-center justify-center border-[1.5px] border-black font-bold'>
+        <div className='px-4 py-2 bg-blue-300 text-black rounded-lg shadow-[1px_2px_0px_0px_#B8B8B8] text-center flex items-center justify-center border-[1.5px] border-black font-dbold'>
           Get Started
         </div>
         <InstallCodeBlock language='javascript' code1={sampleCode1} />
