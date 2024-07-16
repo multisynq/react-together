@@ -36,7 +36,11 @@ export default function useSharedState<T>(
 
   if (view && model && session) {
     // @ts-expect-error: We know session has an id
-    view.subscribe(session.id, 'react-updated', () => {
+    view.subscribe(session.id, {
+        event: 'react-updated',
+        handling: "oncePerFrame",
+      },
+      () => {
       const newValue = model.state.get(rtid) as T
       set_value(newValue)
     })

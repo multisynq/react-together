@@ -4,6 +4,7 @@ import useSharedState from '../../hooks/useSharedState'
 export interface SharedTabViewrops
   extends Omit<TabViewProps, 'activeIndex' | 'onTabChange'> {
   rtid: string
+  headerClassName?: string
 }
 export default function SharedTabView({ rtid, ...props }: SharedTabViewrops) {
   const [activeIndex, set_activeIndex] = useSharedState<number>(rtid, 0)

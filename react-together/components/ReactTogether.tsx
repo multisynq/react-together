@@ -1,10 +1,11 @@
-import { CroquetRoot } from '@croquet/react'
+import { Constants, CroquetRoot } from '@croquet/react'
 import { createContext, useState } from 'react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 
 type ReactTogetherSessionParams = {
   appId: string
   apiKey: string
+  separateSessionPerUrl?: boolean
 }
 
 export interface IReactTogetherContext {
@@ -26,7 +27,7 @@ export default function ReactTogether({
   children,
   sessionParams
 }: ReactTogetherProps) {
-  const { appId, apiKey } = sessionParams
+  const { appId, apiKey, separateSessionPerUrl } = sessionParams
 
   const [sessionName, set_sessionName] = useState<null | string>(
     // import.meta.env.VITE_CROQUET_NAME || null
@@ -68,6 +69,9 @@ export default function ReactTogether({
     // We would need some logic to not render anything until we are connected
     // to the right session
   */
+  if (separateSessionPerUrl !== false) {
+    (Constants as Record<string,any>).sessionUrl = window.location.origin + window.location.pathname
+  }
 
   return (
     <ReactTogetherContext.Provider
@@ -76,7 +80,7 @@ export default function ReactTogether({
         leaveSession,
         isTogether,
         sessionName,
-        sessionPassword
+        sessionPassword,
       }}
     >
       {sessionName !== null && sessionPassword !== null ? (
@@ -86,11 +90,11 @@ export default function ReactTogether({
             appId,
             apiKey,
             name: sessionName,
-            password: sessionPassword
+            password: sessionPassword,
           }}
         >
           <>
-            Connected to session {sessionName}!!
+            {/* Connected to session {sessionName}!! */}
             {children}
           </>
         </CroquetRoot>
