@@ -1,4 +1,6 @@
 import { NavItem } from './types'
+import { CodeBlockExample } from '@components/ui/CodeBlockExample'
+import DocumentDemoBox from '@components/ui/DocumentDemoBox'
 
 export const HooksComponent: React.FC = () => {
   return (
@@ -13,11 +15,15 @@ export const HooksComponent: React.FC = () => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
         ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
       </p>
+      <DocumentDemoBox />
+      <CodeBlockExample />
       <h4 id='useConnectedUsers'>useConnectedUsers</h4>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
         ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
       </p>
+      <DocumentDemoBox />
+      <CodeBlockExample />
       <h4 id='userHoveringViews'>userHoveringViews</h4>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -28,26 +34,36 @@ export const HooksComponent: React.FC = () => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
         ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
       </p>
+      <DocumentDemoBox />
+      <CodeBlockExample />
       <h4 id='useLeaveSession'>useLeaveSession</h4>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
         ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
       </p>
+      <DocumentDemoBox />
+      <CodeBlockExample />
       <h4 id='useReactTogetherContext'>useReactTogetherContext</h4>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
         ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
       </p>
+      <DocumentDemoBox />
+      <CodeBlockExample />
       <h4 id='useSharedState'>useSharedState</h4>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
         ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
       </p>
+      <DocumentDemoBox />
+      <CodeBlockExample />
       <h4 id='useStateTogether'>useStateTogether</h4>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
         ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
       </p>
+      <DocumentDemoBox />
+      <CodeBlockExample />
     </>
   )
 }
