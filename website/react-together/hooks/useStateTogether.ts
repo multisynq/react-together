@@ -55,14 +55,14 @@ export default function useStateTogether<T>(
 
     // If we are inside a session, subscribe to react-updated events
     if (view && viewId && model && session) {
-      console.log(`useStateTogether - react-updated viewdId=${viewId} modelId=${model.id}`)
+      // console.log(`useStateTogether - react-updated viewdId=${viewId} modelId=${model.id}`)
       // @ts-expect-error: We know session has an id
       view.subscribe(session.id, {
           event: 'react-updated',
           handling: "oncePerFrame",
         },
         () => {
-          console.log(`useStateTogether - view.subscribe( callback ) viewId=${viewId}, modelId=${model.id}`)
+          // console.log(`useStateTogether - view.subscribe( callback ) viewId=${viewId}, modelId=${model.id}`)
           const allValues = model.stateTogether.get(rtid) as Map<string, T>
           set_localValue(allValues.get(viewId) as T)
         }

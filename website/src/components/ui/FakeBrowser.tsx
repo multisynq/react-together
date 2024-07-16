@@ -11,7 +11,7 @@ export function FakeBrowser({ children }) {
             <span></span>
           </div>
           <div className='address-bar'>
-            <input type='text' value='https://YourWebsite.com' />
+            <input type='text' value='https://YourWebsite.com' onChange={() => {}} />
           </div>
           <div className='setting-more'>
             <span className='more-btn'></span>

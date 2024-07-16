@@ -1,21 +1,21 @@
 import SharedCountButton from '@components/demo/SharedCountButton'
-import SyncedTabs from '@components/demo/SyncedTabs'
+// import SyncedTabs from '@components/demo/SyncedTabs'
 import { FakeBrowser } from '@components/ui/FakeBrowser'
 import {
   ConnectedViews,
   PresenceDiv,
   ReactTogether,
-  SharedCalendar,
   SharedCheckbox,
   SharedDropdown,
   SharedInputSwitch,
-  SharedKnob,
-  SharedMultiSelect,
-  SharedRating,
   SharedSelectButton,
-  SharedToggleButton,
   SharedTriStateCheckbox,
-} from 'react-together'
+  // SharedCalendar,
+  // SharedKnob,
+  // SharedMultiSelect,
+  // SharedRating,
+  // SharedToggleButton,
+} from '../../../react-together'
 // import { ReactTogetherManager } from "react-together/components/ReactTogetherManager";
 
 export function WithReactTogetherProvider({ children }) {
