@@ -49,18 +49,27 @@ export default function useStateTogether<T>(
   
   // This is the local state
   const [localValue, set_localValue] = useState<T>(modelValue || initial_value)
-
-  // If we are inside a session, subscribe to react-updated events
-  if (view && viewId && model && session) {
-    // @ts-expect-error: We know session has an id
-    view.subscribe(session.id, 'react-updated', () => {
-      const allValues = model.stateTogether.get(rtid) as Map<string, T>
-      set_localValue(allValues.get(viewId) as T)
-    })
-  }
-
+  
+  
   useEffect(() => {
-    return () => {
+
+    // If we are inside a session, subscribe to react-updated events
+    if (view && viewId && model && session) {
+      console.log(`useStateTogether - react-updated viewdId=${viewId} modelId=${model.id}`)
+      // @ts-expect-error: We know session has an id
+      view.subscribe(session.id, {
+          event: 'react-updated',
+          handling: "oncePerFrame",
+        },
+        () => {
+          console.log(`useStateTogether - view.subscribe( callback ) viewId=${viewId}, modelId=${model.id}`)
+          const allValues = model.stateTogether.get(rtid) as Map<string, T>
+          set_localValue(allValues.get(viewId) as T)
+        }
+      )
+    }
+
+    return () => { // this code will run when the component unmounts
       if (view && model) {
         view.publish(model.id, 'setStateTogether', {
           id: rtid,

@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import ViteYaml from '@modyfi/vite-plugin-yaml'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -19,7 +19,7 @@ const CROQUET_MODULE_SRC = `
 `;
 
 // Vite plugin to inject and use Croquet via <SCRIPT> tag
-function CroquetViaScriptTag() {
+function CroquetViaScriptTag():Plugin {
   return {
     name: 'croquet-via-script-tag',
     transformIndexHtml: {
@@ -35,7 +35,7 @@ function CroquetViaScriptTag() {
           },
         ];
       }
-    } as any, // variant with order spec not in the type definition yet
+    },
     load(filepath) {
       if (filepath.includes("@croquet/croquet")) {
         return CROQUET_MODULE_SRC
