@@ -3,7 +3,13 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import 'primeicons/primeicons.css'
 
-export function CodeBlock({ language, code1, code2 }) {
+interface CodeBlockProps {
+  language: string
+  code1: string
+  code2?: string // Make code2 optional
+}
+
+export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
   const [copySuccess, setCopySuccess] = useState(false)
   const [showCode1, setShowCode1] = useState(true)
 
@@ -51,7 +57,6 @@ export function CodeBlock({ language, code1, code2 }) {
           marginTop: 0,
           marginBottom: 0,
         }}
-        className='w-full'
       >
         {code2 && !showCode1 ? code2 : code1}
       </SyntaxHighlighter>
