@@ -13,7 +13,7 @@
     "lines_of_code_dist": "cloc --exclude-dir=node_modules --not-match-f='.*\\.(svg|md|toml)' dist"
   },
   "dependencies": {
-    "@croquet/react": "^2.0.0",
+    "@croquet/react": "^2.0.1",
     "@modyfi/vite-plugin-yaml": "^1.1.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
