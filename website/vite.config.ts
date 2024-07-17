@@ -5,11 +5,13 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import { version as CROQUET_VERSION } from './node_modules/@croquet/croquet/package.json'
 
-// During development, we want to load Croquet via <SCRIPT> tag
+// We want to load Croquet via <SCRIPT> tag
 // instead of bundling it with the rest of the code
 // so that we can use source maps and debug the Croquet code.
 // To make this work, we need to fake an ES module because Vite
 // needs that but the Croquet package does not have an ES build yet.
+// Set the CROQUET_SOURCEMAPS environment variable to the source maps
+// directory URL, otherwise you have to manually add the source map
 
 const CROQUET_FILE = `croquet-${CROQUET_VERSION}.min.js`;
 const CROQUET_MODULE_SRC = `
@@ -45,9 +47,22 @@ function CroquetViaScriptTag():Plugin {
   }
 }
 
-export default defineConfig({
+// Static copy transform to add source map URL to the Croquet library
+const CroquetAddSourcemap = (mode) => {
+  const sourcemaps = process.env.CROQUET_SOURCEMAPS;
+  if (!sourcemaps || mode !== 'development') return undefined;
+  return (contents) => {
+    const marker = '\n//# sourceMappingURL';
+    if (!contents.includes(marker)) {
+      contents += `${marker}=${sourcemaps}/${CROQUET_FILE}.map\n`;
+    }
+    return contents;
+  }
+}
+
+export default defineConfig(({mode}) => ({
   optimizeDeps: {
-    exclude: ["@croquet/croquet"], // enable transforms even in dev mode
+    exclude: ["@croquet/croquet"], // enable transforms in dev mode
   },
   plugins: [
     viteStaticCopy({
@@ -55,7 +70,8 @@ export default defineConfig({
         {
           src: 'node_modules/@croquet/croquet/pub/croquet.min.js',
           dest: 'assets',
-          rename: CROQUET_FILE
+          rename: CROQUET_FILE,
+          transform: CroquetAddSourcemap(mode),
         },
       ],
     }),
@@ -80,4 +96,4 @@ export default defineConfig({
       },
     },
   },
-})
+}))

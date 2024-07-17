@@ -1,14 +1,10 @@
-
-*.DS_Store
-*.meta
-# */bun.lockb
-*/dist/
+.DS_Store
 
 node_modules/
-
 dist/
 
 .env
+.env.*
 
 .vscode/settings.json
 
