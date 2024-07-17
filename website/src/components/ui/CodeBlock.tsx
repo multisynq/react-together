@@ -6,7 +6,7 @@ import 'primeicons/primeicons.css'
 interface CodeBlockProps {
   language: string
   code1: string
-  code2?: string // Make code2 optional
+  code2?: string
 }
 
 export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
@@ -29,7 +29,7 @@ export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
 
   return (
     <div className='relative w-full'>
-      <div className='top-2 right-2 absolute flex gap-2'>
+      <div className='top-2 right-2 absolute flex gap-2 z-10'>
         {code2 && (
           <button
             onClick={toggleCode}
@@ -47,19 +47,23 @@ export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
           <i className={copySuccess ? 'pi pi-check' : 'pi pi-copy'} style={{ fontSize: '1rem' }}></i>
         </button>
       </div>
-      <SyntaxHighlighter
-        language={language}
-        style={vscDarkPlus}
-        customStyle={{
-          padding: '20px',
-          borderRadius: '5px',
-          fontSize: '14px',
-          marginTop: 0,
-          marginBottom: 0,
-        }}
-      >
-        {code2 && !showCode1 ? code2 : code1}
-      </SyntaxHighlighter>
+      <div className='overflow-x-auto'>
+        <SyntaxHighlighter
+          language={language}
+          style={vscDarkPlus}
+          customStyle={{
+            padding: '20px',
+            borderRadius: '5px',
+            fontSize: '14px',
+            marginTop: 0,
+            marginBottom: 0,
+          }}
+          wrapLines={true}
+          wrapLongLines={true}
+        >
+          {code2 && !showCode1 ? code2 : code1}
+        </SyntaxHighlighter>
+      </div>
     </div>
   )
 }
