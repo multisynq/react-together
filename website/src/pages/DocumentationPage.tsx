@@ -5,92 +5,86 @@ import DocumentNav from '@components/ui/DocumentNav'
 import PageNav from '@components/ui/PageNav'
 import { useParams } from 'react-router-dom'
 import { ComponentReturn } from './Documentation/types'
-import { MainHooksComponent, mainHooksNavItems } from './Documentation/MainHooksComponent'
-import { IntroductionGetStarted, IntroNavItems } from './Documentation/IntroductionGetStarted'
-import { SessionHooksComponent, sessionHooksNavItems } from './Documentation/SessionHooksComponent'
-import { ConfigurationGetStarted, ConfigNavItems } from './Documentation/ConfigurationGetStarted'
+import { MainHooksPage, mainHooksNavItems } from './Documentation/MainHooksPage'
+import { IntroductionPage, introductionNavItems } from './Documentation/IntroductionPage'
+import { SessionHooksPage, sessionHooksNavItems } from './Documentation/SessionHooksPage'
+import { ConfigurationPage, configurationNavItems } from './Documentation/ConfigurationPage'
+import { ReactTogetherPage, reactTogetherNavItems } from './Documentation/ReactTogetherPage'
+import { PrimeReactPage, primeReactNavItems } from './Documentation/PrimeReactPage'
+import { AboutUsPage, aboutUsNavItems } from './Documentation/AboutUsPage'
+import { RoadmapPage, roadMapNavItems } from './Documentation/RoadmapPage'
 
 function Page({ children }) {
   return <div className='flex max-w-[87rem] items-start gap-8 flex-1 h-full'>{children}</div>
 }
 
-function CoreConcept() {
-  const navItems = [
-    { key: 'core-concept', label: 'Core Concept' },
-    { key: 'core-concept1', label: 'Core Concept1' },
-    { key: 'core-concept2', label: 'Core Concept2' },
-    { key: 'core-concept3', label: 'Core Concept3' },
-  ]
-
-  return {
-    content: (
-      <>
-        <h3 id='core-concept'>Core Concept</h3>
-        <p>...</p>
-        <h3 id='core-concept1'>Core Concept1</h3>
-        <p>...</p>
-        <h3 id='core-concept2'>Core Concept2</h3>
-        <p>...</p>
-        <h3 id='core-concept3'>Core Concept3</h3>
-      </>
-    ),
-    navItems,
-  }
-}
-
 function Configuration() {
   return {
-    content: <ConfigurationGetStarted />,
-    navItems: ConfigNavItems,
-  }
-}
-
-function Playground() {
-  const navItems = [{ key: 'playground', label: 'playground' }]
-
-  return {
-    content: (
-      <>
-        <h3 id='playground'>Playground</h3>
-        <p>...</p>
-      </>
-    ),
-    navItems,
+    content: <ConfigurationPage />,
+    navItems: configurationNavItems,
   }
 }
 
 function Introduction() {
   return {
-    content: <IntroductionGetStarted />,
-    navItems: IntroNavItems,
+    content: <IntroductionPage />,
+    navItems: introductionNavItems,
   }
 }
 
 function MainHooks(): ComponentReturn {
   return {
-    content: <MainHooksComponent />,
+    content: <MainHooksPage />,
     navItems: mainHooksNavItems,
   }
 }
 
 function SessionHooks(): ComponentReturn {
   return {
-    content: <SessionHooksComponent />,
+    content: <SessionHooksPage />,
     navItems: sessionHooksNavItems,
   }
 }
-// function MainHooks(){
-//   content: <h
-// }
+
+function ReactTogether(): ComponentReturn {
+  return {
+    content: <ReactTogetherPage />,
+    navItems: reactTogetherNavItems,
+  }
+}
+
+function PrimeReact(): ComponentReturn {
+  return {
+    content: <PrimeReactPage />,
+    navItems: primeReactNavItems,
+  }
+}
+
+function AboutUs(): ComponentReturn {
+  return {
+    content: <AboutUsPage />,
+    navItems: aboutUsNavItems,
+  }
+}
+
+function RoadMap(): ComponentReturn {
+  return {
+    content: <RoadmapPage />,
+    navItems: roadMapNavItems,
+  }
+}
 
 const lookup = {
   '': Introduction,
   'get-started': Introduction,
   'get-started/introduction': Introduction,
   'get-started/configuration': Configuration,
-  'get-started/playground': Playground,
   'hooks/main-hooks': MainHooks,
   'hooks/session-hooks': SessionHooks,
+  'components/react-together': ReactTogether,
+  'components/prime-react': PrimeReact,
+  'discover/about-us': AboutUs,
+  'discover/roadmap': RoadMap,
 }
 
 export function DocumentationPage() {

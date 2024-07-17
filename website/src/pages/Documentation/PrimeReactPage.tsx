@@ -2,10 +2,10 @@ import { NavItem } from './types'
 import { CodeBlockExample } from '@components/ui/CodeBlockExample'
 import DocumentDemoBox from '@components/ui/DocumentDemoBox'
 
-export const SessionHooksComponent: React.FC = () => {
+export const PrimeReactPage: React.FC = () => {
   return (
     <>
-      <h2>Main Hooks</h2>
+      <h2>Prime React</h2>
       <h3 id='overview'>Overview</h3>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -27,7 +27,7 @@ export const SessionHooksComponent: React.FC = () => {
   )
 }
 
-export const sessionHooksNavItems: NavItem[] = [
+export const primeReactNavItems: NavItem[] = [
   { key: 'overview', label: 'Overview' },
   { key: 'useConnectNewSession', label: 'useConnectNewSession' },
   { key: 'useIsTogether', label: 'useIsTogether' },
