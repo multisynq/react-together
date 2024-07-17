@@ -95,14 +95,10 @@ export function DocumentationPage() {
 
   return (
     <main className='flex justify-center items-start gap-12 self-stretch p-6 pr-8 pb-8 pl-8 relative'>
-      <div className='hidden sm:block w-[200px] '>
-        <DocumentNav />
-      </div>
-      <div className='flex-1'>
-        <div className='flex flex-col items-start gap-[1.4375rem]'>
-          <DocumentBreadCrumb currentPath={keyToLookupWith} />
-          {content}
-        </div>
+      <DocumentNav />
+      <div className='flex flex-col items-start gap-[1.5rem]'>
+        <DocumentBreadCrumb currentPath={keyToLookupWith} />
+        {content}
       </div>
       <PageNav items={navItems} />
     </main>
