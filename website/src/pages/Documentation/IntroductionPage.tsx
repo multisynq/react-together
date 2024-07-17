@@ -5,23 +5,25 @@ import { CodeBlock } from '@components/ui/CodeBlock'
 
 export const IntroductionPage: React.FC = () => {
   const sampleCode1 = `npm i react-together`
-  const sampleCode2 = `<ReactTogether>
-    sessionParams=
-      {
-        {
-          appId: import.meta.env['VITE_APP_ID'],
-          apiKey: import.meta.env['VITE_API_KEY'],
-        }
-      }
-  {children}
-</ReactTogether>
+  const sampleCode2 = `ReactDOM.createRoot(document.getElementById('root')!).render(
+       <ReactTogether
+         sessionParams={{
+           appId: import.meta.env['VITE_APP_ID'],
+           apiKey: import.meta.env['VITE_API_KEY']
+         }}
+       >
+         <App />
+       </ReactTogether>
+)
 `
   return (
     <>
       <h3 id='introduction'>Introduction</h3>
       <p>In your shiny React project, you will need to install the react-together package.</p>
       <CodeBlock language='javascript' code1={sampleCode1} />
-      <p>Now, at a fairly top level of your React’s JSX, you will need to: Add a React</p>
+      <p>
+        {`Now, at a fairly top level of your React's JSX, you will need to:\n1. Wrap everything in a ReactTogether tag so you can connect a (free) API key.`}
+      </p>
       <CodeBlock language='javascript' code1={sampleCode2} />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

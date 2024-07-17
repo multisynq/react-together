@@ -17,12 +17,8 @@ export const PrimeReactPage: React.FC = () => {
       <CodeBlockExample />
       <h4 id='useIsTogether'>useIsTogether</h4>
       <p>everyone knows everyone else’s state</p>
-      <DocumentDemoBox />
-      <CodeBlockExample />
       <h4 id='useConnectedUsers'>useConnectedUsers</h4>
       <p>everyone knows everyone else’s state</p>
-      <DocumentDemoBox />
-      <CodeBlockExample />
     </>
   )
 }
