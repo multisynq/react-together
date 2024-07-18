@@ -15,7 +15,7 @@ import {
   // SharedMultiSelect,
   // SharedRating,
   // SharedToggleButton,
-} from '../../../react-together'
+} from 'react-together'
 // import { ReactTogetherManager } from "react-together/components/ReactTogetherManager";
 
 export function WithReactTogetherProvider({ children }) {

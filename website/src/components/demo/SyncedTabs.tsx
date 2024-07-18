@@ -1,5 +1,5 @@
 import { TabPanel } from 'primereact/tabview'
-import { SharedTabView } from '../../../react-together'
+import { SharedTabView } from 'react-together'
 import tabsData from './tabs.json'
 
 const { content1, content2, content3 } = tabsData
