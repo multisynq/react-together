@@ -1,5 +1,4 @@
-import { Session, View } from '@croquet/react'
-import { CroquetContext } from '@croquet/react/dist/components/CroquetContext'
+import { CroquetContext, Session, View } from '@croquet/react'
 import {
   Dispatch,
   SetStateAction,
@@ -35,15 +34,18 @@ export default function useSharedState<T>(
   )
 
   if (view && model && session) {
-    // @ts-expect-error: We know session has an id
-    view.subscribe(session.id, {
+    view.subscribe(
+      // @ts-expect-error: We know session has an id
+      session.id,
+      {
         event: 'react-updated',
-        handling: "oncePerFrame",
+        handling: 'oncePerFrame'
       },
       () => {
-      const newValue = model.state.get(rtid) as T
-      set_value(newValue)
-    })
+        const newValue = model.state.get(rtid) as T
+        set_value(newValue)
+      }
+    )
   }
 
   const setter = useCallback(
