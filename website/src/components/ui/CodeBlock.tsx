@@ -47,23 +47,26 @@ export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
           <i className={copySuccess ? 'pi pi-check' : 'pi pi-copy'} style={{ fontSize: '1rem' }}></i>
         </button>
       </div>
-      <div className='overflow-x-auto'>
-        <SyntaxHighlighter
-          language={language}
-          style={vscDarkPlus}
-          customStyle={{
-            padding: '20px',
-            borderRadius: '5px',
-            fontSize: '14px',
-            marginTop: 0,
-            marginBottom: 0,
-          }}
-          wrapLines={true}
-          wrapLongLines={true}
-        >
-          {code2 && !showCode1 ? code2 : code1}
-        </SyntaxHighlighter>
-      </div>
+      {/* <div className='overflow-x-auto'> */}
+      <SyntaxHighlighter
+        lineProps={{ style: { wordBreak: 'break-all', whiteSpace: 'pre-wrap' } }}
+        wrapLines={true}
+        language={language}
+        style={vscDarkPlus}
+        customStyle={{
+          paddingLeft: '32px',
+          paddingRight: '32px',
+          paddingTop: '18px',
+          paddingBottom: '18px',
+          borderRadius: '8px',
+          fontSize: '14px',
+          marginTop: 0,
+          marginBottom: 0,
+        }}
+      >
+        {code2 && !showCode1 ? code2 : code1}
+      </SyntaxHighlighter>
     </div>
+    // </div>
   )
 }
