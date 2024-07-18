@@ -1,7 +1,6 @@
 {
   "name": "react-together",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -45,7 +44,7 @@
     "vite-plugin-lib-inject-css": "^2.0.1"
   },
   "dependencies": {
-    "@croquet/react": "^2.0.0",
+    "@croquet/react": "^2.0.2",
     "@types/color-hash": "^2.0.0",
     "primeicons": "^7.0.0"
   }
