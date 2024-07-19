@@ -11,7 +11,9 @@ import getNewValue from './getNewValue'
 
 export default function useStateTogether<T>(
   rtid: string,
-  initial_value: T
+  initial_value: T,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _options?: Record<string, unknown>
 ): [T, Dispatch<SetStateAction<T>>] {
   // If we are in a session, return the shared state
   // otherwise, act as a normal useState
