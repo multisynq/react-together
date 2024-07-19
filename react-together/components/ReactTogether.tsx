@@ -70,7 +70,7 @@ export default function ReactTogether({
     // to the right session
   */
   if (separateSessionPerUrl !== false) {
-    (Constants as Record<string,any>).sessionUrl = window.location.origin + window.location.pathname
+    (Constants as Record<string,unknown>).sessionUrl = window.location.origin + window.location.pathname
   }
 
   return (

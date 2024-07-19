@@ -11,7 +11,7 @@ type setStateTogetherArgs<T> = {
   newValue: T | undefined
 }
 
-type ReactTogetherModelOptions = any
+type ReactTogetherModelOptions = Record<string, unknown>
 
 export default class ReactTogetherModel extends ReactModel {
   state: Map<string, unknown>
