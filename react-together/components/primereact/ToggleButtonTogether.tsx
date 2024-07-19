@@ -1,15 +1,15 @@
 import { ToggleButton, ToggleButtonProps } from 'primereact/togglebutton'
-import useSharedState from '../../hooks/useSharedState'
+import { useStateTogether } from '../../hooks'
 
-export interface SharedToggleButtonProps
+export interface ToggleButtonTogetherProps
   extends Omit<ToggleButtonProps, 'value' | 'onChange'> {
   rtid: string
 }
-export default function SharedToggleButton({
+export default function ToggleButtonTogether({
   rtid,
   ...props
-}: SharedToggleButtonProps) {
-  const [checked, set_checked] = useSharedState<boolean>(rtid, false)
+}: ToggleButtonTogetherProps) {
+  const [checked, set_checked] = useStateTogether<boolean>(rtid, false)
 
   return (
     <ToggleButton

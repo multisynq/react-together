@@ -1,26 +1,21 @@
-import { Session, View } from '@croquet/react'
+import { CroquetContext, Session, View } from '@croquet/react'
 import {
   Dispatch,
   SetStateAction,
   useCallback,
   useContext,
-  useEffect,
   useState
 } from 'react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
-import { CroquetContext } from '@croquet/react/dist/components/CroquetContext'
 import getNewValue from './getNewValue'
-
-function mapToObject<T>(map: Map<string, T>): { [id: string]: T } {
-  const obj: { [id: string]: T } = {}
-  map.forEach((val, id) => (obj[id] = val))
-  return obj
-}
 
 export default function useStateTogether<T>(
   rtid: string,
   initial_value: T
-): [T, Dispatch<SetStateAction<T>>, { [id: string]: T }] {
+): [T, Dispatch<SetStateAction<T>>] {
+  // If we are in a session, return the shared state
+  // otherwise, act as a normal useState
+
   const context = useContext(CroquetContext)
   let model: null | ReactTogetherModel = null
   let session: null | Session = null
@@ -31,69 +26,42 @@ export default function useStateTogether<T>(
     session = context.session
     view = context.view
   }
-  const viewId = view?.viewId
-  const allValues = (model?.stateTogether.get(rtid) || new Map()) as Map<
-    string,
-    T
-  >
+  const modelValue = model?.state.get(rtid) as T
 
-  // Publish initial value if undefined
-  const modelValue = viewId ? allValues.get(viewId) : undefined
-  if (view && model && viewId && modelValue === undefined) {
-    view.publish(model.id, 'setStateTogether', {
-      id: rtid,
-      viewId,
-      newValue: initial_value
-    })
-  }
-  
   // This is the local state
-  const [localValue, set_localValue] = useState<T>(modelValue || initial_value)
-  
-  
-  useEffect(() => {
+  const [value, set_value] = useState<T>(
+    modelValue !== undefined ? modelValue : initial_value
+  )
 
-    // If we are inside a session, subscribe to react-updated events
-    if (view && viewId && model && session) {
-      //console.log(`useStateTogether - react-updated viewdId=${viewId} modelId=${model.id}`)
+  if (view && model && session) {
+    view.subscribe(
       // @ts-expect-error: We know session has an id
-      view.subscribe(session.id, {
-          event: 'react-updated',
-          handling: "oncePerFrame",
-        },
-        () => {
-          //console.log(`useStateTogether - view.subscribe( callback ) viewId=${viewId}, modelId=${model.id}`)
-          const allValues = model.stateTogether.get(rtid) as Map<string, T>
-          set_localValue(allValues.get(viewId) as T)
-        }
-      )
-    }
-
-    return () => { // this code will run when the component unmounts
-      if (view && model) {
-        view.publish(model.id, 'setStateTogether', {
-          id: rtid,
-          viewId,
-          newValue: undefined
-        })
+      session.id,
+      {
+        event: 'react-updated',
+        handling: 'oncePerFrame'
+      },
+      () => {
+        const newValue = model.state.get(rtid) as T
+        set_value(newValue)
       }
-    }
-  }, [])
+    )
+  }
 
   const setter = useCallback(
     (newValueOrFn: SetStateAction<T>): void => {
       if (model && view) {
-        view.publish(model.id, 'setStateTogether', {
+        // Eventually we will want to throttle publish calls
+        view.publish(model.id, 'setState', {
           id: rtid,
-          viewId,
-          newValue: getNewValue(localValue, newValueOrFn)
+          newValue: getNewValue(value, newValueOrFn)
         })
       } else {
-        set_localValue(newValueOrFn)
+        set_value(newValueOrFn)
       }
     },
-    [set_localValue, rtid, viewId]
+    [value, set_value, model, view, rtid]
   )
 
-  return [localValue, setter, mapToObject(allValues)]
+  return [value, setter]
 }

@@ -1,7 +1,7 @@
 // import { useViewId } from '@croquet/react'
 import { useHover } from '@uidotdev/usehooks'
 import { useEffect } from 'react'
-import useStateTogether from './useStateTogether'
+import { useStateTogetherWithPerUserValues } from '../hooks'
 
 export default function useHoveringViews(
   key: string
@@ -9,7 +9,10 @@ export default function useHoveringViews(
   const [ref, hovering] = useHover()
   // const myViewId = useViewId()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, set_hovering, allHovered] = useStateTogether(key, hovering) // a value per user that all users see
+  const [_, set_hovering, allHovered] = useStateTogetherWithPerUserValues(
+    key,
+    hovering
+  ) // a value per user that all users see
 
   useEffect(() => {
     // This does not create a loop

@@ -1,15 +1,15 @@
 import { InputSwitch, InputSwitchProps } from 'primereact/inputswitch'
-import useSharedState from '../../hooks/useSharedState'
+import { useStateTogether } from '../../hooks'
 
-export interface SharedInputSwitchProps
+export interface InputSwitchTogetherProps
   extends Omit<InputSwitchProps, 'checked' | 'onChange'> {
   rtid: string
 }
-export default function SharedInputSwitch({
+export default function InputSwitchTogether({
   rtid,
   ...props
-}: SharedInputSwitchProps) {
-  const [checked, set_checked] = useSharedState<boolean>(rtid, false)
+}: InputSwitchTogetherProps) {
+  const [checked, set_checked] = useStateTogether<boolean>(rtid, false)
 
   return (
     <InputSwitch

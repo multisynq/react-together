@@ -1,15 +1,15 @@
 import { Calendar, CalendarProps } from 'primereact/calendar'
-import useSharedState from '../../hooks/useSharedState'
+import { useStateTogether } from '../../hooks'
 
-export interface SharedCalendarProps
+export interface CalendarTogetherProps
   extends Omit<CalendarProps, 'value' | 'onChange'> {
   rtid: string
 }
-export default function SharedCalendar({
+export default function CalendarTogether({
   rtid,
   ...props
-}: SharedCalendarProps) {
-  const [value, setChecked] = useSharedState<string | null>(rtid, null)
+}: CalendarTogetherProps) {
+  const [value, setChecked] = useStateTogether<string | null>(rtid, null)
 
   return (
     <Calendar

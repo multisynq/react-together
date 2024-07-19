@@ -42,6 +42,7 @@ export default function ReactTogether({
 
   const createNewSession = () => {
     // TODO: Eventually these values will be random
+    // Math.random().toString(36).substring(16);
     // Do we want to add them to the URL? Maybe that could be an option passed to this function
     const newSessionName = 'v0_session'
     const newSessionPassword = 'pwd'
@@ -70,7 +71,8 @@ export default function ReactTogether({
     // to the right session
   */
   if (separateSessionPerUrl !== false) {
-    (Constants as Record<string,unknown>).sessionUrl = window.location.origin + window.location.pathname
+    ;(Constants as Record<string, unknown>).sessionUrl =
+      window.location.origin + window.location.pathname
   }
 
   return (
@@ -80,7 +82,7 @@ export default function ReactTogether({
         leaveSession,
         isTogether,
         sessionName,
-        sessionPassword,
+        sessionPassword
       }}
     >
       {sessionName !== null && sessionPassword !== null ? (
@@ -90,7 +92,7 @@ export default function ReactTogether({
             appId,
             apiKey,
             name: sessionName,
-            password: sessionPassword,
+            password: sessionPassword
           }}
         >
           <>

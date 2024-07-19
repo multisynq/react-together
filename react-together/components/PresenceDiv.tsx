@@ -1,14 +1,18 @@
 import ColorHash from 'color-hash'
-import useHoveringViews from '../hooks/useHoveringViews'
+import { useHoveringViews } from '../hooks'
 
 const colorHash = new ColorHash()
 
 type PresenceDivProps = {
   id: string
   children: ReactChildren
-  className?:string
+  className?: string
 }
-export default function PresenceDiv({ id, children, className }: PresenceDivProps) {
+export default function PresenceDiv({
+  id,
+  children,
+  className
+}: PresenceDivProps) {
   const debug = false
   const [ref, hoveringViews] = useHoveringViews(id)
 
@@ -25,7 +29,7 @@ export default function PresenceDiv({ id, children, className }: PresenceDivProp
   return (
     <>
       {debug && <div>Hovering Ids: {JSON.stringify(hoveringViews)}</div>}
-      <div ref={ref} style={style} {...{className}}>
+      <div ref={ref} style={style} {...{ className }}>
         {children}
       </div>
     </>

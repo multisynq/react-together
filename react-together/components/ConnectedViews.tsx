@@ -1,6 +1,6 @@
 import { Avatar } from 'primereact/avatar'
 import { AvatarGroup } from 'primereact/avatargroup'
-import useConnectedUsers from '../hooks/useConnectedUsers'
+import { useConnectedViews } from '../hooks'
 
 type ConnectedViewsProps = {
   maxAvatars?: number
@@ -10,7 +10,7 @@ export default function ConnectedViews({
   maxAvatars = 3,
   debug = false
 }: ConnectedViewsProps) {
-  const users = useConnectedUsers()
+  const users = useConnectedViews()
 
   if (!users) return
 

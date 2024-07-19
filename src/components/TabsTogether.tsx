@@ -1,15 +1,13 @@
 import { TabPanel, TabView } from 'primereact/tabview'
-import { useStateTogether } from '../../react-together'
+import { useStateTogetherWithPerUserValues } from '../../react-together'
 import tabsData from '../data/tabs.json'
 
 const { content1, content2, content3 } = tabsData
 
 export default function TabsTogether() {
   const debug = false
-  const [activeIndex, setActiveIndex, allIndices] = useStateTogether(
-    'active-index',
-    0
-  )
+  const [activeIndex, setActiveIndex, allIndices] =
+    useStateTogetherWithPerUserValues('active-index', 0)
 
   return (
     <>

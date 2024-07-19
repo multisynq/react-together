@@ -1,15 +1,15 @@
 import { MultiSelect, MultiSelectProps } from 'primereact/multiselect'
-import useSharedState from '../../hooks/useSharedState'
+import { useStateTogether } from '../../hooks'
 
-export interface SharedMultiSelectProps
+export interface MultiSelectTogetherProps
   extends Omit<MultiSelectProps, 'value' | 'onChange'> {
   rtid: string
 }
-export default function SharedMultiSelect({
+export default function MultiSelectTogether({
   rtid,
   ...props
-}: SharedMultiSelectProps) {
-  const [value, set_value] = useSharedState(rtid, [])
+}: MultiSelectTogetherProps) {
+  const [value, set_value] = useStateTogether(rtid, [])
   return (
     <MultiSelect
       {...props}

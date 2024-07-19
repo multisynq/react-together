@@ -1,13 +1,16 @@
 import { TabView, TabViewProps } from 'primereact/tabview'
-import useSharedState from '../../hooks/useSharedState'
+import { useStateTogether } from '../../hooks'
 
-export interface SharedTabViewrops
+export interface TabViewTogetherrops
   extends Omit<TabViewProps, 'activeIndex' | 'onTabChange'> {
   rtid: string
   headerClassName?: string
 }
-export default function SharedTabView({ rtid, ...props }: SharedTabViewrops) {
-  const [activeIndex, set_activeIndex] = useSharedState<number>(rtid, 0)
+export default function TabViewTogether({
+  rtid,
+  ...props
+}: TabViewTogetherrops) {
+  const [activeIndex, set_activeIndex] = useStateTogether<number>(rtid, 0)
 
   return (
     <TabView

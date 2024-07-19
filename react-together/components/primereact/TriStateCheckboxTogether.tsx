@@ -3,18 +3,18 @@ import {
   TriStateCheckboxProps
 } from 'primereact/tristatecheckbox'
 import { Nullable } from 'primereact/ts-helpers'
-import useSharedState from '../../hooks/useSharedState'
+import { useStateTogether } from '../../hooks'
 
-export interface SharedTriStateCheckboxProps
+export interface TriStateCheckboxTogetherProps
   extends Omit<TriStateCheckboxProps, 'value' | 'onChange'> {
   rtid: string
-  className?:string
+  className?: string
 }
-export default function SharedTriStateCheckbox({
+export default function TriStateCheckboxTogether({
   rtid,
   ...props
-}: SharedTriStateCheckboxProps) {
-  const [value, setValue] = useSharedState<Nullable<boolean>>(rtid, false)
+}: TriStateCheckboxTogetherProps) {
+  const [value, setValue] = useStateTogether<Nullable<boolean>>(rtid, false)
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function SharedTriStateCheckbox({
         onChange={(e) => setValue(e.value)}
         value={value}
         className={`outline outline-1 outline-slate-400 rounded ${props.className}`}
-        />
+      />
     </>
   )
 }
