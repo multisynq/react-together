@@ -73,68 +73,58 @@ export function SyncedDemo() {
     { name: '❤️', value: 6 },
   ]
   return (
-    <div className='px-3 py-3 w-full aspect-video'>
+    <div className='px-3 py-4 w-full aspect-video'>
       <div className='flex justify-center absolute bottom-2 right-2'>
         <ConnectedViews maxAvatars={2} />
       </div>
       <div className='absolute top-1/2 left-[82%] transform -translate-x-1/2 -translate-y-1/2 w-192'>
         <h4 className='text-gray-300'>Cursor Together</h4>
       </div>
-      {/* <div className='pt-1 px-3 pb-0'>
-        <h4 className='text-gray-300'>UI Together</h4>
-      </div> */}
-      {/* <div className='flex flex-col justify-between items-start w-[18.75rem] h-full bg-black'> */}
-      {/* <div className='flex h-full flex-col justify-between items-start w-[20rem] p-[0.75rem_1rem] flex-1 rounded-lg border border-[#E5E5E7] bg-white'> */}
-      <div className='flex h-full flex-col items-start w-[20rem] rounded-lg border border-black bg-white overflow-y-auto overflow-hidden'>
-        <div className='overflow-y-auto h-fulls p-4 custom-scrollbar'>
-          {/* <SharedCountButton /> */}
-
-          <div className='flex items-center gap-0'>
-            <PresenceDiv id='div1'>
-              <div className='mx-2 w-16 p-2 bg-blue-900 text-white cursor-pointer text-center'>Hover</div>
-            </PresenceDiv>
-            <PresenceDiv id='div2'>
-              <div className='mx-2 w-16 p-2 bg-blue-900 text-white cursor-pointer text-center'>Hover</div>
-            </PresenceDiv>
-            <PresenceDiv id='div3'>
-              <div className='mx-2 w-16 p-2 bg-blue-900 text-white cursor-pointer text-center'>Hover</div>
-            </PresenceDiv>
+      <div className='flex h-full flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-y-auto overflow-hidden p-3 gap-4'>
+        {/* <SharedCountButton /> */}
+        <div className='flex items-center justify-between w-full'>
+          <PresenceDiv id='div1'>
+            <div className='w-18 px-2 py-1 bg-orange-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyle'>
+              Hover
+            </div>
+          </PresenceDiv>
+          <PresenceDiv id='div2'>
+            <div className='w-18 px-2 py-1 bg-indigo-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyle'>
+              Hover
+            </div>
+          </PresenceDiv>
+          <PresenceDiv id='div3'>
+            <div className='w-18 px-2 py-1 bg-emerald-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyle'>
+              Hover
+            </div>
+          </PresenceDiv>
+        </div>
+        <SharedSelectButton rtid='select-button' options={items} optionLabel='name' />
+        <div className='flex items-center gap-auto'>
+          <div className='content-center p-1'>
+            <SharedCheckbox rtid='checkbox' />
           </div>
-          <div className='flex items-center gap-0'>
-            <div className='content-center p-1'>
-              <SharedCheckbox rtid='checkbox' />
-            </div>
-            <div className='content-center p-1'>
-              <SharedTriStateCheckbox rtid='tristate-checkbox' />
-            </div>
-            <div className='content-center p-1 pt-2'>
-              <SharedInputSwitch rtid='input-switch' />
-            </div>
-            <div className='content-center p-1'>
-              <SharedDropdown
-                rtid='dropdown'
-                options={cities}
-                optionLabel='name'
-                placeholder='Select a City'
-                className='w-full md:w-14rem'
-              />
-            </div>
+          <div className='content-center p-1'>
+            <SharedTriStateCheckbox rtid='tristate-checkbox' />
           </div>
-          <div className='content-center px-4 py-8'>
-            <SharedSelectButton rtid='select-button' options={items} optionLabel='name' />
+          <div className='content-center p-1 pt-2'>
+            <SharedInputSwitch rtid='input-switch' />
           </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-            enim ad minim veniam, quis nostrud exercitation.
-          </p>
-          {/* <SharedCalendar
+          <div className='content-center p-1'>
+            <SharedDropdown rtid='dropdown' options={cities} optionLabel='name' placeholder='Select a City' className='w-full md:w-14rem' />
+          </div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+          enim ad minim veniam, quis nostrud exercitation.
+        </p>
+        {/* <SharedCalendar
           rtid='color-picker'
           dateFormat='yy/mm/dd'
           disabledDays={[0, 1]}
           // inline
           invalid
         /> */}
-        </div>
         {/* <>
               <div className='content-center border p-1'>
           <SharedRating rtid='shared-rating' tooltip='hello' />

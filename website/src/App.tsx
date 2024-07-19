@@ -4,7 +4,7 @@ import '@styles/globals.css'
 import '@styles/mdx.css'
 
 import { Helmet } from 'react-helmet'
-import { useState, createContext } from 'react'
+import { createContext } from 'react'
 import { SiteHeader, SiteFooter } from '@components'
 import { version } from '@package'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
