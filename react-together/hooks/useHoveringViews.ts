@@ -1,4 +1,5 @@
 // import { useViewId } from '@croquet/react'
+import { useViewId } from '@croquet/react'
 import { useHover } from '@uidotdev/usehooks'
 import { useEffect } from 'react'
 import { useStateTogetherWithPerUserValues } from '../hooks'
@@ -7,7 +8,7 @@ export default function useHoveringViews(
   rtid: string
 ): [(instance: Element | null) => void, string[]] {
   const [ref, hovering] = useHover()
-  // const myViewId = useViewId()
+  const myViewId = useViewId()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, set_hovering, allHovered] = useStateTogetherWithPerUserValues(
     rtid,
@@ -22,7 +23,7 @@ export default function useHoveringViews(
   }, [set_hovering, hovering])
 
   const hoveringViews = Object.entries(allHovered)
-    // .filter(([viewId, isHovering]) => viewId !== myViewId && isHovering)
+    .filter(([viewId, isHovering]) => viewId !== myViewId && isHovering)
     .filter(([isHovering]) => isHovering)
     .map(([viewId]) => viewId)
 

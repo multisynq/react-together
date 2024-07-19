@@ -1,5 +1,4 @@
-import { Session, View } from '@croquet/react'
-import { CroquetContext } from '@croquet/react/dist/components/CroquetContext'
+import { CroquetContext, Session, View } from '@croquet/react'
 import {
   Dispatch,
   SetStateAction,
