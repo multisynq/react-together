@@ -56,9 +56,14 @@ export default function DocumentNav() {
   }
   items.forEach(expandNode)
 
+  // return <PanelMenu model={items} expandedKeys={expandedKeys} className='w-[160px] [&_.p-submenu-icon]:hidden' />
   return (
-    <div className='w-[200px] h-full hidden sm:block'>
-      <PanelMenu model={items} expandedKeys={expandedKeys} className='[&_.p-submenu-icon]:hidden' />
-    </div>
+    <PanelMenu
+      model={items}
+      expandedKeys={expandedKeys}
+      className='w-[160px] [&_.p-submenu-icon]:hidden'
+      // value={{ unstyled: true, pt: {} }}
+      unstyled={false}
+    />
   )
 }
