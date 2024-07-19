@@ -5,7 +5,7 @@ import sharedStateGif from '../../images/useSharedState_v1.gif'
 import { CodeBlock } from '@components/ui/CodeBlock'
 
 export const MainHooksPage: React.FC = () => {
-  const sampleCode1 = `export default function SharedCountButton() {
+  const sampleCode1 = `export default function CountButtonTogether() {
   const [count, set_count] = useStateTogether('count', 0)
   return (
     <button onClick={() => set_count((prev) => prev + 1)}>
@@ -78,7 +78,7 @@ export const MainHooksPage: React.FC = () => {
           </li>
         </ul>
       </>
-      <GifDisplay imageSource={sharedStateGif} imageTitle='Shared State' />
+      <GifDisplay imageSource={StateGifTogether} imageTitle='Shared State' />
       <CodeBlock language='javascript' code1={sampleCode2} />
     </>
   )
