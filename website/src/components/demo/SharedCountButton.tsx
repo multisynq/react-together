@@ -1,4 +1,4 @@
-import { useSharedState } from '../../../react-together'
+import { useSharedState } from 'react-together'
 
 export default function SharedCountButton() {
   const [count, set_count] = useSharedState('count', 0)
