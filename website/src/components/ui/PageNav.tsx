@@ -30,7 +30,7 @@ export default function PageNav({ items }) {
 
   return (
     <div className='hidden md:block md:w-[200px] sticky top-20'>
-      <PanelMenu model={navItems} expandedKeys={expandedKeys} className='[&_.p-submenu-icon]:hidden' />
+      <PanelMenu model={navItems} expandedKeys={expandedKeys} className='w-[160px] [&_.p-submenu-icon]:hidden' />
     </div>
   )
 }

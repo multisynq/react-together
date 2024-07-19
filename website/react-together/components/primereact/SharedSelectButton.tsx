@@ -1,16 +1,11 @@
 import { SelectButton, SelectButtonProps } from 'primereact/selectbutton'
 import useSharedState from '../../hooks/useSharedState'
 
-export interface SharedSelectButtonProps
-  extends Omit<SelectButtonProps, 'value' | 'onChange'> {
+export interface SharedSelectButtonProps extends Omit<SelectButtonProps, 'value' | 'onChange'> {
   rtid: string
-  className?:string
+  className?: string
 }
-export default function SharedSelectButton({
-  rtid,
-  options,
-  ...props
-}: SharedSelectButtonProps) {
+export default function SharedSelectButton({ rtid, options, ...props }: SharedSelectButtonProps) {
   const [value, set_value] = useSharedState<unknown>(rtid, null)
 
   return (
@@ -19,9 +14,7 @@ export default function SharedSelectButton({
       onChange={(e) => set_value(e.value || false)}
       options={options}
       value={value || options?.[0]}
-      pt={{button: (ctx)=>(
-        {className:`border h-[15px] ${ctx.props.className}`}
-      )}}
+      pt={{ button: (ctx) => ({ className: `border h-[8px] ${ctx.props.className}` }) }}
     />
   )
 }

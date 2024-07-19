@@ -40,7 +40,8 @@ export function InstallCodeBlock({ language, code1 }) {
           marginTop: 0,
           marginBottom: 0,
         }}
-        className='w-full border-[1.5px] border-black shadow-[1px_2px_0px_0px_#B8B8B8]'
+        // className='w-full border-2 border-gray-700 shadow-[0px_2px_0px_0px_#374151]'
+        className='w-full border-2 border-gray-700 shadow-lineStyle'
       >
         {code1}
       </SyntaxHighlighter>

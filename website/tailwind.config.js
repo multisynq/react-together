@@ -3,9 +3,7 @@ module.exports = {
   darkMode: ['class'],
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
   prefix: '',
-  safelist: [
-    'outline', 'outline-1', 'outline-slate-400',
-  ],
+  safelist: ['outline', 'outline-1', 'outline-slate-400'],
   theme: {
     container: {
       center: true,
@@ -66,6 +64,10 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+      },
+      boxShadow: {
+        lineStyle: '0px 2px 0px 0px #374151',
+        lineStyleSecond: '0px 2px 0px 0px #6B7280',
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',

@@ -63,3 +63,16 @@ nav.flex a {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.p-selectbutton.p-button-group {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0px 2px 0px 0px #374151;
+  border: 2px solid #374151;
+}
+
+.p-button.p-component.p-highlight.border.h-\[8px\] {
+  background-color: #3b82f6;
+  color: #fff;
+  border-radius: 8px;
+}

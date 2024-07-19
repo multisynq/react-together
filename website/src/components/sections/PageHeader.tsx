@@ -1,4 +1,3 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
 import { InstallCodeBlock } from '@components/ui/InstallCodeBlock'
 import { SeamlesslyAnimation } from '@components/ui/SeamlesslyAnimation'
 // import { SeamlesslyAnim } from '../../images/SeamlesslyAnim.svg'
@@ -19,7 +18,7 @@ export function PageHeader() {
       </p>
       <span className='h-8' />
       <div className='flex gap-2'>
-        <div className='px-4 py-2 bg-blue-300 text-black rounded-lg shadow-[1px_2px_0px_0px_#B8B8B8] text-center flex items-center justify-center border-[1.5px] border-black font-dbold'>
+        <div className='px-4 py-2 bg-blue-300 text-gray-800 rounded-lg shadow-lineStyle text-center flex items-center justify-center border-[2px] border-gray-700 font-bold'>
           Get Started
         </div>
         <InstallCodeBlock language='javascript' code1={sampleCode1} />

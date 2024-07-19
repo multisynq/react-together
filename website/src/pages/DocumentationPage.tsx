@@ -94,8 +94,10 @@ export function DocumentationPage() {
   const { content, navItems } = Component()
 
   return (
-    <main className='flex justify-center items-start gap-12 self-stretch p-6 pr-8 pb-8 pl-8 relative'>
-      <DocumentNav />
+    <main className='flex justify-center items-start gap-12 self-stretch p-6 px-16 relative'>
+      <div className='hidden sm:block h-full'>
+        <DocumentNav />
+      </div>
       <div className='flex flex-col items-start gap-[1.5rem]'>
         <DocumentBreadCrumb currentPath={keyToLookupWith} />
         {content}

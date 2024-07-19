@@ -6,7 +6,7 @@ const colorHash = new ColorHash()
 type PresenceDivProps = {
   id: string
   children: ReactChildren
-  className?:string
+  className?: string
 }
 export default function PresenceDiv({ id, children, className }: PresenceDivProps) {
   const debug = false
@@ -16,16 +16,16 @@ export default function PresenceDiv({ id, children, className }: PresenceDivProp
   if (hoveringViews.length > 0) {
     const color = colorHash.hex(hoveringViews[0])
     style = {
-      outline: `2px solid ${color}`,
+      outline: `2px solid ${color.replace(')', ', 0.5)')}`,
       animation: 'clippath 3s linear infinite',
-      borderRadius: '10px'
+      borderRadius: '8px',
     }
   }
 
   return (
     <>
       {debug && <div>Hovering Ids: {JSON.stringify(hoveringViews)}</div>}
-      <div ref={ref} style={style} {...{className}}>
+      <div ref={ref} style={style} {...{ className }}>
         {children}
       </div>
     </>
