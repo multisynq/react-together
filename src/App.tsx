@@ -34,11 +34,11 @@ export default function App() {
     <>
       <ConnectedViews maxAvatars={2} />
       <SamplePage />
-      {/* <PresenceDiv id="presence-div"></PresenceDiv> */}
+      {/* <PresenceDiv rtid="presence-div"></PresenceDiv> */}
       <SyncedTabs />
       <CountButtonTogether />
       <ReactTogetherManager />
-      {/* <PresenceDiv id="div"></PresenceDiv> */}
+      {/* <PresenceDiv rtid="div"></PresenceDiv> */}
       <CheckboxTogether rtid="checkbox" />
       <TriStateCheckboxTogether rtid="tristate-checkbox" />
       <DropdownTogether

@@ -4,13 +4,13 @@ import { useEffect } from 'react'
 import { useStateTogetherWithPerUserValues } from '../hooks'
 
 export default function useHoveringViews(
-  key: string
+  rtid: string
 ): [(instance: Element | null) => void, string[]] {
   const [ref, hovering] = useHover()
   // const myViewId = useViewId()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, set_hovering, allHovered] = useStateTogetherWithPerUserValues(
-    key,
+    rtid,
     hovering
   ) // a value per user that all users see
 
