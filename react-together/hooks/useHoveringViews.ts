@@ -1,26 +1,57 @@
-// import { useViewId } from '@croquet/react'
 import { useViewId } from '@croquet/react'
-import { useHover } from '@uidotdev/usehooks'
-import { useEffect } from 'react'
+import { MutableRefObject, useEffect, useRef } from 'react'
 import { useStateTogetherWithPerUserValues } from '../hooks'
+
+interface CustomMouseEvent extends MouseEvent {
+  rtProcessedBy?: string
+}
 
 export default function useHoveringViews(
   rtid: string
-): [(instance: Element | null) => void, string[]] {
-  const [ref, hovering] = useHover()
+): [MutableRefObject<HTMLDivElement | null>, string[]] {
   const myViewId = useViewId()
+
+  const ref = useRef<HTMLDivElement | null>(null)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, set_hovering, allHovered] = useStateTogetherWithPerUserValues(
     rtid,
-    hovering
-  ) // a value per user that all users see
+    false
+  )
 
   useEffect(() => {
-    // This does not create a loop
-    // hovering comes from the useHover hook
-    // and set_hovering sets the stateTogether
-    set_hovering(hovering)
-  }, [set_hovering, hovering])
+    const node = ref.current
+
+    const handleMouseOver = (e: CustomMouseEvent) => {
+      // We should only hover the innermost element, i.e. if an element
+      // is hovered, none of its parents should be marked as hovered.
+
+      // We use rtProcessedBy to record the rtid of the first element
+      // that processed this event. If rtProcessedBy is defined,
+      // then it was already processed by a child, and the current element
+      // should not be hovered.
+      const rtProcessedBy = e.rtProcessedBy
+      if (rtProcessedBy === undefined) {
+        set_hovering(true)
+        e.rtProcessedBy = rtid
+      } else if (rtProcessedBy !== rtid) {
+        set_hovering(false)
+      }
+    }
+
+    const handleMouseLeave = () => set_hovering(false)
+
+    if (node) {
+      node.addEventListener('mouseover', handleMouseOver)
+      node.addEventListener('mouseleave', handleMouseLeave)
+    }
+
+    return () => {
+      if (node) {
+        node.removeEventListener('mouseover', handleMouseOver)
+        node.removeEventListener('mouseleave', handleMouseLeave)
+      }
+    }
+  }, [set_hovering, rtid])
 
   const hoveringViews = Object.entries(allHovered)
     .filter(([viewId, isHovering]) => viewId !== myViewId && isHovering)
