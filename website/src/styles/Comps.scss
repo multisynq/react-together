@@ -50,10 +50,6 @@ nav.flex a {
   width: 12px;
 }
 
-// .custom-scrollbar::-webkit-scrollbar-track {
-//   background: #f1f1f1;
-// }
-
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: #c4c4c4;
   border-radius: 8px;
@@ -75,4 +71,29 @@ nav.flex a {
   background-color: #3b82f6;
   color: #fff;
   border-radius: 8px;
+}
+
+.p-panelmenu-content {
+  background-color: transparent;
+}
+
+.rt-breadcrumb.p-breadcrumb.p-component {
+  background-color: transparent;
+}
+.p-menuitem .p-menuitem-content:hover {
+  background-color: #797979;
+  border-radius: 8px;
+  .p-menuitem-text {
+    color: white;
+  }
+}
+
+.p-menuitem[data-p-focused='true'] {
+  .p-menuitem-content {
+    background-color: #363636;
+    border-radius: 8px;
+    .p-menuitem-text {
+      color: white;
+    }
+  }
 }
