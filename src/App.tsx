@@ -13,6 +13,7 @@ import {
 } from '../react-together'
 import { ReactTogetherManager } from '../react-together/components/ReactTogetherManager'
 import CountButtonTogether from './components/CountButtonTogether'
+import NestedPresenceDivs from './components/NestedPresenceDivs'
 import SamplePage from './components/SamplePage'
 import SyncedTabs from './components/SyncedTabs'
 
@@ -71,6 +72,7 @@ export default function App() {
         // inline
         invalid
       />
+      <NestedPresenceDivs />
     </>
   )
 }

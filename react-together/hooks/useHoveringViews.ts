@@ -2,13 +2,16 @@ import { useViewId } from '@croquet/react'
 import { MutableRefObject, useEffect, useRef } from 'react'
 import { useStateTogetherWithPerUserValues } from '../hooks'
 
-interface CustomMouseEvent extends MouseEvent {
-  rtProcessedBy?: string
+export interface useHoveringViewsOptions {
+  highlightMyself?: boolean
 }
 
 export default function useHoveringViews(
-  rtid: string
+  rtid: string,
+  options: useHoveringViewsOptions = {}
 ): [MutableRefObject<HTMLDivElement | null>, string[]] {
+  const { highlightMyself = false } = options
+
   const myViewId = useViewId()
 
   const ref = useRef<HTMLDivElement | null>(null)
@@ -21,6 +24,9 @@ export default function useHoveringViews(
   useEffect(() => {
     const node = ref.current
 
+    interface CustomMouseEvent extends MouseEvent {
+      rtProcessedBy?: string
+    }
     const handleMouseOver = (e: CustomMouseEvent) => {
       // We should only hover the innermost element, i.e. if an element
       // is hovered, none of its parents should be marked as hovered.
@@ -54,7 +60,10 @@ export default function useHoveringViews(
   }, [set_hovering, rtid])
 
   const hoveringViews = Object.entries(allHovered)
-    .filter(([viewId, isHovering]) => viewId !== myViewId && isHovering)
+    .filter(
+      ([viewId, isHovering]) =>
+        isHovering && (viewId !== myViewId || highlightMyself)
+    )
     .filter(([isHovering]) => isHovering)
     .map(([viewId]) => viewId)
 

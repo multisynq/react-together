@@ -1,5 +1,6 @@
 import ColorHash from 'color-hash'
 import { useHoveringViews } from '../hooks'
+import { useHoveringViewsOptions } from '../hooks/useHoveringViews'
 
 const colorHash = new ColorHash()
 
@@ -7,14 +8,16 @@ type PresenceDivProps = {
   rtid: string
   children: ReactChildren
   className?: string
+  options?: useHoveringViewsOptions
 }
 export default function PresenceDiv({
   rtid,
   children,
-  className
+  className,
+  options
 }: PresenceDivProps) {
   const debug = false
-  const [ref, hoveringViews] = useHoveringViews(rtid)
+  const [ref, hoveringViews] = useHoveringViews(rtid, options)
 
   let style = {}
   if (hoveringViews.length > 0) {

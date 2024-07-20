@@ -32,9 +32,9 @@ function Box({
   )
 }
 
-function GreenDice({ rtid }) {
+function GreenDice({ rtid }: { rtid: string }) {
   return (
-    <PresenceDiv rtid={rtid}>
+    <PresenceDiv rtid={rtid} options={{ highlightMyself: true }}>
       <Box color="#00AF54" size="60px" id="b2">
         <PresenceDiv rtid={`${rtid}-1`}>
           <Box color="yellow" size="20px" id="b2" />
