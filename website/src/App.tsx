@@ -1,3 +1,4 @@
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 import './App.scss'
 import '@styles/Comps.scss'
 import '@styles/globals.css'
@@ -22,7 +23,7 @@ export default function App() {
         <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'></link>
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'></link>
       </Helmet>
-        <MainContext.Provider value={{}}>
+      <MainContext.Provider value={{}}>
           <BrowserRouter>
             <SiteHeader />
             <Routes>
@@ -31,7 +32,7 @@ export default function App() {
             </Routes>
             <SiteFooter />
           </BrowserRouter>
-        </MainContext.Provider>
+      </MainContext.Provider>
 
       <div className='version-num'>{version}</div>
     </div>
