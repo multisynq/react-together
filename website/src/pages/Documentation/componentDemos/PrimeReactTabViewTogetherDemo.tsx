@@ -1,13 +1,13 @@
 import { TabPanel } from 'primereact/tabview'
-import { TabViewTogether } from 'react-together'
-import tabsData from './tabs.json'
+import { TabViewTogether } from '../../../../../react-together'
 
-const { content1, content2, content3 } = tabsData
-
-export default function SyncedTabs() {
+export function PrimeReactTabViewTogetherDemo() {
+  const content1 = 'asdf'
+  const content2 = 'ghjk'
+  const content3 = 'dfgh'
   return (
-    <div>
-      <TabViewTogether rtid='active-index' headerClassName='h-10'>
+    <div className='flex-col place-items-center'>
+      <TabViewTogether rtid='active-index'>
         <TabPanel header='Header I'>
           <p className='m-0'>{content1}</p>
         </TabPanel>

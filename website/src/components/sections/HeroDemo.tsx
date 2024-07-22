@@ -1,20 +1,15 @@
 // import SyncedTabs from '@components/demo/SyncedTabs'
 import { FakeBrowser } from '@components/ui/FakeBrowser'
 import {
-  ConnectedViews,
-  PresenceDiv,
-  ReactTogether,
   CheckboxTogether,
+  ConnectedViews,
   DropdownTogether,
   InputSwitchTogether,
+  PresenceDiv,
+  ReactTogether,
   SelectButtonTogether,
   TriStateCheckboxTogether,
-  // CalendarTogether,
-  // KnobTogether,
-  // MultiSelectTogether,
-  // RatingTogether,
-  // ToggleButtonTogether,
-} from 'react-together'
+} from '../../../../react-together'
 // import { ReactTogetherManager } from "react-together/components/ReactTogetherManager";
 
 export function WithReactTogetherProvider({ children }) {
@@ -110,7 +105,13 @@ export function SyncedDemo() {
             <InputSwitchTogether rtid='input-switch' />
           </div>
           <div className='content-center p-1'>
-            <DropdownTogether rtid='dropdown' options={cities} optionLabel='name' placeholder='Select a City' className='w-full md:w-14rem' />
+            <DropdownTogether
+              rtid='dropdown'
+              options={cities}
+              optionLabel='name'
+              placeholder='Select a City'
+              className='w-full md:w-14rem'
+            />
           </div>
         </div>
         <p>

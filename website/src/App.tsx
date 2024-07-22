@@ -1,17 +1,16 @@
-import "primereact/resources/themes/lara-light-cyan/theme.css";
-import './App.scss'
 import '@styles/Comps.scss'
 import '@styles/globals.css'
 import '@styles/mdx.css'
+import 'primereact/resources/themes/lara-light-cyan/theme.css'
+import './App.scss'
 
-import { Helmet } from 'react-helmet'
-import { createContext } from 'react'
-import { SiteHeader, SiteFooter } from '@components'
+import { SiteFooter, SiteHeader } from '@components'
 import { version } from '@package'
+import { createContext } from 'react'
+import { Helmet } from 'react-helmet'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { HomePage } from './pages/HomePage'
 import { DocumentationPage } from './pages/DocumentationPage'
-import { ReactTogether } from 'react-together'
+import { HomePage } from './pages/HomePage'
 
 export const MainContext = createContext({} as any)
 
@@ -24,14 +23,14 @@ export default function App() {
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'></link>
       </Helmet>
       <MainContext.Provider value={{}}>
-          <BrowserRouter>
-            <SiteHeader />
-            <Routes>
-              <Route path='/' element={<HomePage />} />
-              <Route path='/docs/:slug1/:slug2?' element={<DocumentationPage />} />
-            </Routes>
-            <SiteFooter />
-          </BrowserRouter>
+        <BrowserRouter>
+          <SiteHeader />
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/docs/:slug1/:slug2?' element={<DocumentationPage />} />
+          </Routes>
+          <SiteFooter />
+        </BrowserRouter>
       </MainContext.Provider>
 
       <div className='version-num'>{version}</div>
