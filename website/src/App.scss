@@ -1,0 +1,67 @@
+html {
+  box-sizing: border-box;
+  font-family: Inter;
+}
+
+.comfortaa {
+  font-family: Comfortaa;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.version-num {
+  opacity: 0.3;
+  position: fixed;
+  bottom: 2px;
+  right: 2px;
+  background: black;
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.pulsate {
+  animation: pulsate 5s ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.pointer * {
+  cursor: pointer !important;
+}
+
+.nosel * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+}
+
+.nodrag * {
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+  -o-user-drag: none;
+  -khtml-user-drag: none;
+}
+
+@keyframes pulsate {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
