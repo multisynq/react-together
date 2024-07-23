@@ -4,11 +4,11 @@ import {
   CheckboxTogether,
   ConnectedViews,
   DropdownTogether,
-  InputSwitchTogether,
+  // CalendarTogether,
+  KnobTogether,
   PresenceDiv,
   ReactTogether,
   SelectButtonTogether,
-  TriStateCheckboxTogether,
 } from '../../../../react-together'
 // import { ReactTogetherManager } from "react-together/components/ReactTogetherManager";
 
@@ -72,9 +72,9 @@ export function SyncedDemo() {
         <ConnectedViews maxAvatars={2} />
       </div>
       <div className='absolute top-1/2 left-[82%] transform -translate-x-1/2 -translate-y-1/2 w-192'>
-        <h4 className='text-gray-300'>Cursor Together</h4>
+        <h4 className='text-gray-300'>Cursor Together [coming soon!]</h4>
       </div>
-      <div className='flex h-full flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-y-auto overflow-hidden p-3 gap-4'>
+      <div className='flex h-full flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-y-auto overflow-hidden p-3 gap-8'>
         {/* <CountButtonTogether /> */}
         <div className='flex items-center justify-between w-full'>
           <PresenceDiv rtid='div1'>
@@ -88,78 +88,27 @@ export function SyncedDemo() {
             </div>
           </PresenceDiv>
           <PresenceDiv rtid='div3'>
-            <div className='w-18 px-2 py-1 bg-emerald-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyle'>
+            <div className='w-18 px-2 py-1 bg-indigo-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyle'>
               Hover
             </div>
           </PresenceDiv>
-        </div>
-        <SelectButtonTogether rtid='select-button' options={items} optionLabel='name' />
-        <div className='flex items-center gap-auto'>
           <div className='content-center p-1'>
             <CheckboxTogether rtid='checkbox' />
           </div>
-          <div className='content-center p-1'>
+        </div>
+        <SelectButtonTogether rtid='select-button' options={items} optionLabel='name' />
+        <div className='flex items-center justify-between w-full'>
+          {/* <div className='content-center p-1'>
             <TriStateCheckboxTogether rtid='tristate-checkbox' />
-          </div>
-          <div className='content-center p-1 pt-2'>
-            <InputSwitchTogether rtid='input-switch' />
-          </div>
-          <div className='content-center p-1'>
-            <DropdownTogether
-              rtid='dropdown'
-              options={cities}
-              optionLabel='name'
-              placeholder='Select a City'
-              className='w-full md:w-14rem'
-            />
-          </div>
+          </div> */}
+          <DropdownTogether rtid='dropdown' options={cities} optionLabel='name' placeholder='Select a City' className='w-full md:w-14rem' />
+          <div className='w-8' />
+          <KnobTogether rtid='knob2' size={80} />
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
           enim ad minim veniam, quis nostrud exercitation.
         </p>
-        {/* <CalendarTogether
-          rtid='color-picker'
-          dateFormat='yy/mm/dd'
-          disabledDays={[0, 1]}
-          // inline
-          invalid
-        /> */}
-        {/* <>
-              <div className='content-center border p-1'>
-          <RatingTogether rtid='shared-rating' tooltip='hello' />
-        </div>
-
-        <div className='content-center border p-1'>
-          <SelectButtonTogether rtid='select-button' options={items} optionLabel='name' />
-        </div>
-        <div className='content-center border p-1'>
-          <MultiSelectTogether rtid='shared-multi-select' options={cities} optionLabel='name' multiple display='chip' />
-        </div>
-        <div className='content-center border p-1'>
-          <ToggleButtonTogether rtid='toggle-button' className='border rounded bg-slate-300' />
-        </div>
-
-        <div className='flex flex-wrap gap-3 mt-4  justify-center'>
-          <div className='content-center border p-1'>
-            <KnobTogether rtid='knob1' />
-          </div>
-          <div className='content-center border p-1'>
-            <KnobTogether rtid='knob2' />
-          </div>
-          <div className='content-center border p-1'>
-            <KnobTogether rtid='knob3' />
-          </div>
-        </div>
-        <CalendarTogether
-          rtid='color-picker'
-          dateFormat='yy/mm/dd'
-          disabledDays={[0, 1]}
-          // inline
-          invalid
-        />
-        <SyncedTabs />
-      </> */}
       </div>
     </div>
   )
