@@ -7,33 +7,33 @@ export function APIContainer() {
       description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
     },
     {
-      name: 'Name 1',
-      type: 'Type 1',
-      default: 'Default 1',
+      name: 'Name 2',
+      type: 'Type 2',
+      default: 'Default 2',
       description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
     },
     {
-      name: 'Name 1',
-      type: 'Type 1',
-      default: 'Default 1',
+      name: 'Name 3',
+      type: 'Type 3',
+      default: 'Default 3',
       description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
     },
     {
-      name: 'Name 1',
-      type: 'Type 1',
-      default: 'Default 1',
+      name: 'Name 4',
+      type: 'Type 4',
+      default: 'Default 4',
       description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
     },
     {
-      name: 'Name 1',
-      type: 'Type 1',
-      default: 'Default 1',
+      name: 'Name 5',
+      type: 'Type 5',
+      default: 'Default 5',
       description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
     },
     {
-      name: 'Name 1',
-      type: 'Type 1',
-      default: 'Default 1',
+      name: 'Name 6',
+      type: 'Type 6',
+      default: 'Default 6',
       description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
     },
   ]
@@ -52,9 +52,13 @@ export function APIContainer() {
         <tbody>
           {items.map((item, index) => (
             <tr key={index} className='border-b border-gray-300 last:border-b-0'>
-              <td className='p-2 w-1/6'>{item.name}</td>
+              <td className='p-2 w-1/6'>
+                <div className='inline-block bg-blue-100 rounded px-2 py-1'>{item.name}</div>
+              </td>
               <td className='p-2 w-1/6'>{item.type}</td>
-              <td className='p-2 w-1/6'>{item.default}</td>
+              <td className='p-2 w-1/6'>
+                <div className='inline-block border border-gray-300 rounded px-2 py-1 font-light'>{item.default}</div>
+              </td>
               <td className='p-2 w-1/2'>{item.description}</td>
             </tr>
           ))}
