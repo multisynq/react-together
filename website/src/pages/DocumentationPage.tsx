@@ -8,7 +8,6 @@ import { ConfigurationPage, configurationNavItems } from './Documentation/Config
 import { GenericComponentDocPage } from './Documentation/GenericComponentDocPage'
 import { GenericDocNav, GenericDocPage } from './Documentation/GenericDocPage'
 import { IntroductionPage, introductionNavItems } from './Documentation/IntroductionPage'
-import { ReactTogetherPage, reactTogetherNavItems } from './Documentation/ReactTogetherPage'
 import { RoadmapPage, roadMapNavItems } from './Documentation/RoadmapPage'
 import { PrimeReactCalendarTogetherDemo } from './Documentation/componentDemos/PrimeReactCalendarTogetherDemo'
 import { PrimeReactCheckboxTogetherDemo } from './Documentation/componentDemos/PrimeReactCheckboxTogetherDemo'
@@ -147,7 +146,7 @@ function DocumentUseConnectedUsers() {
   return {
     content: (
       <GenericDocPage
-        title='useConnectNewSession'
+        title='useConnectedUsers'
         description={
           'The useConnectedUsers hook returns an array of objects representing all the views that are connected to the current session.'
         }
@@ -179,7 +178,7 @@ function DocumentUseHoveringViews() {
   return {
     content: (
       <GenericDocPage
-        title='useConnectNewSession'
+        title='useHoveringViews'
         description={
           'The useHoveringViews hook is used to tell which views are hovering a given DOM element. If a view is hovering a component that is nested on other “hoverable” components, only the innermost will tell that view is hovering it.'
         }
@@ -257,7 +256,7 @@ function DocumentUseLeaveSession() {
   return {
     content: (
       <GenericDocPage
-        title='useConnectNewSession'
+        title='useLeaveSession'
         description={
           'The useLeaveSession hook returns a function that when called, disconnects the user from the current React Together session. If the user is not connected to any session, calling that function has no effect.'
         }
@@ -291,8 +290,76 @@ function Introduction() {
 
 function ReactTogether(): ComponentReturn {
   return {
-    content: <ReactTogetherPage />,
-    navItems: reactTogetherNavItems,
+    content: (
+      <GenericDocPage
+        title='ReactTogether'
+        description='This component provides the context required to synchronize multiple users within the same session. Every React Together hook and component you use should be inside the scope of this component.'
+        usage={
+          <>
+            <CodeBlock language='javascript' code1={`import { ReactTogether } from 'react-together'`} />
+            <CodeBlock
+              language='javascript'
+              code1={`ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <ReactTogether
+      sessionParams={{
+        appId: import.meta.env['VITE_APP_ID'],
+        apiKey: import.meta.env['VITE_API_KEY']
+      }}
+    >
+      <App />
+    </ReactTogether>
+  </React.StrictMode>
+)`}
+            />
+          </>
+        }
+      />
+    ),
+    navItems: GenericDocNav('ReactTogether'),
+  }
+}
+
+function ConnectedViewsDocumentation(): ComponentReturn {
+  return {
+    content: (
+      <GenericDocPage
+        title='ConnectedViews'
+        description='This component uses the useConnectedViews hook to display the views that are connected to the current React Together session.'
+        usage={
+          <>
+            <CodeBlock language='javascript' code1={`import { ConnectedViews } from 'react-together'`} />
+            <CodeBlock language='javascript' code1={`return <ConnectedViews/>`} />
+          </>
+        }
+      />
+    ),
+    navItems: GenericDocNav('ConnectedViews'),
+  }
+}
+
+function PresenceDivDocumentation(): ComponentReturn {
+  return {
+    content: (
+      <GenericDocPage
+        title='PresenceDiv'
+        description='This component uses the useHoveringViews hook to render a div that is highlighted whenever a view is hovering it.'
+        usage={
+          <>
+            <CodeBlock language='javascript' code1={`import { ReactTogether } from 'react-together'`} />
+            <CodeBlock
+              language='javascript'
+              code1={`return (
+  <PresenceDiv rtid={rtid}>
+    <YourComponent/>
+  </PresenceDiv>
+)`}
+            />
+          </>
+        }
+      />
+    ),
+    navItems: GenericDocNav('PresenceDiv'),
   }
 }
 
@@ -315,7 +382,9 @@ const lookup = {
   'get-started': Introduction,
   'get-started/introduction': Introduction,
   'get-started/configuration': Configuration,
-  'components/react-together': ReactTogether,
+  'components/ReactTogether': ReactTogether,
+  'components/ConnectedViews': ConnectedViewsDocumentation,
+  'components/PresenceDiv': PresenceDivDocumentation,
   'primereact/calendartogether': PrimeReactCalendarTogether,
   'primereact/checkboxtogether': PrimeReactCheckboxTogether,
   'primereact/dropdowntogether': PrimeReactDropdownTogether,

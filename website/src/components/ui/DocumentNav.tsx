@@ -18,8 +18,9 @@ const items: PatchedMenuItem[] = [
     label: 'Components',
     expanded: true,
     items: [
-      { label: 'ConnectedViews' },
-      { label: 'PresenceDiv' },
+      { label: 'ReactTogether', url: '/docs/components/ReactTogether' },
+      { label: 'ConnectedViews', url: '/docs/components/ConnectedViews' },
+      { label: 'PresenceDiv', url: '/docs/components/PresenceDiv' },
       {
         label: 'Prime React',
         expanded: true,
@@ -45,11 +46,11 @@ const items: PatchedMenuItem[] = [
     items: [
       { label: 'useStateTogether', url: '/docs/hooks/useStateTogether' },
       { label: 'useStateTogetherWithPerUserValues', url: '/docs/hooks/useStateTogetherWithPerUserValues' },
+      { label: 'useConnectedUsers', url: '/docs/hooks/useConnectedUsers' },
+      { label: 'useHoveringViews', url: '/docs/hooks/useHoveringViews' },
       { label: 'useIsTogether', url: '/docs/hooks/useIsTogether' },
       { label: 'useConnectNewSession', url: '/docs/hooks/useConnectNewSession' },
       { label: 'useLeaveSession', url: '/docs/hooks/useLeaveSession' },
-      { label: 'useConnectedUsers', url: '/docs/hooks/useConnectedUsers' },
-      { label: 'useHoveringViews', url: '/docs/hooks/useHoveringViews' },
     ],
   },
   {
