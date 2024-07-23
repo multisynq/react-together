@@ -1,5 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
-import { ReactNode } from 'react'
+import { ReactNode, useRef } from 'react'
 
 interface GenericPageProps {
   title: string
@@ -8,9 +8,12 @@ interface GenericPageProps {
   api?: ReactNode | ReactNode[]
 }
 export function GenericDocPage({ title, description, usage, api }: GenericPageProps) {
+  const ref = useRef(null)
   return (
     <>
-      <h2 id='title'>{title}</h2>
+      <h2 id='title' ref={ref}>
+        {title}
+      </h2>
       {description}
 
       <h4 id='installation'>Installation</h4>
@@ -19,8 +22,12 @@ export function GenericDocPage({ title, description, usage, api }: GenericPagePr
       <h4 id='usage'>Usage</h4>
       {usage}
 
-      <h4 id='api'>API</h4>
-      {api}
+      {api && (
+        <>
+          <h4 id='api'>API</h4>
+          {api}
+        </>
+      )}
     </>
   )
 }
