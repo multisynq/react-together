@@ -18,16 +18,26 @@ export function FeatureCard() {
   const title3 = 'Calibrate!'
 
   const color1 = 'bg-sky-100'
-  const color2 = 'bg-indigo-100'
-  const color3 = 'bg-blue-100'
+  // const color2 = 'bg-indigo-100'
+  // const color3 = 'bg-blue-100'
 
   const gif1 = '/src/images/reactTogehter-install.gif'
   const gif2 = '/src/images/reactTogether-wrap.gif'
   const gif3 = '/src/images/reactTogether-sharedCheckbox.gif'
 
+  const featureHeadTitle = 'No Server Needed'
+  const featureHeadDescription =
+    "We've made it simple for you. Just follow three easy steps to bring a seamless multi-user experience to your project!"
+
   return (
-    <span className='w-full px-8'>
-      {/* <div className='w-full flex flex-col md:flex-row border-2 border-gray-500 shadow-lineStyleSecond rounded-xl overflow-hidden'> */}
+    <span className='w-full px-8 flex flex-col items-center gap-5'>
+      <div className='px-20 py-4 justify-center gap-8 bg-sky-100 border-2 border-gray-700 rounded-[98px] shadow-lineStyle flex flex-wrap'>
+        <h2 className='text-gray-800 mb-0 w-[260px]'>{featureHeadTitle}</h2>
+        <div className='max-w-[472px]'>
+          <p className='text-gray-800 mb-1 break-words'>{featureHeadDescription}</p>
+        </div>
+      </div>
+
       <div className='w-full flex flex-col md:flex-row gap-6'>
         <EachFeature
           header={title1}
@@ -38,13 +48,13 @@ export function FeatureCard() {
         <EachFeature
           header={title2}
           body={'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum'}
-          color={color2}
+          color={color1}
           imgSource={gif2}
         />
         <EachFeature
           header={title3}
           body={'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia '}
-          color={color3}
+          color={color1}
           imgSource={gif3}
         />
       </div>

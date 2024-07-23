@@ -9,7 +9,7 @@ export function HomePage() {
         <div className='flex flex-col items-center gap-20 flex-1'>
           <PageHeader />
           <HeroDemo />
-          <span className='w-full h-24' />
+          <span className='w-full h-14' />
           <FeatureCard />
         </div>
       </div>
