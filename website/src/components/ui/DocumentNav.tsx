@@ -24,6 +24,7 @@ const items: PatchedMenuItem[] = [
         label: 'Prime React',
         expanded: true,
         items: [
+          { label: 'CalendarTogether', url: '/docs/primereact/calendartogether' },
           { label: 'CheckboxTogether', url: '/docs/primereact/checkboxtogether' },
           { label: 'DropdownTogether', url: '/docs/primereact/dropdowntogether' },
           { label: 'InputSwitchTogether', url: '/docs/primereact/inputswitchtogether' },
@@ -42,13 +43,13 @@ const items: PatchedMenuItem[] = [
     label: 'Hooks',
     expanded: true,
     items: [
-      { label: 'useStateTogether' },
-      { label: 'useStateTogetherWithPerUserValues' },
-      { label: 'useIsTogether' },
-      { label: 'useConnectNewSession' },
-      { label: 'useLeaveSession' },
-      { label: 'useConnectedUsers' },
-      { label: 'useHoveringViews' },
+      { label: 'useStateTogether', url: '/docs/hooks/useStateTogether' },
+      { label: 'useStateTogetherWithPerUserValues', url: '/docs/hooks/useStateTogetherWithPerUserValues' },
+      { label: 'useIsTogether', url: '/docs/hooks/useIsTogether' },
+      { label: 'useConnectNewSession', url: '/docs/hooks/useConnectNewSession' },
+      { label: 'useLeaveSession', url: '/docs/hooks/useLeaveSession' },
+      { label: 'useConnectedUsers', url: '/docs/hooks/useConnectedUsers' },
+      { label: 'useHoveringViews', url: '/docs/hooks/useHoveringViews' },
     ],
   },
   {

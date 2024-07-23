@@ -1,16 +1,19 @@
+import { CodeBlock } from '@components/ui/CodeBlock'
 import DocumentBreadCrumb from '@components/ui/DocumentBreadCrumb'
 import DocumentNav from '@components/ui/DocumentNav'
 import PageNav from '@components/ui/PageNav'
 import { useParams } from 'react-router-dom'
 import { AboutUsPage, aboutUsNavItems } from './Documentation/AboutUsPage'
 import { ConfigurationPage, configurationNavItems } from './Documentation/ConfigurationPage'
-import { GenericComponentDocNav, GenericComponentDocPage } from './Documentation/GenericComponentDocPage'
+import { GenericComponentDocPage } from './Documentation/GenericComponentDocPage'
+import { GenericDocNav, GenericDocPage } from './Documentation/GenericDocPage'
 import { IntroductionPage, introductionNavItems } from './Documentation/IntroductionPage'
 import { MainHooksPage, mainHooksNavItems } from './Documentation/MainHooksPage'
 import { PrimeReactPage, primeReactNavItems } from './Documentation/PrimeReactPage'
 import { ReactTogetherPage, reactTogetherNavItems } from './Documentation/ReactTogetherPage'
 import { RoadmapPage, roadMapNavItems } from './Documentation/RoadmapPage'
 import { SessionHooksPage, sessionHooksNavItems } from './Documentation/SessionHooksPage'
+import { PrimeReactCalendarTogetherDemo } from './Documentation/componentDemos/PrimeReactCalendarTogetherDemo'
 import { PrimeReactCheckboxTogetherDemo } from './Documentation/componentDemos/PrimeReactCheckboxTogetherDemo'
 import { PrimeReactDropdownTogetherDemo } from './Documentation/componentDemos/PrimeReactDropdownTogetherDemo'
 import { PrimeReactInputSwitchTogetherDemo } from './Documentation/componentDemos/PrimeReactInputSwitchTogetherDemo'
@@ -22,7 +25,6 @@ import { PrimeReactTabViewTogetherDemo } from './Documentation/componentDemos/Pr
 import { PrimeReactToggleButtonDemo } from './Documentation/componentDemos/PrimeReactToggleButtonTogetherDemo'
 import { PrimeReactTriStateCheckboxDemo } from './Documentation/componentDemos/PrimeReactTriStateCheckboxTogetherDemo'
 import { ComponentReturn } from './Documentation/types'
-
 // =
 
 function Configuration() {
@@ -41,8 +43,12 @@ function PrimeReactComponent(name: string, ComponentDemo) {
       docUrl: `https://primereact.org/${name.toLowerCase()}/`,
       ComponentDemo,
     }),
-    navItems: GenericComponentDocNav(newName),
+    navItems: GenericDocNav(newName),
   }
+}
+
+function PrimeReactCalendarTogether() {
+  return PrimeReactComponent('Calendar', PrimeReactCalendarTogetherDemo)
 }
 
 function PrimeReactCheckboxTogether() {
@@ -87,6 +93,196 @@ function PrimeReactTriStateCheckboxTogether() {
 
 function PrimeReactToggleButtonTogether() {
   return PrimeReactComponent('ToggleButton', PrimeReactToggleButtonDemo)
+}
+
+function DocumentUseStateTogether() {
+  return {
+    content: (
+      <GenericDocPage
+        title='useStateTogether'
+        description='The useStateTogether hook makes every user see the same state simultaneously. If the user is not connected to any session, then this hook behaves as a normal useState.'
+        usage={
+          <>
+            <CodeBlock language='javascript' code1={`import { useStateTogether } from 'react-together'`} />
+            <CodeBlock
+              language='javascript'
+              code1={`const [count, setCount] = useStateTogether('unique-id', 0)
+
+const increment = () => setCount((prev) => prev + 1)
+const reset = () => setCount(0)`}
+            />
+          </>
+        }
+      />
+    ),
+    navItems: GenericDocNav('useStateTogether'),
+  }
+}
+
+function DocumentUseStateTogetherWithPerUserValues() {
+  return {
+    content: (
+      <GenericDocPage
+        title='useStateTogetherWithPerUserValues'
+        description={
+          'The useStateTogetherWithValuesPerUser hook allows users to read the state of all of their peers. ' +
+          'If the user is not connected to any session, then the hook will behave as a normal useState, and the peer state object will be empty.'
+        }
+        usage={
+          <>
+            <CodeBlock language='javascript' code1={`import { useStateTogether } from 'react-together'`} />
+            <CodeBlock
+              language='javascript'
+              code1={`const [count, setCount, countPerUser] = useStateTogetherWithPerUserValues('unique-id', 0)
+
+const increment = () => setCount((prev) => prev + 1)
+const reset = () => setCount(0)`}
+            />
+          </>
+        }
+      />
+    ),
+    navItems: GenericDocNav('useStateTogether'),
+  }
+}
+
+function DocumentUseConnectedUsers() {
+  return {
+    content: (
+      <GenericDocPage
+        title='useConnectNewSession'
+        description={
+          'The useConnectedUsers hook returns an array of objects representing all the views that are connected to the current session.'
+        }
+        usage={
+          <>
+            <CodeBlock language='javascript' code1={`import { useStateTogether } from 'react-together'`} />
+            <CodeBlock
+              language='javascript'
+              code1={`const connectedUsers = useConnectedUsers()
+
+ return (
+   <div ref={ref}>
+     Connected users:
+     <ul>
+       {hoveringViews.map((viewId) => <li key={viewId}>{viewId}</li> }
+     </ul>
+   </div>
+  )`}
+            />
+          </>
+        }
+      />
+    ),
+    navItems: GenericDocNav('useStateTogether'),
+  }
+}
+
+function DocumentUseHoveringViews() {
+  return {
+    content: (
+      <GenericDocPage
+        title='useConnectNewSession'
+        description={
+          'The useHoveringViews hook is used to tell which views are hovering a given DOM element. If a view is hovering a component that is nested on other “hoverable” components, only the innermost will tell that view is hovering it.'
+        }
+        usage={
+          <>
+            <CodeBlock language='javascript' code1={`import { useStateTogether } from 'react-together'`} />
+            <CodeBlock
+              language='javascript'
+              code1={`const [ref, hoveringViews] = useHoveringViews(‘hovering-views’)
+
+ return (
+   <div>
+     <div ref={ref}> Hover me! </div>
+     <h3>Hovering Ids:</h3>
+     <ul>
+       {hoveringViews.map((viewId) => <li key={viewId}>{viewId}</li>}
+     </ul>
+   </div>
+  )`}
+            />
+          </>
+        }
+      />
+    ),
+    navItems: GenericDocNav('useStateTogether'),
+  }
+}
+
+function DocumentUseIsTogether() {
+  return {
+    content: (
+      <GenericDocPage
+        title='useIsTogether'
+        description={'The useIsTogether hook returns true if the user is connected to a React Together session, and false otherwise.'}
+        usage={
+          <>
+            <CodeBlock language='javascript' code1={`import { useStateTogether } from 'react-together'`} />
+            <CodeBlock language='javascript' code1={`const isTogether = useIsTogether()`} />
+          </>
+        }
+      />
+    ),
+    navItems: GenericDocNav('useStateTogether'),
+  }
+}
+
+function DocumentUseConnectNewSession() {
+  return {
+    content: (
+      <GenericDocPage
+        title='useConnectNewSession'
+        description={'The useConnectNewSession hook returns a function that when called, connects to a new React Together session.'}
+        usage={
+          <>
+            <CodeBlock language='javascript' code1={`import { useStateTogether } from 'react-together'`} />
+            <CodeBlock
+              language='javascript'
+              code1={`const connectNewSession = useConnectNewSession()
+
+return (
+  <button onClick={() => connectNewSession()}>
+    Connect to a new session!
+  </button>
+)`}
+            />
+          </>
+        }
+      />
+    ),
+    navItems: GenericDocNav('useStateTogether'),
+  }
+}
+
+function DocumentUseLeaveSession() {
+  return {
+    content: (
+      <GenericDocPage
+        title='useConnectNewSession'
+        description={
+          'The useLeaveSession hook returns a function that when called, disconnects the user from the current React Together session. If the user is not connected to any session, calling that function has no effect.'
+        }
+        usage={
+          <>
+            <CodeBlock language='javascript' code1={`import { useStateTogether } from 'react-together'`} />
+            <CodeBlock
+              language='javascript'
+              code1={`const leaveSession = useLeaveSession()
+
+return (
+  <button onClick={() => leaveSession()}>
+    Leave current session!
+  </button>
+)`}
+            />
+          </>
+        }
+      />
+    ),
+    navItems: GenericDocNav('useStateTogether'),
+  }
 }
 
 function Introduction() {
@@ -147,6 +343,7 @@ const lookup = {
   'hooks/session-hooks': SessionHooks,
   'components/react-together': ReactTogether,
   'components/primereact': PrimeReact,
+  'primereact/calendartogether': PrimeReactCalendarTogether,
   'primereact/checkboxtogether': PrimeReactCheckboxTogether,
   'primereact/dropdowntogether': PrimeReactDropdownTogether,
   'primereact/inputswitchtogether': PrimeReactInputSwitchTogether,
@@ -158,6 +355,13 @@ const lookup = {
   'primereact/tabviewtogether': PrimeReactTabViewTogether,
   'primereact/tristatecheckboxtogether': PrimeReactTriStateCheckboxTogether,
   'primereact/togglebuttontogether': PrimeReactToggleButtonTogether,
+  'hooks/useStateTogether': DocumentUseStateTogether,
+  'hooks/useStateTogetherWithPerUserValues': DocumentUseStateTogetherWithPerUserValues,
+  'hooks/useConnectedUsers': DocumentUseConnectedUsers,
+  'hooks/useHoveringViews': DocumentUseHoveringViews,
+  'hooks/useIsTogether': DocumentUseIsTogether,
+  'hooks/useConnectNewSession': DocumentUseConnectNewSession,
+  'hooks/useLeaveSession': DocumentUseLeaveSession,
   'discover/about-us': AboutUs,
   'discover/roadmap': RoadMap,
 }

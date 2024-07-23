@@ -1,19 +1,19 @@
 import { WithReactTogetherProvider } from '@components/sections/HeroDemo'
-import { APIContainer } from '@components/ui/APIContainer'
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { FakeBrowser } from '@components/ui/FakeBrowser'
+import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { GenericDocPage } from './GenericDocPage'
 
 interface GenericComponentPageProps {
   name: string
   originalName: string
   docUrl: string
-  ComponentDemo: any
+  ComponentDemo: () => ReactNode
 }
 export function GenericComponentDocPage({ name, originalName, docUrl, ComponentDemo }: GenericComponentPageProps) {
-  return (
+  const description = (
     <>
-      <h2 id='component-name'>{name}</h2>
       <p>
         This component wraps PrimeReact's{' '}
         <Link to={docUrl} target='_blank'>
@@ -43,25 +43,14 @@ export function GenericComponentDocPage({ name, originalName, docUrl, ComponentD
           </div>
         </FakeBrowser>
       </div>
-
-      <h4 id='installation'>Installation</h4>
-      <CodeBlock language='bash' code1={`npm i react-together`} />
-
-      <h4 id='usage'>Usage</h4>
-      <CodeBlock language='javascript' code1={`import { ${name} } from 'react-together'`} />
-      <CodeBlock language='javascript' code1={`return <${name} rtid='unique-id' />`} />
-
-      <h4 id='api'>API</h4>
-      <APIContainer />
     </>
   )
-}
 
-export function GenericComponentDocNav(name) {
-  return [
-    { key: 'title', label: name },
-    { key: 'installation', label: 'Installation' },
-    { key: 'usage', label: 'Usage' },
-    { key: 'api', label: 'API' },
-  ]
+  const usage = (
+    <>
+      <CodeBlock language='javascript' code1={`import { ${name} } from 'react-together'`} />
+      <CodeBlock language='javascript' code1={`return <${name} rtid='your-unique-id' />`} />
+    </>
+  )
+  return <GenericDocPage title={name} description={description} usage={usage} />
 }
