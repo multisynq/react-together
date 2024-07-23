@@ -85,6 +85,30 @@ nav.flex a {
 
 .p-panelmenu-content {
   background-color: transparent;
+
+}
+
+.p-panelmenu-panel{
+  .p-toggleable-content{
+    .p-panelmenu-content{
+      .p-panelmenu-root-list.p-submenu-list{
+        .p-toggleable-content{
+          .p-submenu-list{
+            padding-left: 4px;
+            .p-menuitem-link{
+              // padding-left: 2;
+              padding-top: 6px;
+              padding-bottom: 6px;
+
+              .p-menuitem-text{
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .rt-breadcrumb.p-breadcrumb.p-component {
