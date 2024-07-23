@@ -15,15 +15,15 @@ function EachFeature({ header, body, color, imgSource }) {
 export function FeatureCard() {
   const title1 = 'Install'
   const title2 = 'Wrap'
-  const title3 = 'Enhance!'
+  const title3 = 'Calibrate!'
 
-  const color1 = 'bg-indigo-200'
-  const color2 = 'bg-rose-200'
-  const color3 = 'bg-green-200'
+  const color1 = 'bg-sky-100'
+  const color2 = 'bg-indigo-100'
+  const color3 = 'bg-blue-100'
 
-  const gif1 = 'src/images/npm_install.gif'
-  const gif2 = '../../images/npm_install.gif'
-  const gif3 = '../../images/npm_install.gif'
+  const gif1 = '/src/images/reactTogehter-install.gif'
+  const gif2 = '/src/images/reactTogether-wrap.gif'
+  const gif3 = '/src/images/reactTogether-sharedCheckbox.gif'
 
   return (
     <span className='w-full px-8'>
@@ -39,13 +39,13 @@ export function FeatureCard() {
           header={title2}
           body={'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum'}
           color={color2}
-          imgSource={gif1}
+          imgSource={gif2}
         />
         <EachFeature
           header={title3}
           body={'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia '}
           color={color3}
-          imgSource={gif1}
+          imgSource={gif3}
         />
       </div>
     </span>
