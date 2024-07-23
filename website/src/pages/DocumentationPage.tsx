@@ -23,9 +23,7 @@ import { PrimeReactToggleButtonDemo } from './Documentation/componentDemos/Prime
 import { PrimeReactTriStateCheckboxDemo } from './Documentation/componentDemos/PrimeReactTriStateCheckboxTogetherDemo'
 import { ComponentReturn } from './Documentation/types'
 
-function Page({ children }) {
-  return <div className='flex max-w-[87rem] items-start gap-8 flex-1 h-full'>{children}</div>
-}
+// =
 
 function Configuration() {
   return {
@@ -176,7 +174,7 @@ export function DocumentationPage() {
       <div className='hidden sm:block h-full'>
         <DocumentNav />
       </div>
-      <div className='flex flex-col items-start gap-[1.5rem]'>
+      <div className='flex flex-col items-start gap-[1.5rem] w-full'>
         <DocumentBreadCrumb currentPath={keyToLookupWith} />
         {content}
       </div>
