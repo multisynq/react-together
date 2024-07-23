@@ -90,3 +90,14 @@
     @apply px-4;
   }
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+}
+
+h1 { font-weight: 700; } /* Bold */
+h2 { font-weight: 400; } /* Regular */
+h3 { font-weight: 300; } /* Light */
+h4 { font-weight: 400; } /* Regular */
+h5 { font-weight: 400; } /* Regular */
+h6 { font-weight: 400; } /* Regular */
