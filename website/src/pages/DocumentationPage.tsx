@@ -8,11 +8,8 @@ import { ConfigurationPage, configurationNavItems } from './Documentation/Config
 import { GenericComponentDocPage } from './Documentation/GenericComponentDocPage'
 import { GenericDocNav, GenericDocPage } from './Documentation/GenericDocPage'
 import { IntroductionPage, introductionNavItems } from './Documentation/IntroductionPage'
-import { MainHooksPage, mainHooksNavItems } from './Documentation/MainHooksPage'
-import { PrimeReactPage, primeReactNavItems } from './Documentation/PrimeReactPage'
 import { ReactTogetherPage, reactTogetherNavItems } from './Documentation/ReactTogetherPage'
 import { RoadmapPage, roadMapNavItems } from './Documentation/RoadmapPage'
-import { SessionHooksPage, sessionHooksNavItems } from './Documentation/SessionHooksPage'
 import { PrimeReactCalendarTogetherDemo } from './Documentation/componentDemos/PrimeReactCalendarTogetherDemo'
 import { PrimeReactCheckboxTogetherDemo } from './Documentation/componentDemos/PrimeReactCheckboxTogetherDemo'
 import { PrimeReactDropdownTogetherDemo } from './Documentation/componentDemos/PrimeReactDropdownTogetherDemo'
@@ -292,31 +289,10 @@ function Introduction() {
   }
 }
 
-function MainHooks(): ComponentReturn {
-  return {
-    content: <MainHooksPage />,
-    navItems: mainHooksNavItems,
-  }
-}
-
-function SessionHooks(): ComponentReturn {
-  return {
-    content: <SessionHooksPage />,
-    navItems: sessionHooksNavItems,
-  }
-}
-
 function ReactTogether(): ComponentReturn {
   return {
     content: <ReactTogetherPage />,
     navItems: reactTogetherNavItems,
-  }
-}
-
-function PrimeReact(): ComponentReturn {
-  return {
-    content: <PrimeReactPage />,
-    navItems: primeReactNavItems,
   }
 }
 
@@ -339,10 +315,7 @@ const lookup = {
   'get-started': Introduction,
   'get-started/introduction': Introduction,
   'get-started/configuration': Configuration,
-  'hooks/main-hooks': MainHooks,
-  'hooks/session-hooks': SessionHooks,
   'components/react-together': ReactTogether,
-  'components/primereact': PrimeReact,
   'primereact/calendartogether': PrimeReactCalendarTogether,
   'primereact/checkboxtogether': PrimeReactCheckboxTogether,
   'primereact/dropdowntogether': PrimeReactDropdownTogether,
