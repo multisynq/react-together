@@ -13,6 +13,7 @@ import { PrimeReactPage, primeReactNavItems } from './Documentation/PrimeReactPa
 import { ReactTogetherPage, reactTogetherNavItems } from './Documentation/ReactTogetherPage'
 import { RoadmapPage, roadMapNavItems } from './Documentation/RoadmapPage'
 import { SessionHooksPage, sessionHooksNavItems } from './Documentation/SessionHooksPage'
+import { PrimeReactCalendarTogetherDemo } from './Documentation/componentDemos/PrimeReactCalendarTogetherDemo'
 import { PrimeReactCheckboxTogetherDemo } from './Documentation/componentDemos/PrimeReactCheckboxTogetherDemo'
 import { PrimeReactDropdownTogetherDemo } from './Documentation/componentDemos/PrimeReactDropdownTogetherDemo'
 import { PrimeReactInputSwitchTogetherDemo } from './Documentation/componentDemos/PrimeReactInputSwitchTogetherDemo'
@@ -44,6 +45,10 @@ function PrimeReactComponent(name: string, ComponentDemo) {
     }),
     navItems: GenericDocNav(newName),
   }
+}
+
+function PrimeReactCalendarTogether() {
+  return PrimeReactComponent('Calendar', PrimeReactCalendarTogetherDemo)
 }
 
 function PrimeReactCheckboxTogether() {
@@ -338,6 +343,7 @@ const lookup = {
   'hooks/session-hooks': SessionHooks,
   'components/react-together': ReactTogether,
   'components/primereact': PrimeReact,
+  'primereact/calendartogether': PrimeReactCalendarTogether,
   'primereact/checkboxtogether': PrimeReactCheckboxTogether,
   'primereact/dropdowntogether': PrimeReactDropdownTogether,
   'primereact/inputswitchtogether': PrimeReactInputSwitchTogether,
