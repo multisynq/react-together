@@ -19,8 +19,12 @@ export function GenericDocPage({ title, description, usage, api }: GenericPagePr
       <h4 id='installation'>Installation</h4>
       <CodeBlock language='bash' code1={`npm i react-together`} />
 
-      <h4 id='usage'>Usage</h4>
-      {usage}
+      {usage && (
+        <>
+          <h4 id='usage'>Usage</h4>
+          {usage}
+        </>
+      )}
 
       {api && (
         <>
