@@ -1,4 +1,5 @@
 import { WithReactTogetherProvider } from '@components/sections/HeroDemo'
+import { APIContainer } from '@components/ui/APIContainer'
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { FakeBrowser } from '@components/ui/FakeBrowser'
 import { Link } from 'react-router-dom'
@@ -51,6 +52,7 @@ export function GenericComponentDocPage({ name, originalName, docUrl, ComponentD
       <CodeBlock language='javascript' code1={`return <${name} rtid='unique-id' />`} />
 
       <h4 id='api'>API</h4>
+      <APIContainer />
     </>
   )
 }
