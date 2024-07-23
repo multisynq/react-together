@@ -4,7 +4,8 @@ import PageNav from '@components/ui/PageNav'
 import { useParams } from 'react-router-dom'
 import { AboutUsPage, aboutUsNavItems } from './Documentation/AboutUsPage'
 import { ConfigurationPage, configurationNavItems } from './Documentation/ConfigurationPage'
-import { GenericComponentDocNav, GenericComponentDocPage } from './Documentation/GenericComponentDocPage'
+import { GenericComponentDocPage } from './Documentation/GenericComponentDocPage'
+import { GenericDocNav } from './Documentation/GenericDocPage'
 import { IntroductionPage, introductionNavItems } from './Documentation/IntroductionPage'
 import { MainHooksPage, mainHooksNavItems } from './Documentation/MainHooksPage'
 import { PrimeReactPage, primeReactNavItems } from './Documentation/PrimeReactPage'
@@ -41,7 +42,7 @@ function PrimeReactComponent(name: string, ComponentDemo) {
       docUrl: `https://primereact.org/${name.toLowerCase()}/`,
       ComponentDemo,
     }),
-    navItems: GenericComponentDocNav(newName),
+    navItems: GenericDocNav(newName),
   }
 }
 
