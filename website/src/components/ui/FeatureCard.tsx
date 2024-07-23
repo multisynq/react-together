@@ -25,9 +25,16 @@ export function FeatureCard() {
   const gif2 = '/src/images/reactTogether-wrap.gif'
   const gif3 = '/src/images/reactTogether-sharedCheckbox.gif'
 
+  const featureHeadTitle = 'No Server Code!'
+
   return (
-    <span className='w-full px-8'>
-      {/* <div className='w-full flex flex-col md:flex-row border-2 border-gray-500 shadow-lineStyleSecond rounded-xl overflow-hidden'> */}
+    <span className='w-full px-8 flex flex-col items-center gap-5'>
+      {/* <div className='inline-flex px-20 py-4 justify-center items-end gap-4 bg-blue-500 border-2 border-gray-700 rounded-[98px] shadow-lineStyle'> */}
+      <div className='px-20 py-4 justify-center gap-2 bg-blue-500 border-2 border-gray-700 rounded-[98px] shadow-lineStyle flex flex-col'>
+        <h2 className='text-white mb-0'>{featureHeadTitle}</h2>
+        <p className='text-white mb-1'>consectetur adipiscing elit, sed do eiusmod tempor.</p>
+      </div>
+
       <div className='w-full flex flex-col md:flex-row gap-6'>
         <EachFeature
           header={title1}
