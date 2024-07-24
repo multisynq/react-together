@@ -1,5 +1,4 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
-import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { NavItem } from './types'
 
@@ -16,41 +15,7 @@ function IntroductionContent() {
        </ReactTogether>
 )
 `
-  const keys = [
-    {
-      key: 'name',
-      label: 'Name',
-    },
-    {
-      key: 'type',
-      label: 'Type',
-    },
-    {
-      key: 'default',
-      label: 'Default Value',
-    },
-    {
-      key: 'description',
-      label: 'Description',
-    },
-  ]
-  const data = [
-    {
-      name: 'Test',
-      type: 'String',
-      default: '0',
-      description: 'A short description',
-    },
-    {
-      name: 'Test2',
-      default: '0',
-      description: 'A short description',
-    },
-    {
-      name: 'Test2',
-      default: '0',
-    },
-  ]
+
   return (
     <>
       <h3 id='introduction'>Introduction</h3>
@@ -72,7 +37,6 @@ function IntroductionContent() {
       <p>Now, at a fairly top level of your React’s JSX, you will need to:</p>
       <p>Wrap everything in a ReactTogether tag so you can connect a (free) API key.</p>
       <CodeBlock language='javascript' code1={sampleCode2} />
-      <TableContainer keys={keys} data={data} />
     </>
   )
 }
