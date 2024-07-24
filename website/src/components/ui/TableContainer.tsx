@@ -11,11 +11,6 @@ interface TableContainerProps {
 }
 
 export function TableContainer({ keys, data }: TableContainerProps) {
-  // const items = tableContent
-  console.log(keys, data)
-
-  // const headers = items.length > 0 ? Object.keys(items[0]) : []
-
   return (
     <div className='px-3 py-2 border-2 border-gray-700 rounded-lg shadow-lineStyle w-full'>
       <table className='w-full'>
@@ -35,7 +30,11 @@ export function TableContainer({ keys, data }: TableContainerProps) {
               <tr key={id} className='border-b border-gray-300 last:border-b-0'>
                 {keys.map(({ key }) => {
                   const content = object[key] || '--'
-                  return <td className='p-2 w-1/6'>{content}</td>
+                  return (
+                    <td key={`${id}-${key}`} className='p-2 w-1/6'>
+                      {content}
+                    </td>
+                  )
                 })}
                 {/* <td className='p-2 w-1/6'>
                   <div
