@@ -1,4 +1,6 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import NewPropSpan from '@components/ui/NewPropSpan'
+import RemovedPropSpan from '@components/ui/RemovedPropSpan'
 import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
@@ -33,12 +35,12 @@ export default function UseConnectedViewsDocumentationPage() {
         ]}
         data={[
           {
-            name: 'viewId',
+            name: <NewPropSpan text='viewId' />,
             type: 'string',
             description: 'The id of the view that this entry corresponds to',
           },
           {
-            name: 'isYou',
+            name: <RemovedPropSpan text='isYou' />,
             type: 'boolean',
             description: 'Indicates whether you are this view',
           },
