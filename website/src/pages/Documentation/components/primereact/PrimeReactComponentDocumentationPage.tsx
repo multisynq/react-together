@@ -9,9 +9,10 @@ interface GenericComponentPageProps {
   name: string
   originalName: string
   docUrl: string
+  api?: ReactNode | ReactNode[]
   ComponentDemo: () => ReactNode
 }
-export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, ComponentDemo }: GenericComponentPageProps) {
+export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, ComponentDemo, api }: GenericComponentPageProps) {
   const description = (
     <>
       <p>
@@ -42,5 +43,5 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
       <CodeBlock language='javascript' code1={`return <${name} rtid='your-unique-id' />`} />
     </>
   )
-  return <GenericDocPage title={name} description={description} usage={usage} />
+  return <GenericDocPage title={name} description={description} usage={usage} api={api} />
 }
