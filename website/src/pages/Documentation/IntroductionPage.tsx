@@ -1,7 +1,6 @@
-import { NavItem } from './types'
-import { CodeBlockExample } from '@components/ui/CodeBlockExample'
-import DocumentDemoBox from '@components/ui/DocumentDemoBox'
 import { CodeBlock } from '@components/ui/CodeBlock'
+import { TableContainer } from '@components/ui/TableContainer'
+import { NavItem } from './types'
 
 export const IntroductionPage: React.FC = () => {
   const sampleCode1 = `npm i react-together`
@@ -16,6 +15,26 @@ export const IntroductionPage: React.FC = () => {
        </ReactTogether>
 )
 `
+  const tableContent = [
+    {
+      name: { text: 'Name 1' },
+      type: 'Type 1',
+      default: 'Default 1',
+      description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
+    },
+    {
+      name: { text: 'Name 2', status: 'added' },
+      type: 'Type 2',
+      default: 'Default 2',
+      description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
+    },
+    {
+      name: { text: 'Name 3', status: 'removed' },
+      type: 'Type 3',
+      default: 'Default 3',
+      description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
+    },
+  ]
   return (
     <>
       <h3 id='introduction'>Introduction</h3>
@@ -37,6 +56,7 @@ export const IntroductionPage: React.FC = () => {
       <p>Now, at a fairly top level of your React’s JSX, you will need to:</p>
       <p>Wrap everything in a ReactTogether tag so you can connect a (free) API key.</p>
       <CodeBlock language='javascript' code1={sampleCode2} />
+      <TableContainer tableContent={tableContent} />
     </>
   )
 }
