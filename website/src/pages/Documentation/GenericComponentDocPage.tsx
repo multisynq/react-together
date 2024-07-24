@@ -22,12 +22,12 @@ export function GenericComponentDocPage({ name, originalName, docUrl, ComponentD
         component to have a synchronized state across every user.
       </p>
       <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100'>
-        <DocumentDemoContainer labelText='Environment 1'>
+        <DocumentDemoContainer labelText='View 1'>
           <WithReactTogetherProvider>
             <ComponentDemo />
           </WithReactTogetherProvider>
         </DocumentDemoContainer>
-        <DocumentDemoContainer labelText='Environment 2'>
+        <DocumentDemoContainer labelText='View 2'>
           <WithReactTogetherProvider>
             <ComponentDemo />
           </WithReactTogetherProvider>
