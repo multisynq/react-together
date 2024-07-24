@@ -3,17 +3,21 @@ import { ReactNode, useRef } from 'react'
 
 interface GenericPageProps {
   title: string
+  parameter?: string
   description?: ReactNode | ReactNode[]
   usage?: ReactNode | ReactNode[]
   api?: ReactNode | ReactNode[]
 }
-export function GenericDocPage({ title, description, usage, api }: GenericPageProps) {
+export function GenericDocPage({ title, description, usage, api, parameter }: GenericPageProps) {
   const ref = useRef(null)
   return (
     <>
-      <h2 id='title' ref={ref}>
-        {title}
-      </h2>
+      <div className='flex gap-2 items-baseline'>
+        <h2 id='title' ref={ref}>
+          {title}
+        </h2>
+        <span>{parameter}</span>
+      </div>
       {description}
 
       <h4 id='installation'>Installation</h4>
