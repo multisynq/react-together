@@ -1,4 +1,3 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
 import { ReactNode, useRef } from 'react'
 
 interface GenericPageProps {
@@ -20,8 +19,8 @@ export function GenericDocPage({ title, description, usage, api, parameter }: Ge
       </div>
       {description}
 
-      <h4 id='installation'>Installation</h4>
-      <CodeBlock language='bash' code1={`npm i react-together`} />
+      {/* <h4 id='installation'>Installation</h4>
+      <CodeBlock language='bash' code1={`npm i react-together`} /> */}
 
       {usage && (
         <>
