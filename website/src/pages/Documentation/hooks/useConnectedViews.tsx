@@ -8,7 +8,20 @@ export default function UseConnectedViewsDocumentationPage() {
   const api = (
     <>
       <h5>Params</h5>
-      <p>This hook takes no parameters.</p>
+      <TableContainer
+        keys={[
+          { key: 'name', label: 'Name' },
+          { key: 'type', label: 'Type' },
+          { key: 'description', label: 'Description' },
+        ]}
+        data={[
+          {
+            name: 'connectedViews',
+            type: 'ConnectedView[]',
+            description: 'A list containing all the views connected to the current React Together session',
+          },
+        ]}
+      />
 
       <h5>Return</h5>
       <TableContainer

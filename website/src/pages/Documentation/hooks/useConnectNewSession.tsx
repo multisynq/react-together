@@ -1,12 +1,38 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 
 export default function UseConnectNewSessionDocumentationPage() {
+  const api = (
+    <>
+      <h5>Params</h5>
+      <p>This hook takes no parameters.</p>
+
+      <h5>Return</h5>
+      <TableContainer
+        keys={[
+          { key: 'name', label: 'Name' },
+          { key: 'type', label: 'Type' },
+          { key: 'description', label: 'Description' },
+        ]}
+        data={[
+          {
+            name: 'connectNewSession',
+            type: '() => void',
+            description: 'A function that, when called, connects the user to a new React Together session',
+          },
+        ]}
+      />
+    </>
+  )
+
   const content = (
     <GenericDocPage
       title='useConnectNewSession'
-      description={'The useConnectNewSession hook returns a function that when called, connects to a new React Together session.'}
+      description={
+        'The useConnectNewSession hook returns a function that when called, connects to a new React Together session. The session name and password are randomly generated (for now…)'
+      }
       usage={
         <>
           <CodeBlock language='javascript' code1={`import { useConnectNewSession } from 'react-together'`} />
@@ -22,6 +48,7 @@ return (
           />
         </>
       }
+      api={api}
     />
   )
   return <DocumentationSkeleton content={content} navItems={GenericDocNav('useConnectNewSession')} keyToLookupWith='' />

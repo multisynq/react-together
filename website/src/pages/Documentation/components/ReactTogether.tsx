@@ -1,8 +1,50 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 
 export default function ReactTogetherDocumentationPage() {
+  const api = (
+    <>
+      <h5>Params</h5>
+      <TableContainer
+        keys={[
+          { key: 'name', label: 'Name' },
+          { key: 'type', label: 'Type' },
+          { key: 'default', label: 'Default Value' },
+          { key: 'description', label: 'Description' },
+        ]}
+        data={[
+          {
+            name: 'sessionParams',
+            type: 'ReactTogetherSessionParams',
+            description: 'The parameters passed to the Multisynq session',
+          },
+        ]}
+      />
+      <h5>ReactTogetherSessionParams</h5>
+      <TableContainer
+        keys={[
+          { key: 'name', label: 'Name' },
+          { key: 'type', label: 'Type' },
+          { key: 'default', label: 'Default Value' },
+          { key: 'description', label: 'Description' },
+        ]}
+        data={[
+          {
+            name: 'appId',
+            type: 'string',
+            description: 'The ID of your app',
+          },
+          {
+            name: 'apiKey',
+            type: 'string',
+            description: 'The Multisynq API key. Get yours at croquet.io/keys',
+          },
+        ]}
+      />
+    </>
+  )
   const content = (
     <GenericDocPage
       title='ReactTogether'
@@ -27,6 +69,7 @@ export default function ReactTogetherDocumentationPage() {
           />
         </>
       }
+      api={api}
     />
   )
   return <DocumentationSkeleton content={content} navItems={GenericDocNav('ReactTogether')} keyToLookupWith='' />
