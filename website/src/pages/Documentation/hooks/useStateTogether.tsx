@@ -67,7 +67,15 @@ const api = (
   </>
 )
 
-const content = <GenericDocPage title='useStateTogether' description={description} usage={usage} api={api} />
+const content = (
+  <GenericDocPage
+    title='useStateTogether'
+    parameter='<T>(rtid, initial_value, options)'
+    description={description}
+    usage={usage}
+    api={api}
+  />
+)
 export default function UseStateTogetherDocumentationPage() {
   return <DocumentationSkeleton content={content} navItems={GenericDocNav('useStateTogether')} keyToLookupWith='' />
 }
