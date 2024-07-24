@@ -1,5 +1,7 @@
+import React from 'react'
+
 interface DefaultValuePropSpanProps {
-  text?: string
+  text?: React.ReactNode
 }
 
 export default function DefaultValuePropSpan({ text = 'null' }: DefaultValuePropSpanProps) {

@@ -1,4 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import OverfillSpan from '@components/ui/OverfillSpan'
 import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
@@ -19,8 +20,9 @@ export default function ConnectedViewsDocumentationPage() {
             name: 'rtid',
             type: 'number',
             default: '3',
-            description:
-              'The maximum number of circles rendered by this component. If maxAvatars is 3 and there are 3 views connected, it will render three circles, one for each view. If there are four views connected, it will render the circles for two views, and one circle with “+2”.',
+            description: (
+              <OverfillSpan text='The maximum number of circles rendered by this component. If maxAvatars is 3 and there are 3 views connected, it will render three circles, one for each view. If there are four views connected, it will render the circles for two views, and one circle with “+2”.' />
+            ),
           },
         ]}
       />
