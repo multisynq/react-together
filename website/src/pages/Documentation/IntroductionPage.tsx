@@ -1,8 +1,9 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { TableContainer } from '@components/ui/TableContainer'
+import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { NavItem } from './types'
 
-export const IntroductionPage: React.FC = () => {
+function IntroductionContent() {
   const sampleCode1 = `npm i react-together`
   const sampleCode2 = `ReactDOM.createRoot(document.getElementById('root')!).render(
        <ReactTogether
@@ -61,7 +62,10 @@ export const IntroductionPage: React.FC = () => {
   )
 }
 
-export const introductionNavItems: NavItem[] = [
+export default function IntroductionPage() {
+  return <DocumentationSkeleton content={<IntroductionContent />} keyToLookupWith='' navItems={introductionNavItems} />
+}
+const introductionNavItems: NavItem[] = [
   { key: 'introduction', label: 'Introduction' },
   { key: 'installation', label: 'Installation' },
   { key: 'context', label: 'Context' },

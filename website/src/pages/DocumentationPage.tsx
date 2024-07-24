@@ -1,5 +1,7 @@
+import { useParams } from 'react-router-dom'
 import {
   ConnectedViewsDocumentationPage,
+  IntroductionPage,
   PresenceDivDocumentationPage,
   PrimeReactCalendarTogetherDocumentationPage,
   PrimeReactCheckboxTogetherDocumentationPage,
@@ -24,7 +26,6 @@ import {
 // import { AboutUsPage, aboutUsNavItems } from './documentation/AboutUsPage'
 // import { ConfigurationPage, configurationNavItems } from './documentation/ConfigurationPage'
 // import { GenericDocNav, GenericDocPage } from './documentation/GenericDocPage'
-// import { IntroductionPage, introductionNavItems } from './documentation/IntroductionPage'
 // import { RoadmapPage, roadMapNavItems } from './documentation/RoadmapPage'
 // import PrimeReactCalendarTogetherDocumentationPage from './documentation/components/primereact/CalendarTogether'
 // import { PrimeReactComponentDocumentationPage } from './documentation/components/primereact/PrimeReactComponentDocumentationPage'
@@ -35,13 +36,6 @@ import {
 //   return {
 //     content: <ConfigurationPage />,
 //     navItems: configurationNavItems,
-//   }
-// }
-
-// function Introduction() {
-//   return {
-//     content: <IntroductionPage />,
-//     navItems: introductionNavItems,
 //   }
 // }
 
@@ -60,9 +54,9 @@ import {
 // }
 
 const lookup = {
-  // '': Introduction,
-  // 'get-started': Introduction,
-  // 'get-started/introduction': Introduction,
+  '': IntroductionPage,
+  'get-started': IntroductionPage,
+  'get-started/introduction': IntroductionPage,
   // 'get-started/configuration': Configuration,
   'components/ReactTogether': ReactTogetherDocumentationPage,
   'components/ConnectedViews': ConnectedViewsDocumentationPage,
@@ -89,10 +83,10 @@ const lookup = {
   // 'discover/roadmap': RoadMap,
 }
 
-export function DocumentationPage({ keyToLookupWith, content, navItems }) {
-  // const { slug1, slug2 } = useParams()
-  // const keyToLookupWith = `${slug1}/${slug2}`
-  // const Component = lookup[keyToLookupWith] || (() => ({ content: <div>unknown</div>, navItems: [] }))
+export function DocumentationPage() {
+  const { slug1, slug2 } = useParams()
+  const keyToLookupWith = `${slug1}/${slug2}`
+  const Component = lookup[keyToLookupWith] || (() => ({ content: <div>unknown</div>, navItems: [] }))
   // const { content, navItems } = Component()
 
   // return (
@@ -108,5 +102,5 @@ export function DocumentationPage({ keyToLookupWith, content, navItems }) {
   //     <PageNav items={navItems} />
   //   </main>
   // )
-  return <UseStateTogetherWithPerUserValuesDocumentationPage />
+  return <Component />
 }
