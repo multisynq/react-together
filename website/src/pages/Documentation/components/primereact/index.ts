@@ -1,0 +1,25 @@
+import PrimeReactCalendarTogetherDocumentationPage from './CalendarTogether'
+import PrimeReactCheckboxTogetherDocumentationPage from './CheckboxTogether'
+import PrimeReactDropdownTogetherDocumentationPage from './DropdownTogether'
+import PrimeReactInputSwitchTogetherDocumentationPage from './InputSwitchTogether'
+import PrimeReactKnobTogetherDocumentationPage from './KnobTogether'
+import PrimeReactMultiSelectTogetherDocumentationPage from './MultiSelectTogether'
+import PrimeReactRatingTogetherDocumentationPage from './RatingTogether'
+import PrimeReactSelectButtonTogetherDocumentationPage from './SelectButtonTogether'
+import PrimeReactTabViewTogetherDocumentationPage from './TabViewTogether'
+import PrimeReactToggleButtonTogetherDocumentationPage from './ToggleButtonTogether'
+import PrimeReactTriStateCheckboxTogetherDocumentationPage from './TriStateCheckboxTogether'
+
+export {
+  PrimeReactCalendarTogetherDocumentationPage,
+  PrimeReactCheckboxTogetherDocumentationPage,
+  PrimeReactDropdownTogetherDocumentationPage,
+  PrimeReactInputSwitchTogetherDocumentationPage,
+  PrimeReactKnobTogetherDocumentationPage,
+  PrimeReactMultiSelectTogetherDocumentationPage,
+  PrimeReactRatingTogetherDocumentationPage,
+  PrimeReactSelectButtonTogetherDocumentationPage,
+  PrimeReactTabViewTogetherDocumentationPage,
+  PrimeReactToggleButtonTogetherDocumentationPage,
+  PrimeReactTriStateCheckboxTogetherDocumentationPage,
+}

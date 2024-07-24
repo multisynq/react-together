@@ -3,7 +3,7 @@ import { PanelMenu } from 'primereact/panelmenu'
 // import { useNavigate } from 'react-router-dom'
 
 // Add `key` property to MenuItem and to its nested elements
-interface PatchedMenuItem extends MenuItem {
+export interface PatchedMenuItem extends MenuItem {
   key?: string
   items?: PatchedMenuItem[]
 }

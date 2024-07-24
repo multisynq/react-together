@@ -1,4 +1,5 @@
 import { PanelMenu } from 'primereact/panelmenu'
+import { PatchedMenuItem } from './DocumentNav'
 
 function scrollToElement(id) {
   const element = document.getElementById(id)
@@ -14,7 +15,10 @@ function scrollToElement(id) {
   }
 }
 
-export default function PageNav({ items }) {
+interface PageNavProps {
+  items: PatchedMenuItem[]
+}
+export default function PageNav({ items }: PageNavProps) {
   const navItems = [
     {
       key: '0',

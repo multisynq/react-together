@@ -3,7 +3,7 @@ import { CodeBlock } from '@components/ui/CodeBlock'
 import { DocumentDemoContainer } from '@components/ui/DocumentDemoContainer'
 import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { GenericDocPage } from './GenericDocPage'
+import { GenericDocPage } from '../../GenericDocPage'
 
 interface GenericComponentPageProps {
   name: string
@@ -11,7 +11,7 @@ interface GenericComponentPageProps {
   docUrl: string
   ComponentDemo: () => ReactNode
 }
-export function GenericComponentDocPage({ name, originalName, docUrl, ComponentDemo }: GenericComponentPageProps) {
+export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, ComponentDemo }: GenericComponentPageProps) {
   const description = (
     <>
       <p>
