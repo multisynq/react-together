@@ -1,8 +1,9 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { TableContainer } from '@components/ui/TableContainer'
+import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { NavItem } from './types'
 
-export const IntroductionPage: React.FC = () => {
+function IntroductionContent() {
   const sampleCode1 = `npm i react-together`
   const sampleCode2 = `ReactDOM.createRoot(document.getElementById('root')!).render(
        <ReactTogether
@@ -15,24 +16,39 @@ export const IntroductionPage: React.FC = () => {
        </ReactTogether>
 )
 `
-  const tableContent = [
+  const keys = [
     {
-      name: { text: 'Name 1' },
-      type: 'Type 1',
-      default: 'Default 1',
-      description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
+      key: 'name',
+      label: 'Name',
     },
     {
-      name: { text: 'Name 2', status: 'added' },
-      type: 'Type 2',
-      default: 'Default 2',
-      description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
+      key: 'type',
+      label: 'Type',
     },
     {
-      name: { text: 'Name 3', status: 'removed' },
-      type: 'Type 3',
-      default: 'Default 3',
-      description: 'Molevtie tellus sit venenatis morbi eget aenean massa diam lorem.',
+      key: 'default',
+      label: 'Default Value',
+    },
+    {
+      key: 'description',
+      label: 'Description',
+    },
+  ]
+  const data = [
+    {
+      name: 'Test',
+      type: 'String',
+      default: '0',
+      description: 'A short description',
+    },
+    {
+      name: 'Test2',
+      default: '0',
+      description: 'A short description',
+    },
+    {
+      name: 'Test2',
+      default: '0',
     },
   ]
   return (
@@ -56,12 +72,15 @@ export const IntroductionPage: React.FC = () => {
       <p>Now, at a fairly top level of your React’s JSX, you will need to:</p>
       <p>Wrap everything in a ReactTogether tag so you can connect a (free) API key.</p>
       <CodeBlock language='javascript' code1={sampleCode2} />
-      <TableContainer tableContent={tableContent} />
+      <TableContainer keys={keys} data={data} />
     </>
   )
 }
 
-export const introductionNavItems: NavItem[] = [
+export default function IntroductionPage() {
+  return <DocumentationSkeleton content={<IntroductionContent />} keyToLookupWith='' navItems={introductionNavItems} />
+}
+const introductionNavItems: NavItem[] = [
   { key: 'introduction', label: 'Introduction' },
   { key: 'installation', label: 'Installation' },
   { key: 'context', label: 'Context' },

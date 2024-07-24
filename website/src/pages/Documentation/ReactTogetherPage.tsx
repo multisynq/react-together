@@ -1,6 +1,6 @@
-import { NavItem } from './types'
 import { CodeBlockExample } from '@components/ui/CodeBlockExample'
 import DocumentDemoBox from '@components/ui/DocumentDemoBox'
+import { NavItem } from './types'
 
 export const ReactTogetherPage: React.FC = () => {
   return (
@@ -19,7 +19,7 @@ export const ReactTogetherPage: React.FC = () => {
       <p>everyone knows everyone else’s state</p>
       <DocumentDemoBox />
       <CodeBlockExample />
-      <h4 id='useConnectedUsers'>useConnectedUsers</h4>
+      <h4 id='useConnectedViews'>useConnectedViews</h4>
       <p>everyone knows everyone else’s state</p>
       <DocumentDemoBox />
       <CodeBlockExample />

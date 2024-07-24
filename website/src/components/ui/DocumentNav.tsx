@@ -3,7 +3,7 @@ import { PanelMenu } from 'primereact/panelmenu'
 // import { useNavigate } from 'react-router-dom'
 
 // Add `key` property to MenuItem and to its nested elements
-interface PatchedMenuItem extends MenuItem {
+export interface PatchedMenuItem extends MenuItem {
   key?: string
   items?: PatchedMenuItem[]
 }
@@ -46,7 +46,7 @@ const items: PatchedMenuItem[] = [
     items: [
       { label: 'useStateTogether', url: '/docs/hooks/useStateTogether' },
       { label: 'useStateTogetherWithPerUserValues', url: '/docs/hooks/useStateTogetherWithPerUserValues' },
-      { label: 'useConnectedUsers', url: '/docs/hooks/useConnectedUsers' },
+      { label: 'useConnectedViews', url: '/docs/hooks/useConnectedViews' },
       { label: 'useHoveringViews', url: '/docs/hooks/useHoveringViews' },
       { label: 'useIsTogether', url: '/docs/hooks/useIsTogether' },
       { label: 'useConnectNewSession', url: '/docs/hooks/useConnectNewSession' },
