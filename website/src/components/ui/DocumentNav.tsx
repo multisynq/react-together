@@ -46,7 +46,7 @@ const items: PatchedMenuItem[] = [
     items: [
       { label: 'useStateTogether', url: '/docs/hooks/useStateTogether' },
       { label: 'useStateTogetherWithPerUserValues', url: '/docs/hooks/useStateTogetherWithPerUserValues' },
-      { label: 'useConnectedUsers', url: '/docs/hooks/useConnectedUsers' },
+      { label: 'useConnectedViews', url: '/docs/hooks/useConnectedViews' },
       { label: 'useHoveringViews', url: '/docs/hooks/useHoveringViews' },
       { label: 'useIsTogether', url: '/docs/hooks/useIsTogether' },
       { label: 'useConnectNewSession', url: '/docs/hooks/useConnectNewSession' },

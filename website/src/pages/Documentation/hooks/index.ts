@@ -1,5 +1,5 @@
+import UseConnectedViewsDocumentationPage from './useConnectedViews'
 import UseConnectNewSessionDocumentationPage from './useConnectNewSession'
-import UseConnectedUsersDocumentationPage from './useConnectedUsers'
 import UseHoveringViewsDocumentationPage from './useHoveringViews'
 import UseIsTogetherDocumentationPage from './useIsTogether'
 import UseLeaveSessionDocumentationPage from './useLeaveSession'
@@ -8,7 +8,7 @@ import UseStateTogetherWithPerUserValuesDocumentationPage from './useStateTogeth
 
 export {
   UseConnectNewSessionDocumentationPage,
-  UseConnectedUsersDocumentationPage,
+  UseConnectedViewsDocumentationPage,
   UseHoveringViewsDocumentationPage,
   UseIsTogetherDocumentationPage,
   UseLeaveSessionDocumentationPage,

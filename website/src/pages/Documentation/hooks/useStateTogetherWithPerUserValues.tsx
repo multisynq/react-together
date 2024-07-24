@@ -1,8 +1,59 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
-
 export default function UseStateTogetherWithPerUserValuesDocumentationPage() {
+  const api = (
+    <>
+      <h5>Params</h5>
+      <TableContainer
+        keys={[
+          { key: 'name', label: 'Name' },
+          { key: 'type', label: 'Type' },
+          { key: 'default', label: 'Default Value' },
+          { key: 'description', label: 'Description' },
+        ]}
+        data={[
+          {
+            name: 'rtid',
+            type: 'string',
+            description: 'The key used to identify this state',
+          },
+          {
+            name: 'initialValue',
+            type: 'T',
+            description: 'The initial value to use the first time the state is created.',
+          },
+        ]}
+      />
+      <h5>Return</h5>
+      <TableContainer
+        keys={[
+          { key: 'name', label: 'Name' },
+          { key: 'type', label: 'Type' },
+          { key: 'description', label: 'Description' },
+        ]}
+        data={[
+          {
+            name: '0',
+            type: 'T',
+            description: 'The current local state',
+          },
+          {
+            name: '1',
+            type: '(T | (T) => T) => void',
+            description: 'The set function that lets you update the local state to a different value',
+          },
+          {
+            name: '2',
+            type: '[key: string]: T',
+            description:
+              'An object containing a mapping between each view and the state it currently has. The views that are not rendering this hook will not exist in this mapping, even though they are connected to the React Together session.',
+          },
+        ]}
+      />
+    </>
+  )
   const content = (
     <GenericDocPage
       title='useStateTogetherWithPerUserValues'
@@ -22,6 +73,7 @@ const reset = () => setCount(0)`}
           />
         </>
       }
+      api={api}
     />
   )
   return <DocumentationSkeleton content={content} navItems={GenericDocNav('useStateTogetherWithPerUserValues')} keyToLookupWith='' />
