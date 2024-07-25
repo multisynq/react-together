@@ -1,4 +1,4 @@
-import CountButtonTogether from '@components/demo/SharedCountButton'
+import CountButtonTogether from '@components/demo/CountButtonTogether'
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
@@ -8,8 +8,8 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 const description = (
   <>
     <p>
-      The useStateTogether hook makes every user see the same state simultaneously. If the user is not connected to any session, then this
-      hook behaves as a normal useState.
+      The useStateTogether hook makes every user <strong>see the same state simultaneously</strong>. If the user is not connected to any
+      session, then this hook behaves as a normal useState.
     </p>
     <DocumentationDemo>
       <CountButtonTogether />

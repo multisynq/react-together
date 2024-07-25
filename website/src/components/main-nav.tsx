@@ -1,7 +1,7 @@
-import { NavLink, useLocation } from 'react-router-dom'
-import { cn } from '@utils'
 import { Icons } from '@components'
 import { siteConfig } from '@config'
+import { cn } from '@utils'
+import { NavLink, useLocation } from 'react-router-dom'
 
 const navConfig = [
   { to: '/docs/get-started/introduction', label: 'Documentation' },
