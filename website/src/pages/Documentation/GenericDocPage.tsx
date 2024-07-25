@@ -15,7 +15,7 @@ export function GenericDocPage({ title, description, usage, api, parameter }: Ge
         <h2 id='title' ref={ref}>
           {title}
         </h2>
-        <span>{parameter}</span>
+        {/* <span>{parameter}</span> */}
       </div>
       {description}
 
