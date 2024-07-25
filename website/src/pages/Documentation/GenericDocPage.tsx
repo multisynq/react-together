@@ -42,7 +42,7 @@ export function GenericDocPage({ title, description, usage, api, parameter }: Ge
 export function GenericDocNav(name) {
   return [
     { key: 'title', label: name },
-    { key: 'installation', label: 'Installation' },
+    // { key: 'installation', label: 'Installation' },
     { key: 'usage', label: 'Usage' },
     { key: 'api', label: 'API' },
   ]

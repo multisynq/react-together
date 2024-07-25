@@ -4,9 +4,9 @@ import { TableContainer } from '@components/ui/TableContainer'
 interface PropObject {
   removed: boolean
   name: string
-  type?: string
-  description?: string
-  default?: string
+  type?: string | React.ReactNode
+  description?: string | React.ReactNode
+  default?: string | React.ReactNode
 }
 interface WrappedComponentPropsTableProps {
   items: PropObject[]

@@ -20,11 +20,11 @@ export default function UseHoveringViewsDocumentationPage() {
             type: 'string',
             description: 'The key used to identify this state',
           },
-          {
-            name: 'initialValue',
-            type: 'UseHoveringViewOptions',
-            description: 'An options object used to configure the behavior of this hook',
-          },
+          // {
+          //   name: 'options',
+          //   type: 'UseHoveringViewOptions',
+          //   description: 'An options object used to configure the behavior of this hook',
+          // },
         ]}
       />
       <h5>Return</h5>

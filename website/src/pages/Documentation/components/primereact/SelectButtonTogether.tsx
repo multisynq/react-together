@@ -1,3 +1,4 @@
+import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { SelectButtonTogether } from '../../../../../../react-together'
@@ -31,12 +32,20 @@ export default function PrimeReactSelectButtonTogetherDocumentationPage() {
             removed: false,
             name: 'rtid',
             type: 'string',
-            description: 'The key used to identify this state, passed to the useStateTogether hook',
+            description: (
+              <p>
+                The key used to identify this state, passed to the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook
+              </p>
+            ),
           },
           {
             removed: true,
             name: 'value',
-            description: 'Removed, since this value will be controlled by the useStateTogether hook',
+            description: (
+              <p>
+                Removed, since this value will be controlled by the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook
+              </p>
+            ),
           },
         ]}
       />

@@ -1,6 +1,8 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import LinkSpan from '@components/ui/LinkSpan'
 import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
+import { Link } from 'react-router-dom'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 
 export default function ReactTogetherDocumentationPage() {
@@ -17,12 +19,12 @@ export default function ReactTogetherDocumentationPage() {
         data={[
           {
             name: 'sessionParams',
-            type: 'ReactTogetherSessionParams',
+            type: <LinkSpan to='#ReactTogetherSessionParams' text='ReactTogetherSessionParams' />,
             description: 'The parameters passed to the Multisynq session',
           },
         ]}
       />
-      <h5>ReactTogetherSessionParams</h5>
+      <h5 id='ReactTogetherSessionParams'>ReactTogetherSessionParams</h5>
       <TableContainer
         keys={[
           { key: 'name', label: 'Name' },
@@ -39,7 +41,14 @@ export default function ReactTogetherDocumentationPage() {
           {
             name: 'apiKey',
             type: 'string',
-            description: 'The Multisynq API key. Get yours at croquet.io/keys',
+            description: (
+              <p>
+                The Multisynq API key. Get yours at{' '}
+                <Link to='https://croquet.io/keys' target='_blank'>
+                  croquet.io/keys
+                </Link>
+              </p>
+            ),
           },
         ]}
       />

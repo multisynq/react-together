@@ -1,4 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import LinkSpan from '@components/ui/LinkSpan'
 import OverfillSpan from '@components/ui/OverfillSpan'
 import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
@@ -31,7 +32,12 @@ export default function ConnectedViewsDocumentationPage() {
   const content = (
     <GenericDocPage
       title='ConnectedViews'
-      description='This component uses the useConnectedViews hook to display the views that are connected to the current React Together session.'
+      description={
+        <p>
+          This component uses the <LinkSpan to='/useConnectedViews' text='useConnectedViews' /> hook to display the views that are connected
+          to the current React Together session.
+        </p>
+      }
       usage={
         <>
           <CodeBlock language='javascript' code1={`import { ConnectedViews } from 'react-together'`} />

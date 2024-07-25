@@ -1,8 +1,8 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import LinkSpan from '@components/ui/LinkSpan'
 import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
-
 export default function PresenceDivDocumentationPage() {
   const api = (
     <>
@@ -18,7 +18,11 @@ export default function PresenceDivDocumentationPage() {
           {
             name: 'rtid',
             type: 'string',
-            description: 'The key used to identify this state, passed to the useHoveringViews hook',
+            description: (
+              <p>
+                The key used to identify this state, passed to the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook
+              </p>
+            ),
           },
           {
             name: 'children',
@@ -30,11 +34,15 @@ export default function PresenceDivDocumentationPage() {
             type: 'string',
             description: 'The className to be passed to the containing div. Used to customize the appearance of this div',
           },
-          {
-            name: 'options?',
-            type: 'UseHoveringViewOptions',
-            description: 'The options to be passed to the useHoveringViews hook',
-          },
+          // {
+          //   name: 'options?',
+          //   type: 'UseHoveringViewOptions',
+          //   description: (
+          //     <p>
+          //       The options to be passed to the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook'
+          //     </p>
+          //   ),
+          // },
         ]}
       />
     </>
@@ -42,7 +50,12 @@ export default function PresenceDivDocumentationPage() {
   const content = (
     <GenericDocPage
       title='PresenceDiv'
-      description='This component uses the useHoveringViews hook to render a div that is highlighted whenever a view is hovering it.'
+      description={
+        <p>
+          This component uses the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook to render a div that is highlighted
+          whenever a view is hovering it.
+        </p>
+      }
       usage={
         <>
           <CodeBlock language='javascript' code1={`import { ReactTogether } from 'react-together'`} />
