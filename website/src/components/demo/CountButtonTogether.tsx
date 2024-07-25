@@ -6,7 +6,7 @@ export default function CountButtonTogether() {
     <div className='flex flex-col align-items-center'>
       <button
         className='bg-slate-400 py-2 px-4 rounded-md text-white'
-        onClick={() => set_count((prev) => prev + 1)}
+        onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
         onContextMenu={(e) => {
           e.preventDefault()
           set_count(0)
