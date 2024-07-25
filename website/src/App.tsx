@@ -1,4 +1,3 @@
-import '@styles/Comps.scss'
 import '@styles/globals.css'
 import '@styles/mdx.css'
 import 'react-json-view-lite/dist/index.css'

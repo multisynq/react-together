@@ -1,7 +1,7 @@
 @layer tailwind-base, primereact, tailwind-utilities;
 
 /* IMPORTANT: In "styled" mode you must add the PrimeReact Theme here. Do NOT include in "unstyled" mode */
-@import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
+@import "primereact/resources/themes/lara-light-blue/theme.css" layer(primereact);
 
 @layer tailwind-base {
   @tailwind base;
@@ -101,13 +101,30 @@
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Lato', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", sans-serif;
 }
 
-h1 { font-weight: 700; } /* Bold */
-h2 { font-weight: 400; } /* Regular */
-h3 { font-weight: 300; } /* Light */
-h4 { font-weight: 400; } /* Regular */
-h5 { font-weight: 400; } /* Regular */
-h6 { font-weight: 400; }
+h1 {
+  @apply text-4xl font-bold mb-4;
+} /* Bold */
+h2 {
+  @apply text-3xl font-bold mb-4;
+} /* Regular */
+h3 {
+  @apply text-2xl font-bold mb-4;
+}
+h4 {
+  @apply text-xl font-bold mb-4;
+} /* Regular */
+h5 {
+  /* font-weight: 400; */
+} /* Regular */
+h6 {
+  /* font-weight: 400; */
+}
