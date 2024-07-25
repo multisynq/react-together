@@ -1,4 +1,5 @@
 import { PanelMenu } from 'primereact/panelmenu'
+import { classNames } from 'primereact/utils'
 import { PatchedMenuItem } from './DocumentNav'
 
 function scrollToElement(id) {
@@ -34,7 +35,20 @@ export default function PageNav({ items }: PageNavProps) {
 
   return (
     <div className='hidden md:block md:w-[200px] sticky top-20'>
-      <PanelMenu model={navItems} expandedKeys={expandedKeys} className='w-[160px] [&_.p-submenu-icon]:hidden' />
+      <PanelMenu
+        model={navItems}
+        expandedKeys={expandedKeys}
+        pt={{
+          root: classNames('w-[200px]'),
+          panel: classNames('w-full bg-white rounded-lg border-2 border-gray-700 overflow-hidden shadow-lineStyle'),
+          headerAction: classNames('pt-4 pb-2'),
+          headerContent: classNames('border-0 bg-transparent'),
+          headerLabel: classNames('text-gray-900'),
+          headerSubmenuIcon: classNames('hidden'),
+          menuContent: classNames('py-0 border-0 rounded-none'),
+          label: classNames('font-regular text-gray-800'),
+        }}
+      />
     </div>
   )
 }

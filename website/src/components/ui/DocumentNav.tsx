@@ -1,5 +1,6 @@
 import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem'
 import { PanelMenu } from 'primereact/panelmenu'
+import { classNames } from 'primereact/utils'
 import { useNavigate } from 'react-router-dom'
 // import { useNavigate } from 'react-router-dom'
 
@@ -105,7 +106,18 @@ export default function DocumentNav() {
       model={items}
       expandedKeys={expandedKeys}
       // className='w-[160px] [&_.p-submenu-icon]:hidden'
-      className='w-[180px]'
+      // className='w-[180px]'
+      pt={{
+        root: classNames('border-2 border-gray-700 rounded-lg overflow-hidden shadow-lineStyle bg-white'),
+        headerContent: classNames('border-0 bg-transparent'),
+        headerAction: classNames('pt-4 pb-3'),
+        panel: classNames('border-0'),
+        headerLabel: classNames('text-gray-900'),
+        headerSubmenuIcon: classNames('hidden'),
+        menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
+        action: classNames('pl-8 py-2'),
+        label: classNames('text-gray-800'),
+      }}
     />
   )
 }
