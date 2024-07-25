@@ -8,6 +8,7 @@ import { SiteFooter, SiteHeader } from '@components'
 import { version } from '@package'
 import {
   ConnectedViewsDocumentationPage,
+  IntroductionPage,
   PresenceDivDocumentationPage,
   PrimeReactCalendarTogetherDocumentationPage,
   PrimeReactCheckboxTogetherDocumentationPage,
@@ -46,6 +47,7 @@ export default function App() {
         <SiteHeader />
         <Routes>
           <Route path='/' element={<HomePage />} />
+          <Route path='introduction' element={<IntroductionPage />} />
           <Route path='ReactTogether' element={<ReactTogetherDocumentationPage />} />
           <Route path='ConnectedViews' element={<ConnectedViewsDocumentationPage />} />
           <Route path='PresenceDiv' element={<PresenceDivDocumentationPage />} />
