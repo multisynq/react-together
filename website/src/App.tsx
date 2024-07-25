@@ -1,7 +1,7 @@
 import '@styles/Comps.scss'
 import '@styles/globals.css'
 import '@styles/mdx.css'
-import 'primereact/resources/themes/lara-light-cyan/theme.css'
+import 'react-json-view-lite/dist/index.css'
 import './App.scss'
 
 import { SiteFooter, SiteHeader } from '@components'

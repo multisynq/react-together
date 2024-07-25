@@ -1,6 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer tailwind-base, primereact, tailwind-utilities;
+
+/* IMPORTANT: In "styled" mode you must add the PrimeReact Theme here. Do NOT include in "unstyled" mode */
+@import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
 
 @layer base {
   :root {
@@ -100,4 +110,4 @@ h2 { font-weight: 400; } /* Regular */
 h3 { font-weight: 300; } /* Light */
 h4 { font-weight: 400; } /* Regular */
 h5 { font-weight: 400; } /* Regular */
-h6 { font-weight: 400; } /* Regular */
+h6 { font-weight: 400; }
