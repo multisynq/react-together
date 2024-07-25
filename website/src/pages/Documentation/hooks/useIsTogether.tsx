@@ -6,9 +6,6 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 export default function UseIsTogetherDocumentationPage() {
   const api = (
     <>
-      <h5>Params</h5>
-      <p>This hook takes no parameters</p>
-
       <h5>Return</h5>
       <TableContainer
         keys={[
