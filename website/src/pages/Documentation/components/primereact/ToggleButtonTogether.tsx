@@ -1,5 +1,5 @@
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { ToggleButtonTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
@@ -41,5 +41,5 @@ export default function PrimeReactToggleButtonTogetherDocumentationPage() {
     <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactToggleButtonTogetherDemo} />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('ToggleButtonTogether')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('ToggleButtonTogether')} />
 }

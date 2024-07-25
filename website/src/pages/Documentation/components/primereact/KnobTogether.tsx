@@ -1,5 +1,5 @@
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { KnobTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
@@ -40,5 +40,5 @@ export default function PrimeReactKnobTogetherDocumentationPage() {
     <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactKnobTogetherDemo} />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('KnobTogether')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('KnobTogether')} />
 }

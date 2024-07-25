@@ -34,7 +34,7 @@ const items: PatchedMenuItem[] = [
         label: 'Prime React',
         expanded: true,
         items: [
-          { label: 'CalendarTogether', to: '/primereact/Calendar' },
+          // { label: 'CalendarTogether', to: '/primereact/Calendar' },
           { label: 'CheckboxTogether', to: '/primereact/Checkbox' },
           { label: 'DropdownTogether', to: '/primereact/Dropdown' },
           { label: 'InputSwitchTogether', to: '/primereact/InputSwitch' },

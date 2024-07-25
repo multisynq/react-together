@@ -1,5 +1,5 @@
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { RatingTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
@@ -46,5 +46,5 @@ export default function PrimeReactRatingTogetherDocumentationPage() {
     <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactRatingTogetherDemo} />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('RatingTogether')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('RatingTogether')} />
 }

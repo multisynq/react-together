@@ -1,6 +1,6 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { TableContainer } from '@components/ui/TableContainer'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 
 export default function PresenceDivDocumentationPage() {
@@ -59,5 +59,5 @@ export default function PresenceDivDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('PresenceDiv')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('PresenceDiv')} />
 }

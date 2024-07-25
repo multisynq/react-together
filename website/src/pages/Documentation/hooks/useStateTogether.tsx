@@ -1,7 +1,7 @@
 import CountButtonTogether from '@components/demo/CountButtonTogether'
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { TableContainer } from '@components/ui/TableContainer'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 
@@ -87,5 +87,5 @@ const content = (
   />
 )
 export default function UseStateTogetherDocumentationPage() {
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useStateTogether')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('useStateTogether')} />
 }

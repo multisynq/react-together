@@ -1,5 +1,5 @@
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { TabPanel } from 'primereact/tabview'
 import { TabViewTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
@@ -55,5 +55,5 @@ export default function PrimeReactTabViewTogetherDocumentationPage() {
     <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactTabViewTogetherDemo} />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('TabViewTogether')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('TabViewTogether')} />
 }

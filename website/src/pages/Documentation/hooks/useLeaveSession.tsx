@@ -1,6 +1,6 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { TableContainer } from '@components/ui/TableContainer'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 
 export default function UseLeaveSessionDocumentationPage() {
@@ -51,5 +51,5 @@ export default function UseLeaveSessionDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useLeaveSession')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('useLeaveSession')} />
 }

@@ -1,5 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { NavItem } from './types'
 
 function IntroductionContent() {
@@ -36,11 +36,12 @@ function IntroductionContent() {
   )
 }
 
-export default function IntroductionPage() {
-  return <DocumentationSkeleton content={<IntroductionContent />} navItems={introductionNavItems} />
-}
 const introductionNavItems: NavItem[] = [
   { key: 'introduction', label: 'Introduction' },
   { key: 'installation', label: 'Installation' },
   { key: 'context', label: 'Context' },
 ]
+
+export default function IntroductionPage() {
+  return <DocumentationPage content={<IntroductionContent />} navItems={introductionNavItems} />
+}

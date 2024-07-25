@@ -6,33 +6,9 @@ import './App.scss'
 
 import { SiteFooter, SiteHeader } from '@components'
 import { version } from '@package'
-import {
-  ConnectedViewsDocumentationPage,
-  IntroductionPage,
-  PresenceDivDocumentationPage,
-  PrimeReactCalendarTogetherDocumentationPage,
-  PrimeReactCheckboxTogetherDocumentationPage,
-  PrimeReactDropdownTogetherDocumentationPage,
-  PrimeReactInputSwitchTogetherDocumentationPage,
-  PrimeReactKnobTogetherDocumentationPage,
-  PrimeReactMultiSelectTogetherDocumentationPage,
-  PrimeReactRatingTogetherDocumentationPage,
-  PrimeReactSelectButtonTogetherDocumentationPage,
-  PrimeReactTabViewTogetherDocumentationPage,
-  PrimeReactToggleButtonTogetherDocumentationPage,
-  PrimeReactTriStateCheckboxTogetherDocumentationPage,
-  ReactTogetherDocumentationPage,
-  UseConnectedViewsDocumentationPage,
-  UseConnectNewSessionDocumentationPage,
-  UseHoveringViewsDocumentationPage,
-  UseIsTogetherDocumentationPage,
-  UseLeaveSessionDocumentationPage,
-  UseStateTogetherDocumentationPage,
-  UseStateTogetherWithPerUserValuesDocumentationPage,
-} from '@pages/documentation'
+import AppRoutes from '@routes'
 import { Helmet } from 'react-helmet'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { HomePage } from './pages/HomePage'
+import { BrowserRouter } from 'react-router-dom'
 
 export default function App() {
   return (
@@ -45,34 +21,7 @@ export default function App() {
       </Helmet>
       <BrowserRouter>
         <SiteHeader />
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='introduction' element={<IntroductionPage />} />
-          <Route path='ReactTogether' element={<ReactTogetherDocumentationPage />} />
-          <Route path='ConnectedViews' element={<ConnectedViewsDocumentationPage />} />
-          <Route path='PresenceDiv' element={<PresenceDivDocumentationPage />} />
-          <Route path='useStateTogether' element={<UseStateTogetherDocumentationPage />} />
-          <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWithPerUserValuesDocumentationPage />} />
-          <Route path='useConnectedViews' element={<UseConnectedViewsDocumentationPage />} />
-          <Route path='useHoveringViews' element={<UseHoveringViewsDocumentationPage />} />
-          <Route path='useIsTogether' element={<UseIsTogetherDocumentationPage />} />
-          <Route path='useConnectNewSession' element={<UseConnectNewSessionDocumentationPage />} />
-          <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} />
-          <Route path='primereact'>
-            <Route path='Calendar' element={<PrimeReactCalendarTogetherDocumentationPage />} />
-            <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDocumentationPage />} />
-            <Route path='Dropdown' element={<PrimeReactDropdownTogetherDocumentationPage />} />
-            <Route path='InputSwitch' element={<PrimeReactInputSwitchTogetherDocumentationPage />} />
-            <Route path='Knob' element={<PrimeReactKnobTogetherDocumentationPage />} />
-            <Route path='Multiselect' element={<PrimeReactMultiSelectTogetherDocumentationPage />} />
-            <Route path='Rating' element={<PrimeReactRatingTogetherDocumentationPage />} />
-            <Route path='SelectButton' element={<PrimeReactSelectButtonTogetherDocumentationPage />} />
-            <Route path='TabView' element={<PrimeReactTabViewTogetherDocumentationPage />} />
-            <Route path='ToggleButton' element={<PrimeReactToggleButtonTogetherDocumentationPage />} />
-            <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDocumentationPage />} />
-          </Route>
-          {/* <Route path='/docs/:slug1/:slug2?' element={<DocumentationPage />} /> */}
-        </Routes>
+        <AppRoutes />
         <SiteFooter />
       </BrowserRouter>
 

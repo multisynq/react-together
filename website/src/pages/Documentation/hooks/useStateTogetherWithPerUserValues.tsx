@@ -1,7 +1,7 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { TableContainer } from '@components/ui/TableContainer'
 import { useViewId } from '@croquet/react'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { useStateTogetherWithPerUserValues } from '../../../../../react-together'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
@@ -136,5 +136,5 @@ const reset = () => setCount(0)`}
   />
 )
 export default function UseStateTogetherWithPerUserValuesDocumentationPage() {
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useStateTogetherWithPerUserValues')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('useStateTogetherWithPerUserValues')} />
 }

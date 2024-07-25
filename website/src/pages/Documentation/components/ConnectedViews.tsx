@@ -1,7 +1,7 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import OverfillSpan from '@components/ui/OverfillSpan'
 import { TableContainer } from '@components/ui/TableContainer'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 
 export default function ConnectedViewsDocumentationPage() {
@@ -41,5 +41,5 @@ export default function ConnectedViewsDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('ConnectedViews')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('ConnectedViews')} />
 }

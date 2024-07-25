@@ -1,5 +1,5 @@
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { TriStateCheckboxTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
@@ -44,5 +44,5 @@ export default function PrimeReactTriStateTriStateCheckboxTogetherDocumentationP
     />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('TriStateTriStateCheckboxTogether')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('TriStateTriStateCheckboxTogether')} />
 }

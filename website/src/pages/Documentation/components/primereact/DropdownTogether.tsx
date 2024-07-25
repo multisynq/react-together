@@ -1,5 +1,5 @@
+import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
-import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { DropdownTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
@@ -52,5 +52,5 @@ export default function PrimeReactDropdownTogetherDocumentationPage() {
     <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactDropdownTogetherDemo} />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('DropdownTogether')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('DropdownTogether')} />
 }
