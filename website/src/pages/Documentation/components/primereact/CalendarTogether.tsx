@@ -1,16 +1,18 @@
-import { TableContainer } from '@components/ui/TableContainer'
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 // import { CalendarTogether } from '../../../../../../../react-together'
-import NewPropSpan from '@components/ui/NewPropSpan'
-import RemovedPropSpan from '@components/ui/RemovedPropSpan'
+import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
+
+const name = 'CalendarTogether'
+const originalName = 'Calendar'
+const docUrl = `https://primereact.org/calendar`
 
 function PrimeReactCalendarTogetherDemo() {
   return (
     <div className='flex-col place-items-center'>
       {/* <CalendarTogether rtid='calendar-doc-demo' /> */}
-      Hello
+      Demo
     </div>
   )
 }
@@ -19,21 +21,17 @@ export default function PrimeReactCalendarTogetherDocumentationPage() {
   const api = (
     <>
       <h5>Params</h5>
-      <TableContainer
-        keys={[
-          { key: 'name', label: 'Name' },
-          { key: 'type', label: 'Type' },
-          { key: 'default', label: 'Default Value' },
-          { key: 'description', label: 'Description' },
-        ]}
-        data={[
+      <WrappedComponentPropsTable
+        items={[
           {
-            name: <NewPropSpan text='rtid' />,
+            removed: false,
+            name: 'rtid',
             type: 'string',
             description: 'The key used to identify this state, passed to the useStateTogether hook',
           },
           {
-            name: <RemovedPropSpan text='value' />,
+            removed: true,
+            name: 'value',
             description: 'Removed, since this value will be controlled by the useStateTogether hook',
           },
         ]}
@@ -41,13 +39,7 @@ export default function PrimeReactCalendarTogetherDocumentationPage() {
     </>
   )
   const content = (
-    <PrimeReactComponentDocumentationPage
-      name='CalendarTogether'
-      originalName='Calendar'
-      docUrl={`https://primereact.org/calendartogether/`}
-      ComponentDemo={PrimeReactCalendarTogetherDemo}
-      api={api}
-    />
+    <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactCalendarTogetherDemo} />
   )
 
   return <DocumentationSkeleton content={content} navItems={GenericDocNav('CalendarTogether')} keyToLookupWith='' />
