@@ -36,20 +36,6 @@ export function TableContainer({ keys, data }: TableContainerProps) {
                     </td>
                   )
                 })}
-                {/* <td className='p-2 w-1/6'>
-                  <div
-                    className={`inline-block rounded px-2 py-1 ${
-                      item.name.status === 'removed' ? 'bg-red-100' : item.name.status === 'added' ? 'bg-green-100' : ''
-                    }`}
-                  >
-                    {item.name.text}
-                  </div>
-                </td>
-                <td className='p-2 w-1/6 font-mono text-sm'>{item.type}</td>
-                <td className='p-2 w-1/6'>
-                  <div className='inline-block border border-gray-300 rounded px-2 py-1 font-light'>{item.default}</div>
-                </td>
-                <td className='p-2 w-1/2'>{item.description}</td> */}
               </tr>
             )
           })}
