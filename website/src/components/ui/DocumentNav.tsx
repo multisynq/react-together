@@ -23,7 +23,7 @@ const items: PatchedMenuItem[] = [
       { label: 'PresenceDiv', url: '/docs/components/PresenceDiv' },
       {
         label: 'Prime React',
-        expanded: true,
+        expanded: false,
         items: [
           { label: 'CalendarTogether', url: '/docs/primereact/calendartogether' },
           { label: 'CheckboxTogether', url: '/docs/primereact/checkboxtogether' },
@@ -67,9 +67,6 @@ const items: PatchedMenuItem[] = [
   },
 ]
 
-// This function adds a key to each element based on the item index in the tree
-// and returns an object containing the keys of all the expanded objects
-// https://primereact.org/panelmenu/
 function processMenuItems(items: PatchedMenuItem[], prefix: string | null = null) {
   let expandedKeys = {}
   items.forEach((i, idx) => {
@@ -85,14 +82,12 @@ function processMenuItems(items: PatchedMenuItem[], prefix: string | null = null
 const expandedKeys = processMenuItems(items)
 
 export default function DocumentNav() {
-  // return <PanelMenu model={items} expandedKeys={expandedKeys} className='w-[160px] [&_.p-submenu-icon]:hidden' />
   return (
     <PanelMenu
       model={items}
       expandedKeys={expandedKeys}
-      className='w-[160px] [&_.p-submenu-icon]:hidden'
-      // value={{ unstyled: true, pt: {} }}
-      unstyled={false}
+      // className='w-[160px] [&_.p-submenu-icon]:hidden'
+      className='w-[180px]'
     />
   )
 }
