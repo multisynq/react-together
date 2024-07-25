@@ -1,5 +1,3 @@
-import DefaultValuePropSpan from './DefaultValuePropSpan'
-
 interface TableContainerKey {
   label: string
   key: string
@@ -32,11 +30,9 @@ export function TableContainer({ keys, data }: TableContainerProps) {
               <tr key={id} className='border-b border-gray-300 last:border-b-0'>
                 {keys.map(({ key }) => {
                   const content = object[key] || '--'
-                  const isDefaultColumn = key === 'default'
                   return (
-                    <td key={`${id}-${key}`} className={'p-2 w-1/6'}>
-                      {' '}
-                      {isDefaultColumn ? <DefaultValuePropSpan text={content} /> : content}
+                    <td key={`${id}-${key}`} className='p-2 w-1/6'>
+                      {content}
                     </td>
                   )
                 })}
