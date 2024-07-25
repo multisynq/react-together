@@ -76,5 +76,5 @@ return (
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useConnectedViews')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useConnectedViews')} />
 }

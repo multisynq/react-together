@@ -40,5 +40,5 @@ export default function PrimeReactKnobTogetherDocumentationPage() {
     <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactKnobTogetherDemo} />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('KnobTogether')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('KnobTogether')} />
 }

@@ -48,5 +48,5 @@ return (
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useConnectNewSession')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useConnectNewSession')} />
 }

@@ -136,5 +136,5 @@ const reset = () => setCount(0)`}
   />
 )
 export default function UseStateTogetherWithPerUserValuesDocumentationPage() {
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useStateTogetherWithPerUserValues')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useStateTogetherWithPerUserValues')} />
 }

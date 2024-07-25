@@ -46,5 +46,5 @@ export default function PrimeReactSelectButtonTogetherDocumentationPage() {
     <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactSelectButtonTogetherDemo} />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('SelectButtonTogether')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('SelectButtonTogether')} />
 }

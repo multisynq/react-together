@@ -59,5 +59,5 @@ export default function PresenceDivDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('PresenceDiv')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('PresenceDiv')} />
 }

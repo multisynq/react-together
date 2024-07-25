@@ -55,5 +55,5 @@ export default function PrimeReactTabViewTogetherDocumentationPage() {
     <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactTabViewTogetherDemo} />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('TabViewTogether')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('TabViewTogether')} />
 }

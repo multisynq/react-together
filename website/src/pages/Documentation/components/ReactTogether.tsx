@@ -72,5 +72,5 @@ export default function ReactTogetherDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('ReactTogether')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('ReactTogether')} />
 }

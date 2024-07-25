@@ -41,5 +41,5 @@ export default function ConnectedViewsDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('ConnectedViews')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('ConnectedViews')} />
 }

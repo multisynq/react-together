@@ -41,5 +41,5 @@ export default function PrimeReactToggleButtonTogetherDocumentationPage() {
     <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactToggleButtonTogetherDemo} />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('ToggleButtonTogether')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('ToggleButtonTogether')} />
 }

@@ -36,5 +36,5 @@ export default function UseIsTogetherDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useIsTogether')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useIsTogether')} />
 }

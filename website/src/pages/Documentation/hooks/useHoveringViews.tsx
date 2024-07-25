@@ -80,5 +80,5 @@ return (
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useHoveringViews')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useHoveringViews')} />
 }

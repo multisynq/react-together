@@ -44,5 +44,5 @@ export default function PrimeReactTriStateTriStateCheckboxTogetherDocumentationP
     />
   )
 
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('TriStateTriStateCheckboxTogether')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('TriStateTriStateCheckboxTogether')} />
 }

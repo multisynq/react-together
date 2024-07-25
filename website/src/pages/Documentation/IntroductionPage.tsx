@@ -5,14 +5,14 @@ import { NavItem } from './types'
 function IntroductionContent() {
   const sampleCode1 = `npm i react-together`
   const sampleCode2 = `ReactDOM.createRoot(document.getElementById('root')!).render(
-       <ReactTogether
-         sessionParams={{
-           appId: import.meta.env['VITE_APP_ID'],
-           apiKey: import.meta.env['VITE_API_KEY']
-         }}
-       >
-         <App />
-       </ReactTogether>
+<ReactTogether
+  sessionParams={{
+    appId: import.meta.env['VITE_APP_ID'],
+    apiKey: import.meta.env['VITE_API_KEY']
+  }}
+>
+  <App />
+</ReactTogether>
 )
 `
 
@@ -27,12 +27,7 @@ function IntroductionContent() {
       <h3 id='installation'>Installation</h3>
       <p>In your shiny React project, you will need to install the react-together package.</p>
       <CodeBlock language='javascript' code1={sampleCode1} />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-        in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+
       <h3 id='context'>Context</h3>
       <p>Now, at a fairly top level of your React’s JSX, you will need to:</p>
       <p>Wrap everything in a ReactTogether tag so you can connect a (free) API key.</p>
@@ -42,7 +37,7 @@ function IntroductionContent() {
 }
 
 export default function IntroductionPage() {
-  return <DocumentationSkeleton content={<IntroductionContent />} keyToLookupWith='' navItems={introductionNavItems} />
+  return <DocumentationSkeleton content={<IntroductionContent />} navItems={introductionNavItems} />
 }
 const introductionNavItems: NavItem[] = [
   { key: 'introduction', label: 'Introduction' },

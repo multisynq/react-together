@@ -51,5 +51,5 @@ export default function UseLeaveSessionDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useLeaveSession')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useLeaveSession')} />
 }

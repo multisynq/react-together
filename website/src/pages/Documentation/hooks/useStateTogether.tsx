@@ -87,5 +87,5 @@ const content = (
   />
 )
 export default function UseStateTogetherDocumentationPage() {
-  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useStateTogether')} keyToLookupWith='' />
+  return <DocumentationSkeleton content={content} navItems={GenericDocNav('useStateTogether')} />
 }
