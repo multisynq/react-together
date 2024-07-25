@@ -1,6 +1,5 @@
-import { WithReactTogetherProvider } from '@components/sections/HeroDemo'
 import { CodeBlock } from '@components/ui/CodeBlock'
-import { DocumentDemoContainer } from '@components/ui/DocumentDemoContainer'
+import DocumentationDemo from '@pages/documentation/DocumentationDemo'
 import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { GenericDocPage } from '../../GenericDocPage'
@@ -23,18 +22,9 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
         </Link>{' '}
         component to have a synchronized state across every user.
       </p>
-      <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100'>
-        <DocumentDemoContainer labelText='View 1'>
-          <WithReactTogetherProvider>
-            <ComponentDemo />
-          </WithReactTogetherProvider>
-        </DocumentDemoContainer>
-        <DocumentDemoContainer labelText='View 2'>
-          <WithReactTogetherProvider>
-            <ComponentDemo />
-          </WithReactTogetherProvider>
-        </DocumentDemoContainer>
-      </div>
+      <DocumentationDemo>
+        <ComponentDemo />
+      </DocumentationDemo>
     </>
   )
 
@@ -50,8 +40,8 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
 
   const usage = (
     <>
-      <CodeBlock language='javascript' code1={`import { ${name} } from 'react-together'`} />
-      <CodeBlock language='javascript' code1={`return <${name} rtid='your-unique-id' />`} />
+      <CodeBlock language='jsx' code1={`import { ${name} } from 'react-together'`} />
+      <CodeBlock language='jsx' code1={`return <${name} rtid='your-unique-id' />`} />
     </>
   )
   return <GenericDocPage title={name} description={description} usage={usage} api={api} />
