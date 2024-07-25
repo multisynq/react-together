@@ -4,6 +4,7 @@ import { DocumentDemoContainer } from '@components/ui/DocumentDemoContainer'
 import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { GenericDocPage } from '../../GenericDocPage'
+import ApiChangesPrelude from './ApiChangesPrelude'
 
 interface GenericComponentPageProps {
   name: string
@@ -36,6 +37,16 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
       </div>
     </>
   )
+
+  // Add prelude forwarding to the original documentation
+  if (api) {
+    api = (
+      <>
+        <ApiChangesPrelude docUrl={docUrl} />
+        {api}
+      </>
+    )
+  }
 
   const usage = (
     <>
