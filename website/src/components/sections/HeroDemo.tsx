@@ -27,9 +27,9 @@ export function WithReactTogetherProvider({ children }) {
 
 export function HeroDemo() {
   return (
-    <div className='w-full flex items-center flex-wrap gap-3 min-w-[32rem] justify-center bg-white-100 mt-8'>
+    <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100 mt-8'>
       <div
-        className='min-w-[29.75rem] flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] relative'
+        className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
         style={{ aspectRatio: '5 / 3' }}
       >
         <WithReactTogetherProvider>
@@ -39,7 +39,7 @@ export function HeroDemo() {
         </WithReactTogetherProvider>
       </div>
       <div
-        className='min-w-[29.75rem] flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#F8F3D7_0%,#FFF_100%)] relative'
+        className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#F8F3D7_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
         style={{ aspectRatio: '5 / 3' }}
       >
         <WithReactTogetherProvider>
@@ -72,9 +72,9 @@ export function SyncedDemo() {
         <ConnectedViews maxAvatars={2} />
       </div>
       <div className='absolute top-1/2 left-[82%] transform -translate-x-1/2 -translate-y-1/2 w-192'>
-        <h4 className='text-gray-300'>Cursor Together [coming soon!]</h4>
+        <h4 className='hidden sm:block text-gray-300'>Cursor Together [coming soon!]</h4>
       </div>
-      <div className='flex h-full flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-y-auto overflow-hidden p-3 gap-8'>
+      <div className='flex h-full flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-y-auto overflow-hidden overflow-x-auto p-3 gap-8'>
         {/* <CountButtonTogether /> */}
         <div className='flex items-center justify-between w-full'>
           <PresenceDiv rtid='div1'>

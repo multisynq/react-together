@@ -7,17 +7,17 @@ export function PageHeader() {
   return (
     <div className='flex flex-col items-center max-w-[105rem]'>
       <span className='h-8'></span>
-      <h1 className='flex text-center'>
+      <h1 className='flex text-center flex-col sm:flex-row'>
         Bring users together{' '}
-        <span className='pl-2'>
+        <div className='pl-2'>
           <SeamlesslyAnimation />
-        </span>
+        </div>
       </h1>
-      <p className='text-center max-w-[32rem] text-gray-500'>
+      <p className='text-center max-w-[32rem] text-gray-500 text-sm sm:text-base'>
         Foster real-time collaboration with our React library, enabling users to interact and work together seamlessly.
       </p>
       <span className='h-8' />
-      <div className='flex gap-2'>
+      <div className='flex gap-2 flex-col sm:flex-row'>
         <div className='px-4 py-2 bg-blue-300 text-gray-800 rounded-lg shadow-lineStyle text-center flex items-center justify-center border-[2px] border-gray-700 font-bold'>
           Get Started
         </div>
