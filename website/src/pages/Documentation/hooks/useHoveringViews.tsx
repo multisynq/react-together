@@ -58,20 +58,22 @@ export default function UseHoveringViewsDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { useHoveringViews } from 'react-together'`} />
+          <CodeBlock language='jsx' code1={`import { useHoveringViews } from 'react-together'`} />
           <CodeBlock
-            language='javascript'
+            language='jsx'
             code1={`const [ref, hoveringViews] = useHoveringViews(‘hovering-views’)
 
- return (
-   <div>
-     <div ref={ref}> Hover me! </div>
-     <h3>Hovering Ids:</h3>
-     <ul>
-       {hoveringViews.map((viewId) => <li key={viewId}>{viewId}</li>}
-     </ul>
-   </div>
-  )`}
+return (
+  <div>
+    <div ref={ref}>Hover me!</div>
+    <h3>Hovering Ids:</h3>
+    <ul>
+      {hoveringViews.map((viewId) => (
+        <li key={viewId}>{viewId}</li>
+      )}
+    </ul>
+  </div>
+)`}
           />
         </>
       }

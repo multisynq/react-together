@@ -32,8 +32,8 @@ export default function UseIsTogetherDocumentationPage() {
       description={'The useIsTogether hook returns true if the user is connected to a React Together session, and false otherwise.'}
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { useIsTogether } from 'react-together'`} />
-          <CodeBlock language='javascript' code1={`const isTogether = useIsTogether()`} />
+          <CodeBlock language='jsx' code1={`import { useIsTogether } from 'react-together'`} />
+          <CodeBlock language='jsx' code1={`const isTogether = useIsTogether()`} />
         </>
       }
       api={api}

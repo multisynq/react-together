@@ -9,9 +9,9 @@ const description =
 
 const usage = (
   <>
-    <CodeBlock language='javascript' code1={`import { useStateTogether } from 'react-together'`} />
+    <CodeBlock language='jsx' code1={`import { useStateTogether } from 'react-together'`} />
     <CodeBlock
-      language='javascript'
+      language='jsx'
       code1={`const [count, setCount] = useStateTogether('unique-id', 0)
         
         const increment = () => setCount((prev) => prev + 1)

@@ -35,12 +35,11 @@ export default function UseLeaveSessionDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { useLeaveSession } from 'react-together'`} />
+          <CodeBlock language='jsx' code1={`import { useLeaveSession } from 'react-together'`} />
           <CodeBlock
-            language='javascript'
+            language='jsx'
             code1={`export default function ReactTogetherSessionManager() {
   const leaveSession = useLeaveSession()
-
 
   return (
     <button onClick={() => leaveSession()}>

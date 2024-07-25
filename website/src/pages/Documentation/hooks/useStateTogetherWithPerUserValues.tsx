@@ -63,9 +63,9 @@ export default function UseStateTogetherWithPerUserValuesDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { useStateTogetherWithPerUserValues } from 'react-together'`} />
+          <CodeBlock language='jsx' code1={`import { useStateTogetherWithPerUserValues } from 'react-together'`} />
           <CodeBlock
-            language='javascript'
+            language='jsx'
             code1={`const [count, setCount, countPerUser] = useStateTogetherWithPerUserValues('unique-id', 0)
 
 const increment = () => setCount((prev) => prev + 1)

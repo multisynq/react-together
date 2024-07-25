@@ -31,13 +31,13 @@ export default function UseConnectNewSessionDocumentationPage() {
     <GenericDocPage
       title='useConnectNewSession'
       description={
-        'The useConnectNewSession hook returns a function that when called, connects to a new React Together session. The session name and password are randomly generated (for now…)'
+        'The useConnectNewSession hook returns a function that when called, connects to a new React Together session. The session name and password are randomly generated'
       }
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { useConnectNewSession } from 'react-together'`} />
+          <CodeBlock language='jsx' code1={`import { useConnectNewSession } from 'react-together'`} />
           <CodeBlock
-            language='javascript'
+            language='jsx'
             code1={`const connectNewSession = useConnectNewSession()
 
 return (

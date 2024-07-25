@@ -1,28 +1,10 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
-import NewPropSpan from '@components/ui/NewPropSpan'
-import RemovedPropSpan from '@components/ui/RemovedPropSpan'
 import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 export default function UseConnectedViewsDocumentationPage() {
   const api = (
     <>
-      <h5>Params</h5>
-      <TableContainer
-        keys={[
-          { key: 'name', label: 'Name' },
-          { key: 'type', label: 'Type' },
-          { key: 'description', label: 'Description' },
-        ]}
-        data={[
-          {
-            name: 'connectedViews',
-            type: 'ConnectedView[]',
-            description: 'A list containing all the views connected to the current React Together session',
-          },
-        ]}
-      />
-
       <h5>Return</h5>
       <TableContainer
         keys={[
@@ -38,7 +20,6 @@ export default function UseConnectedViewsDocumentationPage() {
           },
         ]}
       />
-
       <h5>ConnectedView</h5>
       <TableContainer
         keys={[
@@ -48,12 +29,12 @@ export default function UseConnectedViewsDocumentationPage() {
         ]}
         data={[
           {
-            name: <NewPropSpan text='viewId' />,
+            name: 'viewId',
             type: 'string',
             description: 'The id of the view that this entry corresponds to',
           },
           {
-            name: <RemovedPropSpan text='isYou' />,
+            name: 'isYou',
             type: 'boolean',
             description: 'Indicates whether you are this view',
           },
@@ -74,19 +55,21 @@ export default function UseConnectedViewsDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { useConnectedViews } from 'react-together'`} />
+          <CodeBlock language='jsx' code1={`import { useConnectedViews } from 'react-together'`} />
           <CodeBlock
-            language='javascript'
+            language='jsx'
             code1={`const connectedViews = useConnectedViews()
 
- return (
-   <div ref={ref}>
-     Connected users:
-     <ul>
-       {hoveringViews.map((viewId) => <li key={viewId}>{viewId}</li> }
-     </ul>
-   </div>
-  )`}
+return (
+  <div ref={ref}>
+    Connected views:
+    <ul>{hoveringViews.map(
+      (viewId) => (
+        <li key={viewId}>{viewId}</li>
+      )
+    }</ul>
+  </div>
+)`}
           />
         </>
       }
