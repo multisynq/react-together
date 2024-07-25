@@ -39,14 +39,15 @@ export default function PageNav({ items }: PageNavProps) {
         model={navItems}
         expandedKeys={expandedKeys}
         pt={{
-          root: classNames('w-[200px]'),
-          panel: classNames('w-full bg-white rounded-lg border-2 border-gray-700 overflow-hidden shadow-lineStyle'),
+          root: classNames('w-[150px] lg:w-[200px]'),
+          panel: classNames('w-full bg-white rounded-xl border-2 border-gray-200 overflow-hidden shadow-lineStyleLight'),
           headerAction: classNames('pt-4 pb-2'),
           headerContent: classNames('border-0 bg-transparent'),
           headerLabel: classNames('text-gray-900'),
           headerSubmenuIcon: classNames('hidden'),
           menuContent: classNames('py-0 border-0 rounded-none'),
-          label: classNames('font-regular text-gray-800'),
+          label: classNames('text-gray-800 text-sm lg:text-base'),
+          action: classNames('pl-8 py-2'),
         }}
       />
     </div>

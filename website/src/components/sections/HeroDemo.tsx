@@ -77,17 +77,17 @@ export function SyncedDemo() {
         {/* <CountButtonTogether /> */}
         <div className='flex items-center justify-between w-full'>
           <PresenceDiv rtid='div1'>
-            <div className='w-18 px-2 py-1 bg-orange-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyle'>
+            <div className='w-18 px-2 py-1 bg-orange-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyleDark'>
               Hover
             </div>
           </PresenceDiv>
           <PresenceDiv rtid='div2'>
-            <div className='w-18 px-2 py-1 bg-indigo-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyle'>
+            <div className='w-18 px-2 py-1 bg-indigo-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyleDark'>
               Hover
             </div>
           </PresenceDiv>
           <PresenceDiv rtid='div3'>
-            <div className='w-18 px-2 py-1 bg-indigo-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyle'>
+            <div className='w-18 px-2 py-1 bg-indigo-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyleDark'>
               Hover
             </div>
           </PresenceDiv>

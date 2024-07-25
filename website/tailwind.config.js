@@ -67,8 +67,9 @@ module.exports = {
         },
       },
       boxShadow: {
-        lineStyle: '0px 2px 0px 0px #374151',
-        lineStyleSecond: '0px 2px 0px 0px #6B7280',
+        lineStyleDark: '0px 2px 0px 0px #374151',
+        lineStyleMedium: '0px 1px 0px 0px #6B7280',
+        lineStyleLight: '0px 2px 0px 0px #E5E7EB',
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',

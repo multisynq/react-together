@@ -105,10 +105,8 @@ export default function DocumentNav() {
     <PanelMenu
       model={items}
       expandedKeys={expandedKeys}
-      // className='w-[160px] [&_.p-submenu-icon]:hidden'
-      // className='w-[180px]'
       pt={{
-        root: classNames('border-2 border-gray-700 rounded-lg overflow-hidden shadow-lineStyle bg-white'),
+        root: classNames('border-2 border-gray-200 rounded-xl overflow-hidden shadow-lineStyleLight bg-white w-[180px] lg:w-[220px]'),
         headerContent: classNames('border-0 bg-transparent'),
         headerAction: classNames('pt-4 pb-3'),
         panel: classNames('border-0'),
@@ -116,7 +114,7 @@ export default function DocumentNav() {
         headerSubmenuIcon: classNames('hidden'),
         menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
         action: classNames('pl-8 py-2'),
-        label: classNames('text-gray-800'),
+        label: classNames('text-gray-800 text-sm lg:text-base'),
       }}
     />
   )

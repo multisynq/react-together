@@ -19,7 +19,7 @@ export default function OverfillSpan({ text = '' }: OverfillSpanProps) {
     <div>
       <span>{displayedText}</span>
       {text.length > TRUNCATION_LENGTH && (
-        <button className='rounded-md px-2 border-1 border-gray-700 shadow-lineStyle py-0 ml-2' onClick={toggleText}>
+        <button className='rounded-md px-2 border-1 border-gray-700 shadow-lineStyleDark py-0 ml-2' onClick={toggleText}>
           {isExpanded ? '-' : '+'}
         </button>
       )}

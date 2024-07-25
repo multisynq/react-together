@@ -1,6 +1,6 @@
 function EachFeature({ header, body, color, imgSource }) {
   return (
-    <div className={`${color} w-full border-[2.5px] border-gray-800 shadow-lineStyle rounded-xl overflow-hidden`}>
+    <div className={`${color} w-full border-[2.5px] border-gray-800 shadow-lineStyleDark rounded-xl overflow-hidden`}>
       <div className={'aspect-video w-full shadow-md'}>
         <img src={imgSource} />
       </div>
@@ -31,7 +31,7 @@ export function FeatureCard() {
 
   return (
     <div className='w-full px-8 flex flex-col items-center gap-4'>
-      <div className='px-8 py-4 justify-center gap-8 bg-sky-100 border-2 border-gray-700 rounded-xl shadow-lineStyle flex flex-wrap w-3/4 sm:w-1/2'>
+      <div className='px-8 py-4 justify-center gap-8 bg-sky-100 border-2 border-gray-700 rounded-xl shadow-lineStyleDark flex flex-wrap w-3/4 sm:w-1/2'>
         {/* <div className='px-4 py-4 justify-center gap-8 border-gray-700 rounded-xl flex flex-wrap'> */}
         <h2 className='text-gray-800 mb-0 text-center'>{featureHeadTitle}</h2>
         {/* <div className='max-w-[472px]'><p className='text-gray-800 mb-1 break-words'>{featureHeadDescription}</p></div> */}
