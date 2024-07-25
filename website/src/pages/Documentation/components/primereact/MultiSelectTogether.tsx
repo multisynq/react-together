@@ -1,6 +1,6 @@
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
-// import { MultiSelectTogether } from '../../../../../../../react-together'
+import { MultiSelectTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
@@ -18,8 +18,7 @@ function PrimeReactMultiSelectTogetherDemo() {
   ]
   return (
     <div className='flex-col place-items-center'>
-      {/* <MultiSelectTogether rtid='multi-select-doc-demo' options={cities} optionLabel='name' multiple display='chip' /> */}
-      Demo {JSON.stringify(cities)}
+      <MultiSelectTogether rtid='multi-select-doc-demo' options={cities} optionLabel='name' multiple display='chip' />
     </div>
   )
 }

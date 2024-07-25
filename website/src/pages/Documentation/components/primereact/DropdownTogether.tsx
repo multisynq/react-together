@@ -1,6 +1,6 @@
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
-// import { DropdownTogether } from '../../../../../../../react-together'
+import { DropdownTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
@@ -16,14 +16,13 @@ function PrimeReactDropdownTogetherDemo() {
   ]
   return (
     <div className='flex-col place-items-center'>
-      {/* <DropdownTogether
+      <DropdownTogether
         rtid='dropdown-doc-demo'
         options={cities}
         optionLabel='name'
         placeholder='Select a City'
         className='w-full md:w-14rem'
-      /> */}
-      Demo {JSON.stringify(cities)}
+      />
     </div>
   )
 }

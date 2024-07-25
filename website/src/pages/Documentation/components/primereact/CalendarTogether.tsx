@@ -1,6 +1,6 @@
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
-// import { CalendarTogether } from '../../../../../../../react-together'
+import { CalendarTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
@@ -11,8 +11,7 @@ const docUrl = `https://primereact.org/calendar`
 function PrimeReactCalendarTogetherDemo() {
   return (
     <div className='flex-col place-items-center'>
-      {/* <CalendarTogether rtid='calendar-doc-demo' /> */}
-      Demo
+      <CalendarTogether rtid='calendar-doc-demo' inline />
     </div>
   )
 }

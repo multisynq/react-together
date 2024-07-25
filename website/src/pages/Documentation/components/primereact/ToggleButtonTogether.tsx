@@ -1,6 +1,6 @@
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
-// import { ToggleButtonTogether } from '../../../../../../../react-together'
+import { ToggleButtonTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
@@ -11,8 +11,7 @@ const docUrl = `https://primereact.org/togglebutton`
 function PrimeReactToggleButtonTogetherDemo() {
   return (
     <div className='flex-col place-items-center'>
-      {/* <ToggleButtonTogether rtid='input-switch-doc-demo' /> */}
-      Demo
+      <ToggleButtonTogether rtid='toggle-button-doc-demo' />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
-// import { SelectButtonTogether } from '../../../../../../../react-together'
+import { SelectButtonTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
@@ -16,8 +16,7 @@ function PrimeReactSelectButtonTogetherDemo() {
   ]
   return (
     <div className='flex-col place-items-center'>
-      {/* <SelectButtonTogether rtid='select-button-doc-demo' options={items} optionLabel='name' /> */}
-      Demo {JSON.stringify(items)}
+      <SelectButtonTogether rtid='select-button-doc-demo' options={items} optionLabel='name' />
     </div>
   )
 }

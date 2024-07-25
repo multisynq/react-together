@@ -1,6 +1,6 @@
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
-// import { KnobTogether } from '../../../../../../../react-together'
+import { KnobTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 const name = 'KnobTogether'
@@ -10,8 +10,7 @@ const docUrl = `https://primereact.org/knob`
 function PrimeReactKnobTogetherDemo() {
   return (
     <div className='flex-col place-items-center'>
-      {/* <KnobTogether rtid='input-switch-doc-demo' /> */}
-      Demo
+      <KnobTogether rtid='knob-doc-demo' />
     </div>
   )
 }

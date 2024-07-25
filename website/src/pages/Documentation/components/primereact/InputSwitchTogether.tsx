@@ -1,6 +1,6 @@
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
-// import { InputSwitchTogether } from '../../../../../../../react-together'
+import { InputSwitchTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 const name = 'InputSwitchTogether'
@@ -10,8 +10,7 @@ const docUrl = `https://primereact.org/inputswitch`
 function PrimeReactInputSwitchTogetherDemo() {
   return (
     <div className='flex-col place-items-center'>
-      {/* <InputSwitchTogether rtid='input-switch-doc-demo' /> */}
-      Demo
+      <InputSwitchTogether rtid='input-switch-doc-demo' />
     </div>
   )
 }

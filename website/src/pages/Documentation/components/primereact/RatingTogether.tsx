@@ -1,6 +1,6 @@
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
-// import { RatingTogether } from '../../../../../../../react-together'
+import { RatingTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
@@ -11,8 +11,7 @@ const docUrl = `https://primereact.org/rating`
 function PrimeReactRatingTogetherDemo() {
   return (
     <div className='flex-col place-items-center'>
-      {/* <RatingTogether rtid='input-switch-doc-demo' /> */}
-      Demo
+      <RatingTogether rtid='rating-doc-demo' />
     </div>
   )
 }
