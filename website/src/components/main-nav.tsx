@@ -4,7 +4,7 @@ import { cn } from '@utils'
 import { NavLink, useLocation } from 'react-router-dom'
 
 const navConfig = [
-  { to: '/docs/get-started/introduction', label: 'Documentation' },
+  { to: '/introduction', label: 'Documentation' },
   // { to: '/docs/components', label: 'Components' },
   // { to: '/hello', label: 'Get Started' },
   { to: siteConfig.links.github, label: 'GitHub', className: 'hidden lg:block' },
