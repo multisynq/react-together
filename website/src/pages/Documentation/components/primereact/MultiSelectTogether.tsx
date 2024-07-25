@@ -1,7 +1,12 @@
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 // import { MultiSelectTogether } from '../../../../../../../react-together'
+import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
+
+const name = 'MultiSelectTogether'
+const originalName = 'MultiSelect'
+const docUrl = `https://primereact.org/multiselect`
 
 function PrimeReactMultiSelectTogetherDemo() {
   const cities = [
@@ -20,13 +25,28 @@ function PrimeReactMultiSelectTogetherDemo() {
 }
 
 export default function PrimeReactMultiSelectTogetherDocumentationPage() {
+  const api = (
+    <>
+      <h5>Params</h5>
+      <WrappedComponentPropsTable
+        items={[
+          {
+            removed: false,
+            name: 'rtid',
+            type: 'string',
+            description: 'The key used to identify this state, passed to the useStateTogether hook',
+          },
+          {
+            removed: true,
+            name: 'value',
+            description: 'Removed, since this value will be controlled by the useStateTogether hook',
+          },
+        ]}
+      />
+    </>
+  )
   const content = (
-    <PrimeReactComponentDocumentationPage
-      name='MultiSelectTogether'
-      originalName='MultiSelect'
-      docUrl={`https://primereact.org/multiselecttogether/`}
-      ComponentDemo={PrimeReactMultiSelectTogetherDemo}
-    />
+    <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactMultiSelectTogetherDemo} />
   )
 
   return <DocumentationSkeleton content={content} navItems={GenericDocNav('MultiSelectTogether')} keyToLookupWith='' />

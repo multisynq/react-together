@@ -1,7 +1,12 @@
 import { GenericDocNav } from '@pages/documentation/GenericDocPage'
 import { DocumentationSkeleton } from '@pages/DocumentationSkeleton'
 // import { TabViewTogether } from '../../../../../../../react-together'
+import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
+
+const name = 'TabViewTogether'
+const originalName = 'TabView'
+const docUrl = `https://primereact.org/tabview`
 
 function PrimeReactTabViewTogetherDemo() {
   const content1 = 'asdf'
@@ -26,13 +31,28 @@ function PrimeReactTabViewTogetherDemo() {
 }
 
 export default function PrimeReactTabViewTogetherDocumentationPage() {
+  const api = (
+    <>
+      <h5>Params</h5>
+      <WrappedComponentPropsTable
+        items={[
+          {
+            removed: false,
+            name: 'rtid',
+            type: 'string',
+            description: 'The key used to identify this state, passed to the useStateTogether hook',
+          },
+          {
+            removed: true,
+            name: 'activeIndex',
+            description: 'Removed, since this value will be controlled by the useStateTogether hook',
+          },
+        ]}
+      />
+    </>
+  )
   const content = (
-    <PrimeReactComponentDocumentationPage
-      name='TabViewTogether'
-      originalName='TabView'
-      docUrl={`https://primereact.org/tabviewtogether/`}
-      ComponentDemo={PrimeReactTabViewTogetherDemo}
-    />
+    <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactTabViewTogetherDemo} />
   )
 
   return <DocumentationSkeleton content={content} navItems={GenericDocNav('TabViewTogether')} keyToLookupWith='' />
