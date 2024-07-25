@@ -56,7 +56,6 @@ export default function AppRoutes() {
           <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDocumentationPage />} />
         </Route>
       </Route>
-      {/* <Route path='/docs/:slug1/:slug2?' element={<DocumentationPage />} /> */}
     </Routes>
   )
 }

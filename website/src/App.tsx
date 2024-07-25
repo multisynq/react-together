@@ -6,9 +6,9 @@ import './App.scss'
 
 import { SiteFooter, SiteHeader } from '@components'
 import { version } from '@package'
-import AppRoutes from '@routes'
 import { Helmet } from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './AppRoutes'
 
 export default function App() {
   return (
