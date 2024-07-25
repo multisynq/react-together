@@ -1,4 +1,3 @@
-import DocumentBreadCrumb from '@components/ui/DocumentBreadCrumb'
 import DocumentNav, { PatchedMenuItem } from '@components/ui/DocumentNav'
 import PageNav from '@components/ui/PageNav'
 
@@ -15,7 +14,7 @@ export function DocumentationSkeleton({ keyToLookupWith, content, navItems }: Do
         <DocumentNav />
       </div>
       <div className='flex flex-col items-start gap-[1.5rem] w-full'>
-        <DocumentBreadCrumb currentPath={keyToLookupWith} />
+        {/* <DocumentBreadCrumb currentPath={keyToLookupWith} /> */}
         {content}
       </div>
       <PageNav items={navItems} />
