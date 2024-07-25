@@ -26,7 +26,7 @@ export default function PresenceDivDocumentationPage() {
             description: 'The content to be rendered inside this div',
           },
           {
-            name: 'classNme',
+            name: 'className',
             type: 'string',
             description: 'The className to be passed to the containing div. Used to customize the appearance of this div',
           },
