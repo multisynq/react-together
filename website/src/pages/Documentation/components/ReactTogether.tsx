@@ -8,7 +8,7 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 export default function ReactTogetherDocumentationPage() {
   const api = (
     <>
-      <h5>Params</h5>
+      <h4>Params</h4>
       <TableContainer
         keys={[
           { key: 'name', label: 'Name' },

@@ -24,14 +24,14 @@ export function GenericDocPage({ title, description, usage, api, parameter }: Ge
 
       {usage && (
         <>
-          <h4 id='usage'>Usage</h4>
+          <h3 id='usage'>Usage</h3>
           {usage}
         </>
       )}
 
       {api && (
         <>
-          <h4 id='api'>API</h4>
+          <h3 id='api'>API</h3>
           {api}
         </>
       )}

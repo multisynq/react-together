@@ -18,7 +18,7 @@ function IntroductionContent() {
 
   return (
     <>
-      <h3 id='introduction'>Introduction</h3>
+      <h2 id='introduction'>Introduction</h2>
       <p>In the future, web sites are all live and connect visitors with each other all the time. That future is now!</p>
       <p>
         Welcome to React Together! With this library you will be able to build synchronized web applications in a blink of an eye! No need
