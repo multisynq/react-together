@@ -1,8 +1,10 @@
 import { InstallCodeBlock } from '@components/ui/InstallCodeBlock'
 import { SeamlesslyAnimation } from '@components/ui/SeamlesslyAnimation'
+import { useNavigate } from 'react-router-dom'
 // import { SeamlesslyAnim } from '../../images/SeamlesslyAnim.svg'
 
 export function PageHeader() {
+  const navigate = useNavigate()
   const sampleCode1 = `npm i react-together`
   return (
     <div className='flex flex-col items-center max-w-[105rem]'>
@@ -18,7 +20,10 @@ export function PageHeader() {
       </p>
       <span className='h-8' />
       <div className='flex gap-2 flex-col sm:flex-row'>
-        <div className='px-4 py-2 bg-blue-300 text-gray-800 rounded-lg shadow-lineStyle text-center flex items-center justify-center border-[2px] border-gray-700 font-bold'>
+        <div
+          className='px-4 py-2 bg-blue-300 text-gray-800 rounded-lg shadow-lineStyle text-center flex items-center justify-center border-[2px] border-gray-700 font-bold cursor-pointer'
+          onClick={() => navigate('/introduction')}
+        >
           Get Started
         </div>
         <InstallCodeBlock language='javascript' code1={sampleCode1} />
