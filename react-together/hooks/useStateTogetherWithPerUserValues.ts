@@ -92,7 +92,7 @@ export default function useStateTogetherWithPerUserValues<T>(
         set_localValue(newValueOrFn)
       }
     },
-    [set_localValue, rtid, viewId]
+    [localValue, set_localValue, rtid, viewId]
   )
 
   return [localValue, setter, mapToObject(allValues)]
