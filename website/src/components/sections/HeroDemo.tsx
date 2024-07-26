@@ -28,24 +28,26 @@ export function HeroDemo() {
   return (
     <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100 mt-8'>
       <WithReactTogetherProvider>
-        <FakeBrowser>
-          <div
-            className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
-            style={{ aspectRatio: '5 / 3' }}
-          >
+        {/* <FakeBrowser> */}
+        <div
+          className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
+          style={{ aspectRatio: '5 / 3' }}
+        >
+          <FakeBrowser>
             <SyncedDemo />
-          </div>
-        </FakeBrowser>
+          </FakeBrowser>
+        </div>
+        {/* </FakeBrowser> */}
       </WithReactTogetherProvider>
       <WithReactTogetherProvider>
-        <FakeBrowser>
-          <div
-            className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#F8F3D7_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
-            style={{ aspectRatio: '5 / 3' }}
-          >
+        <div
+          className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#F8F3D7_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
+          style={{ aspectRatio: '5 / 3' }}
+        >
+          <FakeBrowser>
             <SyncedDemo />
-          </div>
-        </FakeBrowser>
+          </FakeBrowser>
+        </div>
       </WithReactTogetherProvider>
     </div>
   )
@@ -115,9 +117,6 @@ export function SyncedDemo() {
           />
         </PresenceDiv>
         <div className='flex items-center justify-between w-full'>
-          {/* <div className='content-center p-1'>
-            <TriStateCheckboxTogether rtid='tristate-checkbox' />
-          </div> */}
           <PresenceDiv rtid='dropdown-presence'>
             <DropdownTogether
               rtid='dropdown'
@@ -132,10 +131,6 @@ export function SyncedDemo() {
             <KnobTogether rtid='knob2' size={80} />
           </PresenceDiv>
         </div>
-        {/* <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-          enim ad minim veniam, quis nostrud exercitation.
-        </p> */}
       </div>
     </div>
   )
