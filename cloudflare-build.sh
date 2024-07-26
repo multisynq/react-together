@@ -29,6 +29,6 @@ npm run build || exit 1
 
 # for debugging
 cp -v package*.json dist/
-echo "diffing package-lock.*"
+echo diffing package-lock.*
 diff -u package-lock.json.orig package-lock.json > dist/package-lock.diff || true
 
