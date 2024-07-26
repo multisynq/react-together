@@ -1,6 +1,6 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import LinkSpan from '@components/ui/LinkSpan'
-import { DocumentationPage } from '@pages/documentation/DocumentationPage'
+import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { Link } from 'react-router-dom'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'

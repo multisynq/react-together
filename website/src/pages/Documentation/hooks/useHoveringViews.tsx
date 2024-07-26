@@ -1,5 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
-import { DocumentationPage } from '@pages/documentation/DocumentationPage'
+import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { PresenceDiv } from '../../../../../react-together'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'

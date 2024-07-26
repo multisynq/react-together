@@ -1,6 +1,6 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import LinkSpan from '@components/ui/LinkSpan'
-import { DocumentationPage } from '@pages/documentation/DocumentationPage'
+import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { ConnectedViews } from '../../../../../react-together'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'

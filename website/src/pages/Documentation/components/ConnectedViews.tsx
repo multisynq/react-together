@@ -1,7 +1,7 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import LinkSpan from '@components/ui/LinkSpan'
 import OverfillSpan from '@components/ui/OverfillSpan'
-import { DocumentationPage } from '@pages/documentation/DocumentationPage'
+import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
 

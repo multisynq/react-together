@@ -2,9 +2,9 @@ import CountButtonTogether from '@components/demo/CountButtonTogether'
 import { CodeBlock } from '@components/ui/CodeBlock'
 import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
-import { DocumentationPage } from '@pages/documentation/DocumentationPage'
-import DocumentationDemo from './DocumentationDemo'
-import { NavItem } from './types'
+import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
+import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import { NavItem } from '@pages/Documentation/types'
 
 function IntroductionContent() {
   return (

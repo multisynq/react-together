@@ -1,6 +1,6 @@
 import LinkSpan from '@components/ui/LinkSpan'
-import { DocumentationPage } from '@pages/documentation/DocumentationPage'
-import { GenericDocNav } from '@pages/documentation/GenericDocPage'
+import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
 import { SelectButtonTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'

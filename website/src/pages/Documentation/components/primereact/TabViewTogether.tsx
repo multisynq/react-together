@@ -1,6 +1,6 @@
 import LinkSpan from '@components/ui/LinkSpan'
-import { DocumentationPage } from '@pages/documentation/DocumentationPage'
-import { GenericDocNav } from '@pages/documentation/GenericDocPage'
+import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
 import { TabPanel } from 'primereact/tabview'
 import { TabViewTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'

@@ -1,6 +1,6 @@
 import CountButtonTogether from '@components/demo/CountButtonTogether'
 import { CodeBlock } from '@components/ui/CodeBlock'
-import { DocumentationPage } from '@pages/documentation/DocumentationPage'
+import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookParamsApi from './HookParamsApi'

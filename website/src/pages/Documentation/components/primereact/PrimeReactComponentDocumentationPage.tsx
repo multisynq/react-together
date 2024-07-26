@@ -1,5 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
-import DocumentationDemo from '@pages/documentation/DocumentationDemo'
+import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
 import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { GenericDocPage } from '../../GenericDocPage'
