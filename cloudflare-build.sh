@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 # cloudflare clean-installs arm versions from package-lock.json
 # but actuallty runs on x64 so we need to install the x64 versions
@@ -16,16 +17,16 @@ else
 fi
 
 # build the react-together package
-npm run build
-npm link
+npm run build || exit 1
+npm link || exit 1
 
 # build the website
 cd website
 mv package-lock.json package-lock.json.orig
-npm i
-npm link react-together
-npm run build
+npm i || exit 1
+npm link react-together || exit 1
+npm run build || exit 1
 
 # for debugging
-cp package*.json dist/
+cp -v package*.json dist/
 diff -u package-lock.json.orig package-lock.json > dist/package-lock.diff
