@@ -2,7 +2,6 @@ import CountButtonTogether from '@components/demo/CountButtonTogether'
 import { CodeBlock } from '@components/ui/CodeBlock'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
-import { Link } from 'react-router-dom'
 import DocumentationDemo from './DocumentationDemo'
 import { NavItem } from './types'
 
@@ -21,7 +20,10 @@ function IntroductionContent() {
       <h4 id='context'>Context</h4>
       <p>
         Wrap your application inside the <LinkSpan text='<ReactTogether/>' to='/ReactTogether' /> component, and configure it using your
-        Multisynq keys. You can get your <em>free</em> keys at <Link to='https://croquet.io/keys'>croquet.io/keys</Link>
+        Multisynq keys. Get your free keys at{' '}
+        <a href='https://croquet.io/keys' target='_blank'>
+          croquet.io/keys
+        </a>
       </p>
       <CodeBlock language='tsx' code1={`import { ReactTogether } from 'react-together'`} />
       <CodeBlock

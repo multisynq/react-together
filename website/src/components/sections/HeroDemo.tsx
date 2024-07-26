@@ -101,17 +101,17 @@ export function SyncedDemo() {
             rtid='select-button'
             options={items}
             optionLabel='name'
-            itemTemplate={(item) => {
-              return (
-                <PresenceDiv rtid={`select-button-option-${item.name}`}>
-                  {/* <div className='p-button p-component border h-[15px] null' role='button' aria-label={item.name} data-pc-section='button'> */}
-                  <span className='p-button-label p-c' data-pc-section='label'>
-                    {item.name}
-                  </span>
-                  {/* </div> */}
-                </PresenceDiv>
-              )
-            }}
+            // itemTemplate={(item) => {
+            //   return (
+            //     <PresenceDiv rtid={`select-button-option-${item.name}`}>
+            //       {/* <div className='p-button p-component border h-[15px] null' role='button' aria-label={item.name} data-pc-section='button'> */}
+            //       <span className='p-button-label p-c' data-pc-section='label'>
+            //         {item.name}
+            //       </span>
+            //       {/* </div> */}
+            //     </PresenceDiv>
+            //   )
+            // }}
           />
         </PresenceDiv>
         <div className='flex items-center justify-between w-full'>
