@@ -1,33 +1,25 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
-import { TableContainer } from '@components/ui/TableContainer'
+import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
+import InterfaceApi from '../InterfaceApi'
+import HookReturnApi from './HookReturnApi'
 export default function UseConnectedViewsDocumentationPage() {
   const api = (
     <>
-      <h5>Return</h5>
-      <TableContainer
-        keys={[
-          { key: 'name', label: 'Name' },
-          { key: 'type', label: 'Type' },
-          { key: 'description', label: 'Description' },
-        ]}
-        data={[
+      <HookReturnApi
+        items={[
           {
             name: 'connectedViews',
-            type: 'ConnectedView[]',
+            type: <LinkSpan text='ConnectedView[]' to='#connected-view' />,
             description: 'A list containing all the views connected to the current React Together session',
           },
         ]}
       />
-      <h5>ConnectedView</h5>
-      <TableContainer
-        keys={[
-          { key: 'name', label: 'Property' },
-          { key: 'type', label: 'Type' },
-          { key: 'description', label: 'Description' },
-        ]}
-        data={[
+      <InterfaceApi
+        title='ConnectedView'
+        id='connected-view'
+        items={[
           {
             name: 'viewId',
             type: 'string',

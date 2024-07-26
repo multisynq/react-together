@@ -1,9 +1,10 @@
 import CountButtonTogether from '@components/demo/CountButtonTogether'
 import { CodeBlock } from '@components/ui/CodeBlock'
-import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
+import HookParamsApi from './HookParamsApi'
+import HookReturnApi from './HookReturnApi'
 
 const description = (
   <>
@@ -32,15 +33,8 @@ const reset = () => setCount(0)`}
 
 const api = (
   <>
-    <h5>Params</h5>
-    <TableContainer
-      keys={[
-        { key: 'name', label: 'Name' },
-        { key: 'type', label: 'Type' },
-        { key: 'default', label: 'Default Value' },
-        { key: 'description', label: 'Description' },
-      ]}
-      data={[
+    <HookParamsApi
+      items={[
         {
           name: 'rtid',
           type: 'string',
@@ -53,14 +47,8 @@ const api = (
         },
       ]}
     />
-    <h5>Return</h5>
-    <TableContainer
-      keys={[
-        { key: 'name', label: 'Name' },
-        { key: 'type', label: 'Type' },
-        { key: 'description', label: 'Description' },
-      ]}
-      data={[
+    <HookReturnApi
+      items={[
         {
           name: '0',
           type: 'T',
@@ -70,7 +58,7 @@ const api = (
           name: '1',
           type: '(T | (T) => T) => void',
           description:
-            'The set function that lets you update the state to a different value, and change it in every user within the same session',
+            'The setter function that lets you update the state to a different value, and change it in every user within the same session',
         },
       ]}
     />

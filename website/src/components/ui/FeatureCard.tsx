@@ -1,6 +1,7 @@
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
+import CodeSpan from './CodeSpan'
 
 function EachFeature({ header, body, color, imgSource }) {
   return (
@@ -43,8 +44,26 @@ export function FeatureCard() {
         {/* </div> */}
 
         <div className='w-full flex flex-col md:flex-row gap-6'>
-          <EachFeature header={'Install'} body={'Use npm to install react-together'} color={color1} imgSource={gif1} />
-          <EachFeature header={'Wrap'} body={'Wrap your application inside <ReactTogether/> component'} color={color1} imgSource={gif2} />
+          <EachFeature
+            header={'Install'}
+            body={
+              <p>
+                Use <CodeSpan text='npm' /> to install <CodeSpan text='react-together' />
+              </p>
+            }
+            color={color1}
+            imgSource={gif1}
+          />
+          <EachFeature
+            header={'Wrap'}
+            body={
+              <p>
+                Wrap your application inside <CodeSpan text='<ReactTogether/>' /> component
+              </p>
+            }
+            color={color1}
+            imgSource={gif2}
+          />
           <EachFeature
             header={'Synchronize'}
             body={'Use our hooks to instantly create interactive experiences!'}

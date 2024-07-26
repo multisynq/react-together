@@ -1,24 +1,18 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import LinkSpan from '@components/ui/LinkSpan'
 import OverfillSpan from '@components/ui/OverfillSpan'
-import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
+import ComponentPropsTable from './ComponentPropsTable'
 
 export default function ConnectedViewsDocumentationPage() {
   const api = (
     <>
       <h5>Params</h5>
-      <TableContainer
-        keys={[
-          { key: 'name', label: 'Name' },
-          { key: 'type', label: 'Type' },
-          { key: 'default', label: 'Default Value' },
-          { key: 'description', label: 'Description' },
-        ]}
-        data={[
+      <ComponentPropsTable
+        items={[
           {
-            name: 'rtid',
+            name: 'maxAvatars',
             type: 'number',
             default: '3',
             description: (

@@ -1,22 +1,16 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import LinkSpan from '@components/ui/LinkSpan'
-import { TableContainer } from '@components/ui/TableContainer'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { Link } from 'react-router-dom'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
+import ComponentPropsTable from './ComponentPropsTable'
 
 export default function ReactTogetherDocumentationPage() {
   const api = (
     <>
-      <h4>Params</h4>
-      <TableContainer
-        keys={[
-          { key: 'name', label: 'Name' },
-          { key: 'type', label: 'Type' },
-          { key: 'default', label: 'Default Value' },
-          { key: 'description', label: 'Description' },
-        ]}
-        data={[
+      <h4>Props</h4>
+      <ComponentPropsTable
+        items={[
           {
             name: 'sessionParams',
             type: <LinkSpan to='#ReactTogetherSessionParams' text='ReactTogetherSessionParams' />,
@@ -25,14 +19,8 @@ export default function ReactTogetherDocumentationPage() {
         ]}
       />
       <h5 id='ReactTogetherSessionParams'>ReactTogetherSessionParams</h5>
-      <TableContainer
-        keys={[
-          { key: 'name', label: 'Name' },
-          { key: 'type', label: 'Type' },
-          { key: 'default', label: 'Default Value' },
-          { key: 'description', label: 'Description' },
-        ]}
-        data={[
+      <ComponentPropsTable
+        items={[
           {
             name: 'appId',
             type: 'string',

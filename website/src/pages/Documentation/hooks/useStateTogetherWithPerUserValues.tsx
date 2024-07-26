@@ -1,10 +1,11 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
-import { TableContainer } from '@components/ui/TableContainer'
 import { useViewId } from '@croquet/react'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import { useStateTogetherWithPerUserValues } from '../../../../../react-together'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
+import HookParamsApi from './HookParamsApi'
+import HookReturnApi from './HookReturnApi'
 
 function Score({ label, score, clickable, onClick, onContextMenu }) {
   const clickableStyle = clickable ? 'border-gray-800 cursor-pointer' : ''
@@ -57,15 +58,8 @@ function EverybodysScores() {
 
 const api = (
   <>
-    <h5>Params</h5>
-    <TableContainer
-      keys={[
-        { key: 'name', label: 'Name' },
-        { key: 'type', label: 'Type' },
-        { key: 'default', label: 'Default Value' },
-        { key: 'description', label: 'Description' },
-      ]}
-      data={[
+    <HookParamsApi
+      items={[
         {
           name: 'rtid',
           type: 'string',
@@ -78,14 +72,8 @@ const api = (
         },
       ]}
     />
-    <h5>Return</h5>
-    <TableContainer
-      keys={[
-        { key: 'name', label: 'Name' },
-        { key: 'type', label: 'Type' },
-        { key: 'description', label: 'Description' },
-      ]}
-      data={[
+    <HookReturnApi
+      items={[
         {
           name: '0',
           type: 'T',

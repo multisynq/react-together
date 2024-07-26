@@ -1,5 +1,6 @@
 import CountButtonTogether from '@components/demo/CountButtonTogether'
 import { CodeBlock } from '@components/ui/CodeBlock'
+import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/documentation/DocumentationPage'
 import DocumentationDemo from './DocumentationDemo'
@@ -15,7 +16,9 @@ function IntroductionContent() {
         to set up servers or sockets!
       </p>
       <h4 id='installation'>Installation</h4>
-      <p>Install the react-together package via npm</p>
+      <p>
+        Install the <CodeSpan text='react-together' /> package via <CodeSpan text='npm' />
+      </p>
       <CodeBlock language='bash' code1={`npm i react-together`} />
       <h4 id='context'>Context</h4>
       <p>
