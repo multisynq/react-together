@@ -1,14 +1,16 @@
 #!/bin/bash
 
-# cloudflare runs build on linux-x64-gnu
-npm i @ast-grep/napi-linux-x64-gnu
+# cloudflare installs arm versions from package-lock.json
+# but actuallty runs on x64 so we need to install the x64 versions
+npm i || exit 1
 
 # build the react-together package
-npm run build
-npm link
+npm run build || exit 1
+npm link || exit 1
 
 # build the website
 cd website
-npm i
-npm link react-together
-npm run build
+npm i || exit 1
+npm link react-together || exit 1
+npm run build || exit 1
+
