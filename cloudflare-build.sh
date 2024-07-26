@@ -2,6 +2,9 @@
 set -x
 exec 2>&1
 
+cd `dirname $0`
+DIR=`pwd`
+
 RESULT=FAILURE
 
 function notify {
@@ -9,8 +12,7 @@ function notify {
         echo "Not running on Cloudflare Pages, skipping notification"
         return
     fi
-    cd `dirname $0`
-    ./cloudflare-notify.sh "$RESULT" || true
+    $DIR/cloudflare-notify.sh "$RESULT" || true
 }
 trap notify EXIT
 
