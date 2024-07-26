@@ -1,5 +1,17 @@
 #!/bin/bash
 set -x
+exec 2>&1
+
+RESULT=FAILURE
+
+function notify {
+    if [ -z "CF_PAGES" ]; then
+        echo "Not running on Cloudflare Pages, skipping notification"
+        return
+    fi
+    ./cloudflare-notify.sh "$RESULT" || true
+}
+trap notify EXIT
 
 node --version
 npm --version
@@ -35,3 +47,5 @@ cp -v package*.json dist/
 echo diffing package-lock.*
 diff -u package-lock.json.orig package-lock.json > dist/package-lock.diff || true
 
+# set RESULT for EXIT trap
+RESULT=SUCCESS
