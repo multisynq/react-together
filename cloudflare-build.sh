@@ -21,6 +21,7 @@ npm link
 
 # build the website
 cd website
+rm -r node_modules package-lock.json
 npm i
 npm link react-together
 npm run build
