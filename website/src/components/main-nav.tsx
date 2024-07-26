@@ -17,7 +17,8 @@ export function MainNav() {
       <div className='mr-4 hidden md:flex w-full justify-between'>
         <NavLink to='/' className='mr-6 flex items-center space-x-2 text-gray-800 hover:text-gray-600 no-underline'>
           <Icons.logo className='h-6 w-6' />
-          <span className='hidden font-bold sm:inline-block'>{siteConfig.name}</span>
+          {/* <span className='hidden font-bold sm:inline-block'>{siteConfig.name}</span> */}
+          <span className='hidden font-semibold font-sans sm:inline-block'>{siteConfig.name}</span>
         </NavLink>
         <nav className='flex items-center gap-4 text-sm lg:gap-6'>
           {navConfig.map(({ to, label, className }) => (
