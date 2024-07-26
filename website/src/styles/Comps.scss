@@ -1,125 +1,13 @@
 .p-menuitem-link {
-  text-decoration: none;
-}
-
-.p-panelmenu-header-link {
-  text-decoration: none;
-  color: black;
-  padding: 0;
-  font-weight: normal;
-}
-
-.p-panelmenu-header-content {
-  background-color: transparent;
-}
-
-.hidden.font-bold.sm\:inline-block {
-  text-decoration: none;
-}
-.p-panelmenu-panel {
-  .p-panelmenu-header-content {
-    border-radius: 0;
-    .p-panelmenu-content {
-      margin-left: 0;
-    }
-  }
-  .p-panelmenu-content {
-    border-radius: 0px;
-    .p-menuitem-link {
-      padding: 8px;
-    }
-  }
-}
-ul.p-panelmenu-root-list.p-submenu-list {
-  padding: 0;
-}
-.rt-breadcrumb {
-  padding: 0;
-  border-radius: 0;
-  .p-breadcrumb-list {
-    padding-left: 0;
-    margin-bottom: 0;
-  }
-}
-
-nav.flex a {
-  text-decoration: none;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 12px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #c4c4c4;
-  border-radius: 8px;
-  border: black solid 1px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-.p-selectbutton.p-button-group.p-component {
-  border-radius: 8px;
-  box-shadow: 0px 2px 0px 0px #374151;
-  border: 1px solid #374151;
-  width: 100%;
   display: flex;
-
-  .p-button.p-component.border {
-    border: 1px solid #374151 !important;
-    flex: 1;
-  }
+  align-items: center;
 }
 
-.p-button.p-component.p-highlight.border.h-\[8px\] {
-  background-color: #3b82f6;
-  color: #fff;
-  border-radius: 8px;
+.p-menuitem-link .p-menuitem-text {
+  order: -1;
 }
 
-.p-dropdown.p-component.p-inputwrapper.p-inputwrapper-filled {
-  border: 2px solid #374151;
-  box-shadow: 0px 2px 0px 0px #374151;
+.p-menuitem-link .p-submenu-icon {
+  order: 1;
+  margin-left: auto;
 }
-
-.p-panelmenu-content {
-  background-color: transparent;
-
-}
-
-.p-panelmenu-panel{
-  .p-toggleable-content{
-    .p-panelmenu-content{
-      .p-panelmenu-root-list.p-submenu-list{
-        .p-toggleable-content{
-          .p-submenu-list{
-            padding-left: 0px;
-          }
-        }
-      }
-    }
-  }
-}
-
-.rt-breadcrumb.p-breadcrumb.p-component {
-  background-color: transparent;
-}
-// .p-menuitem .p-menuitem-content:hover {
-//   background-color: #797979;
-//   border-radius: 8px;
-//   .p-menuitem-text {
-//     color: white;
-//   }
-// }
-
-// .p-menuitem[data-p-focused='true'] {
-//   .p-menuitem-content {
-//     background-color: #363636;
-//     border-radius: 8px;
-//     .p-menuitem-text {
-//       color: white;
-//     }
-//   }
-// }

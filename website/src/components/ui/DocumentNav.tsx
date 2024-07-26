@@ -63,18 +63,18 @@ const items: PatchedMenuItem[] = [
       { label: 'useLeaveSession', to: '/useLeaveSession' },
     ],
   },
-  {
-    // label: 'Discover',
-    // expanded: true,
-    // items: [
-    //   { label: 'About Us', to: 'https://multisynq.io/' },
-    //   { label: 'Roadmap' },
-    //   { label: 'Support' },
-    //   { label: 'Contributing' },
-    //   { label: 'F.A.Q' },
-    //   { label: 'License' },
-    // ],
-  },
+  // {
+  //   label: 'Discover',
+  //   expanded: true,
+  //   items: [
+  //     { label: 'About Us', to: 'https://multisynq.io/' },
+  //     { label: 'Roadmap' },
+  //     { label: 'Support' },
+  //     { label: 'Contributing' },
+  //     { label: 'F.A.Q' },
+  //     { label: 'License' },
+  //   ],
+  // },
 ]
 
 export default function DocumentNav() {
@@ -106,15 +106,17 @@ export default function DocumentNav() {
       model={items}
       expandedKeys={expandedKeys}
       pt={{
-        root: classNames('border-2 border-gray-200 rounded-xl overflow-hidden shadow-lineStyleLight bg-white w-[180px] lg:w-[220px]'),
+        root: classNames('border-2 border-gray-700 rounded-xl overflow-hidden shadow-lineStyleDark bg-white w-[180px] lg:w-[220px]'),
         headerContent: classNames('border-0 bg-transparent'),
-        headerAction: classNames('pt-4 pb-3'),
+        headerAction: classNames('pt-4 pb-3 rounded-xl bg-white bro'),
         panel: classNames('border-0'),
         headerLabel: classNames('text-gray-900'),
         headerSubmenuIcon: classNames('hidden'),
         menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
         action: classNames('pl-8 py-2'),
         label: classNames('text-gray-800 text-sm lg:text-base'),
+        content: classNames('rounded-md'),
+        // submenuIcon: classNames('pi pi-file'),
       }}
     />
   )
