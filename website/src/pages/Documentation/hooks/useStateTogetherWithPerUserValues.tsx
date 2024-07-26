@@ -7,7 +7,7 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
-function Score({ label, score, clickable, onClick, onContextMenu }) {
+function Score({ score, clickable, onClick, onContextMenu }) {
   const clickableStyle = clickable ? 'border-gray-800 cursor-pointer' : ''
   return (
     <div className='flex flex-col align-items-start'>
@@ -39,7 +39,7 @@ function EverybodysScores() {
         return (
           <Score
             key={viewId}
-            label={viewId}
+            // label={viewId}
             score={score}
             clickable={clickable}
             onClick={() => clickable && increment()}
