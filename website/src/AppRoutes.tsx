@@ -20,10 +20,10 @@ import {
   UseLeaveSessionDocumentationPage,
   UseStateTogetherDocumentationPage,
   UseStateTogetherWithPerUserValuesDocumentationPage,
-} from '@pages/documentation'
+} from '@pages/Documentation'
 import { HomePage } from './pages/HomePage'
 
-import { DocumentationWrapper } from '@pages/documentation/DocumentationWrapper'
+import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
 import { Route, Routes } from 'react-router-dom'
 
 export default function AppRoutes() {
