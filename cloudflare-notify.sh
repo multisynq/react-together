@@ -44,7 +44,7 @@ esac
 if [ "$RESULT" = "FAILURE" ]; then
     JSON="{\"text\": \"❌ *ReactTogether: Deployment to ${ENV_LABEL} site failed* ❌\n${ENV_LABEL}: ${URL}\nCommit: \`${CF_PAGES_BRANCH}@${CF_PAGES_COMMIT_SHA}\`\"}"
 else
-    JSON="{\"text\": \"☁️ *ReactTogether: Deployed to ${ENV_LABEL} site* ☁️\n${ENV_LABEL}: ${URL}\nCommit: \`${CF_PAGES_BRANCH}@${CF_PAGES_COMMIT_SHA}\` (${CF_PAGES_URL})\"}"
+    JSON="{\"text\": \"👥 *ReactTogether: Deployed to ${ENV_LABEL} site* 👥\n${ENV_LABEL}: ${URL}\nCommit: \`${CF_PAGES_BRANCH}@${CF_PAGES_COMMIT_SHA}\` (${CF_PAGES_URL})\"}"
 fi
 
 echo
