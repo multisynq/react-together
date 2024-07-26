@@ -9,6 +9,7 @@ function notify {
         echo "Not running on Cloudflare Pages, skipping notification"
         return
     fi
+    cd `dirname $0`
     ./cloudflare-notify.sh "$RESULT" || true
 }
 trap notify EXIT
