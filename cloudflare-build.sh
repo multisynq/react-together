@@ -21,6 +21,11 @@ npm link
 
 # build the website
 cd website
-npm ci
+mv package-lock.json package-lock.json.orig
+npm i
 npm link react-together
 npm run build
+
+# for debugging
+cp package*.json dist/
+diff -u package-lock.json.orig package-lock.json > dist/package-lock.diff
