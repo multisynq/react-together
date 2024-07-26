@@ -1,6 +1,9 @@
 #!/bin/bash
 set -x
 
+node --version
+npm --version
+
 # cloudflare clean-installs arm versions from package-lock.json
 # but actuallty runs on x64 so we need to install the x64 versions
 if [ -n "$CF_PAGES" ]; then
