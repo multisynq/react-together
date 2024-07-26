@@ -31,7 +31,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path='/' element={<HomePage />} />
       <Route element={<DocumentationWrapper />}>
-        <Route path='introduction' element={<IntroductionPage />} />
+        <Route path='getting-started' element={<IntroductionPage />} />
         <Route path='ReactTogether' element={<ReactTogetherDocumentationPage />} />
         <Route path='ConnectedViews' element={<ConnectedViewsDocumentationPage />} />
         <Route path='PresenceDiv' element={<PresenceDivDocumentationPage />} />

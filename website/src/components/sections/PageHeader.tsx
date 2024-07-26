@@ -22,9 +22,9 @@ export function PageHeader() {
       <div className='flex gap-2 flex-col sm:flex-row'>
         <div
           className='px-4 py-2 bg-blue-300 text-gray-800 rounded-lg shadow-lineStyleDark text-center flex items-center justify-center border-[2px] border-gray-700 font-bold cursor-pointer'
-          onClick={() => navigate('/introduction')}
+          onClick={() => navigate('/getting-started')}
         >
-          Get Started
+          Getting Started
         </div>
         <InstallCodeBlock language='javascript' code1={sampleCode1} />
       </div>

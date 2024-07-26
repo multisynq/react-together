@@ -17,12 +17,8 @@ interface PatchedMenuItemCommandEvent extends MenuItemCommandEvent {
 
 const items: PatchedMenuItem[] = [
   {
-    label: 'Get Started',
-    expanded: true,
-    items: [
-      { label: 'Introduction', to: '/introduction' },
-      { label: 'Installation', to: '/installation' },
-    ],
+    label: 'Getting Started',
+    to: '/getting-started',
   },
   {
     label: 'Components',
