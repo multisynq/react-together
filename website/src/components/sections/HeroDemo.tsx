@@ -27,36 +27,35 @@ export function WithReactTogetherProvider({ children }) {
 export function HeroDemo() {
   return (
     <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100 mt-8'>
-      <div
-        className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
-        style={{ aspectRatio: '5 / 3' }}
-      >
-        <WithReactTogetherProvider>
-          <FakeBrowser>
+      <WithReactTogetherProvider>
+        <FakeBrowser>
+          <div
+            className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
+            style={{ aspectRatio: '5 / 3' }}
+          >
             <SyncedDemo />
-          </FakeBrowser>
-        </WithReactTogetherProvider>
-      </div>
-      <div
-        className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#F8F3D7_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
-        style={{ aspectRatio: '5 / 3' }}
-      >
-        <WithReactTogetherProvider>
-          <FakeBrowser>
+          </div>
+        </FakeBrowser>
+      </WithReactTogetherProvider>
+      <WithReactTogetherProvider>
+        <FakeBrowser>
+          <div
+            className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#F8F3D7_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
+            style={{ aspectRatio: '5 / 3' }}
+          >
             <SyncedDemo />
-          </FakeBrowser>
-        </WithReactTogetherProvider>
-      </div>
+          </div>
+        </FakeBrowser>
+      </WithReactTogetherProvider>
     </div>
   )
 }
 export function SyncedDemo() {
   const cities = [
+    { name: 'Lisbon', code: 'LIS' },
     { name: 'New York', code: 'NY' },
-    { name: 'Rome', code: 'RM' },
     { name: 'London', code: 'LDN' },
     { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' },
   ]
   const items = [
     { name: 'A', value: 1 },
@@ -92,22 +91,51 @@ export function SyncedDemo() {
             </div>
           </PresenceDiv>
           <div className='content-center p-1'>
-            <CheckboxTogether rtid='checkbox' />
+            <PresenceDiv rtid='checkbox-presence'>
+              <CheckboxTogether rtid='checkbox' />
+            </PresenceDiv>
           </div>
         </div>
-        <SelectButtonTogether rtid='select-button' options={items} optionLabel='name' />
+        <PresenceDiv rtid='select-button-presence'>
+          <SelectButtonTogether
+            rtid='select-button'
+            options={items}
+            optionLabel='name'
+            itemTemplate={(item) => {
+              return (
+                <PresenceDiv rtid={`select-button-option-${item.name}`}>
+                  {/* <div className='p-button p-component border h-[15px] null' role='button' aria-label={item.name} data-pc-section='button'> */}
+                  <span className='p-button-label p-c' data-pc-section='label'>
+                    {item.name}
+                  </span>
+                  {/* </div> */}
+                </PresenceDiv>
+              )
+            }}
+          />
+        </PresenceDiv>
         <div className='flex items-center justify-between w-full'>
           {/* <div className='content-center p-1'>
             <TriStateCheckboxTogether rtid='tristate-checkbox' />
           </div> */}
-          <DropdownTogether rtid='dropdown' options={cities} optionLabel='name' placeholder='Select a City' className='w-full md:w-14rem' />
+          <PresenceDiv rtid='dropdown-presence'>
+            <DropdownTogether
+              rtid='dropdown'
+              options={cities}
+              optionLabel='name'
+              placeholder='Select a City'
+              className='w-full md:w-14rem'
+            />
+          </PresenceDiv>
           <div className='w-8' />
-          <KnobTogether rtid='knob2' size={80} />
+          <PresenceDiv rtid='knob2-presence'>
+            <KnobTogether rtid='knob2' size={80} />
+          </PresenceDiv>
         </div>
-        <p>
+        {/* <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
           enim ad minim veniam, quis nostrud exercitation.
-        </p>
+        </p> */}
       </div>
     </div>
   )
