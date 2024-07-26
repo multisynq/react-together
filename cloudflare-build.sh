@@ -31,7 +31,6 @@ if [ -n "$CF_PAGES" ]; then
 else
     echo "Running on local machine, deleting node_modules and clean-installing packages"
     rm -rf node_modules website/node_modules
-    npm ci || exit 1
 fi
 
 # build the react-together package
@@ -40,15 +39,10 @@ npm link || exit 1
 
 # build the website
 cd website
-mv -v package-lock.json package-lock.json.orig
-npm i || exit 1
+npm ci || exit 1
 npm link react-together || exit 1
 npm run build || exit 1
 
-# for debugging
-cp -v package*.json dist/
-echo diffing package-lock.*
-diff -u package-lock.json.orig package-lock.json > dist/package-lock.diff || true
 
 # set RESULT for EXIT trap
 RESULT=SUCCESS
