@@ -33,7 +33,7 @@ export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
         {code2 && (
           <button
             onClick={toggleCode}
-            className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded text-sm flex items-center justify-center'
+            className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded-lg text-sm flex items-center justify-center'
             title='Toggle Code'
           >
             <i className='pi pi-code' style={{ fontSize: '1rem' }}></i>
@@ -41,7 +41,7 @@ export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
         )}
         <button
           onClick={copyToClipboard}
-          className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded text-sm flex items-center justify-center'
+          className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded-lg text-sm flex items-center justify-center'
           title={copySuccess ? 'Copied!' : 'Copy'}
         >
           <i className={copySuccess ? 'pi pi-check' : 'pi pi-copy'} style={{ fontSize: '1rem' }}></i>
@@ -58,7 +58,7 @@ export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
           paddingRight: '32px',
           paddingTop: '18px',
           paddingBottom: '18px',
-          borderRadius: '8px',
+          borderRadius: '16px',
           fontSize: '14px',
           marginTop: 0,
           marginBottom: 0,
