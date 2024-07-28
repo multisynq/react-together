@@ -104,7 +104,7 @@ export default function DocumentNav() {
       pt={{
         root: classNames('border-2 border-gray-700 rounded-xl overflow-hidden shadow-lineStyleDark bg-white w-[180px] lg:w-[220px]'),
         headerContent: classNames('border-0 bg-transparent'),
-        headerAction: classNames('pt-4 pb-3 rounded-xl bg-white bro'),
+        headerAction: classNames('pt-4 pb-3'),
         panel: classNames('border-0'),
         headerLabel: classNames('text-gray-900'),
         headerSubmenuIcon: classNames('hidden'),
