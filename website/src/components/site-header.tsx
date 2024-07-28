@@ -1,21 +1,15 @@
 import { NavLink } from 'react-router-dom'
 
 import { siteConfig } from '@/config'
+import { CommandMenu, Icons, MainNav } from '@components'
 import { cn } from '@utils'
-import {
-  CommandMenu,
-  Icons,
-  MainNav,
-  // MobileNav,
-  // ModeToggle,
-} from '@components'
 import { MobileNavToggle } from './MobileNavToggle'
 
 import { buttonVariants } from '@shadcn/button'
 
 export function SiteHeader() {
   return (
-    <header className='sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
+    <header className='sticky top-0 z-50 w-full border-b-2 border-b-blue-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 '>
       <div className='container flex h-14 max-w-[92rem] items-center padding-0'>
         <MobileNavToggle />
         <MainNav />
