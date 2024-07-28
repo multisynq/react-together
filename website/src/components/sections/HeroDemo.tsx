@@ -28,20 +28,18 @@ export function HeroDemo() {
   return (
     <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100 mt-8'>
       <WithReactTogetherProvider>
-        {/* <FakeBrowser> */}
         <div
-          className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
+          className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] relative sm:min-w-[26rem]'
           style={{ aspectRatio: '5 / 3' }}
         >
           <FakeBrowser>
             <SyncedDemo />
           </FakeBrowser>
         </div>
-        {/* </FakeBrowser> */}
       </WithReactTogetherProvider>
       <WithReactTogetherProvider>
         <div
-          className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#F8F3D7_0%,#FFF_100%)] relative sm:min-w-[29.75rem]'
+          className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#F8F3D7_0%,#FFF_100%)] relative sm:min-w-[26rem]'
           style={{ aspectRatio: '5 / 3' }}
         >
           <FakeBrowser>
@@ -54,10 +52,14 @@ export function HeroDemo() {
 }
 export function SyncedDemo() {
   const cities = [
+    { name: 'Apex', code: 'APX' },
+    { name: 'Austin', code: 'AUS' },
     { name: 'Lisbon', code: 'LIS' },
-    { name: 'New York', code: 'NY' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
+    { name: 'London', code: 'LON' },
+    { name: 'Los Angeles', code: 'LOS' },
+    { name: 'Magdeburg', code: 'MGB' },
+    { name: 'Seattle', code: 'SEA' },
+    { name: 'Tokyo', code: 'TKY' },
   ]
   const items = [
     { name: 'A', value: 1 },
@@ -71,24 +73,24 @@ export function SyncedDemo() {
       <div className='flex justify-center absolute bottom-2 right-2'>
         <ConnectedViews maxAvatars={2} />
       </div>
-      <div className='absolute top-1/2 left-[82%] transform -translate-x-1/2 -translate-y-1/2 w-192'>
-        <h4 className='hidden sm:block text-gray-300'>Cursor Together [coming soon!]</h4>
+      <div className='absolute top-1/2 left-[85%] transform -translate-x-1/2 -translate-y-1/2 w-192'>
+        <h5 className='hidden sm:block text-gray-300 text-center'>Cursor Together [coming soon!]</h5>
       </div>
       <div className='flex h-full flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-y-auto overflow-hidden overflow-x-auto p-3 gap-8'>
         {/* <CountButtonTogether /> */}
         <div className='flex items-center justify-between w-full'>
           <PresenceDiv rtid='div1'>
-            <div className='w-18 px-2 py-1 bg-orange-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyleDark'>
+            <div className='w-18 px-2 py-1 bg-orange-400 cursor-pointer text-center rounded-lg text-white border-[2px] border-gray-700 shadow-lineStyleDark'>
               Hover
             </div>
           </PresenceDiv>
           <PresenceDiv rtid='div2'>
-            <div className='w-18 px-2 py-1 bg-indigo-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyleDark'>
+            <div className='w-18 px-2 py-1 bg-indigo-400 cursor-pointer text-center rounded-lg text-white border-[2px] border-gray-700 shadow-lineStyleDark'>
               Hover
             </div>
           </PresenceDiv>
           <PresenceDiv rtid='div3'>
-            <div className='w-18 px-2 py-1 bg-indigo-400 font-semibold cursor-pointer text-center rounded-lg text-gray-100 border-[2px] border-gray-700 shadow-lineStyleDark'>
+            <div className='w-18 px-2 py-1 bg-emerald-400 cursor-pointer text-center rounded-lg text-white border-[2px] border-gray-700 shadow-lineStyleDark'>
               Hover
             </div>
           </PresenceDiv>
@@ -99,22 +101,7 @@ export function SyncedDemo() {
           </div>
         </div>
         <PresenceDiv rtid='select-button-presence'>
-          <SelectButtonTogether
-            rtid='select-button'
-            options={items}
-            optionLabel='name'
-            // itemTemplate={(item) => {
-            //   return (
-            //     <PresenceDiv rtid={`select-button-option-${item.name}`}>
-            //       {/* <div className='p-button p-component border h-[15px] null' role='button' aria-label={item.name} data-pc-section='button'> */}
-            //       <span className='p-button-label p-c' data-pc-section='label'>
-            //         {item.name}
-            //       </span>
-            //       {/* </div> */}
-            //     </PresenceDiv>
-            //   )
-            // }}
-          />
+          <SelectButtonTogether rtid='select-button' options={items} optionLabel='name' />
         </PresenceDiv>
         <div className='flex items-center justify-between w-full'>
           <PresenceDiv rtid='dropdown-presence'>

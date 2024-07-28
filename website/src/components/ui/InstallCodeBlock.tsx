@@ -1,7 +1,6 @@
+import 'primeicons/primeicons.css'
 import { useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import 'primeicons/primeicons.css'
 
 export function InstallCodeBlock({ language, code1 }) {
   const [copySuccess, setCopySuccess] = useState(false)
@@ -41,7 +40,7 @@ export function InstallCodeBlock({ language, code1 }) {
           marginBottom: 0,
         }}
         // className='w-full border-2 border-gray-700 shadow-[0px_2px_0px_0px_#374151]'
-        className='w-full border-2 border-gray-700 shadow-lineStyle'
+        className='w-full border-2 border-gray-700 shadow-lineStyleDark'
       >
         {code1}
       </SyntaxHighlighter>
