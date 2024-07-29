@@ -17,7 +17,16 @@ function PrimeReactSelectButtonTogetherDemo() {
   ]
   return (
     <div className='flex-col place-items-center'>
-      <SelectButtonTogether rtid='select-button-doc-demo' options={items} optionLabel='name' />
+      <SelectButtonTogether
+        rtid='select-button-doc-demo'
+        options={items}
+        optionLabel='name'
+        pt={{
+          button: (ctx) => ({
+            className: `border h-[15px] ${(ctx || { props: {} }).props.className}`,
+          }),
+        }}
+      />
     </div>
   )
 }
