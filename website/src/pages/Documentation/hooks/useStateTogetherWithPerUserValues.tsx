@@ -1,4 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import CodeSpan from '@components/ui/CodeSpan'
 import { useViewId } from '@croquet/react'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { useStateTogetherWithPerUserValues } from '../../../../../react-together'
@@ -18,7 +19,7 @@ function Score({ score, clickable, onClick, onContextMenu }) {
         </span>
       )} */}
       <div
-        className={'py-2 px-4 flex items-center justify-center bg-slate-100 rounded-lg ' + clickableStyle}
+        className={'py-2 px-4 flex items-center justify-center bg-slate-100 rounded-lg select-none ' + clickableStyle}
         onClick={onClick}
         onContextMenu={onContextMenu}
       >
@@ -30,6 +31,7 @@ function Score({ score, clickable, onClick, onContextMenu }) {
 }
 
 function EverybodysScores() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setMyScore, scoresByUser] = useStateTogetherWithPerUserValues<number>('useStateTogetherWithValuesPerUser-demo', 0)
 
   const increment = () => setMyScore((p) => p + 1)
@@ -109,6 +111,12 @@ const content = (
         <p>
           The useStateTogetherWithValuesPerUser hook allows users to <strong>read the state of all of their peers</strong>. If the user is
           not connected to any session, then the hook will behave as a normal useState, and the peer state object will be empty.
+        </p>
+        <p>
+          The example below illustrates what can be achieved with this hook: Each view displays a series of numbers, representing the{' '}
+          <CodeSpan text='count' /> associated with each of the connected views. The local count is highlighted by the darker background.
+          Although each view can only change its local count (by clicking on it), every view can see the count values associated with every
+          connected view!
         </p>
         <DocumentationDemo>
           <EverybodysScores />
