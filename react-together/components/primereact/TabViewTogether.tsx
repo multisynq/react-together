@@ -6,6 +6,7 @@ export interface TabViewTogetherrops
   rtid: string
   headerClassName?: string
 }
+
 export default function TabViewTogether({
   rtid,
   ...props
@@ -17,6 +18,12 @@ export default function TabViewTogether({
       {...props}
       activeIndex={activeIndex}
       onTabChange={(e) => set_activeIndex(e.index)}
+      pt={{
+        panelContainer: { className: 'bg-transparent' },
+        root: {
+          className: 'border-gray-700 shadow-md px-4 rounded-xl'
+        }
+      }}
     />
   )
 }
