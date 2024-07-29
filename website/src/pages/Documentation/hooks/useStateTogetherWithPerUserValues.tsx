@@ -8,7 +8,7 @@ import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
 function Score({ score, clickable, onClick, onContextMenu }) {
-  const clickableStyle = clickable ? 'border-gray-800 cursor-pointer' : ''
+  const clickableStyle = clickable ? 'cursor-pointer shadow-sm bg-slate-500 text-white' : ''
   return (
     <div className='flex flex-col align-items-start'>
       {/* {clickable && (
@@ -17,7 +17,11 @@ function Score({ score, clickable, onClick, onContextMenu }) {
           (Click to increment)
         </span>
       )} */}
-      <div className={'p-2 bg-gray-100 rounded border-2 border-gray-300 ' + clickableStyle} onClick={onClick} onContextMenu={onContextMenu}>
+      <div
+        className={'py-2 px-4 flex items-center justify-center bg-slate-100 rounded-lg ' + clickableStyle}
+        onClick={onClick}
+        onContextMenu={onContextMenu}
+      >
         {score}
       </div>
       {/* <span className='text-xs'>{label}</span> */}
@@ -33,25 +37,28 @@ function EverybodysScores() {
 
   const myViewId = useViewId()
   return (
-    <div className='flex gap-5'>
-      {Object.entries(scoresByUser).map(([viewId, score]) => {
-        const clickable = viewId === myViewId
-        return (
-          <Score
-            key={viewId}
-            // label={viewId}
-            score={score}
-            clickable={clickable}
-            onClick={() => clickable && increment()}
-            onContextMenu={(e) => {
-              if (clickable) {
-                e.preventDefault()
-                reset()
-              }
-            }}
-          />
-        )
-      })}
+    <div className='flex flex-col items-center gap-2'>
+      <div className='flex gap-5'>
+        {Object.entries(scoresByUser).map(([viewId, score]) => {
+          const clickable = viewId === myViewId
+          return (
+            <Score
+              key={viewId}
+              // label={viewId}
+              score={score}
+              clickable={clickable}
+              onClick={() => clickable && increment()}
+              onContextMenu={(e) => {
+                if (clickable) {
+                  e.preventDefault()
+                  reset()
+                }
+              }}
+            />
+          )
+        })}
+      </div>
+      <p style={{ color: '#888888', fontSize: '0.7rem' }}>Right click to reset to zero</p>
     </div>
   )
 }
