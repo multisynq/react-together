@@ -40,7 +40,7 @@ export default function PageNav({ items }: PageNavProps) {
         expandedKeys={expandedKeys}
         pt={{
           root: classNames('w-[150px] lg:w-[200px]'),
-          panel: classNames('w-full bg-white rounded-xl border-2 border-gray-700 overflow-hidden shadow-lineStyleDark'),
+          panel: classNames('w-full overflow-hidden line-border bg-white'),
           headerAction: classNames('pt-4 pb-2'),
           headerContent: classNames('border-0 bg-transparent'),
           headerLabel: classNames('text-gray-900'),

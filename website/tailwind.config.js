@@ -80,5 +80,15 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.line-border': {
+          '@apply border-2 border-gray-700 shadow-lineStyleDark rounded-xl': {},
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    },
+    require('tailwindcss-animate'),
+  ],
 }

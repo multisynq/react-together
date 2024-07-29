@@ -102,7 +102,7 @@ export default function DocumentNav() {
       model={items}
       expandedKeys={expandedKeys}
       pt={{
-        root: classNames('border-2 border-gray-700 rounded-xl overflow-hidden shadow-lineStyleDark bg-white w-[180px] lg:w-[220px]'),
+        root: classNames('line-border overflow-hidden bg-white w-[180px] lg:w-[220px]'),
         headerContent: classNames('border-0 bg-transparent'),
         headerAction: classNames('pt-4 pb-3'),
         panel: classNames('border-0'),

@@ -34,13 +34,13 @@ export function InstallCodeBlock({ language, code1 }) {
           paddingBottom: '12px',
           paddingLeft: '16px',
           paddingRight: '16px',
-          borderRadius: '8px',
+          borderRadius: '16px',
           fontSize: '14px',
           marginTop: 0,
           marginBottom: 0,
         }}
         // className='w-full border-2 border-gray-700 shadow-[0px_2px_0px_0px_#374151]'
-        className='w-full border-2 border-gray-700 shadow-lineStyleDark'
+        className='w-full line-border'
       >
         {code1}
       </SyntaxHighlighter>

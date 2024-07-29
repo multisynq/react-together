@@ -21,7 +21,7 @@ export function PageHeader() {
       <span className='h-8' />
       <div className='flex gap-2 flex-col sm:flex-row'>
         <div
-          className='px-4 py-2 bg-blue-300 text-gray-800 rounded-lg shadow-lineStyleDark text-center flex items-center justify-center border-[2px] border-gray-700 cursor-pointer'
+          className='px-4 py-2 bg-blue-300 text-gray-800 text-center flex items-center justify-center cursor-pointer line-border'
           onClick={() => navigate('/getting-started')}
         >
           <h6 className='font-bold'>Getting Started</h6>
