@@ -12,7 +12,7 @@ interface TableContainerProps {
 
 export function TableContainer({ keys, data }: TableContainerProps) {
   return (
-    <div className='px-3 py-2 line-border w-full overflow-auto4 bg-white'>
+    <div className='px-3 py-2 line-border w-full bg-white overflow-y-auto'>
       <table className='w-full'>
         <thead>
           <tr className='border-b border-gray-300'>
