@@ -19,7 +19,7 @@ export default function ConnectedViews({
 
   return (
     <>
-      <AvatarGroup>
+      <AvatarGroup pt={{ root: { style: { gap: '10px' } } }}>
         {users.slice(0, maxAvatars).map(({ name, viewId }) => (
           <Avatar
             key={viewId}
