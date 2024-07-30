@@ -17,10 +17,10 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
     <>
       <p>
         This component wraps PrimeReact's{' '}
-        <Link to={docUrl} target='_blank'>
+        <Link className='text-blue-600 rounded-sm bg-slate-100 px-1' to={docUrl} target='_blank'>
           {originalName}
         </Link>{' '}
-        component to have a synchronized state across every user.
+        component to synchronized the state across all users.
       </p>
       <DocumentationDemo>
         <ComponentDemo />

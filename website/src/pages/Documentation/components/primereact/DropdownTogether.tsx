@@ -40,7 +40,7 @@ export default function PrimeReactDropdownTogetherDocumentationPage() {
             type: 'string',
             description: (
               <p>
-                The key used to identify this state, passed to the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook
+                The key used to identify this state, passed to the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook.
               </p>
             ),
           },
@@ -49,7 +49,7 @@ export default function PrimeReactDropdownTogetherDocumentationPage() {
             name: 'value',
             description: (
               <p>
-                Removed, since this value will be controlled by the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook
+                Removed, as this value will be controlled by the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook.
               </p>
             ),
           },

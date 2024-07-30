@@ -14,19 +14,19 @@ export default function PresenceDivDocumentationPage() {
             type: 'string',
             description: (
               <p>
-                The key used to identify this state, passed to the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook
+                The key used to identify this state, passed to the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook.
               </p>
             ),
           },
           {
             name: 'children',
             type: 'ReactNode',
-            description: 'The content to be rendered inside this div',
+            description: 'The content to be rendered inside this div.',
           },
           {
             name: 'className',
             type: 'string',
-            description: 'The className to be passed to the containing div. Used to customize the appearance of this div',
+            description: 'The className to be passed to the containing div, used to customize its appearance.',
           },
           // {
           //   name: 'options?',
