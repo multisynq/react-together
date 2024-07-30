@@ -2,20 +2,13 @@ import { Icons } from '@components'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@shadcn'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import DocumentNav from './ui/DocumentNav'
 
 export function MobileNavToggle() {
   const [isOpen, setIsOpen] = useState(false)
-  const navigate = useNavigate()
 
   const closeMenu = () => {
     setIsOpen(false)
-  }
-
-  const routeHome = () => {
-    navigate('/')
-    closeMenu()
   }
 
   return (
@@ -29,7 +22,6 @@ export function MobileNavToggle() {
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
           <div className='h-[93vh] overflow-y-auto'>
-            <Button onClick={routeHome}>Home</Button>
             <Button onClick={closeMenu} variant='ghost' className='w-full flex justify-end p-2 rounded-xl'>
               <div className='flex w-full justify-between'>
                 <p className='text-center font-bold'>Close</p>
