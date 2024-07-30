@@ -1,3 +1,6 @@
+import gif1 from '@images/reactTogehter-install.gif'
+import gif3 from '@images/reactTogether-sharedCheckbox.gif'
+import gif2 from '@images/reactTogether-wrap.gif'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
@@ -21,10 +24,6 @@ export function FeatureCard() {
   const color1 = 'bg-sky-100'
   // const color2 = 'bg-indigo-100'
   // const color3 = 'bg-blue-100'
-
-  const gif1 = '/src/images/reactTogehter-install.gif'
-  const gif2 = '/src/images/reactTogether-wrap.gif'
-  const gif3 = '/src/images/reactTogether-sharedCheckbox.gif'
 
   useEffect(() => {
     AOS.init({ duration: 1000 })
