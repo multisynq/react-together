@@ -71,7 +71,7 @@ export function SyncedDemo() {
   return (
     <div className='px-3 py-4 w-full aspect-video'>
       <div className='flex justify-center absolute bottom-2 right-2'>
-        <ConnectedViews maxAvatars={2} />
+        <ConnectedViews maxAvatars={6} />
       </div>
       <div className='absolute top-1/2 left-[85%] transform -translate-x-1/2 -translate-y-1/2 w-192'>
         <h5 className='hidden sm:block text-gray-300 text-center'>Cursor Together [coming soon!]</h5>
