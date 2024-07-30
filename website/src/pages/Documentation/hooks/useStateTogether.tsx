@@ -9,8 +9,8 @@ import HookReturnApi from './HookReturnApi'
 const description = (
   <>
     <p>
-      The useStateTogether hook makes every user <strong>see the same state simultaneously</strong>. If the user is not connected to any
-      session, then this hook behaves as a normal useState.
+      The useStateTogether hook allows all users to see the same state simultaneously. If a user is not connected to any session, this hook
+      behaves like a normal useState.
     </p>
     <DocumentationDemo>
       <CountButtonTogether />
@@ -38,12 +38,12 @@ const api = (
         {
           name: 'rtid',
           type: 'string',
-          description: 'The key used to identify this state',
+          description: 'The key used to identify this state.',
         },
         {
           name: 'initialValue',
           type: 'T',
-          description: 'The initial value to use the first time the state is created.',
+          description: 'The initial value to use when the state is first created.',
         },
       ]}
     />
@@ -52,13 +52,13 @@ const api = (
         {
           name: '0',
           type: 'T',
-          description: 'The current state, synchronized with everyone within the same React Together session.',
+          description: 'The current state, synchronized with everyone in the same React Together session.',
         },
         {
           name: '1',
           type: '(T | (T) => T) => void',
           description:
-            'The setter function that lets you update the state to a different value, and change it in every user within the same session',
+            'The setter function that allows updating the state to a different value, changing it for every user in the same session.',
         },
       ]}
     />

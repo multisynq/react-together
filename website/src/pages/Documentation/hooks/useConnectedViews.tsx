@@ -14,7 +14,7 @@ export default function UseConnectedViewsDocumentationPage() {
           {
             name: 'connectedViews',
             type: <LinkSpan text='ConnectedView[]' to='#connected-view' />,
-            description: 'A list containing all the views connected to the current React Together session',
+            description: 'A list containing all the views connected to the current React Together session.',
           },
         ]}
       />
@@ -25,17 +25,17 @@ export default function UseConnectedViewsDocumentationPage() {
           {
             name: 'viewId',
             type: 'string',
-            description: 'The id of the view that this entry corresponds to',
+            description: 'The ID of the view to which the current entry corresponds.',
           },
           {
             name: 'isYou',
             type: 'boolean',
-            description: 'Indicates whether you are this view',
+            description: 'Indicates whether this is the current view for the user.',
           },
           {
             name: 'name',
             type: 'string',
-            description: 'An alias to make the view more human identifiable',
+            description: 'An alias to make the view more easily identifiable by other users.',
           },
         ]}
       />

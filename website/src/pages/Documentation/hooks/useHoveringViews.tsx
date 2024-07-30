@@ -60,7 +60,7 @@ export default function UseHoveringViewsDocumentationPage() {
           {
             name: 'rtid',
             type: 'string',
-            description: 'The key used to identify this state',
+            description: 'The key used to identify this state.',
           },
           // {
           //   name: 'options',
@@ -79,7 +79,7 @@ export default function UseHoveringViewsDocumentationPage() {
           {
             name: '1',
             type: 'string[]',
-            description: 'An array containing all the viewIds that are currently hovering the element with the returned ref.',
+            description: 'An array containing all the view IDs that are currently hovering over the element with the returned ref.',
           },
         ]}
       />
@@ -92,8 +92,9 @@ export default function UseHoveringViewsDocumentationPage() {
       description={
         <>
           <p>
-            The useHoveringViews hook is used to tell which views are hovering a given DOM element. If a view is hovering a component that
-            is nested on other “hoverable” components, only the innermost will tell that view is hovering it.
+            The useHoveringViews hook identifies which views are hovering over a given DOM element. If a view is hovering over a component
+            that is nested within other ‘hoverable’ components, only the innermost component will register that the view is hovering over
+            it.
           </p>
           <DocumentationDemo>
             <UseHoveringViewsDemo />
