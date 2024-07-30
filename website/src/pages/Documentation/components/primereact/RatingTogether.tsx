@@ -1,21 +1,12 @@
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
-import { RatingTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
 const name = 'RatingTogether'
 const originalName = 'Rating'
 const docUrl = `https://primereact.org/rating`
-
-function PrimeReactRatingTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <RatingTogether rtid='rating-doc-demo' />
-    </div>
-  )
-}
 
 export default function PrimeReactRatingTogetherDocumentationPage() {
   const api = (
@@ -51,9 +42,7 @@ export default function PrimeReactRatingTogetherDocumentationPage() {
       />
     </>
   )
-  const content = (
-    <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactRatingTogetherDemo} />
-  )
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('RatingTogether')} />
 }

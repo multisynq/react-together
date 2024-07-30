@@ -1,21 +1,12 @@
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
-import { ToggleButtonTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
 const name = 'ToggleButtonTogether'
 const originalName = 'ToggleButton'
 const docUrl = `https://primereact.org/togglebutton`
-
-function PrimeReactToggleButtonTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <ToggleButtonTogether rtid='toggle-button-doc-demo' />
-    </div>
-  )
-}
 
 export default function PrimeReactToggleButtonTogetherDocumentationPage() {
   const api = (
@@ -46,9 +37,7 @@ export default function PrimeReactToggleButtonTogetherDocumentationPage() {
       />
     </>
   )
-  const content = (
-    <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactToggleButtonTogetherDemo} />
-  )
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('ToggleButtonTogether')} />
 }

@@ -1,21 +1,12 @@
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
-import { CalendarTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
 const name = 'CalendarTogether'
 const originalName = 'Calendar'
 const docUrl = `https://primereact.org/calendar`
-
-function PrimeReactCalendarTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <CalendarTogether rtid='calendar-doc-demo' inline />
-    </div>
-  )
-}
 
 export default function PrimeReactCalendarTogetherDocumentationPage() {
   const api = (
@@ -46,9 +37,7 @@ export default function PrimeReactCalendarTogetherDocumentationPage() {
       />
     </>
   )
-  const content = (
-    <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactCalendarTogetherDemo} />
-  )
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('CalendarTogether')} />
 }

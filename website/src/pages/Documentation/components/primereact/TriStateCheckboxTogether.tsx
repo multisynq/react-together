@@ -1,21 +1,12 @@
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
-import { TriStateCheckboxTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
 const originalName = 'TriStateCheckbox'
 const name = 'TriStateCheckboxTogether'
 const docUrl = 'https://primereact.org/tristatecheckbox/'
-
-function PrimeReactTriStateTriStateCheckboxTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <TriStateCheckboxTogether rtid='tri-state-checkbox-doc-demo' />
-    </div>
-  )
-}
 
 export default function PrimeReactTriStateTriStateCheckboxTogetherDocumentationPage() {
   const api = (
@@ -46,12 +37,7 @@ export default function PrimeReactTriStateTriStateCheckboxTogetherDocumentationP
       />
     </>
   )
-  const content = (
-    <PrimeReactComponentDocumentationPage
-      {...{ name, originalName, docUrl, api }}
-      ComponentDemo={PrimeReactTriStateTriStateCheckboxTogetherDemo}
-    />
-  )
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('TriStateCheckboxTogether')} />
 }

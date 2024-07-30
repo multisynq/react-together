@@ -1,7 +1,6 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
-import { ConnectedViews } from '../../../../../react-together'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import InterfaceApi from '../InterfaceApi'
@@ -49,9 +48,7 @@ export default function UseConnectedViewsDocumentationPage() {
           <p>
             The useConnectedViews hook returns an array of objects representing all the views that are connected to the current session.
           </p>
-          <DocumentationDemo>
-            <ConnectedViews />
-          </DocumentationDemo>
+          <DocumentationDemo url='ConnectedViews' />
         </>
       }
       usage={

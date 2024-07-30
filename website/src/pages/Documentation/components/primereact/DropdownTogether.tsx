@@ -1,32 +1,12 @@
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
-import { DropdownTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
 const name = 'DropdownTogether'
 const originalName = 'Dropdown'
 const docUrl = `https://primereact.org/dropdown`
-
-function PrimeReactDropdownTogetherDemo() {
-  const cities = [
-    { name: 'Los Angeles', code: 'LA' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Lisbon', code: 'LIS' },
-  ]
-  return (
-    <div className='flex-col place-items-center'>
-      <DropdownTogether
-        rtid='dropdown-doc-demo'
-        options={cities}
-        optionLabel='name'
-        placeholder='Select a City'
-        className='w-full md:w-14rem'
-      />
-    </div>
-  )
-}
 
 export default function PrimeReactDropdownTogetherDocumentationPage() {
   const api = (
@@ -57,9 +37,7 @@ export default function PrimeReactDropdownTogetherDocumentationPage() {
       />
     </>
   )
-  const content = (
-    <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactDropdownTogetherDemo} />
-  )
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('DropdownTogether')} />
 }

@@ -1,21 +1,12 @@
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
-import { InputSwitchTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
 const name = 'InputSwitchTogether'
 const originalName = 'InputSwitch'
 const docUrl = `https://primereact.org/inputswitch`
-
-function PrimeReactInputSwitchTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <InputSwitchTogether rtid='input-switch-doc-demo' />
-    </div>
-  )
-}
 
 export default function PrimeReactInputSwitchTogetherDocumentationPage() {
   const api = (
@@ -46,9 +37,7 @@ export default function PrimeReactInputSwitchTogetherDocumentationPage() {
       />
     </>
   )
-  const content = (
-    <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactInputSwitchTogetherDemo} />
-  )
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('InputSwitchTogether')} />
 }

@@ -10,9 +10,8 @@ interface GenericComponentPageProps {
   originalName: string
   docUrl: string
   api?: ReactNode | ReactNode[]
-  ComponentDemo: () => ReactNode
 }
-export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, ComponentDemo, api }: GenericComponentPageProps) {
+export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api }: GenericComponentPageProps) {
   const description = (
     <>
       <p>
@@ -22,9 +21,7 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
         </Link>{' '}
         component to have a synchronized state across every user.
       </p>
-      <DocumentationDemo>
-        <ComponentDemo />
-      </DocumentationDemo>
+      <DocumentationDemo url={`primereact/${originalName}`} />
     </>
   )
 

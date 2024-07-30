@@ -1,21 +1,12 @@
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
-import { KnobTogether } from '../../../../../../react-together'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
 const name = 'KnobTogether'
 const originalName = 'Knob'
 const docUrl = `https://primereact.org/knob`
-
-function PrimeReactKnobTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <KnobTogether rtid='knob-doc-demo' />
-    </div>
-  )
-}
 
 export default function PrimeReactKnobTogetherDocumentationPage() {
   const api = (
@@ -46,9 +37,7 @@ export default function PrimeReactKnobTogetherDocumentationPage() {
       />
     </>
   )
-  const content = (
-    <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} ComponentDemo={PrimeReactKnobTogetherDemo} />
-  )
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('KnobTogether')} />
 }

@@ -1,4 +1,3 @@
-import CountButtonTogether from '@components/demo/CountButtonTogether'
 import { CodeBlock } from '@components/ui/CodeBlock'
 import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
@@ -45,9 +44,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <h4 id='sdf'>Use ReactTogether</h4>
       <p>That's it! Now you just need to import and use our components to create awesome interactive websites!</p>
       <h5>Example</h5>
-      <DocumentationDemo>
-        <CountButtonTogether />
-      </DocumentationDemo>
+      <DocumentationDemo url='CountButtonTogether' />
       <CodeBlock
         language='tsx'
         code1={`const [count, set_count] = useStateTogether('count', 0)

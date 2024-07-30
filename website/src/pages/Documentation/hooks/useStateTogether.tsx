@@ -1,4 +1,3 @@
-import CountButtonTogether from '@components/demo/CountButtonTogether'
 import { CodeBlock } from '@components/ui/CodeBlock'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
@@ -12,9 +11,7 @@ const description = (
       The useStateTogether hook makes every user <strong>see the same state simultaneously</strong>. If the user is not connected to any
       session, then this hook behaves as a normal useState.
     </p>
-    <DocumentationDemo>
-      <CountButtonTogether />
-    </DocumentationDemo>
+    <DocumentationDemo url='CountButtonTogether' />
   </>
 )
 
