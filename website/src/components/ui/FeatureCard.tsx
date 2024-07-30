@@ -41,7 +41,7 @@ export function FeatureCard() {
             header={'Install'}
             body={
               <p>
-                Use <CodeSpan text='npm' /> to install <CodeSpan text='react-together' />
+                Use <CodeSpan text='npm' /> to install <CodeSpan text='react-together' />.
               </p>
             }
             color={color1}
@@ -51,7 +51,7 @@ export function FeatureCard() {
             header={'Wrap'}
             body={
               <p>
-                Wrap your application inside <CodeSpan text='<ReactTogether/>' /> component
+                Wrap your application inside <CodeSpan text='<ReactTogether/>' /> component.
               </p>
             }
             color={color1}
