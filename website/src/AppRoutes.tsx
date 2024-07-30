@@ -21,6 +21,7 @@ import {
 import { HomePage } from './pages/HomePage'
 
 import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
+import { NotFoundPage } from '@pages/NotFoundPage'
 import { Route, Routes } from 'react-router-dom'
 
 export default function AppRoutes() {
@@ -53,6 +54,7 @@ export default function AppRoutes() {
           <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDocumentationPage />} />
         </Route>
       </Route>
+      <Route path='*' element={<NotFoundPage />} />
     </Routes>
   )
 }
