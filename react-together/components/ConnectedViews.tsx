@@ -27,6 +27,7 @@ export default function ConnectedViews({
             size={size}
             shape="circle"
             label={name}
+            pt={{ root: { title: name } }}
           />
         ))}
         {nAvatars > 0 && (
