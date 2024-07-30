@@ -1,6 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import LinkSpan from '@components/ui/LinkSpan'
-import OverfillSpan from '@components/ui/OverfillSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
@@ -15,9 +14,8 @@ export default function ConnectedViewsDocumentationPage() {
             name: 'maxAvatars',
             type: 'number',
             default: '3',
-            description: (
-              <OverfillSpan text='The maximum number of circles rendered by this component. If maxAvatars is 3 and there are 3 views connected, it will render three circles, one for each view. If there are four views connected, it will render the circles for two views, and one circle with “+2”.' />
-            ),
+            description:
+              'The maximum number of circles rendered by this component. If maxAvatars is 3 and there are 3 views connected, it will render three circles, one for each view. If there are four views connected, it will render the circles for two views, and one circle with “+2”.',
           },
         ]}
       />
@@ -28,8 +26,8 @@ export default function ConnectedViewsDocumentationPage() {
       title='ConnectedViews'
       description={
         <p>
-          This component uses the <LinkSpan to='/useConnectedViews' text='useConnectedViews' /> hook to display the views that are connected
-          to the current React Together session.
+          This component uses the <LinkSpan to='/useConnectedViews' text='useConnectedViews' /> hook to display the views connected to the
+          current React Together session.
         </p>
       }
       usage={

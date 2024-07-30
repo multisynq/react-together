@@ -41,17 +41,17 @@ export default function HeroDemo() {
           {/* <CountButtonTogether /> */}
           <div className='flex items-center justify-between w-full'>
             <PresenceDiv rtid='div1'>
-              <div className='w-18 px-2 py-1 bg-orange-400 cursor-pointer text-center rounded-lg text-white border-[2px] border-gray-700 shadow-lineStyleDark'>
+              <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
                 Hover
               </div>
             </PresenceDiv>
             <PresenceDiv rtid='div2'>
-              <div className='w-18 px-2 py-1 bg-indigo-400 cursor-pointer text-center rounded-lg text-white border-[2px] border-gray-700 shadow-lineStyleDark'>
+              <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
                 Hover
               </div>
             </PresenceDiv>
             <PresenceDiv rtid='div3'>
-              <div className='w-18 px-2 py-1 bg-emerald-400 cursor-pointer text-center rounded-lg text-white border-[2px] border-gray-700 shadow-lineStyleDark'>
+              <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
                 Hover
               </div>
             </PresenceDiv>

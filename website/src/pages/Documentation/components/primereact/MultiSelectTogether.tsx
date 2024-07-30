@@ -29,7 +29,7 @@ export default function PrimeReactMultiSelectTogetherDocumentationPage() {
             name: 'value',
             description: (
               <p>
-                Removed, since this value will be controlled by the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook
+                Removed, as this value will be controlled by the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook.
               </p>
             ),
           },

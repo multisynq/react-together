@@ -14,7 +14,7 @@ export default function ReactTogetherDocumentationPage() {
           {
             name: 'sessionParams',
             type: <LinkSpan to='#ReactTogetherSessionParams' text='ReactTogetherSessionParams' />,
-            description: 'The parameters passed to the Multisynq session',
+            description: 'The parameters passed to the Multisynq session.',
           },
         ]}
       />
@@ -24,7 +24,7 @@ export default function ReactTogetherDocumentationPage() {
           {
             name: 'appId',
             type: 'string',
-            description: 'The ID of your app',
+            description: "The owner's ID.",
           },
           {
             name: 'apiKey',
@@ -45,7 +45,7 @@ export default function ReactTogetherDocumentationPage() {
   const content = (
     <GenericDocPage
       title='ReactTogether'
-      description='This component provides the context required to synchronize multiple users within the same session. Every React Together hook and component you use should be inside the scope of this component.'
+      description='This component provides the context required to synchronize multiple users within the same session. Every React Together hook and component should be used within the scope of this component.'
       usage={
         <>
           <CodeBlock language='javascript' code1={`import { ReactTogether } from 'react-together'`} />

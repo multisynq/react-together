@@ -13,7 +13,7 @@ const api = (
         {
           name: 'rtid',
           type: 'string',
-          description: 'The key used to identify this state',
+          description: 'The key used to identify this state.',
         },
         {
           name: 'initialValue',
@@ -27,18 +27,18 @@ const api = (
         {
           name: '0',
           type: 'T',
-          description: 'The current local state',
+          description: 'The current local state.',
         },
         {
           name: '1',
           type: '(T | (T) => T) => void',
-          description: 'The set function that lets you update the local state to a different value',
+          description: 'The set function that allows updating the local state to a different value.',
         },
         {
           name: '2',
           type: '[key: string]: T',
           description:
-            'An object containing a mapping between each view and the state it currently has. The views that are not rendering this hook will not exist in this mapping, even though they are connected to the React Together session.',
+            'An object containing a mapping between each view and its current state. Views that are not rendered in the hook will not appear in mapping, even if they are connected in the session.',
         },
       ]}
     />
@@ -50,14 +50,15 @@ const content = (
     description={
       <>
         <p>
-          The useStateTogetherWithValuesPerUser hook allows users to <strong>read the state of all of their peers</strong>. If the user is
-          not connected to any session, then the hook will behave as a normal useState, and the peer state object will be empty.
+          The useStateTogetherWithValuesPerUser hook allows users to read the state of all their peers. If the user is not connected to any
+          session, the hook behaves like a normal useState, and the peer state object will be empty. The example below illustrates
+          possibility of this hook.
         </p>
         <p>
-          The example below illustrates what can be achieved with this hook: Each view displays a series of numbers, representing the{' '}
-          <CodeSpan text='count' /> associated with each of the connected views. The local count is highlighted by the darker background.
-          Although each view can only change its local count (by clicking on it), every view can see the count values associated with every
-          connected view!
+          {' '}
+          Each view displays a series of numbers, representing the <CodeSpan text='count' /> associated with each connected view. The local
+          count is highlighted with a darker background. Although each view can only change its local count (by clicking on it), eevery view
+          can see the count values of all connected views!
         </p>
         <DocumentationDemo url='useStateTogetherWithPerUserValues' />
       </>
