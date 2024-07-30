@@ -1,5 +1,4 @@
 import { InstallCodeBlock } from '@components/ui/InstallCodeBlock'
-import { SeamlesslyAnimation } from '@components/ui/SeamlesslyAnimation'
 import { useNavigate } from 'react-router-dom'
 // import { SeamlesslyAnim } from '../../images/SeamlesslyAnim.svg'
 
@@ -7,14 +6,15 @@ export function PageHeader() {
   const navigate = useNavigate()
   const sampleCode1 = `npm i react-together`
   return (
-    <div className='flex flex-col items-center max-w-[105rem]'>
-      <span className='h-8'></span>
+    <div className='flex flex-col items-center max-w-[105rem] '>
+      <div className='h-8'></div>
       <h1 className='flex text-center flex-col sm:flex-row'>
-        Bring users together{' '}
-        <div className='pl-2'>
+        Bring users together seamlessly.
+        {/* <div className='pl-2'>
           <SeamlesslyAnimation />
-        </div>
+        </div> */}
       </h1>
+      <div className='h-4'></div>
       <p className='text-center max-w-[32rem] text-gray-500 text-sm sm:text-base'>
         Foster real-time collaboration with our React library, enabling users to interact and work together seamlessly.
       </p>

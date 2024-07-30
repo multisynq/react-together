@@ -1,5 +1,4 @@
 // import SyncedTabs from '@components/demo/SyncedTabs'
-import { FakeBrowser } from '@components/ui/FakeBrowser'
 import {
   CheckboxTogether,
   ConnectedViews,
@@ -32,9 +31,9 @@ export function HeroDemo() {
           className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] relative sm:min-w-[26rem]'
           style={{ aspectRatio: '5 / 3' }}
         >
-          <FakeBrowser>
-            <SyncedDemo />
-          </FakeBrowser>
+          {/* <FakeBrowser> */}
+          <SyncedDemo />
+          {/* </FakeBrowser> */}
         </div>
       </WithReactTogetherProvider>
       <WithReactTogetherProvider>
@@ -42,9 +41,9 @@ export function HeroDemo() {
           className='flex-[1_0_0] bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#F8F3D7_0%,#FFF_100%)] relative sm:min-w-[26rem]'
           style={{ aspectRatio: '5 / 3' }}
         >
-          <FakeBrowser>
-            <SyncedDemo />
-          </FakeBrowser>
+          {/* <FakeBrowser> */}
+          <SyncedDemo />
+          {/* </FakeBrowser> */}
         </div>
       </WithReactTogetherProvider>
     </div>
@@ -80,17 +79,17 @@ export function SyncedDemo() {
         {/* <CountButtonTogether /> */}
         <div className='flex items-center justify-between w-full'>
           <PresenceDiv rtid='div1'>
-            <div className='w-18 px-2 py-1 bg-orange-400 cursor-pointer text-center rounded-lg text-white border-[2px] border-gray-700 shadow-lineStyleDark'>
+            <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
               Hover
             </div>
           </PresenceDiv>
           <PresenceDiv rtid='div2'>
-            <div className='w-18 px-2 py-1 bg-indigo-400 cursor-pointer text-center rounded-lg text-white border-[2px] border-gray-700 shadow-lineStyleDark'>
+            <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
               Hover
             </div>
           </PresenceDiv>
           <PresenceDiv rtid='div3'>
-            <div className='w-18 px-2 py-1 bg-emerald-400 cursor-pointer text-center rounded-lg text-white border-[2px] border-gray-700 shadow-lineStyleDark'>
+            <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
               Hover
             </div>
           </PresenceDiv>
