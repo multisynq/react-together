@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+set -eo pipefail
 exec 2>&1
 
 cd `dirname $0`
