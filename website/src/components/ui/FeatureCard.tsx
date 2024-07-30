@@ -14,7 +14,7 @@ function EachFeature({ header, body, color, imgSource }) {
       </div>
       <div className='w-full flex flex-col items-center px-4 my-8'>
         <h4 className='text-center font-bold'>{header}</h4>
-        <p className='text-center text-gray-800 mb-1 text-sm sm:text-base'>{body}</p>
+        <div className='text-center text-gray-800 mb-1 text-sm sm:text-base'>{body}</div>
       </div>
     </div>
   )
