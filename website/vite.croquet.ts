@@ -20,13 +20,17 @@ import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 // find the Croquet package in node_modules
 // it can be either in @croquet/croquet or a dependency of @croquet/react
-let CROQUET_PKG = 'node_modules/@croquet/croquet'
-if (!fs.existsSync(CROQUET_PKG)) {
-  CROQUET_PKG = 'node_modules/@croquet/react/' + CROQUET_PKG
-  if (!fs.existsSync(CROQUET_PKG)) {
-    throw new Error('Cannot find @croquet/croquet package in node_modules')
-  }
+const locations = [
+  'node_modules/@croquet/croquet',
+  'node_modules/@croquet/react/node_modules/@croquet/croquet',
+  'node_modules/react-together/node_modules/@croquet/croquet',
+]
+const CROQUET_PKG = locations.find((path) => fs.existsSync(path))
+if (CROQUET_PKG === undefined) {
+  throw new Error('Cannot find @croquet/croquet package in node_modules')
 }
+console.log(`Using CROQUET_PKG=${CROQUET_PKG}`)
+
 // get the version of the Croquet package
 const CROQUET_VERSION = JSON.parse(fs.readFileSync(`${CROQUET_PKG}/package.json`, 'utf8')).version
 // grab script source path from package
