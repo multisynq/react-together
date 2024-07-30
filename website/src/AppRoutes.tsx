@@ -14,10 +14,7 @@ import {
   PrimeReactTriStateCheckboxTogetherDocumentationPage,
   ReactTogetherDocumentationPage,
   UseConnectedViewsDocumentationPage,
-  UseConnectNewSessionDocumentationPage,
   UseHoveringViewsDocumentationPage,
-  UseIsTogetherDocumentationPage,
-  UseLeaveSessionDocumentationPage,
   UseStateTogetherDocumentationPage,
   UseStateTogetherWithPerUserValuesDocumentationPage,
 } from '@pages/Documentation'
@@ -39,9 +36,9 @@ export default function AppRoutes() {
         <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWithPerUserValuesDocumentationPage />} />
         <Route path='useConnectedViews' element={<UseConnectedViewsDocumentationPage />} />
         <Route path='useHoveringViews' element={<UseHoveringViewsDocumentationPage />} />
-        <Route path='useIsTogether' element={<UseIsTogetherDocumentationPage />} />
+        {/* <Route path='useIsTogether' element={<UseIsTogetherDocumentationPage />} />
         <Route path='useConnectNewSession' element={<UseConnectNewSessionDocumentationPage />} />
-        <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} />
+        <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} /> */}
         <Route path='primereact'>
           {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDocumentationPage />} /> */}
           <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDocumentationPage />} />

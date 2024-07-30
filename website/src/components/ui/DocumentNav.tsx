@@ -54,9 +54,9 @@ const items: PatchedMenuItem[] = [
       { label: 'useStateTogetherWithPerUserValues', to: '/useStateTogetherWithPerUserValues' },
       { label: 'useConnectedViews', to: '/useConnectedViews' },
       { label: 'useHoveringViews', to: '/useHoveringViews' },
-      { label: 'useIsTogether', to: '/useIsTogether' },
-      { label: 'useConnectNewSession', to: '/useConnectNewSession' },
-      { label: 'useLeaveSession', to: '/useLeaveSession' },
+      // { label: 'useIsTogether', to: '/useIsTogether' },
+      // { label: 'useConnectNewSession', to: '/useConnectNewSession' },
+      // { label: 'useLeaveSession', to: '/useLeaveSession' },
     ],
   },
   // {
