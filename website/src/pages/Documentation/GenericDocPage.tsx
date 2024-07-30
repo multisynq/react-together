@@ -11,7 +11,7 @@ export function GenericDocPage({ title, description, usage, api, parameter }: Ge
   const ref = useRef(null)
   return (
     <>
-      <div className='flex gap-2 items-baseline'>
+      <div className='flex gap-2 items-baseline break-all'>
         <h2 id='title' ref={ref}>
           {title}
         </h2>

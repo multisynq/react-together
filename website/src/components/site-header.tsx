@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom'
 
 import { siteConfig } from '@/config'
-import { CommandMenu, Icons, MainNav } from '@components'
+import { Icons, MainNav } from '@components'
+// import { CommandMenu } from '@components'
 import { cn } from '@utils'
 import { MobileNavToggle } from './MobileNavToggle'
 
@@ -14,9 +15,7 @@ export function SiteHeader() {
         <MobileNavToggle />
         <MainNav />
         <div className='flex flex-1 items-center justify-between space-x-2 md:justify-end'>
-          <div className='w-full flex-1 md:w-auto md:flex-none'>
-            <CommandMenu />
-          </div>
+          <div className='w-full flex-1 md:w-auto md:flex-none'>{/* <CommandMenu /> */}</div>
           <nav className='flex items-center'>
             <NavLink to={siteConfig.links.github} target='_blank' rel='noreferrer' className={'text-gray-800 hover:text-gray-600 '}>
               <div className={cn(buttonVariants({ variant: 'ghost' }), 'w-9 px-0')}>
