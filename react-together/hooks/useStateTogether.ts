@@ -10,7 +10,7 @@ import ReactTogetherModel from '../models/ReactTogetherModel'
 import getNewValue from './getNewValue'
 
 export default function useStateTogether<T>(
-  rtid: string,
+  rtKey: string,
   initial_value: T,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _options?: Record<string, unknown>
@@ -28,7 +28,7 @@ export default function useStateTogether<T>(
     session = context.session
     view = context.view
   }
-  const modelValue = model?.state.get(rtid) as T
+  const modelValue = model?.state.get(rtKey) as T
 
   // This is the local state
   const [value, set_value] = useState<T>(
@@ -44,7 +44,7 @@ export default function useStateTogether<T>(
         handling: 'oncePerFrame'
       },
       () => {
-        const newValue = model.state.get(rtid) as T
+        const newValue = model.state.get(rtKey) as T
         set_value(newValue)
       }
     )
@@ -55,14 +55,14 @@ export default function useStateTogether<T>(
       if (model && view) {
         // Eventually we will want to throttle publish calls
         view.publish(model.id, 'setState', {
-          id: rtid,
+          id: rtKey,
           newValue: getNewValue(value, newValueOrFn)
         })
       } else {
         set_value(newValueOrFn)
       }
     },
-    [value, set_value, model, view, rtid]
+    [value, set_value, model, view, rtKey]
   )
 
   return [value, setter]

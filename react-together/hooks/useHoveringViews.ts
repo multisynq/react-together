@@ -7,7 +7,7 @@ export interface useHoveringViewsOptions {
 }
 
 export default function useHoveringViews(
-  rtid: string,
+  rtKey: string,
   options: useHoveringViewsOptions = {}
 ): [MutableRefObject<HTMLDivElement | null>, string[]] {
   const { highlightMyself = false } = options
@@ -17,7 +17,7 @@ export default function useHoveringViews(
   const ref = useRef<HTMLDivElement | null>(null)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, set_hovering, allHovered] = useStateTogetherWithPerUserValues(
-    rtid,
+    rtKey,
     false
   )
 
@@ -31,15 +31,15 @@ export default function useHoveringViews(
       // We should only hover the innermost element, i.e. if an element
       // is hovered, none of its parents should be marked as hovered.
 
-      // We use rtProcessedBy to record the rtid of the first element
+      // We use rtProcessedBy to record the rtKey of the first element
       // that processed this event. If rtProcessedBy is defined,
       // then it was already processed by a child, and the current element
       // should not be hovered.
       const rtProcessedBy = e.rtProcessedBy
       if (rtProcessedBy === undefined) {
         set_hovering(true)
-        e.rtProcessedBy = rtid
-      } else if (rtProcessedBy !== rtid) {
+        e.rtProcessedBy = rtKey
+      } else if (rtProcessedBy !== rtKey) {
         set_hovering(false)
       }
     }
@@ -57,7 +57,7 @@ export default function useHoveringViews(
         node.removeEventListener('mouseleave', handleMouseLeave)
       }
     }
-  }, [set_hovering, rtid])
+  }, [set_hovering, rtKey])
 
   const hoveringViews = Object.entries(allHovered)
     .filter(

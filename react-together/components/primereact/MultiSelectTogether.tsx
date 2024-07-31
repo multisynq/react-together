@@ -3,13 +3,13 @@ import { useStateTogether } from '../../hooks'
 
 export interface MultiSelectTogetherProps
   extends Omit<MultiSelectProps, 'value' | 'onChange'> {
-  rtid: string
+  rtKey: string
 }
 export default function MultiSelectTogether({
-  rtid,
+  rtKey,
   ...props
 }: MultiSelectTogetherProps) {
-  const [value, set_value] = useStateTogether(rtid, [])
+  const [value, set_value] = useStateTogether(rtKey, [])
   return (
     <MultiSelect
       {...props}

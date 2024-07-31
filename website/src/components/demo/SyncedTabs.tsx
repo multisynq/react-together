@@ -7,7 +7,7 @@ const { content1, content2, content3 } = tabsData
 export default function SyncedTabs() {
   return (
     <div>
-      <TabViewTogether rtid='active-index' headerClassName='h-10'>
+      <TabViewTogether rtKey='active-index' headerClassName='h-10'>
         <TabPanel header='Header I'>
           <p className='m-0'>{content1}</p>
         </TabPanel>

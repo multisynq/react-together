@@ -25,10 +25,10 @@ interface PresenceDivDemoProps {
   rtidSuffix?: string
 }
 export function PresenceDivDemoRecursive({ height, color = '66cdf2', rtidSuffix = '' }: PresenceDivDemoProps) {
-  const rtid = 'useHoveringViewsDemo-' + rtidSuffix === '' ? 'root' : rtidSuffix
+  const rtKey = 'useHoveringViewsDemo-' + rtidSuffix === '' ? 'root' : rtidSuffix
   const childRgb = getDarkerShade(color, 0.85)
   return (
-    <PresenceDiv rtid={rtid}>
+    <PresenceDiv rtKey={rtKey}>
       <div className={`min-w-5 min-h-5 border border-black rounded grid grid-cols-2 gap-2 p-2 `} style={{ backgroundColor: color }}>
         {height > 1 && (
           <>

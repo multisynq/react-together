@@ -3,15 +3,15 @@ import { useStateTogether } from '../../hooks'
 
 export interface TabViewTogetherrops
   extends Omit<TabViewProps, 'activeIndex' | 'onTabChange'> {
-  rtid: string
+  rtKey: string
   headerClassName?: string
 }
 
 export default function TabViewTogether({
-  rtid,
+  rtKey,
   ...props
 }: TabViewTogetherrops) {
-  const [activeIndex, set_activeIndex] = useStateTogether<number>(rtid, 0)
+  const [activeIndex, set_activeIndex] = useStateTogether<number>(rtKey, 0)
 
   return (
     <TabView

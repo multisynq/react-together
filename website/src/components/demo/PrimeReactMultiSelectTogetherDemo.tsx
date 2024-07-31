@@ -10,7 +10,7 @@ export function PrimeReactMultiSelectTogetherDemo() {
   ]
   return (
     <div className='flex-col place-items-center'>
-      <MultiSelectTogether rtid='multi-select-doc-demo' options={cities} optionLabel='name' multiple display='chip' />
+      <MultiSelectTogether rtKey='multi-select-doc-demo' options={cities} optionLabel='name' multiple display='chip' />
     </div>
   )
 }

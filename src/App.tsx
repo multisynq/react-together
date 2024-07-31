@@ -35,38 +35,38 @@ export default function App() {
     <>
       <ConnectedViews maxAvatars={2} />
       <SamplePage />
-      {/* <PresenceDiv rtid="presence-div"></PresenceDiv> */}
+      {/* <PresenceDiv rtKey="presence-div"></PresenceDiv> */}
       <SyncedTabs />
       <CountButtonTogether />
       <ReactTogetherManager />
-      {/* <PresenceDiv rtid="div"></PresenceDiv> */}
-      <CheckboxTogether rtid="checkbox" />
-      <TriStateCheckboxTogether rtid="tristate-checkbox" />
+      {/* <PresenceDiv rtKey="div"></PresenceDiv> */}
+      <CheckboxTogether rtKey="checkbox" />
+      <TriStateCheckboxTogether rtKey="tristate-checkbox" />
       <DropdownTogether
-        rtid="dropdown"
+        rtKey="dropdown"
         options={cities}
         optionLabel="name"
         placeholder="Select a City"
         className="w-full md:w-14rem"
       />
-      <RatingTogether rtid="rating" tooltip="hello" />
-      <InputSwitchTogether rtid="input-switch" />
+      <RatingTogether rtKey="rating" tooltip="hello" />
+      <InputSwitchTogether rtKey="input-switch" />
       <SelectButtonTogether
-        rtid="select-button"
+        rtKey="select-button"
         options={items}
         optionLabel="name"
       />
       <MultiSelectTogether
-        rtid="multi-select"
+        rtKey="multi-select"
         options={cities}
         optionLabel="name"
         multiple
         display="chip"
       />
-      <ToggleButtonTogether rtid="toggle-button" />
-      <KnobTogether rtid="knob" />
+      <ToggleButtonTogether rtKey="toggle-button" />
+      <KnobTogether rtKey="knob" />
       <CalendarTogether
-        rtid="calendar"
+        rtKey="calendar"
         dateFormat="yy/mm/dd"
         disabledDays={[0, 1]}
         // inline

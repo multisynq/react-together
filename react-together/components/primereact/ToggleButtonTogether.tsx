@@ -3,13 +3,13 @@ import { useStateTogether } from '../../hooks'
 
 export interface ToggleButtonTogetherProps
   extends Omit<ToggleButtonProps, 'value' | 'onChange'> {
-  rtid: string
+  rtKey: string
 }
 export default function ToggleButtonTogether({
-  rtid,
+  rtKey,
   ...props
 }: ToggleButtonTogetherProps) {
-  const [checked, set_checked] = useStateTogether<boolean>(rtid, false)
+  const [checked, set_checked] = useStateTogether<boolean>(rtKey, false)
 
   return (
     <ToggleButton

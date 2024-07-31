@@ -3,13 +3,13 @@ import { useStateTogether } from '../../hooks'
 
 export interface CalendarTogetherProps
   extends Omit<CalendarProps, 'value' | 'onChange'> {
-  rtid: string
+  rtKey: string
 }
 export default function CalendarTogether({
-  rtid,
+  rtKey,
   ...props
 }: CalendarTogetherProps) {
-  const [value, setChecked] = useStateTogether<string | null>(rtid, null)
+  const [value, setChecked] = useStateTogether<string | null>(rtKey, null)
 
   return (
     <Calendar

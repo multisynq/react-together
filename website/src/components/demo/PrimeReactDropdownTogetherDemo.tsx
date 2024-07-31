@@ -9,7 +9,7 @@ export function PrimeReactDropdownTogetherDemo() {
   return (
     <div className='flex-col place-items-center'>
       <DropdownTogether
-        rtid='dropdown-doc-demo'
+        rtKey='dropdown-doc-demo'
         options={cities}
         optionLabel='name'
         placeholder='Select a City'

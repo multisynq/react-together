@@ -11,7 +11,7 @@ const api = (
     <HookParamsApi
       items={[
         {
-          name: 'rtid',
+          name: 'rtKey',
           type: 'string',
           description: 'The key used to identify this state.',
         },

@@ -44,34 +44,34 @@ export default function HeroDemo() {
           </div>
           <div className='h-full flex flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto'>
             <div className='flex items-center justify-between w-full'>
-              <PresenceDiv rtid='div1'>
+              <PresenceDiv rtKey='div1'>
                 <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
                   Hover
                 </div>
               </PresenceDiv>
-              <PresenceDiv rtid='div2'>
+              <PresenceDiv rtKey='div2'>
                 <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
                   Hover
                 </div>
               </PresenceDiv>
-              <PresenceDiv rtid='div3'>
+              <PresenceDiv rtKey='div3'>
                 <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
                   Hover
                 </div>
               </PresenceDiv>
               <div className='content-center p-1'>
-                <PresenceDiv rtid='checkbox-presence'>
-                  <CheckboxTogether rtid='checkbox' />
+                <PresenceDiv rtKey='checkbox-presence'>
+                  <CheckboxTogether rtKey='checkbox' />
                 </PresenceDiv>
               </div>
             </div>
-            <PresenceDiv rtid='select-button-presence'>
-              <SelectButtonTogether rtid='select-button' options={items} optionLabel='name' />
+            <PresenceDiv rtKey='select-button-presence'>
+              <SelectButtonTogether rtKey='select-button' options={items} optionLabel='name' />
             </PresenceDiv>
             <div className='flex items-center justify-between w-full'>
-              <PresenceDiv rtid='dropdown-presence'>
+              <PresenceDiv rtKey='dropdown-presence'>
                 <DropdownTogether
-                  rtid='dropdown'
+                  rtKey='dropdown'
                   options={cities}
                   optionLabel='name'
                   placeholder='Select a City'
@@ -79,8 +79,8 @@ export default function HeroDemo() {
                 />
               </PresenceDiv>
               <div className='w-8' />
-              <PresenceDiv rtid='knob2-presence'>
-                <KnobTogether rtid='knob2' size={80} />
+              <PresenceDiv rtKey='knob2-presence'>
+                <KnobTogether rtKey='knob2' size={80} />
               </PresenceDiv>
             </div>
           </div>

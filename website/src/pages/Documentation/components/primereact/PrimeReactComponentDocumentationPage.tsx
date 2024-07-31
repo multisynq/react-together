@@ -38,7 +38,7 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
   const usage = (
     <>
       <CodeBlock language='jsx' code1={`import { ${name} } from 'react-together'`} />
-      <CodeBlock language='jsx' code1={`return <${name} rtid='your-unique-id' />`} />
+      <CodeBlock language='jsx' code1={`return <${name} rtKey='your-unique-id' />`} />
     </>
   )
   return <GenericDocPage title={name} description={description} usage={usage} api={api} />

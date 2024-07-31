@@ -33,7 +33,7 @@ const api = (
     <HookParamsApi
       items={[
         {
-          name: 'rtid',
+          name: 'rtKey',
           type: 'string',
           description: 'The key used to identify this state.',
         },
@@ -65,7 +65,7 @@ const api = (
 const content = (
   <GenericDocPage
     title='useStateTogether'
-    parameter='<T>(rtid, initial_value, options)'
+    parameter='<T>(rtKey, initial_value, options)'
     description={description}
     usage={usage}
     api={api}

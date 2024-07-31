@@ -16,7 +16,7 @@ export default function PrimeReactDropdownTogetherDocumentationPage() {
         items={[
           {
             removed: false,
-            name: 'rtid',
+            name: 'rtKey',
             type: 'string',
             description: (
               <p>

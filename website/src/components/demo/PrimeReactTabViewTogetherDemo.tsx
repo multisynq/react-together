@@ -7,7 +7,7 @@ export function PrimeReactTabViewTogetherDemo() {
   const content3 = 'Everyone is viewing Tab 3'
   return (
     <div className='flex-col place-items-center'>
-      <TabViewTogether rtid='tab-together-doc-demo'>
+      <TabViewTogether rtKey='tab-together-doc-demo'>
         <TabPanel header='Tab I'>
           <p className='m-0'>{content1}</p>
         </TabPanel>

@@ -17,7 +17,7 @@ function mapToObject<T>(map: Map<string, T>): { [id: string]: T } {
 }
 
 export default function useStateTogetherWithPerUserValues<T>(
-  rtid: string,
+  rtKey: string,
   initial_value: T
 ): [T, Dispatch<SetStateAction<T>>, { [id: string]: T }] {
   const context = useContext(CroquetContext)
@@ -31,7 +31,7 @@ export default function useStateTogetherWithPerUserValues<T>(
     view = context.view
   }
   const viewId = view?.viewId
-  const allValues = (model?.stateTogether.get(rtid) || new Map()) as Map<
+  const allValues = (model?.stateTogether.get(rtKey) || new Map()) as Map<
     string,
     T
   >
@@ -40,7 +40,7 @@ export default function useStateTogetherWithPerUserValues<T>(
   const modelValue = viewId ? allValues.get(viewId) : undefined
   if (view && model && viewId && modelValue === undefined) {
     view.publish(model.id, 'setStateTogether', {
-      id: rtid,
+      id: rtKey,
       viewId,
       newValue: initial_value
     })
@@ -62,7 +62,7 @@ export default function useStateTogetherWithPerUserValues<T>(
         },
         () => {
           //console.log(`useStateTogetherWithPerUserValues - view.subscribe( callback ) viewId=${viewId}, modelId=${model.id}`)
-          const allValues = model.stateTogether.get(rtid) as Map<string, T>
+          const allValues = model.stateTogether.get(rtKey) as Map<string, T>
           set_localValue(allValues.get(viewId) as T)
         }
       )
@@ -72,7 +72,7 @@ export default function useStateTogetherWithPerUserValues<T>(
       // this code will run when the component unmounts
       if (view && model) {
         view.publish(model.id, 'setStateTogether', {
-          id: rtid,
+          id: rtKey,
           viewId,
           newValue: undefined
         })
@@ -84,7 +84,7 @@ export default function useStateTogetherWithPerUserValues<T>(
     (newValueOrFn: SetStateAction<T>): void => {
       if (model && view) {
         view.publish(model.id, 'setStateTogether', {
-          id: rtid,
+          id: rtKey,
           viewId,
           newValue: getNewValue(localValue, newValueOrFn)
         })
@@ -92,7 +92,7 @@ export default function useStateTogetherWithPerUserValues<T>(
         set_localValue(newValueOrFn)
       }
     },
-    [localValue, set_localValue, rtid, viewId]
+    [localValue, set_localValue, rtKey, viewId]
   )
 
   return [localValue, setter, mapToObject(allValues)]

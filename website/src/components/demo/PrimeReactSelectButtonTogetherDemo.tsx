@@ -8,7 +8,7 @@ export function PrimeReactSelectButtonTogetherDemo() {
   ]
   return (
     <div className='flex-col place-items-center'>
-      <SelectButtonTogether rtid='select-button-doc-demo' options={items} optionLabel='name' />
+      <SelectButtonTogether rtKey='select-button-doc-demo' options={items} optionLabel='name' />
     </div>
   )
 }

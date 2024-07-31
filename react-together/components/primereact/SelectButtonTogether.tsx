@@ -3,15 +3,15 @@ import { useStateTogether } from '../../hooks'
 
 export interface SelectButtonTogetherProps
   extends Omit<SelectButtonProps, 'value' | 'onChange'> {
-  rtid: string
+  rtKey: string
   className?: string
 }
 export default function SelectButtonTogether({
-  rtid,
+  rtKey,
   options,
   ...props
 }: SelectButtonTogetherProps) {
-  const [value, set_value] = useStateTogether<unknown>(rtid, null)
+  const [value, set_value] = useStateTogether<unknown>(rtKey, null)
 
   return (
     <SelectButton

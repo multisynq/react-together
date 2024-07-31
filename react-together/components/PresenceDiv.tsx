@@ -5,19 +5,19 @@ import { useHoveringViewsOptions } from '../hooks/useHoveringViews'
 const colorHash = new ColorHash()
 
 type PresenceDivProps = {
-  rtid: string
+  rtKey: string
   children: ReactChildren
   className?: string
   options?: useHoveringViewsOptions
 }
 export default function PresenceDiv({
-  rtid,
+  rtKey,
   children,
   className,
   options
 }: PresenceDivProps) {
   const debug = false
-  const [ref, hoveringViews] = useHoveringViews(rtid, options)
+  const [ref, hoveringViews] = useHoveringViews(rtKey, options)
 
   let style = {}
   if (hoveringViews.length > 0) {

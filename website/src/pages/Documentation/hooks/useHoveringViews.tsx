@@ -11,7 +11,7 @@ export default function UseHoveringViewsDocumentationPage() {
       <HookParamsApi
         items={[
           {
-            name: 'rtid',
+            name: 'rtKey',
             type: 'string',
             description: 'The key used to identify this state.',
           },
@@ -41,7 +41,7 @@ export default function UseHoveringViewsDocumentationPage() {
   const content = (
     <GenericDocPage
       title='useHoveringViews'
-      parameter='(rtid, options)'
+      parameter='(rtKey, options)'
       description={
         <>
           <p>

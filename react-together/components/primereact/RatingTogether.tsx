@@ -7,13 +7,13 @@ import { useStateTogether } from '../../hooks'
 // for this component?
 export interface RatingTogetherProps
   extends Omit<RatingProps, 'value' | 'onChange' | 'readOnly'> {
-  rtid: string
+  rtKey: string
 }
 export default function RatingTogether({
-  rtid,
+  rtKey,
   ...props
 }: RatingTogetherProps) {
-  const [value, set_value] = useStateTogether<Nullable<number>>(rtid, null)
+  const [value, set_value] = useStateTogether<Nullable<number>>(rtKey, null)
   return (
     <Rating
       {...props}

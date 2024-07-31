@@ -3,13 +3,13 @@ import { useStateTogether } from '../../hooks'
 
 export interface InputSwitchTogetherProps
   extends Omit<InputSwitchProps, 'checked' | 'onChange'> {
-  rtid: string
+  rtKey: string
 }
 export default function InputSwitchTogether({
-  rtid,
+  rtKey,
   ...props
 }: InputSwitchTogetherProps) {
-  const [checked, set_checked] = useStateTogether<boolean>(rtid, false)
+  const [checked, set_checked] = useStateTogether<boolean>(rtKey, false)
 
   return (
     <InputSwitch

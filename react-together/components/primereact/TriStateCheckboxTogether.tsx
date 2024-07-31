@@ -7,14 +7,14 @@ import { useStateTogether } from '../../hooks'
 
 export interface TriStateCheckboxTogetherProps
   extends Omit<TriStateCheckboxProps, 'value' | 'onChange'> {
-  rtid: string
+  rtKey: string
   className?: string
 }
 export default function TriStateCheckboxTogether({
-  rtid,
+  rtKey,
   ...props
 }: TriStateCheckboxTogetherProps) {
-  const [value, setValue] = useStateTogether<Nullable<boolean>>(rtid, false)
+  const [value, setValue] = useStateTogether<Nullable<boolean>>(rtKey, false)
 
   return (
     <>

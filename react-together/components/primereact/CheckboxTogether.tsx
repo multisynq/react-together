@@ -3,14 +3,14 @@ import { useStateTogether } from '../../hooks'
 
 export interface CheckboxTogetherProps
   extends Omit<CheckboxProps, 'checked' | 'onChange'> {
-  rtid: string
+  rtKey: string
   className?: string
 }
 export default function CheckboxTogether({
-  rtid,
+  rtKey,
   ...props
 }: CheckboxTogetherProps) {
-  const [checked, setChecked] = useStateTogether<boolean>(rtid, false) // one value that all users see
+  const [checked, setChecked] = useStateTogether<boolean>(rtKey, false) // one value that all users see
 
   return (
     <>

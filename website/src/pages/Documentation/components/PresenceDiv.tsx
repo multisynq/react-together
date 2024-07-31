@@ -10,7 +10,7 @@ export default function PresenceDivDocumentationPage() {
       <ComponentPropsTable
         items={[
           {
-            name: 'rtid',
+            name: 'rtKey',
             type: 'string',
             description: (
               <p>
@@ -56,7 +56,7 @@ export default function PresenceDivDocumentationPage() {
           <CodeBlock
             language='javascript'
             code1={`return (
-  <PresenceDiv rtid={rtid}>
+  <PresenceDiv rtKey={rtKey}>
     <YourComponent/>
   </PresenceDiv>
 )`}
