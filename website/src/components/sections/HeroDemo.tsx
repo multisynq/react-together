@@ -21,7 +21,7 @@ export function HeroDemo() {
     <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100 mt-8'>
       <FakeBrowser>
         <Iframe
-          url='/demos/HeroDemo'
+          url={`/#/demos/HeroDemo`}
           // height='100%'
           // width='100%'
           styles={{ aspectRatio: '5/3' }}
@@ -30,7 +30,7 @@ export function HeroDemo() {
 
       <FakeBrowser>
         <Iframe
-          url='/demos/HeroDemo'
+          url={`/#/demos/HeroDemo`}
           // height='100%'
           // width='100%'
           styles={{ aspectRatio: '5/3' }}
