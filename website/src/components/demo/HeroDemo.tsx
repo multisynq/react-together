@@ -27,8 +27,11 @@ export default function HeroDemo() {
     { name: '❤️', value: 6 },
   ]
   return (
-    <div className='w-full border-2 rounded-xl border-gray-700 overflow-hidden' style={{ aspectRatio: '5 / 3' }}>
-      <div className='border-line flex flex-col w-full h-full  relative'>
+    <div
+      className='w-full border-2 rounded-xl border-gray-700 overflow-hidden bg-lime-300 shadow-lineStyleDark'
+      style={{ aspectRatio: '5 / 3' }}
+    >
+      <div className='border-line flex flex-col w-full h-full relative'>
         <div className='h-12'>
           <FakeBrowser />
         </div>
