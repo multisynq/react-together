@@ -6,7 +6,7 @@ export function PageHeader() {
   const navigate = useNavigate()
   const sampleCode1 = `npm i react-together`
   return (
-    <div className='flex flex-col items-center max-w-[105rem] '>
+    <div className='flex flex-col items-center max-w-[105rem]'>
       <div className='h-8'></div>
       <h1 className='flex text-center flex-col sm:flex-row'>
         Bring users together seamlessly.
