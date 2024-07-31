@@ -3,6 +3,7 @@ import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import { NavItem } from './types'
 
 function IntroductionContent() {
   return (
@@ -51,11 +52,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   
 return (
   <button 
-  onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
-  onContextMenu={(e) => { e.preventDefault() set_count(0) }}
+    onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
+    onContextMenu={(e) => { e.preventDefault() set_count(0) }}
   >
-  Count: {count}
-  </button>`}
+    Count: {count}
+  </button>
+)`}
         code2={`import { useStateTogether } from './react-together'
 
 export default function CountButtonTogether() {
