@@ -1,4 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
@@ -46,7 +47,8 @@ export default function UseConnectedViewsDocumentationPage() {
       description={
         <>
           <p>
-            The useConnectedViews hook returns an array of objects representing all the views that are connected to the current session.
+            The <CodeSpan text='useConnectedViews' /> hook returns an array of objects representing all the views that are connected to the
+            current session.
           </p>
           <DocumentationDemo url='ConnectedViews' />
         </>

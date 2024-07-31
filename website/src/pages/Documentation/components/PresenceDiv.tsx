@@ -1,6 +1,8 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
 export default function PresenceDivDocumentationPage() {
@@ -21,12 +23,20 @@ export default function PresenceDivDocumentationPage() {
           {
             name: 'children',
             type: 'ReactNode',
-            description: 'The content to be rendered inside this div.',
+            description: (
+              <p>
+                The content to be rendered inside this <CodeSpan text='div' />.
+              </p>
+            ),
           },
           {
             name: 'className',
             type: 'string',
-            description: 'The className to be passed to the containing div, used to customize its appearance.',
+            description: (
+              <p>
+                The <CodeSpan text='className' /> to be passed to the containing <CodeSpan text='div' />, used to customize its appearance.
+              </p>
+            ),
           },
           // {
           //   name: 'options?',
@@ -45,10 +55,14 @@ export default function PresenceDivDocumentationPage() {
     <GenericDocPage
       title='PresenceDiv'
       description={
-        <p>
-          This component uses the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook to render a div that is highlighted
-          whenever a view is hovering it.
-        </p>
+        <>
+          <p>
+            This component wraps its children inside a <CodeSpan text='div' /> that is highlighted whenever a view is hovering it. This
+            component can be customized by passing a <CodeSpan text='className' /> prop. Alternatively, you can create your own component
+            using the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook.
+          </p>
+          <DocumentationDemo url='PresenceDiv' />
+        </>
       }
       usage={
         <>
@@ -56,7 +70,7 @@ export default function PresenceDivDocumentationPage() {
           <CodeBlock
             language='javascript'
             code1={`return (
-  <PresenceDiv rtKey={rtKey}>
+  <PresenceDiv rtKey='unique-key'>
     <YourComponent/>
   </PresenceDiv>
 )`}

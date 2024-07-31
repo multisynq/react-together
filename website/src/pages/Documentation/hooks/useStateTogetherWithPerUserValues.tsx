@@ -1,5 +1,6 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import CodeSpan from '@components/ui/CodeSpan'
+import Link from '@components/ui/Link'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
@@ -50,14 +51,17 @@ const content = (
     description={
       <>
         <p>
-          The useStateTogetherWithValuesPerUser hook allows users to read the state of all their peers. If the user is not connected to any
-          session, the hook behaves like a normal useState, and the peer state object will be empty. The example below illustrates
-          possibility of this hook.
+          The <CodeSpan text='useStateTogetherWithValuesPerUser' /> hook allows users to read the state of all their peers. If the user is
+          not connected to any session, the hook behaves like a normal{' '}
+          <Link to='https://react.dev/reference/react/useState' target='_blank'>
+            useState
+          </Link>
+          , and the peer state object will be empty. The example below illustrates possibility of this hook.
         </p>
         <p>
           {' '}
           Each view displays a series of numbers, representing the <CodeSpan text='count' /> associated with each connected view. The local
-          count is highlighted with a darker background. Although each view can only change its local count (by clicking on it), eevery view
+          count is highlighted with a darker background. Although each view can only change its local count (by clicking on it), every view
           can see the count values of all connected views!
         </p>
         <DocumentationDemo url='useStateTogetherWithPerUserValues' />
@@ -68,7 +72,7 @@ const content = (
         <CodeBlock language='jsx' code1={`import { useStateTogetherWithPerUserValues } from 'react-together'`} />
         <CodeBlock
           language='jsx'
-          code1={`const [count, setCount, countPerUser] = useStateTogetherWithPerUserValues('unique-id', 0)
+          code1={`const [count, setCount, countPerUser] = useStateTogetherWithPerUserValues('unique-key', 0)
 
 const increment = () => setCount((prev) => prev + 1)
 const reset = () => setCount(0)`}

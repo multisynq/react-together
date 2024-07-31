@@ -1,4 +1,6 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import CodeSpan from '@components/ui/CodeSpan'
+import Link from '@components/ui/Link'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
@@ -8,8 +10,12 @@ import HookReturnApi from './HookReturnApi'
 const description = (
   <>
     <p>
-      The useStateTogether hook allows all users to see the same state simultaneously. If a user is not connected to any session, this hook
-      behaves like a normal useState.
+      The <CodeSpan text='useStateTogether' /> hook allows all users to see the same state simultaneously. If a user is not connected to any
+      session, this hook behaves like a normal{' '}
+      <Link to='https://react.dev/reference/react/useState' target='_blank'>
+        useState
+      </Link>
+      .
     </p>
     <DocumentationDemo url='CountButtonTogether' />
   </>
@@ -20,7 +26,7 @@ const usage = (
     <CodeBlock language='jsx' code1={`import { useStateTogether } from 'react-together'`} />
     <CodeBlock
       language='jsx'
-      code1={`const [count, setCount] = useStateTogether('unique-id', 0)
+      code1={`const [count, setCount] = useStateTogether('unique-key', 0)
         
 const increment = () => setCount((prev) => prev + 1)
 const reset = () => setCount(0)`}

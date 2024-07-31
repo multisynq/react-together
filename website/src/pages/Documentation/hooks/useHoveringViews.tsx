@@ -1,4 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import CodeSpan from '@components/ui/CodeSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
@@ -32,7 +33,11 @@ export default function UseHoveringViewsDocumentationPage() {
           {
             name: '1',
             type: 'string[]',
-            description: 'An array containing all the view IDs that are currently hovering over the element with the returned ref.',
+            description: (
+              <p>
+                An array containing all the view IDs that are currently hovering over the element with the returned <CodeSpan text='ref' />.
+              </p>
+            ),
           },
         ]}
       />
@@ -45,9 +50,9 @@ export default function UseHoveringViewsDocumentationPage() {
       description={
         <>
           <p>
-            The useHoveringViews hook identifies which views are hovering over a given DOM element. If a view is hovering over a component
-            that is nested within other ‘hoverable’ components, only the innermost component will register that the view is hovering over
-            it.
+            The <CodeSpan text='useHoveringViews' /> hook identifies which views are hovering a given DOM element. If a view is hovering a
+            component that is nested within other ‘hoverable’ components, only the innermost component will indicate that it's being
+            hovered.
           </p>
           <DocumentationDemo url='PresenceDiv' />
         </>

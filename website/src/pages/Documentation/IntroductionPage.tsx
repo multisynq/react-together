@@ -1,5 +1,6 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import CodeSpan from '@components/ui/CodeSpan'
+import Link from '@components/ui/Link'
 import LinkSpan from '@components/ui/LinkSpan'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
@@ -23,9 +24,9 @@ function IntroductionContent() {
       <p>
         Wrap your application inside the <LinkSpan text='<ReactTogether/>' to='/ReactTogether' /> component, and configure it using your
         Multisynq keys. Get your free keys at{' '}
-        <a href='https://croquet.io/keys' target='_blank'>
+        <Link to='https://croquet.io/keys' target='_blank'>
           croquet.io/keys
-        </a>
+        </Link>
       </p>
       <CodeBlock language='tsx' code1={`import { ReactTogether } from 'react-together'`} />
       <CodeBlock

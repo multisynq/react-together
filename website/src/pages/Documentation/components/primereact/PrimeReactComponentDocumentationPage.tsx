@@ -1,7 +1,7 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import Link from '@components/ui/Link'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
 import { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
 import { GenericDocPage } from '../../GenericDocPage'
 import ApiChangesPrelude from './ApiChangesPrelude'
 
@@ -16,7 +16,7 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
     <>
       <p>
         This component wraps PrimeReact's{' '}
-        <Link className='text-blue-600 rounded-sm bg-slate-100 px-1' to={docUrl} target='_blank'>
+        <Link to={docUrl} target='_blank'>
           {originalName}
         </Link>{' '}
         component to synchronized the state across all users.
@@ -38,7 +38,7 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
   const usage = (
     <>
       <CodeBlock language='jsx' code1={`import { ${name} } from 'react-together'`} />
-      <CodeBlock language='jsx' code1={`return <${name} rtKey='your-unique-id' />`} />
+      <CodeBlock language='jsx' code1={`return <${name} rtKey='your-unique-key' />`} />
     </>
   )
   return <GenericDocPage title={name} description={description} usage={usage} api={api} />
