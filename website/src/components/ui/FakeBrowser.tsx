@@ -1,6 +1,6 @@
 import './FakeBrowser.css'
 
-export function FakeBrowser({ children }) {
+export function FakeBrowser() {
   return (
     <>
       <div className='fake-browser'>
@@ -17,7 +17,7 @@ export function FakeBrowser({ children }) {
             <span className='more-btn'></span>
           </div>
         </header>
-        <section className='fake-window-body'>{children}</section>
+        {/* <section className='fake-window-body'>{children}</section> */}
       </div>
     </>
   )
