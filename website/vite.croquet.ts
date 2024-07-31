@@ -20,10 +20,12 @@ import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 // find the Croquet package in node_modules
 // it can be either in @croquet/croquet or a dependency of @croquet/react
+// (if packages are linked locally)
 const locations = [
   'node_modules/@croquet/croquet',
   'node_modules/@croquet/react/node_modules/@croquet/croquet',
   'node_modules/react-together/node_modules/@croquet/croquet',
+  'node_modules/react-together/node_modules/@croquet/react/node_modules/@croquet/croquet',
 ]
 const CROQUET_PKG = locations.find((path) => fs.existsSync(path))
 if (CROQUET_PKG === undefined) {

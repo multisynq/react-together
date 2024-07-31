@@ -32,7 +32,7 @@ if [ -n "$CF_PAGES" ]; then
 else
     echo "Running on local machine, deleting node_modules and clean-installing packages"
     rm -rf node_modules website/node_modules
-    npm i
+    npm ci
 fi
 
 # build the react-together package
