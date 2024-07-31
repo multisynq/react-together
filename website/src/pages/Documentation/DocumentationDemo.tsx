@@ -5,7 +5,7 @@ interface DocumentationDemoProps {
   url: string
 }
 export default function DocumentationDemo({ url }: DocumentationDemoProps) {
-  const demoUrl = `/demos/${url}`
+  const demoUrl = `/#/demos/${url}`
   return (
     <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100'>
       <DocumentDemoContainer labelText='View 1'>

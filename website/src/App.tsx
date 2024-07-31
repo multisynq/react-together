@@ -5,7 +5,7 @@ import 'react-json-view-lite/dist/index.css'
 import './App.scss'
 
 import { Helmet } from 'react-helmet'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import AppRoutes from './AppRoutes'
 
 export default function App() {
@@ -17,9 +17,9 @@ export default function App() {
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'></link>
         <link href='https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap' rel='stylesheet' />
       </Helmet>
-      <BrowserRouter>
+      <HashRouter>
         <AppRoutes />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   )
 }
