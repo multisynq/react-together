@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   CheckboxTogether,
   ConnectedViews,
@@ -5,9 +6,11 @@ import {
   KnobTogether,
   PresenceDiv,
   SelectButtonTogether,
-} from '../../../../react-together'
+} from '../../../../react-together';
 
 export default function HeroDemo() {
+  const [isHomePage, setIsHomePage] = useState(true);
+
   const cities = [
     { name: 'Apex', code: 'APX' },
     { name: 'Austin', code: 'AUS' },
@@ -25,25 +28,33 @@ export default function HeroDemo() {
     { name: 'D', value: 4 },
     { name: '❤️', value: 6 },
   ]
+
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.source === window.parent) {
+        setIsHomePage(false);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    window.parent.postMessage('getUrl', '*');
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
+
+  if (!isHomePage) {
+    return (<div className='bg-red-200 h-full w-full flex items-center justify-center'>
+
+      <p>soloDemo</p>
+
+      </div>
+    )
+  }
+
   return (
-    <div className='w-full border-2 rounded-xl border-gray-700 overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
-      <div className='border-line flex flex-col w-full h-full relative'>
-        {/* <FakeBrowser /> */}
-        <div className='w-full flex items-center gap-4 bg-gray-200 h-14 border-b-[1.5px] border-black px-3'>
-          <div className='flex gap-2'>
-            <div className='bg-red-500 rounded-xl h-[10px] w-[10px] border border-black' />
-            <div className='bg-yellow-400 rounded-xl h-[10px] w-[10px] border border-black' />
-            <div className='bg-green-600 rounded-xl h-[10px] w-[10px] border border-black' />
-          </div>
-          <div className='w-full border border-black bg-white rounded-sm h-8 items-center flex px-2 '>
-            <p className='text-xs w-full'>https://your-website.com</p>
-          </div>
-          <div className='flex flex-col gap-1'>
-            <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
-            <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
-            <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
-          </div>
-        </div>
+    <div className='w-full overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
         <div className='px-2 py-2 bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] h-full'>
           <div className='flex justify-center absolute bottom-2 right-2'>
             <button>Add User</button>
@@ -56,7 +67,7 @@ export default function HeroDemo() {
           <div className='h-full flex flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto'>
             <div className='flex items-center justify-between w-full'>
               <PresenceDiv rtKey='div1'>
-                <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
+                <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700'>
                   Hover
                 </div>
               </PresenceDiv>
@@ -97,8 +108,8 @@ export default function HeroDemo() {
             </div>
           </div>
         </div>
-      </div>
+  
       {/* <TinyRpgTogether /> */}
     </div>
-  )
+  );
 }
