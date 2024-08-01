@@ -12,7 +12,7 @@ function IntroductionContent() {
       <h2 id='getting-started'>Getting Started</h2>
       <p>In the future, websites are all live and connect visitors with each other all the time. That future is now!</p>
       <p>
-        Welcome to React Together! With this library you will be able to build synchronized web applications in the blink of an eye! No need
+        Welcome to ReactTogether! With this library you will be able to build synchronized web applications in the blink of an eye! No need
         to set up servers or sockets!
       </p>
       <h4 id='installation'>Installation</h4>
