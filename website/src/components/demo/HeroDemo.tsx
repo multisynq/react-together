@@ -86,6 +86,7 @@ export default function HeroDemo() {
           </div>
         </div>
       </div>
+      {/* <TinyRpgTogether /> */}
     </div>
   )
 }
