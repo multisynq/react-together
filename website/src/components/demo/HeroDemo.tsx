@@ -1,4 +1,3 @@
-import { FakeBrowser } from '@components/ui/FakeBrowser'
 import {
   CheckboxTogether,
   ConnectedViews,
@@ -27,21 +26,33 @@ export default function HeroDemo() {
     { name: '❤️', value: 6 },
   ]
   return (
-    <div
-      className='w-full border-2 rounded-xl border-gray-700 overflow-hidden bg-lime-300 shadow-lineStyleDark'
-      style={{ aspectRatio: '5 / 3' }}
-    >
+    <div className='w-full border-2 rounded-xl border-gray-700 overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
       <div className='border-line flex flex-col w-full h-full relative'>
-        <div className='h-12'>
-          <FakeBrowser />
+        {/* <FakeBrowser /> */}
+        <div className='w-full flex items-center gap-4 bg-gray-200 h-14 border-b-[1.5px] border-black px-3'>
+          <div className='flex gap-2'>
+            <div className='bg-red-500 rounded-xl h-[10px] w-[10px] border border-black' />
+            <div className='bg-yellow-400 rounded-xl h-[10px] w-[10px] border border-black' />
+            <div className='bg-green-600 rounded-xl h-[10px] w-[10px] border border-black' />
+          </div>
+          <div className='w-full border border-black bg-white rounded-sm h-8 items-center flex px-2 '>
+            <p className='text-xs w-full'>https://your-website.com</p>
+          </div>
+          <div className='flex flex-col gap-1'>
+            <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
+            <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
+            <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
+          </div>
         </div>
         <div className='px-2 py-2 bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] h-full'>
           <div className='flex justify-center absolute bottom-2 right-2'>
+            <button>Add User</button>
             <ConnectedViews maxAvatars={6} />
           </div>
           <div className='absolute top-1/2 left-[85%] transform -translate-x-1/2 -translate-y-1/2 w-192'>
             <h5 className='sm:block text-gray-300 text-center'>Cursor Together [coming soon!]</h5>
           </div>
+
           <div className='h-full flex flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto'>
             <div className='flex items-center justify-between w-full'>
               <PresenceDiv rtKey='div1'>
@@ -68,6 +79,7 @@ export default function HeroDemo() {
             <PresenceDiv rtKey='select-button-presence'>
               <SelectButtonTogether rtKey='select-button' options={items} optionLabel='name' />
             </PresenceDiv>
+
             <div className='flex items-center justify-between w-full'>
               <PresenceDiv rtKey='dropdown-presence'>
                 <DropdownTogether
