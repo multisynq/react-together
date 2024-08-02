@@ -64,14 +64,14 @@ The core team is monitoring for pull requests. We will review your pull request 
 
 To begin with, clone the ReactTogether repository from [GitHub](https://github.com/multisynq/react-together).
 
-```
+``` bash
 git clone git@github.com:multisynq/react-together.git
 cd react-together
 ```
 
 Then run the showcase in your local environment at [http://localhost:5173](http://localhost:5173).
 
-```
+``` bash
 npm install
 npm run dev
 ```
@@ -100,7 +100,7 @@ Before you start, make sure you run `npm i` to install all the dependencies. The
 
 If your project uses ReactTogether from npm, you may delete `react-together` from its dependencies and use [`npm link`](https://docs.npmjs.com/cli/v10/commands/npm-link) to point them to your local `build` folder.
 
-```
+``` bash
 $ cd ~/path_to_your_react-together_clone/
 $ npm run build
 $ npm run link
