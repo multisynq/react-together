@@ -37,6 +37,7 @@ import {
 import CountButtonTogether from '@components/demo/CountButtonTogether'
 import HeroDemo from '@components/demo/HeroDemo'
 import TinyRpgTogether from '@components/demo/TinyRpg'
+import { ContributingPage } from '@pages/ContributingPage'
 import { DemoWrapper } from '@pages/DemoWrapper'
 import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
 import { NotFoundPage } from '@pages/NotFoundPage'
@@ -75,6 +76,7 @@ export default function AppRoutes() {
             <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDocumentationPage />} />
           </Route>
         </Route>
+        <Route path='/contributing' element={<ContributingPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
       <Route path='demos' element={<DemoWrapper />}>
