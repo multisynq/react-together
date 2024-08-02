@@ -76,15 +76,13 @@ npm run dev
 
 #### Project Structure
 ```
- - react-together // the react-together package
-     - components
-     - hooks
-     - models
-     - wrapped_libraries
-       - primereact
-       - antd
-       - ...
- - website // The React Together website
+ - react-together   // the react-together package
+     - models       // Where the Croquet Models are defined
+     - hooks        // ReactTogether hooks (where the magic happens)
+     - components   // The set of ReactTogether components
+       - primereact // Wrapped components
+       - ...        // More libraries coming soon!
+ - website          // The React Together website
 ```
 
 #### Development commands
@@ -113,7 +111,7 @@ $ npm link react-together
 
 We use an automatic code formatter called [Prettier](https://prettier.io/). Run `npm run prettier` after making any changes to the code. If you are using VS Code, make sure you install the recommended extensions (if you don't have them already) and that the project settings (under the `/.vscode` directory) are in place.
 
-However, there are still some styles that the linter cannot pick up. If you are unsure about something, looking at [Airbnb’s Style Guide](https://github.com/airbnb/javascript) will guide you in the right direction.
+However, there are still some styles and conventions that the linter cannot pick up. If you are unsure about something, looking at our [Coding Standards](https://github.com/multisynq/react-together/blob/develop/contributing/CODING_STANDARDS.md) will guide you in the right direction.
 
 Many changes, including bug fixes and documentation improvements can be implemented and reviewed via the normal GitHub pull request workflow. Some changes though are “substantial”, and we ask that these be put through a bit of a design process and produce a consensus among the ReactTogether core team.
 
