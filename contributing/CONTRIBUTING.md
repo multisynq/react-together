@@ -18,7 +18,7 @@ All work on ReactTogether happens directly on [GitHub](https://github.com/multis
 
 ### <a name="semantic-versioning"></a>[Semantic Versioning](#semantic-versioning)
 
-ReactTogether follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. Every significant change is documented in the [changelog file](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+ReactTogether follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. Every significant change made to the `react-together` package is documented in the [changelog file](https://github.com/multisynq/react-together/blob/develop/react-together/CHANGELOG.md).
 
 ### <a name="branch-organization"></a>[Branch Organization](#branch-organization)
 
