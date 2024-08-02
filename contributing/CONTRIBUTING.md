@@ -123,4 +123,4 @@ By contributing to ReactTogether, you agree that your contributions will be lice
 
 ### Getting in Touch
 
-You can get in touch with the project team, as well as with the developer community, via the [Multisynq Discord](https://discord.com/invite/6Bvt8vx8NA).
+You can get in touch with the project team, as well as with the developer community, via the [Croquet Discord](https://croquet.io/discord).

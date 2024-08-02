@@ -60,7 +60,7 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the project members responsible for enforcement at the [Multisynq Discord](https://discord.com/invite/6Bvt8vx8NA).
+reported to the project members responsible for enforcement at the [Croquet Discord](https://croquet.io/discord).
 All complaints will be reviewed and investigated promptly and fairly.
 
 All project members are obligated to respect the privacy and security of the
