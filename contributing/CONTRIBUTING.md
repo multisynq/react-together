@@ -1,6 +1,6 @@
 # Contributing
 
-Do you want to contribute your work to ReactTogether? Well, then first and most important, thank you!
+Do you want to contribute your work to React Together? Well, then first and most important, thank you!
 
 
 The following is a set of contrbuting guidelines. Please spend several minutes reading them before you create an issue or pull request.
@@ -16,21 +16,14 @@ We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/
 
 ### Open Development
 
-All work on ReactTogether happens directly on [GitHub](https://github.com/multisynq/react-together). Both core team members and external contributors send pull requests which go through the same review process.
+All work on React Together happens directly on [GitHub](https://github.com/multisynq/react-together). Both core team members and external contributors send pull requests which go through the same review process.
 
-### Semantic Versioning
+If you want to make your own package available, we invite you to use the naming scheme `react-together-<your-lib-name>` so it's easier to find by other developers!
 
-ReactTogether follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. Every significant change made to the `react-together` package is documented in the [changelog file](https://github.com/multisynq/react-together/blob/main/react-together/CHANGELOG.md).
+#### Bugs
+We are using [GitHub Issues](https://github.com/multisynq/react-together/issues) for our public bugs. Before filing a new task, make sure your problem doesn’t already exist. The best way to get your bug fixed is to provide a reduced test case.
 
-### Branch Organization
-
-Submit your changes directly to the [`main branch`](https://github.com/multisynq/react-together/tree/main/). Code that lands in `main` must be compatible with the latest stable release.
-
-### Bugs
-
-We are using [GitHub Issues](https://github.com/multisynq/react-together/issues) for our public bugs. We keep a close eye on this and try to make it clear when we have an internal fix in progress. Before filing a new task, try to make sure your problem doesn’t already exist. The best way to get your bug fixed is to provide a reduced test case.
-
-### Proposing a Change
+#### Proposing a Change
 
 If you intend to change the public API, or introduce a new feature, we recommend [filing an issue](https://github.com/multisynq/react-together/issues/new). This lets us reach an agreement on your proposal before you put significant effort into it.
 
@@ -38,88 +31,101 @@ If you’re only fixing a bug, it’s fine to submit a pull request right away b
 
 ### Your First Pull Request
 
-Working on your first Pull Request? You can learn how from this free video series:
-
-**[How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)**
-
-Feel free to pick an [issue](https://github.com/multisynq/react-together/issues) that you're comfortable with.
-
-If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don’t accidentally duplicate your effort.
-
-If somebody claims an issue but doesn’t follow up for more than two weeks, it’s fine to take it over but you should still leave a comment.
-
-### Sending a Pull Request
-
-The core team is monitoring for pull requests. We will review your pull request and either merge it, request changes to it, or close it with an explanation.
+If you decide to fix an [issue](https://github.com/multisynq/react-together/issues), please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don’t accidentally duplicate your effort. If somebody claims an issue but doesn’t follow up for more than two weeks, it’s fine to take it over but you should still leave a comment.
 
 **Before submitting a pull request,** please make sure the following is done:
 
 1.  Fork [the repository](https://github.com/multisynq/react-together) and create your branch from `main`.
-2.  Run `npm install` in the repository root.
-3.  Format your code with [prettier](https://github.com/prettier/prettier) (`npm run prettier`).
+2.  Run `npm install` in the repository root to start local development.
+3.  Make sure your code follows our [Coding Standards](https://github.com/multisynq/react-together/blob/main/contributing/CODING_STANDARDS.md).
 4.  Make sure your code lints (`npm run lint`).
+5.  Format your code with [prettier](https://github.com/prettier/prettier) (`npm run prettier`).
 
 
 ### Development Workflow
 
-To begin with, clone the ReactTogether repository from [GitHub](https://github.com/multisynq/react-together).
+#### Setting up locally 
+
+1. Clone the React Together repository from [GitHub](https://github.com/multisynq/react-together).
 
 ``` bash
-git clone git@github.com:multisynq/react-together.git
-cd react-together
+$ git clone git@github.com:multisynq/react-together.git
+$ cd react-together
 ```
 
-Then run the showcase in your local environment at [http://localhost:5173](http://localhost:5173).
+2. Install dependencies and run the playground
 
 ``` bash
-npm install
-npm run dev
+$ cd playground
+$ npm install
+$ npm run dev
 ```
+
+1. Access the playground at [http://localhost:5173](http://localhost:5173).
 
 #### Project Structure
+
+Our monorepo is organized as follows
+
 ```
- - react-together   // the react-together package
-     - models       // Where the Croquet Models are defined
-     - hooks        // ReactTogether hooks (where the magic happens)
-     - components   // The set of ReactTogether components
-       - primereact // Wrapped components
-       - ...        // More libraries coming soon!
- - website          // The React Together website
+react-together/
+├── website/                        # Website source code
+├── packages/
+│   ├── react-together/             # Main npm package
+│   ├── react-together-primereact/  # Additional packages
+│   └── ...
+└── playground/                     # Development testing environment
 ```
+
+#### Branch Organization
+
+The React Together repository uses the following branch structure:
+
+```
+- website    // Live version of the website
+- release    // Latest stable version of npm packages
+- main       // Staging area for packages and website (release-ready)
+- feature-x  // Individual developer branches for work in progress
+```
+
+Important notes:
+
+ - The `website` branch should never contain documentation ahead of the `release` branch;
+ - New features should be in their own branch and merged into `main`;
+ - Bug fixes can be merged directly into the `main` branch;
 
 #### Development commands
 
-The ReactTogether repository contains the source code for the `react-together` package, for the website, and for the wrapped libraries packages as well. Make sure you run the `npm` commands under the right directory.
+The React Together repository contains the source code for the website and multiple packages. Make sure you run the `npm` commands under the right directory.
 
-Before you start, make sure you run `npm i` to install all the dependencies. Then, you can run several commands:
+Below we list useful commands during development:
 
-*   `npm run lint` checks the code style.
 *   `npm run dev` runs the project in development mode.
-*   `npm run build` builds the package.
-*   `npm run prettier` formats the source code according to our style.
+*   `npm run build` builds the package into a `dist` folder.
+*   `npm run prettier` formats the source code.
+*   `npm run lint` checks the code style.
 
-If your project uses ReactTogether from npm, you may delete `react-together` from its dependencies and use [`npm link`](https://docs.npmjs.com/cli/v10/commands/npm-link) to point them to your local `build` folder.
+If your local project uses React Together from `npm` and you want to include your local changes, you may use `npm link` to use your local version of React Together.
+To do so, delete `react-together` from your project's dependencies and run the following commands:
 
 ``` bash
 $ cd ~/path_to_your_react-together_clone/
+$ cd packages/react-together
 $ npm run build
-$ npm run link
+$ npm run link # Register package locally
 
 $ cd ~/path/to/your/project
-$ npm link react-together
+$ npm uninstall react-together # Remove npm version
+$ npm link react-together # Link to local version
 ```
 
-### Style Guide
+#### Editor extensions
 
-We use an automatic code formatter called [Prettier](https://prettier.io/). Run `npm run prettier` after making any changes to the code. If you are using VS Code, make sure you install the recommended extensions (if you don't have them already) and that the project settings (under the `/.vscode` directory) are in place.
-
-However, there are still some styles and conventions that the linter cannot pick up. If you are unsure about something, looking at our [Coding Standards](https://github.com/multisynq/react-together/blob/main/contributing/CODING_STANDARDS.md) will guide you in the right direction.
-
-Many changes, including bug fixes and documentation improvements can be implemented and reviewed via the normal GitHub pull request workflow. Some changes though are “substantial”, and we ask that these be put through a bit of a design process and produce a consensus among the ReactTogether core team.
+If you are using VS Code, it may be useful to install the recommended extensions (if you don't have them already) and to ensure the project settings (under the `.vscode` directory) are in place. This will automate formatting and linting for you.
 
 ### License
 
-By contributing to ReactTogether, you agree that your contributions will be licensed under its Apache-2.0 license.
+By contributing to React Together, you agree that your contributions will be licensed under its Apache-2.0 license.
 
 ### Getting in Touch
 
