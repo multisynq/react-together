@@ -50,7 +50,7 @@ export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
       {/* <div className='overflow-x-auto'> */}
       <SyntaxHighlighter
         lineProps={{ style: { wordBreak: 'break-all', whiteSpace: 'pre-wrap' } }}
-        wrapLines={true}
+        wrapLines={false}
         language={language}
         style={vscDarkPlus}
         customStyle={{
