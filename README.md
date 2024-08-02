@@ -29,10 +29,6 @@ A library of synchronized components to add multi-user interaction to your websi
 npm install react-together
 ```
 
-```bash
-bun install react-together
-```
-
 ## 🔨 Usage
 
 ```tsx
