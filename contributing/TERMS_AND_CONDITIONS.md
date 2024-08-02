@@ -66,8 +66,8 @@ will be licensed in the same way.
 
 If you work for a company which, by the way or place in which your code was written, by your contract terms 
 or by the laws in your country, could claim any rights (including but not limited to intellectual or industrial 
-property) over your contributed code, you will have to send the project members (either by email from your 
-authorised superiors or by signed fax), a statement indicating that your company agrees with the terms 
+property) over your contributed code, you will have to send the project members (by email from your 
+authorised superiors), a statement indicating that your company agrees with the terms 
 explained in this page, and that it both authorises your contribution to ReactTogether and states that will 
 never claim any kind of rights over it.
 
