@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { DemoLink } from '@components/ui/DemoLink'
+import { useEffect, useState } from 'react'
 import {
   CheckboxTogether,
   ConnectedViews,
@@ -6,10 +7,11 @@ import {
   KnobTogether,
   PresenceDiv,
   SelectButtonTogether,
-} from '../../../../react-together';
+} from '../../../../react-together'
 
 export default function HeroDemo() {
-  const [isHomePage, setIsHomePage] = useState(true);
+  const [isHomePage, setIsHomePage] = useState(true)
+  const [showLink, setShowLink] = useState(false)
 
   const cities = [
     { name: 'Apex', code: 'APX' },
@@ -20,7 +22,7 @@ export default function HeroDemo() {
     { name: 'Magdeburg', code: 'MGB' },
     { name: 'Seattle', code: 'SEA' },
     { name: 'Tokyo', code: 'TKY' },
-  ];
+  ]
 
   const items = [
     { name: 'A', value: 1 },
@@ -28,22 +30,22 @@ export default function HeroDemo() {
     { name: 'C', value: 3 },
     { name: 'D', value: 4 },
     { name: '❤️', value: 6 },
-  ];
+  ]
 
   useEffect(() => {
     const handleMessage = (event) => {
       if (event.source === window.parent) {
-        setIsHomePage(false);
+        setIsHomePage(false)
       }
-    };
+    }
 
-    window.addEventListener('message', handleMessage);
-    window.parent.postMessage('getUrl', '*');
+    window.addEventListener('message', handleMessage)
+    window.parent.postMessage('getUrl', '*')
 
     return () => {
-      window.removeEventListener('message', handleMessage);
-    };
-  }, []);
+      window.removeEventListener('message', handleMessage)
+    }
+  }, [])
 
   if (!isHomePage) {
     return (
@@ -88,15 +90,22 @@ export default function HeroDemo() {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   return (
     <div className='w-full overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
       <div className='px-2 py-2 bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] h-full'>
-        <div className='flex justify-center absolute bottom-2 right-2'>
-          <button>Add User</button>
-          <ConnectedViews maxAvatars={6} />
+        <div className='flex flex-col items-end absolute bottom-2 right-2 gap-2'>
+          {showLink && <DemoLink />}
+          <div className='flex'>
+            <ConnectedViews maxAvatars={6} />
+            <button onClick={() => setShowLink(!showLink)}>
+              <div className='bg-blue-500 flex rounded-xl justify-center items-center px-2'>
+                <p className='text-white font-bold'>+User</p>
+              </div>
+            </button>
+          </div>
         </div>
         <div className='absolute top-1/2 left-[85%] transform -translate-x-1/2 -translate-y-1/2 w-192'>
           <h5 className='sm:block text-gray-300 text-center'>Cursor Together [coming soon!]</h5>
@@ -140,5 +149,5 @@ export default function HeroDemo() {
         </div>
       </div>
     </div>
-  );
+  )
 }
