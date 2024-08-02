@@ -62,6 +62,7 @@ export default function AppRoutes() {
           {/* <Route path='useIsTogether' element={<UseIsTogetherDocumentationPage />} />
           <Route path='useConnectNewSession' element={<UseConnectNewSessionDocumentationPage />} />
           <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} /> */}
+          <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
           <Route path='primereact'>
             {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDocumentationPage />} /> */}
             <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDocumentationPage />} />
@@ -76,7 +77,6 @@ export default function AppRoutes() {
             <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDocumentationPage />} />
           </Route>
         </Route>
-        <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
       <Route path='demos' element={<DemoWrapper />}>

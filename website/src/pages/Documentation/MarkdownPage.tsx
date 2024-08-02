@@ -8,7 +8,7 @@ interface MarkdownPageProps {
 }
 export function MarkdownPage({ markdown }: MarkdownPageProps) {
   return (
-    <div className='px-36'>
+    <div className='max-w-5xl mx-36'>
       <Markdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
