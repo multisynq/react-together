@@ -167,7 +167,7 @@ h6 {
   }
 
   pre {
-    @apply bg-gray-100 rounded p-4 mb-4 overflow-x-auto;
+    @apply p-4 mb-4 overflow-x-auto;
   }
 
   pre code {
