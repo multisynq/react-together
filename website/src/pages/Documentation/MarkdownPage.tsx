@@ -15,12 +15,10 @@ export function MarkdownPage({ markdown }: MarkdownPageProps) {
         className='markdown-content'
         components={{
           // a: ({ node, ...props }) => {
-          //   console.log(node)
           //   return <Link to={node.properties.href as string} target='_blank' {...props} />
           // },
-          code: ({ node, className, children, ...props }) => {
+          code: ({ className, children, ...props }) => {
             const isInline = children.toString().split('\n').length === 1
-            console.log('Rendering code', { node, isInline, className, children, props })
             const match = /language-(\w+)/.exec(className || '')
             return !isInline ? (
               <CodeBlock language={match?.[1]} code1={String(children)} {...props} />
