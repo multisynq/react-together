@@ -8,7 +8,7 @@ export function BrowserWrapper({ children }) {
           <div className='bg-green-600 rounded-xl h-[10px] w-[10px] border border-black' />
         </div>
         <div className='w-full border border-black bg-white rounded-sm h-8 items-center flex px-2 '>
-          <p className='text-xs w-full'>https://your-website.com</p>
+          <p className='text-xs w-full'>https://reacttogether.dev/#/demos/HeroDemo</p>
         </div>
         <div className='flex flex-col gap-1'>
           <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
