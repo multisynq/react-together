@@ -8,11 +8,11 @@ The following is a set of contrbuting guidelines. Please spend several minutes r
 
 ### Terms and Conditions
 
-We are eager to receive your contributions, but before you do, make sure you are acquainted with our [Terms and Conditions](https://github.com/multisynq/react-together/blob/develop/contributing/TERMS_AND_CONDITIONS.md)
+We are eager to receive your contributions, but before you do, make sure you are acquainted with our [Terms and Conditions](https://github.com/multisynq/react-together/blob/main/contributing/TERMS_AND_CONDITIONS.md)
 
 ### Code of Conduct
 
-We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/multisynq/react-together/blob/develop/contributing/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/multisynq/react-together/blob/main/contributing/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
 ### Open Development
 
@@ -20,7 +20,7 @@ All work on ReactTogether happens directly on [GitHub](https://github.com/multis
 
 ### Semantic Versioning
 
-ReactTogether follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. Every significant change made to the `react-together` package is documented in the [changelog file](https://github.com/multisynq/react-together/blob/develop/react-together/CHANGELOG.md).
+ReactTogether follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. Every significant change made to the `react-together` package is documented in the [changelog file](https://github.com/multisynq/react-together/blob/main/react-together/CHANGELOG.md).
 
 ### Branch Organization
 
@@ -113,7 +113,7 @@ $ npm link react-together
 
 We use an automatic code formatter called [Prettier](https://prettier.io/). Run `npm run prettier` after making any changes to the code. If you are using VS Code, make sure you install the recommended extensions (if you don't have them already) and that the project settings (under the `/.vscode` directory) are in place.
 
-However, there are still some styles and conventions that the linter cannot pick up. If you are unsure about something, looking at our [Coding Standards](https://github.com/multisynq/react-together/blob/develop/contributing/CODING_STANDARDS.md) will guide you in the right direction.
+However, there are still some styles and conventions that the linter cannot pick up. If you are unsure about something, looking at our [Coding Standards](https://github.com/multisynq/react-together/blob/main/contributing/CODING_STANDARDS.md) will guide you in the right direction.
 
 Many changes, including bug fixes and documentation improvements can be implemented and reviewed via the normal GitHub pull request workflow. Some changes though are “substantial”, and we ask that these be put through a bit of a design process and produce a consensus among the ReactTogether core team.
 
