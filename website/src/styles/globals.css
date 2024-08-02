@@ -129,3 +129,56 @@ h5 {
 h6 {
   /* font-weight: 400; */
 }
+
+.markdown-content {
+  @apply text-gray-800 leading-normal;
+
+  h1 {
+    @apply text-4xl font-bold mb-4 mt-6;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold mb-3 mt-5;
+  }
+
+  h3 {
+    @apply text-2xl font-medium mb-2 mt-4;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  a {
+    @apply text-blue-600 hover:underline;
+  }
+
+  ul,
+  ol {
+    @apply mb-4 pl-8;
+  }
+
+  li {
+    @apply mb-2;
+  }
+
+  code {
+    @apply bg-gray-100 rounded px-1 py-0.5 font-mono text-sm;
+  }
+
+  pre {
+    @apply bg-gray-100 rounded p-4 mb-4 overflow-x-auto;
+  }
+
+  pre code {
+    @apply bg-transparent p-0 text-sm leading-loose;
+  }
+
+  blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic my-4;
+  }
+
+  strong {
+    @apply font-bold;
+  }
+}

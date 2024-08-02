@@ -41,6 +41,8 @@
     "react-router-dom": "^6.25.1",
     "react-syntax-highlighter": "^15.5.0",
     "react-together": "..",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "unique-names-generator": "^4.7.1",

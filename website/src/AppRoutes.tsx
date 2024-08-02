@@ -37,14 +37,14 @@ import {
 import CountButtonTogether from '@components/demo/CountButtonTogether'
 import HeroDemo from '@components/demo/HeroDemo'
 import TinyRpgTogether from '@components/demo/TinyRpg'
-import { ContributingPage } from '@pages/ContributingPage'
 import { DemoWrapper } from '@pages/DemoWrapper'
 import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
+import { MarkdownPage } from '@pages/Documentation/MarkdownPage'
 import { NotFoundPage } from '@pages/NotFoundPage'
 import { WebsiteWrapper } from '@pages/WebsiteWrapper'
 import { Route, Routes } from 'react-router-dom'
+import contributing from '../../contributing/CONTRIBUTING.md'
 import { ConnectedViews } from '../../react-together'
-
 export default function AppRoutes() {
   return (
     <Routes>
@@ -76,7 +76,7 @@ export default function AppRoutes() {
             <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDocumentationPage />} />
           </Route>
         </Route>
-        <Route path='/contributing' element={<ContributingPage />} />
+        <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
       <Route path='demos' element={<DemoWrapper />}>
