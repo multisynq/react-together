@@ -1,5 +1,6 @@
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import QRCode from 'qrcode.react'
 import { useEffect, useState } from 'react'
 
 export function DemoLink() {
@@ -7,7 +8,7 @@ export function DemoLink() {
     AOS.init({ duration: 500 })
   }, [])
 
-  const urlLink = 'http://localhost:5173/#/demos/HeroDemo'
+  const urlLink = 'https://dev.reacttogether.dev/#/demos/HeroDemo'
   const displayText = '...' + urlLink.split('/').pop()
 
   const [copySuccess, setCopySuccess] = useState(false)
@@ -29,7 +30,9 @@ export function DemoLink() {
   return (
     <div data-aos='fade-up' data-aos-anchor-placement='top-bottom'>
       <div className='bg-white border-[1.5px] rounded-lg p-1 flex flex-col gap-1'>
-        <div className='w-[140px] h-[140px] bg-slate-300 rounded-sm'></div>
+        <div className='w-[140px] h-[140px] bg-slate-300 rounded-sm'>
+          <QRCode value={urlLink} size={140} bgColor='#FFFFFF' fgColor='#000000' level='H' includeMargin={true} />
+        </div>
         <div className='w-full px-2 rounded-sm bg-gray-50 border-gray-300 flex gap-[0.5px] justify-center items-center'>
           <p className='text-xs m-0 flex-shrink-0 b-0'>{displayText}</p>
           <button
