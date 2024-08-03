@@ -20,6 +20,8 @@ trap notify EXIT
 node --version
 npm --version
 
+
+cd ..
 # cloudflare clean-installs arm versions from package-lock.json
 # but actuallty runs on x64 so we need to install the x64 versions
 if [ -n "$CF_PAGES" ]; then
