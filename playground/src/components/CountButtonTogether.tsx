@@ -1,4 +1,4 @@
-import { useStateTogether } from '../../../packages/react-together/src'
+import { useStateTogether } from 'react-together'
 
 export default function CountButtonTogether() {
   const [count, set_count] = useStateTogether('count', 0)

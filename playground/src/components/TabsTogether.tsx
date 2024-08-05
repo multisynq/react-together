@@ -1,5 +1,5 @@
 import { TabPanel, TabView } from 'primereact/tabview'
-import { useStateTogetherWithPerUserValues } from '../../../packages/react-together/src'
+import { useStateTogetherWithPerUserValues } from 'react-together'
 import tabsData from '../data/tabs.json'
 
 const { content1, content2, content3 } = tabsData

@@ -1,3 +1,4 @@
+import { ConnectedViews } from 'react-together'
 import {
   CalendarTogether,
   CheckboxTogether,
@@ -9,9 +10,8 @@ import {
   SelectButtonTogether,
   ToggleButtonTogether,
   TriStateCheckboxTogether
-} from '../../packages/react-together-primereact/src'
-import { ConnectedViews } from '../../packages/react-together/src'
-import { ReactTogetherManager } from '../../packages/react-together/src/components/ReactTogetherManager'
+} from 'react-together-primereact'
+// import { ReactTogetherManager } from 'react-together/src/components/ReactTogetherManager'
 import CountButtonTogether from './components/CountButtonTogether'
 import NestedPresenceDivs from './components/NestedPresenceDivs'
 import SamplePage from './components/SamplePage'
@@ -38,7 +38,7 @@ export default function App() {
       {/* <PresenceDiv rtKey="presence-div"></PresenceDiv> */}
       <SyncedTabs />
       <CountButtonTogether />
-      <ReactTogetherManager />
+      {/* <ReactTogetherManager /> */}
       {/* <PresenceDiv rtKey="div"></PresenceDiv> */}
       <CheckboxTogether rtKey="checkbox" />
       <TriStateCheckboxTogether rtKey="tristate-checkbox" />
