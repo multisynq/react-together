@@ -1,6 +1,6 @@
 import { BrowserWrapper } from '@components/ui/BrowserWrapper';
 import Iframe from 'react-iframe';
-import { ReactTogether } from '../../../../react-together';
+import { ReactTogether } from 'react-together';
 
 export function WithReactTogetherProvider({ children }) {
   return (

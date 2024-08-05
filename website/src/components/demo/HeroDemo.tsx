@@ -7,7 +7,7 @@ import {
   KnobTogether,
   PresenceDiv,
   SelectButtonTogether,
-} from '../../../../react-together'
+} from 'react-together'
 
 export default function HeroDemo() {
   const [isHomePage, setIsHomePage] = useState(true)

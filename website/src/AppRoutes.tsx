@@ -43,8 +43,8 @@ import { MarkdownPage } from '@pages/Documentation/MarkdownPage'
 import { NotFoundPage } from '@pages/NotFoundPage'
 import { WebsiteWrapper } from '@pages/WebsiteWrapper'
 import { Route, Routes } from 'react-router-dom'
+import { ConnectedViews } from 'react-together'
 import contributing from '../../contributing/CONTRIBUTING.md'
-import { ConnectedViews } from '../../react-together'
 export default function AppRoutes() {
   return (
     <Routes>

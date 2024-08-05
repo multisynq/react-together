@@ -1,0 +1,9 @@
+{
+  "name": "react-together-monorepo",
+  "private": true,
+  "workspaces": [
+    "website",
+    "packages/react-together",
+    "playground"
+  ]
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PresenceDiv } from '../../../../react-together'
+import { PresenceDiv } from 'react-together'
 function getDarkerShade(hexColor: string, darkenFactor = 0.8): string {
   // Remove the hash if it's there
   const hex = hexColor.replace(/^#/, '')

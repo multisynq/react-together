@@ -1,4 +1,4 @@
-import { ToggleButtonTogether } from '../../../../react-together'
+import { ToggleButtonTogether } from 'react-together'
 
 export function PrimeReactToggleButtonTogetherDemo() {
   return (

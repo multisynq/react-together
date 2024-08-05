@@ -1,5 +1,5 @@
 import { TabPanel } from 'primereact/tabview'
-import { TabViewTogether } from '../../../../react-together'
+import { TabViewTogether } from 'react-together'
 
 export function PrimeReactTabViewTogetherDemo() {
   const content1 = 'Everyone is viewing Tab 1'

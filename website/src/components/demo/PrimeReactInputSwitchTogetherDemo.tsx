@@ -1,4 +1,4 @@
-import { InputSwitchTogether } from '../../../../react-together'
+import { InputSwitchTogether } from 'react-together'
 
 export function PrimeReactInputSwitchTogetherDemo() {
   return (

@@ -1,4 +1,4 @@
-import { CalendarTogether } from '../../../../react-together'
+import { CalendarTogether } from 'react-together'
 
 export function PrimeReactCalendarTogetherDemo() {
   return (

@@ -22,6 +22,7 @@ import { viteStaticCopy } from 'vite-plugin-static-copy'
 // it can be either in @croquet/croquet or a dependency of @croquet/react
 // (if packages are linked locally)
 const locations = [
+  '../node_modules/@croquet/croquet',
   'node_modules/@croquet/croquet',
   'node_modules/@croquet/react/node_modules/@croquet/croquet',
   'node_modules/react-together/node_modules/@croquet/croquet',

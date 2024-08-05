@@ -1,5 +1,5 @@
 import { useViewId } from '@croquet/react'
-import { useStateTogetherWithPerUserValues } from '../../../../react-together'
+import { useStateTogetherWithPerUserValues } from 'react-together'
 
 function Score({ score, clickable, onClick, onContextMenu }) {
   const clickableStyle = clickable ? 'cursor-pointer shadow-sm bg-slate-500 text-white' : ''

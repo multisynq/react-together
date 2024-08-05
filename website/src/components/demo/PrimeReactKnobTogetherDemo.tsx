@@ -1,4 +1,4 @@
-import { KnobTogether } from '../../../../react-together'
+import { KnobTogether } from 'react-together'
 
 export function PrimeReactKnobTogetherDemo() {
   return (

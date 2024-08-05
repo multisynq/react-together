@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useStateTogether, useStateTogetherWithPerUserValues } from '../../../../react-together'
+import { useStateTogether, useStateTogetherWithPerUserValues } from 'react-together'
 
 const GRID_SIZE = 10
 const CELL_SIZE = 40

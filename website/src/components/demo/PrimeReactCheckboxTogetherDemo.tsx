@@ -1,4 +1,4 @@
-import { CheckboxTogether } from '../../../../react-together'
+import { CheckboxTogether } from 'react-together'
 
 export function PrimeReactCheckboxTogetherDemo() {
   return (

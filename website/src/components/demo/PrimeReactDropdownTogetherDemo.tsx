@@ -1,4 +1,4 @@
-import { DropdownTogether } from '../../../../react-together'
+import { DropdownTogether } from 'react-together'
 
 export function PrimeReactDropdownTogetherDemo() {
   const cities = [
