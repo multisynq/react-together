@@ -10,8 +10,8 @@ import {
   SelectButtonTogether,
   ToggleButtonTogether,
   TriStateCheckboxTogether
-} from '../react-together'
-import { ReactTogetherManager } from '../react-together/components/ReactTogetherManager'
+} from '../../packages/react-together/src'
+import { ReactTogetherManager } from '../../packages/react-together/src/components/ReactTogetherManager'
 import CountButtonTogether from './components/CountButtonTogether'
 import NestedPresenceDivs from './components/NestedPresenceDivs'
 import SamplePage from './components/SamplePage'

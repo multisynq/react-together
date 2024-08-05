@@ -1,4 +1,4 @@
-import { PresenceDiv } from '../../react-together'
+import { PresenceDiv } from '../../../packages/react-together/src'
 
 function Box({
   color,
