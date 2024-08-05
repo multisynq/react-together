@@ -1,5 +1,5 @@
 import { TabView, TabViewProps } from 'primereact/tabview'
-import { useStateTogether } from '../../hooks'
+import { useStateTogether } from 'react-together'
 
 export interface TabViewTogetherrops
   extends Omit<TabViewProps, 'activeIndex' | 'onTabChange'> {

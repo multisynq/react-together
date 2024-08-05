@@ -1,4 +1,4 @@
-import { SelectButtonTogether } from 'react-together'
+import { SelectButtonTogether } from 'react-together-primereact'
 
 export function PrimeReactSelectButtonTogetherDemo() {
   const items = [

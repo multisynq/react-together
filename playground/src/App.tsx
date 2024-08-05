@@ -1,7 +1,6 @@
 import {
   CalendarTogether,
   CheckboxTogether,
-  ConnectedViews,
   DropdownTogether,
   InputSwitchTogether,
   KnobTogether,
@@ -10,7 +9,8 @@ import {
   SelectButtonTogether,
   ToggleButtonTogether,
   TriStateCheckboxTogether
-} from '../../packages/react-together/src'
+} from '../../packages/react-together-primereact/src'
+import { ConnectedViews } from '../../packages/react-together/src'
 import { ReactTogetherManager } from '../../packages/react-together/src/components/ReactTogetherManager'
 import CountButtonTogether from './components/CountButtonTogether'
 import NestedPresenceDivs from './components/NestedPresenceDivs'

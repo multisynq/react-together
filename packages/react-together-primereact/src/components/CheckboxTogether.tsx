@@ -1,5 +1,5 @@
 import { Checkbox, CheckboxProps } from 'primereact/checkbox'
-import { useStateTogether } from '../../hooks'
+import { useStateTogether } from 'react-together'
 
 export interface CheckboxTogetherProps
   extends Omit<CheckboxProps, 'checked' | 'onChange'> {

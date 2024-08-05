@@ -1,5 +1,5 @@
 import { Dropdown, DropdownProps } from 'primereact/dropdown'
-import { useStateTogether } from '../../hooks'
+import { useStateTogether } from 'react-together'
 
 export interface DropdownTogetherProps
   extends Omit<DropdownProps, 'value' | 'onChange'> {

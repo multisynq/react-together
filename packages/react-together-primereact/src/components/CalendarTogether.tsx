@@ -1,5 +1,5 @@
 import { Calendar, CalendarProps } from 'primereact/calendar'
-import { useStateTogether } from '../../hooks'
+import { useStateTogether } from 'react-together'
 
 export interface CalendarTogetherProps
   extends Omit<CalendarProps, 'value' | 'onChange'> {

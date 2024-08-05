@@ -1,4 +1,4 @@
-import { MultiSelectTogether } from 'react-together'
+import { MultiSelectTogether } from 'react-together-primereact'
 
 export function PrimeReactMultiSelectTogetherDemo() {
   const cities = [

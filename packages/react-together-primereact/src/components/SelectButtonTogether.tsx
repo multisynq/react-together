@@ -1,5 +1,5 @@
 import { SelectButton, SelectButtonProps } from 'primereact/selectbutton'
-import { useStateTogether } from '../../hooks'
+import { useStateTogether } from 'react-together'
 
 export interface SelectButtonTogetherProps
   extends Omit<SelectButtonProps, 'value' | 'onChange'> {

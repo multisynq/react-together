@@ -1,13 +1,7 @@
 import { DemoLink } from '@components/ui/DemoLink'
 import { useEffect, useState } from 'react'
-import {
-  CheckboxTogether,
-  ConnectedViews,
-  DropdownTogether,
-  KnobTogether,
-  PresenceDiv,
-  SelectButtonTogether,
-} from 'react-together'
+import { ConnectedViews, PresenceDiv } from 'react-together'
+import { CheckboxTogether, DropdownTogether, KnobTogether, SelectButtonTogether } from 'react-together-primereact'
 
 export default function HeroDemo() {
   const [isHomePage, setIsHomePage] = useState(true)

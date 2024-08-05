@@ -1,5 +1,5 @@
 import { ToggleButton, ToggleButtonProps } from 'primereact/togglebutton'
-import { useStateTogether } from '../../hooks'
+import { useStateTogether } from 'react-together'
 
 export interface ToggleButtonTogetherProps
   extends Omit<ToggleButtonProps, 'value' | 'onChange'> {

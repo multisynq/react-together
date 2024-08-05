@@ -16,14 +16,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: (id) =>
-        [
-          'react',
-          '@croquet',
-          'color-hash',
-          'primereact',
-          'primeicons',
-          'unique-names-generator'
-        ].some((v) => id.startsWith(v)),
+        ['react-together', 'primereact', 'react'].some((v) => id.startsWith(v)),
       input: Object.fromEntries(
         glob
           .sync('src/**/*.{ts,tsx}', {

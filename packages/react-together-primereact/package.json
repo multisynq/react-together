@@ -1,0 +1,42 @@
+{
+  "name": "react-together-primereact",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "prettier": "prettier . --check",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "react-together": "workspace:*"
+  },
+  "peerDependencies": {
+    "primereact": "^10.6.6"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.71",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "glob": "^10.3.10",
+    "typescript": "^5.4.3",
+    "vite": "^4.5.3",
+    "vite-plugin-dts": "^3.7.3",
+    "vite-plugin-lib-inject-css": "^2.0.1"
+  }
+}

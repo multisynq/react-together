@@ -4,6 +4,7 @@
   "workspaces": [
     "website",
     "packages/react-together",
+    "packages/react-together-primereact",
     "playground"
   ]
 }

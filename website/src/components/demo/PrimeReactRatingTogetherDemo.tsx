@@ -1,4 +1,4 @@
-import { RatingTogether } from 'react-together'
+import { RatingTogether } from 'react-together-primereact'
 
 export function PrimeReactRatingTogetherDemo() {
   return (

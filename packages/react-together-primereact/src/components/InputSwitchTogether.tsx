@@ -1,5 +1,5 @@
 import { InputSwitch, InputSwitchProps } from 'primereact/inputswitch'
-import { useStateTogether } from '../../hooks'
+import { useStateTogether } from 'react-together'
 
 export interface InputSwitchTogetherProps
   extends Omit<InputSwitchProps, 'checked' | 'onChange'> {

@@ -1,6 +1,6 @@
 // import { TabPanel, TabView } from 'primereact/tabview'
 // // import { useState } from 'react'
-// import useStateTogetherWithPerUserValues from '../../hooks/useStateTogetherWithPerUserValues'
+// import useStateTogetherWithPerUserValues from 'react-together/useStateTogetherWithPerUserValues'
 
 // function NavTabs() {
 //   const [idx, setIdx] = useStateTogetherWithPerUserValues<number>('nt-idx', 0)
