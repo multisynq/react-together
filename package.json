@@ -3,8 +3,7 @@
   "private": true,
   "workspaces": [
     "website",
-    "packages/react-together",
-    "packages/react-together-primereact",
+    "packages/*",
     "playground"
   ]
 }
