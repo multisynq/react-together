@@ -1,4 +1,4 @@
-# Contributing
+## Contributing
 
 Do you want to contribute your work to React Together? Well, then first and most important, thank you!
 
@@ -61,7 +61,7 @@ $ npm install
 $ npm run dev
 ```
 
-1. Access the playground at [http://localhost:5173](http://localhost:5173).
+3. Access the playground at [http://localhost:5173](http://localhost:5173).
 
 #### Project Structure
 
