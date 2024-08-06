@@ -39,7 +39,6 @@ export function InstallCodeBlock({ language, code1 }) {
           marginTop: 0,
           marginBottom: 0,
         }}
-        // className='w-full border-2 border-gray-700 shadow-[0px_2px_0px_0px_#374151]'
         className='w-full line-border'
       >
         {code1}

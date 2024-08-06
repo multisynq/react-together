@@ -1,10 +1,25 @@
-import { InstallCodeBlock } from '@components/ui/InstallCodeBlock'
+// import { InstallCodeBlock } from '@components/ui/InstallCodeBlock'
+import { Button } from 'primereact/button'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // import { SeamlesslyAnim } from '../../images/SeamlesslyAnim.svg'
 
 export function PageHeader() {
   const navigate = useNavigate()
-  const sampleCode1 = `npm i react-together`
+  const INSTALLCODE = `npm i react-together`
+
+  const [copySuccess, setCopySuccess] = useState(false)
+
+  const copyToClipboard = () => {
+    navigator.clipboard
+      .writeText(INSTALLCODE)
+      .then(() => {
+        setCopySuccess(true)
+        setTimeout(() => setCopySuccess(false), 2000)
+      })
+      .catch((err) => console.error('Failed to copy text: ', err))
+  }
+
   return (
     <div className='flex flex-col items-center max-w-[105rem]'>
       <div className='h-8'></div>
@@ -26,7 +41,20 @@ export function PageHeader() {
         >
           <h6 className='font-bold'>Getting Started</h6>
         </div>
-        <InstallCodeBlock language='javascript' code1={sampleCode1} />
+        <div className='flex items-center bg-white px-4 line-border gap-1 h-11'>
+          <span>
+            <p className='font-mono'>{INSTALLCODE}</p>
+          </span>
+          <Button
+            icon={copySuccess ? 'pi pi-check' : 'pi pi-copy'}
+            text
+            severity='secondary'
+            aria-label='Bookmark'
+            className='w-7 h-6'
+            onClick={copyToClipboard}
+          />
+        </div>
+        {/* <InstallCodeBlock language='javascript' code1={sampleCode1} /> */}
       </div>
       <span className='h-2'></span>
     </div>
