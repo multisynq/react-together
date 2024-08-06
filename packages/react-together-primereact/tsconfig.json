@@ -18,11 +18,7 @@
       "strict": true,
       "noUnusedLocals": true,
       "noUnusedParameters": true,
-      "noFallthroughCasesInSwitch": true,
-      // variables are initialized in the init method
-      "strictPropertyInitialization": false,
-
-      "declaration": true
+      "noFallthroughCasesInSwitch": true
     },
     "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]

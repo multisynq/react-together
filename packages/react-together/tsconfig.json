@@ -21,8 +21,6 @@
       "noFallthroughCasesInSwitch": true,
       // variables are initialized in the init method
       "strictPropertyInitialization": false,
-
-      "declaration": true
     },
     "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]

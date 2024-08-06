@@ -1,6 +1,12 @@
 {
   "name": "react-together-monorepo",
   "private": true,
+  "scripts": {
+    "build": "npm run build -ws --if-present",
+    "clean": "rm -rf node_modules && npm run clean -ws --if-present",
+    "playground": "./scripts/run.sh playground",
+    "website": "./scripts/run.sh website"
+  },
   "workspaces": [
     "website",
     "packages/*",
