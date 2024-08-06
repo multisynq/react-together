@@ -1,19 +1,20 @@
 .fake-browser {
   width: auto;
   height: auto;
-  border: 1.5px solid #000000;
-  border-radius: 12px;
+  /* border: 2px solid #374151; */
+  /* border-radius: 12px; */
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0px 10px #ccc;
+  /* box-shadow: 0px 2px 0px 0px #374151; */
 }
 .fake-browser .fake-browser-header {
   background-color: #eee;
+  overflow: hidden;
   height: 44px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1.5px solid #374151;
 }
 .fake-browser .fake-browser-header .action-btns {
   min-width: 100px;
@@ -70,7 +71,7 @@
 }
 .fake-browser .fake-browser-header .setting-more .more-btn:before,
 .fake-browser .fake-browser-header .setting-more .more-btn:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
 }

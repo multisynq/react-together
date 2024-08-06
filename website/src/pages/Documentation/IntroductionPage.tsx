@@ -1,72 +1,96 @@
-import { NavItem } from './types'
-import { CodeBlockExample } from '@components/ui/CodeBlockExample'
-import DocumentDemoBox from '@components/ui/DocumentDemoBox'
 import { CodeBlock } from '@components/ui/CodeBlock'
+import CodeSpan from '@components/ui/CodeSpan'
+import Link from '@components/ui/Link'
+import LinkSpan from '@components/ui/LinkSpan'
+import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
+import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import { NavItem } from './types'
 
-export const IntroductionPage: React.FC = () => {
-  const sampleCode1 = `npm i react-together`
-  const sampleCode2 = `<ReactTogether>
-    sessionParams=
-      {
-        {
-          appId: import.meta.env['VITE_APP_ID'],
-          apiKey: import.meta.env['VITE_API_KEY'],
-        }
-      }
-  {children}
-</ReactTogether>
-`
+function IntroductionContent() {
   return (
     <>
-      <h3 id='introduction'>Introduction</h3>
-      <p>In your shiny React project, you will need to install the react-together package.</p>
-      <CodeBlock language='javascript' code1={sampleCode1} />
-      <p>Now, at a fairly top level of your React’s JSX, you will need to: Add a React</p>
-      <CodeBlock language='javascript' code1={sampleCode2} />
+      <h2 id='getting-started'>Getting Started</h2>
+      <p>In the future, websites are all live and connect visitors with each other all the time. That future is now!</p>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-        in culpa qui officia deserunt mollit anim id est laborum.
+        Welcome to ReactTogether! With this library you will be able to build synchronized web applications in the blink of an eye! No need
+        to set up servers or sockets!
       </p>
+      <h4 id='installation'>Installation</h4>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-        in culpa qui officia deserunt mollit anim id est laborum.
+        Install the <CodeSpan text='react-together' /> package via <CodeSpan text='npm' />
       </p>
-      <h3 id='installation'>Installation</h3>
-      <CodeBlockExample />
+      <CodeBlock language='bash' code1={`npm i react-together`} />
+      <h4 id='context'>Context</h4>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-        in culpa qui officia deserunt mollit anim id est laborum.
+        Wrap your application inside the <LinkSpan text='<ReactTogether/>' to='/ReactTogether' /> component, and configure it using your
+        Multisynq keys. Get your free keys at{' '}
+        <Link to='https://croquet.io/keys' target='_blank'>
+          croquet.io/keys
+        </Link>
       </p>
-      <h3 id='download'>Download</h3>
-      <CodeBlockExample />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-        in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-      <DocumentDemoBox />
-      <CodeBlockExample />
-      <h3 id='context'>Context</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-        in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <CodeBlock language='tsx' code1={`import { ReactTogether } from 'react-together'`} />
+      <CodeBlock
+        language='tsx'
+        code1={`
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <ReactTogether
+    sessionParams={{
+      appId: import.meta.env['VITE_APP_ID'],
+      apiKey: import.meta.env['VITE_API_KEY']
+    }}
+  >
+    <App />
+  </ReactTogether>
+)`}
+      />
+      <h4 id='sdf'>Use ReactTogether</h4>
+      <p>That's it! Now you just need to import and use our components to create awesome interactive websites!</p>
+      <h5>Example</h5>
+      <DocumentationDemo url='CountButtonTogether' />
+      <CodeBlock
+        language='tsx'
+        code1={`const [count, set_count] = useStateTogether('count', 0)
+  
+return (
+  <button 
+    onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
+    onContextMenu={(e) => { e.preventDefault() set_count(0) }}
+  >
+    Count: {count}
+  </button>
+)`}
+        code2={`import { useStateTogether } from './react-together'
+
+export default function CountButtonTogether() {
+  const [count, set_count] = useStateTogether('count', 0)
+  
+  return (
+    <div className='flex flex-col align-items-center'>
+      <button
+        className='bg-slate-400 py-2 px-4 rounded-md text-white'
+        onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
+        onContextMenu={(e) => {
+          e.preventDefault()
+          set_count(0)
+        }}
+      >
+        Count: {count}
+      </button>
+      <p style={{ color: '#888888', fontSize: '0.7rem' }}>Right click to reset to zero</p>
+    </div>
+  )
+}`}
+      />
     </>
   )
 }
 
-export const introductionNavItems: NavItem[] = [
-  { key: 'introduction', label: 'Introduction' },
+const introductionNavItems: NavItem[] = [
+  { key: 'getting-started', label: 'Getting Started' },
   { key: 'installation', label: 'Installation' },
-  { key: 'download', label: 'Download' },
   { key: 'context', label: 'Context' },
 ]
+
+export default function IntroductionPage() {
+  return <DocumentationPage content={<IntroductionContent />} navItems={introductionNavItems} />
+}

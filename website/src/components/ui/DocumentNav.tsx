@@ -1,64 +1,120 @@
+import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem'
 import { PanelMenu } from 'primereact/panelmenu'
+import { classNames } from 'primereact/utils'
 import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
+
+// Add `key` and `to` properties to MenuItem and to its nested elements
+export interface PatchedMenuItem extends MenuItem {
+  key?: string
+  items?: PatchedMenuItem[]
+  to?: string
+  command?: (e: PatchedMenuItemCommandEvent) => void
+}
+interface PatchedMenuItemCommandEvent extends MenuItemCommandEvent {
+  item: PatchedMenuItem
+}
+
+const items: PatchedMenuItem[] = [
+  {
+    label: 'Getting Started',
+    to: '/getting-started',
+  },
+  {
+    label: 'Components',
+    expanded: true,
+    items: [
+      { label: 'ReactTogether', to: '/ReactTogether' },
+      { label: 'ConnectedViews', to: '/ConnectedViews' },
+      { label: 'PresenceDiv', to: '/PresenceDiv' },
+      {
+        label: 'Prime React',
+        expanded: true,
+        items: [
+          // { label: 'CalendarTogether', to: '/primereact/Calendar' },
+          { label: 'CheckboxTogether', to: '/primereact/Checkbox' },
+          { label: 'DropdownTogether', to: '/primereact/Dropdown' },
+          { label: 'InputSwitchTogether', to: '/primereact/InputSwitch' },
+          { label: 'KnobTogether', to: '/primereact/Knob' },
+          { label: 'MultiSelectTogether', to: '/primereact/MultiSelect' },
+          { label: 'RatingTogether', to: '/primereact/Rating' },
+          { label: 'SelectButtonTogether', to: '/primereact/SelectButton' },
+          { label: 'TabViewTogether', to: '/primereact/TabView' },
+          { label: 'ToggleButtonTogether', to: '/primereact/ToggleButton' },
+          { label: 'TriStateCheckboxTogether', to: '/primereact/TriStateCheckbox' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Hooks',
+    expanded: true,
+    items: [
+      { label: 'useStateTogether', to: '/useStateTogether' },
+      { label: 'useStateTogetherWithPerUserValues', to: '/useStateTogetherWithPerUserValues' },
+      { label: 'useConnectedViews', to: '/useConnectedViews' },
+      { label: 'useHoveringViews', to: '/useHoveringViews' },
+      // { label: 'useIsTogether', to: '/useIsTogether' },
+      // { label: 'useConnectNewSession', to: '/useConnectNewSession' },
+      // { label: 'useLeaveSession', to: '/useLeaveSession' },
+    ],
+  },
+  { label: 'Contributing', to: '/contributing' },
+  // {
+  //   label: 'Discover',
+  //   expanded: true,
+  //   items: [
+  //     { label: 'About Us', to: 'https://multisynq.io/' },
+  //     { label: 'Roadmap' },
+  //     { label: 'Support' },
+  //     { label: 'Contributing' },
+  //     { label: 'F.A.Q' },
+  //     { label: 'License' },
+  //   ],
+  // },
+]
 
 export default function DocumentNav() {
   const navigate = useNavigate()
 
-  const handleNavigation = (path) => {
-    return () => navigate(path)
+  // We have to process the items inside the component body because
+  // we need to use the navigate hook.
+  // This has room to be improved
+  function processMenuItems(items: PatchedMenuItem[], prefix: string | null = null) {
+    let expandedKeys = {}
+    items.forEach((i, idx) => {
+      const key = prefix ? `${prefix}.${idx}` : `${idx}`
+      i.command = ({ item }) => {
+        if (item.to) {
+          navigate(item.to)
+        }
+      }
+
+      if (i.expanded && i.items) {
+        expandedKeys[i.key] = true
+        expandedKeys = { ...expandedKeys, ...processMenuItems(i.items, key) }
+      }
+    })
+    return expandedKeys
   }
-
-  const createMenuItem = (key, label, path, subItems = []) => ({
-    key,
-    label,
-    command: path ? handleNavigation(`/docs/${path}`) : undefined,
-    items: subItems.map((sub) => createMenuItem(`${key}_${sub.key}`, sub.label, `${path}/${sub.path}`.toLowerCase().replace(/ /g, '-'))),
-  })
-
-  const items = [
-    createMenuItem('0', 'Get Started', 'get-started', [
-      { key: '0', label: 'Introduction', path: 'introduction' },
-      { key: '1', label: 'Configuration', path: 'configuration' },
-      // { key: '2', label: 'Core Concept', path: 'core-concept' },
-      // { key: '3', label: 'Playground', path: 'playground' },
-    ]),
-    createMenuItem('1', 'Hooks', 'hooks', [
-      { key: '0', label: 'Main Hooks', path: 'main-hooks' },
-      { key: '1', label: 'Session Hooks', path: 'session-hooks' },
-      // { key: '2', label: 'Utility Hooks', path: 'utility-hooks' },
-    ]),
-    createMenuItem('2', 'Components', 'components', [
-      { key: '0', label: 'React Together', path: 'react-together' },
-      { key: '1', label: 'Prime React', path: 'prime-react' },
-      // { key: '2', label: 'Ant Design', path: 'ant-design' },
-      // { key: '3', label: 'MUI', path: 'mui' },
-      // { key: '4', label: 'Shadcn', path: 'shadcn' },
-    ]),
-
-    createMenuItem('3', 'Discover', 'discover', [
-      { key: '0', label: 'About Us', path: 'about-us' },
-      { key: '1', label: 'Roadmap', path: 'roadmap' },
-      { key: '2', label: 'Source Code', path: 'source-code' },
-      { key: '3', label: 'Change Code', path: 'change-code' },
-      { key: '4', label: 'Support', path: 'support' },
-    ]),
-    createMenuItem('4', 'License', '', [
-      { key: '0', label: 'License', path: 'license' },
-      { key: '1', label: 'FAQ', path: 'faq' },
-    ]),
-  ]
-  const expandedKeys = {}
-  const expandNode = (node) => {
-    if (node.items && node.items.length) {
-      expandedKeys[node.key] = true
-      node.items.forEach(expandNode)
-    }
-  }
-  items.forEach(expandNode)
-
+  const expandedKeys = processMenuItems(items)
   return (
-    <div className='w-[200px] h-full'>
-      <PanelMenu model={items} expandedKeys={expandedKeys} className='[&_.p-submenu-icon]:hidden' />
-    </div>
+    <PanelMenu
+      model={items}
+      expandedKeys={expandedKeys}
+      pt={{
+        root: classNames('sm:line-border overflow-hidden bg-white w-[300px] sm:w-[162px] md:w-[220px]'),
+        headerContent: classNames('border-0 bg-transparent'),
+        headerAction: classNames('pt-4 pb-3'),
+        panel: classNames('border-0'),
+        headerLabel: classNames('text-gray-900'),
+        headerSubmenuIcon: classNames('hidden'),
+        menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
+        action: classNames('pl-8 py-2'),
+        label: classNames('text-gray-800 text-sm lg:text-base break-all'),
+        content: classNames('rounded-md'),
+        // submenuIcon: classNames('pi pi-file'),
+      }}
+    />
   )
 }

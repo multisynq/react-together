@@ -7,6 +7,7 @@ export const siteConfig = {
     multisynq: 'https://multisynq.io',
     twitter: 'https://x.com/multisynq',
     github: 'https://github.com/multisynq',
+    croquet: 'https://croquet.io',
     // github: 'https://github.com/multisynq/reacttogether',
   },
 }

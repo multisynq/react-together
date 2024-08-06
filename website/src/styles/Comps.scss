@@ -1,65 +1,13 @@
 .p-menuitem-link {
-  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
-.p-panelmenu-header-link {
-  text-decoration: none;
-  color: black;
-  padding: 0;
-  font-weight: normal;
+.p-menuitem-link .p-menuitem-text {
+  order: -1;
 }
 
-.p-panelmenu-header-content {
-  background-color: transparent;
-}
-
-.hidden.font-bold.sm\:inline-block {
-  text-decoration: none;
-}
-.p-panelmenu-panel {
-  .p-panelmenu-header-content {
-    border-radius: 0;
-    .p-panelmenu-content {
-      margin-left: 0;
-    }
-  }
-  .p-panelmenu-content {
-    border-radius: 0px;
-    .p-menuitem-link {
-      padding: 8px;
-    }
-  }
-}
-ul.p-panelmenu-root-list.p-submenu-list {
-  padding: 0;
-}
-.rt-breadcrumb {
-  padding: 0;
-  border-radius: 0;
-  .p-breadcrumb-list {
-    padding-left: 0;
-    margin-bottom: 0;
-  }
-}
-
-nav.flex a {
-  text-decoration: none;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 12px;
-}
-
-// .custom-scrollbar::-webkit-scrollbar-track {
-//   background: #f1f1f1;
-// }
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #c4c4c4;
-  border-radius: 8px;
-  border: black solid 1px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.p-menuitem-link .p-submenu-icon {
+  order: 1;
+  margin-left: auto;
 }

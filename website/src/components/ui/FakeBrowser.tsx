@@ -1,6 +1,6 @@
 import './FakeBrowser.css'
 
-export function FakeBrowser({ children }) {
+export function FakeBrowser() {
   return (
     <>
       <div className='fake-browser'>
@@ -11,13 +11,13 @@ export function FakeBrowser({ children }) {
             <span></span>
           </div>
           <div className='address-bar'>
-            <input type='text' value='https://YourWebsite.com' onChange={() => {}} />
+            <input type='text' value='https://your-website.com' onChange={() => {}} />
           </div>
           <div className='setting-more'>
             <span className='more-btn'></span>
           </div>
         </header>
-        <section className='fake-window-body'>{children}</section>
+        {/* <section className='fake-window-body'>{children}</section> */}
       </div>
     </>
   )

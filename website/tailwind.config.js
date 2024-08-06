@@ -3,9 +3,7 @@ module.exports = {
   darkMode: ['class'],
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
   prefix: '',
-  safelist: [
-    'outline', 'outline-1', 'outline-slate-400',
-  ],
+  safelist: ['outline', 'outline-1', 'outline-slate-400'],
   theme: {
     container: {
       center: true,
@@ -13,6 +11,7 @@ module.exports = {
       screens: {
         sm: '600px',
         md: '864px',
+        lg: '1024px',
         '2xl': '1766px',
       },
     },
@@ -53,6 +52,7 @@ module.exports = {
         },
       },
       borderRadius: {
+        xl: 'calc(var(--radius) * 2)',
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
@@ -67,11 +67,29 @@ module.exports = {
           to: { height: '0' },
         },
       },
+      boxShadow: {
+        lineStyleDark: '0px 2px 0px 0px #374151',
+        lineStyleMedium: '0px 1px 0px 0px #6B7280',
+        lineStyleLight: '0px 2px 0px 0px #E5E7EB',
+      },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      fontFamily: {
+        heading: ['Lato', 'sans-serif'],
+      },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.line-border': {
+          '@apply border-2 border-gray-700 shadow-lineStyleDark rounded-xl': {},
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    },
+    require('tailwindcss-animate'),
+  ],
 }

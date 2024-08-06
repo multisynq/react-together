@@ -1,0 +1,13 @@
+## 0.0.1 (2024-07-18)
+ - Added initial set of PrimeReact wrapped components:
+   - `<CalendarTogether />`
+   - `<CheckboxTogether />`
+   - `<DropdownTogether />`
+   - `<InputSwitchTogether />`
+   - `<KnobTogether />`
+   - `<MultiSelectTogether />`
+   - `<RatingTogether />`
+   - `<SelectButtonTogether />`
+   - `<TabViewTogether />`
+   - `<ToggleButtonTogether />`
+   - `<TriStateCheckboxTogether />`

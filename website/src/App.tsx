@@ -1,17 +1,12 @@
-import './App.scss'
 import '@styles/Comps.scss'
 import '@styles/globals.css'
 import '@styles/mdx.css'
+import 'react-json-view-lite/dist/index.css'
+import './App.scss'
 
 import { Helmet } from 'react-helmet'
-import { useState, createContext } from 'react'
-import { SiteHeader, SiteFooter } from '@components'
-import { version } from '@package'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { HomePage } from './pages/HomePage'
-import { DocumentationPage } from './pages/DocumentationPage'
-
-export const MainContext = createContext({} as any)
+import { HashRouter } from 'react-router-dom'
+import AppRoutes from './AppRoutes'
 
 export default function App() {
   return (
@@ -20,20 +15,11 @@ export default function App() {
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'></link>
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'></link>
+        <link href='https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap' rel='stylesheet' />
       </Helmet>
-
-      <MainContext.Provider value={{}}>
-        <BrowserRouter>
-          <SiteHeader />
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/docs/:slug1/:slug2?' element={<DocumentationPage />} />
-          </Routes>
-          <SiteFooter />
-        </BrowserRouter>
-      </MainContext.Provider>
-
-      <div className='version-num'>{version}</div>
+      <HashRouter>
+        <AppRoutes />
+      </HashRouter>
     </div>
   )
 }
