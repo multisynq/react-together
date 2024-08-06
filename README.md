@@ -48,14 +48,15 @@ export function YourComponent() {
 
 ## ⌨️ Development
 
-
-To run ReactTogether locally, run the following:
+To run ReactTogether locally, run the following commands:
 
 ```bash
 $ git clone git@github.com:multisynq/react-together.git
 $ cd react-together
 $ npm install
-$ npm run dev
+$ npm run build
+$ npm run website # This will start the website
+$ npm run playground # This will start the playground
 ```
 
 Open your browser and visit http://localhost:5173.
