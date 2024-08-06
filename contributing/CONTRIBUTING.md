@@ -3,7 +3,7 @@
 Do you want to contribute your work to React Together? Well, then first and most important, thank you!
 
 
-The following is a set of contrbuting guidelines. Please spend several minutes reading them before you create an issue or pull request.
+The following is a set of contributing guidelines. Please spend a few minutes reading them before you create an issue or pull request.
 
 
 ### Terms and Conditions
@@ -12,7 +12,7 @@ We are eager to receive your contributions, but before you do, make sure you are
 
 ### Code of Conduct
 
-We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/multisynq/react-together/blob/main/contributing/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as our Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/multisynq/react-together/blob/main/contributing/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
 ### Open Development
 
