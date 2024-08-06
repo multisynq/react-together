@@ -1,4 +1,5 @@
 import { DemoLink } from '@components/ui/DemoLink'
+import { Button } from 'primereact/button'
 import { useEffect, useState } from 'react'
 import { ConnectedViews, PresenceDiv } from 'react-together'
 import { CheckboxTogether, DropdownTogether, KnobTogether, SelectButtonTogether } from 'react-together-primereact'
@@ -90,17 +91,6 @@ export default function HeroDemo() {
   return (
     <div className='w-full overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
       <div className='px-2 py-2 bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] h-full'>
-        <div className='flex flex-col items-end absolute bottom-2 right-2 gap-2'>
-          {showLink && <DemoLink />}
-          <div className='flex'>
-            <ConnectedViews maxAvatars={6} />
-            <button onClick={() => setShowLink(!showLink)}>
-              <div className='bg-blue-500 flex rounded-xl justify-center items-center px-2'>
-                <p className='text-white font-bold'>+User</p>
-              </div>
-            </button>
-          </div>
-        </div>
         <div className='w-full h-full flex gap-2'>
           <div className='h-full flex flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto'>
             <div className='flex items-center justify-between w-full'>
@@ -144,6 +134,13 @@ export default function HeroDemo() {
               <br />
               {`[Coming Soon!]`}
             </p>
+          </div>
+        </div>
+        <div className='flex flex-col items-end absolute bottom-2 right-2 gap-2'>
+          {showLink && <DemoLink />}
+          <div className='flex gap-1 items-end'>
+            <ConnectedViews maxAvatars={6} />
+            <Button icon='pi pi-user-plus' rounded className='w-10 h-10' onClick={() => setShowLink(!showLink)} />
           </div>
         </div>
       </div>

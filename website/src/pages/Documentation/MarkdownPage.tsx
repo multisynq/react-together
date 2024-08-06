@@ -9,7 +9,7 @@ interface MarkdownPageProps {
 export function MarkdownPage({ markdown }: MarkdownPageProps) {
   return (
     <div className='w-full'>
-      <div className='max-w-[1324px] line-border bg-white px-5'>
+      <div className='max-w-[54rem] line-border bg-white px-6 py-4'>
         <Markdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeRaw]}
