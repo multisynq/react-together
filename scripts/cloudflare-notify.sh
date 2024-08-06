@@ -25,13 +25,13 @@ if [ ${#MISSING[@]} -gt 0 ] ; then
 fi
 
 case "$CF_PAGES_BRANCH" in
-    main)
+    website)
         ENV_LABEL="Production"
         URL="https://reacttogether.dev"
         ;;
-    develop)
-        ENV_LABEL="Preview"
-        URL="https://dev.reacttogether.dev"
+    main)
+        ENV_LABEL="Staging"
+        URL="https://staging.reacttogether.dev"
         ;;
     *)
         ENV_LABEL="Branch"
