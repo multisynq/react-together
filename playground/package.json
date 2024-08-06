@@ -21,8 +21,8 @@
     "primereact": "^10.6.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-together": "workspace:*",
-    "react-together-primereact": "workspace:*"
+    "react-together": "^0.0.1",
+    "react-together-primereact": "^0.0.1"
   },
   "devDependencies": {
     "prettier": "^3.3.3",
