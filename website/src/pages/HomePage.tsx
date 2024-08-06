@@ -1,4 +1,3 @@
-import { PricingCard } from '@components/sections/PricingCard'
 import { FeatureCard } from '@components/ui/FeatureCard'
 import { HeroDemo } from '../components/sections/HeroDemo'
 import { PageHeader } from '../components/sections/PageHeader'
@@ -13,10 +12,6 @@ export function HomePage() {
           <HeroDemo />
           <div className='w-full h-20 sm:h-32' />
           <FeatureCard />
-          <div className='w-full h-20 sm:h-32' />
-          <PricingCard />
-
-          {/* <div className='w-full h-[32rem] bg-lime-400' /> */}
         </div>
       </div>
     </main>
