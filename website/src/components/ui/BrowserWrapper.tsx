@@ -1,10 +1,19 @@
 import { Button } from 'primereact/button'
+import { useState } from 'react'
 
 export function BrowserWrapper({ children }) {
   const WEBSITEURL = 'https://reacttogether.dev/#/demos/HeroDemo'
 
+  const [copySuccess, setCopySuccess] = useState(false)
+
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(WEBSITEURL).catch((err) => console.error('Failed to copy text: ', err))
+    navigator.clipboard
+      .writeText(WEBSITEURL)
+      .then(() => {
+        setCopySuccess(true)
+        setTimeout(() => setCopySuccess(false), 2000)
+      })
+      .catch((err) => console.error('Failed to copy text: ', err))
   }
 
   return (
@@ -17,7 +26,14 @@ export function BrowserWrapper({ children }) {
         </div>
         <div className='w-full border border-black bg-white rounded-sm h-8 items-center flex px-2'>
           <p className='text-xs overflow-hidden whitespace-nowrap'>{WEBSITEURL}</p>
-          <Button icon='pi pi-copy' size='small' text severity='secondary' onClick={copyToClipboard} className='w-1 h-0' />
+          <Button
+            icon={copySuccess ? 'pi pi-check' : 'pi pi-copy'}
+            size='small'
+            text
+            severity='secondary'
+            onClick={copyToClipboard}
+            className='w-0 h-0'
+          />
         </div>
         <div className='flex flex-col gap-1'>
           <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
