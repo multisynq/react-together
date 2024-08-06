@@ -8,8 +8,8 @@
     "website": "./scripts/run.sh website"
   },
   "workspaces": [
-    "website",
     "packages/*",
+    "website",
     "playground"
   ]
 }
