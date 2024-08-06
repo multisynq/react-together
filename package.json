@@ -11,6 +11,7 @@
     "website": "./scripts/run.sh website",
     "build": "npm run build -ws --if-present",
     "build-cf": "./scripts/cloudflare-build.sh",
-    "clean": "rm -rf node_modules && npm run clean -ws --if-present"
+    "clean": "rm -rf node_modules && npm run clean -ws --if-present",
+    "get-lock": "npm i --platform=linux --arch=x64"
   }
 }
