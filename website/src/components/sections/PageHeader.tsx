@@ -1,8 +1,6 @@
-// import { InstallCodeBlock } from '@components/ui/InstallCodeBlock'
 import { Button } from 'primereact/button'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import { SeamlesslyAnim } from '../../images/SeamlesslyAnim.svg'
 
 export function PageHeader() {
   const navigate = useNavigate()
@@ -54,7 +52,6 @@ export function PageHeader() {
             onClick={copyToClipboard}
           />
         </div>
-        {/* <InstallCodeBlock language='javascript' code1={sampleCode1} /> */}
       </div>
       <span className='h-2'></span>
     </div>
