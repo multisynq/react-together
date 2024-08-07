@@ -9,7 +9,7 @@ interface BrowserWrapperProps {
 }
 export function BrowserWrapper({ url, children }: BrowserWrapperProps) {
   const [pinQrCode, setPinQrCode] = useState(false)
-  const [justCopied, setJustCopied] = useState(false)
+  const [copySuccess, setCopySuccess] = useState(false)
   const [ref, hoveringQrCode] = useHover()
 
   const copyToClipboard = async () => {
@@ -22,8 +22,8 @@ export function BrowserWrapper({ url, children }: BrowserWrapperProps) {
     } else {
       console.error('Could not copy to clipboard: Not in a secure context')
     }
-    setJustCopied(true)
-    setTimeout(() => setJustCopied(false), 1000)
+    setCopySuccess(true)
+    setTimeout(() => setCopySuccess(false), 2000)
   }
 
   const openNewTab = () => {
@@ -44,7 +44,7 @@ export function BrowserWrapper({ url, children }: BrowserWrapperProps) {
         <div className='w-full border border-black bg-white rounded-sm h-8 items-center flex items-center px-2 gap-1'>
           <p className='text-xs overflow-hidden whitespace-nowrap grow'>{url}</p>
           <div className='flex flex-row gap-1'>
-            <NavbarButton icon={justCopied ? 'pi-check' : 'pi-copy'} onClick={copyToClipboard} />
+            <NavbarButton icon={copySuccess ? 'pi-check' : 'pi-copy'} onClick={copyToClipboard} />
             <NavbarButton icon='pi-external-link' onClick={openNewTab} />
           </div>
         </div>

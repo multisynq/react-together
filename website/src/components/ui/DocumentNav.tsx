@@ -60,6 +60,7 @@ const items: PatchedMenuItem[] = [
     ],
   },
   { label: 'Contributing', to: '/contributing' },
+  { label: 'Pricing', to: '/pricing' },
   // {
   //   label: 'Discover',
   //   expanded: true,

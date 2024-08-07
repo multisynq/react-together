@@ -45,6 +45,8 @@ import { WebsiteWrapper } from '@pages/WebsiteWrapper'
 import { Route, Routes } from 'react-router-dom'
 import { ConnectedViews } from 'react-together'
 import contributing from '../../contributing/CONTRIBUTING.md'
+import pricing from './pages/Documentation/pricing/PRICING.md'
+
 export default function AppRoutes() {
   return (
     <Routes>
@@ -63,6 +65,7 @@ export default function AppRoutes() {
           <Route path='useConnectNewSession' element={<UseConnectNewSessionDocumentationPage />} />
           <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} /> */}
           <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
+          <Route path='/pricing' element={<MarkdownPage markdown={pricing} />} />
           <Route path='primereact'>
             {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDocumentationPage />} /> */}
             <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDocumentationPage />} />
