@@ -14,7 +14,7 @@ We thrive on community contributions! Whether you want to submit pull requests d
 
 ### Powered by Multisynq
 
-The network traffic for these "togetherified" components leverages the cutting-edge Multisynq Synchronizer DePIN infrastructure. It's like a glimpse into the future of web development! Multisynq has simple, low cost pricing and free development resources. Often, ninety percent cheaper than the alternatives.
+The network traffic for these "togetherified" components leverages the cutting-edge Multisynq Synchronizer DePIN infrastructure. It's like a glimpse into the future of web development! Multisynq has simple, low cost pricing and free development resources. Often, <mark> 90% cheaper than the alternatives. </mark>
 
 ### Generous Free Tier
 
@@ -24,8 +24,8 @@ Many developers can enjoy our monthly free tier indefinitely. Build, experiment,
 
 For those with high-traffic applications, our clever Synchronizer technology often results in lower costs compared to traditional solutions. How? Synchronizers have a few tricks up our sleeve:
 
-1.  Deterministic Magic: Thanks to the innovative tech from Croquet & Multisynq, a significant portion of what would normally be network traffic never leaves your user’s device.
-2.  On-Device Processing: Rough estimates suggest that about 1/3 of the typical traffic becomes "on-device, on-silicon traffic." This means it's processed locally, never touching the network.
+1.  **Deterministic Magic**: Thanks to the innovative tech from Croquet & Multisynq, a significant portion of what would normally be network traffic never leaves your user’s device.
+2.  **On-Device Processing**: Rough estimates suggest that about 1/3 of the typical traffic becomes "on-device, on-silicon traffic." This means it's processed locally, never touching the network.
 
 ### Earn money from React Together
 
