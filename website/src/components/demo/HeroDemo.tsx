@@ -1,12 +1,9 @@
-import { DemoLink } from '@components/ui/DemoLink'
-import { Button } from 'primereact/button'
 import { useEffect, useState } from 'react'
 import { ConnectedViews, PresenceDiv } from 'react-together'
 import { CheckboxTogether, DropdownTogether, KnobTogether, SelectButtonTogether } from 'react-together-primereact'
 
 export default function HeroDemo() {
   const [isHomePage, setIsHomePage] = useState(true)
-  const [showLink, setShowLink] = useState(false)
 
   const cities = [
     { name: 'Apex', code: 'APX' },
@@ -137,10 +134,8 @@ export default function HeroDemo() {
           </div>
         </div>
         <div className='flex flex-col items-end absolute bottom-2 right-2 gap-2'>
-          {showLink && <DemoLink />}
           <div className='flex gap-1 items-end'>
             <ConnectedViews maxAvatars={6} />
-            <Button icon='pi pi-user-plus' rounded className='w-10 h-10' onClick={() => setShowLink(!showLink)} />
           </div>
         </div>
       </div>

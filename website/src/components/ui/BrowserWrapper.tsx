@@ -1,11 +1,37 @@
-import { Button } from 'primereact/button'
+import { useHover } from '@uidotdev/usehooks'
+import { useState } from 'react'
+import { DemoLink } from './DemoLink'
+import { NavbarButton } from './NavbarButton'
 
-export function BrowserWrapper({ children }) {
-  const WEBSITEURL = 'https://reacttogether.dev/#/demos/HeroDemo'
+interface BrowserWrapperProps {
+  url: string
+  children?: React.ReactElement
+}
+export function BrowserWrapper({ url, children }: BrowserWrapperProps) {
+  const [pinQrCode, setPinQrCode] = useState(false)
+  const [justCopied, setJustCopied] = useState(false)
+  const [ref, hoveringQrCode] = useHover()
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(WEBSITEURL).catch((err) => console.error('Failed to copy text: ', err))
+  const copyToClipboard = async () => {
+    if (window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(url)
+      } catch (err) {
+        console.error('Failed to copy text: ', err)
+      }
+    } else {
+      console.error('Could not copy to clipboard: Not in a secure context')
+    }
+    setJustCopied(true)
+    setTimeout(() => setJustCopied(false), 1000)
   }
+
+  const openNewTab = () => {
+    window.open(url, '_blank').focus()
+    window.focus()
+  }
+
+  const showQrCode = hoveringQrCode || pinQrCode
 
   return (
     <div className='line-border overflow-hidden h-full'>
@@ -15,17 +41,27 @@ export function BrowserWrapper({ children }) {
           <div className='bg-yellow-400 rounded-xl h-[10px] w-[10px] border border-black' />
           <div className='bg-green-600 rounded-xl h-[10px] w-[10px] border border-black' />
         </div>
-        <div className='w-full border border-black bg-white rounded-sm h-8 items-center flex px-2'>
-          <p className='text-xs overflow-hidden whitespace-nowrap'>{WEBSITEURL}</p>
-          <Button icon='pi pi-copy' size='small' text severity='secondary' onClick={copyToClipboard} className='w-1 h-0' />
+        <div className='w-full border border-black bg-white rounded-sm h-8 items-center flex items-center px-2 gap-1'>
+          <p className='text-xs overflow-hidden whitespace-nowrap grow'>{url}</p>
+          <div className='flex flex-row gap-1'>
+            <NavbarButton icon={justCopied ? 'pi-check' : 'pi-copy'} onClick={copyToClipboard} />
+            <NavbarButton icon='pi-external-link' onClick={openNewTab} />
+          </div>
         </div>
-        <div className='flex flex-col gap-1'>
-          <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
-          <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
-          <div className='bg-gray-400 w-[22px] h-[3px] rounded-xl' />
+        <div className='flex flex-row gap-1 items-center'>
+          <div ref={ref}>
+            <NavbarButton icon='pi-user-plus' onClick={() => setPinQrCode((p) => !p)} />
+          </div>
         </div>
       </div>
-      {children}
+      <div className='h-100 relative'>
+        {showQrCode && (
+          <div className='absolute top-1 right-1 z-10'>
+            <DemoLink urlLink={url} />
+          </div>
+        )}
+        {children}
+      </div>
     </div>
   )
 }
