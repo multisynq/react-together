@@ -77,7 +77,7 @@ export default function HeroDemo() {
             </PresenceDiv>
             <div className='w-8' />
             <PresenceDiv rtKey='hero-demo-color-picker-presence'>
-              <ColorPickerTogether rtKey='hero-demo-color-picker' publishWhileOpen />
+              <ColorPickerTogether rtKey='hero-demo-colorß-picker' publishWhileOpen defaultColor='#93C5FD' />
             </PresenceDiv>
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function HeroDemo() {
               </PresenceDiv>
               <div className='w-8' />
               <PresenceDiv rtKey='hero-demo-color-picker-presence'>
-                <ColorPickerTogether rtKey='hero-demo-color-picker' publishWhileOpen />
+                <ColorPickerTogether rtKey='hero-demo-colorß-picker' publishWhileOpen defaultColor='#93C5FD' />
               </PresenceDiv>
             </div>
           </div>
