@@ -1,3 +1,4 @@
+import MSQ_logo from '../../images/MSQ_logo.jpg'
 export function PricingBanner() {
   const divStyle = {
     backgroundImage: 'url(https://i.postimg.cc/Gt4bKKjP/background.jpg)',
@@ -20,8 +21,8 @@ export function PricingBanner() {
               </p>
             </div>
             <div className='w-1/3 relative'>
-              <div className='h-[16rem] w-[16rem] bg-white absolute top-[-2rem] left-1/2 transform -translate-x-1/2 line-border flex items-center justify-center'>
-                <img src={'../../images/MSQ_logo.jpg'} alt='Multisynq Logo' className='w-full h-auto rounded-lg' />
+              <div className='h-[16rem] w-[16rem] bg-white absolute top-[-2rem] left-1/2 transform -translate-x-1/2 line-border flex items-center justify-center p-1'>
+                <img src={MSQ_logo} alt='Multisynq Logo' className='w-full h-auto rounded-lg' />
               </div>
             </div>
           </div>
