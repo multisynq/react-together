@@ -37,7 +37,7 @@ export function PricingBanner() {
             <a
               href={COST_LINK}
               onClick={() => window.scrollTo(0, 0)}
-              className='border-b-2 border-blue-700 italic font-medium px-2 hover:border-white hover:bg-blue-50 hover:rounded-lg'
+              className='border-b-2 text-black border-blue-700 italic font-medium px-2 hover:border-white hover:bg-blue-50 hover:rounded-lg'
             >
               costs
             </a>
@@ -45,7 +45,7 @@ export function PricingBanner() {
             <a
               href={SYNQER_LINK}
               target='_blank'
-              className='border-b-2 border-blue-700 italic font-medium px-2 hover:border-white hover:bg-blue-50 hover:rounded-lg'
+              className='border-b-2 text-black border-blue-700 italic font-medium px-2 hover:border-white hover:bg-blue-50 hover:rounded-lg'
             >
               synqer
             </a>
