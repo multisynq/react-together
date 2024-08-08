@@ -4,6 +4,7 @@ import PrimeReactDropdownTogetherDocumentationPage from './DropdownTogether'
 import PrimeReactInputSwitchTogetherDocumentationPage from './InputSwitchTogether'
 import PrimeReactKnobTogetherDocumentationPage from './KnobTogether'
 import PrimeReactMultiSelectTogetherDocumentationPage from './MultiSelectTogether'
+import PrimeReactColorPickerTogetherDocumentationPage from './PrimeReactColorPickerTogetherDocumentationPage'
 import PrimeReactRatingTogetherDocumentationPage from './RatingTogether'
 import PrimeReactSelectButtonTogetherDocumentationPage from './SelectButtonTogether'
 import PrimeReactTabViewTogetherDocumentationPage from './TabViewTogether'
@@ -13,6 +14,7 @@ import PrimeReactTriStateCheckboxTogetherDocumentationPage from './TriStateCheck
 export {
   PrimeReactCalendarTogetherDocumentationPage,
   PrimeReactCheckboxTogetherDocumentationPage,
+  PrimeReactColorPickerTogetherDocumentationPage,
   PrimeReactDropdownTogetherDocumentationPage,
   PrimeReactInputSwitchTogetherDocumentationPage,
   PrimeReactKnobTogetherDocumentationPage,

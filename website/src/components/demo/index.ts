@@ -3,6 +3,7 @@ import HeroDemo from './HeroDemo'
 import { PresenceDivDemo } from './PresenceDivDemo'
 import { PrimeReactCalendarTogetherDemo } from './PrimeReactCalendarTogetherDemo'
 import { PrimeReactCheckboxTogetherDemo } from './PrimeReactCheckboxTogetherDemo'
+import { PrimeReactColorPickerTogetherDemo } from './PrimeReactColorPickerTogetherDemo'
 import { PrimeReactDropdownTogetherDemo } from './PrimeReactDropdownTogetherDemo'
 import { PrimeReactInputSwitchTogetherDemo } from './PrimeReactInputSwitchTogetherDemo'
 import { PrimeReactKnobTogetherDemo } from './PrimeReactKnobTogetherDemo'
@@ -19,6 +20,7 @@ export {
   PresenceDivDemo,
   PrimeReactCalendarTogetherDemo,
   PrimeReactCheckboxTogetherDemo,
+  PrimeReactColorPickerTogetherDemo,
   PrimeReactDropdownTogetherDemo,
   PrimeReactInputSwitchTogetherDemo,
   PrimeReactKnobTogetherDemo,
