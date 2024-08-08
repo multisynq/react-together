@@ -11,3 +11,31 @@
   order: 1;
   margin-left: auto;
 }
+
+.p-datatable {
+  .p-datatable-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid #525252;
+    .p-datatable-thead {
+      tr {
+        th {
+          background-color: #eff6ff;
+          .p-column-header-content {
+            .p-column-title {
+              color: black;
+            }
+          }
+        }
+      }
+    }
+    .p-datatable-tbody {
+      tr {
+        td {
+          color: #262626;
+          // font-weight: 500;
+        }
+      }
+    }
+  }
+}
