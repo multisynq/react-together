@@ -1,4 +1,6 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import { Column } from 'primereact/column'
+import { DataTable } from 'primereact/datatable'
 import Markdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
@@ -27,6 +29,42 @@ export function MarkdownPage({ markdown }: MarkdownPageProps) {
                 <code className={className} {...props}>
                   {children}
                 </code>
+              )
+            },
+            table: (props) => {
+              const children: React.ReactNode[] | null = props.children as React.ReactNode[]
+              const columns = []
+              const data = []
+              children.forEach((c) => {
+                if (c.type === 'thead') {
+                  const tr = c.props.children as React.ReactNode
+                  tr.props.children.forEach((th, idx) => {
+                    columns.push({ field: th.props.children, header: th.props.children })
+                  })
+                } else if (c.type === 'tbody') {
+                  // Iterate over all the <tr/>
+                  c.props.children.forEach((tr) => {
+                    const rowData = {}
+                    tr.props.children.forEach((td, idx) => {
+                      if (idx < columns.length) {
+                        rowData[columns[idx].field] = td.props.children
+                      } else {
+                        console.error('Table row has more columns than header')
+                      }
+                    })
+                    data.push(rowData)
+                  })
+                } else {
+                  console.error('Unknown table child', c)
+                }
+              })
+
+              return (
+                <DataTable value={data}>
+                  {columns.map((c) => (
+                    <Column key={c.field} {...c} />
+                  ))}
+                </DataTable>
               )
             },
           }}
