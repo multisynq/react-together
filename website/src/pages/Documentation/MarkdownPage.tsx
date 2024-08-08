@@ -5,6 +5,16 @@ import Markdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 
+// The two interfaces below are used to type
+// the `table` renderer
+interface DomChild {
+  props: DomProps
+  type: string
+}
+interface DomProps {
+  children: DomChild[]
+}
+
 interface MarkdownPageProps {
   markdown: string
 }
@@ -32,13 +42,14 @@ export function MarkdownPage({ markdown }: MarkdownPageProps) {
               )
             },
             table: (props) => {
-              const children: React.ReactNode[] | null = props.children as React.ReactNode[]
+              const children = props.children as DomChild[]
               const columns = []
               const data = []
               children.forEach((c) => {
                 if (c.type === 'thead') {
-                  const tr = c.props.children as React.ReactNode
-                  tr.props.children.forEach((th, idx) => {
+                  // Here we know that tr is not inside an array
+                  const tr = c.props.children as unknown as DomChild
+                  tr.props.children.forEach((th) => {
                     columns.push({ field: th.props.children, header: th.props.children })
                   })
                 } else if (c.type === 'tbody') {

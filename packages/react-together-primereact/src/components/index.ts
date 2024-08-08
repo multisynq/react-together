@@ -1,5 +1,6 @@
 import CalendarTogether from './CalendarTogether'
 import CheckboxTogether from './CheckboxTogether'
+import ColorPickerTogether from './ColorPickerTogether'
 import DropdownTogether from './DropdownTogether'
 import InputSwitchTogether from './InputSwitchTogether'
 import KnobTogether from './KnobTogether'
@@ -13,6 +14,7 @@ import TriStateCheckboxTogether from './TriStateCheckboxTogether'
 export {
   CalendarTogether,
   CheckboxTogether,
+  ColorPickerTogether,
   DropdownTogether,
   InputSwitchTogether,
   KnobTogether,

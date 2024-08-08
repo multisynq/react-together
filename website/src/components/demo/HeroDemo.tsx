@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ConnectedViews, PresenceDiv } from 'react-together'
-import { CheckboxTogether, DropdownTogether, KnobTogether, SelectButtonTogether } from 'react-together-primereact'
+import { CheckboxTogether, ColorPickerTogether, DropdownTogether, SelectButtonTogether } from 'react-together-primereact'
 
 export default function HeroDemo() {
   const [isHomePage, setIsHomePage] = useState(true)
@@ -76,8 +76,8 @@ export default function HeroDemo() {
               />
             </PresenceDiv>
             <div className='w-8' />
-            <PresenceDiv rtKey='knob2-presence'>
-              <KnobTogether rtKey='knob2' size={80} />
+            <PresenceDiv rtKey='hero-demo-color-picker-presence'>
+              <ColorPickerTogether rtKey='hero-demo-color-picker' publishWhileOpen />
             </PresenceDiv>
           </div>
         </div>
@@ -120,8 +120,8 @@ export default function HeroDemo() {
                 />
               </PresenceDiv>
               <div className='w-8' />
-              <PresenceDiv rtKey='knob2-presence'>
-                <KnobTogether rtKey='knob2' size={80} />
+              <PresenceDiv rtKey='hero-demo-color-picker-presence'>
+                <ColorPickerTogether rtKey='hero-demo-color-picker' publishWhileOpen />
               </PresenceDiv>
             </div>
           </div>

@@ -3,6 +3,7 @@ import {
   IntroductionPage,
   PresenceDivDocumentationPage,
   PrimeReactCheckboxTogetherDocumentationPage,
+  PrimeReactColorPickerTogetherDocumentationPage,
   PrimeReactDropdownTogetherDocumentationPage,
   PrimeReactInputSwitchTogetherDocumentationPage,
   PrimeReactKnobTogetherDocumentationPage,
@@ -23,6 +24,7 @@ import { HomePage } from './pages/HomePage'
 import {
   PresenceDivDemo,
   PrimeReactCheckboxTogetherDemo,
+  PrimeReactColorPickerTogetherDemo,
   PrimeReactDropdownTogetherDemo,
   PrimeReactInputSwitchTogetherDemo,
   PrimeReactKnobTogetherDemo,
@@ -69,6 +71,7 @@ export default function AppRoutes() {
           <Route path='primereact'>
             {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDocumentationPage />} /> */}
             <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDocumentationPage />} />
+            <Route path='ColorPicker' element={<PrimeReactColorPickerTogetherDocumentationPage />} />
             <Route path='Dropdown' element={<PrimeReactDropdownTogetherDocumentationPage />} />
             <Route path='InputSwitch' element={<PrimeReactInputSwitchTogetherDocumentationPage />} />
             <Route path='Knob' element={<PrimeReactKnobTogetherDocumentationPage />} />
@@ -91,6 +94,7 @@ export default function AppRoutes() {
         <Route path='primereact'>
           {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDemo />} /> */}
           <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDemo />} />
+          <Route path='ColorPicker' element={<PrimeReactColorPickerTogetherDemo />} />
           <Route path='Dropdown' element={<PrimeReactDropdownTogetherDemo />} />
           <Route path='InputSwitch' element={<PrimeReactInputSwitchTogetherDemo />} />
           <Route path='Knob' element={<PrimeReactKnobTogetherDemo />} />
