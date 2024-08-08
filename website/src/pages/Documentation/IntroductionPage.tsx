@@ -15,18 +15,21 @@ function IntroductionContent() {
         Welcome to ReactTogether! With this library you will be able to build synchronized web applications in the blink of an eye! No need
         to set up servers or sockets!
       </p>
+
       <h4 id='installation'>Installation</h4>
       <p>
         Install the <CodeSpan text='react-together' /> package via <CodeSpan text='npm' />
       </p>
       <CodeBlock language='bash' code1={`npm i react-together`} />
+
       <h4 id='context'>Context</h4>
       <p>
         Wrap your application inside the <LinkSpan text='<ReactTogether/>' to='/ReactTogether' /> component, and configure it using your
-        Multisynq keys. Get your free keys at{' '}
+        Multisynq keys. The Multisynq keys are required to enable the synchronization magic that powers React Together. Get your keys at{' '}
         <Link to='https://croquet.io/keys' target='_blank'>
           croquet.io/keys
         </Link>
+        .
       </p>
       <CodeBlock language='tsx' code1={`import { ReactTogether } from 'react-together'`} />
       <CodeBlock
