@@ -8,7 +8,7 @@ export function PricingBanner() {
   }
 
   return (
-    <div className='w-full h-[20rem]'>
+    <div className='w-full min-h-[20rem]'>
       <div style={divStyle}>
         <div className='w-full mt-12 pb-[2rem]' style={divStyle}>
           <div className='w-full flex px-[12rem] items-stretch '>
