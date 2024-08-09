@@ -16,11 +16,10 @@ export function PricingBanner() {
   return (
     <div className='w-full md:h-[14rem] bg-blue-200 relative mt-28 flex flex-col md:flex-row items-center justify-center gap-4'>
       <div className='w-1/2 h-full flex flex-col justify-center items-end'>
-        <div className='flex flex-col gap-6 md:ml-16'>
-          <h2 className='text-center md:text-left' style={{ fontSize: '40px', fontWeight: '700', lineHeight: '1.25' }}>
-            {/* <span className='text-center md:text-left font' style={{ fontSize: '40px', fontWeight: '700', lineHeight: '1.25' }}> */}
-            Crazy Affordable Networked,
-            <br />
+        <div className='flex flex-col gap-4 md:ml-16 py-7'>
+          <h2 className='text-center md:text-left md:text-2xl lg:text-3xl'>
+            {'Crazy Affordable Networked, '}
+            <br className='hidden md:block' />
             Multiuser Experiences
           </h2>
           <span
