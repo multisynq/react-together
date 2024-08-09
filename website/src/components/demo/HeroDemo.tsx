@@ -110,18 +110,22 @@ export default function HeroDemo() {
             </PresenceDiv>
 
             <div className='flex items-center justify-between w-full'>
+              <PresenceDiv
+                rtKey='hero-demo-color-picker-presence'
+                className='flex justify-center items-center gap-1 border mx-0 h-full rounded-md border-gray-300 px-2'
+              >
+                <ColorPickerTogether rtKey='hero-demo-colorß-picker' publishWhileOpen defaultColor='#93C5FD' />
+                <p className=' text-gray-700 text-sm'>Color Picker</p>
+              </PresenceDiv>
+              <div className='w-auto' />
               <PresenceDiv rtKey='dropdown-presence'>
                 <DropdownTogether
                   rtKey='dropdown'
                   options={cities}
                   optionLabel='name'
                   placeholder='Select a City'
-                  className='w-full md:w-14rem'
+                  className='w-auto md:w-14rem'
                 />
-              </PresenceDiv>
-              <div className='w-8' />
-              <PresenceDiv rtKey='hero-demo-color-picker-presence'>
-                <ColorPickerTogether rtKey='hero-demo-colorß-picker' publishWhileOpen defaultColor='#93C5FD' />
               </PresenceDiv>
             </div>
           </div>

@@ -28,7 +28,7 @@ export function PageHeader() {
         </div> */}
       </h1>
       <div className='h-4'></div>
-      <p className='text-center max-w-[32rem] text-gray-500 text-sm sm:text-base'>
+      <p className='text-center max-w-[32rem] text-gray-500 text-sm sm:text-base font-light'>
         Foster real-time collaboration with our React library, enabling users to interact and work together seamlessly.
       </p>
       <span className='h-8' />
