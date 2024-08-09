@@ -10,12 +10,12 @@ export function NotFoundPage() {
       <img src={notFoundImage} alt='404 Page Not found with compass' className='w-auto h-[12rem] rounded-lg' />
       <h3>Uh oh, this page has gone on an adventure.</h3>
 
-      <div
-        className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'
+      <span
+        className='w-18 px-5 py-2 bg-blue-600 cursor-pointer text-center rounded-lg text-neutral-100 border-[2px] line-border hover:bg-blue-100 hover:text-neutral-800 shadow-lineStyleLight'
         onClick={() => navigate('/', { replace: true })}
       >
-        Return to Home Page
-      </div>
+        <strong>Return to Home Page</strong>
+      </span>
     </div>
   )
 }
