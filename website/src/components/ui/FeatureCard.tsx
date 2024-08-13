@@ -1,5 +1,5 @@
 import gif1 from '@images/reactTogehter-install.gif'
-import gif3 from '@images/reactTogether-sharedCheckbox.gif'
+import gif3 from '@images/reactTogether-CheckboxTogether.gif'
 import gif2 from '@images/reactTogether-wrap.gif'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -28,10 +28,6 @@ export function FeatureCard() {
   useEffect(() => {
     AOS.init({ duration: 1000 })
   }, [])
-
-  // const featureHeadTitle = 'No server required!'
-  // const featureHeadDescription =
-  //   "We've made it simple for you. Just follow three easy steps to bring a seamless multi-user experience to your project!"
 
   return (
     <div data-aos='fade-up'>
