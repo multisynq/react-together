@@ -39,3 +39,23 @@
     }
   }
 }
+
+.text-effect {
+  --gradient-width: 200%;
+  font-weight: bold;
+  background: linear-gradient(90deg, #1d4ed8, #93c5fd, #1d4ed8);
+  background-size: var(--gradient-width) 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  from {
+    background-position: var(--gradient-width) 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
