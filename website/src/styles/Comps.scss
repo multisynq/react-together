@@ -73,3 +73,8 @@
     transform: translate(-50%, 2%);
   }
 }
+
+.moveUp:hover {
+  transform: translateY(-10px); /* Moves the element up by 20px */
+  transition: transform 0.2s ease-in;
+}

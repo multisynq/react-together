@@ -6,17 +6,21 @@ import 'aos/dist/aos.css'
 import { useEffect } from 'react'
 import CodeSpan from './CodeSpan'
 
-function EachFeature({ header, body, color, imgSource }) {
+function EachFeature({ header, body, color, imgSource, linkURL }) {
   return (
-    <div className={`${color} w-full line-border overflow-hidden`}>
-      <div className={'aspect-video w-full shadow-md'}>
-        <img className='h-[240px] w-full' src={imgSource} />
+    <a href={linkURL} className='block w-1/3 moveUp'>
+      <div className={`${color} w-full line-border overflow-hidden`}>
+        <div className='aspect-video'>
+          <div className='w-full h-full shadow-md flex items-center justify-center overflow-hidden'>
+            <img src={imgSource} className='object-cover w-full h-full' />
+          </div>
+          <div className='w-full flex flex-col items-center px-4 my-4 h-[8rem]'>
+            <h4 className='text-center font-bold'>{header}</h4>
+            <div className='text-center text-gray-800 text-sm sm:text-base'>{body}</div>
+          </div>
+        </div>
       </div>
-      <div className='w-full flex flex-col items-center px-4 my-8'>
-        <h4 className='text-center font-bold'>{header}</h4>
-        <div className='text-center text-gray-800 text-sm sm:text-base'>{body}</div>
-      </div>
-    </div>
+    </a>
   )
 }
 
@@ -40,6 +44,7 @@ export function FeatureCard() {
             }
             color={color1}
             imgSource={gif1}
+            linkURL={'#/getting-started'}
           />
           <EachFeature
             header={'Wrap'}
@@ -50,12 +55,14 @@ export function FeatureCard() {
             }
             color={color1}
             imgSource={gif2}
+            linkURL={'#/ReactTogether'}
           />
           <EachFeature
             header={'Synchronize'}
             body={'Use our hooks to instantly create interactive experiences!'}
             color={color1}
             imgSource={gif3}
+            linkURL={'#/primereact/Checkbox'}
           />
         </div>
       </div>
