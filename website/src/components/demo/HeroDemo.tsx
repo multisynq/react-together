@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ConnectedViews, PresenceDiv } from 'react-together'
 import { CheckboxTogether, ColorPickerTogether, DropdownTogether, SelectButtonTogether } from 'react-together-primereact'
+import { PresenceDivStyle } from '../ui/PresenceDivStyle'
 
 export default function HeroDemo() {
   const [isHomePage, setIsHomePage] = useState(true)
@@ -101,11 +102,11 @@ export default function HeroDemo() {
 
             <div className='flex items-center justify-between w-full'>
               {['div1', 'div2', 'div3'].map((key) => (
-                <PresenceDiv key={key} rtKey={key}>
+                <PresenceDivStyle key={key} rtKey={key}>
                   <div className='w-16 h-8 px-2 py-1 bg-blue-100 cursor-pointer text-center rounded-lg text-gray-600 text-sm flex items-center justify-center font-base border border-gray-300'>
                     Hover
                   </div>
-                </PresenceDiv>
+                </PresenceDivStyle>
               ))}
               <div className='content-center p-1'>
                 <PresenceDiv rtKey='checkbox-presence'>
