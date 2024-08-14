@@ -40,7 +40,7 @@
   }
 }
 
-.text-effect {
+.textEffect {
   --gradient-width: 200%;
   font-weight: bold;
   background: linear-gradient(90deg, #1d4ed8, #93c5fd, #1d4ed8);
@@ -57,5 +57,19 @@
   }
   to {
     background-position: 0 0;
+  }
+}
+
+.animatedLogo {
+  animation: moveUpDown 4s ease-in-out infinite;
+}
+
+@keyframes moveUpDown {
+  0%,
+  100% {
+    transform: translate(-50%, -2%);
+  }
+  50% {
+    transform: translate(-50%, 2%);
   }
 }

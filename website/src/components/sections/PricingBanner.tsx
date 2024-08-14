@@ -37,6 +37,7 @@ export function PricingBanner() {
             , but you can earn money from it by being a{' '}
             <a
               href={SYNQER_LINK}
+              rel='noopener noreferrer'
               target='_blank'
               className='border-b text-black border-blue-600 font-medium px-1 rounded-sm bg-blue-50 hover:text-white hover:bg-blue-600 hover:border-b-white'
             >
@@ -48,9 +49,11 @@ export function PricingBanner() {
       </div>
       <div className='w-1/2 h-full relative'>
         <div className='hidden md:block' style={divStyle}>
-          <div className='h-[10rem] w-[10rem] md:h-[12rem] md:w-[12rem] lg:h-[14rem] lg:w-[14rem] bg-white absolute top-[-2rem] left-1/2 transform -translate-x-1/2 border border-gray-700 rounded-xl shadow-lineStyleDark flex items-center justify-center p-1 z-10 ${styles.animatedLogo}'>
-            <img src={MSQ_logo} alt='Multisynq Logo' className='w-full h-auto rounded-lg' />
-          </div>
+          <a href='SYNQER_LINK' target='_blank' rel='noopener noreferrer'>
+            <div className='h-[10rem] w-[10rem] md:h-[12rem] md:w-[12rem] lg:h-[14rem] lg:w-[14rem] bg-white absolute top-[-2rem] left-1/2 transform -translate-x-1/2 border border-gray-700 rounded-xl shadow-lineStyleDark flex items-center justify-center p-1 z-10 animatedLogo'>
+              <img src={MSQ_logo} alt='Multisynq Logo' className='w-full h-auto rounded-lg' />
+            </div>
+          </a>
         </div>
       </div>
     </div>
