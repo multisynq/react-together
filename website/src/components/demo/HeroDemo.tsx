@@ -89,11 +89,15 @@ export default function HeroDemo() {
     <div className='w-full overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
       <div className='px-2 py-2 bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] h-full'>
         <div className='w-full h-full flex gap-2'>
-          <div className='h-full flex flex-col items-start w-[20rem] rounded-lg border-[1.5px] border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto'>
+          <div className='h-full flex flex-col items-start w-[20rem] rounded-lg border border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto'>
+            <PresenceDiv rtKey='select-button-presence'>
+              <SelectButtonTogether rtKey='select-button' options={items} optionLabel='name' />
+            </PresenceDiv>
+
             <div className='flex items-center justify-between w-full'>
               {['div1', 'div2', 'div3'].map((key) => (
                 <PresenceDiv key={key} rtKey={key}>
-                  <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
+                  <div className='w-16 h-8 px-2 py-1 bg-blue-100 cursor-pointer text-center rounded-lg text-gray-600 text-sm flex items-center justify-center font-base border border-gray-300'>
                     Hover
                   </div>
                 </PresenceDiv>
@@ -104,10 +108,6 @@ export default function HeroDemo() {
                 </PresenceDiv>
               </div>
             </div>
-
-            <PresenceDiv rtKey='select-button-presence'>
-              <SelectButtonTogether rtKey='select-button' options={items} optionLabel='name' />
-            </PresenceDiv>
 
             <div className='flex items-center justify-between w-full'>
               <PresenceDiv
