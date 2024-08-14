@@ -36,7 +36,7 @@ export function BrowserWrapper({ url, children }: BrowserWrapperProps) {
 
   return (
     <div className='line-border overflow-hidden h-full'>
-      <div className='w-full flex items-center gap-3 bg-gray-200 h-14 border-b-[1.5px] border-black px-3'>
+      <div className='w-full flex items-center gap-3 bg-gray-200 h-14 border-b border-gray-500 px-3'>
         <div className='flex gap-2'>
           <div className='bg-red-500 rounded-xl h-[10px] w-[10px] border border-black' />
           <div className='bg-yellow-400 rounded-xl h-[10px] w-[10px] border border-black' />
