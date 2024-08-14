@@ -21,20 +21,17 @@ export function PageHeader() {
   return (
     <div className='flex flex-col items-center max-w-[105rem]'>
       <div className='h-8'></div>
-      <h1 className='flex text-center flex-col sm:flex-row'>
-        Bring users together seamlessly.
-        {/* <div className='pl-2'>
-          <SeamlesslyAnimation />
-        </div> */}
+      <h1 className='flex flex-col sm:flex-row items-center gap-1'>
+        {`Bring users together`} <span className='textEffect '>seamlessly.</span>
       </h1>
       <div className='h-4'></div>
-      <p className='text-center max-w-[32rem] text-gray-500 text-sm sm:text-base font-light'>
+      <p className='text-center max-w-[32rem] text-gray-700 text-sm sm:text-base font-light'>
         Foster real-time collaboration with our React library, enabling users to interact and work together seamlessly.
       </p>
       <span className='h-8' />
       <div className='flex gap-2 flex-col sm:flex-row'>
         <div
-          className='px-4 py-2 bg-blue-300 text-gray-800 text-center flex items-center justify-center cursor-pointer line-border'
+          className='px-4 py-2 bg-blue-300 text-gray-800 text-center flex items-center justify-center cursor-pointer line-border hover:shadow-lineStyleMedium hover:bg-blue-100'
           onClick={() => navigate('/getting-started')}
         >
           <h6 className='font-bold'>Getting Started</h6>
