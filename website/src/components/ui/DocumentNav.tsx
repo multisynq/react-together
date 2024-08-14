@@ -115,7 +115,6 @@ export default function DocumentNav() {
         action: classNames('pl-8 py-2'),
         label: classNames('text-gray-800 text-sm lg:text-base break-all'),
         content: classNames('rounded-md'),
-        // submenuIcon: classNames('pi pi-file'),
       }}
     />
   )

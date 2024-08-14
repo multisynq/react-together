@@ -45,11 +45,16 @@ export default function HeroDemo() {
         <div className='flex justify-center absolute bottom-2 right-2'>
           <ConnectedViews maxAvatars={6} />
         </div>
-        <div className='w-full flex flex-col items-start rounded-lg border-[1.5px] border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto mx-2 my-3 max-w-[456px]'>
+        <div className='w-full flex flex-col items-start rounded-lg border border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto mx-2 my-3 max-w-[360px]'>
+          <div className='w-full items-center justify-center flex'>
+            <PresenceDiv rtKey='select-button-presence'>
+              <SelectButtonTogether rtKey='select-button' options={items} optionLabel='name' />
+            </PresenceDiv>
+          </div>
           <div className='flex items-center justify-between w-full'>
             {['div1', 'div2', 'div3'].map((key) => (
               <PresenceDiv key={key} rtKey={key}>
-                <div className='w-18 px-2 py-1 bg-blue-400 cursor-pointer text-center rounded-lg text-gray-50 border-[2px] border-gray-700 shadow-lineStyleDark'>
+                <div className='w-16 h-8 px-2 py-1 bg-blue-100 cursor-pointer text-center rounded-lg text-gray-600 text-sm flex items-center justify-center font-base border border-gray-300'>
                   Hover
                 </div>
               </PresenceDiv>
@@ -61,23 +66,23 @@ export default function HeroDemo() {
             </div>
           </div>
 
-          <PresenceDiv rtKey='select-button-presence'>
-            <SelectButtonTogether rtKey='select-button' options={items} optionLabel='name' />
-          </PresenceDiv>
-
-          <div className='flex items-center justify-between w-full'>
+          <div className='flex items-center justify-between w-full h-full '>
+            <PresenceDiv
+              rtKey='hero-demo-color-picker-presence'
+              className='flex justify-center items-center gap-4 mx-0 h-full rounded-md border-gray-300 px-2'
+            >
+              <ColorPickerTogether rtKey='hero-demo-colorß-picker' publishWhileOpen defaultColor='#93C5FD' />
+              <p className=' text-gray-700 text-sm'>Color Picker</p>
+            </PresenceDiv>
+            <div className='w-auto' />
             <PresenceDiv rtKey='dropdown-presence'>
               <DropdownTogether
                 rtKey='dropdown'
                 options={cities}
                 optionLabel='name'
                 placeholder='Select a City'
-                className='w-full md:w-14rem'
+                className='w-auto md:w-14rem'
               />
-            </PresenceDiv>
-            <div className='w-8' />
-            <PresenceDiv rtKey='hero-demo-color-picker-presence'>
-              <ColorPickerTogether rtKey='hero-demo-colorß-picker' publishWhileOpen defaultColor='#93C5FD' />
             </PresenceDiv>
           </div>
         </div>
