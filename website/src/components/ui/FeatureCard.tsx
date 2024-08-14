@@ -1,5 +1,5 @@
 import gif1 from '@images/reactTogehter-install.gif'
-import gif3 from '@images/reactTogether-CheckboxTogether.gif'
+import gif3 from '@images/reactTogether-checkboxTogether.gif'
 import gif2 from '@images/reactTogether-wrap.gif'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -10,11 +10,11 @@ function EachFeature({ header, body, color, imgSource }) {
   return (
     <div className={`${color} w-full line-border overflow-hidden`}>
       <div className={'aspect-video w-full shadow-md'}>
-        <img src={imgSource} />
+        <img className='h-[240px] w-full' src={imgSource} />
       </div>
       <div className='w-full flex flex-col items-center px-4 my-8'>
         <h4 className='text-center font-bold'>{header}</h4>
-        <div className='text-center text-gray-800 mb-1 text-sm sm:text-base'>{body}</div>
+        <div className='text-center text-gray-800 text-sm sm:text-base'>{body}</div>
       </div>
     </div>
   )
@@ -22,8 +22,6 @@ function EachFeature({ header, body, color, imgSource }) {
 
 export function FeatureCard() {
   const color1 = 'bg-sky-100'
-  // const color2 = 'bg-indigo-100'
-  // const color3 = 'bg-blue-100'
 
   useEffect(() => {
     AOS.init({ duration: 1000 })
