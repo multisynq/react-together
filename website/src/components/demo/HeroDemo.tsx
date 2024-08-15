@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ConnectedViews, PresenceDiv } from 'react-together'
 import { CheckboxTogether, ColorPickerTogether, DropdownTogether, SelectButtonTogether } from 'react-together-primereact'
-import { PresenceDivStyle } from '../ui/PresenceDivStyle'
+import { PresenceDivStyled } from '../ui/PresenceDivStyled'
 
 export default function HeroDemo() {
   const [isHomePage, setIsHomePage] = useState(true)
@@ -54,11 +54,11 @@ export default function HeroDemo() {
           </div>
           <div className='flex items-center justify-between w-full'>
             {['div1', 'div2', 'div3'].map((key) => (
-              <PresenceDiv key={key} rtKey={key}>
-                <div className='w-16 h-8 px-2 py-1 bg-blue-100 cursor-pointer text-center rounded-lg text-gray-600 text-sm flex items-center justify-center font-base border border-gray-300'>
+              <PresenceDivStyled key={key} rtKey={key}>
+                <div className='w-16 h-8 px-2 py-1 bg-blue-300 cursor-pointer text-center rounded-lg text-gray-600 text-sm flex items-center justify-center font-base border border-gray-400 hover:bg-blue-500 hover:text-gray-50'>
                   Hover
                 </div>
-              </PresenceDiv>
+              </PresenceDivStyled>
             ))}
             <div className='content-center p-1'>
               <PresenceDiv rtKey='checkbox-presence'>
@@ -102,11 +102,11 @@ export default function HeroDemo() {
 
             <div className='flex items-center justify-between w-full'>
               {['div1', 'div2', 'div3'].map((key) => (
-                <PresenceDivStyle key={key} rtKey={key}>
-                  <div className='w-16 h-8 px-2 py-1 bg-blue-100 cursor-pointer text-center rounded-lg text-gray-600 text-sm flex items-center justify-center font-base border border-gray-300'>
+                <PresenceDivStyled key={key} rtKey={key}>
+                  <div className='w-16 h-8 px-2 py-1 bg-blue-300 cursor-pointer text-center rounded-lg text-gray-600 text-sm flex items-center justify-center font-base border border-gray-400 hover:bg-blue-500 hover:text-gray-50'>
                     Hover
                   </div>
-                </PresenceDivStyle>
+                </PresenceDivStyled>
               ))}
               <div className='content-center p-1'>
                 <PresenceDiv rtKey='checkbox-presence'>

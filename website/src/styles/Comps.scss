@@ -78,3 +78,15 @@
   transform: translateY(-10px); /* Moves the element up by 20px */
   transition: transform 0.2s ease-in;
 }
+
+@keyframes hoverBob {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
