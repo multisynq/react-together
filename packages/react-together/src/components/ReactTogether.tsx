@@ -5,7 +5,7 @@ import ReactTogetherModel from '../models/ReactTogetherModel'
 type ReactTogetherSessionParams = {
   appId: string
   apiKey: string
-  separateSessionPerUrl?: boolean
+  sessionIgnoresUrl?: boolean
 }
 
 export interface IReactTogetherContext {
@@ -27,7 +27,7 @@ export default function ReactTogether({
   children,
   sessionParams
 }: ReactTogetherProps) {
-  const { appId, apiKey, separateSessionPerUrl } = sessionParams
+  const { appId, apiKey, sessionIgnoresUrl } = sessionParams
 
   const [sessionName, set_sessionName] = useState<null | string>(
     // import.meta.env.VITE_CROQUET_NAME || null
@@ -73,11 +73,10 @@ export default function ReactTogether({
 
   // By default, sessions hosted in different URLs
   // should be different sessions even if they have the same name.
-  // if separateSessionPerUrl is explicitly (!! hence the "!== false")
-  // set to false, sessions with the same name will be the same session
-  // disregarding where they are being hosted
+  // if sessionIgnoresUrl is true, sessions with the same name will
+  // be the same session disregarding where they are being hosted
   let options = undefined
-  if (separateSessionPerUrl !== false) {
+  if (!sessionIgnoresUrl) {
     options = {
       sessionUrl: window.location.origin + window.location.pathname
     }
