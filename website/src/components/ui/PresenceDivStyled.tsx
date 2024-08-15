@@ -21,7 +21,7 @@ export function PresenceDivStyled({ rtKey, children, className, options }: Prese
     const color = colorHash.hex(hoveringViews[0])
     style = {
       outline: `3px solid ${color}`,
-      animation: 'hoverBob 1.5s ease-in-out infinite',
+      animation: 'hoverBob 1.2s ease-in-out infinite',
       borderRadius: '8px',
       boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.5)',
     }
