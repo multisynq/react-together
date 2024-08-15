@@ -1,4 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import CodeSpan from '@components/ui/CodeSpan'
 import Link from '@components/ui/Link'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
@@ -35,6 +36,18 @@ export default function ReactTogetherDocumentationPage() {
                 <Link to='https://croquet.io/keys' target='_blank'>
                   croquet.io/keys
                 </Link>
+              </p>
+            ),
+          },
+          {
+            name: 'sessionIgnoresUrl',
+            type: 'boolean',
+            default: 'false',
+            description: (
+              <p>
+                Sessions with the same name are typically treated as separate if they are hosted at different URLs. However, if
+                <CodeSpan text='sessionIgnoresUrl' /> is set to <CodeSpan text='true' />, sessions with the same name will be considered the
+                same session regardless of their hosting URL.
               </p>
             ),
           },
