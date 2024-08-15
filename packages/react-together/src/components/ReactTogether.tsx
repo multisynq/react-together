@@ -70,9 +70,17 @@ export default function ReactTogether({
     // We would need some logic to not render anything until we are connected
     // to the right session
   */
+
+  // By default, sessions hosted in different URLs
+  // should be different sessions even if they have the same name.
+  // if separateSessionPerUrl is explicitly (!! hence the "!== false")
+  // set to false, sessions with the same name will be the same session
+  // disregarding where they are being hosted
+  let options = undefined
   if (separateSessionPerUrl !== false) {
-    // ;(Constants as Record<string, unknown>).sessionUrl =
-    //   window.location.origin + window.location.pathname
+    options = {
+      sessionUrl: window.location.origin + window.location.pathname
+    }
   }
 
   return (
@@ -92,7 +100,8 @@ export default function ReactTogether({
             appId,
             apiKey,
             name: sessionName,
-            password: sessionPassword
+            password: sessionPassword,
+            options
           }}
         >
           <>
