@@ -1,37 +1,35 @@
 import gif1 from '@images/reactTogehter-install.gif'
-import gif3 from '@images/reactTogether-sharedCheckbox.gif'
+import gif3 from '@images/reactTogether-checkboxTogether.gif'
 import gif2 from '@images/reactTogether-wrap.gif'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
 import CodeSpan from './CodeSpan'
 
-function EachFeature({ header, body, color, imgSource }) {
+function EachFeature({ header, body, color, imgSource, linkURL }) {
   return (
-    <div className={`${color} w-full line-border overflow-hidden`}>
-      <div className={'aspect-video w-full shadow-md'}>
-        <img src={imgSource} />
+    <a href={linkURL} className='block w-1/3 moveUp'>
+      <div className={`${color} w-full line-border overflow-hidden`}>
+        <div className='aspect-video'>
+          <div className='w-full h-full shadow-md flex items-center justify-center overflow-hidden'>
+            <img src={imgSource} className='object-cover w-full h-full' />
+          </div>
+          <div className='w-full flex flex-col items-center px-4 my-4 h-[8rem]'>
+            <h4 className='text-center font-bold'>{header}</h4>
+            <div className='text-center text-gray-800 text-sm sm:text-base'>{body}</div>
+          </div>
+        </div>
       </div>
-      <div className='w-full flex flex-col items-center px-4 my-8'>
-        <h4 className='text-center font-bold'>{header}</h4>
-        <div className='text-center text-gray-800 mb-1 text-sm sm:text-base'>{body}</div>
-      </div>
-    </div>
+    </a>
   )
 }
 
 export function FeatureCard() {
   const color1 = 'bg-sky-100'
-  // const color2 = 'bg-indigo-100'
-  // const color3 = 'bg-blue-100'
 
   useEffect(() => {
     AOS.init({ duration: 1000 })
   }, [])
-
-  // const featureHeadTitle = 'No server required!'
-  // const featureHeadDescription =
-  //   "We've made it simple for you. Just follow three easy steps to bring a seamless multi-user experience to your project!"
 
   return (
     <div data-aos='fade-up'>
@@ -46,6 +44,7 @@ export function FeatureCard() {
             }
             color={color1}
             imgSource={gif1}
+            linkURL={'#/getting-started'}
           />
           <EachFeature
             header={'Wrap'}
@@ -56,12 +55,14 @@ export function FeatureCard() {
             }
             color={color1}
             imgSource={gif2}
+            linkURL={'#/ReactTogether'}
           />
           <EachFeature
             header={'Synchronize'}
             body={'Use our hooks to instantly create interactive experiences!'}
             color={color1}
             imgSource={gif3}
+            linkURL={'#/primereact/Checkbox'}
           />
         </div>
       </div>

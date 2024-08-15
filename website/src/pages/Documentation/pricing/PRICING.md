@@ -1,4 +1,4 @@
-## React Together Pricing
+## ReactTogether Pricing
 
 ### Free and Open Source
 
@@ -32,10 +32,16 @@ For those with high-traffic applications, our clever Synchronizer technology oft
 
 ### Migration from Croquet to DePin
 
-React Together is built using Croquet React, an open-source framework that runs on the current Croquet Legacy Network. React Together will transition seamlessly to the Multisynq DePin Network.
+<<<<<<< HEAD
 
-### Join the React Together Revolution!
+# React Together is built using Croquet React, an open-source framework that runs on the current Croquet Legacy Network. React Together will transition seamlessly to the Multisynq DePin Network.
 
-Ready to dive into a world of collaborative, efficient, and fun web development? React Together is more than just a framework – it's a community of innovators, dreamers, and code enthusiasts. Whether you're building a small project or the next big thing, we're here to support you every step of the way.
+> > > > > > > ff072e21cae42ff130f9bc1c83f64c155b2b6e76
 
-So, what are you waiting for? Let's React Together and create something amazing! 🚀✨
+ReactTogether is built using Croquet React, an open-source framework that runs on the current Croquet Legacy Network. ReactTogether will transition seamlessly to the Multisynq DePin Network.
+
+### Join the ReactTogether Revolution!
+
+Ready to dive into a world of collaborative, efficient, and fun web development? ReactTogether is more than just a framework – it's a community of innovators, dreamers, and code enthusiasts. Whether you're building a small project or the next big thing, we're here to support you every step of the way.
+
+So, what are you waiting for? Let's ReactTogether and create something amazing! 🚀✨
