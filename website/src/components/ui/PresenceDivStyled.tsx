@@ -9,9 +9,10 @@ type PresenceDivStyledProps = {
   children: React.ReactNode
   className?: string
   options?: useHoveringViewsOptions
+  animation?: string
 }
 
-export function PresenceDivStyled({ rtKey, children, className, options }: PresenceDivStyledProps) {
+export function PresenceDivStyled({ rtKey, children, className, options, animation }: PresenceDivStyledProps) {
   const debug = false
   const [ref, hoveringViews] = useHoveringViews(rtKey, options)
 
@@ -21,7 +22,7 @@ export function PresenceDivStyled({ rtKey, children, className, options }: Prese
     const color = colorHash.hex(hoveringViews[0])
     style = {
       outline: `3px solid ${color}`,
-      animation: 'hoverBob 1.2s ease-in-out infinite',
+      animation: `${animation}`,
       borderRadius: '8px',
       boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.5)',
     }
@@ -30,6 +31,7 @@ export function PresenceDivStyled({ rtKey, children, className, options }: Prese
   return (
     <>
       {debug && <div>Hovering Ids: {JSON.stringify(hoveringViews)}</div>}
+      {/* <div ref={ref} style={style} className={className}> */}
       <div ref={ref} style={style} className={className}>
         {children}
       </div>
