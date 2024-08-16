@@ -32,12 +32,6 @@ For those with high-traffic applications, our clever Synchronizer technology oft
 
 ### Migration from Croquet to DePin
 
-<<<<<<< HEAD
-
-# React Together is built using Croquet React, an open-source framework that runs on the current Croquet Legacy Network. React Together will transition seamlessly to the Multisynq DePin Network.
-
-> > > > > > > ff072e21cae42ff130f9bc1c83f64c155b2b6e76
-
 ReactTogether is built using Croquet React, an open-source framework that runs on the current Croquet Legacy Network. ReactTogether will transition seamlessly to the Multisynq DePin Network.
 
 ### Join the ReactTogether Revolution!
