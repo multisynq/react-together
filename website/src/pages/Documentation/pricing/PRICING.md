@@ -18,7 +18,7 @@ Many developers can enjoy our monthly free tier indefinitely. Build, experiment,
 
 |   ReactTogether | DePIN Network                             |
 | --------------: | ----------------------------------------- |
-|       Free Plan | Free Til Monthly Volume > 100GB           |
+|       Free Plan | Free until Monthly Volume > 100GB         |
 |    Price Per TB | $66.00 For Business $25.00 For Games      |
 | Monthly Minimum | 1TB/Mo Minimum for accounts over 100GB/Mo |
 
