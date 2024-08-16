@@ -34,7 +34,7 @@ export function PricingBanner() {
             >
               costs
             </a>
-            , but you can earn money from it by being a{' '}
+            , but you could be rewarded from it by being a{' '}
             <a
               href={SYNQER_LINK}
               rel='noopener noreferrer'
