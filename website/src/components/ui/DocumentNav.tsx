@@ -62,8 +62,14 @@ const items: PatchedMenuItem[] = [
       // { label: 'useLeaveSession', to: '/useLeaveSession' },
     ],
   },
-  { label: 'Contributing', url: `${baseUrl}/contributing` },
-  { label: 'Pricing', url: `${baseUrl}/pricing` },
+  {
+    label: 'Discovery',
+    expanded: true,
+    items: [
+      { label: 'Contributing', url: `${baseUrl}/contributing` },
+      { label: 'Pricing', url: `${baseUrl}/pricing` },
+    ],
+  },
   // {
   //   label: 'Discover',
   //   expanded: true,
