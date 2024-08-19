@@ -15,34 +15,36 @@ interface PatchedMenuItemCommandEvent extends MenuItemCommandEvent {
   item: PatchedMenuItem
 }
 
+const baseUrl = 'ReactTogether#'
+
 const items: PatchedMenuItem[] = [
   {
     label: 'Getting Started',
-    to: '/getting-started',
+    url: `${baseUrl}/getting-started`,
   },
   {
     label: 'Components',
     expanded: true,
     items: [
-      { label: 'ReactTogether', to: '/ReactTogether' },
-      { label: 'ConnectedViews', to: '/ConnectedViews' },
-      { label: 'PresenceDiv', to: '/PresenceDiv' },
+      { label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
+      { label: 'ConnectedViews', url: `${baseUrl}ReactTogether#ConnectedViews` },
+      { label: 'PresenceDiv', url: `${baseUrl}/PresenceDiv` },
       {
         label: 'Prime React',
         expanded: true,
         items: [
-          // { label: 'CalendarTogether', to: '/primereact/Calendar' },
-          { label: 'CheckboxTogether', to: '/primereact/Checkbox' },
-          { label: 'ColorPickerTogether', to: '/primereact/ColorPicker' },
-          { label: 'DropdownTogether', to: '/primereact/Dropdown' },
-          { label: 'InputSwitchTogether', to: '/primereact/InputSwitch' },
-          { label: 'KnobTogether', to: '/primereact/Knob' },
-          { label: 'MultiSelectTogether', to: '/primereact/MultiSelect' },
-          { label: 'RatingTogether', to: '/primereact/Rating' },
-          { label: 'SelectButtonTogether', to: '/primereact/SelectButton' },
-          { label: 'TabViewTogether', to: '/primereact/TabView' },
-          { label: 'ToggleButtonTogether', to: '/primereact/ToggleButton' },
-          { label: 'TriStateCheckboxTogether', to: '/primereact/TriStateCheckbox' },
+          // { label: 'CalendarTogether', url: '/primereact/Calendar' },
+          { label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
+          { label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
+          { label: 'DropdownTogether', url: `/primereact/Dropdown` },
+          { label: 'InputSwitchTogether', url: `${baseUrl}/primereact/InputSwitch` },
+          { label: 'KnobTogether', url: `${baseUrl}/primereact/Knob` },
+          { label: 'MultiSelectTogether', url: `${baseUrl}/primereact/MultiSelect` },
+          { label: 'RatingTogether', url: `${baseUrl}/primereact/Rating` },
+          { label: 'SelectButtonTogether', url: `${baseUrl}/primereact/SelectButton` },
+          { label: 'TabViewTogether', url: `${baseUrl}/primereact/TabView` },
+          { label: 'ToggleButtonTogether', url: `${baseUrl}/primereact/ToggleButton` },
+          { label: 'TriStateCheckboxTogether', url: `${baseUrl}/primereact/TriStateCheckbox` },
         ],
       },
     ],
@@ -51,17 +53,17 @@ const items: PatchedMenuItem[] = [
     label: 'Hooks',
     expanded: true,
     items: [
-      { label: 'useStateTogether', to: '/useStateTogether' },
-      { label: 'useStateTogetherWithPerUserValues', to: '/useStateTogetherWithPerUserValues' },
-      { label: 'useConnectedViews', to: '/useConnectedViews' },
-      { label: 'useHoveringViews', to: '/useHoveringViews' },
+      { label: 'useStateTogether', url: `${baseUrl}/useStateTogether` },
+      { label: 'useStateTogetherWithPerUserValues', url: `${baseUrl}/useStateTogetherWithPerUserValues` },
+      { label: 'useConnectedViews', url: `${baseUrl}/useConnectedViews` },
+      { label: 'useHoveringViews', url: `${baseUrl}/useHoveringViews` },
       // { label: 'useIsTogether', to: '/useIsTogether' },
       // { label: 'useConnectNewSession', to: '/useConnectNewSession' },
       // { label: 'useLeaveSession', to: '/useLeaveSession' },
     ],
   },
-  { label: 'Contributing', to: '/contributing' },
-  { label: 'Pricing', to: '/pricing' },
+  { label: 'Contributing', url: `${baseUrl}/contributing` },
+  { label: 'Pricing', url: `${baseUrl}/pricing` },
   // {
   //   label: 'Discover',
   //   expanded: true,
