@@ -105,15 +105,15 @@ export default function DocumentNav() {
       model={items}
       expandedKeys={expandedKeys}
       pt={{
-        root: classNames('sm:line-border overflow-hidden bg-white w-[300px] sm:w-[162px] md:w-[220px]'),
+        root: classNames('sm:line-border overflow-hidden bg-white w-[300px] sm:w-[170px] md:w-[220px]'),
         headerContent: classNames('border-0 bg-transparent'),
         headerAction: classNames('pt-4 pb-3'),
         panel: classNames('border-0'),
         headerLabel: classNames('text-gray-900'),
         headerSubmenuIcon: classNames('hidden'),
         menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
-        action: classNames('pl-8 py-2'),
-        label: classNames('text-gray-800 text-sm lg:text-base break-all'),
+        action: classNames('pl-6 py-2'),
+        label: classNames('text-gray-800 text-xs md:text-sm break-all'),
         content: classNames('rounded-md'),
       }}
     />
