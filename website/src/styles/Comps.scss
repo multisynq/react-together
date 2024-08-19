@@ -1,6 +1,20 @@
+.p-panelmenu-header-link {
+  display: flex;
+  justify-content: space-between;
+}
+
+.p-panelmenu-header-link .p-menuitem-text {
+  order: -1;
+}
+
+.p-panelmenu-header-link .p-menuitem-icon {
+  order: 1;
+  margin-left: auto;
+}
+
 .p-menuitem-link {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
 }
 
 .p-menuitem-link .p-menuitem-text {

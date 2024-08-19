@@ -63,7 +63,7 @@ const items: PatchedMenuItem[] = [
     ],
   },
   {
-    label: 'Discovery',
+    label: 'Discover',
     expanded: true,
     items: [
       { label: 'Contributing', url: `${baseUrl}/contributing` },
@@ -118,7 +118,6 @@ export default function DocumentNav() {
         headerAction: classNames('pt-4 pb-3'),
         panel: classNames('border-0'),
         headerLabel: classNames('text-gray-900'),
-        headerSubmenuIcon: classNames('hidden'),
         menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
         action: classNames('pl-6 py-2'),
         label: classNames('text-gray-800 text-xs md:text-sm break-all'),
