@@ -2,7 +2,6 @@ import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem'
 import { PanelMenu } from 'primereact/panelmenu'
 import { classNames } from 'primereact/utils'
 import { useNavigate } from 'react-router-dom'
-// import { useNavigate } from 'react-router-dom'
 
 // Add `key` and `to` properties to MenuItem and to its nested elements
 export interface PatchedMenuItem extends MenuItem {
@@ -33,7 +32,6 @@ const items: PatchedMenuItem[] = [
         label: 'Prime React',
         expanded: true,
         items: [
-          // { label: 'CalendarTogether', url: '/primereact/Calendar' },
           { label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
           { label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
           { label: 'DropdownTogether', url: `/primereact/Dropdown` },
@@ -57,9 +55,6 @@ const items: PatchedMenuItem[] = [
       { label: 'useStateTogetherWithPerUserValues', url: `${baseUrl}/useStateTogetherWithPerUserValues` },
       { label: 'useConnectedViews', url: `${baseUrl}/useConnectedViews` },
       { label: 'useHoveringViews', url: `${baseUrl}/useHoveringViews` },
-      // { label: 'useIsTogether', to: '/useIsTogether' },
-      // { label: 'useConnectNewSession', to: '/useConnectNewSession' },
-      // { label: 'useLeaveSession', to: '/useLeaveSession' },
     ],
   },
   {
@@ -70,26 +65,13 @@ const items: PatchedMenuItem[] = [
       { label: 'Pricing', url: `${baseUrl}/pricing` },
     ],
   },
-  // {
-  //   label: 'Discover',
-  //   expanded: true,
-  //   items: [
-  //     { label: 'About Us', to: 'https://multisynq.io/' },
-  //     { label: 'Roadmap' },
-  //     { label: 'Support' },
-  //     { label: 'Contributing' },
-  //     { label: 'F.A.Q' },
-  //     { label: 'License' },
-  //   ],
-  // },
 ]
 
 export default function DocumentNav() {
   const navigate = useNavigate()
 
   // We have to process the items inside the component body because
-  // we need to use the navigate hook.
-  // This has room to be improved
+
   function processMenuItems(items: PatchedMenuItem[], prefix: string | null = null) {
     let expandedKeys = {}
     items.forEach((i, idx) => {
@@ -119,7 +101,7 @@ export default function DocumentNav() {
         panel: classNames('border-0'),
         headerLabel: classNames('text-gray-900'),
         menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
-        action: classNames('pl-6 py-2'),
+        action: classNames('py-2'),
         label: classNames('text-gray-800 text-xs md:text-sm break-all'),
         content: classNames('rounded-md'),
       }}

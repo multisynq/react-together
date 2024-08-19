@@ -54,6 +54,13 @@
   }
 }
 
+.p-toggleable-content ul .p-menuitem {
+  margin-left: 0.4rem;
+  .p-toggleable-content .p-submenu-list .p-menuitem .p-menuitem-content .p-menuitem-link {
+    margin-left: 0.4rem;
+  }
+}
+
 .textEffect {
   --gradient-width: 200%;
   font-weight: bold;
