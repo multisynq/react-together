@@ -1,7 +1,7 @@
 import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem'
 import { PanelMenu } from 'primereact/panelmenu'
 import { classNames } from 'primereact/utils'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 // Add `key` and `to` properties to MenuItem and to its nested elements
 export interface PatchedMenuItem extends MenuItem {
@@ -18,82 +18,83 @@ const baseUrl = 'ReactTogether#'
 
 const items: PatchedMenuItem[] = [
   {
+    key: 'getting-started',
     label: 'Getting Started',
     url: `${baseUrl}/getting-started`,
   },
   {
+    key: 'components',
     label: 'Components',
-    expanded: true,
     items: [
-      { label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
-      { label: 'ConnectedViews', url: `${baseUrl}ReactTogether#ConnectedViews` },
-      { label: 'PresenceDiv', url: `${baseUrl}/PresenceDiv` },
+      { key: 'react-together', label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
+      { key: 'connected-views', label: 'ConnectedViews', url: `${baseUrl}/ConnectedViews` },
+      { key: 'presence-div', label: 'PresenceDiv', url: `${baseUrl}/PresenceDiv` },
       {
+        key: 'prime-react',
         label: 'Prime React',
-        expanded: true,
         items: [
-          { label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
-          { label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
-          { label: 'DropdownTogether', url: `/primereact/Dropdown` },
-          { label: 'InputSwitchTogether', url: `${baseUrl}/primereact/InputSwitch` },
-          { label: 'KnobTogether', url: `${baseUrl}/primereact/Knob` },
-          { label: 'MultiSelectTogether', url: `${baseUrl}/primereact/MultiSelect` },
-          { label: 'RatingTogether', url: `${baseUrl}/primereact/Rating` },
-          { label: 'SelectButtonTogether', url: `${baseUrl}/primereact/SelectButton` },
-          { label: 'TabViewTogether', url: `${baseUrl}/primereact/TabView` },
-          { label: 'ToggleButtonTogether', url: `${baseUrl}/primereact/ToggleButton` },
-          { label: 'TriStateCheckboxTogether', url: `${baseUrl}/primereact/TriStateCheckbox` },
+          { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
+          { key: 'color-picker-together', label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
+          { key: 'dropdown-together', label: 'DropdownTogether', url: `${baseUrl}/primereact/Dropdown` },
+          { key: 'input-switch-together', label: 'InputSwitchTogether', url: `${baseUrl}/primereact/InputSwitch` },
+          { key: 'knob-together', label: 'KnobTogether', url: `${baseUrl}/primereact/Knob` },
+          { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/primereact/MultiSelect` },
+          { key: 'rating-together', label: 'RatingTogether', url: `${baseUrl}/primereact/Rating` },
+          { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/primereact/SelectButton` },
+          { key: 'tab-view-together', label: 'TabViewTogether', url: `${baseUrl}/primereact/TabView` },
+          { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/primereact/ToggleButton` },
+          { key: 'tri-state-checkbox-together', label: 'TriStateCheckboxTogether', url: `${baseUrl}/primereact/TriStateCheckbox` },
         ],
       },
     ],
   },
   {
+    key: 'hooks',
     label: 'Hooks',
-    expanded: true,
     items: [
-      { label: 'useStateTogether', url: `${baseUrl}/useStateTogether` },
-      { label: 'useStateTogetherWithPerUserValues', url: `${baseUrl}/useStateTogetherWithPerUserValues` },
-      { label: 'useConnectedViews', url: `${baseUrl}/useConnectedViews` },
-      { label: 'useHoveringViews', url: `${baseUrl}/useHoveringViews` },
+      { key: 'use-state-together', label: 'useStateTogether', url: `${baseUrl}/useStateTogether` },
+      {
+        key: 'use-state-together-with-per-user-values',
+        label: 'useStateTogetherWithPerUserValues',
+        url: `${baseUrl}/useStateTogetherWithPerUserValues`,
+      },
+      { key: 'use-connected-views', label: 'useConnectedViews', url: `${baseUrl}/useConnectedViews` },
+      { key: 'use-hovering-views', label: 'useHoveringViews', url: `${baseUrl}/useHoveringViews` },
     ],
   },
   {
+    key: 'discover',
     label: 'Discover',
-    expanded: true,
     items: [
-      { label: 'Contributing', url: `${baseUrl}/contributing` },
-      { label: 'Pricing', url: `${baseUrl}/pricing` },
+      { key: 'contributing', label: 'Contributing', url: `${baseUrl}/contributing` },
+      { key: 'pricing', label: 'Pricing', url: `${baseUrl}/pricing` },
     ],
   },
 ]
 
 export default function DocumentNav() {
-  const navigate = useNavigate()
+  const [expandedKeys, setExpandedKeys] = useState({})
 
-  // We have to process the items inside the component body because
-
-  function processMenuItems(items: PatchedMenuItem[], prefix: string | null = null) {
-    let expandedKeys = {}
-    items.forEach((i, idx) => {
-      const key = prefix ? `${prefix}.${idx}` : `${idx}`
-      i.command = ({ item }) => {
-        if (item.to) {
-          navigate(item.to)
+  useEffect(() => {
+    const flattenKeys = (nodes, keys = {}) => {
+      nodes.forEach((node) => {
+        keys[node.key] = true
+        if (node.items) {
+          flattenKeys(node.items, keys)
         }
-      }
+      })
+      return keys
+    }
 
-      if (i.expanded && i.items) {
-        expandedKeys[i.key] = true
-        expandedKeys = { ...expandedKeys, ...processMenuItems(i.items, key) }
-      }
-    })
-    return expandedKeys
-  }
-  const expandedKeys = processMenuItems(items)
+    setExpandedKeys(flattenKeys(items))
+  }, [])
+
   return (
     <PanelMenu
       model={items}
       expandedKeys={expandedKeys}
+      onExpandedKeysChange={setExpandedKeys}
+      className='w-full md:w-20rem'
       pt={{
         root: classNames('sm:line-border overflow-hidden bg-white w-[300px] sm:w-[170px] md:w-[220px]'),
         headerContent: classNames('border-0 bg-transparent'),
@@ -105,6 +106,7 @@ export default function DocumentNav() {
         label: classNames('text-gray-800 text-xs md:text-sm break-all'),
         content: classNames('rounded-md'),
       }}
+      multiple
     />
   )
 }
