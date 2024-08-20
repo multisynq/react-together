@@ -14,7 +14,7 @@ interface PatchedMenuItemCommandEvent extends MenuItemCommandEvent {
   item: PatchedMenuItem
 }
 
-const baseUrl = 'ReactTogether#'
+const baseUrl = '#'
 
 const items: PatchedMenuItem[] = [
   {
