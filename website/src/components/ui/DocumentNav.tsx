@@ -96,7 +96,7 @@ export default function DocumentNav() {
       onExpandedKeysChange={setExpandedKeys}
       className='w-full md:w-20rem'
       pt={{
-        root: classNames('sm:line-border overflow-hidden bg-white w-[300px] sm:w-[170px] md:w-[220px]'),
+        root: classNames('sm:line-border overflow-hidden bg-white w-[200px] md:w-[240px]'),
         headerContent: classNames('border-0 bg-transparent'),
         headerAction: classNames('pt-4 pb-3'),
         panel: classNames('border-0'),
