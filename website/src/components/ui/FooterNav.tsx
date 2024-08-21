@@ -15,21 +15,16 @@ const footerData: FooterSection[] = [
     title: 'General',
     links: [
       { label: 'Home', url: '/' },
-      { label: 'Get Started', url: '/#/getting-started' },
+      { label: 'Contributing', url: '/#/contributing' },
+      { label: 'Pricing', url: '/#/pricing' },
     ],
   },
   {
     title: 'Documentation',
     links: [
+      { label: 'Get Started', url: '/#/getting-started' },
       { label: 'Components', url: '/#/ReactTogether' },
       { label: 'Hooks', url: '/#/useStateTogether' },
-    ],
-  },
-  {
-    title: 'Discover',
-    links: [
-      { label: 'Contributing', url: '/#/contributing' },
-      { label: 'Pricing', url: '/#/pricing' },
     ],
   },
   {
@@ -47,9 +42,9 @@ const FooterNav: React.FC = () => {
   return (
     <div className='flex p-2 w-full justify-between'>
       {footerData.map((section, index) => (
-        <div key={index} className='flex flex-col gap-2 text-gray-700'>
-          <span className='text-sm '>{section.title}</span>
-          <ul className='gap-1 flex flex-col pl-2'>
+        <div key={index} className='flex flex-col gap-1 text-gray-900'>
+          <span className='text-sm'>{section.title}</span>
+          <ul className='flex flex-col'>
             {section.links.map((link, idx) => (
               <li key={idx}>
                 <a href={link.url} className='text-xs text-gray-600'>
