@@ -1,6 +1,5 @@
 import { ReactModel } from '@croquet/react'
 
-
 type setStateArgs<T> = {
   id: string
   newValue: T | undefined
