@@ -5,11 +5,13 @@ import { Outlet } from 'react-router-dom'
 // everytime the user navigates between documentation pages
 export function DocumentationWrapper() {
   return (
-    <main className='flex justify-center items-start gap-8 p-6 px-4 sm:px-8 md:px-12 relative bg-[radial-gradient(162.17%_100%_at_100%_0%,#f3f7fd_0%,#f3f7fd_80%,#FFF_100%)]'>
-      <div className='hidden sm:block h-full'>
-        <DocumentNav />
+    <main className='bg-[radial-gradient(162.17%_100%_at_100%_0%,#f3f7fd_0%,#f3f7fd_80%,#FFF_100%)] flex justify-center'>
+      <div className='flex justify-center gap-8 p-6 px-4 sm:px-8 md:px-12 relative w-full max-w-[98rem] items-start'>
+        <div className='hidden sm:block h-full'>
+          <DocumentNav />
+        </div>
+        <Outlet />
       </div>
-      <Outlet />
     </main>
   )
 }
