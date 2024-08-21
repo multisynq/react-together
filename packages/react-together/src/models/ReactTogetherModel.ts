@@ -32,6 +32,7 @@ export default class ReactTogetherModel extends ReactModel {
     } else {
       this.state.set(id, newValue)
     }
+    this.publish(id, 'updated', {})
   }
 
   setStateTogether<T>({ id, viewId, newValue }: setStateTogetherArgs<T>) {
@@ -45,6 +46,7 @@ export default class ReactTogetherModel extends ReactModel {
       st.set(viewId, newValue)
     }
     this.stateTogether.set(id, st)
+    this.publish(id, 'updated', {})
   }
 
   handleViewExit(viewId: string): void {

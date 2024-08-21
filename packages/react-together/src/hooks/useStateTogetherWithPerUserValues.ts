@@ -59,9 +59,8 @@ export default function useStateTogetherWithPerUserValues<
     }
 
     view.subscribe(
-      // @ts-expect-error: We know session has an id
-      session.id,
-      { event: 'react-updated', handling: 'oncePerFrame' },
+      rtKey,
+      { event: 'updated', handling: 'oncePerFrame' },
       handler
     )
 
@@ -87,7 +86,7 @@ export default function useStateTogetherWithPerUserValues<
       })
 
       // @ts-expect-error we know unsubscribe receives a handler
-      view.unsubscribe(session.id, 'react-updated', handler)
+      view.unsubscribe(rtKey, 'updated', handler)
     }
   }, [session, view, viewId, model, rtKey, initial_value])
 

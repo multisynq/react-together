@@ -45,10 +45,9 @@ export default function useStateTogether<T>(
         set_value((prev) => (prev === newValue ? prev : newValue))
       }
       view.subscribe(
-        // @ts-expect-error: We know session has an id
-        session.id,
+        rtKey,
         {
-          event: 'react-updated',
+          event: 'updated',
           handling: 'oncePerFrame'
         },
         handler
@@ -56,7 +55,7 @@ export default function useStateTogether<T>(
       return () => {
         try {
           // @ts-expect-error: We know session has an id
-          view.unsubscribe(session.id, 'react-updated', handler)
+          view.unsubscribe(rtKey, 'updated', handler)
         } catch (error) {
           console.error('Failed to unsubscribe:', error)
         }
