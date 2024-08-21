@@ -47,7 +47,7 @@ const FooterNav: React.FC = () => {
           <ul className='flex flex-col'>
             {section.links.map((link, idx) => (
               <li key={idx}>
-                <a href={link.url} className='text-xs text-gray-600'>
+                <a href={link.url} className='text-xs text-gray-600 hover:underline hover:underline-offset-4'>
                   {link.label}
                 </a>
               </li>

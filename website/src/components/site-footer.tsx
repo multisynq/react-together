@@ -13,11 +13,21 @@ export function SiteFooter() {
             </div>
             <span className='text-xs md:text-sm text-muted-foreground text-gray-500'>
               Built by{' '}
-              <a href={siteConfig.links.croquet} target='_blank' rel='noreferrer' className='font-medium underline underline-offset-4'>
+              <a
+                href={siteConfig.links.croquet}
+                target='_blank'
+                rel='noreferrer'
+                className='font-medium hover:underline hover:underline-offset-4 text-black'
+              >
                 Croquet Labs
               </a>{' '}
               for{' '}
-              <a href={siteConfig.links.multisynq} target='_blank' rel='noreferrer' className='font-medium underline underline-offset-4'>
+              <a
+                href={siteConfig.links.multisynq}
+                target='_blank'
+                rel='noreferrer'
+                className='font-medium hover:underline hover:underline-offset-4 text-black'
+              >
                 Multisynq
               </a>
               .
