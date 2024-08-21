@@ -4,6 +4,7 @@ import {
   SetStateAction,
   useCallback,
   useContext,
+  useEffect,
   useState
 } from 'react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
@@ -18,6 +19,8 @@ export default function useStateTogether<T>(
   // If we are in a session, return the shared state
   // otherwise, act as a normal useState
 
+  // Accessing CroquetContext directly because
+  // we may not be inside a Croquet session
   const context = useContext(CroquetContext)
   let model: null | ReactTogetherModel = null
   let session: null | Session = null
@@ -35,34 +38,46 @@ export default function useStateTogether<T>(
     modelValue !== undefined ? modelValue : initial_value
   )
 
-  if (view && model && session) {
-    view.subscribe(
-      // @ts-expect-error: We know session has an id
-      session.id,
-      {
-        event: 'react-updated',
-        handling: 'oncePerFrame'
-      },
-      () => {
+  useEffect(() => {
+    if (view && model && session) {
+      const handler = () => {
         const newValue = model.state.get(rtKey) as T
-        set_value(newValue)
+        set_value((prev) => (prev === newValue ? prev : newValue))
       }
-    )
-  }
+      view.subscribe(
+        // @ts-expect-error: We know session has an id
+        session.id,
+        {
+          event: 'react-updated',
+          handling: 'oncePerFrame'
+        },
+        handler
+      )
+      return () => {
+        try {
+          // @ts-expect-error: We know session has an id
+          view.unsubscribe(session.id, 'react-updated', handler)
+        } catch (error) {
+          console.error('Failed to unsubscribe:', error)
+        }
+      }
+    }
+  }, [session, view, model, rtKey, set_value])
 
   const setter = useCallback(
     (newValueOrFn: SetStateAction<T>): void => {
       if (model && view) {
         // Eventually we will want to throttle publish calls
+        const oldValue = model.state.get(rtKey)! as T
         view.publish(model.id, 'setState', {
           id: rtKey,
-          newValue: getNewValue(value, newValueOrFn)
+          newValue: getNewValue(oldValue, newValueOrFn)
         })
       } else {
         set_value(newValueOrFn)
       }
     },
-    [value, set_value, model, view, rtKey]
+    [set_value, model, view, rtKey]
   )
 
   return [value, setter]
