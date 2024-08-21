@@ -16,10 +16,8 @@ export default function useHoveringViews(
 
   const ref = useRef<HTMLDivElement | null>(null)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, set_hovering, allHovered] = useStateTogetherWithPerUserValues(
-    rtKey,
-    false
-  )
+  const [_, set_hovering, allHovered] =
+    useStateTogetherWithPerUserValues<boolean>(rtKey, false)
 
   useEffect(() => {
     const node = ref.current

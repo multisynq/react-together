@@ -1,5 +1,5 @@
 import { CroquetContext, Session, View } from '@croquet/react'
-import hash_fn from 'object-hash'
+import hash_fn, { NotUndefined } from 'object-hash'
 import {
   Dispatch,
   SetStateAction,
@@ -17,7 +17,9 @@ function mapToObject<T>(map: Map<string, T>): { [id: string]: T } {
   return obj
 }
 
-export default function useStateTogetherWithPerUserValues<T>(
+export default function useStateTogetherWithPerUserValues<
+  T extends NotUndefined
+>(
   rtKey: string,
   initial_value: T
 ): [T, Dispatch<SetStateAction<T>>, { [id: string]: T }] {
