@@ -1,4 +1,5 @@
 import { CroquetContext, Session, View } from '@croquet/react'
+import hash_fn from 'object-hash'
 import {
   Dispatch,
   SetStateAction,
@@ -30,69 +31,99 @@ export default function useStateTogetherWithPerUserValues<T>(
     session = context.session
     view = context.view
   }
-  const viewId = view?.viewId
-  const allValues = (model?.stateTogether.get(rtKey) || new Map()) as Map<
-    string,
-    T
-  >
+  const viewId = view?.viewId || ''
+  const [allValuesState, setAllValuesState] = useState<{
+    value: Map<string, T>
+    hash: string
+  }>(() => {
+    const value = (model?.stateTogether.get(rtKey) ||
+      new Map([[viewId, initial_value]])) as Map<string, T>
+    const hash = hash_fn(value)
+    return { value, hash }
+  })
 
-  // Publish initial value if undefined
-  const modelValue = viewId ? allValues.get(viewId) : undefined
-  if (view && model && viewId && modelValue === undefined) {
+  const { value: allValues } = allValuesState
+
+  useEffect(() => {
+    if (!session || !view || !model || !viewId) return
+
+    const handler = () => {
+      const newValues = model.stateTogether.get(rtKey) as Map<string, T>
+      const newHash = hash_fn(newValues)
+
+      setAllValuesState((prev) =>
+        prev.hash === newHash ? prev : { value: newValues, hash: newHash }
+      )
+    }
+
+    view.subscribe(
+      // @ts-expect-error: We know session has an id
+      session.id,
+      { event: 'react-updated', handling: 'oncePerFrame' },
+      handler
+    )
+
+    // We need to unconditionally set the initial value to
+    // avoid race conditions between the cleanup function and
+    // the next call to this hook:
+    // After the cleanup function publishes { ..., newValue: undefined }
+    // the model may take some time to make that update
+    // Meanwhile, the next call to this hook may read the previous value,
+    // which will be removed when the model processes the cleanup request
     view.publish(model.id, 'setStateTogether', {
       id: rtKey,
       viewId,
       newValue: initial_value
     })
-  }
-
-  // This is the local state
-  const [localValue, set_localValue] = useState<T>(modelValue || initial_value)
-
-  useEffect(() => {
-    // If we are inside a session, subscribe to react-updated events
-    if (view && viewId && model && session) {
-      //console.log(`useStateTogetherWithPerUserValues - react-updated viewdId=${viewId} modelId=${model.id}`)
-      view.subscribe(
-        // @ts-expect-error: We know session has an id
-        session.id,
-        {
-          event: 'react-updated',
-          handling: 'oncePerFrame'
-        },
-        () => {
-          //console.log(`useStateTogetherWithPerUserValues - view.subscribe( callback ) viewId=${viewId}, modelId=${model.id}`)
-          const allValues = model.stateTogether.get(rtKey) as Map<string, T>
-          set_localValue(allValues.get(viewId) as T)
-        }
-      )
-    }
 
     return () => {
-      // this code will run when the component unmounts
-      if (view && model) {
-        view.publish(model.id, 'setStateTogether', {
-          id: rtKey,
-          viewId,
-          newValue: undefined
-        })
-      }
+      // Delete view value
+      view.publish(model.id, 'setStateTogether', {
+        id: rtKey,
+        viewId,
+        newValue: undefined
+      })
+
+      // @ts-expect-error we know unsubscribe receives a handler
+      view.unsubscribe(session.id, 'react-updated', handler)
     }
-  }, [])
+  }, [session, view, viewId, model, rtKey, initial_value])
+
+  const localValue = allValues.get(viewId) || initial_value
 
   const setter = useCallback(
     (newValueOrFn: SetStateAction<T>): void => {
       if (model && view) {
+        // If in a React Together session,
+        // calculate and publish the next value
+        const allValues = model.stateTogether.get(rtKey) as Map<string, T>
+        const prevValue = allValues.get(view.viewId)!
+        const newValue = getNewValue<T>(prevValue, newValueOrFn)
+
         view.publish(model.id, 'setStateTogether', {
           id: rtKey,
           viewId,
-          newValue: getNewValue(localValue, newValueOrFn)
+          newValue
         })
       } else {
-        set_localValue(newValueOrFn)
+        // If outside a React Together session,
+        // calculate the new value and set it locally
+        // Here we are calculating the hash to maintain
+        // the same state interface
+        setAllValuesState((prev) => {
+          const { value, hash } = prev
+          const newValue = getNewValue(value.get('')!, newValueOrFn)
+          const newHash = hash_fn(newValue)
+          if (hash === newHash) {
+            return prev
+          } else {
+            value.set('', newValue)
+            return { value, hash: newHash }
+          }
+        })
       }
     },
-    [localValue, set_localValue, rtKey, viewId]
+    [view, viewId, model, rtKey]
   )
 
   return [localValue, setter, mapToObject(allValues)]
