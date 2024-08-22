@@ -23,16 +23,15 @@ function Score({ score, clickable, onClick, onContextMenu }) {
   )
 }
 export function UseStateTogetherWPUVDemo() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setMyScore, scoresByUser] = useStateTogetherWithPerUserValues<number>('useStateTogetherWithValuesPerUser-demo', 0)
+  const [, setMyScore, scoresByUser] = useStateTogetherWithPerUserValues<number>('useStateTogetherWithValuesPerUser-demo', 0)
 
   const increment = () => setMyScore((p) => p + 1)
   const reset = () => setMyScore(0)
 
   const myViewId = useViewId()
   return (
-    <div className='flex flex-col items-center gap-2'>
-      <div className='flex gap-5'>
+    <div className='flex flex-col items-center gap-2 mx-2'>
+      <div className='flex gap-5 flex-wrap'>
         {Object.entries(scoresByUser).map(([viewId, score]) => {
           const clickable = viewId === myViewId
           return (
