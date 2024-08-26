@@ -85,7 +85,6 @@ export default function useStateTogetherWithPerUserValues<
         newValue: undefined
       })
 
-      // @ts-expect-error we know unsubscribe receives a handler
       view.unsubscribe(rtKey, 'updated', handler)
     }
   }, [session, view, viewId, model, rtKey, initial_value])

@@ -54,7 +54,6 @@ export default function useStateTogether<T>(
       )
       return () => {
         try {
-          // @ts-expect-error: We know session has an id
           view.unsubscribe(rtKey, 'updated', handler)
         } catch (error) {
           console.error('Failed to unsubscribe:', error)
