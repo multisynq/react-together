@@ -1,8 +1,7 @@
+import { useLocalStorage } from '@uidotdev/usehooks'
 import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem'
 import { PanelMenu } from 'primereact/panelmenu'
 import { classNames } from 'primereact/utils'
-import { useNavigate } from 'react-router-dom'
-// import { useNavigate } from 'react-router-dom'
 
 // Add `key` and `to` properties to MenuItem and to its nested elements
 export interface PatchedMenuItem extends MenuItem {
@@ -15,107 +14,95 @@ interface PatchedMenuItemCommandEvent extends MenuItemCommandEvent {
   item: PatchedMenuItem
 }
 
+const baseUrl = '#'
+
 const items: PatchedMenuItem[] = [
   {
+    key: 'getting-started',
     label: 'Getting Started',
-    to: '/getting-started',
+    url: `${baseUrl}/getting-started`,
   },
   {
+    key: 'components',
     label: 'Components',
-    expanded: true,
     items: [
-      { label: 'ReactTogether', to: '/ReactTogether' },
-      { label: 'ConnectedViews', to: '/ConnectedViews' },
-      { label: 'PresenceDiv', to: '/PresenceDiv' },
+      { key: 'react-together', label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
+      { key: 'connected-views', label: 'ConnectedViews', url: `${baseUrl}/ConnectedViews` },
+      { key: 'presence-div', label: 'PresenceDiv', url: `${baseUrl}/PresenceDiv` },
       {
+        key: 'prime-react',
         label: 'Prime React',
-        expanded: true,
         items: [
-          // { label: 'CalendarTogether', to: '/primereact/Calendar' },
-          { label: 'CheckboxTogether', to: '/primereact/Checkbox' },
-          { label: 'ColorPickerTogether', to: '/primereact/ColorPicker' },
-          { label: 'DropdownTogether', to: '/primereact/Dropdown' },
-          { label: 'InputSwitchTogether', to: '/primereact/InputSwitch' },
-          { label: 'KnobTogether', to: '/primereact/Knob' },
-          { label: 'MultiSelectTogether', to: '/primereact/MultiSelect' },
-          { label: 'RatingTogether', to: '/primereact/Rating' },
-          { label: 'SelectButtonTogether', to: '/primereact/SelectButton' },
-          { label: 'TabViewTogether', to: '/primereact/TabView' },
-          { label: 'ToggleButtonTogether', to: '/primereact/ToggleButton' },
-          { label: 'TriStateCheckboxTogether', to: '/primereact/TriStateCheckbox' },
+          { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
+          { key: 'color-picker-together', label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
+          { key: 'dropdown-together', label: 'DropdownTogether', url: `${baseUrl}/primereact/Dropdown` },
+          { key: 'input-switch-together', label: 'InputSwitchTogether', url: `${baseUrl}/primereact/InputSwitch` },
+          { key: 'knob-together', label: 'KnobTogether', url: `${baseUrl}/primereact/Knob` },
+          { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/primereact/MultiSelect` },
+          { key: 'rating-together', label: 'RatingTogether', url: `${baseUrl}/primereact/Rating` },
+          { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/primereact/SelectButton` },
+          { key: 'tab-view-together', label: 'TabViewTogether', url: `${baseUrl}/primereact/TabView` },
+          { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/primereact/ToggleButton` },
+          { key: 'tri-state-checkbox-together', label: 'TriStateCheckboxTogether', url: `${baseUrl}/primereact/TriStateCheckbox` },
         ],
       },
     ],
   },
   {
+    key: 'hooks',
     label: 'Hooks',
-    expanded: true,
     items: [
-      { label: 'useStateTogether', to: '/useStateTogether' },
-      { label: 'useStateTogetherWithPerUserValues', to: '/useStateTogetherWithPerUserValues' },
-      { label: 'useConnectedViews', to: '/useConnectedViews' },
-      { label: 'useHoveringViews', to: '/useHoveringViews' },
-      // { label: 'useIsTogether', to: '/useIsTogether' },
-      // { label: 'useConnectNewSession', to: '/useConnectNewSession' },
-      // { label: 'useLeaveSession', to: '/useLeaveSession' },
+      { key: 'use-state-together', label: 'useStateTogether', url: `${baseUrl}/useStateTogether` },
+      {
+        key: 'use-state-together-with-per-user-values',
+        label: 'useStateTogetherWithPerUserValues',
+        url: `${baseUrl}/useStateTogetherWithPerUserValues`,
+      },
+      { key: 'use-connected-views', label: 'useConnectedViews', url: `${baseUrl}/useConnectedViews` },
+      { key: 'use-hovering-views', label: 'useHoveringViews', url: `${baseUrl}/useHoveringViews` },
     ],
   },
-  { label: 'Contributing', to: '/contributing' },
-  { label: 'Pricing', to: '/pricing' },
-  // {
-  //   label: 'Discover',
-  //   expanded: true,
-  //   items: [
-  //     { label: 'About Us', to: 'https://multisynq.io/' },
-  //     { label: 'Roadmap' },
-  //     { label: 'Support' },
-  //     { label: 'Contributing' },
-  //     { label: 'F.A.Q' },
-  //     { label: 'License' },
-  //   ],
-  // },
+  {
+    key: 'discover',
+    label: 'Discover',
+    items: [
+      { key: 'contributing', label: 'Contributing', url: `${baseUrl}/contributing` },
+      { key: 'pricing', label: 'Pricing', url: `${baseUrl}/pricing` },
+    ],
+  },
 ]
 
+const flattenKeys = (nodes, keys = {}) => {
+  nodes.forEach((node) => {
+    keys[node.key] = true
+    if (node.items) {
+      flattenKeys(node.items, keys)
+    }
+  })
+  return keys
+}
+
 export default function DocumentNav() {
-  const navigate = useNavigate()
+  const [expandedKeys, setExpandedKeys] = useLocalStorage('document-nav-expanded', flattenKeys(items))
 
-  // We have to process the items inside the component body because
-  // we need to use the navigate hook.
-  // This has room to be improved
-  function processMenuItems(items: PatchedMenuItem[], prefix: string | null = null) {
-    let expandedKeys = {}
-    items.forEach((i, idx) => {
-      const key = prefix ? `${prefix}.${idx}` : `${idx}`
-      i.command = ({ item }) => {
-        if (item.to) {
-          navigate(item.to)
-        }
-      }
-
-      if (i.expanded && i.items) {
-        expandedKeys[i.key] = true
-        expandedKeys = { ...expandedKeys, ...processMenuItems(i.items, key) }
-      }
-    })
-    return expandedKeys
-  }
-  const expandedKeys = processMenuItems(items)
   return (
     <PanelMenu
       model={items}
       expandedKeys={expandedKeys}
+      onExpandedKeysChange={setExpandedKeys}
+      className='w-full md:w-20rem'
       pt={{
-        root: classNames('sm:line-border overflow-hidden bg-white w-[300px] sm:w-[162px] md:w-[220px]'),
+        root: classNames('sm:line-border overflow-hidden bg-white w-[200px] md:w-[240px]'),
         headerContent: classNames('border-0 bg-transparent'),
         headerAction: classNames('pt-4 pb-3'),
         panel: classNames('border-0'),
         headerLabel: classNames('text-gray-900'),
-        headerSubmenuIcon: classNames('hidden'),
         menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
-        action: classNames('pl-8 py-2'),
-        label: classNames('text-gray-800 text-sm lg:text-base break-all'),
+        action: classNames('py-2'),
+        label: classNames('text-gray-800 text-xs md:text-sm break-all'),
         content: classNames('rounded-md'),
       }}
+      multiple
     />
   )
 }
