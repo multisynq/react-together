@@ -1,7 +1,7 @@
+import { useLocalStorage } from '@uidotdev/usehooks'
 import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem'
 import { PanelMenu } from 'primereact/panelmenu'
 import { classNames } from 'primereact/utils'
-import { useEffect, useState } from 'react'
 
 // Add `key` and `to` properties to MenuItem and to its nested elements
 export interface PatchedMenuItem extends MenuItem {
@@ -72,22 +72,18 @@ const items: PatchedMenuItem[] = [
   },
 ]
 
-export default function DocumentNav() {
-  const [expandedKeys, setExpandedKeys] = useState({})
-
-  useEffect(() => {
-    const flattenKeys = (nodes, keys = {}) => {
-      nodes.forEach((node) => {
-        keys[node.key] = true
-        if (node.items) {
-          flattenKeys(node.items, keys)
-        }
-      })
-      return keys
+const flattenKeys = (nodes, keys = {}) => {
+  nodes.forEach((node) => {
+    keys[node.key] = true
+    if (node.items) {
+      flattenKeys(node.items, keys)
     }
+  })
+  return keys
+}
 
-    setExpandedKeys(flattenKeys(items))
-  }, [])
+export default function DocumentNav() {
+  const [expandedKeys, setExpandedKeys] = useLocalStorage('document-nav-expanded', flattenKeys(items))
 
   return (
     <PanelMenu
