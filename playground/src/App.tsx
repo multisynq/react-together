@@ -1,16 +1,14 @@
 // import { ReactTogetherManager } from 'react-together/src/components/ReactTogetherManager'
-import { useModelRoot, usePublish } from '@croquet/react'
-import MyModel from './CustomModel'
+import { useStateTogether } from 'react-together'
+import TinyRpgTogether from './components/TinyRpg'
 
 export default function App() {
-  const model = useModelRoot<MyModel>()!
-
-  const publishTest = usePublish(() => [model?.id, 'test', null])
-  // console.log(model)
+  const [count, setCount] = useStateTogether('count', 0)
 
   return (
     <>
-      <button onClick={() => publishTest()}>Publish event to model!</button>
+      <button onClick={() => setCount((p) => (p ? p + 1 : 1))}>{count}</button>
+      <TinyRpgTogether />
     </>
   )
 }
