@@ -194,7 +194,7 @@ function TeamScoreLabel() {
 
 function Scores() {
   return (
-    <div className="absolute top-2 left-2 flex gap-5">
+    <div className="flex gap-5">
       <ScoreLabel />
       <TeamScoreLabel />
     </div>
@@ -293,7 +293,7 @@ export default function TinyRpgTogether() {
   }, [moveCharacter])
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 gap-2">
       <style>{`
         @keyframes bounce {
           0%,
@@ -309,8 +309,8 @@ export default function TinyRpgTogether() {
           transform-origin: bottom center;
         }
       `}</style>
+      <Scores />
       <div className="relative">
-        <Scores />
         <Board />
         <Coins />
         <Players />

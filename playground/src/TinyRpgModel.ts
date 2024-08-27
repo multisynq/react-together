@@ -24,7 +24,6 @@ export interface MoveArgs {
 }
 
 export default class TinyRpgModel extends ReactTogetherModel {
-  // BOARD_SIZE: number
   BOARD_WIDTH: number
   BOARD_HEIGHT: number
   MAX_COINS: number
