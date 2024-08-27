@@ -39,25 +39,22 @@ export default function useStateTogether<T>(
   )
 
   useEffect(() => {
-    if (view && model && session) {
-      const handler = () => {
-        const newValue = model.state.get(rtKey) as T
-        set_value((prev) => (prev === newValue ? prev : newValue))
-      }
-      view.subscribe(
-        rtKey,
-        {
-          event: 'updated',
-          handling: 'oncePerFrame'
-        },
-        handler
-      )
-      return () => {
-        try {
-          view.unsubscribe(rtKey, 'updated', handler)
-        } catch (error) {
-          console.error('Failed to unsubscribe:', error)
-        }
+    if (!session || !view || !model) return
+
+    const handler = () => {
+      const newValue = model.state.get(rtKey) as T
+      set_value((prev) => (prev === newValue ? prev : newValue))
+    }
+    view.subscribe(
+      rtKey,
+      { event: 'updated', handling: 'oncePerFrame' },
+      handler
+    )
+    return () => {
+      try {
+        view.unsubscribe(rtKey, 'updated', handler)
+      } catch (error) {
+        console.error('Failed to unsubscribe:', error)
       }
     }
   }, [session, view, model, rtKey, set_value])

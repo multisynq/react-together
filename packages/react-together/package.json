@@ -18,7 +18,7 @@
     "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
-    "@croquet/react": "^2.0.2",
+    "@croquet/react": "^2.1.2",
     "primeicons": "^7.0.0",
     "object-hash": "^3.0.0"
   },

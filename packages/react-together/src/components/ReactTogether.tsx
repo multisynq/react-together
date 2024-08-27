@@ -8,7 +8,7 @@ type ReactTogetherSessionParams = {
   sessionIgnoresUrl?: boolean
 }
 
-export interface IReactTogetherContext {
+export interface ReactTogetherContext {
   createNewSession: () => void
   leaveSession: () => void
   isTogether: boolean
@@ -16,7 +16,7 @@ export interface IReactTogetherContext {
   sessionPassword: string | null
 }
 export const ReactTogetherContext = createContext<
-  IReactTogetherContext | undefined
+  ReactTogetherContext | undefined
 >(undefined)
 
 export type ReactTogetherProps = {

@@ -11,7 +11,7 @@ export type ConnectedView = {
   isYou: boolean
 }
 
-export default function useConnectedViews(): ConnectedView[] | null {
+export default function useConnectedViews(): ConnectedView[] {
   const { views } = ucv()
   const viewId = useViewId()
 
