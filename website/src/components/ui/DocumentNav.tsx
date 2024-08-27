@@ -21,6 +21,7 @@ const items: PatchedMenuItem[] = [
     key: 'getting-started',
     label: 'Getting Started',
     url: `${baseUrl}/getting-started`,
+    items: [{ key: 'Examples', label: 'Examples', url: `${baseUrl}/Examples` }],
   },
   {
     key: 'components',

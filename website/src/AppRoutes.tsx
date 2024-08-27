@@ -37,6 +37,7 @@ import {
   UseStateTogetherWPUVDemo,
 } from '@components/demo'
 import CountButtonTogether from '@components/demo/CountButtonTogether'
+import { DynamicsSession } from '@components/demo/DynamicSessions'
 import HeroDemo from '@components/demo/HeroDemo'
 import TinyRpgTogether from '@components/demo/TinyRpg'
 import { DemoWrapper } from '@pages/DemoWrapper'
@@ -68,6 +69,7 @@ export default function AppRoutes() {
           <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} /> */}
           <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
           <Route path='/pricing' element={<MarkdownPage markdown={pricing} />} />
+          <Route path='/examples' element={<DynamicsSession />} />
           <Route path='primereact'>
             {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDocumentationPage />} /> */}
             <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDocumentationPage />} />
