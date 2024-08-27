@@ -4,6 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { ReactTogether } from 'react-together'
 import App from './App.tsx'
+import MyModel from './CustomModel.ts'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -12,7 +13,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <ReactTogether
         sessionParams={{
           appId: import.meta.env['VITE_APP_ID'],
-          apiKey: import.meta.env['VITE_API_KEY']
+          apiKey: import.meta.env['VITE_API_KEY'],
+          model: MyModel
         }}
       >
         <App />
