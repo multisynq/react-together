@@ -68,6 +68,7 @@ const items: PatchedMenuItem[] = [
     items: [
       { key: 'contributing', label: 'Contributing', url: `${baseUrl}/contributing` },
       { key: 'pricing', label: 'Pricing', url: `${baseUrl}/pricing` },
+      { key: 'changelog', label: 'Change Log', url: `${baseUrl}/changelog` },
     ],
   },
 ]
