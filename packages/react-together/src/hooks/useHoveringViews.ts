@@ -81,7 +81,6 @@ export default function useHoveringViews(
       ([viewId, isHovering]) =>
         isHovering && (viewId !== myViewId || highlightMyself)
     )
-    .filter(([isHovering]) => isHovering)
     .map(([viewId]) => viewId)
 
   return [ref, hoveringViews]
