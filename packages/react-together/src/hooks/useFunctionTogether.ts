@@ -10,10 +10,17 @@ export default function useFunctionTogether(
 ) {
   const view = useCroquetView()
   const model = useModelRoot<ReactTogetherModel>()
-  const publish = useCallback(
+
+  useEffect(() => {
+    if (view) {
+      view.subscribe(rtKey, 'call', callback)
+      return () => view.unsubscribe(rtKey, 'call', callback)
+    }
+  }, [rtKey, view, callback])
+
+  return useCallback(
     (...args: unknown[]) => {
       if (view && model) {
-        console.log('Publishing', model.id)
         view.publish(model.id, 'functionTogether', {
           rtKey,
           viewId: view.viewId,
@@ -25,16 +32,4 @@ export default function useFunctionTogether(
     },
     [rtKey, view, model, callback]
   )
-
-  useEffect(() => {
-    if (view) {
-      const handler = (...args: any[]) => {
-        callback(...args)
-      }
-      view.subscribe(rtKey, 'call', handler)
-      return () => view.unsubscribe(rtKey, 'call', handler)
-    }
-  }, [rtKey, view, callback])
-
-  return publish
 }
