@@ -1,5 +1,9 @@
+## Current...
+ - `useConnectedViews` does not return `null`
+ - Optimize `useStateTogether` and `useStateTogetherWithPerUserValues` to minimize unnecessary re-rendering
+
 ## 0.0.2 (2024-08-15)
- - Added `sessionIgnoresUrl` param to ReactTogether
+ - Added `sessionIgnoresUrl` param to `<ReactTogether/>` component
 
 ## 0.0.1 (2024-07-18)
  - Added `useStateTogether` hook
