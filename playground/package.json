@@ -1,6 +1,7 @@
 {
   "name": "react-together-playground",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "main": "src/index.ts",
   "types": "dist/index.d.ts",
@@ -23,8 +24,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.26.1",
-    "react-together": "^0.0.2",
-    "react-together-primereact": "^0.0.1"
+    "react-together": "^0.1.0",
+    "react-together-primereact": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
