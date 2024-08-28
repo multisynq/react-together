@@ -2,6 +2,7 @@
  - Optimize `useStateTogether` and `useStateTogetherWithPerUserValues` to minimize unnecessary re-rendering
  - `useConnectedViews` does not return `null`
  - Allow to override the session model via `sessionParams.model` prop of the `<ReactTogether/>` component
+ - Re-export `@croquet/react` module
 
 ## 0.0.2
 `2024-08-15`
