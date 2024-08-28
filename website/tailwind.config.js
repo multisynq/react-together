@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      fontWeight: {
+        'extra-bold': '800',
+      },
       fontSize: {
         xs: '0.75rem',
         sm: '0.875rem',
@@ -59,6 +62,7 @@ module.exports = {
         },
       },
       borderRadius: {
+        full: '99px',
         xl: 'calc(var(--radius) * 2)',
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -78,6 +82,7 @@ module.exports = {
         lineStyleDark: '0px 2px 0px 0px #374151',
         lineStyleMedium: '0px 1px 0px 0px #6B7280',
         lineStyleLight: '0px 2px 0px 0px #E5E7EB',
+        button: '0.5px 1px 0px 0px #000',
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -93,6 +98,16 @@ module.exports = {
       const newUtilities = {
         '.line-border': {
           '@apply border border-gray-700 shadow-lineStyleDark rounded-xl': {},
+        },
+        '.button-primary': {
+          '@apply py-1 px-3 bg-blue-500 text-neutral-50 border border-neutral-900 hover:bg-blue-400 rounded-full shadow-button': {},
+        },
+        '.button-secondary': {
+          '@apply py-1 px-3 bg-neutral-500 text-neutral-50 border border-neutral-900 hover:bg-neutral-400 rounded-full shadow-button': {},
+        },
+        '.button-caution': {
+          '@apply py-1 px-3 bg-red-500 text-neutral-50 border border-neutral-900 rounded-3xl hover:bg-red-400 rounded-full shadow-button':
+            {},
         },
       }
       addUtilities(newUtilities, ['responsive', 'hover'])

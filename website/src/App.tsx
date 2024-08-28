@@ -14,8 +14,8 @@ export default function App() {
       <Helmet>
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'></link>
-        <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap' rel='stylesheet'></link>
-        <link href='https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap' rel='stylesheet' />
+        <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap' rel='stylesheet'></link>
+        <link href='https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;800&display=swap' rel='stylesheet' />
       </Helmet>
       <HashRouter>
         <AppRoutes />
