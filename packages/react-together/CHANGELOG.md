@@ -1,4 +1,5 @@
-## Current...
+## 0.1.0
+`2024-08-28`
  - Optimize `useStateTogether` and `useStateTogetherWithPerUserValues` to minimize unnecessary re-rendering
  - `useConnectedViews` does not return `null`
  - Allow to override the session model via `sessionParams.model` prop of the `<ReactTogether/>` component
