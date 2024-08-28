@@ -4,7 +4,7 @@ import reactLogo from '../assets/react.svg'
 export default function SamplePage() {
   return (
     <>
-      <div>
+      <div className="flex justify-center">
         <a href="https://multisynq.io" target="_blank">
           <img src={multisynqLogo} className="logo" alt="Multisynq logo" />
         </a>

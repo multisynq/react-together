@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useFunctionTogether } from 'react-together'
-import ChatInput from '../components/ChatInput'
-import Message from '../components/Message'
 import './Chat.css'
+import ChatInput from './ChatInput'
+import Message from './Message'
 
 interface Message {
   ts: number

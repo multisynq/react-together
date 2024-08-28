@@ -18,6 +18,7 @@
     "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
+    "@croquet/react": "^2.1.1",
     "primereact": "^10.6.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -26,7 +27,6 @@
     "react-together-primereact": "^0.0.1"
   },
   "devDependencies": {
-    "prettier": "^3.3.3",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.71",
     "@types/react-dom": "^18.2.22",
@@ -34,12 +34,16 @@
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "glob": "^10.3.10",
+    "postcss": "^8.4.41",
+    "prettier": "^3.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.10",
     "typescript": "^5.4.3",
     "vite": "^4.5.3",
     "vite-plugin-dts": "^3.7.3",
