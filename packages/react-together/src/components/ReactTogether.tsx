@@ -6,9 +6,10 @@ type ReactTogetherSessionParams = {
   appId: string
   apiKey: string
   sessionIgnoresUrl?: boolean
+  model?: typeof ReactTogetherModel
 }
 
-export interface IReactTogetherContext {
+export interface ReactTogetherContext {
   createNewSession: () => void
   leaveSession: () => void
   isTogether: boolean
@@ -16,7 +17,7 @@ export interface IReactTogetherContext {
   sessionPassword: string | null
 }
 export const ReactTogetherContext = createContext<
-  IReactTogetherContext | undefined
+  ReactTogetherContext | undefined
 >(undefined)
 
 export type ReactTogetherProps = {
@@ -95,7 +96,7 @@ export default function ReactTogether({
       {sessionName !== null && sessionPassword !== null ? (
         <CroquetRoot
           sessionParams={{
-            model: ReactTogetherModel,
+            model: sessionParams.model || ReactTogetherModel,
             appId,
             apiKey,
             name: sessionName,

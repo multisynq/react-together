@@ -2,10 +2,13 @@ import { useViewId } from '@croquet/react'
 import { MutableRefObject, useEffect, useRef } from 'react'
 import { useStateTogetherWithPerUserValues } from '../hooks'
 
+interface CustomMouseEvent extends MouseEvent {
+  rtProcessedBy?: string
+}
+
 export interface useHoveringViewsOptions {
   highlightMyself?: boolean
 }
-
 export default function useHoveringViews(
   rtKey: string,
   options: useHoveringViewsOptions = {}
@@ -15,26 +18,44 @@ export default function useHoveringViews(
   const myViewId = useViewId()
 
   const ref = useRef<HTMLDivElement | null>(null)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, set_hovering, allHovered] = useStateTogetherWithPerUserValues(
-    rtKey,
-    false
-  )
+  const [, set_hovering, allHovered] =
+    useStateTogetherWithPerUserValues<boolean>(rtKey, false)
 
   useEffect(() => {
     const node = ref.current
+    if (!node) return
 
-    interface CustomMouseEvent extends MouseEvent {
-      rtProcessedBy?: string
-    }
+    /**
+     * The goal is to ensure that only the innermost element that was hovered
+     * over is marked as being hovered, and none of its parent elements are
+     * marked as hovered.
+     *
+     * To achieve this, we use the `rtProcessedBy` property to keep track of the
+     * `rtKey` of the first element that processed this mouse over event.
+     *
+     * If the `rtProcessedBy` property is `undefined`, it means this is the first
+     * element in the hierarchy that has processed the event. In this case, we
+     * set the `hovering` state to `true` and update the `rtProcessedBy` property
+     * with the current `rtKey`.
+     *
+     * If the `rtProcessedBy` property is defined and does not match the current
+     * `rtKey`, it means this event has already been processed by a child element.
+     * In this case, we set the `hovering` state to `false` to ensure that this
+     * element is not marked as hovered.
+     *
+     *
+     * It's important to note that we cannot use the current value of the `hovering`
+     * state to minimize the number of events published to the model. This is because
+     * the `hovering` state may not reflect the most up to date state of the component.
+     *
+     * E.g. If a user runs their mouse through the component, the `handleMouseOver`
+     * and `handleMouseLeave` handlers will be executed. It's possible that
+     * `handleMouseLeave` executes *before* the `set_hovering` event is processed by
+     * the model. In this scenario, the value of `hovering` will be `false` during
+     * the execution of `handleMouseLeave`, and if we use it to suppress publishing
+     * a `set_hovering` to the model, `hovering` will end up with a stale `true` value.
+     */
     const handleMouseOver = (e: CustomMouseEvent) => {
-      // We should only hover the innermost element, i.e. if an element
-      // is hovered, none of its parents should be marked as hovered.
-
-      // We use rtProcessedBy to record the rtKey of the first element
-      // that processed this event. If rtProcessedBy is defined,
-      // then it was already processed by a child, and the current element
-      // should not be hovered.
       const rtProcessedBy = e.rtProcessedBy
       if (rtProcessedBy === undefined) {
         set_hovering(true)
@@ -46,16 +67,12 @@ export default function useHoveringViews(
 
     const handleMouseLeave = () => set_hovering(false)
 
-    if (node) {
-      node.addEventListener('mouseover', handleMouseOver)
-      node.addEventListener('mouseleave', handleMouseLeave)
-    }
+    node.addEventListener('mouseover', handleMouseOver)
+    node.addEventListener('mouseleave', handleMouseLeave)
 
     return () => {
-      if (node) {
-        node.removeEventListener('mouseover', handleMouseOver)
-        node.removeEventListener('mouseleave', handleMouseLeave)
-      }
+      node.removeEventListener('mouseover', handleMouseOver)
+      node.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [set_hovering, rtKey])
 
@@ -64,7 +81,6 @@ export default function useHoveringViews(
       ([viewId, isHovering]) =>
         isHovering && (viewId !== myViewId || highlightMyself)
     )
-    .filter(([isHovering]) => isHovering)
     .map(([viewId]) => viewId)
 
   return [ref, hoveringViews]

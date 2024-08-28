@@ -46,6 +46,7 @@ import { NotFoundPage } from '@pages/NotFoundPage'
 import { WebsiteWrapper } from '@pages/WebsiteWrapper'
 import { Route, Routes } from 'react-router-dom'
 import { ConnectedViews } from 'react-together'
+import changelog from 'react-together/CHANGELOG.md'
 import contributing from '../../contributing/CONTRIBUTING.md'
 import pricing from './pages/Documentation/pricing/PRICING.md'
 
@@ -68,6 +69,7 @@ export default function AppRoutes() {
           <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} /> */}
           <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
           <Route path='/pricing' element={<MarkdownPage markdown={pricing} />} />
+          <Route path='/changelog' element={<MarkdownPage markdown={changelog} />} />
           <Route path='primereact'>
             {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDocumentationPage />} /> */}
             <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDocumentationPage />} />
