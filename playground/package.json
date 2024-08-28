@@ -22,6 +22,7 @@
     "primereact": "^10.6.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.26.1",
     "react-together": "^0.0.2",
     "react-together-primereact": "^0.0.1"
   },

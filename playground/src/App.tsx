@@ -1,14 +1,12 @@
-// import { ReactTogetherManager } from 'react-together/src/components/ReactTogetherManager'
-import { useStateTogether } from 'react-together'
-import TinyRpgTogether from './components/TinyRpg'
+import { Route, Routes } from 'react-router-dom'
+import Gallery from './gallery'
+import TinyRpg from './tinyRpg'
 
 export default function App() {
-  const [count, setCount] = useStateTogether('count', 0)
-
   return (
-    <>
-      <button onClick={() => setCount((p) => (p ? p + 1 : 1))}>{count}</button>
-      <TinyRpgTogether />
-    </>
+    <Routes>
+      <Route path="rpg" element={<TinyRpg />} />
+      <Route path="*" element={<Gallery />} />
+    </Routes>
   )
 }

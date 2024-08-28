@@ -1,4 +1,4 @@
-import { ReactTogetherModel } from 'react-together'
+import { ReactModel } from 'react-together'
 
 export type Direction = 'up' | 'down' | 'left' | 'right'
 export type Position = { x: number; y: number }
@@ -23,7 +23,8 @@ export interface MoveArgs {
   direction: Direction
 }
 
-export default class TinyRpgModel extends ReactTogetherModel {
+export default class TinyRpgModel extends ReactModel {
+  // Configuration
   BOARD_WIDTH: number
   BOARD_HEIGHT: number
   MAX_COINS: number
@@ -31,12 +32,13 @@ export default class TinyRpgModel extends ReactTogetherModel {
   AVOID_COLLISIONS: boolean
   WRAP_BORDERS: boolean
 
+  // Model data
   playerData: Map<string, PlayerData>
   positions: Map<number, string>
   coins: Set<number>
 
-  init(options) {
-    super.init(options)
+  init() {
+    super.init({})
 
     this.BOARD_WIDTH = 10
     this.BOARD_HEIGHT = 10
@@ -56,7 +58,7 @@ export default class TinyRpgModel extends ReactTogetherModel {
   getRandomPosition() {
     return {
       x: Math.floor(Math.random() * this.BOARD_WIDTH),
-      y: Math.floor(Math.random() * this.BOARD_HEIGHT) // Ensures y is at least 2 (below second row)
+      y: Math.floor(Math.random() * this.BOARD_HEIGHT)
     }
   }
   getNextPosition(p: Position, d: Direction): Position {
@@ -132,7 +134,7 @@ export default class TinyRpgModel extends ReactTogetherModel {
     const position = this.findEmptyPosition()
     if (!position) return
 
-    console.log('Added coin on', position)
+    // console.log('Added coin on', position)
     this.coins.add(positionToNumber(position, this.BOARD_WIDTH))
   }
 
