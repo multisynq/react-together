@@ -1,3 +1,8 @@
+## Prereleases
+
+### 0.2.0-0
+ - experimental `useFunctionTogether`
+
 ## 0.1.0
 `2024-08-28`
  - Optimize `useStateTogether` and `useStateTogetherWithPerUserValues` to minimize unnecessary re-rendering
