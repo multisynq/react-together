@@ -28,7 +28,7 @@ if [ -n "$SCRIPT_BRANCH" -a -n "$CF_PAGES_BRANCH" ]; then
         FILES=`git ls-tree $SCRIPT_BRANCH --name-only | grep '^cloudflare'`
         git checkout $SCRIPT_BRANCH $FILES
         # now call this script again without the branch argument
-        exec `filename $0`
+        exec `basename $0`
         # this script will exit and the new one will run
     fi
 fi
