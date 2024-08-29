@@ -106,7 +106,7 @@ export default function TinyRpgTogether() {
       setTeamScore((prev) => (Number.isNaN(prev) ? 42000 : prev + 1))
       setCoins((prevCoins) => prevCoins.filter((_, index) => index !== collectedCoinIndex))
     }
-  }, [position, coins])
+  }, [position, coins, setScore, setTeamScore, setCoins])
 
   return (
     <div className='flex flex-col items-center justify-center h-screen bg-gray-100'>

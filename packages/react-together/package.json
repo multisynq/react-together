@@ -1,6 +1,6 @@
 {
   "name": "react-together",
-  "version": "0.0.2",
+  "version": "0.2.0-1",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,6 +11,7 @@
     "**/*.css"
   ],
   "scripts": {
+    "prepublishOnly": "npm run build",
     "prettier": "prettier . --check",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "build": "tsc && vite build",
@@ -18,8 +19,9 @@
     "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
-    "@croquet/react": "^2.0.2",
-    "primeicons": "^7.0.0"
+    "@croquet/react": "^2.1.2",
+    "primeicons": "^7.0.0",
+    "object-hash": "^3.0.0"
   },
   "peerDependencies": {
     "color-hash": "^2.0.2",
@@ -31,6 +33,7 @@
   "devDependencies": {
     "prettier": "^3.3.3",
     "@types/node": "^20.11.30",
+    "@types/object-hash": "^3.0.6",
     "@types/react": "^18.2.71",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^6.21.0",

@@ -25,6 +25,7 @@ const footerData: FooterSection[] = [
       { label: 'Get Started', url: '/#/getting-started' },
       { label: 'Components', url: '/#/ReactTogether' },
       { label: 'Hooks', url: '/#/useStateTogether' },
+      { label: 'Change Log', url: '/#/changelog' },
     ],
   },
   {

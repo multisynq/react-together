@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-set -eo pipefail
+set -Eeo pipefail
 exec 2>&1
 
 cd `dirname $0`
@@ -13,9 +13,27 @@ function notify {
         echo "Not running on Cloudflare Pages, skipping notification"
         return
     fi
+    echo "Sending notification to Slack"
     $DIR/cloudflare-notify.sh "$RESULT" || true
 }
-trap notify EXIT
+trap notify EXIT ERR
+
+# if a branch arg is provided, checkout scripts from that branch unless we are already on it
+SCRIPT_BRANCH=$1
+
+if [ -n "$SCRIPT_BRANCH" -a -n "$CF_PAGES_BRANCH" ]; then
+    if [ "$CF_PAGES_BRANCH" != "$SCRIPT_BRANCH" ]; then
+        # cloudflare does a shallow clone of CF_PAGES_BRANCH only
+        git fetch --depth=1 origin $SCRIPT_BRANCH:$SCRIPT_BRANCH
+        FILES=`git ls-tree $SCRIPT_BRANCH --name-only | grep '^cloudflare'`
+        git checkout $SCRIPT_BRANCH $FILES
+        # now call this script again without the branch argument
+        exec ./`basename $0`
+        # this script will exit and the new one will run
+    fi
+fi
+
+# now that we are on the correct branch, start building
 
 node --version
 npm --version
@@ -37,6 +55,10 @@ fi
 
 # build the react-together package
 npm run build || exit 1
+
+# write version info of build to file
+version="$DIR/../website/dist/version.txt"
+git log -1 --pretty=format:"Branch: %D%nCommit: %H%nMerge: %P%nAuthor: %an%nDate:   %ad%n%n    %s%n" > $version
 
 # set RESULT for EXIT trap
 RESULT=SUCCESS
