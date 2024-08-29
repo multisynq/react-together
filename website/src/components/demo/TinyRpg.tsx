@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useStateTogether, useStateTogetherWithPerUserValues } from 'react-together'
 
-const GRID_SIZE = 8
+const GRID_SIZE = 12
 const CELL_SIZE = 32
 const MAX_COINS = 5
 
@@ -178,22 +178,15 @@ export default function TinyRpgTogether() {
             ))}
           </div>
         </div>
-        <div className='flex w-full mt-2 rounded-sm'>
-          <div className='flex gap-2 flex-col px-2 '>
-            <div className='flex flex-col'>
-              <span className='text-sm text-white font-semibold'>Score:</span>
-              <div className='flex justify-end rounded-md bg-blue-100 shadow-md px-2'>
-                <span className='font-bold text-blue-800'>{score.toLocaleString()}</span>
-              </div>
-            </div>
-            <div className='flex flex-col'>
-              <span className='text-sm text-white font-bold'>Team Score:</span>
-              <div className='flex justify-end rounded-md bg-blue-100 shadow-md px-2'>
-                <span className='font-bold text-gray-800'>{teamScore.toLocaleString()}</span>
-              </div>
+        <div className='flex w-full mt-2 rounded-sm justify-between'>
+          <div className='flex flex-col items-start justify-center bg-blue-500 p-2 rounded-xl shadow-md border-white border-2'>
+            <span className='text-[1.5rem] font-bold leading-none text-white text-shadow-lg stroke-[1px] stroke-black'>tiny</span>
+            <div className='flex'>
+              <span className='text-[2rem] font-bold leading-none text-green-400'>R</span>
+              <span className='text-[2rem] font-bold leading-none text-orange-400'>G</span>
+              <span className='text-[2rem] font-bold leading-none text-red-500'>P</span>
             </div>
           </div>
-          <div className='w-auto flex-grow' />
           <div className='mt-2 flex flex-col items-center my-2'>
             <button
               onClick={() => moveCharacter('w')}
@@ -220,6 +213,20 @@ export default function TinyRpgTogether() {
               >
                 →
               </button>
+            </div>
+          </div>
+          <div className='flex gap-2 flex-col px-2 '>
+            <div className='flex flex-col'>
+              <span className='text-sm text-white font-semibold'>Score:</span>
+              <div className='flex justify-end rounded-md bg-blue-100 shadow-md px-2'>
+                <span className='font-bold text-blue-800'>{score.toLocaleString()}</span>
+              </div>
+            </div>
+            <div className='flex flex-col'>
+              <span className='text-sm text-white font-bold'>Team Score:</span>
+              <div className='flex justify-end rounded-md bg-blue-100 shadow-md px-2'>
+                <span className='font-bold text-gray-800'>{teamScore.toLocaleString()}</span>
+              </div>
             </div>
           </div>
         </div>
