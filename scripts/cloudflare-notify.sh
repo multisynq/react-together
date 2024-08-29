@@ -25,15 +25,20 @@ if [ ${#MISSING[@]} -gt 0 ] ; then
 fi
 
 case "$CF_PAGES_BRANCH" in
-    website)
+    deploy)
+        X="🚀"
         ENV_LABEL="Production"
         URL="https://reacttogether.dev"
         ;;
     main)
-        ENV_LABEL="Staging"
-        URL="https://staging.reacttogether.dev"
+    develop)
+    staging)
+        X="👁️"
+        ENV_LABEL="${CF_PAGES_BRANCH^}"
+        URL="https://${CF_PAGES_BRANCH}.reacttogether.dev"
         ;;
     *)
+        X="🔧"
         ENV_LABEL="Branch"
         # guess Cloudflare's preview branch URL from the branch name
         BRANCH_HOST=$(echo $CF_PAGES_BRANCH | sed -r 's [^-a-zA-Z0-9] - g;s -+ - g' | tr A-Z a-z | cut -c 1-28)
@@ -44,7 +49,7 @@ esac
 if [ "$RESULT" = "FAILURE" ]; then
     JSON="{\"text\": \"❌ *ReactTogether: Deployment to ${ENV_LABEL} site failed* ❌\n${ENV_LABEL}: ${URL}\nCommit: \`${CF_PAGES_BRANCH}@${CF_PAGES_COMMIT_SHA}\`\"}"
 else
-    JSON="{\"text\": \"👥 *ReactTogether: Deployed to ${ENV_LABEL} site* 👥\n${ENV_LABEL}: ${URL}\nCommit: \`${CF_PAGES_BRANCH}@${CF_PAGES_COMMIT_SHA}\` (${CF_PAGES_URL})\"}"
+    JSON="{\"text\": \"${X} *ReactTogether: Deployed to ${ENV_LABEL} site* ${X}\n${ENV_LABEL}: ${URL}\nCommit: \`${CF_PAGES_BRANCH}@${CF_PAGES_COMMIT_SHA}\` (${CF_PAGES_URL})\"}"
 fi
 
 echo
