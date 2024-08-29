@@ -6,6 +6,22 @@ exec 2>&1
 cd `dirname $0`
 DIR=`pwd`
 
+# if a branch arg is provided, checkout scripts from that branch unless we are already on it
+FORCE_BRANCH=$1
+
+if [ -n "$FORCE_BRANCH" ]; then
+    HAVE_BRANCH=`git rev-parse --abbrev-ref HEAD`
+    if [ "$HAVE_BRANCH" != "$FORCE_BRANCH" ]; then
+        FILES=`git ls-tree $FORCE_BRANCH --name-only | grep ^cloudflare`
+        git checkout $FORCE_BRANCH
+        # now call the script again without the branch argument
+        exec $0
+        # this script will exit and the new one will run
+    fi
+fi
+
+# now that we are on the correct branch, start building
+
 RESULT=FAILURE
 
 function notify {
