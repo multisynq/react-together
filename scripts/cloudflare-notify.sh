@@ -30,9 +30,7 @@ case "$CF_PAGES_BRANCH" in
         ENV_LABEL="Production"
         URL="https://reacttogether.dev"
         ;;
-    main)
-    develop)
-    staging)
+    main|develop|staging)
         X="👁️"
         ENV_LABEL="${CF_PAGES_BRANCH^}"
         URL="https://${CF_PAGES_BRANCH}.reacttogether.dev"
