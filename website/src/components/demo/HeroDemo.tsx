@@ -1,3 +1,4 @@
+import { AutoSizeKeepRatio } from '@utils/AutoSizeKeepRatio'
 import { useEffect, useState } from 'react'
 import { ConnectedViews, PresenceDiv } from 'react-together'
 import { CheckboxTogether, ColorPickerTogether, DropdownTogether, SelectButtonTogether } from 'react-together-primereact'
@@ -118,34 +119,34 @@ const NonHomePage = () => (
 
 const HomePage = () => (
   <div className='w-full overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
-    <div className='px-2 py-2 bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] h-full'>
-      <div className='w-full h-full flex gap-2'>
-        <div className='h-full flex flex-col items-start w-[20rem] rounded-lg border border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto'>
-          <PresenceDiv rtKey='select-button-presence'>
-            <SelectButtonTogether rtKey='select-button' options={ITEMS} optionLabel='name' />
-          </PresenceDiv>
-          <div className='flex items-center justify-between w-full'>
-            <HoverButtons />
-            <PresenceDiv rtKey='checkbox-presence'>
-              <CheckboxTogether rtKey='checkbox' />
-            </PresenceDiv>
+    <div className='w-full h-full bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)]'>
+      <AutoSizeKeepRatio maxHeight={600} maxWidth={1000}>
+        <div className='px-2 py-2 h-full w-full'>
+          <div className='w-full h-full flex'>
+            <div className='h-full flex flex-col items-start w-[24rem] rounded-lg border border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto'>
+              <PresenceDiv rtKey='select-button-presence'>
+                <SelectButtonTogether rtKey='select-button' options={ITEMS} optionLabel='name' />
+              </PresenceDiv>
+              <div className='flex items-center justify-between w-full'>
+                <HoverButtons />
+                <PresenceDiv rtKey='checkbox-presence'>
+                  <CheckboxTogether rtKey='checkbox' />
+                </PresenceDiv>
+              </div>
+              <div className='flex items-center justify-between w-full'>
+                <ColorPickerWithLabel />
+                <div className='w-auto' />
+                <CityDropdown />
+              </div>
+            </div>
+
+            <div className='flex-grow flex rounded-lg items-center justify-center'>
+              <TinyRpgTogether />
+            </div>
           </div>
-          <div className='flex items-center justify-between w-full'>
-            <ColorPickerWithLabel />
-            <div className='w-auto' />
-            <CityDropdown />
-          </div>
+          <ConnectedViewsWrapper />
         </div>
-        <div className='flex-grow flex rounded-lg items-center justify-center'>
-          <TinyRpgTogether />
-          {/* <p className='text-center font-bold text-sm text-gray-300 text-wrap'>
-            {'CursorTogether'}
-            <br />
-            {'[Coming Soon!]'}
-          </p> */}
-        </div>
-      </div>
-      <ConnectedViewsWrapper />
+      </AutoSizeKeepRatio>
     </div>
   </div>
 )
