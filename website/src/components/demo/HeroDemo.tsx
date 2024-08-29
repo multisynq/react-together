@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ConnectedViews, PresenceDiv } from 'react-together'
 import { CheckboxTogether, ColorPickerTogether, DropdownTogether, SelectButtonTogether } from 'react-together-primereact'
 import { PresenceDivStyled } from '../ui/PresenceDivStyled'
+import TinyRpgTogether from './TinyRpg'
 
 // Constants
 const CITIES = [
@@ -136,11 +137,12 @@ const HomePage = () => (
           </div>
         </div>
         <div className='flex-grow flex rounded-lg items-center justify-center'>
-          <p className='text-center font-bold text-sm text-gray-300 text-wrap'>
+          <TinyRpgTogether />
+          {/* <p className='text-center font-bold text-sm text-gray-300 text-wrap'>
             {'CursorTogether'}
             <br />
             {'[Coming Soon!]'}
-          </p>
+          </p> */}
         </div>
       </div>
       <ConnectedViewsWrapper />

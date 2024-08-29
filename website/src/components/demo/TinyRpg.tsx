@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useStateTogether, useStateTogetherWithPerUserValues } from 'react-together'
 
-const GRID_SIZE = 10
-const CELL_SIZE = 40
+const GRID_SIZE = 8
+const CELL_SIZE = 32
 const MAX_COINS = 5
 
 const CoinSVG = () => (
@@ -109,7 +109,7 @@ export default function TinyRpgTogether() {
   }, [position, coins])
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen bg-gray-100'>
+    <div className='flex flex-col items-center justify-center h-screen'>
       <style>{`
         @keyframes bounce {
           0%,
@@ -125,88 +125,103 @@ export default function TinyRpgTogether() {
           transform-origin: bottom center;
         }
       `}</style>
-      <div className='relative'>
-        <div className='absolute top-2 left-2 flex gap-5'>
-          <div className='bg-white px-2 py-1 rounded shadow z-10'>Score: {score}</div>
-          <div className='bg-white px-2 py-1 rounded shadow z-10'>Team Score: {teamScore}</div>
-        </div>
-        <div
-          className='relative grid'
-          style={{
-            gridTemplateColumns: `repeat(${GRID_SIZE}, ${CELL_SIZE}px)`,
-            gridTemplateRows: `repeat(${GRID_SIZE}, ${CELL_SIZE}px)`,
-            backgroundImage: 'linear-gradient(45deg, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%)',
-            backgroundSize: `${CELL_SIZE * 2}px ${CELL_SIZE * 2}px`,
-          }}
-        >
-          {[...Array(GRID_SIZE * GRID_SIZE)].map((_, index) => (
-            <div key={index} className='border border-gray-200' />
-          ))}
-          {coins.map((coin, index) => (
-            <div
-              key={`coin-${index}`}
-              className='absolute flex items-center justify-center'
-              style={{
-                width: `${CELL_SIZE}px`,
-                height: `${CELL_SIZE}px`,
-                left: `${coin.x * CELL_SIZE}px`,
-                top: `${coin.y * CELL_SIZE}px`,
-              }}
-            >
-              <CoinSVG />
-            </div>
-          ))}
-          {Object.entries(everyonesPosition).map(([viewId, position]) => (
-            <div
-              className='character absolute bg-blue-500 rounded-full flex items-center justify-center'
-              id={`position-${viewId}`}
-              style={{
-                width: `${CELL_SIZE - 4}px`,
-                height: `${CELL_SIZE - 8}px`,
-                left: `${position.x * CELL_SIZE + 2}px`,
-                top: `${position.y * CELL_SIZE + 4}px`,
-                transition: 'left 0.1s, top 0.1s',
-                background: stringToColor(viewId),
-              }}
-            >
-              <div className='relative w-3/4 h-1/2 flex justify-around items-center'>
-                <div className='w-1/3 h-2/3 bg-white rounded-full flex items-center justify-center'>
-                  <div className='w-1/2 h-1/2 bg-black rounded-full'></div>
-                </div>
-                <div className='w-1/3 h-2/3 bg-white rounded-full flex items-center justify-center'>
-                  <div className='w-1/2 h-1/2 bg-black rounded-full'></div>
+      <div className='p-4 items-center justify-center gap-4 bg-[linear-gradient(224deg,_#9EE3FF_-1.37%,_#74D4FC_49.31%,_#5EBCF9_100%)] border-2 border-blue-200 rounded-xl shadow-md'>
+        <div className='relative rounded-lg overflow-hidden shadow-sm'>
+          <div
+            className='grid'
+            style={{
+              gridTemplateColumns: `repeat(${GRID_SIZE}, ${CELL_SIZE}px)`,
+              gridTemplateRows: `repeat(${GRID_SIZE}, ${CELL_SIZE}px)`,
+              backgroundImage: 'linear-gradient(45deg, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%)',
+              backgroundSize: `${CELL_SIZE * 2}px ${CELL_SIZE * 2}px`,
+            }}
+          >
+            {[...Array(GRID_SIZE * GRID_SIZE)].map((_, index) => (
+              <div key={index} className='border border-gray-200' />
+            ))}
+            {coins.map((coin, index) => (
+              <div
+                key={`coin-${index}`}
+                className='absolute flex items-center justify-center'
+                style={{
+                  width: `${CELL_SIZE}px`,
+                  height: `${CELL_SIZE}px`,
+                  left: `${coin.x * CELL_SIZE}px`,
+                  top: `${coin.y * CELL_SIZE}px`,
+                }}
+              >
+                <CoinSVG />
+              </div>
+            ))}
+            {Object.entries(everyonesPosition).map(([viewId, position]) => (
+              <div
+                className='character absolute bg-blue-500 rounded-full flex items-center justify-center'
+                id={`position-${viewId}`}
+                style={{
+                  width: `${CELL_SIZE - 4}px`,
+                  height: `${CELL_SIZE - 8}px`,
+                  left: `${position.x * CELL_SIZE + 2}px`,
+                  top: `${position.y * CELL_SIZE + 4}px`,
+                  transition: 'left 0.1s, top 0.1s',
+                  background: stringToColor(viewId),
+                }}
+              >
+                <div className='relative w-3/4 h-1/2 flex justify-around items-center'>
+                  <div className='w-1/3 h-2/3 bg-white rounded-full flex items-center justify-center'>
+                    <div className='w-1/2 h-1/2 bg-black rounded-full'></div>
+                  </div>
+                  <div className='w-1/3 h-2/3 bg-white rounded-full flex items-center justify-center'>
+                    <div className='w-1/2 h-1/2 bg-black rounded-full'></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-      <div className='mt-4 flex flex-col items-center'>
-        <button
-          onClick={() => moveCharacter('w')}
-          className='p-2 bg-gray-200 rounded text-2xl mb-2 w-12 h-12 flex items-center justify-center'
-        >
-          ↑
-        </button>
-        <div className='flex'>
-          <button
-            onClick={() => moveCharacter('a')}
-            className='p-2 bg-gray-200 rounded text-2xl mr-2 w-12 h-12 flex items-center justify-center'
-          >
-            ←
-          </button>
-          <button
-            onClick={() => moveCharacter('s')}
-            className='p-2 bg-gray-200 rounded text-2xl mr-2 w-12 h-12 flex items-center justify-center'
-          >
-            ↓
-          </button>
-          <button
-            onClick={() => moveCharacter('d')}
-            className='p-2 bg-gray-200 rounded text-2xl w-12 h-12 flex items-center justify-center'
-          >
-            →
-          </button>
+        <div className='flex w-full mt-2 rounded-sm'>
+          <div className='flex gap-2 flex-col px-2 '>
+            <div className='flex flex-col'>
+              <span className='text-sm text-white font-semibold'>Score:</span>
+              <div className='flex justify-end rounded-md bg-blue-100 shadow-md px-2'>
+                <span className='font-bold text-blue-800'>{score.toLocaleString()}</span>
+              </div>
+            </div>
+            <div className='flex flex-col'>
+              <span className='text-sm text-white font-bold'>Team Score:</span>
+              <div className='flex justify-end rounded-md bg-blue-100 shadow-md px-2'>
+                <span className='font-bold text-gray-800'>{teamScore.toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
+          <div className='w-auto flex-grow' />
+          <div className='mt-2 flex flex-col items-center my-2'>
+            <button
+              onClick={() => moveCharacter('w')}
+              className='p-2 bg-gray-50 text-2xl mb-2 w-10 h-10 flex items-center justify-center font-bold font-sans rounded-lg  shadow-lineStyleMedium hover:bg-gray-200 hover:border-neutral-400'
+            >
+              ↑
+            </button>
+            <div className='flex items-center justify-center'>
+              <button
+                onClick={() => moveCharacter('a')}
+                className='p-2 bg-gray-50 text-2xl mr-2 w-10 h-10 flex items-center justify-center font-bold font-sans rounded-lg  shadow-lineStyleMedium hover:bg-gray-200 hover:border-neutral-400'
+              >
+                ←
+              </button>
+              <button
+                onClick={() => moveCharacter('s')}
+                className='p-2 bg-gray-50 text-2xl mr-2 w-10 h-10 flex items-center justify-center font-bold font-sans rounded-lg  shadow-lineStyleMedium hover:bg-gray-200 hover:border-neutral-400'
+              >
+                ↓
+              </button>
+              <button
+                onClick={() => moveCharacter('d')}
+                className='p-2 bg-gray-50 text-2xl w-10 h-10 flex items-center justify-center font-bold font-sans rounded-lg  shadow-lineStyleMedium hover:bg-gray-200 hover:border-neutral-400'
+              >
+                →
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
