@@ -1,6 +1,6 @@
 ## Prereleases
 
-### 0.2.0-0
+### 0.2.0-1
  - experimental `useFunctionTogether`
 
 ## 0.1.0
