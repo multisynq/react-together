@@ -25,8 +25,12 @@ if [ -n "$SCRIPT_BRANCH" -a -n "$CF_PAGES_BRANCH" ]; then
         git branch -a
         git fetch --depth=1 origin $SCRIPT_BRANCH:$SCRIPT_BRANCH
         git branch -a
+        ls -la
+        git ls-tree main --name-only
         FILES=`git ls-tree $SCRIPT_BRANCH --name-only | grep '^cloudflare'`
         git checkout $SCRIPT_BRANCH $FILES
+        ls -la
+        git status
         # now call the script again without the branch argument
         exec $0
         # this script will exit and the new one will run
