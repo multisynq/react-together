@@ -13,6 +13,7 @@ function notify {
         echo "Not running on Cloudflare Pages, skipping notification"
         return
     fi
+    echo "Sending notification to Slack"
     $DIR/cloudflare-notify.sh "$RESULT" || true
 }
 trap notify EXIT ERR
@@ -22,17 +23,12 @@ SCRIPT_BRANCH=$1
 
 if [ -n "$SCRIPT_BRANCH" -a -n "$CF_PAGES_BRANCH" ]; then
     if [ "$CF_PAGES_BRANCH" != "$SCRIPT_BRANCH" ]; then
-        git branch -a
+        # cloudflare does a shallow clone of CF_PAGES_BRANCH only
         git fetch --depth=1 origin $SCRIPT_BRANCH:$SCRIPT_BRANCH
-        git branch -a
-        ls -la
-        git ls-tree main --name-only
         FILES=`git ls-tree $SCRIPT_BRANCH --name-only | grep '^cloudflare'`
         git checkout $SCRIPT_BRANCH $FILES
-        ls -la
-        git status
-        # now call the script again without the branch argument
-        exec $0
+        # now call this script again without the branch argument
+        exec `filename $0`
         # this script will exit and the new one will run
     fi
 fi
