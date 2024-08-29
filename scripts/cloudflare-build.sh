@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-set -eo pipefail
+set -Eeo pipefail
 exec 2>&1
 
 cd `dirname $0`
@@ -15,7 +15,25 @@ function notify {
     fi
     $DIR/cloudflare-notify.sh "$RESULT" || true
 }
-trap notify EXIT
+trap notify EXIT ERR
+
+# if a branch arg is provided, checkout scripts from that branch unless we are already on it
+SCRIPT_BRANCH=$1
+
+if [ -n "$SCRIPT_BRANCH" -a -n "$CF_PAGES_BRANCH" ]; then
+    if [ "$CF_PAGES_BRANCH" != "$SCRIPT_BRANCH" ]; then
+        git branch -a
+        git fetch --depth=1 origin $SCRIPT_BRANCH:$SCRIPT_BRANCH
+        git branch -a
+        FILES=`git ls-tree $SCRIPT_BRANCH --name-only | grep '^cloudflare'`
+        git checkout $SCRIPT_BRANCH $FILES
+        # now call the script again without the branch argument
+        exec $0
+        # this script will exit and the new one will run
+    fi
+fi
+
+# now that we are on the correct branch, start building
 
 node --version
 npm --version
