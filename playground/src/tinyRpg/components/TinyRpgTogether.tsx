@@ -7,7 +7,7 @@ import { MoveArgs } from '../models/TinyRpgModel'
 export default function TinyRpgTogether() {
   // console.log('<TinyRpg/>')
   const viewId = useViewId()!
-  const modelId = useModelSelector((m) => (m as OverrideModel).rpg.id)
+  const modelId = useModelSelector((m: OverrideModel) => m.rpg.id)
 
   const publishMove = usePublish<MoveArgs>((d) => [modelId, 'move', d])
 
