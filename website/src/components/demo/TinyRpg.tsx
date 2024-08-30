@@ -109,7 +109,7 @@ export default function TinyRpgTogether() {
   }, [position, coins])
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen'>
+    <div className='flex flex-col items-center justify-center h-full'>
       <style>{`
         @keyframes bounce {
           0%,
@@ -179,7 +179,7 @@ export default function TinyRpgTogether() {
           </div>
         </div>
         <div className='flex w-full mt-2 rounded-sm justify-between'>
-          <div className='flex flex-col items-start justify-center bg-blue-500 p-2 rounded-xl shadow-md border-white border-2'>
+          <div className='flex flex-col items-start justify-center bg-sky-500 p-2 rounded-xl shadow-md border-white border-2'>
             <span className='text-[1.5rem] font-bold leading-none text-white text-shadow-lg stroke-[1px] stroke-black'>tiny</span>
             <div className='flex'>
               <span className='text-[2rem] font-bold leading-none text-green-400'>R</span>

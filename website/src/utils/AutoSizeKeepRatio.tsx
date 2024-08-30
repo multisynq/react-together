@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-
 export function AutoSizeKeepRatio({ children, maxWidth, maxHeight, wrapStyle }) {
   const wrapperRef = useRef(null)
   const contentRef = useRef(null)
@@ -40,6 +39,7 @@ export function AutoSizeKeepRatio({ children, maxWidth, maxHeight, wrapStyle }) 
         width: '100%',
         height: '100%',
         position: 'relative',
+        // background: 'blue',
         ...wrapStl,
       }}
     >
@@ -49,11 +49,14 @@ export function AutoSizeKeepRatio({ children, maxWidth, maxHeight, wrapStyle }) 
           // position: 'absolute',
           position: 'relative',
           left: '50%',
-          top: '50%',
+          // top: '50%',
+          top: '0%',
           width: maxWidth,
           height: maxHeight,
-          transformOrigin: 'center center',
-          transform: `translate(-50%, -50%) scale(${scale})`,
+          // transformOrigin: 'center center',
+          transformOrigin: 'top center',
+          // transform: `translate(-50%, -50%) scale(${scale})`,
+          transform: `translateX(-50%) scale(${scale})`,
           // background: 'red',
         }}
       >
