@@ -1,7 +1,14 @@
 import { AutoSizeKeepRatio } from '@utils/AutoSizeKeepRatio'
 import { useEffect, useState } from 'react'
 import { ConnectedViews, PresenceDiv } from 'react-together'
-import { CheckboxTogether, ColorPickerTogether, DropdownTogether, SelectButtonTogether } from 'react-together-primereact'
+import {
+  CheckboxTogether,
+  ColorPickerTogether,
+  DropdownTogether,
+  InputSwitchTogether,
+  SelectButtonTogether,
+  TriStateCheckboxTogether,
+} from 'react-together-primereact'
 import { PresenceDivStyled } from '../ui/PresenceDivStyled'
 import TinyRpgTogether from './TinyRpg'
 
@@ -89,6 +96,22 @@ const ConnectedViewsWrapper = () => (
     </div>
   </div>
 )
+function UIWrapper({ children, label }) {
+  return (
+    <div className='flex flex-col gap-2 py-1'>
+      <span className='text-xs text-neutral-500 tracking-tight'>{label}</span>
+      {children}
+    </div>
+  )
+}
+
+function LineDivder() {
+  return (
+    <>
+      <div className='border-b w-full my-2 p-x2' />
+    </>
+  )
+}
 
 // Main components
 const NonHomePage = () => (
@@ -96,8 +119,57 @@ const NonHomePage = () => (
     <div className='flex justify-center absolute bottom-2 right-2'>
       <ConnectedViews maxAvatars={6} />
     </div>
-    <div className='w-full flex flex-col items-start rounded-lg border border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto mx-2 my-3 max-w-[360px]'>
-      <div className='w-full items-center justify-center flex'>
+    <div className='w-full flex flex-col items-start rounded-lg border border-gray700 bg-white overflow-hidden p-3 gap-2 overflow-y-auto mx-2 my-3 max-w-[320px]'>
+      <span className='tracking-tighter font-bold text-xl text-neutral-300'>Sample UI</span>
+      <UIWrapper label={'Select'}>
+        <PresenceDiv rtKey='select-button-presence'>
+          <SelectButtonTogether rtKey='select-button' options={ITEMS} optionLabel='name' />
+        </PresenceDiv>
+      </UIWrapper>
+      <LineDivder />
+      {/* <UIWrapper label={'Hover'}>
+        <div className='flex items-center justify-between w-full gap-2'>
+          <HoverButtons />
+        </div>
+      </UIWrapper> */}
+      <LineDivder />
+      <div className='flex gap-6'>
+        <UIWrapper label={'Drop Down'}>
+          <CityDropdown />
+        </UIWrapper>
+        <UIWrapper label={'Color Pick'}>
+          <ColorPickerWithLabel />
+        </UIWrapper>
+      </div>
+      <LineDivder />
+      <div className='flex gap-6'>
+        <UIWrapper label={'Checkbox'}>
+          <PresenceDiv rtKey='checkbox-1-presence'>
+            <CheckboxTogether rtKey='checkbox-1' />
+          </PresenceDiv>
+        </UIWrapper>
+        <UIWrapper label={'Tri State'}>
+          <TriStateCheckboxTogether rtKey='TriStateCheckbox' />
+        </UIWrapper>
+        <UIWrapper label={'Input Swtich'}>
+          <InputSwitchTogether rtKey='input-switch' />
+        </UIWrapper>
+
+        {/* <UIWrapper label={'Toggle Button'}>
+          <ToggleButtonTogether rtKey='ToggleButton' />
+        </UIWrapper> */}
+      </div>
+      {/* <LineDivder />
+      <div className='flex gap-6'>
+        <UIWrapper label={'Rating'}>
+          <RatingTogether rtKey='Rate-together' />
+        </UIWrapper>
+        <UIWrapper label={'Toggle'}>
+          <ToggleButtonTogether rtKey='ToggleButton' />
+        </UIWrapper>
+      </div> */}
+
+      {/* <div className='w-full items-center justify-center flex'>
         <PresenceDiv rtKey='select-button-presence'>
           <SelectButtonTogether rtKey='select-button' options={ITEMS} optionLabel='name' />
         </PresenceDiv>
@@ -112,7 +184,7 @@ const NonHomePage = () => (
         <ColorPickerWithLabel />
         <div className='w-auto' />
         <CityDropdown />
-      </div>
+      </div> */}
     </div>
   </div>
 )
@@ -120,33 +192,63 @@ const NonHomePage = () => (
 const HomePage = () => (
   <div className='w-full overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
     <div className='w-full h-full bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)]'>
-      <AutoSizeKeepRatio maxHeight={600} maxWidth={1000}>
-        <div className='px-2 py-2 h-full w-full'>
-          <div className='w-full h-full flex'>
-            <div className='h-full flex flex-col items-start w-[24rem] rounded-lg border border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto'>
-              <PresenceDiv rtKey='select-button-presence'>
-                <SelectButtonTogether rtKey='select-button' options={ITEMS} optionLabel='name' />
-              </PresenceDiv>
-              <div className='flex items-center justify-between w-full'>
-                <HoverButtons />
-                <PresenceDiv rtKey='checkbox-presence'>
-                  <CheckboxTogether rtKey='checkbox' />
-                </PresenceDiv>
+      {/* <AutoSizeKeepRatio maxHeight={480} maxWidth={800}> */}
+      <div className='px-2 py-4 h-full w-full'>
+        <div className='w-full h-full flex'>
+          <div className='w-1/2'>
+            <AutoSizeKeepRatio maxHeight={364} maxWidth={320}>
+              <div className='w-full h-full flex flex-col'>
+                <span className='tracking-tighter font-bold text-neutral-300'>Sample UI</span>
+                <div className='w-full flex flex-col items-start rounded-lg border border-gray700 overflow-hidden p-3 gap-1 overflow-y-auto h-full mt-2 bg-white'>
+                  <UIWrapper label={'Select'}>
+                    <PresenceDiv rtKey='select-button-presence'>
+                      <SelectButtonTogether rtKey='select-button' options={ITEMS} optionLabel='name' />
+                    </PresenceDiv>
+                  </UIWrapper>
+                  <LineDivder />
+                  <div className='flex gap-6'>
+                    <UIWrapper label={'Drop Down'}>
+                      <CityDropdown />
+                    </UIWrapper>
+                    <UIWrapper label={'Color Pick'}>
+                      <ColorPickerWithLabel />
+                    </UIWrapper>
+                  </div>
+                  <LineDivder />
+                  <div className='flex gap-6'>
+                    <UIWrapper label={'Checkbox'}>
+                      <PresenceDiv rtKey='checkbox-1-presence'>
+                        <CheckboxTogether rtKey='checkbox-1' />
+                      </PresenceDiv>
+                    </UIWrapper>
+                    <UIWrapper label={'Tri State'}>
+                      <TriStateCheckboxTogether rtKey='TriStateCheckbox' />
+                    </UIWrapper>
+                    <UIWrapper label={'Input Swtich'}>
+                      <InputSwitchTogether rtKey='input-switch' />
+                    </UIWrapper>
+                  </div>
+                  {/* <LineDivder />
+                  <div className='flex gap-6'>
+                    <UIWrapper label={'Rating'}>
+                      <RatingTogether rtKey='Rate-together' />
+                    </UIWrapper>
+                    <UIWrapper label={'Toggle'}>
+                      <ToggleButtonTogether rtKey='ToggleButton' />
+                    </UIWrapper>
+                  </div> */}
+                </div>
               </div>
-              <div className='flex items-center justify-between w-full'>
-                <ColorPickerWithLabel />
-                <div className='w-auto' />
-                <CityDropdown />
-              </div>
-            </div>
-
-            <div className='flex-grow flex rounded-lg items-center justify-center'>
-              <TinyRpgTogether />
-            </div>
+            </AutoSizeKeepRatio>
           </div>
-          <ConnectedViewsWrapper />
+          <div className='w-1/2 flex items-center justify-center'>
+            <AutoSizeKeepRatio maxHeight={664} maxWidth={444}>
+              <TinyRpgTogether />
+            </AutoSizeKeepRatio>
+          </div>
         </div>
-      </AutoSizeKeepRatio>
+        <ConnectedViewsWrapper />
+      </div>
     </div>
   </div>
 )
