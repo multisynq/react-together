@@ -35,11 +35,13 @@ export default function useStateTogetherWithPerUserValues<
   }
   const viewId = view?.viewId || ''
   const [allValuesState, setAllValuesState] = useState<{
-    value: Map<string, T>
+    value: { [id: string]: T }
     hash: string
   }>(() => {
-    const value = (model?.stateTogether.get(rtKey) ||
-      new Map([[viewId, initial_value]])) as Map<string, T>
+    const value = mapToObject(
+      (model?.stateTogether.get(rtKey) ||
+        new Map([[viewId, initial_value]])) as Map<string, T>
+    )
     const hash = hash_fn(value)
     return { value, hash }
   })
@@ -50,12 +52,16 @@ export default function useStateTogetherWithPerUserValues<
     if (!session || !view || !model || !viewId) return
 
     const handler = () => {
-      const newValues = model.stateTogether.get(rtKey) as Map<string, T>
+      const newValues = mapToObject(
+        model.stateTogether.get(rtKey) as Map<string, T>
+      )
       const newHash = hash_fn(newValues)
 
-      setAllValuesState((prev) =>
-        prev.hash === newHash ? prev : { value: newValues, hash: newHash }
-      )
+      setAllValuesState((prev) => {
+        return prev.hash === newHash
+          ? prev
+          : { value: newValues, hash: newHash }
+      })
     }
 
     view.subscribe(
@@ -89,7 +95,7 @@ export default function useStateTogetherWithPerUserValues<
     }
   }, [session, view, viewId, model, rtKey, initial_value])
 
-  const localValue = allValues.get(viewId) || initial_value
+  const localValue = allValues[viewId] || initial_value
 
   const setter = useCallback(
     (newValueOrFn: SetStateAction<T>): void => {
@@ -112,12 +118,12 @@ export default function useStateTogetherWithPerUserValues<
         // the same state interface
         setAllValuesState((prev) => {
           const { value, hash } = prev
-          const newValue = getNewValue(value.get('')!, newValueOrFn)
+          const newValue = getNewValue(value[viewId]!, newValueOrFn)
           const newHash = hash_fn(newValue)
           if (hash === newHash) {
             return prev
           } else {
-            value.set('', newValue)
+            value[viewId] = newValue
             return { value, hash: newHash }
           }
         })
@@ -126,5 +132,5 @@ export default function useStateTogetherWithPerUserValues<
     [view, viewId, model, rtKey]
   )
 
-  return [localValue, setter, mapToObject(allValues)]
+  return [localValue, setter, allValues]
 }
