@@ -27,15 +27,18 @@ interface Position {
   x: number
   y: number
 }
+const getRandomStartPosition = () => ({
+  x: Math.floor(Math.random() * GRID_SIZE),
+  y: Math.floor(Math.random() * (GRID_SIZE - 2)) + 2, // Ensures y is at least 2 (below second row)
+})
+const position0 = getRandomStartPosition()
+
+//===================== ||||||||||||||| ======================
 export default function TinyRpgTogether() {
-  const getRandomStartPosition = () => ({
-    x: Math.floor(Math.random() * GRID_SIZE),
-    y: Math.floor(Math.random() * (GRID_SIZE - 2)) + 2, // Ensures y is at least 2 (below second row)
-  })
 
   const [position, setPosition, everyonesPosition] = useStateTogetherWithPerUserValues<Position>(
     'tiny-rpg-positions',
-    getRandomStartPosition()
+    position0
   )
 
   const [coins, setCoins] = useState<Position[]>([])
