@@ -1,6 +1,6 @@
 {
   "name": "react-together-primereact",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,13 +18,12 @@
     "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
-    "react-together": "^0.0.2"
+    "react-together": "^0.2.0-1"
   },
   "peerDependencies": {
     "primereact": "^10.6.6"
   },
   "devDependencies": {
-    "prettier": "^3.3.3",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.71",
     "@types/react-dom": "^18.2.22",
@@ -36,6 +35,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "glob": "^10.3.10",
+    "prettier": "^3.3.3",
     "typescript": "^5.4.3",
     "vite": "^4.5.3",
     "vite-plugin-dts": "^3.7.3",

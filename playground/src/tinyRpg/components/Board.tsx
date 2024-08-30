@@ -3,12 +3,8 @@ import { CELL_SIZE } from '../constants'
 import { OverrideModel } from '../models'
 
 export default function Board() {
-  const GRID_HEIGHT = useModelSelector(
-    (m) => (m as OverrideModel).rpg.BOARD_HEIGHT
-  )
-  const GRID_WIDTH = useModelSelector(
-    (m) => (m as OverrideModel).rpg.BOARD_WIDTH
-  )
+  const GRID_HEIGHT = useModelSelector((m: OverrideModel) => m.rpg.BOARD_HEIGHT)
+  const GRID_WIDTH = useModelSelector((m: OverrideModel) => m.rpg.BOARD_WIDTH)
   return (
     <div
       className="relative grid"
