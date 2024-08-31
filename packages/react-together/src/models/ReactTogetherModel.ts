@@ -21,7 +21,7 @@ type FunctionTogetherArgs = {
 export default class ReactTogetherModel extends ReactModel {
   state: Map<string, unknown>
   stateTogether: Map<string, Map<string, unknown>>
-  modelFuncs: Map<string, {viewId:string, func:(...args:any[])=>void}>
+  modelFuncs: Map<string, (...args:any[])=>void>
 
   init(options: ReactTogetherModelOptions) {
     super.init({ ...options, trackViews: true })
@@ -63,23 +63,14 @@ export default class ReactTogetherModel extends ReactModel {
     this.publish(rtKey, 'call', { data: args, viewId, ts: this.now() })
   }
 
-  defineModelFuncTogether({id, viewId, func} : {id:string, viewId:string, func:any} ){
-    // TODO: rememeber the viewId and make sure we are not defining the same id with two diff functions
-    // if (!this.modelFuncs.has(id)){
-      this.modelFuncs.set(id, {viewId, func})
-    // } else if (this.modelFuncs.get(id)?.viewId === viewId) {
-    //   console.warn(`in useModelFunctionTogether() ${id}() already defined`)
-    // }
+  defineModelFuncTogether({id, viewId:_viewId, func} : {id:string, viewId:string, func: any} ){
+    this.modelFuncs.set(id, func)
+    console.log('defineModelFuncTogether', id, func)
   }
 
   callModelFuncTogether({id, viewId:_viewId, args}:{id:string, viewId:string, args:any[]}){
-    const thang = this.modelFuncs.get(id)
-    if(thang){
-      const { func } = thang
-      func.call(this, ...args)
-    } else {
-      console.error(`in useModelFunctionTogether() ${id}() not found`)
-    }
+    const func = this.modelFuncs.get(id)
+    func.call(this, ...args)
   }
 
   handleViewExit(viewId: string): void {

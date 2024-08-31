@@ -34,10 +34,67 @@ const getRandomStartPosition = () => ({
 })
 const position0 = getRandomStartPosition()
 
+//===================== ||||||||||||||| ======================
+
+class StateAccessor<T> {
+  id:string
+  initialValue:T
+  model:ReactTogetherModel_ButWaaayBetter
+
+  constructor(id:string, initialValue: T, model:ReactTogetherModel_ButWaaayBetter){
+    this.id = id
+    this.initialValue = initialValue
+    this.model = model
+  }
+  get() {
+    if (!this.model.state.has(this.id)) this.set(this.initialValue)
+    return this.model.state.get(this.id) as T
+  }
+  set(x:T) {
+    this.model.modelOnly();
+    this.model.setState({id: this.id, newValue: x})
+ }
+}
+
+// this just exists so we can type-declare createQFunc
+// and register StateAccessor
+// (will be moved to ReactTogetherModel)
+class ReactTogetherModel_ButWaaayBetter extends ReactTogetherModel{
+  createQFunc<T>(env: Record<string, any>, func: T): T {
+    (func as any).env = env
+    return func
+  }
+  static types() { return { StateAccessor } }
+
+  version = 11 // to force a model reset
+}
+ReactTogetherModel_ButWaaayBetter.register('ReactTogetherModel_ButWaaayBetter')
 
 
 
 //===================== ||||||||||||||| ======================
+
+
+type Mob = {
+  x:number
+  y:number
+  color:string
+}
+
+function rnd(lo:number, hi:number):number{
+  return Math.floor(Math.random() * (hi-lo)) + lo
+}
+
+function rndMob(color:string):Mob{
+  return {x:rnd(0, GRID_SIZE), y:rnd(0, GRID_SIZE), color}
+}
+
+function rndMobs():Mob[]{
+  return [rndMob('red'), rndMob('green'), rndMob('blue')]
+}
+const initialMobs = rndMobs()
+
+
 export default function TinyRpgTogether() {
 
   // ---- Together states ----
@@ -47,50 +104,8 @@ export default function TinyRpgTogether() {
   )
   const [teamScore, setTeamScore] = useStateTogether('tiny-rpg-team-score', 49873)
 
-
-
-
-
-
-  class ModelContext<T> {
-    rtKey:string
-    model:ReactTogetherModel_ButWaaayBetter
-
-    constructor(_rtKey:string, _model:ReactTogetherModel_ButWaaayBetter){
-      this.rtKey = _rtKey
-      this.model = _model
-    }
-    get():T{
-      return this.model.state.get(this.rtKey) as T
-    }
-    set:(x:T)=>void
-  }
-
-  type Mob = {
-    x:number
-    y:number
-    color:string
-  }
-
-  function rnd(lo:number, hi:number):number{
-    return Math.floor(Math.random() * (hi-lo)) + lo
-  }
-
-  function makeMob(id:string):Mob{
-    return {x:rnd(0, GRID_SIZE), y:rnd(0, GRID_SIZE), color:stringToColor(id)}
-  }
-
-  class ReactTogetherModel_ButWaaayBetter extends ReactTogetherModel{
-    createQFunc<T>(options:any, func:(...args:any[])=>T){
-      console.log({options, func})
-    }
-    static types() { return { ModelContext } }
-  }
-  ReactTogetherModel_ButWaaayBetter.register('ReactTogetherModel_ButWaaayBetter')
-
-  function useModelFunctionTogether(funcId:string, contexts:{[x:string]:ModelContext<any>}, remoteFunc:(...args:any[])=>void){
-    // TODO: contexts, remoteFunc
-    const croquetContext = useContext(CroquetContext)    
+  function useModelFunctionTogether(funcId:string, env: Record<string, any>, remoteFunc:(...args:any[])=>void){
+    const croquetContext = useContext(CroquetContext)
     const {model, view} = croquetContext
     const {viewId} = view
     if (!model || !view) {
@@ -98,14 +113,15 @@ export default function TinyRpgTogether() {
       return ()=>{}
     }
 
-    const rtModel = model as ReactTogetherModel_ButWaaayBetter
-    // if (!rtModel.modelFuncs.has(funcId)) {
-      view.publish(model.id, 'defineModelFuncTogether', {
+    // just for type-checking, model is actually a ReactTogetherModel
+    const betterModel = model as ReactTogetherModel_ButWaaayBetter
+    if (!betterModel.modelFuncs.has(funcId)) {
+      view.publish(betterModel.id, 'defineModelFuncTogether', {
         id: funcId,
         viewId,
-        func: rtModel.createQFunc(contexts, remoteFunc)
+        func: betterModel.createQFunc(env, remoteFunc)
       })
-    // }
+    }
 
     return (...args:any[])=> {
       view.publish(model.id, 'callModelFuncTogether', {
@@ -114,34 +130,32 @@ export default function TinyRpgTogether() {
         args
       })
     }
-    
+
   }
-  
-  function useStateTogether2<T>(rtKey:string, initial_value:T):[T, (x:T)=>void, ModelContext<T>]{
-    const croquetContext = useContext(CroquetContext)    
+
+  function useStateTogether2<T>(id:string, initial_value:T):[T, (x:T)=>void, StateAccessor<T>]{
+    const croquetContext = useContext(CroquetContext)
     const {model} = croquetContext
-    const  [val, setter] = useStateTogether<T>(rtKey, initial_value)
-    return [val, setter, new ModelContext(rtKey, model as ReactTogetherModel_ButWaaayBetter)] 
-  } 
+    const  [val, setter] = useStateTogether<T>(id, initial_value)
+    return [val, setter, new StateAccessor(id, initial_value, model as ReactTogetherModel_ButWaaayBetter)]
+  }
 
-  const [mobs, _setMobs, mobsCtx] = useStateTogether2('mobs', [makeMob('a'), makeMob('b'), makeMob('c')])
-  
-  const callModelFunc = useModelFunctionTogether('moveMobs', {mobsCtx}, (n:number, grtg:string) => {
+  const [mobs, setMobs, mobsCtx] = useStateTogether2('mobs', initialMobs)
 
-    console.log(`moveMobs(${n}, ${grtg})`)
-
-    const _mobs = mobsCtx.get()
-    console.log({_mobsBefore:_mobs})
-    _mobs.forEach(m=>{m.x = rnd(0, GRID_SIZE); m.y = rnd(0, GRID_SIZE)}) // 4-dimensional teleporting random mobs!!!!
-    console.log({_mobsAfter: JSON.stringify(mobsCtx.get())})
-    // this.future(1000).foo()
+  const moveMobsInModel = useModelFunctionTogether('moveMobs', {mobsCtx, GRID_SIZE}, () => {
+    const newMobs = [...mobsCtx.get()];
+    newMobs.forEach( m =>{
+      m.x += Math.random() > 0.5 ? 1 : -1
+      m.y += Math.random() > 0.5 ? 1 : -1
+      if (m.x < 0) m.x = 0
+      if (m.x >= GRID_SIZE) m.x = GRID_SIZE - 1
+      if (m.y < 0) m.y = 0
+      if (m.y >= GRID_SIZE) m.y = GRID_SIZE - 1
+    })
+    mobsCtx.set(newMobs)
   })
 
-  callModelFunc(42, 'heyBoo')
-
-  console.log({viewedMobs: mobs})
-
-
+  const moveMobs = useCallback(() => moveMobsInModel(), [])
 
   // ---- Local states ----
   const [coins, setCoins] = useState<Position[]>([])
@@ -168,24 +182,30 @@ export default function TinyRpgTogether() {
           case 'arrowright':
             newPos.x = Math.min(GRID_SIZE - 1, prev.x + 1)
             break
+          default:
+            return prev
         }
         return newPos
       })
     },
     [setPosition]
   )
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       const key = e.key.toLowerCase()
       if (['w', 'arrowup', 's', 'arrowdown', 'a', 'arrowleft', 'd', 'arrowright'].includes(key)) {
         e.preventDefault()
         moveCharacter(key)
+      } else if (key === ' ') {
+        e.preventDefault()
+        moveMobs()
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [moveCharacter])
+  }, [moveCharacter, moveMobs])
 
   useEffect(() => {
     const coinInterval = setInterval(() => {
@@ -280,6 +300,20 @@ export default function TinyRpgTogether() {
                   </div>
                 </div>
               </div>
+            ))}
+            {mobs.map((mob, index) => (
+              <div
+                key={`mob-${index}`}
+                className='mob absolute bg-blue-500 rounded-full flex items-center justify-center'
+                style={{
+                  width: `${CELL_SIZE - 4}px`,
+                  height: `${CELL_SIZE - 8}px`,
+                  left: `${mob.x * CELL_SIZE + 2}px`,
+                  top: `${mob.y * CELL_SIZE + 4}px`,
+                  transition: 'left 0.1s, top 0.1s',
+                  background: mob.color,
+                }}
+              />
             ))}
           </div>
         </div>
