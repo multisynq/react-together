@@ -1,3 +1,7 @@
+## Current
+ - Fixed bugs on `useStateTogether`
+ - Fixed bugs on `useStateTogetherWithPerUserValues`
+
 ## 0.1.0
 `2024-08-28`
  - Optimize `useStateTogether` and `useStateTogetherWithPerUserValues` to minimize unnecessary re-rendering
