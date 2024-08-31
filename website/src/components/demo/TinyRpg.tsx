@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useStateTogether, useStateTogetherWithPerUserValues } from 'react-together'
+import { CroquetContext } from '@croquet/react';
+import { useCallback, useContext, useEffect, useState } from 'react';
+import { ReactTogetherModel, useStateTogether, useStateTogetherWithPerUserValues } from 'react-together';
 
 const GRID_SIZE = 12
 const CELL_SIZE = 32
@@ -33,17 +34,118 @@ const getRandomStartPosition = () => ({
 })
 const position0 = getRandomStartPosition()
 
+
+
+
 //===================== ||||||||||||||| ======================
 export default function TinyRpgTogether() {
 
+  // ---- Together states ----
   const [position, setPosition, everyonesPosition] = useStateTogetherWithPerUserValues<Position>(
-    'tiny-rpg-positions',
+    'tinyRpgPositions',
     position0
   )
+  const [teamScore, setTeamScore] = useStateTogether('tiny-rpg-team-score', 49873)
 
+
+
+
+
+
+  class ModelContext<T> {
+    rtKey:string
+    model:ReactTogetherModel_ButWaaayBetter
+
+    constructor(_rtKey:string, _model:ReactTogetherModel_ButWaaayBetter){
+      this.rtKey = _rtKey
+      this.model = _model
+    }
+    get():T{
+      return this.model.state.get(this.rtKey) as T
+    }
+    set:(x:T)=>void
+  }
+
+  type Mob = {
+    x:number
+    y:number
+    color:string
+  }
+
+  function rnd(lo:number, hi:number):number{
+    return Math.floor(Math.random() * (hi-lo)) + lo
+  }
+
+  function makeMob(id:string):Mob{
+    return {x:rnd(0, GRID_SIZE), y:rnd(0, GRID_SIZE), color:stringToColor(id)}
+  }
+
+  class ReactTogetherModel_ButWaaayBetter extends ReactTogetherModel{
+    createQFunc<T>(options:any, func:(...args:any[])=>T){
+      console.log({options, func})
+    }
+    static types() { return { ModelContext } }
+  }
+  ReactTogetherModel_ButWaaayBetter.register('ReactTogetherModel_ButWaaayBetter')
+
+  function useModelFunctionTogether(funcId:string, contexts:{[x:string]:ModelContext<any>}, remoteFunc:(...args:any[])=>void){
+    // TODO: contexts, remoteFunc
+    const croquetContext = useContext(CroquetContext)    
+    const {model, view} = croquetContext
+    const {viewId} = view
+    if (!model || !view) {
+      console.warn('useModelFunctionTogether() called without a session')
+      return ()=>{}
+    }
+
+    const rtModel = model as ReactTogetherModel_ButWaaayBetter
+    // if (!rtModel.modelFuncs.has(funcId)) {
+      view.publish(model.id, 'defineModelFuncTogether', {
+        id: funcId,
+        viewId,
+        func: rtModel.createQFunc(contexts, remoteFunc)
+      })
+    // }
+
+    return (...args:any[])=> {
+      view.publish(model.id, 'callModelFuncTogether', {
+        id: funcId,
+        viewId,
+        args
+      })
+    }
+    
+  }
+  
+  function useStateTogether2<T>(rtKey:string, initial_value:T):[T, (x:T)=>void, ModelContext<T>]{
+    const croquetContext = useContext(CroquetContext)    
+    const {model} = croquetContext
+    const  [val, setter] = useStateTogether<T>(rtKey, initial_value)
+    return [val, setter, new ModelContext(rtKey, model as ReactTogetherModel_ButWaaayBetter)] 
+  } 
+
+  const [mobs, _setMobs, mobsCtx] = useStateTogether2('mobs', [makeMob('a'), makeMob('b'), makeMob('c')])
+  
+  const callModelFunc = useModelFunctionTogether('moveMobs', {mobsCtx}, (n:number, grtg:string) => {
+
+    console.log(`moveMobs(${n}, ${grtg})`)
+
+    const _mobs = mobsCtx.get()
+    console.log({_mobsBefore:_mobs})
+    _mobs.forEach(m=>{m.x = rnd(0, GRID_SIZE); m.y = rnd(0, GRID_SIZE)}) // 4-dimensional teleporting random mobs!!!!
+    console.log({_mobsAfter: JSON.stringify(mobsCtx.get())})
+    // this.future(1000).foo()
+  })
+
+  callModelFunc(42, 'heyBoo')
+
+  console.log({viewedMobs: mobs})
+
+
+
+  // ---- Local states ----
   const [coins, setCoins] = useState<Position[]>([])
   const [score, setScore] = useState(0)
-  const [teamScore, setTeamScore] = useStateTogether('tiny-rpg-team-score', 49873)
 
   const moveCharacter = useCallback(
     (direction: string) => {
@@ -128,7 +230,7 @@ export default function TinyRpgTogether() {
           transform-origin: bottom center;
         }
       `}</style>
-      <div className='p-4 items-center justify-center gap-4 bg-[linear-gradient(224deg,_#9EE3FF_-1.37%,_#74D4FC_49.31%,_#5EBCF9_100%)] border-2 border-blue-200 rounded-xl shadow-md'>
+      <div key={9348578967345} className='p-4 items-center justify-center gap-4 bg-[linear-gradient(224deg,_#9EE3FF_-1.37%,_#74D4FC_49.31%,_#5EBCF9_100%)] border-2 border-blue-200 rounded-xl shadow-md'>
         <div className='relative rounded-lg overflow-hidden shadow-sm'>
           <div
             className='grid'
