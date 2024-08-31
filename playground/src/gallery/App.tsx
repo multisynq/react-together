@@ -1,5 +1,6 @@
 import { ReactTogether } from 'react-together'
 import Gallery from './Gallery'
+
 export default function App() {
   return (
     <ReactTogether

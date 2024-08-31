@@ -1,6 +1,4 @@
-import useReactTogetherContext from './useReactTogetherContext'
+import { useIsConnected } from '@croquet/react'
 
-export default function useIsTogether() {
-  const { isTogether } = useReactTogetherContext()
-  return isTogether
-}
+// useIsTogether is just an alias for useIsConnected
+export default useIsConnected

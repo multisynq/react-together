@@ -1,4 +1,3 @@
-import { ConnectedViews } from 'react-together'
 import {
   CalendarTogether,
   CheckboxTogether,
@@ -12,12 +11,18 @@ import {
   TriStateCheckboxTogether
 } from 'react-together-primereact'
 // import { ReactTogetherManager } from 'react-together/src/components/ReactTogetherManager'
+import {
+  ConnectedViews,
+  ReactTogetherManager,
+  useIsTogether
+} from 'react-together'
 import CountButtonTogether from './components/CountButtonTogether'
 import NestedPresenceDivs from './components/NestedPresenceDivs'
 import SamplePage from './components/SamplePage'
 import SyncedTabs from './components/SyncedTabs'
 
 export default function Gallery() {
+  const isTogether = useIsTogether()
   const cities = [
     { name: 'New York', code: 'NY' },
     { name: 'Rome', code: 'RM' },
@@ -32,55 +37,57 @@ export default function Gallery() {
   ]
 
   return (
-    <div className="flex flex-col gap-2 items-center">
-      <ConnectedViews maxAvatars={5} />
-      <SamplePage />
-      {/* <PresenceDiv rtKey="presence-div"></PresenceDiv> */}
-      <SyncedTabs />
-      <div className="flex gap-2 items-center">
-        <CountButtonTogether />
-        <CheckboxTogether rtKey="checkbox" />
-        <TriStateCheckboxTogether rtKey="tristate-checkbox" />
-        <InputSwitchTogether rtKey="input-switch" />
-        <RatingTogether rtKey="rating" />
-      </div>
-      <div className="flex gap-2 items-center">
-        <DropdownTogether
-          rtKey="dropdown"
-          options={cities}
-          optionLabel="name"
-          placeholder="Select a City"
-          className="w-full md:w-14rem"
-        />
+    <div className="my-5">
+      <ReactTogetherManager />
+      <div className="flex flex-col gap-2 items-center">
+        <ConnectedViews maxAvatars={5} />
+        {isTogether ? 'Connected' : 'Disconnected'}
+        <SamplePage />
+        <SyncedTabs />
+        <div className="flex gap-2 items-center">
+          <CountButtonTogether />
+          <CheckboxTogether rtKey="checkbox" />
+          <TriStateCheckboxTogether rtKey="tristate-checkbox" />
+          <InputSwitchTogether rtKey="input-switch" />
+          <RatingTogether rtKey="rating" />
+        </div>
+        <div className="flex gap-2 items-center">
+          <DropdownTogether
+            rtKey="dropdown"
+            options={cities}
+            optionLabel="name"
+            placeholder="Select a City"
+            className="w-full md:w-14rem"
+          />
 
-        <MultiSelectTogether
-          rtKey="multi-select"
-          options={cities}
-          optionLabel="name"
-          multiple
-          display="chip"
-        />
+          <MultiSelectTogether
+            rtKey="multi-select"
+            options={cities}
+            optionLabel="name"
+            multiple
+            display="chip"
+          />
+        </div>
+        <div className="flex gap-2 items-center">
+          <SelectButtonTogether
+            rtKey="select-button"
+            options={items}
+            optionLabel="name"
+          />
+          <ToggleButtonTogether rtKey="toggle-button" />
+        </div>
+        <div className="flex gap-2 items-center">
+          <KnobTogether rtKey="knob" />
+          <CalendarTogether
+            rtKey="calendar"
+            dateFormat="yy/mm/dd"
+            disabledDays={[0, 1]}
+            // inline
+            invalid
+          />
+        </div>
+        <NestedPresenceDivs />
       </div>
-      <div className="flex gap-2 items-center">
-        <SelectButtonTogether
-          rtKey="select-button"
-          options={items}
-          optionLabel="name"
-        />
-        <ToggleButtonTogether rtKey="toggle-button" />
-      </div>
-      <div className="flex gap-2 items-center">
-        {/* <PresenceDiv rtKey="div"></PresenceDiv> */}
-        <KnobTogether rtKey="knob" />
-        <CalendarTogether
-          rtKey="calendar"
-          dateFormat="yy/mm/dd"
-          disabledDays={[0, 1]}
-          // inline
-          invalid
-        />
-      </div>
-      <NestedPresenceDivs />
     </div>
   )
 }

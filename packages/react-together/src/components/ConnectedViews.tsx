@@ -12,8 +12,6 @@ export default function ConnectedViews({
 }: ConnectedViewsProps) {
   const users = useConnectedViews()
 
-  if (!users) return
-
   const size = 'normal'
   const nAvatars = Math.max(users.length - maxAvatars, 0)
 

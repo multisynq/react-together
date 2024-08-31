@@ -1,11 +1,11 @@
 import 'primeicons/primeicons.css'
 import { SpeedDial } from 'primereact/speeddial'
 import { Tooltip } from 'primereact/tooltip'
-import { useReactTogetherContext } from '../hooks'
+import { useIsTogether, useReactTogetherContext } from '../hooks'
 
 export function ReactTogetherManager() {
-  const { isTogether, leaveSession, createNewSession } =
-    useReactTogetherContext()
+  const { leaveSession, createNewSession } = useReactTogetherContext()
+  const isTogether = useIsTogether()
   const offlineItems = [
     {
       label: 'Start a React Together session',
