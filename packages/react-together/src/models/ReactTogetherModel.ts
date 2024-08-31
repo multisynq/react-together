@@ -49,7 +49,10 @@ export default class ReactTogetherModel extends ReactModel {
   }
 
   handleViewExit(viewId: string): void {
-    this.stateTogether.forEach((st) => st.delete(viewId))
+    this.stateTogether.forEach((st, key) => {
+      st.delete(viewId)
+      this.publish(key, 'updated', {})
+    })
   }
 }
 ReactTogetherModel.register('ReactTogetherModel')
