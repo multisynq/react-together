@@ -34,9 +34,16 @@ export default function useStateTogether<T>(
   const modelValue = model?.state.get(rtKey) as T
 
   // This is the local state
-  const [value, set_value] = useState<T>(
-    modelValue !== undefined ? modelValue : initial_value
-  )
+  const [value, set_value] = useState<T>(() => {
+    // This function is only executed on the first render
+    // If there is no value for this key, publish the initial
+    // value
+    if (view && model && !model.state.has(rtKey)) {
+      view.publish(model.id, 'setState', { id: rtKey, newValue: initial_value })
+      return initial_value
+    }
+    return modelValue
+  })
 
   useEffect(() => {
     if (!session || !view || !model) return
