@@ -159,7 +159,7 @@ export default function TinyRpgTogether() {
           {Object.entries(everyonesPosition).map(([viewId, position]) => (
             <div
               className='character absolute bg-blue-500 rounded-full flex items-center justify-center'
-              id={`position-${viewId}`}
+              key={`position-${viewId}`}
               style={{
                 width: `${CELL_SIZE - 4}px`,
                 height: `${CELL_SIZE - 8}px`,
