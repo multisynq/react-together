@@ -1,12 +1,12 @@
+import { useLeaveSession } from '@croquet/react'
 import 'primeicons/primeicons.css'
-import { SpeedDial } from 'primereact/speeddial'
-import { Tooltip } from 'primereact/tooltip'
 import { useIsTogether, useReactTogetherContext } from '../hooks'
 
 export function ReactTogetherManager() {
-  const { leaveSession, createNewSession } = useReactTogetherContext()
+  const { createNewSession } = useReactTogetherContext()
+  const leaveSession = useLeaveSession()
   const isTogether = useIsTogether()
-  const offlineItems = [
+  /*   const offlineItems = [
     {
       label: 'Start a React Together session',
       icon: 'pi pi-link',
@@ -23,10 +23,16 @@ export function ReactTogetherManager() {
         leaveSession()
       }
     }
-  ]
+  ] */
 
   return (
-    <>
+    <button
+      className="bg-gray-700 text-white px-2 rounded"
+      onClick={() => (isTogether ? leaveSession() : createNewSession())}
+    >
+      {isTogether ? 'disconnect' : 'connect'}
+    </button>
+    /*     <>
       <Tooltip
         target=".react-together-speeddial .p-speeddial-action"
         style={{ fontSize: '0.8rem' }}
@@ -46,6 +52,6 @@ export function ReactTogetherManager() {
           <img src={undefined} style={{ width: '100%', height: '100%' }} />
         }
       ></SpeedDial>
-    </>
+    </> */
   )
 }

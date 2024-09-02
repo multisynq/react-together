@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { ReactTogetherContext } from '../components/ReactTogether'
+import { ReactTogetherContext } from '../ReactTogetherContext'
 
 export default function useReactTogetherContext() {
   const contextValue = useContext(ReactTogetherContext)
