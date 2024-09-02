@@ -35,11 +35,7 @@ const position0 = getRandomStartPosition()
 
 //===================== ||||||||||||||| ======================
 export default function TinyRpgTogether() {
-
-  const [position, setPosition, everyonesPosition] = useStateTogetherWithPerUserValues<Position>(
-    'tiny-rpg-positions',
-    position0
-  )
+  const [position, setPosition, everyonesPosition] = useStateTogetherWithPerUserValues<Position>('tiny-rpg-positions', position0)
 
   const [coins, setCoins] = useState<Position[]>([])
   const [score, setScore] = useState(0)
@@ -131,7 +127,7 @@ export default function TinyRpgTogether() {
       <div className='p-4 items-center justify-center gap-4 bg-[linear-gradient(224deg,_#9EE3FF_-1.37%,_#74D4FC_49.31%,_#5EBCF9_100%)] border-2 border-blue-200 rounded-xl shadow-md'>
         <div className='relative rounded-lg overflow-hidden shadow-sm'>
           <div
-            className='grid'
+            className='relative grid'
             style={{
               gridTemplateColumns: `repeat(${GRID_SIZE}, ${CELL_SIZE}px)`,
               gridTemplateRows: `repeat(${GRID_SIZE}, ${CELL_SIZE}px)`,
