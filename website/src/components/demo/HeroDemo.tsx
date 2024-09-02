@@ -54,14 +54,12 @@ const useMessageHandler = () => {
   return isHomePage
 }
 
-function UIWrapper({ children, label }) {
-  return (
-    <div className='flex flex-col gap-2 py-1'>
-      <span className='text-xs text-neutral-500 tracking-tight'>{label}</span>
-      {children}
-    </div>
-  )
-}
+const UIWrapper = ({ children, label }) => (
+  <div className='flex flex-col gap-2 py-1'>
+    <span className='text-xs text-neutral-500 tracking-tight'>{label}</span>
+    {children}
+  </div>
+)
 
 const HoverPrese = () => (
   <UIWrapper label={'Hover'}>
@@ -131,39 +129,45 @@ const ConnectedViewsWrapper = () => (
   </div>
 )
 
+const DemoContent = () => (
+  <>
+    <div className='w-1/2'>
+      <AutoSizeKeepRatio maxHeight={364} maxWidth={320} wrapStyle={''}>
+        <div className='w-full h-full flex flex-col'>
+          <span className='tracking-tighter font-bold text-neutral-300'>Sample UI</span>
+          <div className='w-full flex flex-col items-start rounded-lg border border-gray700 overflow-hidden p-3 gap-1 overflow-y-auto h-full mt-2 bg-white'>
+            <div className='flex gap-4 justify-between'>
+              <HoverPrese />
+              <InputSwithchWithPrese />
+              <CheckBoxWithPrese />
+              <TriStatePrese />
+            </div>
+            <div className='flex gap-4 mt-4 border-t w-full pt-2 justify-between'>
+              <ColorPickerPrese />
+              <CityDropdownPrese />
+            </div>
+            <div className='flex gap-4 mt-4 border-t w-full'>
+              <SelectButtonPrese />
+            </div>
+          </div>
+        </div>
+      </AutoSizeKeepRatio>
+    </div>
+    <div className='w-1/2 flex items-center justify-center'>
+      <AutoSizeKeepRatio maxHeight={664} maxWidth={444} wrapStyle={''}>
+        <TinyRpgTogether />
+      </AutoSizeKeepRatio>
+    </div>
+  </>
+)
+
 // Main components
 
 const NonHomePage = () => (
   <div className='bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] flex w-full h-full items-center'>
     <div className='w-full overflow-hidden' style={{ aspectRatio: '5 / 3' }}>
       <div className='w-full h-full px-2 py-4 flex ml-4'>
-        <div className='w-1/2'>
-          <AutoSizeKeepRatio maxHeight={364} maxWidth={320}>
-            <div className='w-full h-full flex flex-col'>
-              <span className='tracking-tighter font-bold text-neutral-300'>Sample UI</span>
-              <div className='w-full flex flex-col items-start rounded-lg border border-gray700 overflow-hidden p-3 gap-1 overflow-y-auto h-full mt-2 bg-white'>
-                <div className='flex gap-4 justify-between'>
-                  <HoverPrese />
-                  <InputSwithchWithPrese />
-                  <CheckBoxWithPrese />
-                  <TriStatePrese />
-                </div>
-                <div className='flex gap-4 mt-4 border-t w-full pt-2 justify-between'>
-                  <ColorPickerPrese />
-                  <CityDropdownPrese />
-                </div>
-                <div className='flex gap-4 mt-4 border-t w-full'>
-                  <SelectButtonPrese />
-                </div>
-              </div>
-            </div>
-          </AutoSizeKeepRatio>
-        </div>
-        <div className='w-1/2 flex items-center justify-center'>
-          <AutoSizeKeepRatio maxHeight={664} maxWidth={444}>
-            <TinyRpgTogether />
-          </AutoSizeKeepRatio>
-        </div>
+        <DemoContent />
       </div>
       <ConnectedViewsWrapper />
     </div>
@@ -173,33 +177,7 @@ const NonHomePage = () => (
 const HomePage = () => (
   <div className='w-full overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
     <div className='w-full h-full bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] px-2 py-4 flex'>
-      <div className='w-1/2'>
-        <AutoSizeKeepRatio maxHeight={364} maxWidth={320}>
-          <div className='w-full h-full flex flex-col'>
-            <span className='tracking-tighter font-bold text-neutral-300'>Sample UI</span>
-            <div className='w-full flex flex-col items-start rounded-lg border border-gray700 overflow-hidden p-3 gap-1 overflow-y-auto h-full mt-2 bg-white'>
-              <div className='flex gap-4 justify-between'>
-                <HoverPrese />
-                <InputSwithchWithPrese />
-                <CheckBoxWithPrese />
-                <TriStatePrese />
-              </div>
-              <div className='flex gap-4 mt-4 border-t w-full pt-2 justify-between'>
-                <ColorPickerPrese />
-                <CityDropdownPrese />
-              </div>
-              <div className='flex gap-4 mt-4 border-t w-full'>
-                <SelectButtonPrese />
-              </div>
-            </div>
-          </div>
-        </AutoSizeKeepRatio>
-      </div>
-      <div className='w-1/2 flex items-center justify-center'>
-        <AutoSizeKeepRatio maxHeight={664} maxWidth={444}>
-          <TinyRpgTogether />
-        </AutoSizeKeepRatio>
-      </div>
+      <DemoContent />
     </div>
     <ConnectedViewsWrapper />
   </div>
