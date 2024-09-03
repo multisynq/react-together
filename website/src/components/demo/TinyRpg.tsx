@@ -182,8 +182,8 @@ export default function TinyRpgTogether() {
             <span className='text-[1.5rem] font-bold leading-none text-white text-shadow-lg stroke-[1px] stroke-black'>tiny</span>
             <div className='flex'>
               <span className='text-[2rem] font-bold leading-none text-green-400'>R</span>
-              <span className='text-[2rem] font-bold leading-none text-orange-400'>G</span>
-              <span className='text-[2rem] font-bold leading-none text-red-500'>P</span>
+              <span className='text-[2rem] font-bold leading-none text-orange-400'>P</span>
+              <span className='text-[2rem] font-bold leading-none text-red-500'>G</span>
             </div>
           </div>
           <div className='mt-2 flex flex-col items-center my-2'>
