@@ -12,6 +12,12 @@ type setStateTogetherArgs<T> = {
 
 type ReactTogetherModelOptions = Record<string, unknown>
 
+type FunctionTogetherArgs = {
+  rtKey: string
+  viewId: string
+  args: unknown[]
+}
+
 export default class ReactTogetherModel extends ReactModel {
   state: Map<string, unknown>
   stateTogether: Map<string, Map<string, unknown>>
@@ -23,6 +29,7 @@ export default class ReactTogetherModel extends ReactModel {
 
     this.subscribe(this.id, 'setState', this.setState)
     this.subscribe(this.id, 'setStateTogether', this.setStateTogether)
+    this.subscribe(this.id, 'functionTogether', this.functionTogether)
   }
 
   setState<T>({ id, newValue }: setStateArgs<T>) {
@@ -46,6 +53,10 @@ export default class ReactTogetherModel extends ReactModel {
     }
     this.stateTogether.set(id, st)
     this.publish(id, 'updated', {})
+  }
+
+  functionTogether({ rtKey, viewId, args }: FunctionTogetherArgs) {
+    this.publish(rtKey, 'call', { data: args, viewId, ts: this.now() })
   }
 
   handleViewExit(viewId: string): void {

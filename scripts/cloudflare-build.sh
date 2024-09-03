@@ -56,5 +56,9 @@ fi
 # build the react-together package
 npm run build || exit 1
 
+# write version info of build to file
+version="$DIR/../website/dist/version.txt"
+git log -1 --pretty=format:"Branch: %D%nCommit: %H%nMerge: %P%nAuthor: %an%nDate:   %ad%n%n    %s%n" > $version
+
 # set RESULT for EXIT trap
 RESULT=SUCCESS

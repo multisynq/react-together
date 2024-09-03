@@ -1,15 +1,13 @@
-import { ReactModel, useModelSelector } from 'react-together'
+import { useModelSelector } from 'react-together'
 import { Coin } from '../components'
 import { OverrideModel } from '../models'
 import { numberToPosition } from '../models/TinyRpgModel'
 
 export default function Coins() {
-  const coins = useModelSelector((model: ReactModel) =>
-    Array.from((model as OverrideModel).rpg.coins)
+  const coins = useModelSelector((model: OverrideModel) =>
+    Array.from(model.rpg.coins)
   )
-  const BOARD_WIDTH = useModelSelector(
-    (m) => (m as OverrideModel).rpg.BOARD_WIDTH
-  )
+  const BOARD_WIDTH = useModelSelector((m: OverrideModel) => m.rpg.BOARD_WIDTH)
 
   // console.log(`<Coins coins=${JSON.stringify(coins)}/>`)
   return coins.map((position, index) => {

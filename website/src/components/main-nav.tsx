@@ -10,6 +10,17 @@ const navConfig = [
   // { to: siteConfig.links.github, label: 'GitHub', className: 'hidden lg:block' },
 ]
 
+function DeployedBranch() {
+  const { hostname } = window.location
+  if (!hostname.match(/\.reacttogether\.(pages\.)?dev$/)) return
+  const branch = hostname.split('.')[0]
+  return (
+    <div className='text-red-500'>
+     Branch Preview: {branch}
+    </div>
+  )
+}
+
 export function MainNav() {
   const pathname = useLocation().pathname
   return (
@@ -21,6 +32,7 @@ export function MainNav() {
           {/* <span className='hidden font-bold sm:inline-block'>{siteConfig.name}</span> */}
           <span className='hidden font-semibold font-sans sm:inline-block'>{siteConfig.name}</span>
         </NavLink>
+        <DeployedBranch/>
         <nav className='flex items-center gap-4 text-sm lg:gap-6'>
           {navConfig.map(({ to, label, className }) => (
             <NavLink

@@ -1,12 +1,12 @@
-import { ReactModel, useModelSelector } from 'react-together'
+import { useModelSelector } from 'react-together'
 import { OverrideModel } from '../models'
 import Label from './Label'
 
 export default function TeamScoreLabel() {
-  const value = useModelSelector((m: ReactModel) =>
-    [...(m as OverrideModel).rpg.playerData.values()].reduce(
+  const value = useModelSelector((m: OverrideModel) =>
+    [...m.rpg.playerData.values()].reduce(
       (p, { score }) => p + score,
-      0
+      0 as number
     )
   )
   // console.log(`<TeamScoreLabel value=${value}/>`)
