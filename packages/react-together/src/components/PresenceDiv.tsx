@@ -1,6 +1,6 @@
+import { useViewId } from '@croquet/react'
 import ColorHash from 'color-hash'
 import { useHoveringViews } from '../hooks'
-import { useHoveringViewsOptions } from '../hooks/useHoveringViews'
 
 const colorHash = new ColorHash()
 
@@ -8,20 +8,24 @@ type PresenceDivProps = {
   rtKey: string
   children: ReactChildren
   className?: string
-  options?: useHoveringViewsOptions
+  highlightMyself?: boolean
 }
 export default function PresenceDiv({
   rtKey,
   children,
   className,
-  options
+  highlightMyself
 }: PresenceDivProps) {
   const debug = false
-  const [ref, hoveringViews] = useHoveringViews(rtKey, options)
+  const [ref, hoveringViews, isHovering] = useHoveringViews(rtKey)
+  const viewId = useViewId()
 
   let style = {}
-  if (hoveringViews.length > 0) {
-    const color = colorHash.hex(hoveringViews[0])
+  const views = highlightMyself
+    ? hoveringViews
+    : hoveringViews.filter((v) => v !== viewId)
+  if (views.length > 0 || (highlightMyself && isHovering)) {
+    const color = colorHash.hex(views[0] ?? rtKey)
     style = {
       outline: `2px solid ${color}`,
       animation: 'clippath 3s linear infinite',
