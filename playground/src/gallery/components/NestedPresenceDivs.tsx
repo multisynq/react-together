@@ -34,7 +34,7 @@ function Box({
 
 function GreenDice({ rtKey }: { rtKey: string }) {
   return (
-    <PresenceDiv rtKey={rtKey} options={{ highlightMyself: true }}>
+    <PresenceDiv rtKey={rtKey} highlightMyself>
       <Box color="#00AF54" size="60px" id="b2">
         <PresenceDiv rtKey={`${rtKey}-1`}>
           <Box color="yellow" size="20px" id="b2" />
