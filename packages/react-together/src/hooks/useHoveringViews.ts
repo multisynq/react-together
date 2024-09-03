@@ -6,19 +6,16 @@ interface CustomMouseEvent extends MouseEvent {
   rtProcessedBy?: string
 }
 
-export interface useHoveringViewsOptions {
-  highlightMyself?: boolean
-}
+export interface UseHoveringViewsOptions {}
 export default function useHoveringViews(
   rtKey: string,
-  options: useHoveringViewsOptions = {}
-): [MutableRefObject<HTMLDivElement | null>, string[]] {
-  const { highlightMyself = false } = options
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _options: UseHoveringViewsOptions = {}
+): [MutableRefObject<HTMLDivElement | null>, string[], boolean] {
   const myViewId = useViewId()
 
   const ref = useRef<HTMLDivElement | null>(null)
-  const [, set_hovering, allHovered] =
+  const [isHovering, set_hovering, allHovered] =
     useStateTogetherWithPerUserValues<boolean>(rtKey, false)
 
   useEffect(() => {
@@ -77,11 +74,8 @@ export default function useHoveringViews(
   }, [set_hovering, rtKey])
 
   const hoveringViews = Object.entries(allHovered)
-    .filter(
-      ([viewId, isHovering]) =>
-        isHovering && (viewId !== myViewId || highlightMyself)
-    )
+    .filter(([, isHovering]) => isHovering)
     .map(([viewId]) => viewId)
 
-  return [ref, hoveringViews]
+  return [ref, hoveringViews, isHovering]
 }
