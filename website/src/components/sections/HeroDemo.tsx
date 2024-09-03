@@ -6,6 +6,8 @@ export function WithReactTogetherProvider({ children }) {
   return (
     <ReactTogether
       sessionParams={{
+        name: 'ReactTogetherWebsite',
+        password: 'super-secret-password',
         appId: import.meta.env['VITE_APP_ID'],
         apiKey: import.meta.env['VITE_API_KEY'],
       }}
