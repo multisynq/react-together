@@ -1,3 +1,8 @@
+## 0.2.0 Prerelease
+
+### 0.2.0-2
+ - experimental `useFunctionTogether`
+
 ## 0.1.1
 `2024-08-31`
 

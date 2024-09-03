@@ -1,4 +1,4 @@
-import { ReactModel, useModelSelector } from 'react-together'
+import { useModelSelector } from 'react-together'
 import { CELL_SIZE } from '../constants'
 import { OverrideModel } from '../models'
 
@@ -28,8 +28,7 @@ interface PlayerProps {
 }
 export default function Player({ id }: PlayerProps) {
   const position = useModelSelector(
-    (model: ReactModel) =>
-      (model as OverrideModel).rpg.playerData.get(id)?.position
+    (model: OverrideModel) => model.rpg.playerData.get(id)?.position || null
   )
   if (!position) return
   const { x, y } = position
