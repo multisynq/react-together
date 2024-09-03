@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useFunctionTogether } from 'react-together'
 import './Chat.css'
 import ChatInput from './ChatInput'
@@ -7,19 +7,26 @@ import Message from './Message'
 interface Message {
   ts: number
   viewId: string
-  content: string
+  message: string
+}
+
+export interface SendMessageArgs {
+  ts: number
+  viewId: string
+  message: string
 }
 
 export default function Chat() {
   const lastMessageRef = useRef<HTMLDivElement>(null)
   const [messages, setMessages] = useState<Message[]>([])
 
-  const send = useFunctionTogether('ding', (args: any) => {
-    const { data, viewId } = args
-    console.log(args)
-    const { message, ts } = data[0]
-    setMessages((prev) => [...prev, { ts, viewId, content: message }])
-  })
+  const send = useFunctionTogether(
+    'ding',
+    useCallback(({ message, ts, viewId }: SendMessageArgs) => {
+      console.log('send', { message, ts })
+      setMessages((prev) => [...prev, { ts, viewId, message }])
+    }, [])
+  )
 
   useEffect(() => {
     if (lastMessageRef.current) {
@@ -31,13 +38,13 @@ export default function Chat() {
     <div className="chat">
       <h3>IRC Together</h3>
       <div className="messages-container">
-        {messages.map(({ viewId, ts, content }, idx) => {
+        {messages.map(({ viewId, ts, message }, idx) => {
           return (
             <div
               key={idx}
               ref={idx === messages.length - 1 ? lastMessageRef : undefined}
             >
-              <Message sender={viewId} message={content} timestamp={ts} />
+              <Message sender={viewId} message={message} timestamp={ts} />
             </div>
           )
         })}
