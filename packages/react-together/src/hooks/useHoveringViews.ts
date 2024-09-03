@@ -1,4 +1,3 @@
-import { useViewId } from '@croquet/react'
 import { MutableRefObject, useEffect, useRef } from 'react'
 import { useStateTogetherWithPerUserValues } from '../hooks'
 
@@ -12,8 +11,6 @@ export default function useHoveringViews(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _options: UseHoveringViewsOptions = {}
 ): [MutableRefObject<HTMLDivElement | null>, string[], boolean] {
-  const myViewId = useViewId()
-
   const ref = useRef<HTMLDivElement | null>(null)
   const [isHovering, set_hovering, allHovered] =
     useStateTogetherWithPerUserValues<boolean>(rtKey, false)
