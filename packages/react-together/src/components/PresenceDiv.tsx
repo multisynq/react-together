@@ -35,10 +35,25 @@ export default function PresenceDiv({
 
   return (
     <>
-      {debug && <div>Hovering Ids: {JSON.stringify(hoveringViews)}</div>}
       <div ref={ref} style={style} {...{ className }}>
         {children}
       </div>
+      {debug && (
+        <>
+          <h5>Hovering Ids:</h5>
+          <ul>
+            {hoveringViews.map((view) => (
+              <li key={view}>
+                {view === viewId && !highlightMyself ? (
+                  <s className="line-through">{view}</s>
+                ) : (
+                  view
+                )}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </>
   )
 }
