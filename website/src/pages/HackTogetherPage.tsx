@@ -5,6 +5,10 @@ import { Divider } from 'primereact/divider'
 import { Image } from 'primereact/image'
 import { InputText } from 'primereact/inputtext'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
+
+const API_URL = import.meta.env.VITE_API_URL
 
 function EventDetails() {
   return (
@@ -15,7 +19,10 @@ function EventDetails() {
       <p>Location: Lisbon (Venue TBA)</p>
       <p>Prize pool: 4,000 USDT</p>
       <p>
-        Limited to 100 seats. <a href=''>Save your seat now!!</a>
+        Limited to 100 seats.{' '}
+        <HashLink smooth to='#register'>
+          Save your seat now!!
+        </HashLink>
       </p>
       <Divider />
       <h3 className='text-xl font-semibold mb-2'>Get ready to reshape the internet at HackTogether!</h3>
@@ -23,11 +30,20 @@ function EventDetails() {
         <li>Dive into React Together to build interactive online experiences</li>
         <li>Craft the web of tomorrow – where being online means being connected in new ways</li>
         <li>Bring your wildest concepts and most innovative ideas</li>
-        <li>Don't worry about coding skills – React Together is super easy to use</li>
+        <li>
+          Don't worry about coding skills – React Together is super easy to use. Really, checkout our{' '}
+          <Link to='/getting-started'>Documentation</Link>
+        </li>
         <li>Push boundaries and reimagine online interaction</li>
         <li>Create the next big thing that changes how we all use the internet</li>
       </ul>
-      <p className='mt-3 font-semibold'>Join us for a weekend of hacking! Sign up now and let's revolutionize the internet… Together!</p>
+      <p className='mt-3 font-semibold'>
+        Join us for a weekend of hacking!{' '}
+        <HashLink smooth to='#register'>
+          Sign up now
+        </HashLink>{' '}
+        and let's revolutionize the internet… Together!
+      </p>
     </div>
   )
 }
@@ -58,7 +74,7 @@ function Countdown() {
       <div className='flex justify-content-between text-center' style={{ maxWidth: '20rem' }}>
         {Object.entries(timeLeft).map(([unit, value]) => (
           <div key={unit} className='flex-1 mx-2'>
-            <span className='text-2xl font-bold'>{value}</span>
+            <span className='text-2xl font-bold'>{value.toString().padStart(2, '0')}</span>
             <p className='mt-1'>{unit.charAt(0).toUpperCase() + unit.slice(1)}</p>
           </div>
         ))}
@@ -67,24 +83,75 @@ function Countdown() {
   )
 }
 
+function isEmailValid(email: string): boolean {
+  const result = String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )
+  return !!result
+}
+
 function RegistrationForm() {
   const [email, setEmail] = useState('')
+  const [showConfirm, setShowConfirm] = useState(false)
+  const [showEmailError, setShowEmailError] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const submitEmail = async () => {
+    if (!isEmailValid(email)) {
+      setShowEmailError(true)
+      return
+    }
+
+    setIsSubmitting(true)
+    try {
+      const response = await fetch(`${API_URL}?action=pre_register&email=${encodeURIComponent(email)}`)
+      if (response.ok) {
+        setEmail('')
+        setShowConfirm(true)
+        setTimeout(() => setShowConfirm(false), 10000)
+      } else throw new Error('Failed to pre-register')
+    } catch (error) {
+      console.error('Error submitting email:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Email submitted:', email)
-    setEmail('')
+    submitEmail()
+  }
+
+  const handleEnter = (e: React.KeyboardEvent) => {
+    setShowEmailError(false)
+    if (e.key !== 'Enter') return
+    submitEmail()
   }
 
   return (
-    <form onSubmit={handleSubmit} className='p-4'>
-      <Button type='submit' disabled label='Register now!' tooltip='Registrations open October 4th, 2024' />
-      <p>Registrations open on October 4th, 2024. Save your spot now by pre-registering!</p>
-      <div className='p-inputgroup'>
-        <InputText placeholder='Email address' value={email} onChange={(e) => setEmail(e.target.value)} />
-        <Button type='submit' label='Pre-register' />
-      </div>
-    </form>
+    <>
+      <a id='register' />
+      <form onSubmit={handleSubmit} className='p-4'>
+        <Button disabled type='submit' label='Register now!' tooltip='Registrations open October 4th, 2024' />
+        <p>Registrations open on October 4th, 2024. Save your spot now by pre-registering!</p>
+        <div className='p-inputgroup'>
+          <InputText
+            {...{
+              placeholder: 'Email address',
+              value: email,
+              onChange: (e) => setEmail(e.target.value),
+              onKeyDown: handleEnter,
+              invalid: showEmailError,
+            }}
+          />
+          <Button {...{ type: 'submit', label: 'Pre-register', disabled: isSubmitting }} />
+        </div>
+      </form>
+      {showEmailError && <p className='text-red-500'>Please insert a valid email</p>}
+      {showConfirm && <p className='text-green-500'>Your spot is saved! Thanks for joining our hackathon!!</p>}
+    </>
   )
 }
 
@@ -93,11 +160,13 @@ function Partners() {
     <div className='p-4'>
       <h3>Partners</h3>
       <div className='flex align-items-center justify-content-between mt-4'>
-        <Image src='/api/placeholder/100/50' alt='Multisynq logo' width='100' />
+        <Image {...{ src: '/api/placeholder/100/50', alt: 'Multisynq logo', width: '100' }} />
         <Button
-          label='Become a Partner'
-          className='p-button-outlined'
-          onClick={() => (window.location.href = 'mailto:hacktogether@multisynq.io?subject=I would like to become a partner!')}
+          {...{
+            label: 'Become a Partner',
+            className: 'p-button-outlined',
+            onClick: () => (window.location.href = 'mailto:hacktogether@multisynq.io?subject=I would like to become a partner!'),
+          }}
         />
       </div>
     </div>
@@ -110,7 +179,7 @@ export function HackTogetherPage() {
       <div className='p-col-12 p-md-8 p-lg-6'>
         <Card>
           <div className='text-center'>
-            <Image src='/api/placeholder/200/100' alt='Event Banner' width='200' />
+            <Image {...{ src: '/api/placeholder/200/100', alt: 'Event Banner', width: '200' }} />
             <h1 className='text-3xl font-bold'>HackTogether - Lisbon 24</h1>
           </div>
 
@@ -126,10 +195,12 @@ export function HackTogetherPage() {
           <Divider />
           <div className='p-4 text-center'>
             <Button
-              label='Contact Us'
-              icon={<Mail className='mr-2' />}
-              onClick={() => (window.location.href = 'mailto:hacktogether@multisynq.io')}
-              className='p-button-text'
+              {...{
+                label: 'Contact Us',
+                icon: <Mail className='mr-2' />,
+                onClick: () => (window.location.href = 'mailto:hacktogether@multisynq.io'),
+                className: 'p-button-text',
+              }}
             />
           </div>
         </Card>
