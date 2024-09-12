@@ -106,8 +106,14 @@ function RegistrationForm() {
 
     setIsSubmitting(true)
     try {
-      const response = await fetch(`${API_URL}?action=pre_register&email=${encodeURIComponent(email)}`)
-      if (response.ok) {
+      const { hostname } = window.location
+      const url = new URL(API_URL)
+      url.searchParams.set('action', 'pre_register')
+      url.searchParams.set('email', email)
+      if (!hostname.match(/\.reacttogether\.(pages\.)?dev$/)) url.searchParams.set('prod', 'true')
+
+      const res = await fetch(url)
+      if (res.ok) {
         setEmail('')
         setShowConfirm(true)
         setTimeout(() => setShowConfirm(false), 10000)
