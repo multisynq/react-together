@@ -4,6 +4,7 @@ import { cn } from '@utils'
 import { NavLink, useLocation } from 'react-router-dom'
 
 const navConfig = [
+  { to: '/hackathon', label: 'Hackathon' },
   { to: '/getting-started', label: 'Documentation' },
   // { to: '/docs/components', label: 'Components' },
   // { to: '/hello', label: 'Get Started' },
@@ -14,11 +15,7 @@ function DeployedBranch() {
   const { hostname } = window.location
   if (!hostname.match(/\.reacttogether\.(pages\.)?dev$/)) return
   const branch = hostname.split('.')[0]
-  return (
-    <div className='text-red-500'>
-     Branch Preview: {branch}
-    </div>
-  )
+  return <div className='text-red-500'>Branch Preview: {branch}</div>
 }
 
 export function MainNav() {
@@ -32,7 +29,7 @@ export function MainNav() {
           {/* <span className='hidden font-bold sm:inline-block'>{siteConfig.name}</span> */}
           <span className='hidden font-semibold font-sans sm:inline-block'>{siteConfig.name}</span>
         </NavLink>
-        <DeployedBranch/>
+        <DeployedBranch />
         <nav className='flex items-center gap-4 text-sm lg:gap-6'>
           {navConfig.map(({ to, label, className }) => (
             <NavLink

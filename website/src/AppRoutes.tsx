@@ -42,6 +42,7 @@ import TinyRpgTogether from '@components/demo/TinyRpg'
 import { DemoWrapper } from '@pages/DemoWrapper'
 import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
 import { MarkdownPage } from '@pages/Documentation/MarkdownPage'
+import { HackTogetherPage } from '@pages/HackTogetherPage'
 import { NotFoundPage } from '@pages/NotFoundPage'
 import { WebsiteWrapper } from '@pages/WebsiteWrapper'
 import { Route, Routes } from 'react-router-dom'
@@ -54,6 +55,7 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route element={<WebsiteWrapper />}>
+        <Route path='hackathon' element={<HackTogetherPage />} />
         <Route path='/' element={<HomePage />} />
         <Route element={<DocumentationWrapper />}>
           <Route path='getting-started' element={<IntroductionPage />} />
