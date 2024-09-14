@@ -182,14 +182,34 @@ function Partners() {
 export function HackTogetherPage() {
   return (
     <div className='p-grid p-justify-center'>
-      <div className='p-col-12 p-md-8 p-lg-6'>
-        <Card>
-          <div className='text-center'>
-            <Image {...{ src: '/api/placeholder/200/100', alt: 'Event Banner', width: '200' }} />
-            <h1 className='text-3xl font-bold'>HackTogether - Lisbon 24</h1>
+      {/* --INTRO BANNER-- */}
+      <div className='flex flex-col w-100 bg-gray-100 h-[23rem] justify-center items-center'>
+        <div className='flex gap-3 justify-center items-center'>
+          <div className='w-[6rem] bg-blue-300 h-[6rem]'>Logo</div>
+          <div className='flex flex-col'>
+            <h1>HackTogether</h1>
+            <h2>Lisbon 24</h2>
+          </div>
+        </div>
+        <div className='flex flex-col w-[24rem] justify-center items-center gap-2'>
+          <Divider />
+          <div className='flex flex-col'>
+            <span>8-9th Nov 2024</span>
+            <span>Lisbon (Venue TBA)</span>
           </div>
 
+          <Button label='Register' />
           <Divider />
+        </div>
+      </div>
+      <div className='p-col-12 p-md-8 p-lg-6'>
+        <Card>
+          {/* <div className='text-center bg-red-100'>
+            <Image {...{ src: '/api/placeholder/200/100', alt: 'Event Banner', width: '200' }} />
+            <h1 className='text-3xl font-bold'>HackTogether - Lisbon 24</h1>
+          </div> */}
+
+          {/* <Divider /> */}
           <EventDetails />
           <Divider />
           <Countdown />
