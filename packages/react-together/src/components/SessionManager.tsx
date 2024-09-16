@@ -2,15 +2,20 @@ import { useChangeSession } from '@croquet/react'
 import { useCallback } from 'react'
 import { ReactTogetherContext } from '../ReactTogetherContext'
 
+function randomString(len: number) {
+  const r = Math.random()
+  const s = r.toString(36)
+  const result = s.substring(2, len + 2)
+  return result
+}
+
 export function SessionManager({ children }: { children: ReactChildren }) {
   const changeSession = useChangeSession()
 
   const createNewSession = useCallback(() => {
-    // TODO: Eventually these values will be random
-    // Math.random().toString(36).substring(16);
     // Do we want to add them to the URL? Maybe that could be an option passed to this function
-    const newSessionName = 'v0_session'
-    const newSessionPassword = 'pwd'
+    const newSessionName = randomString(16)
+    const newSessionPassword = randomString(16)
     changeSession({
       name: newSessionName,
       password: newSessionPassword

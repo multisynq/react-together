@@ -1,4 +1,9 @@
 import {
+  ConnectedViews,
+  ReactTogetherManager,
+  useIsTogether
+} from 'react-together'
+import {
   CalendarTogether,
   CheckboxTogether,
   DropdownTogether,
@@ -10,12 +15,6 @@ import {
   ToggleButtonTogether,
   TriStateCheckboxTogether
 } from 'react-together-primereact'
-// import { ReactTogetherManager } from 'react-together/src/components/ReactTogetherManager'
-import {
-  ConnectedViews,
-  ReactTogetherManager,
-  useIsTogether
-} from 'react-together'
 import CountButtonTogether from './components/CountButtonTogether'
 import NestedPresenceDivs from './components/NestedPresenceDivs'
 import SamplePage from './components/SamplePage'

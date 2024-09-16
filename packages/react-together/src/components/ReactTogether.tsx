@@ -2,6 +2,11 @@ import { CroquetRoot } from '@croquet/react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 import { SessionManager } from './SessionManager'
 
+import {
+  SESSION_NAME_PARAM,
+  SESSION_PASSWORD_PARAM
+} from '../hooks/useJoinSessionUrl'
+
 type ReactTogetherSessionParams = {
   name?: string
   password?: string
@@ -32,16 +37,22 @@ export default function ReactTogether({
     }
   }
 
+  // Check if there are session params in the URL
+  const searchParams = new URLSearchParams(window.location.search)
+  const searchName = searchParams.get(SESSION_NAME_PARAM)
+  const searchPassword = searchParams.get(SESSION_PASSWORD_PARAM)
+
   return (
     <CroquetRoot
       sessionParams={{
         model: sessionParams.model || ReactTogetherModel,
-        name: sessionParams.name,
-        password: sessionParams.password,
+        name: searchName || sessionParams.name,
+        password: searchPassword || sessionParams.password,
         appId,
         apiKey,
         options
       }}
+      showChildrenWhenDisconnected
     >
       <SessionManager>{children}</SessionManager>
     </CroquetRoot>
