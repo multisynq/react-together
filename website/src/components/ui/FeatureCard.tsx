@@ -8,7 +8,7 @@ import CodeSpan from './CodeSpan'
 
 function EachFeature({ header, body, color, imgSource, linkURL }) {
   return (
-    <a href={linkURL} className='block w-1/3 moveUp'>
+    <a href={linkURL} className='block w-full moveUp md:w-1/3'>
       <div className={`${color} w-full line-border overflow-hidden`}>
         <div className='aspect-video'>
           <div className='w-full h-full shadow-md flex items-center justify-center overflow-hidden'>
