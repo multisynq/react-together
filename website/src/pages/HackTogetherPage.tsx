@@ -1,6 +1,5 @@
 import { Mail } from 'lucide-react'
 import { Button } from 'primereact/button'
-import { Card } from 'primereact/card'
 import { Divider } from 'primereact/divider'
 import { Image } from 'primereact/image'
 import { InputText } from 'primereact/inputtext'
@@ -10,20 +9,25 @@ import { HashLink } from 'react-router-hash-link'
 
 const API_URL = import.meta.env.VITE_API_URL
 
+function SeatInfo() {
+  return (
+    <p>
+      Limited to 100 seats.{' '}
+      <HashLink smooth to='#register'>
+        Save your seat now!!
+      </HashLink>
+    </p>
+  )
+}
+
 function EventDetails() {
   return (
     <div className='p-4'>
       {/* This information may be only in the banner, maybe we don't need to have it here as well
       Unless having this information in a readable format helps increase SEO?*/}
-      <p>Dates: 9 and 10th November</p>
+      {/* <p>Dates: 9 and 10th November</p>
       <p>Location: Lisbon (Venue TBA)</p>
-      <p>Prize pool: 4,000 USDT</p>
-      <p>
-        Limited to 100 seats.{' '}
-        <HashLink smooth to='#register'>
-          Save your seat now!!
-        </HashLink>
-      </p>
+      <p>Prize pool: 4,000 USDT</p> */}
       <Divider />
       <h3 className='text-xl font-semibold mb-2'>Get ready to reshape the internet at HackTogether!</h3>
       <ul className='list-disc pl-5 space-y-2'>
@@ -69,15 +73,19 @@ function Countdown() {
   }, [])
 
   return (
-    <div className='p-4' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h3 className='text-xl font-semibold mb-3'>Event Countdown</h3>
-      <div className='flex justify-content-between text-center' style={{ maxWidth: '20rem' }}>
-        {Object.entries(timeLeft).map(([unit, value]) => (
-          <div key={unit} className='flex-1 mx-2'>
-            <span className='text-2xl font-bold'>{value.toString().padStart(2, '0')}</span>
-            <p className='mt-1'>{unit.charAt(0).toUpperCase() + unit.slice(1)}</p>
-          </div>
-        ))}
+    <div className='border border-black shadow-lineStyleMedium rounded-xl bg-blue-200 overflow-hidden flex flex-col items-center justify-center'>
+      <div className='mt-3 mb-2'>
+        <span className='text-xl tracking-tight font-semibold mb-3'>Let the Countdown Begin!</span>
+      </div>
+      <div className='flex border-t border-black bg-white w-full items-center justify-center'>
+        <div className='flex justify-between m-2 '>
+          {Object.entries(timeLeft).map(([unit, value]) => (
+            <div key={unit} className='flex flex-col w-[5rem] items-center'>
+              <span className='text-lg font-bold'>{value.toString().padStart(2, '0')}</span>
+              <p className='text-sm'>{unit.charAt(0).toUpperCase() + unit.slice(1)}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -138,25 +146,35 @@ function RegistrationForm() {
 
   return (
     <>
-      <a id='register' />
-      <form onSubmit={handleSubmit} className='p-4'>
-        <Button disabled type='submit' label='Register now!' tooltip='Registrations open October 4th, 2024' />
-        <p>Registrations open on October 4th, 2024. Save your spot now by pre-registering!</p>
-        <div className='p-inputgroup'>
-          <InputText
-            {...{
-              placeholder: 'Email address',
-              value: email,
-              onChange: (e) => setEmail(e.target.value),
-              onKeyDown: handleEnter,
-              invalid: showEmailError,
-            }}
-          />
-          <Button {...{ type: 'submit', label: 'Pre-register', disabled: isSubmitting }} />
+      <div className='flex flex-col items-center bg-blue-200 rounded-xl border-gray-800 border shadow-lineStyleDark overflow-hidden'>
+        <div className='flex flex-col items-center mt-3 mb-4'>
+          <span className='text-xl'>Limited to 100 seats</span>
+          <span className='text-xl'>Save your seat now!</span>
         </div>
-      </form>
-      {showEmailError && <p className='text-red-500'>Please insert a valid email</p>}
-      {showConfirm && <p className='text-green-500'>Your spot is saved! Thanks for joining our hackathon!!</p>}
+        <div className='bg-white border rounded-xl border-gray-800'>
+          <a id='register' />
+          <form onSubmit={handleSubmit} className='p-4'>
+            <div className='w-[20rem]'>
+              <p className='text-center'>Registrations open on October 4th, 2024. Save your spot now by pre-registering!</p>
+            </div>
+            <div className='p-inputgroup'>
+              <InputText
+                {...{
+                  placeholder: 'Email address',
+                  value: email,
+                  onChange: (e) => setEmail(e.target.value),
+                  onKeyDown: handleEnter,
+                  invalid: showEmailError,
+                }}
+              />
+              <Button {...{ type: 'submit', label: 'Pre-register', disabled: isSubmitting }} />
+            </div>
+            <Button disabled type='submit' label='Register now!' tooltip='Registrations open October 4th, 2024' />
+          </form>
+          {showEmailError && <p className='text-red-500'>Please insert a valid email</p>}
+          {showConfirm && <p className='text-green-500'>Your spot is saved! Thanks for joining our hackathon!!</p>}
+        </div>
+      </div>
     </>
   )
 }
@@ -178,39 +196,80 @@ function Partners() {
     </div>
   )
 }
+function PageCover() {
+  return (
+    <div className='w-full py-8 bg-blue-50 flex flex-col items-center justify-center gap-5 border-b'>
+      <div className='flex flex-col sm:flex-row justify-center'>
+        <div className='bg-slate-200 w-[12rem] h-[12rem] items-center justify-center flex flex-col'>
+          <h1 className='text-3xl font-bold'>hackTogether</h1>
+          <h2> Lisbon 24</h2>
+        </div>
+        <div className='hidden sm:block bg-red-200 w-[12rem] h-[12rem]'>image</div>
+      </div>
+      <div className='flex flex-col items-center justify-center gap-1'>
+        <span className='tracking-tight'>November 9 - 10, 2024</span>
+        <span className='tracking-tight'>Lisbon Portugal</span>
+        {/* <span className='tracking-tight font-semibold text-sm'>$4,000 Prize Pool</span> */}
+      </div>
+      <div className='flex flex-col gap-2 sm:flex-row'>
+        <Button label='Register Now' size='small' outlined />
+        <span className='tracking-tight text-sm font-light'>Interested in partnering?</span>
+      </div>
+    </div>
+  )
+}
+
+function BlockOne() {
+  return (
+    <div className='px-8 flex flex-col gap-4 items-center'>
+      <div className='w-[16rem] flex items-center'>
+        <h2 className='text-center'>Build the Future of the Web!</h2>
+      </div>
+      <p className='text-center tracking-tight'>
+        Join the brightest minds in Lisbon for a 24-hour hackathon and build the future of the web. Limited spots, big ideas, and $4,000 in
+        prizes await!
+      </p>
+    </div>
+  )
+}
 
 export function HackTogetherPage() {
   return (
-    <div className='p-grid p-justify-center'>
-      <div className='p-col-12 p-md-8 p-lg-6'>
-        <Card>
-          <div className='text-center'>
-            <Image {...{ src: '/api/placeholder/200/100', alt: 'Event Banner', width: '200' }} />
-            <h1 className='text-3xl font-bold'>HackTogether - Lisbon 24</h1>
-          </div>
+    <>
+      <div className='bg-white w-full'>
+        <PageCover />
+        {/* <div className='p-grid p-justify-center'> */}
+        {/* <div className='p-col-12 p-md-8 p-lg-6'> */}
+        {/* <Card> */}
+        <div className='flex justify-center flex-col'>
+          <div className='h-[3rem]' />
+          <BlockOne />
+          <div className='h-[3rem]' />
 
-          <Divider />
-          <EventDetails />
-          <Divider />
-          <Countdown />
-          <Divider />
-          <RegistrationForm />
-          <Divider />
-          <Partners />
+          <div className='px-2 max-w-[80rem]'>
+            <div className='text-center'>{/* <Image {...{ src: '/api/placeholder/200/100', alt: 'Event Banner', width: '200' }} /> */}</div>
 
-          <Divider />
-          <div className='p-4 text-center'>
-            <Button
-              {...{
-                label: 'Contact Us',
-                icon: <Mail className='mr-2' />,
-                onClick: () => (window.location.href = 'mailto:hacktogether@multisynq.io'),
-                className: 'p-button-text',
-              }}
-            />
+            <Countdown />
+            <EventDetails />
+
+            <RegistrationForm />
+            <Divider />
+            <Partners />
+
+            <Divider />
+            <div className='p-4 text-center'>
+              <Button
+                {...{
+                  label: 'Contact Us',
+                  icon: <Mail className='mr-2' />,
+                  onClick: () => (window.location.href = 'mailto:hacktogether@multisynq.io'),
+                  className: 'p-button-text',
+                }}
+              />
+            </div>
           </div>
-        </Card>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
