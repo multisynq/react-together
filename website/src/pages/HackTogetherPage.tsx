@@ -10,9 +10,7 @@ import { Button } from 'primereact/button'
 export function HackTogetherPage() {
   return (
     <div className='bg-blue-50 w-full'>
-      <div className='p-2 flex items-center w-full justify-center'>
-        <CoverBanner />
-      </div>
+      <CoverBanner />
       <div className='flex justify-center items-center flex-col'>
         <div className='max-w-[20rem] flex flex-col gap-[4rem] mt-[4rem] pb-[4rem] md:max-w-[46rem] md:gap-[5rem] md:pb-[8rem] items-center lg:max-w-[90rem]'>
           <IntroBanner />
