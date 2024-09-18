@@ -4,7 +4,7 @@ import FooterNav from './ui/FooterNav'
 
 export function SiteFooter() {
   return (
-    <footer className='w-full flex items-center justify-center mt-[8rem] pt-[2rem] bg-slate-50'>
+    <footer className='w-full flex items-center justify-center pt-[8rem] bg-slate-50'>
       <div className='flex flex-col sm:flex-row gap-8 p-6 px-4 sm:px-8 md:px-12 relative w-full max-w-[72rem] items-start justify-center'>
         <div className='flex mt-5 w-full justify-center items-center sm:w-1/2 order-2 sm:order-1'>
           <div className='flex flex-col gap-1'>
@@ -16,6 +16,7 @@ export function SiteFooter() {
               <a
                 href={siteConfig.links.croquet}
                 target='_blank'
+                s
                 rel='noreferrer'
                 className='font-medium hover:underline hover:underline-offset-4 text-black'
               >

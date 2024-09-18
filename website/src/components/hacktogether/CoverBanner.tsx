@@ -5,7 +5,7 @@ import msq_blue from '../../images/logo/msq_long_blue.png'
 export default function CoverBanner() {
   return (
     <div
-      className='w-full pt-[8rem] pb-[4rem] flex flex-col items-center justify-between border-b h-[40rem] border border-gray-800 rounded-2xl shadow-lineStyle'
+      className='w-full pt-[8rem] pb-[2rem] flex flex-col items-center justify-between border-b h-[40rem] border border-gray-800 rounded-2xl shadow-lineStyle'
       style={{ background: 'radial-gradient(205.94% 160.17% at 52.57% -45.87%, #2563EB 0%, #93C5FD 69.16%, #BFDBFE 100%)' }}
     >
       <div className='flex flex-col justify-center'>
@@ -27,11 +27,16 @@ export default function CoverBanner() {
           Lisbon Portugal
         </span>
       </div>
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-col gap-8 items-center'>
         <HashLink smooth to='#register'>
           <Button label='Register Now' />
         </HashLink>
-        <span className='tracking-tight text-xs font-light'>Interested in partnering?</span>
+        <span className='tracking-tight text-xs font-light'>
+          Interested in partnering?{' '}
+          <a className='font-bold' href='mailto:hacktogether@multisynq.io'>
+            Reach out to us
+          </a>
+        </span>
       </div>
     </div>
   )

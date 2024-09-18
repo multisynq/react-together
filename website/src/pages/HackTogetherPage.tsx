@@ -34,6 +34,9 @@ export function HackTogetherPage() {
                     onClick: () => (window.location.href = 'mailto:hacktogether@multisynq.io'),
                     className: 'p-button-text',
                   }}
+                  outlined
+                  raised
+                  className='bg-white'
                 />
               </div>
             </div>
