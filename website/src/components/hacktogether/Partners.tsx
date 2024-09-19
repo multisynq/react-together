@@ -34,14 +34,14 @@ export default function Partners() {
     window.location.href = 'mailto:hacktogether@multisynq.io?subject=I would like to become a partner!'
   }
   return (
-    <div className='p-4'>
-      <div className='flex flex-col align-items-center justify-content-between my-4 gap-8'>
+    <div className=''>
+      <div className='flex flex-col align-items-center justify-content-between gap-8'>
         {partners.map((p) => (
           <PartnerIcon key={p.url} url={p.url} src={p.img} />
         ))}
         {/* <PartnerIcon {...{ src: multisynqLogo, alt: 'Multisynq logo' }} /> */}
       </div>
-      <div className='text-center text-sm'>
+      <div className='text-center text-sm mt-8'>
         Interested in partnering?{' '}
         <span className='font-semibold cursor-pointer' onClick={handlePartner}>
           Reach out to us!

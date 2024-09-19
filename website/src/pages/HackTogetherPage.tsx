@@ -13,18 +13,18 @@ export function HackTogetherPage() {
           {/* --Register Section-- */}
 
           {/* --IntroText Section-- */}
-          <div className='w-full'>
+          <div className='w-full my-10'>
             <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>Build the Future Web</span>
           </div>
           <IntroBanner />
           <RegistrationForm />
           {/* --Event Info-- */}
-          <div className='w-full'>
+          <div className='w-full my-10'>
             <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>Event Information</span>
           </div>
 
           <InfoTable />
-          <div className='w-full'>
+          <div className='w-full my-10'>
             <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>Partners</span>
           </div>
           <Partners />
