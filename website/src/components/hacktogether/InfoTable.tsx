@@ -1,34 +1,49 @@
-import AOS from 'aos'
+import Link from '@components/ui/Link'
 import 'aos/dist/aos.css'
-import { useEffect } from 'react'
 import { HashLink } from 'react-router-hash-link'
 
 const tableInfo = [
   {
-    title: 'Web of Tomorrow',
-    description:
-      "Shape the future by crafting immersive web experiences that connect people in exciting, meaningful ways. Whether it's building tools for collaboration or interactive games, you’ll be part of transforming how we engage online.",
+    title: 'Reshape the internet',
+    description: (
+      <>
+        Imagine a world where sharing a website is as simple as sharing your screen, where you can interact with friends on any website,
+        just like you do on Google Docs.
+        <br />
+        <br />
+        At this hackathon, we're not just imagining this future — we're building it! Join us to build an online experience beyond your
+        wildest dreams!!
+      </>
+    ),
   },
   {
-    title: 'Innovative Ideas Welcome',
-    description:
-      'Got a wild, out-of-the-box concept? This is your chance to bring it to life! We encourage fresh perspectives and groundbreaking ideas that push the boundaries of what’s possible on the web.',
+    title: 'Beginner Friendly',
+    description: (
+      <>
+        ReactTogether is designed to be intuitive and accessible for everyone (<Link to='/getting-started'>try it yourself!</Link>). Plus,
+        we, the authors of ReactTogether, will be available to help you bring your ideas to life! Your fresh perspective could be the key to
+        the innovation of tomorrow!
+      </>
+    ),
   },
   {
-    title: 'Beginner-Friendly Tools',
-    description:
-      'Don’t worry if coding isn’t your strength! React Together is designed to be intuitive and accessible. You’ll find everything you need in our Documentation, with step-by-step guides to help you get started quickly and easily.',
+    title: 'Awarding creativity',
+    description: (
+      <>
+        We’re on the hunt for bold ideas that transform how we experience the internet. So, put on your creative thinking cap, imagine the
+        unthinkable, and make it a reality in this hackathon!
+      </>
+    ),
   },
   {
-    title: 'Push Boundaries',
-    description:
-      'Reimagine online interaction with innovative solutions that break away from the ordinary. This hackathon is all about experimentation and challenging the traditional ways we connect on the web.',
+    title: 'No team? No problem!',
+    description: (
+      <>
+        Don’t have a team yet? No worries! Our team-matching system will connect you with other participants. Who knows? You might just meet
+        your future co-founder!
+      </>
+    ),
   },
-  // {
-  //   title: 'Build the Next Big Thing',
-  //   description:
-  //     'Your project could be the one that changes how we all experience the internet. With the right idea and execution, you have the potential to create something that could leave a lasting impact on the digital world.',
-  // },
 ]
 
 function TableContent({ title, description }) {
@@ -47,25 +62,23 @@ function TableContent({ title, description }) {
 }
 
 export default function InfoTable() {
-  useEffect(() => {
-    AOS.init({ duration: 1000 })
-  }, [])
-
   return (
-    <div className='flex flex-col gap-[3rem] md:flex-row mt-[6rem]'>
-      <div data-aos='fade-up' className='px-4'>
-        <div>
+    <div className='flex flex-col gap-[3rem] md:flex-row mt-[2rem]'>
+      <div className='px-4'>
+        {/* <div>
           <span className='font-semibold text-2xl tracking-tight text-center md:text-left md:text-3xl'>
             Get ready to reshape the internet at HackTogether!
           </span>
-        </div>
+        </div> */}
         <div>
-          <span className='mt-3 font-light text-sm'>
-            {`Join us for a weekend of hacking!`}
+          <span className='mt-3 font-light'>
+            {/* {`Join us for a weekend of fun and hackinghacking! `} */}
+            Discover the power of ReactTogether and build interactive web experiences. This hackathon is your opportunity to
+            <span className='font-bold'> reimagine the internet</span> as we know it.
             <HashLink smooth to='#register'>
-              <span className='font-bold text-blue-600'>Sign up</span>
+              <span className='font-bold text-blue-600'>{' Sign up '}</span>
             </HashLink>
-            {` now and let's revolutionize the internet… Together!`}
+            now and let's revolutionize the internet... Together!
           </span>
         </div>
       </div>
