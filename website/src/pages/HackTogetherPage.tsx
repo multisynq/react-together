@@ -1,4 +1,3 @@
-import Countdown from '@components/hacktogether/CountDown'
 import CoverBanner from '@components/hacktogether/CoverBanner'
 import InfoTable from '@components/hacktogether/InfoTable'
 import IntroBanner from '@components/hacktogether/IntroBanner'
@@ -9,18 +8,32 @@ import { Button } from 'primereact/button'
 
 export function HackTogetherPage() {
   return (
-    <div className='bg-blue-50 w-full'>
+    <div className='w-full bg-blue-50'>
       <CoverBanner />
-      <RegistrationForm />
-      <IntroBanner />
-      <div className='flex justify-center items-center flex-col'>
-        <div className='max-w-[20rem] flex flex-col gap-[4rem] mt-[4rem] pb-[4rem] md:max-w-[46rem] md:gap-[5rem] md:pb-[8rem] items-center lg:max-w-[90rem]'>
-          <Countdown />
-        </div>
-        <div className='flex justify-center items-center flex-col bg-blue-100 w-full border-t border-gray-800'>
-          <div className='max-w-[20rem] flex flex-col gap-[5rem] my-[4rem] md:max-w-[46rem]'>
-            <InfoTable />
+      <div className='w-full flex justify-center'>
+        <div className='w-full  px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[0rem] max-w-[60rem] flex items-center justify-center py-[3rem] flex-col'>
+          {/* --Register Section-- */}
+
+          {/* --IntroText Section-- */}
+          <div className='w-full'>
+            <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>Build the Future Web</span>
           </div>
+          <IntroBanner />
+          <RegistrationForm />
+          {/* --Event Info-- */}
+          <div className='w-full'>
+            <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>Event Information</span>
+          </div>
+
+          <InfoTable />
+        </div>
+      </div>
+      <span>hi</span>
+
+      <div className='flex justify-center items-center flex-col'>
+        <div className='max-w-[20rem] flex flex-col gap-[4rem] mt-[4rem] pb-[4rem] md:max-w-[46rem] md:gap-[5rem] md:pb-[8rem] items-center lg:max-w-[90rem]'></div>
+        <div className='flex justify-center items-center flex-col bg-blue-100 w-full border-t border-gray-800'>
+          <div className='max-w-[20rem] flex flex-col gap-[5rem] my-[4rem] md:max-w-[46rem]'></div>
           <div className='flex justify-center items-center flex-col bg-blue-300 w-full border-t border-gray-800'>
             <div className='flex flex-col gap-[5rem] mt-[4rem]'>
               <Partners />
@@ -39,11 +52,6 @@ export function HackTogetherPage() {
               </div>
             </div>
           </div>
-          {/* <div className='px-2 max-w-[80rem]'>
-            <Divider />
-
-            <Divider />
-          </div> */}
         </div>
       </div>
     </div>
