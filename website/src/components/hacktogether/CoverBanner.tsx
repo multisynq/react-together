@@ -5,7 +5,7 @@ import { HashLink } from 'react-router-hash-link'
 
 // Helper Components
 const EventContentHorizontal = () => (
-  <div className='w-full h-full bg-indigo-600 flex text-white px-1 py-4 items-center justify-center border rounded-xl border-gray-800 shadow-lineStyleDark md:bg-cyan-500'>
+  <div className='w-full h-full bg-indigo-600 flex text-white px-1 py-4 items-center justify-center border rounded-xl border-gray-800 shadow-lineStyleDark md:bg-cyan-300'>
     <div className='flex w-full items-center justify-between px-[0.5rem] max-w-[20rem] md:hidden'>
       <div className='w-full'>
         <span className='text-sm font-medium font-poppins text-center'>Nov, 9-10 2024</span>

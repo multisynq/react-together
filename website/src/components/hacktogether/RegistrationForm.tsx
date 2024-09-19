@@ -69,15 +69,9 @@ export default function RegistrationForm() {
           </span>
         </div>
 
-        <div className='bg-white border rounded-xl border-gray-800 lg:p-[1rem] shadow-lineStyleMedium w-full'>
+        <div className='bg-white border rounded-xl border-gray-800 shadow-lineStyleMedium w-full p-[1rem]'>
           <a id='register' />
           <form onSubmit={handleSubmit} className='px-3 flex flex-col gap-3 py-3'>
-            <div className='w-full px-2 flex items-center justify-center'>
-              <p className='text-md font-medium tracking-tight text-center md:text-left font-poppins md:tex-xl'>
-                Registrations open on October 4th, 2024. <br className='md:hidden' />
-                Save your spot now by pre-registering!
-              </p>
-            </div>
             <div className='p-inputgroup'>
               <InputText
                 {...{
@@ -89,6 +83,11 @@ export default function RegistrationForm() {
                 }}
               />
               <Button {...{ type: 'submit', label: 'Pre-register', disabled: isSubmitting }} />
+            </div>
+            <div className='w-full px-2 flex items-center '>
+              <p className='text-md tracking-tight md:text-left font-poppins text-gray-500 font-light'>
+                Registrations open on October 4th, 2024.
+              </p>
             </div>
             {/* <div className='w-full mt-2'>
             <Button
