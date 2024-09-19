@@ -6,7 +6,7 @@ import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
 
-export default function ReactTogetherDocumentationPage() {
+export default function ReactTogetherManagerDocumentationPage() {
   const api = (
     <>
       <h4>Props</h4>
@@ -71,26 +71,12 @@ export default function ReactTogetherDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='ReactTogether'
-      description='This component provides the context required to synchronize multiple users within the same session. Every React Together hook and component should be used within the scope of this component.'
+      title='ReactTogetherManager'
+      description='This component provides a simple UI to manage the current React Together session, i.e. connecting to a new session, sharing it with other people, and leaving the current session. If you want to implement your own session manager component, feel free to checkout the useConnectNewSession, useLeaveSession, and useJoinSessionURL hooks!'
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { ReactTogether } from 'react-together'`} />
-          <CodeBlock
-            language='javascript'
-            code1={`ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ReactTogether
-      sessionParams={{
-        appId: import.meta.env['VITE_APP_ID'],
-        apiKey: import.meta.env['VITE_API_KEY']
-      }}
-    >
-      <App />
-    </ReactTogether>
-  </React.StrictMode>
-)`}
-          />
+          <CodeBlock language='javascript' code1={`import { ReactTogetherManager } from 'react-together'`} />
+          <CodeBlock language='javascript' code1={`return <ReactTogetherManager />`} />
         </>
       }
       api={api}

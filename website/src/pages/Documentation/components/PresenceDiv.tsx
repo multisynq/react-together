@@ -30,6 +30,12 @@ export default function PresenceDivDocumentationPage() {
             ),
           },
           {
+            name: 'highlightMyself',
+            type: 'boolean',
+            default: <CodeSpan text='false' />,
+            description: <p>If true, the nested component will be highlighted when the local user hovers it.</p>,
+          },
+          {
             name: 'className',
             type: 'string',
             description: (
@@ -38,15 +44,6 @@ export default function PresenceDivDocumentationPage() {
               </p>
             ),
           },
-          // {
-          //   name: 'options?',
-          //   type: 'UseHoveringViewOptions',
-          //   description: (
-          //     <p>
-          //       The options to be passed to the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook'
-          //     </p>
-          //   ),
-          // },
         ]}
       />
     </>
