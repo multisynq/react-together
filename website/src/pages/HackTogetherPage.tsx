@@ -18,10 +18,10 @@ export function HackTogetherPage() {
       <CoverBanner />
       <div className='w-full flex justify-center'>
         <div className='w-full  px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[0rem] max-w-[60rem] flex items-center justify-center py-[3rem] flex-col'>
-          <SubHeader title='Build the Future Web' />
+          <SubHeader title='Build the web of tomorrow' />
           <IntroBanner />
           <RegistrationForm />
-          <SubHeader title='Event Information' />
+          <SubHeader title='About the event ...' />
           <InfoTable />
           <SubHeader title='Partners' />
           <Partners />

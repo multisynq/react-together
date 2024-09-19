@@ -20,9 +20,12 @@ const tableInfo = [
     title: 'Beginner Friendly',
     description: (
       <>
-        ReactTogether is designed to be intuitive and accessible for everyone (<Link to='/getting-started'>try it yourself!</Link>). Plus,
-        we, the authors of ReactTogether, will be available to help you bring your ideas to life! Your fresh perspective could be the key to
-        the innovation of tomorrow!
+        ReactTogether is designed to be intuitive and accessible for everyone (
+        <Link to='/getting-started' className='bg-white'>
+          <span className='font-bold text-blue-600'>try it yourself!</span>
+        </Link>
+        ). Plus, we, the authors of ReactTogether, will be available to help you bring your ideas to life! Your fresh perspective could be
+        the key to the innovation of tomorrow!
       </>
     ),
   },
