@@ -1,19 +1,52 @@
-import { Button } from 'primereact/button'
-import { Image } from 'primereact/image'
+import multisynqLogo from '@images/blue.svg'
+import cloudflareLogo from '@images/cloudflare_logo.svg'
+import gaiminLogo from '@images/gaimin_logo.svg'
+import { Image, ImageProps } from 'primereact/image'
+
+interface PartnerIconProps extends ImageProps {
+  url?: string
+}
+function PartnerIcon({ url, ...props }: PartnerIconProps) {
+  return (
+    <a href={url} target='_blank'>
+      <Image {...props} width='400' />
+    </a>
+  )
+}
+
+const partners = [
+  {
+    img: multisynqLogo,
+    url: 'https://multisynq.io',
+  },
+  {
+    img: gaiminLogo,
+    url: 'https://gaimin.io',
+  },
+  {
+    img: cloudflareLogo,
+    url: 'https://cloudflare.com',
+  },
+]
 
 export default function Partners() {
+  const handlePartner = () => {
+    window.location.href = 'mailto:hacktogether@multisynq.io?subject=I would like to become a partner!'
+  }
   return (
     <div className='p-4'>
-      <h3>Partners</h3>
-      <div className='flex align-items-center justify-content-between mt-4'>
-        <Image {...{ src: '/api/placeholder/100/50', alt: 'Multisynq logo', width: '100' }} />
-        <Button
-          {...{
-            label: 'Become a Partner',
-            className: 'p-button-outlined',
-            onClick: () => (window.location.href = 'mailto:hacktogether@multisynq.io?subject=I would like to become a partner!'),
-          }}
-        />
+      <h2>Partners</h2>
+      <div className='flex align-items-center justify-content-between my-4 gap-4'>
+        {partners.map((p) => (
+          <PartnerIcon key={p.url} url={p.url} src={p.img} />
+        ))}
+        {/* <PartnerIcon {...{ src: multisynqLogo, alt: 'Multisynq logo' }} /> */}
+      </div>
+      <div className='text-center text-sm'>
+        Interested in partnering?{' '}
+        <span className='font-semibold cursor-pointer' onClick={handlePartner}>
+          Reach out to us!
+        </span>
       </div>
     </div>
   )
