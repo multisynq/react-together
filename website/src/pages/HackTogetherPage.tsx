@@ -11,9 +11,10 @@ export function HackTogetherPage() {
   return (
     <div className='bg-blue-50 w-full'>
       <CoverBanner />
+      <RegistrationForm />
+      <IntroBanner />
       <div className='flex justify-center items-center flex-col'>
         <div className='max-w-[20rem] flex flex-col gap-[4rem] mt-[4rem] pb-[4rem] md:max-w-[46rem] md:gap-[5rem] md:pb-[8rem] items-center lg:max-w-[90rem]'>
-          <IntroBanner />
           <Countdown />
         </div>
         <div className='flex justify-center items-center flex-col bg-blue-100 w-full border-t border-gray-800'>
@@ -22,7 +23,6 @@ export function HackTogetherPage() {
           </div>
           <div className='flex justify-center items-center flex-col bg-blue-300 w-full border-t border-gray-800'>
             <div className='flex flex-col gap-[5rem] mt-[4rem]'>
-              <RegistrationForm />
               <Partners />
               <div className='p-4 text-center'>
                 <Button

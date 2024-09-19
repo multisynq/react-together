@@ -28,22 +28,17 @@ export default function Countdown() {
   }, [])
 
   return (
-    <div
-      data-aos='fade-up'
-      className='border border-black shadow-lineStyleMedium rounded-xl bg-blue-200 overflow-hidden flex flex-col items-center justify-center max-w-[30rem]'
-    >
-      <div className='mt-3 mb-2'>
-        <span className='text-xl tracking-tight font-semibold mb-3'>Let the Countdown Begin!</span>
+    <div className='border border-black shadow-lineStyleMedium rounded-xl bg-amber-300 flex flex-col w-full gap-4 px-[2rem] py-[1rem]'>
+      <div className='flex w-2/3'>
+        <span className='text-3xl tracking-tight font-poppins font-medium'>Count down til the event:</span>
       </div>
-      <div className='flex border-t border-black bg-white w-full items-center justify-center'>
-        <div className='flex justify-between m-2 '>
-          {Object.entries(timeLeft).map(([unit, value]) => (
-            <div key={unit} className='flex flex-col w-[5rem] items-center'>
-              <span className='text-lg font-bold'>{value.toString().padStart(2, '0')}</span>
-              <p className='text-sm'>{unit.charAt(0).toUpperCase() + unit.slice(1)}</p>
-            </div>
-          ))}
-        </div>
+      <div className='w-full flex justify-end'>
+        {Object.entries(timeLeft).map(([unit, value]) => (
+          <div key={unit} className='flex flex-col w-[5rem] items-center'>
+            <span className='text-2xl font-bold font-poppins'>{value.toString().padStart(2, '0')}</span>
+            <p className='text-baseline font-poppins font-medium'>{unit.charAt(0).toUpperCase() + unit.slice(1)}</p>
+          </div>
+        ))}
       </div>
     </div>
   )

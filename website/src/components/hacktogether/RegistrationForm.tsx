@@ -58,20 +58,22 @@ export default function RegistrationForm() {
   }
 
   return (
-    <>
-      <div className='flex flex-col items-center bg-blue-600 rounded-xl border-gray-800 border shadow-lineStyleDark overflow-hidden max-w-[24rem] md:max-w-[32rem] lg:max-w-[90rem] lg:flex-row'>
-        <div className='flex flex-col items-center mt-6 mb-1 lg:min-w-[18rem]'>
-          <span className='text-xl text-white tracking-tight animate-bounce'>
-            Limited to <strong>100 seats</strong>
-            <br />
-            Save your seat now!
-          </span>
-        </div>
-        <div className='bg-white border rounded-xl border-gray-800 lg:p-[1rem]'>
+    <div className='w-full bg-gray-100 py-[6rem] px-[2rem] flex gap-3 flex-col md:flex-row'>
+      <div className='bg-blue-800 px-[2rem] py-[1rem] animate-bounce border-gray-800 border rounded-xl shadow-lineStyleDark w-[28rem] h-[6.5rem] flex items-center justify-center'>
+        <span className='text-2xl text-white tracking-tight font-poppin font-medium text-center'>
+          Limited to <strong>100 seats</strong>
+          <br />
+          Save your seat now!
+        </span>
+      </div>
+
+      <div className='w-full flex'>
+        <div className='w-1/6 md:hidden' />
+        <div className='bg-white border rounded-xl border-gray-800 lg:p-[1rem] shadow-lineStyleMedium w-full'>
           <a id='register' />
           <form onSubmit={handleSubmit} className='px-3 flex flex-col gap-3 py-3'>
             <div className='w-full px-2 flex items-center justify-center'>
-              <p className='text-sm tracking-tight text-center md:text-left'>
+              <p className='text-md font-medium tracking-tight text-center md:text-left font-poppins md:tex-xl'>
                 Registrations open on October 4th, 2024. <br className='md:hidden' />
                 Save your spot now by pre-registering!
               </p>
@@ -88,21 +90,66 @@ export default function RegistrationForm() {
               />
               <Button {...{ type: 'submit', label: 'Pre-register', disabled: isSubmitting }} />
             </div>
-            <div className='w-full mt-2'>
-              <Button
-                disabled
-                type='submit'
-                label='Register now!'
-                tooltip='Registrations open October 4th, 2024'
-                size='small'
-                className='w-full shadow-lineStyleMedium'
-              />
-            </div>
+            {/* <div className='w-full mt-2'>
+            <Button
+              disabled
+              type='submit'
+              label='Register now!'
+              tooltip='Registrations open October 4th, 2024'
+              size='small'
+              className='w-full shadow-lineStyleMedium'
+            />
+          </div> */}
           </form>
           {showEmailError && <p className='text-red-500'>Please insert a valid email</p>}
           {showConfirm && <p className='text-green-500'>Your spot is saved! Thanks for joining our hackathon!!</p>}
         </div>
       </div>
-    </>
+    </div>
   )
 }
+
+// ;<div className='flex flex-col items-center bg-blue-600 rounded-xl border-gray-800 border shadow-lineStyleDark overflow-hidden max-w-[24rem] md:max-w-[32rem] lg:max-w-[90rem] lg:flex-row'>
+//   <div className='flex flex-col items-center mt-6 mb-1 lg:min-w-[18rem]'>
+//     <span className='text-xl text-white tracking-tight animate-bounce'>
+//       Limited to <strong>100 seats</strong>
+//       <br />
+//       Save your seat now!
+//     </span>
+//   </div>
+//   <div className='bg-white border rounded-xl border-gray-800 lg:p-[1rem]'>
+//     <a id='register' />
+//     <form onSubmit={handleSubmit} className='px-3 flex flex-col gap-3 py-3'>
+//       <div className='w-full px-2 flex items-center justify-center'>
+//         <p className='text-sm tracking-tight text-center md:text-left'>
+//           Registrations open on October 4th, 2024. <br className='md:hidden' />
+//           Save your spot now by pre-registering!
+//         </p>
+//       </div>
+//       <div className='p-inputgroup'>
+//         <InputText
+//           {...{
+//             placeholder: 'Email address',
+//             value: email,
+//             onChange: (e) => setEmail(e.target.value),
+//             onKeyDown: handleEnter,
+//             invalid: showEmailError,
+//           }}
+//         />
+//         <Button {...{ type: 'submit', label: 'Pre-register', disabled: isSubmitting }} />
+//       </div>
+//       <div className='w-full mt-2'>
+//         <Button
+//           disabled
+//           type='submit'
+//           label='Register now!'
+//           tooltip='Registrations open October 4th, 2024'
+//           size='small'
+//           className='w-full shadow-lineStyleMedium'
+//         />
+//       </div>
+//     </form>
+//     {showEmailError && <p className='text-red-500'>Please insert a valid email</p>}
+//     {showConfirm && <p className='text-green-500'>Your spot is saved! Thanks for joining our hackathon!!</p>}
+//   </div>
+// </div>
