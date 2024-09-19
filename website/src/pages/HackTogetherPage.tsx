@@ -12,13 +12,13 @@ export function HackTogetherPage() {
         <div className='w-full  px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[0rem] max-w-[60rem] flex items-center justify-center py-[3rem] flex-col'>
           {/* --IntroText Section-- */}
           <div className='w-full my-10'>
-            <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>Build the Future Web</span>
+            <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>Building the web of tomorrow!</span>
           </div>
           <IntroBanner />
           <RegistrationForm />
           {/* --Event Info-- */}
           <div className='w-full my-10'>
-            <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>Event Information</span>
+            <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>About the event...</span>
           </div>
 
           <InfoTable />

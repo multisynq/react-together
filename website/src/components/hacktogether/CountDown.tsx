@@ -30,7 +30,7 @@ export default function Countdown() {
   return (
     <div className='border border-black shadow-lineStyleMedium rounded-xl bg-amber-300 flex flex-col w-full gap-4 px-[2rem] py-[1rem] '>
       <div className='flex w-2/3'>
-        <span className='text-3xl tracking-tight font-poppins font-medium'>Count down til the event:</span>
+        <span className='text-3xl tracking-tight font-poppins font-medium'>Hacking starts in...</span>
       </div>
       <div className='w-full flex justify-end'>
         {Object.entries(timeLeft).map(([unit, value]) => (
