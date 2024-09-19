@@ -85,6 +85,7 @@ module.exports = {
       },
       fontFamily: {
         heading: ['Lato', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
     },
   },
