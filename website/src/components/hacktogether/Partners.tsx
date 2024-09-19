@@ -9,7 +9,9 @@ interface PartnerIconProps extends ImageProps {
 function PartnerIcon({ url, ...props }: PartnerIconProps) {
   return (
     <a href={url} target='_blank'>
-      <Image {...props} width='400' />
+      <div className='flex items-center justify-items-center border border-gray-800 bg-white rounded-xl w-full px-[6rem] py-[1.5rem] shadow-lineStyleDark max-w-[34rem]'>
+        <Image {...props} width='400' />
+      </div>
     </a>
   )
 }
@@ -34,12 +36,11 @@ export default function Partners() {
     window.location.href = 'mailto:hacktogether@multisynq.io?subject=I would like to become a partner!'
   }
   return (
-    <div className=''>
+    <>
       <div className='flex flex-col align-items-center justify-content-between gap-8'>
         {partners.map((p) => (
           <PartnerIcon key={p.url} url={p.url} src={p.img} />
         ))}
-        {/* <PartnerIcon {...{ src: multisynqLogo, alt: 'Multisynq logo' }} /> */}
       </div>
       <div className='text-center text-sm mt-8'>
         Interested in partnering?{' '}
@@ -47,6 +48,6 @@ export default function Partners() {
           Reach out to us!
         </span>
       </div>
-    </div>
+    </>
   )
 }
