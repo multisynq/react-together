@@ -26,6 +26,10 @@ export function HackTogetherPage() {
           </div>
 
           <InfoTable />
+          <div className='w-full'>
+            <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>Partners</span>
+          </div>
+          <Partners />
         </div>
       </div>
       <span>hi</span>
