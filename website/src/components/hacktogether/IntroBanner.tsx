@@ -3,6 +3,10 @@ import 'aos/dist/aos.css'
 import { useEffect } from 'react'
 import Countdown from './CountDown'
 
+function Bold({ children }) {
+  return <strong className='font-bold text-blue-700'>{children}</strong>
+}
+
 export default function IntroBanner() {
   useEffect(() => {
     AOS.init({ duration: 1000 })
@@ -12,9 +16,8 @@ export default function IntroBanner() {
     return (
       <div className='flex px-[2rem] rounded-xl w-full md:w-2/3'>
         <span className='text-black text-lg tracking-tight font-poppins font-light leading-7 sm:leading-8 sm:text-2xl'>
-          Join the brightest minds in Lisbon for a <strong className='font-bold text-blue-700'>24-hour</strong> hackathon and build the
-          future of the web. Limited spots, big ideas, and <strong className='font-bold text-blue-700'>{` $4,000 `}</strong>
-          in prizes await!
+          Calling all hackers and innovators for a <Bold>24-hour</Bold> hackathon! Bring your ideas to life and compete for a{' '}
+          <Bold>4,000 €</Bold> prize pool!
         </span>
       </div>
     )
@@ -25,7 +28,7 @@ export default function IntroBanner() {
       <div className='flex flex-col gap-[4rem]'>
         <Description />
         <div className='w-full flex justify-end'>
-          <div className='w-full h-[16rem] max-w-[40rem]'>
+          <div className='w-full h-[16rem] max-w-[30rem]'>
             <Countdown />
           </div>
         </div>
