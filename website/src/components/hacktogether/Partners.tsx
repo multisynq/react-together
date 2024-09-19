@@ -35,8 +35,7 @@ export default function Partners() {
   }
   return (
     <div className='p-4'>
-      <h2>Partners</h2>
-      <div className='flex align-items-center justify-content-between my-4 gap-4'>
+      <div className='flex flex-col align-items-center justify-content-between my-4 gap-8'>
         {partners.map((p) => (
           <PartnerIcon key={p.url} url={p.url} src={p.img} />
         ))}
