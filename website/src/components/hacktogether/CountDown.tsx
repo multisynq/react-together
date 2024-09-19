@@ -28,7 +28,7 @@ export default function Countdown() {
   }, [])
 
   return (
-    <div className='border border-black shadow-lineStyleMedium rounded-xl bg-amber-300 flex flex-col w-full gap-4 px-[2rem] py-[1rem]'>
+    <div className='border border-black shadow-lineStyleMedium rounded-xl bg-amber-300 flex flex-col w-full gap-4 px-[2rem] py-[1rem] '>
       <div className='flex w-2/3'>
         <span className='text-3xl tracking-tight font-poppins font-medium'>Count down til the event:</span>
       </div>

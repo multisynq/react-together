@@ -10,9 +10,10 @@ export default function IntroBanner() {
 
   function Description() {
     return (
-      <div className='border flex bg-blue-800 px-[2rem] py-[1rem] rounded-xl border-gray-800 shadow-lineStyleDark w-4/5 md:w-2/2'>
-        <span className='text-white'>
-          Join the brightest minds in Lisbon for a 24-hour hackathon and build the future of the web. Limited spots, big ideas, and $4,000
+      <div className='flex px-[2rem] py-[1rem] rounded-xl w-full md:w-2/3'>
+        <span className='text-black text-2xl tracking-tight font-poppins font-light leading-8'>
+          Join the brightest minds in Lisbon for a <strong className='font-bold text-blue-700'>24-hour</strong> hackathon and build the
+          future of the web. Limited spots, big ideas, and <strong className='font-bold text-blue-700'>{` $4,000 `}</strong>
           in prizes await!
         </span>
       </div>
@@ -20,24 +21,11 @@ export default function IntroBanner() {
   }
 
   return (
-    <div className='flex flex-col px-[2rem] py-[4rem]'>
-      <div className='flex flex-col gap-4'>
-        {/* --Title-- */}
-        <div className='w-full flex gap-4'>
-          <div className='border flex items-center bg-blue-200 px-[2rem] py-[1rem] rounded-xl border-gray-800 shadow-lineStyleDark'>
-            <span className='font-poppins font-semibold text-4xl leading-8'>
-              Build the future
-              <br />
-              of the web!
-            </span>
-          </div>
-        </div>
-        {/* --Description-- */}
-        <div className='w-full flex justify-end sm:hidden'>
-          <Description />
-        </div>
+    <div className='flex flex-col pt-[2rem]'>
+      <div className='flex flex-col gap-[4rem]'>
+        <Description />
         <div className='w-full flex justify-end'>
-          <div className='w-full h-[16rem]'>
+          <div className='w-full h-[16rem] max-w-[40rem]'>
             <Countdown />
           </div>
         </div>

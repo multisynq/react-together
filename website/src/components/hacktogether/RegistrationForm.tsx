@@ -58,17 +58,17 @@ export default function RegistrationForm() {
   }
 
   return (
-    <div className='w-full bg-gray-100 py-[6rem] px-[2rem] flex gap-3 flex-col md:flex-row'>
-      <div className='bg-blue-800 px-[2rem] py-[1rem] animate-bounce border-gray-800 border rounded-xl shadow-lineStyleDark w-[28rem] h-[6.5rem] flex items-center justify-center'>
-        <span className='text-2xl text-white tracking-tight font-poppin font-medium text-center'>
-          Limited to <strong>100 seats</strong>
-          <br />
-          Save your seat now!
-        </span>
-      </div>
+    <div className='w-full items-center justify-center flex py-[1rem]'>
+      <div className='flex gap-3 flex-col md:flex-row max-w-[64rem] w-full'>
+        {/* --SEAT COUNT-- */}
+        <div className='bg-blue-800 px-[2rem] py-[1rem] animate-bounce border-gray-800 border rounded-xl shadow-lineStyleDark w-[18rem] h-[6.5rem] flex items-center justify-center md:min-w-[18rem]'>
+          <span className='text-2xl text-white tracking-tight font-poppin font-medium text-center'>
+            Limited to <strong>100 seats</strong>
+            <br />
+            Save your seat now!
+          </span>
+        </div>
 
-      <div className='w-full flex'>
-        <div className='w-1/6 md:hidden' />
         <div className='bg-white border rounded-xl border-gray-800 lg:p-[1rem] shadow-lineStyleMedium w-full'>
           <a id='register' />
           <form onSubmit={handleSubmit} className='px-3 flex flex-col gap-3 py-3'>

@@ -10,8 +10,6 @@ export function HackTogetherPage() {
       <CoverBanner />
       <div className='w-full flex justify-center'>
         <div className='w-full  px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[0rem] max-w-[60rem] flex items-center justify-center py-[3rem] flex-col'>
-          {/* --Register Section-- */}
-
           {/* --IntroText Section-- */}
           <div className='w-full my-10'>
             <span className='text-6xl font-medium font-poppins text-black tracking-tighter'>Build the Future Web</span>

@@ -52,7 +52,7 @@ export default function InfoTable() {
   }, [])
 
   return (
-    <div className='flex flex-col gap-[3rem] md:flex-row'>
+    <div className='flex flex-col gap-[3rem] md:flex-row mt-[6rem]'>
       <div data-aos='fade-up' className='px-4'>
         <div>
           <span className='font-semibold text-2xl tracking-tight text-center md:text-left md:text-3xl'>
@@ -60,13 +60,13 @@ export default function InfoTable() {
           </span>
         </div>
         <div>
-          <p className='mt-3 font-light text-sm text-center mx-2 md:text-left md:text-md md:mx-0'>
-            {`Join us for a weekend of hacking! `}
+          <span className='mt-3 font-light text-sm'>
+            {`Join us for a weekend of hacking!`}
             <HashLink smooth to='#register'>
               <span className='font-bold text-blue-600'>Sign up</span>
             </HashLink>
             {` now and let's revolutionize the internet… Together!`}
-          </p>
+          </span>
         </div>
       </div>
       <div className='flex flex-col border border-neutral-800 rounded-xl overflow-hidden shadow-lineStyleDark'>
