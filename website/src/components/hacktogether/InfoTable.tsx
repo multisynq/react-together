@@ -33,7 +33,7 @@ const tableInfo = [
     title: 'Awarding creativity',
     description: (
       <>
-        We’re on the hunt for bold ideas that transform how we experience the internet. So, put on your creative thinking cap, imagine the
+        We’re on the hunt for bold ideas that transform how we experience the internet. So, put on your creative thinking hat, imagine the
         unthinkable, and make it a reality in this hackathon!
       </>
     ),
