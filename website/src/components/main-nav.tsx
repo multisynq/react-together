@@ -39,7 +39,8 @@ export function MainNav() {
                 className: cn(
                   'transition-colors hover:text-foreground/80',
                   className,
-                  pathname === to ? 'text-foreground' : 'text-foreground/60'
+                  pathname === to ? 'text-foreground' : 'text-foreground/60',
+                  'whitespace-nowrap'
                 ),
               }}
             >
