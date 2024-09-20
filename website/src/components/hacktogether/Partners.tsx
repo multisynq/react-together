@@ -1,7 +1,3 @@
-import multisynqLogo from '@images/blue.svg'
-import cloudflareLogo from '@images/cloudflare_logo.svg'
-import gaiminLogo from '@images/gaimin_logo.svg'
-
 interface PartnerIconProps {
   url?: string
   src: string
@@ -22,41 +18,28 @@ function PartnerIcon({ url, src, alt }: PartnerIconProps) {
   )
 }
 
-const partners = [
-  {
-    img: multisynqLogo,
-    url: 'https://multisynq.io',
-    alt: 'MultiSynq Logo',
-  },
-  {
-    img: gaiminLogo,
-    url: 'https://gaimin.io',
-    alt: 'Gaimin Logo',
-  },
-  {
-    img: cloudflareLogo,
-    url: 'https://cloudflare.com',
-    alt: 'Cloudflare Logo',
-  },
-]
+// const partners = [
+// ]
 
 export default function Partners() {
-  const handlePartner = () => {
-    window.location.href = 'mailto:hacktogether@multisynq.io?subject=I would like to become a partner!'
-  }
-
   return (
     <>
-      <div className='flex flex-col align-items-center justify-content-between gap-8'>
+      {/* <div className='flex flex-col align-items-center justify-content-between gap-8'>
         {partners.map((p) => (
           <PartnerIcon key={p.url} url={p.url} src={p.img} alt={p.alt} />
         ))}
-      </div>
+      </div> */}
+      <h3>Partners will be announced soon. Stay tuned!!</h3>
+
       <div className='text-center text-sm mt-8'>
         Interested in partnering?{' '}
-        <span className='font-semibold cursor-pointer' onClick={handlePartner}>
+        <a
+          href='mailto:hacktogether@multisynq.io?subject=I would like to become a partner!'
+          target='_blank'
+          className='font-semibold cursor-pointer'
+        >
           Reach out to us!
-        </span>
+        </a>
       </div>
     </>
   )

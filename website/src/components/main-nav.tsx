@@ -4,7 +4,7 @@ import { cn } from '@utils'
 import { NavLink, useLocation } from 'react-router-dom'
 
 const navConfig = [
-  { to: '/hackathon', label: 'Hackathon' },
+  { to: '/hackathon', label: '🚀 Hackathon 🚀' },
   { to: '/getting-started', label: 'Documentation' },
   // { to: '/docs/components', label: 'Components' },
   // { to: '/hello', label: 'Get Started' },

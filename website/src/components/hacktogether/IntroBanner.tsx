@@ -17,7 +17,7 @@ export default function IntroBanner() {
       <div className='flex px-[2rem] rounded-xl w-full md:w-2/3'>
         <span className='text-black text-lg tracking-tight font-poppins font-light leading-7 sm:leading-8 sm:text-2xl'>
           Calling all hackers and innovators for a <Bold>24-hour</Bold> hackathon! Bring your ideas to life and compete for a{' '}
-          <Bold>4,000 €</Bold> prize pool!
+          <Bold>$4,000</Bold> prize pool!
         </span>
       </div>
     )

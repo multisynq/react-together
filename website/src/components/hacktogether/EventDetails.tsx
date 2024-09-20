@@ -9,7 +9,7 @@ export default function EventDetails() {
       Unless having this information in a readable format helps increase SEO?*/}
       {/* <p>Dates: 9 and 10th November</p>
       <p>Location: Lisbon (Venue TBA)</p>
-      <p>Prize pool: 4,000 USDT</p> */}
+      <p>Prize pool: $4,000</p> */}
       <Divider />
       <h3 className='text-xl font-semibold mb-2'>Get ready to reshape the internet at HackTogether!</h3>
       <ul className='list-disc pl-5 space-y-2'>
