@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
+const addToCalendarUrl =
+  'https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MGZnbHI1ZGN2dTM2MzhwYWdqM3JrYnMyN2IgY19iNmVlZjMxZWNlMzlhYjFjMmJiZjQ3NGZlYmU0NTQ5ZGZiNTdkNzg5YzM1ZWUzYTM3YWFiNzk3MzM2YWViZDNlQGc&tmsrc=c_b6eef31ece39ab1c2bbf474febe4549dfb57d789c35ee3a37aab797336aebd3e%40group.calendar.google.com'
+
 export default function Countdown() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, min: 0, sec: 0 })
 
@@ -40,6 +43,9 @@ export default function Countdown() {
           </div>
         ))}
       </div>
+      <a href={addToCalendarUrl} target='_blank' className='font-semibold cursor-pointer'>
+        Add to your calendar!!
+      </a>
     </div>
   )
 }
