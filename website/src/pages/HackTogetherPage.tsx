@@ -1,4 +1,5 @@
 import CoverBanner from '@components/hacktogether/CoverBanner'
+import FAQTable from '@components/hacktogether/FAQTable'
 import InfoTable from '@components/hacktogether/InfoTable'
 import IntroBanner from '@components/hacktogether/IntroBanner'
 import Partners from '@components/hacktogether/Partners'
@@ -7,7 +8,7 @@ import RegistrationForm from '@components/hacktogether/RegistrationForm'
 function SubHeader({ title }: { title: string }) {
   return (
     <div className='w-full my-10'>
-      <span className='text-4xl font-medium font-poppins text-black tracking-tighter sm:text-6xl'>{title}</span>
+      <span className='text-4xl font-medium font-poppins text-black tracking-tighter sm:text-5xl'>{title}</span>
     </div>
   )
 }
@@ -23,6 +24,8 @@ export function HackTogetherPage() {
           <RegistrationForm />
           <SubHeader title='About the event ...' />
           <InfoTable />
+          <SubHeader title='FAQ' />
+          <FAQTable />
           <SubHeader title='Partners' />
           <Partners />
         </div>
