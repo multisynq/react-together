@@ -1,4 +1,3 @@
-import { Button } from 'primereact/button'
 import { useState } from 'react'
 
 const faqInfo = [
@@ -35,6 +34,38 @@ const faqInfo = [
     question: 'Can I bring a guest to the event?',
     answer: 'No. All attendees must apply to the event individually.',
   },
+  {
+    question: "I was selected but can't attend the event, what do I do?",
+    answer:
+      'Please let us know. Spots are limited and it would be nice if another candidate could go instead. (but no, you cannot choose who that candidate might be).',
+  },
+  {
+    question: 'What can I build during the event?',
+    answer:
+      'You are allowed to work on any idea you are excited about as long as it is building on top of React Together. This means, the event is open-ended and you are not required to solve any particular problem. Our goal is to help you bring a project you’re excited about to life by providing you with technical help, mentorship, and resources.',
+  },
+  {
+    question: 'Can I start working on my project before the hackathon begins?',
+    answer:
+      "To ensure fairness, participants should not work on their hackathon projects before the event begins. While teams with existing projects may still participate, they won't be eligible for any prize. However, we encourage all attendees to familiarize themselves with React Together and any other tools they plan to use during the hackathon beforehand.",
+  },
+  {
+    question: 'When will the schedule be available?',
+    answer: 'A detailed schedule will be available closer to the event, on our website and in the Hackathon page.',
+  },
+  {
+    question: 'Do I need a team to participate?',
+    answer:
+      'No, not at all. All participants must register as an individual and optionally form a team after registering, using the hackathon platform. Instructions will be provided after the registration process is complete.',
+  },
+  {
+    question: 'I am interested in partnering, what do I do?',
+    answer: 'If you are interested in becoming a partner or sponsoring HackTogether, please contact us at hacktogether@mlutisynq.io.',
+  },
+  {
+    question: 'Still have questions?',
+    answer: 'Please reach out to us via email (hacktogether@multisynq.io)',
+  },
 ]
 
 function FAQPanel({ question, answer }: { question: string; answer: string }) {
@@ -47,12 +78,15 @@ function FAQPanel({ question, answer }: { question: string; answer: string }) {
   return (
     <div>
       <div
-        className={`flex flex-col rounded-2xl overflow-hidden  shadow-lineStyleMedium ${isVisible ? 'bg-indigo-600' : 'bg-indigo-200'} border border-gray-800`}
+        className={`flex flex-col rounded-2xl overflow-hidden  shadow-lineStyleDark ${isVisible ? 'bg-indigo-600' : 'bg-indigo-200'} border border-gray-800`}
       >
-        <div className='flex justify-between items-center px-4 py-1'>
-          <span className={`text-2xl tracking-tight font-poppins ${isVisible ? 'text-white' : 'text-black'}`}>{question}</span>
-          <Button icon={isVisible ? 'pi pi-minus' : 'pi pi-plus'} rounded text aria-label='Toggle' onClick={toggleParagraph} />
-        </div>
+        <button
+          onClick={toggleParagraph}
+          className={`flex hover:bg-indigo-300 px-4 py-3 ${isVisible ? 'bg-indigo-600' : 'bg-indigo-200'} gap-4 justify-between`}
+        >
+          <span className={`text-2xl tracking-tight text-left font-poppins ${isVisible ? 'text-white' : 'text-black'}`}>{question}</span>
+          <span className='text-2xl'>{isVisible ? '-' : '+'}</span>
+        </button>
         <div className={`flex self-stretch ${!isVisible ? 'hidden' : 'block'} p-1 bg-indigo-50 px-5 pt-3 pb-5`}>
           <p className='text-lg'>{answer}</p>
         </div>
