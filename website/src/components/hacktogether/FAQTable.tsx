@@ -79,7 +79,7 @@ function FAQPanel({ question, answer }: { question: string; answer: string }) {
     <div className={`flex flex-col gap-3`}>
       <button
         onClick={toggleParagraph}
-        className={`rounded-xl flex hover:bg-indigo-300 px-4 py-3 ${isVisible ? 'bg-indigo-600' : 'bg-indigo-200'} gap-4 justify-between shadow-lineStyleDark ${isVisible ? 'bg-indigo-600 text-white' : 'bg-indigo-200 text-black'} border border-gray-800`}
+        className={`rounded-xl flex hover:bg-indigo-500 px-4 py-3 gap-4 justify-between shadow-lineStyleDark ${isVisible ? 'bg-indigo-100 text-black font-semibold' : 'bg-indigo-600 text-white'} border border-gray-800`}
       >
         <span className={`text-lg md:text-xl tracking-tight text-left font-poppins `}>{question}</span>
         <span className='text-lg md:text-xl'>{isVisible ? '-' : '+'}</span>
