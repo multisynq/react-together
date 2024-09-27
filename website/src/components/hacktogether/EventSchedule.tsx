@@ -9,10 +9,10 @@ const fridaySchedule: Event[] = [
   { time: '11:00', event: 'Hackathon Officially Begins' },
   { time: '13:00 - 14:00', event: 'Lunch Break (Hacking Continues)' },
   { time: '20:00 - 21:00', event: 'Dinner Break (Hacking Continues)' },
+  { time: '23:59', event: 'Midnight Motivational Break' },
 ]
 
 const saturdaySchedule: Event[] = [
-  { time: '00:00', event: 'Midnight Motivational Break' },
   { time: '08:00', event: 'Breakfast Served' },
   { time: '09:00 - 10:00', event: 'Preparation for Pitches' },
   { time: '10:00 - 12:30', event: 'Initial Round of Pitches and Evaluation' },
@@ -59,8 +59,8 @@ export default function EventSchedule() {
         November 2024
       </h3>
       <div className='flex gap-2 pt-4'>
-        <DailyEvent day={{ name: 'Saturday', number: '11' }} schedule={fridaySchedule} color='bg-orange-300' />
-        <DailyEvent day={{ name: 'Sunday', number: '12' }} schedule={saturdaySchedule} color='bg-yellow-300' />
+        <DailyEvent day={{ name: 'Saturday', number: '9' }} schedule={fridaySchedule} color='bg-orange-300' />
+        <DailyEvent day={{ name: 'Sunday', number: '10' }} schedule={saturdaySchedule} color='bg-yellow-300' />
       </div>
     </div>
   )
