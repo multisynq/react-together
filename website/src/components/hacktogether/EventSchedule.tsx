@@ -25,7 +25,7 @@ const saturdaySchedule: Event[] = [
 
 function EventContainer({ time, event }: Event) {
   return (
-    <div className='flex flex-col bg-white p-2 gap-2 px-4 py-2 rounded-xl border border-gray-800 shadow-lineStyleDark'>
+    <div role='listitem' className='flex flex-col bg-white p-2 gap-2 px-4 py-2 rounded-xl border border-gray-800 shadow-lineStyleDark'>
       <span className='font-poppins font-bold'>{`@ ${time}`}</span>
       <span className='font-poppins'>{event}</span>
     </div>
@@ -36,16 +36,18 @@ function DailyEvent({ day, schedule, color }: { day: { name: string; number: str
   return (
     <section className={`w-1/2 flex flex-col gap-2 px-4 py-2 border border-gray-800 rounded-2xl shadow-lineStyleDark ${color}`}>
       <div className='flex flex-col gap-0'>
-        <h4 className='' style={{ fontFamily: 'poppins', padding: '0', margin: '0', fontSize: '32px' }}>
+        <h4 id={`${day.name} ${day.number}-schedule`} style={{ fontFamily: 'poppins', padding: '0', margin: '0', fontSize: '32px' }}>
           {day.name}
         </h4>
         <label className='' style={{ fontFamily: 'poppins', padding: '0', margin: '0', fontSize: '32px' }}>
           {day.number}
         </label>
       </div>
-      {schedule.map((e, index) => (
-        <EventContainer key={index} time={e.time} event={e.event} />
-      ))}
+      <div role='list' className='flex flex-col gap-2'>
+        {schedule.map((e, index) => (
+          <EventContainer key={index} time={e.time} event={e.event} />
+        ))}
+      </div>
     </section>
   )
 }
@@ -53,7 +55,9 @@ function DailyEvent({ day, schedule, color }: { day: { name: string; number: str
 export default function EventSchedule() {
   return (
     <div className='flex flex-col w-full px-4 mb-[2rem] sm:mb-[4rem]'>
-      <h3 style={{ fontFamily: 'poppins', fontSize: '2rem' }}>November 2024</h3>
+      <h3 className='mb-2' style={{ fontFamily: 'poppins', fontSize: '2rem' }} id='Novemeber 2024 Event'>
+        November 2024
+      </h3>
       <div className='flex gap-2 pt-4'>
         <DailyEvent day={{ name: 'Saturday', number: '11' }} schedule={fridaySchedule} color='bg-orange-300' />
         <DailyEvent day={{ name: 'Sunday', number: '12' }} schedule={saturdaySchedule} color='bg-yellow-300' />
