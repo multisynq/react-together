@@ -66,30 +66,56 @@ function TableContent({ title, description }) {
 
 export default function InfoTable() {
   return (
-    <div className='flex flex-col gap-[3rem] md:flex-row mt-[2rem]'>
-      <div className='px-4'>
-        {/* <div>
-          <span className='font-semibold text-2xl tracking-tight text-center md:text-left md:text-3xl'>
-            Get ready to reshape the internet at HackTogether!
-          </span>
-        </div> */}
-        <div>
-          <span className='mt-3 font-light'>
-            {/* {`Join us for a weekend of fun and hackinghacking! `} */}
-            Discover the power of ReactTogether and build interactive web experiences. This hackathon is your opportunity to
-            <span className='font-bold'> reimagine the internet</span> as we know it.
-            <HashLink smooth to='#register'>
-              <span className='font-bold text-blue-600'>{' Sign up '}</span>
-            </HashLink>
-            now and let's revolutionize the internet... Together!
-          </span>
+    <div className='mb-[2rem]'>
+      {/* Sticky Header */}
+      <div className='flex flex-col gap-8 md:flex-row mt-8'>
+        {/* Left column with sticky content */}
+        <div className='w-full md:w-1/3'>
+          <div className='sticky top-[60px] p-4 bg-lime-100 border border-gray-800 rounded-xl shadow-lineStyleDark'>
+            <div>
+              <span className='mt-3 font-light '>
+                {/* {`Join us for a weekend of fun and hackinghacking! `} */}
+                Discover the power of ReactTogether and build interactive web experiences. This hackathon is your opportunity to
+                <span className='font-bold'> reimagine the internet</span> as we know it.
+                <HashLink smooth to='#register'>
+                  <span className='font-bold text-blue-600'>{' Sign up '}</span>
+                </HashLink>
+                now and let's revolutionize the internet... Together!
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className='flex flex-col border border-neutral-800 rounded-xl overflow-hidden shadow-lineStyleDark'>
-        {tableInfo.map((info, index) => (
-          <TableContent key={index} title={info.title} description={info.description} />
-        ))}
+
+        {/* Main content (scrollable) */}
+        <div className='w-full md:w-2/3 p-4'>
+          <div className='flex flex-col border border-neutral-800 rounded-xl overflow-hidden shadow-lineStyleDark'>
+            {tableInfo.map((info, index) => (
+              <TableContent key={index} title={info.title} description={info.description} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
 }
+
+// ;<div className='flex flex-col gap-[3rem] md:flex-row mt-[2rem]'>
+//   <div className='px-4'>
+//     <div>
+//       <span className='mt-3 font-light'>
+//         {/* {`Join us for a weekend of fun and hackinghacking! `} */}
+//         Discover the power of ReactTogether and build interactive web experiences. This hackathon is your opportunity to
+//         <span className='font-bold'> reimagine the internet</span> as we know it.
+//         <HashLink smooth to='#register'>
+//           <span className='font-bold text-blue-600'>{' Sign up '}</span>
+//         </HashLink>
+//         now and let's revolutionize the internet... Together!
+//       </span>
+//     </div>
+//   </div>
+//   <div className='flex flex-col border border-neutral-800 rounded-xl overflow-hidden shadow-lineStyleDark'>
+//     {tableInfo.map((info, index) => (
+//       <TableContent key={index} title={info.title} description={info.description} />
+//     ))}
+//   </div>
+// </div>
