@@ -1,7 +1,7 @@
 import multisynqLogo from '@images/blue.png'
 import gamingHubLogo from '@images/gaming_hub_logo.jpg'
 import hackerSchoolLogo from '@images/hackerschool_logo.png'
-import neetiLogo from '@images/neeti_logo.jpeg'
+import neetiLogo from '@images/neeti_logo.jpg'
 
 interface PartnerIconProps {
   src: string
