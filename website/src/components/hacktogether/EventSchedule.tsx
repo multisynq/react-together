@@ -4,23 +4,21 @@ interface Event {
 }
 
 const fridaySchedule: Event[] = [
-  { time: '09:00 - 10:30', event: 'Check-in & Team formation' },
-  { time: '10:45 - 11:00', event: 'Welcome Address & Event Kickoff' },
-  { time: '11:00', event: 'Hackathon Officially Begins' },
-  { time: '13:00 - 14:00', event: 'Lunch Break (Hacking Continues)' },
-  { time: '20:00 - 21:00', event: 'Dinner Break (Hacking Continues)' },
+  { time: '09:00 - 11:30', event: 'Check-in & Team formation' },
+  { time: '11:30 - 12:00', event: 'Welcome Address & Event Kickoff' },
+  { time: '12:00', event: 'Hacking Begins!!' },
+  { time: '12:30 - 13:30', event: 'Lunch' },
+  { time: '19:30 - 22:00', event: 'Dinner' },
   { time: '23:59', event: 'Midnight Motivational Break' },
 ]
 
 const saturdaySchedule: Event[] = [
-  { time: '08:00', event: 'Breakfast Served' },
-  { time: '09:00 - 10:00', event: 'Preparation for Pitches' },
-  { time: '10:00 - 12:30', event: 'Initial Round of Pitches and Evaluation' },
-  { time: '12:30 - 13:30', event: 'Lunch Break and Judges Deliberation' },
-  { time: '13:30 - 15:00', event: 'Final Round of Pitches (Top Teams)' },
-  { time: '15:00 - 15:30', event: 'Judges Final Deliberation' },
-  { time: '15:30 - 16:30', event: 'Closing Ceremony' },
-  { time: '16:30 - 17:00', event: 'Networking and Wrap-up' },
+  { time: '07:00 - 09:00', event: 'Breakfast' },
+  { time: '12:00', event: 'Hacking Ends!!' },
+  { time: '12:00 - 14:00', event: 'Pitch and video preparations' },
+  { time: '14:00 - 17:00', event: 'Project Judging' },
+  { time: '17:00 - 18:00', event: 'Closing Ceremony' },
+  { time: '18:00 - 19:30', event: 'After Party' },
 ]
 
 function EventContainer({ time, event }: Event) {
