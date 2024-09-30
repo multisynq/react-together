@@ -5,6 +5,7 @@ import InfoTable from '@components/hacktogether/InfoTable'
 import IntroBanner from '@components/hacktogether/IntroBanner'
 import Partners from '@components/hacktogether/Partners'
 import RegistrationForm from '@components/hacktogether/RegistrationForm'
+import VenueInfo from '@components/hacktogether/VenueInfo'
 
 function SubHeader({ title }: { title: string }) {
   return (
@@ -27,6 +28,8 @@ export function HackTogetherPage() {
           <InfoTable />
           <SubHeader title='Schedule' />
           <EventSchedule />
+          <SubHeader title='Venue' />
+          <VenueInfo />
           <SubHeader title='FAQ' />
           <FAQTable />
           <SubHeader title='Partners' />
