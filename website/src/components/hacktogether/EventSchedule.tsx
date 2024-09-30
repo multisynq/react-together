@@ -35,13 +35,10 @@ function DailyEvent({ day, schedule, color }: { day: { name: string; number: str
     <section className={`w-1/2 flex flex-col gap-2 px-4 py-2 border border-gray-800 rounded-2xl shadow-lineStyleDark ${color}`}>
       <div className='flex flex-col gap-0'>
         <h4 id={`${day.name} ${day.number}-schedule`} style={{ fontFamily: 'poppins', padding: '0', margin: '0', fontSize: '32px' }}>
-          {day.name}
+          {day.name} {day.number}
         </h4>
-        <label className='' style={{ fontFamily: 'poppins', padding: '0', margin: '0', fontSize: '32px' }}>
-          {day.number}
-        </label>
       </div>
-      <div role='list' className='flex flex-col gap-2'>
+      <div role='list' className='flex flex-col gap-2 my-[1.5rem]'>
         {schedule.map((e, index) => (
           <EventContainer key={index} time={e.time} event={e.event} />
         ))}
