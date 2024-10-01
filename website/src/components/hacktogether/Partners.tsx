@@ -11,7 +11,7 @@ interface PartnerIconProps {
 
 function PartnerIcon({ url, src, alt }: PartnerIconProps) {
   return (
-    <a href={url} target='_blank' rel='noopener noreferrer' className={url === null ? 'cursor-auto' : 'cursor-pointer'}>
+    <a href={url} target='_blank' rel='noopener noreferrer' className={url ? 'cursor-pointer' : 'cursor-auto'}>
       <div className='flex items-center justify-center border border-gray-800 bg-white rounded-xl w-full px-[4rem] py-[1.5rem] shadow-lineStyleDark max-w-[34rem] '>
         <div className='flex h-[6rem] w-full'>
           <div className='w-full h-full flex items-center justify-center'>
@@ -28,6 +28,7 @@ const partners = [
   {
     src: multisynqLogo,
     url: 'https://multisynq.io',
+    alt: 'Multisynq',
   },
   // Host partner
   // {
@@ -41,14 +42,16 @@ const communityPartners = [
   {
     src: neetiLogo,
     url: 'https://neeti.tecnico.ulisboa.pt/',
+    alt: 'NEETI',
   },
   {
     src: hackerSchoolLogo,
     url: 'https://linktr.ee/hackerschool_ist',
+    alt: 'Hacker School',
   },
   {
     src: gamingHubLogo,
-    url: null,
+    alt: 'Gaming Hub',
   },
   // PENDING:
   // BUL, SULX, Startup Portugal, Women in Tech Portugal, NEIIST, GameDev, 42 Lisbon, LeWagon, In-Nova, Novae, JEs todas
@@ -59,10 +62,10 @@ export default function Partners() {
     <>
       <div className='flex flex-col align-items-center justify-content-between gap-8'>
         {partners.map((p) => (
-          <PartnerIcon key={p.url} url={p.url} src={p.src} />
+          <PartnerIcon key={p.url} url={p.url} src={p.src} alt={p.alt} />
         ))}
         {communityPartners.map((p) => (
-          <PartnerIcon key={p.url} url={p.url} src={p.src} />
+          <PartnerIcon key={p.url} url={p.url} src={p.src} alt={p.alt} />
         ))}
       </div>
 
