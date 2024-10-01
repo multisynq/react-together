@@ -49,10 +49,10 @@ const faqInfo = [
     answer:
       "To ensure fairness, participants should not work on their hackathon projects before the event begins. While teams with existing projects may still participate, they won't be eligible for any prize. However, we encourage all attendees to familiarize themselves with React Together and any other tools they plan to use during the hackathon beforehand.",
   },
-  {
-    question: 'When will the schedule be available?',
-    answer: 'A detailed schedule will be available closer to the event, on our website and in the Hackathon page.',
-  },
+  // {
+  //   question: 'When will the schedule be available?',
+  //   answer: 'A detailed schedule will be available closer to the event, on our website and in the Hackathon page.',
+  // },
   {
     question: 'Do I need a team to participate?',
     answer:
