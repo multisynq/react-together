@@ -30,11 +30,30 @@ function EventContainer({ time, event }: Event) {
   )
 }
 
-function DailyEvent({ day, schedule, color }: { day: { name: string; number: string }; schedule: Event[]; color: string }) {
+function DailyEvent({
+  day,
+  schedule,
+  color,
+}: {
+  day: { name: string; number: string; shortName: string }
+  schedule: Event[]
+  color: string
+}) {
   return (
     <section className={`w-1/2 flex flex-col gap-2 px-4 py-2 border border-gray-800 rounded-2xl shadow-lineStyleDark ${color}`}>
       <div className='flex flex-col gap-0'>
-        <h4 id={`${day.name} ${day.number}-schedule`} style={{ fontFamily: 'poppins', padding: '0', margin: '0', fontSize: '32px' }}>
+        <h4
+          className='block sm:hidden'
+          id={`${day.name} ${day.number}-schedule`}
+          style={{ fontFamily: 'poppins', padding: '0', margin: '0', fontSize: '32px' }}
+        >
+          {day.shortName} {day.number}
+        </h4>
+        <h4
+          className='hidden sm:block'
+          id={`${day.name} ${day.number}-schedule`}
+          style={{ fontFamily: 'poppins', padding: '0', margin: '0', fontSize: '32px' }}
+        >
           {day.name} {day.number}
         </h4>
       </div>
@@ -54,8 +73,8 @@ export default function EventSchedule() {
         November 2024
       </h3>
       <div className='flex gap-2 pt-4'>
-        <DailyEvent day={{ name: 'Saturday', number: '9' }} schedule={fridaySchedule} color='bg-orange-300' />
-        <DailyEvent day={{ name: 'Sunday', number: '10' }} schedule={saturdaySchedule} color='bg-yellow-300' />
+        <DailyEvent day={{ name: 'Saturday', shortName: 'Sat', number: '9' }} schedule={fridaySchedule} color='bg-orange-300' />
+        <DailyEvent day={{ name: 'Sunday', shortName: 'Sun', number: '10' }} schedule={saturdaySchedule} color='bg-yellow-300' />
       </div>
     </div>
   )
