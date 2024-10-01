@@ -43,8 +43,18 @@ export default function Countdown() {
           </div>
         ))}
       </div>
-      <a href={addToCalendarUrl} target='_blank' className='font-semibold cursor-pointer'>
-        Add to your calendar!!
+      <a href={addToCalendarUrl} target='_blank' className='font-semibold cursor-pointer text-gray-900 hover:text-gray-700'>
+        <span
+          className='leading-loose'
+          style={{
+            textDecorationLine: 'underline',
+            textDecorationStyle: 'wavy',
+            textDecorationSkipInk: 'none',
+            textDecorationColor: 'blue',
+          }}
+        >
+          Add to your calendar
+        </span>
       </a>
     </div>
   )
