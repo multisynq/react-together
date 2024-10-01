@@ -2,6 +2,7 @@ import multisynqLogo from '@images/blue.png'
 import buildUpLabsLogo from '@images/build_up_labs_logo.jpg'
 import gamingHubLogo from '@images/gaming_hub_logo.jpg'
 import hackerSchoolLogo from '@images/hackerschool_logo.png'
+import hoodLogo from '@images/hood_logo.png'
 import neetiLogo from '@images/neeti_logo.jpg'
 
 interface PartnerIconProps {
@@ -30,6 +31,11 @@ const partners = [
     src: multisynqLogo,
     url: 'https://multisynq.io',
     alt: 'Multisynq',
+  },
+  {
+    src: hoodLogo,
+    url: 'https://www.hood.pt/',
+    alt: 'Hood',
   },
   // Host partner
   // {
