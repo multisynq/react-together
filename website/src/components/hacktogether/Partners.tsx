@@ -37,12 +37,6 @@ const partners = [
     url: 'https://www.hood.pt/',
     alt: 'Hood',
   },
-  // Host partner
-  // {
-  //   src: null, // We need to find a horizontal logo...
-  //   url: 'https://www.hood.pt/',
-  // },
-  // Community Partners
 ]
 
 const communityPartners = [
