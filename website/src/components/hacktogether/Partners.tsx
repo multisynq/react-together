@@ -1,4 +1,5 @@
 import multisynqLogo from '@images/blue.png'
+import buildUpLabsLogo from '@images/build_up_labs_logo.jpg'
 import gamingHubLogo from '@images/gaming_hub_logo.jpg'
 import hackerSchoolLogo from '@images/hackerschool_logo.png'
 import neetiLogo from '@images/neeti_logo.jpg'
@@ -43,6 +44,11 @@ const communityPartners = [
     src: neetiLogo,
     url: 'https://neeti.tecnico.ulisboa.pt/',
     alt: 'NEETI',
+  },
+  {
+    src: buildUpLabsLogo,
+    url: 'https://builduplabs.com/',
+    alt: 'Build Up Labs',
   },
   {
     src: hackerSchoolLogo,
