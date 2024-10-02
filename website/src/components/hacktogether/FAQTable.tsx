@@ -4,31 +4,43 @@ const faqInfo = [
   {
     question: 'What is HackTogether?',
     answer:
-      "HackTogether is a 24-hour hackathon that brings together dreamers, entrepreneurs, and developers to reimagine web interaction. Participants will focus on creating innovative solutions that enable real-time collaboration and more intuitive ways to interact online. Our goal is to push the boundaries of what's possible in web browsing and collaboration, making the internet more interactive, user-friendly, and helping people feel more connected when they're online.",
+      'HackTogether is a 24-hour hackathon that brings together dreamers, entrepreneurs, and developers to reimagine web interaction. ' +
+      'Participants will focus on creating innovative solutions that enable real-time collaboration and more intuitive ways to interact online. ' +
+      "Our goal is to push the boundaries of what's possible in web browsing and collaboration, making the internet more interactive, user-friendly, and helping people feel more connected when they're online.",
   },
   {
     question: 'Who can attend HackTogether?',
     answer:
-      'HackTogether is targeted at creative minds with a hacker spirit (in the classical definition of the word). Anyone with a technical or non-technical profile can apply. In essence, all of those wanting to reimagine and reshape how we interact online are welcome to apply. Applications will be reviewed and approved by the organization.',
+      'HackTogether is targeted at creative minds with a hacker spirit (in the classical definition of the word). ' +
+      'Anyone with a technical or non-technical profile can apply. ' +
+      'In essence, all of those wanting to reimagine and reshape how we interact online are welcome to apply. ' +
+      'Applications will be reviewed and approved by the organization.',
   },
   {
     question: 'How are applicants selected?',
     answer:
-      "HackTogether curators aim at selecting the best, most participative and motivated, creators and visionaries. For this they rely on what candidates fill in their profiles (their pitches and personal bios). CVs don't matter, please don't paste full CVs as an application pitch. What matters is your potential and your passion for technology, no matter your level of experience.",
+      'HackTogether curators aim at selecting the best, most participative and motivated, creators and visionaries. ' +
+      'For this they rely on what candidates fill in their profiles (their pitches and personal bios). ' +
+      "CVs don't matter, please don't paste full CVs as an application pitch. " +
+      'What matters is your potential and your passion for technology, no matter your level of experience.',
   },
   {
     question: 'How much does it cost?',
-    answer: 'HackTogether is free for all selected candidates.',
+    answer: 'HackTogether is free for all selected participants.',
   },
   {
     question: 'Is there food and beverages at the event?',
     answer:
-      "Food and drinks will be provided free for all attendees. We'll be providing lunch and there will be random snacks and beverages available 24/7. We will also provide dinner for all hackers.",
+      'Food and drinks will be provided free for all attendees. ' +
+      "We'll be providing lunch and there will be random snacks and beverages available 24/7. " +
+      'We will also provide dinner for all hackers.',
   },
   {
-    question: 'Will I be able to sleep at the venue for IRL events?',
+    question: 'Will I be able to sleep at the venue?',
     answer:
-      'Our hackathon limited, first-come, first-serve spaces where attendees can sleep, but keep in mind that this will not be the most comfortable place to sleep. And there will not be any showering facilities at our events.',
+      'Yes! We have a limited number of spaces available on a first-come, first-served basis for attendees who want to stay overnight. ' +
+      "Bring your sleeping bag, and if you'd like to be even more comfortable, feel free to bring a small mattress. " +
+      "We also offer shower facilities, so don't forget to pack your hygiene essentials.",
   },
   {
     question: 'Can I bring a guest to the event?',
@@ -37,17 +49,23 @@ const faqInfo = [
   {
     question: 'What can I build during the event?',
     answer:
-      'You are allowed to work on any idea you are excited about as long as it is building on top of React Together. This means, the event is open-ended and you are not required to solve any particular problem. Our goal is to help you bring a project you’re excited about to life by providing you with technical help, mentorship, and resources.',
+      'You are allowed to work on any idea you are excited about as long as it is building on top of React Together. ' +
+      'This means, the event is open-ended and you are not required to solve any particular problem. ' +
+      'Our goal is to help you bring a project you’re excited about to life by providing you with technical help, mentorship, and resources.',
   },
   {
     question: "I was selected but can't attend the event, what do I do?",
     answer:
-      'Please let us know. Spots are limited and it would be nice if another candidate could go instead. (but no, you cannot choose who that candidate might be).',
+      'Please let us know. ' +
+      'Spots are limited and it would be nice if another candidate could go instead. ' +
+      '(but no, you cannot choose who that candidate might be).',
   },
   {
     question: 'Can I start working on my project before the event begins?',
     answer:
-      "To ensure fairness, participants should not work on their hackathon projects before the event begins. While teams with existing projects may still participate, they won't be eligible for any prize. However, we encourage all attendees to familiarize themselves with React Together and any other tools they plan to use during the hackathon beforehand.",
+      'To ensure fairness, participants should not work on their hackathon projects before the event begins. ' +
+      "While teams with existing projects may still participate, they won't be eligible for any prize. " +
+      'However, we encourage all attendees to familiarize themselves with React Together and any other tools they plan to use during the hackathon beforehand.',
   },
   // {
   //   question: 'When will the schedule be available?',
@@ -56,7 +74,9 @@ const faqInfo = [
   {
     question: 'Do I need a team to participate?',
     answer:
-      'No, not at all. All participants must register as an individual and optionally form a team after registering, using the hackathon platform. Instructions will be provided after the registration process is complete.',
+      'No, not at all. ' +
+      'All participants must register as an individual and optionally form a team after registering, using the hackathon platform. ' +
+      'Instructions will be provided after the registration process is complete.',
   },
   {
     question: 'I am interested in partnering, what do I do?',
