@@ -3,7 +3,7 @@ import buildUpLabsLogo from '@images/build_up_labs_logo.jpg'
 import gamingHubLogo from '@images/gaming_hub_logo.jpg'
 import hackerSchoolLogo from '@images/hackerschool_logo.png'
 import hoodLogo from '@images/hood_logo.png'
-import neetiLogo from '@images/neeti_logo.jpg'
+import neetiLogo from '@images/neeti_logo.png'
 import novaeLogo from '@images/novae_logo.svg'
 import uflLogo from '@images/unicornfactorylisboa_logo.png'
 
