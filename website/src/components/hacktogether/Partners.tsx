@@ -4,6 +4,8 @@ import gamingHubLogo from '@images/gaming_hub_logo.jpg'
 import hackerSchoolLogo from '@images/hackerschool_logo.png'
 import hoodLogo from '@images/hood_logo.png'
 import neetiLogo from '@images/neeti_logo.jpg'
+import novaeLogo from '@images/novae_logo.svg'
+import uflLogo from '@images/unicornfactorylisboa_logo.png'
 
 interface PartnerIconProps {
   src: string
@@ -51,16 +53,26 @@ const communityPartners = [
     alt: 'Build Up Labs',
   },
   {
-    src: hackerSchoolLogo,
-    url: 'https://linktr.ee/hackerschool_ist',
-    alt: 'Hacker School',
+    src: uflLogo,
+    url: 'https://unicornfactorylisboa.com/',
+    alt: 'Unicorn Factory Lisboa',
   },
   {
     src: gamingHubLogo,
     alt: 'Gaming Hub',
   },
+  {
+    src: hackerSchoolLogo,
+    url: 'https://linktr.ee/hackerschool_ist',
+    alt: 'Hacker School',
+  },
+  {
+    src: novaeLogo,
+    url: 'https://linktr.ee/unovae',
+    alt: 'NOVAe',
+  },
   // PENDING:
-  // BUL, SULX, Startup Portugal, Women in Tech Portugal, NEIIST, GameDev, 42 Lisbon, LeWagon, In-Nova, Novae, JEs todas
+  // SULX, Startup Portugal, Women in Tech Portugal, NEIIST, GameDev, 42 Lisbon, LeWagon, JEs todas
 ]
 
 export default function Partners() {
