@@ -1,11 +1,14 @@
+import _351Logo from '@images/351_logo.png'
 import multisynqLogo from '@images/blue.png'
 import buildUpLabsLogo from '@images/build_up_labs_logo.jpg'
 import gamingHubLogo from '@images/gaming_hub_logo.jpg'
 import hackerSchoolLogo from '@images/hackerschool_logo.png'
 import hoodLogo from '@images/hood_logo.png'
+import leWagonLogo from '@images/lewagon_logo.png'
 import neetiLogo from '@images/neeti_logo.png'
 import novaeLogo from '@images/novae_logo.svg'
 import uflLogo from '@images/unicornfactorylisboa_logo.png'
+import womenInTechLogo from '@images/womenInTech_logo.png'
 
 interface PartnerIconProps {
   src: string
@@ -43,6 +46,11 @@ const partners = [
 
 const communityPartners = [
   {
+    src: _351Logo,
+    url: 'https://351startups.com/',
+    alt: '351 Portuguese Startup Association',
+  },
+  {
     src: neetiLogo,
     url: 'https://neeti.tecnico.ulisboa.pt/',
     alt: 'NEETI',
@@ -51,6 +59,16 @@ const communityPartners = [
     src: buildUpLabsLogo,
     url: 'https://builduplabs.com/',
     alt: 'Build Up Labs',
+  },
+  {
+    src: womenInTechLogo,
+    url: 'https://www.womenintech.pt/',
+    alt: 'Women in Tech Portugal',
+  },
+  {
+    src: leWagonLogo,
+    url: 'https://www.lewagon.com/lisbon',
+    alt: 'Le Wagon',
   },
   {
     src: uflLogo,
