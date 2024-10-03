@@ -16,10 +16,24 @@ interface PartnerIconProps {
 function PartnerIcon({ url, src, alt }: PartnerIconProps) {
   return (
     <a href={url} target='_blank' rel='noopener noreferrer' className={url ? 'cursor-pointer' : 'cursor-auto'}>
-      <div className='flex items-center justify-center border border-gray-800 bg-white rounded-xl w-full px-[4rem] py-[1.5rem] shadow-lineStyleDark max-w-[34rem] '>
+      <div className='flex items-center justify-center border border-gray-800 bg-white rounded-xl w-full px-[4rem] py-[1.5rem] shadow-lineStyleDark'>
         <div className='flex h-[6rem] w-full'>
           <div className='w-full h-full flex items-center justify-center'>
             <img src={src} alt={alt} className='h-[4rem] w-auto object-contain' />
+          </div>
+        </div>
+      </div>
+    </a>
+  )
+}
+
+function CommunityPartnerIcon({ url, src, alt }: PartnerIconProps) {
+  return (
+    <a href={url} target='_blank' rel='noopener noreferrer' className={url ? 'cursor-pointer' : 'cursor-auto'}>
+      <div className='flex items-center justify-center border border-gray-800 bg-white rounded-xl w-full px-[1.5rem] py-[2.5rem] shadow-lineStyleDark'>
+        <div className='flex w-full'>
+          <div className='w-full h-full flex items-center justify-center'>
+            <img src={src} alt={alt} className='h-[3rem] w-auto object-contain' />
           </div>
         </div>
       </div>
@@ -82,9 +96,16 @@ export default function Partners() {
         {partners.map((p) => (
           <PartnerIcon key={p.url} url={p.url} src={p.src} alt={p.alt} />
         ))}
-        {communityPartners.map((p) => (
-          <PartnerIcon key={p.url} url={p.url} src={p.src} alt={p.alt} />
-        ))}
+        <div className='flex flex-col gap-8'>
+          <div className='flex w-full'>
+            <span className='text-3xl font-poppins font-semibold mt-4'>Community</span>
+          </div>
+          <div className='grid grid-cols-2 gap-4 sm:gap-8'>
+            {communityPartners.map((p) => (
+              <CommunityPartnerIcon key={p.url} url={p.url} src={p.src} alt={p.alt} />
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className='text-center text-sm mt-8'>
