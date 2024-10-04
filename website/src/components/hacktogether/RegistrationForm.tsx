@@ -86,7 +86,7 @@ export default function RegistrationForm() {
             </div>
             <div className='w-full px-2 flex items-center '>
               <p className='text-md tracking-tight md:text-left font-poppins text-gray-500 font-light'>
-                Registrations open on October 4th, 2024.
+                Registrations open on October 7th, 2024.
               </p>
             </div>
             {/* <div className='w-full mt-2'>
