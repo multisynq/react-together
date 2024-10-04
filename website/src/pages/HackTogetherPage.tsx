@@ -4,7 +4,6 @@ import FAQTable from '@components/hacktogether/FAQTable'
 import InfoTable from '@components/hacktogether/InfoTable'
 import IntroBanner from '@components/hacktogether/IntroBanner'
 import Partners from '@components/hacktogether/Partners'
-import RegistrationForm from '@components/hacktogether/RegistrationForm'
 import VenueInfo from '@components/hacktogether/VenueInfo'
 
 function SubHeader({ title }: { title: string }) {
@@ -23,7 +22,6 @@ export function HackTogetherPage() {
         <div className='w-full  px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[0rem] max-w-[60rem] flex items-center justify-center py-[3rem] flex-col'>
           <SubHeader title='Build the web of tomorrow' />
           <IntroBanner />
-          <RegistrationForm />
           <SubHeader title='About the event ...' />
           <InfoTable />
           <SubHeader title='Schedule' />
