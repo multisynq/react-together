@@ -30,10 +30,10 @@ export function HackTogetherPage() {
           <EventSchedule />
           <SubHeader title='Venue' />
           <VenueInfo />
-          <SubHeader title='FAQ' />
-          <FAQTable />
           <SubHeader title='Partners' />
           <Partners />
+          <SubHeader title='FAQ' />
+          <FAQTable />
         </div>
       </div>
     </div>

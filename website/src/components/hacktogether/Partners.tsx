@@ -7,6 +7,7 @@ import hoodLogo from '@images/hood_logo.png'
 import leWagonLogo from '@images/lewagon_logo.png'
 import neetiLogo from '@images/neeti_logo.png'
 import novaeLogo from '@images/novae_logo.svg'
+import startupPortugalLogo from '@images/startupportugal_logo.svg'
 import uflLogo from '@images/unicornfactorylisboa_logo.png'
 import womenInTechLogo from '@images/womenInTech_logo.png'
 
@@ -75,14 +76,29 @@ const communityPartners = [
     alt: 'Build Up Labs',
   },
   {
+    src: leWagonLogo,
+    url: 'https://www.lewagon.com/lisbon',
+    alt: 'Le Wagon',
+  },
+  {
+    src: startupPortugalLogo,
+    url: 'https://startupportugal.com/',
+    alt: 'Startup Portugal',
+  },
+  {
+    src: hackerSchoolLogo,
+    url: 'https://linktr.ee/hackerschool_ist',
+    alt: 'Hacker School',
+  },
+  {
     src: womenInTechLogo,
     url: 'https://www.womenintech.pt/',
     alt: 'Women in Tech Portugal',
   },
   {
-    src: leWagonLogo,
-    url: 'https://www.lewagon.com/lisbon',
-    alt: 'Le Wagon',
+    src: novaeLogo,
+    url: 'https://linktr.ee/unovae',
+    alt: 'NOVAe',
   },
   {
     src: uflLogo,
@@ -92,16 +108,6 @@ const communityPartners = [
   {
     src: gamingHubLogo,
     alt: 'Gaming Hub',
-  },
-  {
-    src: hackerSchoolLogo,
-    url: 'https://linktr.ee/hackerschool_ist',
-    alt: 'Hacker School',
-  },
-  {
-    src: novaeLogo,
-    url: 'https://linktr.ee/unovae',
-    alt: 'NOVAe',
   },
   // PENDING:
   // SULX, Startup Portugal, Women in Tech Portugal, NEIIST, GameDev, 42 Lisbon, LeWagon, JEs todas
