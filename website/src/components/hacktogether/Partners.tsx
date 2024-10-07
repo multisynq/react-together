@@ -1,4 +1,5 @@
 import _351Logo from '@images/351_logo.png'
+import _42LisbonLogo from '@images/42Lisboa_logo.svg'
 import multisynqLogo from '@images/blue.png'
 import buildUpLabsLogo from '@images/build_up_labs_logo.jpg'
 import gamingHubLogo from '@images/gaming_hub_logo.jpg'
@@ -86,9 +87,9 @@ const communityPartners = [
     alt: 'Startup Portugal',
   },
   {
-    src: hackerSchoolLogo,
-    url: 'https://linktr.ee/hackerschool_ist',
-    alt: 'Hacker School',
+    src: _42LisbonLogo,
+    url: 'https://www.42lisboa.com',
+    alt: '42 Lisbon',
   },
   {
     src: womenInTechLogo,
@@ -104,6 +105,11 @@ const communityPartners = [
     src: uflLogo,
     url: 'https://unicornfactorylisboa.com/',
     alt: 'Unicorn Factory Lisboa',
+  },
+  {
+    src: hackerSchoolLogo,
+    url: 'https://linktr.ee/hackerschool_ist',
+    alt: 'Hacker School',
   },
   {
     src: gamingHubLogo,
