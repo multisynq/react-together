@@ -7,8 +7,10 @@ import growincLogo from '@images/growinc_logo.png'
 import hackerSchoolLogo from '@images/hackerschool_logo.png'
 import hoodLogo from '@images/hood_logo.png'
 import leWagonLogo from '@images/lewagon_logo.png'
+import moveToFundaoLogo from '@images/moveToFundao.jpg'
 import neetiLogo from '@images/neeti_logo.png'
 import novaeLogo from '@images/novae_logo.svg'
+import starJeLogo from '@images/starJe_logo.png'
 import startupPortugalLogo from '@images/startupportugal_logo.svg'
 import techstarsStartupDigestLogo from '@images/techstarsStartupDigest_logo.jpg'
 import uflLogo from '@images/unicornfactorylisboa_logo.png'
@@ -74,9 +76,9 @@ const communityPartners = [
     alt: 'NEETI',
   },
   {
-    src: techstarsStartupDigestLogo,
-    url: 'https://read.letterhead.email/techstars-portugal',
-    alt: 'Techstars Startup Digest Portugal',
+    src: startupPortugalLogo,
+    url: 'https://startupportugal.com/',
+    alt: 'Startup Portugal',
   },
   {
     src: leWagonLogo,
@@ -84,9 +86,9 @@ const communityPartners = [
     alt: 'Le Wagon',
   },
   {
-    src: buildUpLabsLogo,
-    url: 'https://builduplabs.com/',
-    alt: 'Build Up Labs',
+    src: techstarsStartupDigestLogo,
+    url: 'https://read.letterhead.email/techstars-portugal',
+    alt: 'Techstars Startup Digest Portugal',
   },
   {
     src: _42LisbonLogo,
@@ -94,9 +96,9 @@ const communityPartners = [
     alt: '42 Lisbon',
   },
   {
-    src: startupPortugalLogo,
-    url: 'https://startupportugal.com/',
-    alt: 'Startup Portugal',
+    src: womenInTechLogo,
+    url: 'https://www.womenintech.pt/',
+    alt: 'Women in Tech Portugal',
   },
   {
     src: novaeLogo,
@@ -104,19 +106,24 @@ const communityPartners = [
     alt: 'NOVAe',
   },
   {
-    src: womenInTechLogo,
-    url: 'https://www.womenintech.pt/',
-    alt: 'Women in Tech Portugal',
+    src: buildUpLabsLogo,
+    url: 'https://builduplabs.com/',
+    alt: 'Build Up Labs',
   },
   {
-    src: hackerSchoolLogo,
-    url: 'https://linktr.ee/hackerschool_ist',
-    alt: 'Hacker School',
+    src: starJeLogo,
+    url: 'https://starje.pt/',
+    alt: 'STAR Júnior Enterprise',
   },
   {
     src: growincLogo,
     url: 'https://www.growinc.io/lis',
     alt: 'grow.inc SPACES Lisbon',
+  },
+  {
+    src: hackerSchoolLogo,
+    url: 'https://linktr.ee/hackerschool_ist',
+    alt: 'Hacker School',
   },
   {
     src: uflLogo,
@@ -126,6 +133,11 @@ const communityPartners = [
   {
     src: gamingHubLogo,
     alt: 'Gaming Hub',
+  },
+  {
+    src: moveToFundaoLogo,
+    url: 'https://movetofundao.pt/',
+    alt: 'Move to Fundão',
   },
   // PENDING:
   // SULX, Startup Portugal, Women in Tech Portugal, NEIIST, GameDev, 42 Lisbon, LeWagon, JEs todas
