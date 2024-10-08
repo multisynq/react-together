@@ -3,6 +3,7 @@ import _42LisbonLogo from '@images/42Lisboa_logo.svg'
 import multisynqLogo from '@images/blue.png'
 import buildUpLabsLogo from '@images/build_up_labs_logo.jpg'
 import gamingHubLogo from '@images/gaming_hub_logo.jpg'
+import growincLogo from '@images/growinc_logo.png'
 import hackerSchoolLogo from '@images/hackerschool_logo.png'
 import hoodLogo from '@images/hood_logo.png'
 import leWagonLogo from '@images/lewagon_logo.png'
@@ -102,14 +103,19 @@ const communityPartners = [
     alt: 'NOVAe',
   },
   {
-    src: uflLogo,
-    url: 'https://unicornfactorylisboa.com/',
-    alt: 'Unicorn Factory Lisboa',
+    src: growincLogo,
+    url: 'https://www.growinc.io/lis',
+    alt: 'grow.inc SPACES Lisbon',
   },
   {
     src: hackerSchoolLogo,
     url: 'https://linktr.ee/hackerschool_ist',
     alt: 'Hacker School',
+  },
+  {
+    src: uflLogo,
+    url: 'https://unicornfactorylisboa.com/',
+    alt: 'Unicorn Factory Lisboa',
   },
   {
     src: gamingHubLogo,
