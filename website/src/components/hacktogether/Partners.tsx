@@ -10,6 +10,7 @@ import leWagonLogo from '@images/lewagon_logo.png'
 import neetiLogo from '@images/neeti_logo.png'
 import novaeLogo from '@images/novae_logo.svg'
 import startupPortugalLogo from '@images/startupportugal_logo.svg'
+import techstarsStartupDigestLogo from '@images/techstarsStartupDigest_logo.jpg'
 import uflLogo from '@images/unicornfactorylisboa_logo.png'
 import womenInTechLogo from '@images/womenInTech_logo.png'
 
@@ -73,9 +74,9 @@ const communityPartners = [
     alt: 'NEETI',
   },
   {
-    src: buildUpLabsLogo,
-    url: 'https://builduplabs.com/',
-    alt: 'Build Up Labs',
+    src: techstarsStartupDigestLogo,
+    url: 'https://read.letterhead.email/techstars-portugal',
+    alt: 'Techstars Startup Digest Portugal',
   },
   {
     src: leWagonLogo,
@@ -83,9 +84,9 @@ const communityPartners = [
     alt: 'Le Wagon',
   },
   {
-    src: startupPortugalLogo,
-    url: 'https://startupportugal.com/',
-    alt: 'Startup Portugal',
+    src: buildUpLabsLogo,
+    url: 'https://builduplabs.com/',
+    alt: 'Build Up Labs',
   },
   {
     src: _42LisbonLogo,
@@ -93,9 +94,9 @@ const communityPartners = [
     alt: '42 Lisbon',
   },
   {
-    src: womenInTechLogo,
-    url: 'https://www.womenintech.pt/',
-    alt: 'Women in Tech Portugal',
+    src: startupPortugalLogo,
+    url: 'https://startupportugal.com/',
+    alt: 'Startup Portugal',
   },
   {
     src: novaeLogo,
@@ -103,14 +104,19 @@ const communityPartners = [
     alt: 'NOVAe',
   },
   {
-    src: growincLogo,
-    url: 'https://www.growinc.io/lis',
-    alt: 'grow.inc SPACES Lisbon',
+    src: womenInTechLogo,
+    url: 'https://www.womenintech.pt/',
+    alt: 'Women in Tech Portugal',
   },
   {
     src: hackerSchoolLogo,
     url: 'https://linktr.ee/hackerschool_ist',
     alt: 'Hacker School',
+  },
+  {
+    src: growincLogo,
+    url: 'https://www.growinc.io/lis',
+    alt: 'grow.inc SPACES Lisbon',
   },
   {
     src: uflLogo,
