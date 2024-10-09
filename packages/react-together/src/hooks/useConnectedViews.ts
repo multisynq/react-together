@@ -1,4 +1,4 @@
-import { useConnectedViews as ucv, useViewId } from '@croquet/react'
+import { useJoinedViews, useViewId } from '@croquet/react'
 import {
   adjectives,
   animals,
@@ -12,7 +12,7 @@ export type ConnectedView = {
 }
 
 export default function useConnectedViews(): ConnectedView[] {
-  const { views } = ucv()
+  const { views } = useJoinedViews()
   const viewId = useViewId()
 
   return Array.from(views).map((vid: string) => {

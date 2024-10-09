@@ -11,22 +11,22 @@ export {
   Session,
   View,
   createCroquetSession,
-  useChangeSession,
   // Not exporting this hook since we override it on react-together
   // useConnectedViews,
   useCroquetContext,
-  useCroquetSession,
-  useCroquetView,
   useDetachCallback,
   useModelById,
   useModelRoot,
   useModelSelector,
   usePublish,
   useReactModelRoot,
+  useSession,
   useSessionId,
+  useSetSession,
   useSubscribe,
   useSyncedCallback,
   useUpdateCallback,
+  useView,
   useViewId
 } from '@croquet/react'
 export type { CroquetSession, CroquetSessionParameters } from '@croquet/react'

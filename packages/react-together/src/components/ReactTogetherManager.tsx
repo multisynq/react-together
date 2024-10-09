@@ -38,7 +38,7 @@ export function ReactTogetherManager() {
       >
         {isTogether ? 'disconnect' : 'connect'}
       </button>
-      {joinUrl && <p>Join URL: {joinUrl}</p>}
+      <p>Join URL: {joinUrl ?? 'null'}</p>
     </>
     /*     <>
       <Tooltip

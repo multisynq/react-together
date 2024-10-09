@@ -1,4 +1,4 @@
-import { useIsConnected } from '@croquet/react'
+import { useIsJoined } from '@croquet/react'
 
-// useIsTogether is just an alias for useIsConnected
-export default useIsConnected
+// useIsTogether is just an alias for useIsJoined
+export default useIsJoined
