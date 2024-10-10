@@ -6,6 +6,8 @@ import gamingHubLogo from '@images/gaming_hub_logo.jpg'
 import growincLogo from '@images/growinc_logo.png'
 import hackerSchoolLogo from '@images/hackerschool_logo.png'
 import hoodLogo from '@images/hood_logo.png'
+import jdcLogo from '@images/jdc_logo.png'
+import jeknowledgeLogo from '@images/jeKnowledge_logo.png'
 import leWagonLogo from '@images/lewagon_logo.png'
 import moveToFundaoLogo from '@images/moveToFundao.jpg'
 import neetiLogo from '@images/neeti_logo.png'
@@ -111,9 +113,9 @@ const communityPartners = [
     alt: 'Build Up Labs',
   },
   {
-    src: starJeLogo,
-    url: 'https://starje.pt/',
-    alt: 'STAR Júnior Enterprise',
+    src: jeknowledgeLogo,
+    url: 'https://www.jeknowledge.pt/',
+    alt: 'JeKnowledge',
   },
   {
     src: growincLogo,
@@ -121,9 +123,9 @@ const communityPartners = [
     alt: 'grow.inc SPACES Lisbon',
   },
   {
-    src: hackerSchoolLogo,
-    url: 'https://linktr.ee/hackerschool_ist',
-    alt: 'Hacker School',
+    src: jdcLogo,
+    url: 'https://www.juniordataconsulting.com/',
+    alt: 'Júnior Data Consulting',
   },
   {
     src: uflLogo,
@@ -131,8 +133,18 @@ const communityPartners = [
     alt: 'Unicorn Factory Lisboa',
   },
   {
+    src: starJeLogo,
+    url: 'https://starje.pt/',
+    alt: 'STAR Júnior Enterprise',
+  },
+  {
     src: gamingHubLogo,
     alt: 'Gaming Hub',
+  },
+  {
+    src: hackerSchoolLogo,
+    url: 'https://linktr.ee/hackerschool_ist',
+    alt: 'Hacker School',
   },
   {
     src: moveToFundaoLogo,
