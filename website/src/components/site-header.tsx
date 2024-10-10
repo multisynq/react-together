@@ -12,7 +12,7 @@ export function SiteHeader() {
   return (
     <header className='sticky top-0 z-50 w-full border-b-2 border-b-blue-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 '>
       {/* <div className='container flex h-14 max-w-[92rem] items-center padding-0'> */}
-      <div className='flex h-14 items-center padding-0 mx-10'>
+      <div className='flex h-14 items-center padding-0 mx-10 overflow-x-auto'>
         <MobileNavToggle />
         <MainNav />
         <div className='flex flex-1 items-center justify-between space-x-2 md:justify-end'>

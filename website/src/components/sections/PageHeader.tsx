@@ -22,7 +22,7 @@ export function PageHeader() {
     <div className='flex flex-col items-center max-w-[105rem]'>
       <div className='h-8'></div>
       <h1 className='flex flex-col sm:flex-row items-center gap-2'>
-        {`Bring users together`} <span className='textEffect '>seamlessly</span>
+        {`Bring users together`} <span className='textEffect'>seamlessly</span>
       </h1>
       <div className='h-4'></div>
       <p className='text-center max-w-[32rem] text-gray-700 text-sm sm:text-base font-light'>
