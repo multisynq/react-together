@@ -1,61 +1,74 @@
 import { useLeaveSession } from '@croquet/react'
 import 'primeicons/primeicons.css'
+import { Dialog } from 'primereact/dialog'
+import { useCallback, useState } from 'react'
 import { useCreateRandomSession, useIsTogether, useJoinUrl } from '..'
 
 export function ReactTogetherManager() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [copySuccess, setCopySuccess] = useState(false)
   const leaveSession = useLeaveSession()
   const createRandomSession = useCreateRandomSession()
   const isTogether = useIsTogether()
   const joinUrl = useJoinUrl()
-  /*   const offlineItems = [
-    {
-      label: 'Start a React Together session',
-      icon: 'pi pi-link',
-      command: () => {
-        createNewSession()
-      }
-    }
-  ]
-  const onlineItems = [
-    {
-      label: 'Leave session',
-      icon: 'pi pi-sign-out',
-      command: () => {
-        leaveSession()
-      }
-    }
-  ] */
+
+  const handleCreateSession = useCallback(() => {
+    setIsOpen(false)
+    createRandomSession()
+  }, [createRandomSession, setIsOpen])
+
+  const handleLeaveSession = useCallback(() => {
+    leaveSession()
+    setIsOpen(false)
+  }, [leaveSession, setIsOpen])
+
+  const handleCopy = useCallback(() => {
+    if (!joinUrl) return
+    navigator.clipboard
+      .writeText(joinUrl)
+      .then(() => {
+        setCopySuccess(true)
+        setTimeout(() => setCopySuccess(false), 2000)
+      })
+      .catch((err) => console.error('Failed to copy text: ', err))
+  }, [joinUrl])
 
   return (
     <>
-      <button
-        className="bg-gray-700 text-white px-2 rounded"
-        onClick={() => (isTogether ? leaveSession() : createRandomSession())}
+      <button onClick={() => setIsOpen(true)}>Open</button>
+      <Dialog
+        header="Header"
+        footer="Footer"
+        position="bottom-right"
+        visible={isOpen}
+        draggable={false}
+        resizable={false}
+        onHide={() => setIsOpen(false)}
+        // For some reason this is closing the dialog when the dialog is clidked
+        // onMaskClick={(e) => {
+        //   console.log('onMaskClick', e)
+        //   if(e.target.className.includes('mask')){ setIsOpen(false) }
+        // }}
+        style={{ width: '50vw' }}
       >
-        {isTogether ? 'disconnect' : 'connect'}
-      </button>
-      <p>Join URL: {joinUrl ?? 'null'}</p>
+        {isTogether ? (
+          <>
+            Join Url: {joinUrl}
+            <br />
+            <button onClick={handleCopy}>Copy to clipboard</button>
+            {copySuccess && (
+              <>
+                <br />
+                Copied!
+              </>
+            )}
+            <br />
+            <button onClick={handleLeaveSession}>LeaveSession</button>
+          </>
+        ) : (
+          <button onClick={handleCreateSession}>Create private session</button>
+        )}
+      </Dialog>
     </>
-    /*     <>
-      <Tooltip
-        target=".react-together-speeddial .p-speeddial-action"
-        style={{ fontSize: '0.8rem' }}
-      />
-      <SpeedDial
-        className="react-together-speeddial"
-        model={isTogether ? onlineItems : offlineItems}
-        style={{
-          position: 'fixed',
-          right: '1rem',
-          bottom: '1rem',
-          padding: '0.1rem'
-        }}
-        buttonClassName="p-button-outlined"
-        // showIcon={<img src={logo} style={{ width: '100%', height: '100%' }} />}
-        showIcon={
-          <img src={undefined} style={{ width: '100%', height: '100%' }} />
-        }
-      ></SpeedDial>
-    </> */
   )
 }
