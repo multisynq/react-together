@@ -1,11 +1,11 @@
 import { Avatar } from 'primereact/avatar'
 import { AvatarGroup } from 'primereact/avatargroup'
-import { useConnectedViews } from '../hooks'
+import { useConnectedUsers } from '../hooks'
 
-interface ViewAvatarProps {
+interface UserAvatarProps {
   name: string
 }
-function ViewAvatar({ name }: ViewAvatarProps) {
+function UserAvatar({ name }: UserAvatarProps) {
   return (
     <Avatar
       image={`https://api.dicebear.com/8.x/initials/svg?seed=${name}`}
@@ -17,15 +17,15 @@ function ViewAvatar({ name }: ViewAvatarProps) {
   )
 }
 
-type ConnectedViewsProps = {
+type ConnectedUsersProps = {
   maxAvatars?: number
   debug?: boolean
 }
-export default function ConnectedViews({
+export default function ConnectedUsers({
   maxAvatars = 3,
   debug = false
-}: ConnectedViewsProps) {
-  const users = useConnectedViews()
+}: ConnectedUsersProps) {
+  const users = useConnectedUsers()
 
   const size = 'normal'
   const nAvatars = Math.max(users.length - (maxAvatars - 1), 0)
@@ -33,12 +33,12 @@ export default function ConnectedViews({
   return (
     <>
       <AvatarGroup pt={{ root: { style: { gap: '10px' } } }}>
-        {users.slice(0, maxAvatars - 1).map(({ name, viewId }) => (
-          <ViewAvatar key={viewId} name={name} />
+        {users.slice(0, maxAvatars - 1).map(({ name, userId }) => (
+          <UserAvatar key={userId} name={name} />
         ))}
         {nAvatars > 0 &&
           (nAvatars === 1 ? (
-            <ViewAvatar name={users[users.length - 1].name} />
+            <UserAvatar name={users[users.length - 1].name} />
           ) : (
             <Avatar label={`+${nAvatars}`} shape="circle" size={size} />
           ))}
@@ -47,15 +47,15 @@ export default function ConnectedViews({
         <div style={{ textAlign: 'left' }}>
           <p>Connected users:</p>
           <ul>
-            {users.map(({ viewId, name, isYou }) => (
-              <li key={viewId}>
+            {users.map(({ userId, name, isYou }) => (
+              <li key={userId}>
                 {isYou ? (
                   <strong>
-                    {viewId}: {name}
+                    {userId}: {name}
                   </strong>
                 ) : (
                   <span>
-                    {viewId}: {name}
+                    {userId}: {name}
                   </span>
                 )}
               </li>

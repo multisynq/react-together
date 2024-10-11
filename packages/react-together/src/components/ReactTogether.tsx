@@ -1,12 +1,7 @@
-import { CroquetRoot, useSetSession } from '@croquet/react'
-import { useCallback } from 'react'
+import { CroquetRoot } from '@croquet/react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
-import { ReactTogetherContext } from '../ReactTogetherContext'
 
-import {
-  SESSION_NAME_PARAM,
-  SESSION_PASSWORD_PARAM
-} from '../hooks/useJoinSessionUrl'
+import { SESSION_NAME_PARAM, SESSION_PASSWORD_PARAM } from '../hooks/useJoinUrl'
 
 type ReactTogetherSessionParams = {
   name?: string
@@ -53,50 +48,7 @@ export default function ReactTogether({
       deferSession={!name && !password}
       showChildrenWithoutSession
     >
-      <SessionManager>{children}</SessionManager>
-    </CroquetRoot>
-  )
-}
-
-function randomString(len: number) {
-  return Math.floor(Math.random() * 36 ** 10)
-    .toString(36)
-    .slice(0, len)
-}
-
-function SessionManager({ children }: { children: ReactChildren }) {
-  const setSession = useSetSession()
-
-  const createNewSession = useCallback(() => {
-    // Do we want to add them to the URL? Maybe that could be an option passed to this function
-    const newSessionName = randomString(16)
-    const newSessionPassword = randomString(16)
-    setSession({
-      name: newSessionName,
-      password: newSessionPassword
-    })
-  }, [setSession])
-
-  // TODO: eventually get circle from search param
-  /*
-    const sessionId = 
-    useEffect(() => {
-        const baseUrl = getWebsiteBaseURL()
-        const circleId = searchParams.get('reactTogetherCircleId', null)
-        if(circleId !== null) {
-            const { sessionId, password } = circlesApi.getSessionCredentials(baseUrl, circleId)
-            set_sessionId(sessionId)
-            set_password(password)
-        }
-    }, [])
-
-    // We would need some logic to not render anything until we are connected
-    // to the right session
-  */
-
-  return (
-    <ReactTogetherContext.Provider value={{ createNewSession }}>
       {children}
-    </ReactTogetherContext.Provider>
+    </CroquetRoot>
   )
 }

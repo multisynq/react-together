@@ -1,16 +1,12 @@
 import { useLeaveSession } from '@croquet/react'
 import 'primeicons/primeicons.css'
-import {
-  useIsTogether,
-  useJoinSessionUrl,
-  useReactTogetherContext
-} from '../hooks'
+import { useCreateRandomSession, useIsTogether, useJoinUrl } from '..'
 
 export function ReactTogetherManager() {
-  const { createNewSession } = useReactTogetherContext()
   const leaveSession = useLeaveSession()
+  const createRandomSession = useCreateRandomSession()
   const isTogether = useIsTogether()
-  const joinUrl = useJoinSessionUrl()
+  const joinUrl = useJoinUrl()
   /*   const offlineItems = [
     {
       label: 'Start a React Together session',
@@ -34,7 +30,7 @@ export function ReactTogetherManager() {
     <>
       <button
         className="bg-gray-700 text-white px-2 rounded"
-        onClick={() => (isTogether ? leaveSession() : createNewSession())}
+        onClick={() => (isTogether ? leaveSession() : createRandomSession())}
       >
         {isTogether ? 'disconnect' : 'connect'}
       </button>

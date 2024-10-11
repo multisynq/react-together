@@ -5,11 +5,11 @@ interface CustomMouseEvent extends MouseEvent {
   rtProcessedBy?: string
 }
 
-export interface UseHoveringViewsOptions {}
-export default function useHoveringViews(
+export interface UseHoveringUsersOptions {}
+export default function useHoveringUsers(
   rtKey: string,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _options: UseHoveringViewsOptions = {}
+  _options: UseHoveringUsersOptions = {}
 ): [MutableRefObject<HTMLDivElement | null>, string[], boolean] {
   const ref = useRef<HTMLDivElement | null>(null)
   const [isHovering, set_hovering, allHovered] =
@@ -70,9 +70,9 @@ export default function useHoveringViews(
     }
   }, [set_hovering, rtKey])
 
-  const hoveringViews = Object.entries(allHovered)
+  const hoveringUsers = Object.entries(allHovered)
     .filter(([, isHovering]) => isHovering)
-    .map(([viewId]) => viewId)
+    .map(([userId]) => userId)
 
-  return [ref, hoveringViews, isHovering]
+  return [ref, hoveringUsers, isHovering]
 }

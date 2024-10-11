@@ -1,4 +1,4 @@
-import { useJoinedViews, useViewId } from '@croquet/react'
+import { useJoinedViews as ujv, useViewId } from '@croquet/react'
 import {
   adjectives,
   animals,
@@ -6,19 +6,19 @@ import {
 } from 'unique-names-generator'
 
 export type ConnectedView = {
-  viewId: string
+  userId: string
   name: string
   isYou: boolean
 }
 
-export default function useConnectedViews(): ConnectedView[] {
-  const { views } = useJoinedViews()
-  const viewId = useViewId()
+export default function useConnectedUsers(): ConnectedView[] {
+  const { views } = ujv()
+  const myId = useViewId()
 
   return Array.from(views).map((vid: string) => {
     return {
-      viewId: vid,
-      isYou: vid === viewId,
+      userId: vid,
+      isYou: vid === myId,
       name: uniqueNamesGenerator({
         seed: vid,
         dictionaries: [adjectives, animals],

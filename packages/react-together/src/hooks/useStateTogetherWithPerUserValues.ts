@@ -24,7 +24,7 @@ interface LocalState<T> {
 }
 
 // The empty object is used as the allValues value
-// when the view is not connected to a session.
+// when the user is not connected to a session.
 // Using this constant object avoids triggering
 // useEffects that depend on the allValues object.
 const EMPTY_OBJECT = Object.freeze({})
@@ -152,7 +152,7 @@ export default function useStateTogetherWithPerUserValues<
         let prevLocalValue = allValues.get(view.viewId)
         if (prevLocalValue === undefined) {
           // If the viewId is not in the allValues mapping, it is because
-          // the publish(initialValue) has not been received by the current view yet
+          // the publish(initialValue) has not been received by the current user yet
           // In that case, we use the initialValue
           console.warn(
             '[useStateTogetherWithPerUserValues:setter] prevLocalValue is undefined.' +

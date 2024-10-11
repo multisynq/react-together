@@ -1,6 +1,6 @@
 import { useViewId } from '@croquet/react'
 import ColorHash from 'color-hash'
-import { useHoveringViews } from '../hooks'
+import { useHoveringUsers } from '../hooks'
 
 const colorHash = new ColorHash()
 
@@ -14,18 +14,18 @@ export default function PresenceDiv({
   rtKey,
   children,
   className,
-  highlightMyself
+  highlightMyself = false
 }: PresenceDivProps) {
   const debug = false
-  const [ref, hoveringViews, isHovering] = useHoveringViews(rtKey)
-  const viewId = useViewId()
+  const [ref, hoveringUsers, isHovering] = useHoveringUsers(rtKey)
+  const myId = useViewId()
 
   let style = {}
-  const views = highlightMyself
-    ? hoveringViews
-    : hoveringViews.filter((v) => v !== viewId)
-  if (views.length > 0 || (highlightMyself && isHovering)) {
-    const color = colorHash.hex(views[0] ?? rtKey)
+  const users = highlightMyself
+    ? hoveringUsers
+    : hoveringUsers.filter((v) => v !== myId)
+  if (users.length > 0 || (highlightMyself && isHovering)) {
+    const color = colorHash.hex(users[0] ?? rtKey)
     style = {
       outline: `2px solid ${color}`,
       animation: 'clippath 3s linear infinite',
@@ -42,12 +42,12 @@ export default function PresenceDiv({
         <>
           <h5>Hovering Ids:</h5>
           <ul>
-            {hoveringViews.map((view) => (
-              <li key={view}>
-                {view === viewId && !highlightMyself ? (
-                  <s className="line-through">{view}</s>
+            {hoveringUsers.map((user) => (
+              <li key={user}>
+                {user === myId && !highlightMyself ? (
+                  <s className="line-through">{user}</s>
                 ) : (
-                  view
+                  user
                 )}
               </li>
             ))}

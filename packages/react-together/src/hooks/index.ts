@@ -1,21 +1,17 @@
-import useConnectedViews from './useConnectedViews'
-import useCreateNewSession from './useConnectNewSession'
+import useConnectedUsers from './useConnectedUsers'
+import useCreateRandomSession from './useCreateRandomSession'
 import useFunctionTogether from './useFunctionTogether'
-import useHoveringViews from './useHoveringViews'
-import useIsTogether from './useIsTogether'
-import useJoinSessionUrl from './useJoinSessionUrl'
-import useReactTogetherContext from './useReactTogetherContext'
+import useHoveringUsers from './useHoveringUsers'
+import useJoinUrl from './useJoinUrl'
 import useStateTogether from './useStateTogether'
 import useStateTogetherWithPerUserValues from './useStateTogetherWithPerUserValues'
 
 export {
-  useConnectedViews,
-  useCreateNewSession,
+  useConnectedUsers,
+  useCreateRandomSession,
   useFunctionTogether,
-  useHoveringViews,
-  useIsTogether,
-  useJoinSessionUrl,
-  useReactTogetherContext,
+  useHoveringUsers,
+  useJoinUrl,
   useStateTogether,
   useStateTogetherWithPerUserValues
 }

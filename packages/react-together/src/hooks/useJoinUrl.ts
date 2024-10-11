@@ -1,13 +1,14 @@
-import { useIsJoined, useSessionParams } from '@croquet/react'
+import { useSessionParams } from '@croquet/react'
+import { useIsTogether } from '..'
 
 export const SESSION_NAME_PARAM = 'rtName'
 export const SESSION_PASSWORD_PARAM = 'rtPwd'
 
-export default function useJoinSessionUrl(): string | null {
+export default function useJoinUrl(): string | null {
   const { name, password } = useSessionParams()
-  const isJoined = useIsJoined()
+  const isTogether = useIsTogether()
 
-  if (!isJoined || !name || !password) return null
+  if (!isTogether || !name || !password) return null
 
   const url = new URL(window.location.href)
   url.searchParams.set(SESSION_NAME_PARAM, name)
