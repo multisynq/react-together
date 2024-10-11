@@ -1,5 +1,5 @@
 import {
-  ConnectedViews,
+  ConnectedUsers,
   ReactTogetherManager,
   useIsTogether
 } from 'react-together'
@@ -39,7 +39,7 @@ export default function Gallery() {
     <div className="my-5">
       <ReactTogetherManager />
       <div className="flex flex-col gap-2 items-center">
-        <ConnectedViews maxAvatars={5} />
+        <ConnectedUsers maxAvatars={5} />
         {isTogether ? 'Connected' : 'Disconnected'}
         <SamplePage />
         <SyncedTabs />

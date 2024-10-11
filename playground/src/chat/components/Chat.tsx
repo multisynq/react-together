@@ -6,13 +6,13 @@ import Message from './Message'
 
 interface Message {
   ts: number
-  viewId: string
+  userId: string
   message: string
 }
 
 export interface SendMessageArgs {
   ts: number
-  viewId: string
+  userId: string
   message: string
 }
 
@@ -22,9 +22,9 @@ export default function Chat() {
 
   const send = useFunctionTogether(
     'ding',
-    useCallback(({ message, ts, viewId }: SendMessageArgs) => {
+    useCallback(({ message, ts, userId }: SendMessageArgs) => {
       console.log('send', { message, ts })
-      setMessages((prev) => [...prev, { ts, viewId, message }])
+      setMessages((prev) => [...prev, { ts, userId, message }])
     }, [])
   )
 
@@ -38,13 +38,13 @@ export default function Chat() {
     <div className="chat">
       <h3>IRC Together</h3>
       <div className="messages-container">
-        {messages.map(({ viewId, ts, message }, idx) => {
+        {messages.map(({ userId, ts, message }, idx) => {
           return (
             <div
               key={idx}
               ref={idx === messages.length - 1 ? lastMessageRef : undefined}
             >
-              <Message sender={viewId} message={message} timestamp={ts} />
+              <Message sender={userId} message={message} timestamp={ts} />
             </div>
           )
         })}

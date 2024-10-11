@@ -1,6 +1,8 @@
-import { useModelSelector } from 'react-together'
+import { Croquet } from 'react-together'
 import { OverrideModel } from '../models'
 import Label from './Label'
+
+const { useModelSelector } = Croquet
 
 export default function TeamScoreLabel() {
   const value = useModelSelector((m: OverrideModel) =>
@@ -10,5 +12,5 @@ export default function TeamScoreLabel() {
     )
   )
   // console.log(`<TeamScoreLabel value=${value}/>`)
-  return <Label label="Team Score" value={value.toString()} />
+  return <Label label="Team Score" value={value?.toString() ?? 0} />
 }

@@ -7,7 +7,7 @@ const { content1, content2, content3 } = tabsData
 export default function TabsTogether() {
   const debug = false
   const [activeIndex, setActiveIndex, allIndices] =
-    useStateTogetherWithPerUserValues('active-index', 0)
+    useStateTogetherWithPerUserValues<number>('active-index', 0)
 
   return (
     <>

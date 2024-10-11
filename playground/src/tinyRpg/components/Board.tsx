@@ -1,10 +1,14 @@
-import { useModelSelector } from 'react-together'
+import { Croquet } from 'react-together'
 import { CELL_SIZE } from '../constants'
 import { OverrideModel } from '../models'
 
+const { useModelSelector } = Croquet
+
 export default function Board() {
-  const GRID_HEIGHT = useModelSelector((m: OverrideModel) => m.rpg.BOARD_HEIGHT)
-  const GRID_WIDTH = useModelSelector((m: OverrideModel) => m.rpg.BOARD_WIDTH)
+  const GRID_HEIGHT =
+    useModelSelector((m: OverrideModel) => m.rpg.BOARD_HEIGHT) ?? 1
+  const GRID_WIDTH =
+    useModelSelector((m: OverrideModel) => m.rpg.BOARD_WIDTH) ?? 1
   return (
     <div
       className="relative grid"

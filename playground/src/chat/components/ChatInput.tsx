@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { useViewId } from 'react-together'
+import { useMyId } from 'react-together'
 import { SendMessageArgs } from './Chat'
 
 interface ChatInputProps {
@@ -7,13 +7,13 @@ interface ChatInputProps {
 }
 export default function ChatInput({ onSend }: ChatInputProps) {
   const [input, setInput] = useState('')
-  const viewId = useViewId() || 'Offline'
+  const myId = useMyId() || 'Offline'
 
   const handleSend = useCallback(() => {
     if (input === '') return
-    onSend({ viewId, message: input, ts: Date.now() })
+    onSend({ userId: myId, message: input, ts: Date.now() })
     setInput('')
-  }, [viewId, input, onSend])
+  }, [myId, input, onSend])
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
