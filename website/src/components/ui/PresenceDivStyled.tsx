@@ -1,5 +1,5 @@
 import ColorHash from 'color-hash'
-import { useHoveringViews } from 'react-together'
+import { useHoveringUsers } from 'react-together'
 
 const colorHash = new ColorHash()
 
@@ -12,7 +12,7 @@ type PresenceDivStyledProps = {
 
 export function PresenceDivStyled({ rtKey, children, className, animation }: PresenceDivStyledProps) {
   const debug = false
-  const [ref, hoveringViews] = useHoveringViews(rtKey)
+  const [ref, hoveringViews] = useHoveringUsers(rtKey)
 
   let style: React.CSSProperties = {} // Start with external styles
 

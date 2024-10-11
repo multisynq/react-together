@@ -25,7 +25,7 @@ interface PresenceDivDemoProps {
   rtidSuffix?: string
 }
 export function PresenceDivDemoRecursive({ height, color = '66cdf2', rtidSuffix = '' }: PresenceDivDemoProps) {
-  const rtKey = 'useHoveringViewsDemo-' + rtidSuffix === '' ? 'root' : rtidSuffix
+  const rtKey = 'useHoveringUsersDemo-' + rtidSuffix === '' ? 'root' : rtidSuffix
   const childRgb = getDarkerShade(color, 0.85)
   return (
     <PresenceDiv rtKey={rtKey}>

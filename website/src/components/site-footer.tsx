@@ -16,7 +16,6 @@ export function SiteFooter() {
               <a
                 href={siteConfig.links.croquet}
                 target='_blank'
-                s
                 rel='noreferrer'
                 className='font-medium hover:underline hover:underline-offset-4 text-black'
               >

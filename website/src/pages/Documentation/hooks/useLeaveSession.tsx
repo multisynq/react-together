@@ -29,7 +29,8 @@ export default function UseLeaveSessionDocumentationPage() {
           <CodeBlock language='jsx' code1={`import { useLeaveSession } from 'react-together'`} />
           <CodeBlock
             language='jsx'
-            code1={`export default function ReactTogetherSessionManager() {
+            code1={`\
+export default function YourComponent() {
   const leaveSession = useLeaveSession()
 
   return (

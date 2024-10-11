@@ -10,8 +10,8 @@ export default function UseJoinUrlDocumentationPage() {
         items={[
           {
             name: 'joinUrl',
-            type: 'boolean',
-            description: 'Indicates whether the user is connected to a React Together session.',
+            type: 'string | null',
+            description: 'The join url',
           },
         ]}
       />
@@ -20,7 +20,9 @@ export default function UseJoinUrlDocumentationPage() {
   const content = (
     <GenericDocPage
       title='useJoinUrl'
-      description={'The useJoinUrl hook returns true if the user is connected to a React Together session, and false otherwise.'}
+      description={
+        'The useJoinUrl hook returns the url other users should connect to to join the current session. If there is no current session, this hook returns null'
+      }
       usage={
         <>
           <CodeBlock language='jsx' code1={`import { useJoinUrl } from 'react-together'`} />

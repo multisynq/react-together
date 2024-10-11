@@ -1,7 +1,7 @@
 import { AutoSizeKeepRatio } from '@utils/AutoSizeKeepRatio'
 import { Button } from 'primereact/button'
 import { useEffect, useState } from 'react'
-import { ConnectedViews, PresenceDiv } from 'react-together'
+import { ConnectedUsers, PresenceDiv } from 'react-together'
 import {
   CheckboxTogether,
   ColorPickerTogether,
@@ -121,10 +121,10 @@ const SelectButtonPrese = () => (
   </UIWrapper>
 )
 
-const ConnectedViewsWrapper = () => (
+const ConnectedUsersWrapper = () => (
   <div className='flex flex-col items-end absolute bottom-2 right-2 gap-2'>
     <div className='flex gap-1 items-end'>
-      <ConnectedViews maxAvatars={6} />
+      <ConnectedUsers maxAvatars={6} />
     </div>
   </div>
 )
@@ -169,7 +169,7 @@ const NonHomePage = () => (
       <div className='w-full h-full px-2 py-4 flex ml-4'>
         <DemoContent />
       </div>
-      <ConnectedViewsWrapper />
+      <ConnectedUsersWrapper />
     </div>
   </div>
 )
@@ -179,7 +179,7 @@ const HomePage = () => (
     <div className='w-full h-full bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] px-2 py-4 flex'>
       <DemoContent />
     </div>
-    <ConnectedViewsWrapper />
+    <ConnectedUsersWrapper />
   </div>
 )
 

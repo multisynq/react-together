@@ -25,7 +25,15 @@ export default function ReactTogetherDocumentationPage() {
           {
             name: 'appId',
             type: 'string',
-            description: "The owner's ID.",
+            description: (
+              <p>
+                Unique application identifier as{' '}
+                <Link to='https://developer.android.com/studio/build/application-id' target='_blank'>
+                  dot-separated
+                </Link>{' '}
+                words (e.g. "com.example.myapp")
+              </p>
+            ),
           },
           {
             name: 'apiKey',
@@ -33,8 +41,8 @@ export default function ReactTogetherDocumentationPage() {
             description: (
               <p>
                 The Multisynq API key. Get yours at{' '}
-                <Link to='https://croquet.io/keys' target='_blank'>
-                  croquet.io/keys
+                <Link to='https://multisynq.io/account' target='_blank'>
+                  multisynq.io/account
                 </Link>
               </p>
             ),

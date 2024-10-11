@@ -16,7 +16,7 @@ export default function PresenceDivDocumentationPage() {
             type: 'string',
             description: (
               <p>
-                The key used to identify this state, passed to the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook.
+                The key used to identify this state, passed to the <LinkSpan to='/useHoveringUsers' text='useHoveringUsers' /> hook.
               </p>
             ),
           },
@@ -54,9 +54,9 @@ export default function PresenceDivDocumentationPage() {
       description={
         <>
           <p>
-            This component wraps its children inside a <CodeSpan text='div' /> that is highlighted whenever a view is hovering it. This
+            This component wraps its children inside a <CodeSpan text='div' /> that is highlighted whenever a user is hovering it. This
             component can be customized by passing a <CodeSpan text='className' /> prop. Alternatively, you can create your own component
-            using the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook.
+            using the <LinkSpan to='/useHoveringUsers' text='useHoveringUsers' /> hook.
           </p>
           <DocumentationDemo url='PresenceDiv' />
         </>

@@ -1,6 +1,12 @@
-import ConnectedViewsDocumentationPage from './ConnectedViews'
+import ConnectedUsersDocumentationPage from './ConnectedUsers'
 import PresenceDivDocumentationPage from './PresenceDiv'
 import ReactTogetherDocumentationPage from './ReactTogether'
+import ReactTogetherManagerDocumentationPage from './ReactTogetherManager'
 
 export * from './primereact'
-export { ConnectedViewsDocumentationPage, PresenceDivDocumentationPage, ReactTogetherDocumentationPage }
+export {
+  ConnectedUsersDocumentationPage,
+  PresenceDivDocumentationPage,
+  ReactTogetherDocumentationPage,
+  ReactTogetherManagerDocumentationPage,
+}

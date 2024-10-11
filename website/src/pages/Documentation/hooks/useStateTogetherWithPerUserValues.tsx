@@ -39,7 +39,7 @@ const api = (
           name: '2',
           type: '[key: string]: T',
           description:
-            'An object containing a mapping between each view and its current state. Views that are not rendered in the hook will not appear in mapping, even if they are connected in the session.',
+            'An object containing a mapping between each user and its current state. Users that are not rendered in the hook will not appear in mapping, even if they are connected in the session.',
         },
       ]}
     />
@@ -56,13 +56,13 @@ const content = (
           <Link to='https://react.dev/reference/react/useState' target='_blank'>
             useState
           </Link>
-          , and the peer state object will be empty. The example below illustrates possibility of this hook.
+          , and the peer state object will be empty. The example below illustrates a possible usage of this hook.
         </p>
         <p>
           {' '}
-          Each view displays a series of numbers, representing the <CodeSpan text='count' /> associated with each connected view. The local
-          count is highlighted with a darker background. Although each view can only change its local count (by clicking on it), every view
-          can see the count values of all connected views!
+          Each user displays a series of numbers, representing the <CodeSpan text='count' /> associated with each connected user. The local
+          count is highlighted with a darker background. Although each user can only change its local count (by clicking on it), everyone
+          can see the count values of everyone else!
         </p>
         <DocumentationDemo url='useStateTogetherWithPerUserValues' />
       </>

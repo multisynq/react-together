@@ -26,8 +26,8 @@ function IntroductionContent() {
       <p>
         Wrap your application inside the <LinkSpan text='<ReactTogether/>' to='/ReactTogether' /> component, and configure it using your
         Multisynq keys. The Multisynq keys are required to enable the synchronization magic that powers React Together. Get your keys at{' '}
-        <Link to='https://croquet.io/keys' target='_blank'>
-          croquet.io/keys
+        <Link to='https://multisynq.io/account' target='_blank'>
+          multisynq.io/account
         </Link>
         .
       </p>
@@ -57,7 +57,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 return (
   <button 
     onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
-    onContextMenu={(e) => { e.preventDefault() set_count(0) }}
+    onContextMenu={(e) => { e.preventDefault(); set_count(0) }}
   >
     Count: {count}
   </button>
