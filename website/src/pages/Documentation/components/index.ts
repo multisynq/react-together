@@ -1,12 +1,12 @@
 import ConnectedUsersDocumentationPage from './ConnectedUsers'
-import PresenceDivDocumentationPage from './PresenceDiv'
+import HoverHighlighterDocumentationPage from './HoverHighlighter'
 import ReactTogetherDocumentationPage from './ReactTogether'
 import ReactTogetherManagerDocumentationPage from './ReactTogetherManager'
 
 export * from './primereact'
 export {
   ConnectedUsersDocumentationPage,
-  PresenceDivDocumentationPage,
+  HoverHighlighterDocumentationPage,
   ReactTogetherDocumentationPage,
   ReactTogetherManagerDocumentationPage,
 }

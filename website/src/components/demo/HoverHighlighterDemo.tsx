@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PresenceDiv } from 'react-together'
+import { HoverHighlighter } from 'react-together'
 function getDarkerShade(hexColor: string, darkenFactor = 0.8): string {
   // Remove the hash if it's there
   const hex = hexColor.replace(/^#/, '')
@@ -19,31 +19,31 @@ function getDarkerShade(hexColor: string, darkenFactor = 0.8): string {
 
   return `#${newHex}`
 }
-interface PresenceDivDemoProps {
+interface HoverHighlighterDemoProps {
   height: number
   color?: string
   rtidSuffix?: string
 }
-export function PresenceDivDemoRecursive({ height, color = '66cdf2', rtidSuffix = '' }: PresenceDivDemoProps) {
+export function HoverHighlighterDemoRecursive({ height, color = '66cdf2', rtidSuffix = '' }: HoverHighlighterDemoProps) {
   const rtKey = 'useHoveringUsersDemo-' + rtidSuffix === '' ? 'root' : rtidSuffix
   const childRgb = getDarkerShade(color, 0.85)
   return (
-    <PresenceDiv rtKey={rtKey}>
+    <HoverHighlighter rtKey={rtKey}>
       <div className={`min-w-5 min-h-5 border border-black rounded grid grid-cols-2 gap-2 p-2 `} style={{ backgroundColor: color }}>
         {height > 1 && (
           <>
-            <PresenceDivDemoRecursive height={height - 1} rtidSuffix={`${rtidSuffix}a`} color={childRgb} />
-            <PresenceDivDemoRecursive height={height - 1} rtidSuffix={`${rtidSuffix}b`} color={childRgb} />
-            <PresenceDivDemoRecursive height={height - 1} rtidSuffix={`${rtidSuffix}c`} color={childRgb} />
-            {/* <PresenceDivDemo height={height - 1} rtidSuffix={`${rtidSuffix}d`} rgb={childRgb} /> */}
+            <HoverHighlighterDemoRecursive height={height - 1} rtidSuffix={`${rtidSuffix}a`} color={childRgb} />
+            <HoverHighlighterDemoRecursive height={height - 1} rtidSuffix={`${rtidSuffix}b`} color={childRgb} />
+            <HoverHighlighterDemoRecursive height={height - 1} rtidSuffix={`${rtidSuffix}c`} color={childRgb} />
+            {/* <HoverHighlighterDemo height={height - 1} rtidSuffix={`${rtidSuffix}d`} rgb={childRgb} /> */}
           </>
         )}
       </div>
-    </PresenceDiv>
+    </HoverHighlighter>
   )
 }
 
-export function PresenceDivDemo() {
+export function HoverHighlighterDemo() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [color, setColor] = useState('66cdf2')
 
@@ -51,7 +51,7 @@ export function PresenceDivDemo() {
     <>
       {/* {color} */}
       {/* <ColorPicker format='hex' value={color} onChange={(e) => setColor(e.value as string)} /> */}
-      <PresenceDivDemoRecursive height={3} color={`#${color}`} />
+      <HoverHighlighterDemoRecursive height={3} color={`#${color}`} />
     </>
   )
 }

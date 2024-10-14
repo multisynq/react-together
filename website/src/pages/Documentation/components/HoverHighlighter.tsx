@@ -5,7 +5,7 @@ import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
-export default function PresenceDivDocumentationPage() {
+export default function HoverHighlighterDocumentationPage() {
   const api = (
     <>
       <h5>Props</h5>
@@ -50,7 +50,7 @@ export default function PresenceDivDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='PresenceDiv'
+      title='HoverHighlighter'
       description={
         <>
           <p>
@@ -58,7 +58,7 @@ export default function PresenceDivDocumentationPage() {
             component can be customized by passing a <CodeSpan text='className' /> prop. Alternatively, you can create your own component
             using the <LinkSpan to='/useHoveringUsers' text='useHoveringUsers' /> hook.
           </p>
-          <DocumentationDemo url='PresenceDiv' />
+          <DocumentationDemo url='HoverHighlighter' />
         </>
       }
       usage={
@@ -67,9 +67,9 @@ export default function PresenceDivDocumentationPage() {
           <CodeBlock
             language='javascript'
             code1={`return (
-  <PresenceDiv rtKey='unique-key'>
+  <HoverHighlighter rtKey='unique-key'>
     <YourComponent/>
-  </PresenceDiv>
+  </HoverHighlighter>
 )`}
           />
         </>
@@ -77,5 +77,5 @@ export default function PresenceDivDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('PresenceDiv')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('HoverHighlighter')} />
 }

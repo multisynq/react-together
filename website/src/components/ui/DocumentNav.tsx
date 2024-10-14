@@ -30,7 +30,7 @@ const items: PatchedMenuItem[] = [
       { key: 'react-together', label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
       { key: 'react-together-mgr', label: 'ReactTogetherManager', url: `${baseUrl}/ReactTogetherManager` },
       { key: 'connected-views', label: 'ConnectedUsers', url: `${baseUrl}/ConnectedUsers` },
-      { key: 'presence-div', label: 'PresenceDiv', url: `${baseUrl}/PresenceDiv` },
+      { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
       {
         key: 'prime-react',
         label: 'Prime React',

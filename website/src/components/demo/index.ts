@@ -1,6 +1,6 @@
 import CountButtonTogether from './CountButtonTogether'
 import HeroDemo from './HeroDemo'
-import { PresenceDivDemo } from './PresenceDivDemo'
+import { HoverHighlighterDemo } from './HoverHighlighterDemo'
 import { PrimeReactCalendarTogetherDemo } from './PrimeReactCalendarTogetherDemo'
 import { PrimeReactCheckboxTogetherDemo } from './PrimeReactCheckboxTogetherDemo'
 import { PrimeReactColorPickerTogetherDemo } from './PrimeReactColorPickerTogetherDemo'
@@ -17,7 +17,7 @@ import { UseStateTogetherWPUVDemo } from './UseStateTogetherWPUVDemo'
 export {
   CountButtonTogether,
   HeroDemo,
-  PresenceDivDemo,
+  HoverHighlighterDemo,
   PrimeReactCalendarTogetherDemo,
   PrimeReactCheckboxTogetherDemo,
   PrimeReactColorPickerTogetherDemo,

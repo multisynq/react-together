@@ -54,7 +54,7 @@ export default function UseHoveringUsersDocumentationPage() {
             component that is nested within other ‘hoverable’ components, only the innermost component will indicate that it's being
             hovered.
           </p>
-          <DocumentationDemo url='PresenceDiv' />
+          <DocumentationDemo url='HoverHighlighter' />
         </>
       }
       usage={

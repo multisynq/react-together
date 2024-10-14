@@ -16,7 +16,7 @@ import {
   TriStateCheckboxTogether
 } from 'react-together-primereact'
 import CountButtonTogether from './components/CountButtonTogether'
-import NestedPresenceDivs from './components/NestedPresenceDivs'
+import NestedHoverHighlighter from './components/NestedHoverHighlighter'
 import SamplePage from './components/SamplePage'
 import SyncedTabs from './components/SyncedTabs'
 
@@ -85,7 +85,7 @@ export default function Gallery() {
             invalid
           />
         </div>
-        <NestedPresenceDivs />
+        <NestedHoverHighlighter />
       </div>
     </div>
   )

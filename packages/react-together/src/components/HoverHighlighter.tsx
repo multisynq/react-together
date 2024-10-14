@@ -4,18 +4,18 @@ import { useHoveringUsers } from '../hooks'
 
 const colorHash = new ColorHash()
 
-type PresenceDivProps = {
+type HoverHighlighterProps = {
   rtKey: string
   children: ReactChildren
   className?: string
   highlightMyself?: boolean
 }
-export default function PresenceDiv({
+export default function HoverHighlighter({
   rtKey,
   children,
   className,
   highlightMyself = false
-}: PresenceDivProps) {
+}: HoverHighlighterProps) {
   const debug = false
   const [ref, hoveringUsers, isHovering] = useHoveringUsers(rtKey)
   const myId = useViewId()

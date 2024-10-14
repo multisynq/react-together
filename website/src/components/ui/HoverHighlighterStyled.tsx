@@ -3,14 +3,14 @@ import { useHoveringUsers } from 'react-together'
 
 const colorHash = new ColorHash()
 
-type PresenceDivStyledProps = {
+type HoverHighlighterStyledProps = {
   rtKey: string
   children: React.ReactNode
   className?: string
   animation?: string
 }
 
-export function PresenceDivStyled({ rtKey, children, className, animation }: PresenceDivStyledProps) {
+export function HoverHighlighterStyled({ rtKey, children, className, animation }: HoverHighlighterStyledProps) {
   const debug = false
   const [ref, hoveringViews] = useHoveringUsers(rtKey)
 

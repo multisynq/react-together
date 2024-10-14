@@ -1,7 +1,7 @@
 import {
   ConnectedUsersDocumentationPage,
+  HoverHighlighterDocumentationPage,
   IntroductionPage,
-  PresenceDivDocumentationPage,
   PrimeReactCheckboxTogetherDocumentationPage,
   PrimeReactColorPickerTogetherDocumentationPage,
   PrimeReactDropdownTogetherDocumentationPage,
@@ -29,7 +29,7 @@ import { ConnectedUsers } from 'react-together'
 import { HomePage } from './pages/HomePage'
 
 import {
-  PresenceDivDemo,
+  HoverHighlighterDemo,
   PrimeReactCheckboxTogetherDemo,
   PrimeReactColorPickerTogetherDemo,
   PrimeReactDropdownTogetherDemo,
@@ -69,7 +69,7 @@ export default function AppRoutes() {
           <Route path='ReactTogether' element={<ReactTogetherDocumentationPage />} />
           <Route path='ReactTogetherManager' element={<ReactTogetherManagerDocumentationPage />} />
           <Route path='ConnectedUsers' element={<ConnectedUsersDocumentationPage />} />
-          <Route path='PresenceDiv' element={<PresenceDivDocumentationPage />} />
+          <Route path='HoverHighlighter' element={<HoverHighlighterDocumentationPage />} />
           <Route path='useStateTogether' element={<UseStateTogetherDocumentationPage />} />
           <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWithPerUserValuesDocumentationPage />} />
           <Route path='useConnectedUsers' element={<UseConnectedUsersDocumentationPage />} />
@@ -105,7 +105,7 @@ export default function AppRoutes() {
         <Route path='CountButtonTogether' element={<CountButtonTogether />} />
         <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWPUVDemo />} />
         <Route path='ConnectedUsers' element={<ConnectedUsers />} />
-        <Route path='PresenceDiv' element={<PresenceDivDemo />} />
+        <Route path='HoverHighlighter' element={<HoverHighlighterDemo />} />
         <Route path='primereact'>
           {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDemo />} /> */}
           <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDemo />} />
