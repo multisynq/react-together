@@ -11,6 +11,7 @@ import jeknowledgeLogo from '@images/jeKnowledge_logo.png'
 import leWagonLogo from '@images/lewagon_logo.png'
 import moveToFundaoLogo from '@images/moveToFundao.jpg'
 import neetiLogo from '@images/neeti_logo.png'
+import neiistLogo from '@images/neiist_logo.png'
 import novaeLogo from '@images/novae_logo.svg'
 import starJeLogo from '@images/starJe_logo.png'
 import startupPortugalLogo from '@images/startupportugal_logo.svg'
@@ -103,9 +104,9 @@ const communityPartners = [
     alt: 'Women in Tech Portugal',
   },
   {
-    src: novaeLogo,
-    url: 'https://linktr.ee/unovae',
-    alt: 'NOVAe',
+    src: neiistLogo,
+    url: 'https://neiist.tecnico.ulisboa.pt/',
+    alt: 'NEIIST',
   },
   {
     src: buildUpLabsLogo,
@@ -142,17 +143,20 @@ const communityPartners = [
     alt: 'Gaming Hub',
   },
   {
-    src: hackerSchoolLogo,
-    url: 'https://linktr.ee/hackerschool_ist',
-    alt: 'Hacker School',
+    src: novaeLogo,
+    url: 'https://linktr.ee/unovae',
+    alt: 'NOVAe',
   },
   {
     src: moveToFundaoLogo,
     url: 'https://movetofundao.pt/',
     alt: 'Move to Fundão',
   },
-  // PENDING:
-  // SULX, Startup Portugal, Women in Tech Portugal, NEIIST, GameDev, 42 Lisbon, LeWagon, JEs todas
+  {
+    src: hackerSchoolLogo,
+    url: 'https://linktr.ee/hackerschool_ist',
+    alt: 'Hacker School',
+  },
 ]
 
 export default function Partners() {
