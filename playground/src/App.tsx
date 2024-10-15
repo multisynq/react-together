@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import Chat from './chat'
 import Gallery from './gallery'
-import TinyRpg from './tinyRpg'
 import SessionDemo from './SessionDemo'
+import TinyRpg from './tinyRpg'
 
 export default function App() {
   return (
