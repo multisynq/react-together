@@ -56,7 +56,7 @@ export function SessionManager() {
         className="border w-[2.5rem] h-[2.5rem] border-gray-800 rounded-lg shadow-lineStyleDark bg-blue-500 text-white hover:bg-blue-600 hover:shadow-lineStyleMedium flex items-center justify-center p-2"
         onClick={() => setIsOpen(true)}
       >
-        <Icons.logo className="w-[1.5rem] h-[1.5rem]" />
+        <Icons.logo style={{ width: '1.5rem' }} />
       </button>
       <Dialog
         position="bottom-right"
