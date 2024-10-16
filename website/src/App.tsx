@@ -14,7 +14,7 @@ import AppRoutes from './AppRoutes'
 TagManager.initialize({
   gtmId: import.meta.env.VITE_GTM_ID,
 })
-ReactGA.initialize(import.meta.env.VITE_GA_ID)
+ReactGA.initialize(import.meta.env.VITE_GA4_ID)
 
 export default function App() {
   useEffect(() => {
