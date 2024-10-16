@@ -4,14 +4,25 @@ import '@styles/mdx.css'
 import 'react-json-view-lite/dist/index.css'
 import './App.scss'
 
+import { useEffect } from 'react'
 import ReactGA from 'react-ga4'
+import TagManager from 'react-gtm-module'
 import { Helmet } from 'react-helmet'
 import { HashRouter } from 'react-router-dom'
 import AppRoutes from './AppRoutes'
 
-ReactGA.initialize('G-D93175H8DR', { testMode: true })
+TagManager.initialize({
+  gtmId: import.meta.env.VITE_GTM_ID,
+})
+ReactGA.initialize(import.meta.env.VITE_GA_ID)
 
 export default function App() {
+  useEffect(() => {
+    const newLocation = window.location.pathname + window.location.search
+    console.log('Changed location!!', newLocation)
+    // ReactGA.pageview(newLocation)
+  }, [])
+
   return (
     <div className='h-100 w-100'>
       <Helmet>

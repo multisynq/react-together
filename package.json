@@ -14,6 +14,7 @@
     "clean": "rm -rf node_modules && npm run clean -ws --if-present"
   },
   "dependencies": {
-    "react-ga4": "^2.1.0"
+    "react-ga4": "^2.1.0",
+    "react-gtm-module": "^2.0.11"
   }
 }
