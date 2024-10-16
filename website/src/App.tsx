@@ -4,9 +4,12 @@ import '@styles/mdx.css'
 import 'react-json-view-lite/dist/index.css'
 import './App.scss'
 
+import ReactGA from 'react-ga4'
 import { Helmet } from 'react-helmet'
 import { HashRouter } from 'react-router-dom'
 import AppRoutes from './AppRoutes'
+
+ReactGA.initialize('G-Q8YB0KG2WN', { testMode: true })
 
 export default function App() {
   return (
