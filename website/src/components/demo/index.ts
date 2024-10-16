@@ -13,6 +13,7 @@ import { PrimeReactSelectButtonTogetherDemo } from './PrimeReactSelectButtonToge
 import { PrimeReactTabViewTogetherDemo } from './PrimeReactTabViewTogetherDemo'
 import { PrimeReactToggleButtonTogetherDemo } from './PrimeReactToggleButtonTogetherDemo'
 import { PrimeReactTriStateCheckboxTogetherDemo } from './PrimeReactTriStateCheckboxTogetherDemo'
+import ReactTogetherManagerDemo from './ReactTogetherManagerDemo'
 import { UseStateTogetherWPUVDemo } from './UseStateTogetherWPUVDemo'
 export {
   CountButtonTogether,
@@ -30,5 +31,6 @@ export {
   PrimeReactTabViewTogetherDemo,
   PrimeReactToggleButtonTogetherDemo,
   PrimeReactTriStateCheckboxTogetherDemo,
+  ReactTogetherManagerDemo,
   UseStateTogetherWPUVDemo,
 }
