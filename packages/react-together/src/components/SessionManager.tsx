@@ -4,7 +4,7 @@ import { Dialog } from 'primereact/dialog'
 import { useCallback, useState } from 'react'
 import { useCreateRandomSession, useIsTogether, useJoinUrl } from '..'
 
-export function ReactTogetherManager() {
+export function SessionManager() {
   const [isOpen, setIsOpen] = useState(false)
   const [copySuccess, setCopySuccess] = useState(false)
   const leaveSession = useLeaveSession()

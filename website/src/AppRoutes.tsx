@@ -14,7 +14,7 @@ import {
   PrimeReactToggleButtonTogetherDocumentationPage,
   PrimeReactTriStateCheckboxTogetherDocumentationPage,
   ReactTogetherDocumentationPage,
-  ReactTogetherManagerDocumentationPage,
+  SessionManagerDocumentationPage,
   UseConnectedUsersDocumentationPage,
   UseCreateRandomSessionDocumentationPage,
   UseFunctionTogetherDocumentationPage,
@@ -67,7 +67,7 @@ export default function AppRoutes() {
         <Route element={<DocumentationWrapper />}>
           <Route path='getting-started' element={<IntroductionPage />} />
           <Route path='ReactTogether' element={<ReactTogetherDocumentationPage />} />
-          <Route path='ReactTogetherManager' element={<ReactTogetherManagerDocumentationPage />} />
+          <Route path='SessionManager' element={<SessionManagerDocumentationPage />} />
           <Route path='ConnectedUsers' element={<ConnectedUsersDocumentationPage />} />
           <Route path='HoverHighlighter' element={<HoverHighlighterDocumentationPage />} />
           <Route path='useStateTogether' element={<UseStateTogetherDocumentationPage />} />

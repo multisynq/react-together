@@ -1,7 +1,7 @@
 import ConnectedUsers from './ConnectedUsers'
 import HoverHighlighter from './HoverHighlighter'
 import ReactTogether from './ReactTogether'
-import { ReactTogetherManager } from './ReactTogetherManager'
+import { SessionManager } from './SessionManager'
 // Not exporting SessionManager on purpose
 
-export { ConnectedUsers, HoverHighlighter, ReactTogether, ReactTogetherManager }
+export { ConnectedUsers, HoverHighlighter, ReactTogether, SessionManager }

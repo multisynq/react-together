@@ -3,10 +3,10 @@ import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 
-export default function ReactTogetherManagerDocumentationPage() {
+export default function SessionManagerDocumentationPage() {
   const content = (
     <GenericDocPage
-      title='ReactTogetherManager'
+      title='SessionManager'
       description={
         <p>
           This component provides a simple UI to manage the current React Together session, i.e. connecting to a new session, sharing it
@@ -17,8 +17,8 @@ export default function ReactTogetherManagerDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { ReactTogetherManager } from 'react-together'`} />
-          <CodeBlock language='javascript' code1={`return <ReactTogetherManager />`} />
+          <CodeBlock language='javascript' code1={`import { SessionManager } from 'react-together'`} />
+          <CodeBlock language='javascript' code1={`return <SessionManager />`} />
         </>
       }
     />

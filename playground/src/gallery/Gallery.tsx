@@ -1,8 +1,4 @@
-import {
-  ConnectedUsers,
-  ReactTogetherManager,
-  useIsTogether
-} from 'react-together'
+import { ConnectedUsers, SessionManager, useIsTogether } from 'react-together'
 import {
   CalendarTogether,
   CheckboxTogether,
@@ -37,7 +33,7 @@ export default function Gallery() {
 
   return (
     <div className="my-5">
-      <ReactTogetherManager />
+      <SessionManager />
       <div className="flex flex-col gap-2 items-center">
         <ConnectedUsers maxAvatars={5} />
         {isTogether ? 'Connected' : 'Disconnected'}

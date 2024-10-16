@@ -1,4 +1,4 @@
-import { ReactTogether, ReactTogetherManager } from 'react-together'
+import { ReactTogether, SessionManager } from 'react-together'
 import Chat from './components/Chat'
 export default function App() {
   return (
@@ -11,7 +11,7 @@ export default function App() {
       }}
     >
       <Chat />
-      <ReactTogetherManager />
+      <SessionManager />
     </ReactTogether>
   )
 }

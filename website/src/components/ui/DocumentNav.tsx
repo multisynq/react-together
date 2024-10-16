@@ -28,7 +28,7 @@ const items: PatchedMenuItem[] = [
     label: 'Components',
     items: [
       { key: 'react-together', label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
-      { key: 'react-together-mgr', label: 'ReactTogetherManager', url: `${baseUrl}/ReactTogetherManager` },
+      { key: 'react-together-mgr', label: 'SessionManager', url: `${baseUrl}/SessionManager` },
       { key: 'connected-views', label: 'ConnectedUsers', url: `${baseUrl}/ConnectedUsers` },
       { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
       {
