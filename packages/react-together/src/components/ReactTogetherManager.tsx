@@ -4,6 +4,7 @@ import { Dialog } from 'primereact/dialog'
 import QRCode from 'qrcode.react'
 import { useCallback, useMemo, useState } from 'react'
 import { useCreateRandomSession, useIsTogether, useJoinUrl } from '..'
+import { Icons } from './icons'
 
 export function ReactTogetherManager() {
   const [isOpen, setIsOpen] = useState(false)
@@ -41,19 +42,18 @@ export function ReactTogetherManager() {
 
   const displayUrl = useMemo(() => {
     if (!joinUrl) return 'No URL available'
-    if (joinUrl.length <= 12) return joinUrl
-    return '...' + joinUrl.slice(-12)
+    if (joinUrl.length <= 8) return joinUrl
+    return '...' + joinUrl.slice(-8)
   }, [joinUrl])
 
   return (
     <>
       <button
-        className="border w-[3rem] h-[2.5rem] border-gray-800 rounded-lg shadow-lineStyleDark bg-blue-500 text-white hover:bg-blue-600 hover:shadow-lineStyleMedium flex items-center justify-center"
+        className="border w-[2.5rem] h-[2.5rem] border-gray-800 rounded-lg shadow-lineStyleDark bg-blue-500 text-white hover:bg-blue-600 hover:shadow-lineStyleMedium flex items-center justify-center p-2"
         onClick={() => setIsOpen(true)}
       >
-        ReactTogether
+        <Icons.logo className="w-[1.5rem] h-[1.5rem]" />
       </button>
-      <button onClick={() => setIsOpen(true)}>Open</button>
       <Dialog
         position="bottom-right"
         visible={isOpen}
@@ -72,7 +72,7 @@ export function ReactTogetherManager() {
         {isTogether ? (
           <div className="flex flex-col items-center gap-4 text-black">
             <div className="flex flex-col">
-              <p className="font-bold leading-tight tracking-tight">
+              <p className="font-bold leading-tight tracking-tight text-center">
                 Send this url to your friends to
                 <br /> join the current session!
               </p>
@@ -96,7 +96,7 @@ export function ReactTogetherManager() {
                   className="flex items-center gap-3 justify-between w-full"
                   disabled={!joinUrl}
                 >
-                  <span className="w-[16rem] truncate">
+                  <span className="w-[8rem] truncate">
                     {copied ? 'Copied!' : displayUrl}
                   </span>
                   <i className={copied ? 'pi pi-check' : 'pi pi-copy'}></i>
