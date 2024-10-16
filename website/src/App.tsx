@@ -9,7 +9,7 @@ import { Helmet } from 'react-helmet'
 import { HashRouter } from 'react-router-dom'
 import AppRoutes from './AppRoutes'
 
-ReactGA.initialize('G-Q8YB0KG2WN', { testMode: true })
+ReactGA.initialize('G-D93175H8DR', { testMode: true })
 
 export default function App() {
   return (
