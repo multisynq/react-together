@@ -14,7 +14,11 @@ export function SessionManager() {
 
   const handleCreateSession = useCallback(() => {
     setIsOpen(false)
-    createRandomSession()
+
+    // Schedule createRandomSession for "later" so that
+    // React completes its lifecycle and closes the dialog
+    // before joining the new session
+    setTimeout(createRandomSession, 50)
   }, [createRandomSession, setIsOpen])
 
   const handleLeaveSession = useCallback(() => {
