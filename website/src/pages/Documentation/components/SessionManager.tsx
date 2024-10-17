@@ -16,7 +16,7 @@ export default function SessionManagerDocumentationPage() {
             checkout the <LinkSpan to='/useCreateRandomSession' text='useCreateRandomSession' />,{' '}
             <LinkSpan to='/useLeaveSession' text='useLeaveSession' />, and <LinkSpan to='/useJoinUrl' text='useJoinUrl' /> hooks!
           </p>
-          <DocumentationDemo url='ReactTogetherManagerDemo' />
+          <DocumentationDemo url='SessionManagerDemo' />
         </>
       }
       usage={

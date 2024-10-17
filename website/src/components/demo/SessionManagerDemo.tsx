@@ -1,5 +1,5 @@
 import { SetStateAction, useState } from 'react'
-import { ReactTogetherManager } from 'react-together'
+import { SessionManager } from 'react-together'
 import CountButtonTogether from './CountButtonTogether'
 
 function UrlContainer() {
@@ -36,7 +36,7 @@ function UrlContainer() {
   )
 }
 
-export default function ReactTogetherManagerDemo() {
+export default function SessionManagerDemo() {
   return (
     <div className='h-full w-full relative flex justify-center'>
       <div className='flex flex-col gap-8 p-4 items-center'>
@@ -45,7 +45,7 @@ export default function ReactTogetherManagerDemo() {
         <div />
       </div>
       <div className='absolute bottom-2 left-2'>
-        <ReactTogetherManager />
+        <SessionManager />
       </div>
     </div>
   )
