@@ -11,10 +11,13 @@ import { Helmet } from 'react-helmet'
 import { HashRouter } from 'react-router-dom'
 import AppRoutes from './AppRoutes'
 
-TagManager.initialize({
-  gtmId: import.meta.env.VITE_GTM_ID,
-})
-ReactGA.initialize(import.meta.env.VITE_GA4_ID)
+// Only load Google Analytics if inside iframe
+if (window.self === window.top) {
+  TagManager.initialize({
+    gtmId: import.meta.env.VITE_GTM_ID,
+  })
+  ReactGA.initialize(import.meta.env.VITE_GA4_ID)
+}
 
 export default function App() {
   useEffect(() => {
