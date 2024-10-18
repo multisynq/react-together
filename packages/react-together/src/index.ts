@@ -11,7 +11,7 @@ export {
   Session,
   View,
   createCroquetSession,
-  useChangeSession,
+  // useChangeSession,
   // Not exporting this hook since we override it on react-together
   // useConnectedViews,
   useCroquetContext,
