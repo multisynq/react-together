@@ -3,6 +3,7 @@ import EventSchedule from '@components/hacktogether/EventSchedule'
 import FAQTable from '@components/hacktogether/FAQTable'
 import InfoTable from '@components/hacktogether/InfoTable'
 import IntroBanner from '@components/hacktogether/IntroBanner'
+import JuriAndMentors from '@components/hacktogether/JuryAndMentors'
 import Partners from '@components/hacktogether/Partners'
 import VenueInfo from '@components/hacktogether/VenueInfo'
 
@@ -24,10 +25,12 @@ export function HackTogetherPage() {
           <IntroBanner />
           <SubHeader title='About the event ...' />
           <InfoTable />
-          <SubHeader title='Schedule' />
-          <EventSchedule />
+          <SubHeader title='Judges, Speakers & Mentors' />
+          <JuriAndMentors />
           <SubHeader title='Venue' />
           <VenueInfo />
+          <SubHeader title='Schedule' />
+          <EventSchedule />
           <SubHeader title='Partners' />
           <Partners />
           <SubHeader title='FAQ' />
