@@ -53,7 +53,7 @@ const people: Person[] = [
     profileUrl: 'https://www.linkedin.com/in/kenlane33',
   },
   {
-    name: 'MiguelMatos',
+    name: 'Miguel Matos',
     img: MiguelMatos,
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/miguelmatos99',
