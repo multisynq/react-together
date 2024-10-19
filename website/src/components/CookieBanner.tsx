@@ -46,7 +46,7 @@ export function CookieBanner() {
       style={{ width: '50vw' }}
       footer={footerContent}
     >
-      <p className='m-0'>Hey, welcome to React Together!! Do you mind if we gather your usage data to improve our website?</p>
+      <p className='m-0'>Welcome to React Together!! Do you mind if we gather your usage data to improve our website?</p>
     </Dialog>
   )
 }
