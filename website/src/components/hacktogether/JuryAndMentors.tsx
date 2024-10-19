@@ -1,5 +1,6 @@
 import AranLunzer from '@images/people/AranLunzer.jpeg'
 import DavidSmith from '@images/people/DavidSmith.jpeg'
+import JoaoSantos from '@images/people/JoaoSantos.jpeg'
 import JohnPayne from '@images/people/JohnPayne.jpeg'
 import KenLane from '@images/people/KenLane.jpeg'
 import MaximLegg from '@images/people/MaximLegg.png'
@@ -63,6 +64,12 @@ const people: Person[] = [
     name: 'Yuliia Bilyk',
     company: 'NoDress.Code',
     profileUrl: 'https://www.linkedin.com/in/yuliia-bilyk-winb',
+  },
+  {
+    img: JoaoSantos,
+    name: 'João Santos',
+    company: 'Sereneus',
+    profileUrl: 'https://www.linkedin.com/in/joaops95',
   },
 ]
 
