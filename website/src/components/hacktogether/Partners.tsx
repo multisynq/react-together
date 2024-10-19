@@ -13,6 +13,7 @@ import moveToFundaoLogo from '@images/moveToFundao.jpg'
 import neetiLogo from '@images/neeti_logo.png'
 import neiistLogo from '@images/neiist_logo.png'
 import novaeLogo from '@images/novae_logo.svg'
+import pangeaLogo from '@images/pangea_logo.png'
 import starJeLogo from '@images/starJe_logo.png'
 import startupPortugalLogo from '@images/startupportugal_logo.svg'
 import techstarsStartupDigestLogo from '@images/techstarsStartupDigest_logo.jpg'
@@ -69,9 +70,9 @@ const partners = [
 
 const communityPartners = [
   {
-    src: _351Logo,
-    url: 'https://351startups.com/',
-    alt: '351 Portuguese Startup Association',
+    src: pangeaLogo,
+    url: 'https://pangea.foundation/',
+    alt: 'Pangea',
   },
   {
     src: neetiLogo,
@@ -79,9 +80,9 @@ const communityPartners = [
     alt: 'NEETI',
   },
   {
-    src: startupPortugalLogo,
-    url: 'https://startupportugal.com/',
-    alt: 'Startup Portugal',
+    src: _351Logo,
+    url: 'https://351startups.com/',
+    alt: '351 Portuguese Startup Association',
   },
   {
     src: leWagonLogo,
@@ -89,9 +90,9 @@ const communityPartners = [
     alt: 'Le Wagon',
   },
   {
-    src: techstarsStartupDigestLogo,
-    url: 'https://read.letterhead.email/techstars-portugal',
-    alt: 'Techstars Startup Digest Portugal',
+    src: startupPortugalLogo,
+    url: 'https://startupportugal.com/',
+    alt: 'Startup Portugal',
   },
   {
     src: _42LisbonLogo,
@@ -99,9 +100,9 @@ const communityPartners = [
     alt: '42 Lisbon',
   },
   {
-    src: womenInTechLogo,
-    url: 'https://www.womenintech.pt/',
-    alt: 'Women in Tech Portugal',
+    src: techstarsStartupDigestLogo,
+    url: 'https://read.letterhead.email/techstars-portugal',
+    alt: 'Techstars Startup Digest Portugal',
   },
   {
     src: neiistLogo,
@@ -109,9 +110,9 @@ const communityPartners = [
     alt: 'NEIIST',
   },
   {
-    src: buildUpLabsLogo,
-    url: 'https://builduplabs.com/',
-    alt: 'Build Up Labs',
+    src: womenInTechLogo,
+    url: 'https://www.womenintech.pt/',
+    alt: 'Women in Tech Portugal',
   },
   {
     src: jeknowledgeLogo,
@@ -119,9 +120,9 @@ const communityPartners = [
     alt: 'JeKnowledge',
   },
   {
-    src: growincLogo,
-    url: 'https://www.growinc.io/lis',
-    alt: 'grow.inc SPACES Lisbon',
+    src: buildUpLabsLogo,
+    url: 'https://builduplabs.com/',
+    alt: 'Build Up Labs',
   },
   {
     src: jdcLogo,
@@ -129,9 +130,9 @@ const communityPartners = [
     alt: 'Júnior Data Consulting',
   },
   {
-    src: uflLogo,
-    url: 'https://unicornfactorylisboa.com/',
-    alt: 'Unicorn Factory Lisboa',
+    src: growincLogo,
+    url: 'https://www.growinc.io/lis',
+    alt: 'grow.inc SPACES Lisbon',
   },
   {
     src: starJeLogo,
@@ -139,8 +140,9 @@ const communityPartners = [
     alt: 'STAR Júnior Enterprise',
   },
   {
-    src: gamingHubLogo,
-    alt: 'Gaming Hub',
+    src: uflLogo,
+    url: 'https://unicornfactorylisboa.com/',
+    alt: 'Unicorn Factory Lisboa',
   },
   {
     src: novaeLogo,
@@ -148,14 +150,18 @@ const communityPartners = [
     alt: 'NOVAe',
   },
   {
-    src: moveToFundaoLogo,
-    url: 'https://movetofundao.pt/',
-    alt: 'Move to Fundão',
+    src: gamingHubLogo,
+    alt: 'Gaming Hub',
   },
   {
     src: hackerSchoolLogo,
     url: 'https://linktr.ee/hackerschool_ist',
     alt: 'Hacker School',
+  },
+  {
+    src: moveToFundaoLogo,
+    url: 'https://movetofundao.pt/',
+    alt: 'Move to Fundão',
   },
 ]
 
