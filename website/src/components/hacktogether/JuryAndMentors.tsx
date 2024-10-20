@@ -101,7 +101,7 @@ function Headshot({ person }: HeadshotProps) {
 
 export default function JuriAndMentors() {
   return (
-    <div className='grid items-center justify-center gap-3 grid-cols-2 gap-y-4 lg:gap-x-4 lg:gap-y-12 lg:grid-cols-4'>
+    <div className='grid items-start justify-center gap-3 grid-cols-2 gap-y-4 lg:gap-x-4 lg:gap-y-12 lg:grid-cols-4'>
       {people.map((p) => (
         <Headshot key={p.name} person={p} />
       ))}
