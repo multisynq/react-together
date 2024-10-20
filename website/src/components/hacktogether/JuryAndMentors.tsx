@@ -1,3 +1,4 @@
+import AfonsoGoncalves from '@images/people/AfonsoGoncalves.jpeg'
 import AranLunzer from '@images/people/AranLunzer.jpeg'
 import DavidSmith from '@images/people/DavidSmith.jpeg'
 import JoaoSantos from '@images/people/JoaoSantos.jpeg'
@@ -76,6 +77,12 @@ const people: Person[] = [
     name: 'João Santos',
     company: 'Sereneus',
     profileUrl: 'https://www.linkedin.com/in/joaops95',
+  },
+  {
+    img: AfonsoGoncalves,
+    name: 'Afonso Gonçalves',
+    company: 'Multisynq.io',
+    profileUrl: 'https://www.linkedin.com/in/afonsocrg',
   },
 ]
 
