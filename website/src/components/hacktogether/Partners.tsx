@@ -8,6 +8,7 @@ import hackerSchoolLogo from '@images/partners/hackerschool_logo.png'
 import hoodLogo from '@images/partners/hood_logo.png'
 import jdcLogo from '@images/partners/jdc_logo.png'
 import jeknowledgeLogo from '@images/partners/jeKnowledge_logo.png'
+import junitecLogo from '@images/partners/junitec.jpeg'
 import leWagonLogo from '@images/partners/lewagon_logo.png'
 import moveToFundaoLogo from '@images/partners/moveToFundao.jpg'
 import neetiLogo from '@images/partners/neeti_logo.png'
@@ -68,16 +69,23 @@ const partners = [
   },
 ]
 
-const communityPartners = [
+function zipArrays(arr1, arr2) {
+  const maxLength = Math.max(arr1.length, arr2.length)
+  const result = []
+
+  for (let i = 0; i < maxLength; i++) {
+    if (i < arr1.length) result.push(arr1[i])
+    if (i < arr2.length) result.push(arr2[i])
+  }
+
+  return result
+}
+
+const startupPartners = [
   {
     src: pangeaLogo,
     url: 'https://pangea.foundation/',
     alt: 'Pangea',
-  },
-  {
-    src: neetiLogo,
-    url: 'https://neeti.tecnico.ulisboa.pt/',
-    alt: 'NEETI',
   },
   {
     src: _351Logo,
@@ -85,19 +93,9 @@ const communityPartners = [
     alt: '351 Portuguese Startup Association',
   },
   {
-    src: leWagonLogo,
-    url: 'https://www.lewagon.com/lisbon',
-    alt: 'Le Wagon',
-  },
-  {
     src: startupPortugalLogo,
     url: 'https://startupportugal.com/',
     alt: 'Startup Portugal',
-  },
-  {
-    src: _42LisbonLogo,
-    url: 'https://www.42lisboa.com',
-    alt: '42 Lisbon',
   },
   {
     src: techstarsStartupDigestLogo,
@@ -105,19 +103,9 @@ const communityPartners = [
     alt: 'Techstars Startup Digest Portugal',
   },
   {
-    src: neiistLogo,
-    url: 'https://neiist.tecnico.ulisboa.pt/',
-    alt: 'NEIIST',
-  },
-  {
     src: womenInTechLogo,
     url: 'https://www.womenintech.pt/',
     alt: 'Women in Tech Portugal',
-  },
-  {
-    src: jeknowledgeLogo,
-    url: 'https://www.jeknowledge.pt/',
-    alt: 'JeKnowledge',
   },
   {
     src: buildUpLabsLogo,
@@ -125,19 +113,9 @@ const communityPartners = [
     alt: 'Build Up Labs',
   },
   {
-    src: jdcLogo,
-    url: 'https://www.juniordataconsulting.com/',
-    alt: 'Júnior Data Consulting',
-  },
-  {
     src: growincLogo,
     url: 'https://www.growinc.io/lis',
     alt: 'grow.inc SPACES Lisbon',
-  },
-  {
-    src: starJeLogo,
-    url: 'https://starje.pt/',
-    alt: 'STAR Júnior Enterprise',
   },
   {
     src: uflLogo,
@@ -145,18 +123,8 @@ const communityPartners = [
     alt: 'Unicorn Factory Lisboa',
   },
   {
-    src: novaeLogo,
-    url: 'https://linktr.ee/unovae',
-    alt: 'NOVAe',
-  },
-  {
     src: gamingHubLogo,
     alt: 'Gaming Hub',
-  },
-  {
-    src: hackerSchoolLogo,
-    url: 'https://linktr.ee/hackerschool_ist',
-    alt: 'Hacker School',
   },
   {
     src: moveToFundaoLogo,
@@ -164,6 +132,61 @@ const communityPartners = [
     alt: 'Move to Fundão',
   },
 ]
+
+const studentPartners = [
+  {
+    src: neetiLogo,
+    url: 'https://neeti.tecnico.ulisboa.pt/',
+    alt: 'NEETI',
+  },
+  {
+    src: leWagonLogo,
+    url: 'https://www.lewagon.com/lisbon',
+    alt: 'Le Wagon',
+  },
+  {
+    src: _42LisbonLogo,
+    url: 'https://www.42lisboa.com',
+    alt: '42 Lisbon',
+  },
+  {
+    src: neiistLogo,
+    url: 'https://neiist.tecnico.ulisboa.pt/',
+    alt: 'NEIIST',
+  },
+  {
+    src: jeknowledgeLogo,
+    url: 'https://www.jeknowledge.pt/',
+    alt: 'JeKnowledge',
+  },
+  {
+    src: jdcLogo,
+    url: 'https://www.juniordataconsulting.com/',
+    alt: 'Júnior Data Consulting',
+  },
+  {
+    src: junitecLogo,
+    url: 'https://www.junitec.pt',
+    alt: 'JUNITEC',
+  },
+  {
+    src: novaeLogo,
+    url: 'https://linktr.ee/unovae',
+    alt: 'NOVAe',
+  },
+  {
+    src: starJeLogo,
+    url: 'https://starje.pt/',
+    alt: 'STAR Júnior Enterprise',
+  },
+  {
+    src: hackerSchoolLogo,
+    url: 'https://linktr.ee/hackerschool_ist',
+    alt: 'Hacker School',
+  },
+]
+
+const communityPartners = zipArrays(startupPartners, studentPartners)
 
 export default function Partners() {
   return (
