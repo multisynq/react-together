@@ -6,6 +6,7 @@ import JohnPayne from '@images/people/JohnPayne.jpeg'
 import KenLane from '@images/people/KenLane.jpeg'
 import MaximLegg from '@images/people/MaximLegg.png'
 import MiguelMatos from '@images/people/MiguelMatos.jpeg'
+import SandraLeonor from '@images/people/SandraLeonor.jpeg'
 import VanessaFreudenberg from '@images/people/VanessaFreudenberg.jpg'
 import YoshikiOhshima from '@images/people/YoshikiOhshima.jpg'
 import YuliiaBilyk from '@images/people/YuliiaBilyk.jpeg'
@@ -16,6 +17,7 @@ interface Person {
   name: string
   company?: string
   profileUrl?: string | null
+  companyUrl?: string
 }
 
 const people: Person[] = [
@@ -71,6 +73,13 @@ const people: Person[] = [
     name: 'Yuliia Bilyk',
     company: 'NoDress.Code',
     profileUrl: 'https://www.linkedin.com/in/yuliia-bilyk-winb',
+  },
+  {
+    img: SandraLeonor,
+    name: 'Sandra Leonor',
+    company: 'Laika Ventures',
+    profileUrl: 'https://www.linkedin.com/in/sandra-leonor/',
+    companyUrl: 'https://laikaventures.co/',
   },
   {
     img: JoaoSantos,
