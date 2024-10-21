@@ -26,30 +26,35 @@ const people: Person[] = [
     img: JohnPayne,
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/johnpayne',
+    companyUrl: 'https://www.multisynq.io',
   },
   {
     name: 'David Smith',
     img: DavidSmith,
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/croquet',
+    companyUrl: 'https://www.multisynq.io',
   },
   {
     name: 'Maxim Legg',
     img: MaximLegg,
     company: 'Pangea',
     profileUrl: 'https://www.linkedin.com/in/maximlegg/',
+    companyUrl: 'https://pangea.foundation/',
   },
   {
     name: 'Vanessa Freudenberg',
     img: VanessaFreudenberg,
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/codefrau',
+    companyUrl: 'https://www.multisynq.io',
   },
   {
     name: 'Aran Lunzer',
     img: AranLunzer,
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/aran-lunzer-6506221',
+    companyUrl: 'https://www.multisynq.io',
   },
   {
     name: 'Yoshiki Ohshima',
@@ -61,18 +66,21 @@ const people: Person[] = [
     img: KenLane,
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/kenlane33',
+    companyUrl: 'https://www.multisynq.io',
   },
   {
     name: 'Miguel Matos',
     img: MiguelMatos,
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/miguelmatos99',
+    companyUrl: 'https://www.multisynq.io',
   },
   {
     img: YuliiaBilyk,
     name: 'Yuliia Bilyk',
     company: 'NoDress.Code',
     profileUrl: 'https://www.linkedin.com/in/yuliia-bilyk-winb',
+    companyUrl: 'https://nodress.codes/',
   },
   {
     img: SandraLeonor,
@@ -86,12 +94,14 @@ const people: Person[] = [
     name: 'João Santos',
     company: 'Sereneus',
     profileUrl: 'https://www.linkedin.com/in/joaops95',
+    companyUrl: 'https://www.sereneus.pt/pt',
   },
   {
     img: AfonsoGoncalves,
     name: 'Afonso Gonçalves',
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/afonsocrg',
+    companyUrl: 'https://www.multisynq.io',
   },
 ]
 
@@ -109,7 +119,11 @@ function Headshot({ person }: HeadshotProps) {
       </a>
       <div className='mx-auto flex flex-col items-center text-center mt-2'>
         <strong className='text-md m-0 lg:text-lg md:text-xl font-medium'>{person.name}</strong>
-        <p className='text-black-500 text-md'>{person.company}</p>
+        {person.company && (
+          <a href={person.companyUrl} target='_blank' className={'text-black-500 text-md' + (person.companyUrl ? ' underline' : '')}>
+            {person.company}
+          </a>
+        )}
       </div>
     </div>
   )
