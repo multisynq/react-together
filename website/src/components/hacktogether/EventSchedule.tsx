@@ -1,24 +1,34 @@
 interface Event {
   time: string
-  event: string
+  event: string | React.ReactElement
 }
 
 const fridaySchedule: Event[] = [
-  { time: '09:00 - 11:30', event: 'Check-in & Team formation' },
-  { time: '11:30 - 12:00', event: 'Welcome Address & Event Kickoff' },
-  { time: '12:00', event: 'Hacking Begins!!' },
-  { time: '12:30 - 13:30', event: 'Lunch' },
-  { time: '19:30 - 22:00', event: 'Dinner' },
+  { time: '09:00', event: 'Check-in & Team formation' },
+  { time: '11:30', event: 'Event Kickoff' },
+  {
+    time: '12:00',
+    event: (
+      <span>
+        Hacking Begins!!
+        <br />
+        Ideation session w/ Yuliia
+      </span>
+    ),
+  },
+  // { time: '12:00', event: 'Ideation session w/ Yuliia' },
+  { time: '13:00', event: 'Lunch is served' },
+  { time: '19:30', event: 'Dinner is served' },
   { time: '23:59', event: 'Midnight Motivational Break' },
 ]
 
 const saturdaySchedule: Event[] = [
-  { time: '07:00 - 09:00', event: 'Breakfast' },
-  { time: '12:00', event: 'Hacking Ends!!' },
-  { time: '12:00 - 14:00', event: 'Pitch and video preparations' },
-  { time: '14:00 - 17:00', event: 'Project Judging' },
-  { time: '17:00 - 18:00', event: 'Closing Ceremony' },
-  { time: '18:00 - 19:30', event: 'After Party' },
+  { time: '07:30', event: 'Breakfast is served' },
+  { time: '12:00', event: <strong>Coding Ends!!</strong> },
+  { time: '12:30', event: 'Lunch is served' },
+  { time: '15:00', event: <strong>Submission deadline</strong> },
+  { time: '17:00', event: 'Winner Announcement' },
+  { time: '18:00', event: 'After Party' },
 ]
 
 function EventContainer({ time, event }: Event) {
