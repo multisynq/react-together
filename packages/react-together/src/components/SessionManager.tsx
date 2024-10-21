@@ -2,7 +2,7 @@ import { useLeaveSession } from '@croquet/react'
 import 'primeicons/primeicons.css'
 import { Dialog } from 'primereact/dialog'
 import QRCode from 'qrcode.react'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useCreateRandomSession, useIsTogether, useJoinUrl } from '..'
 import { Icons } from './icons'
 
@@ -43,12 +43,6 @@ export function SessionManager() {
   const toggleQRCode = useCallback(() => {
     setShowQRCode((prev) => !prev)
   }, [])
-
-  const displayUrl = useMemo(() => {
-    if (!joinUrl) return 'No URL available'
-    if (joinUrl.length <= 8) return joinUrl
-    return '...' + joinUrl.slice(-8)
-  }, [joinUrl])
 
   return (
     <>
@@ -100,8 +94,8 @@ export function SessionManager() {
                   className="flex items-center gap-3 justify-between w-full"
                   disabled={!joinUrl}
                 >
-                  <span className="w-[8rem] truncate">
-                    {copied ? 'Copied!' : displayUrl}
+                  <span className="w-[8rem] whitespace-nowrap overflow-x-auto">
+                    {copied ? 'Copied!' : joinUrl}
                   </span>
                   <i className={copied ? 'pi pi-check' : 'pi pi-copy'}></i>
                 </button>
