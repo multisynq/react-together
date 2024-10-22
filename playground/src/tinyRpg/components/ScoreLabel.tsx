@@ -1,8 +1,8 @@
-import { Croquet, useMyId } from 'react-together'
+import { CroquetReact, useMyId } from 'react-together'
 import { OverrideModel } from '../models'
 import Label from './Label'
 
-const { useModelSelector } = Croquet
+const { useModelSelector } = CroquetReact
 
 export default function ScoreLabel() {
   const myId = useMyId()!

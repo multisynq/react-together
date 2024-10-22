@@ -1,6 +1,6 @@
-import { Croquet, useStateTogetherWithPerUserValues } from 'react-together'
+import { CroquetReact, useStateTogetherWithPerUserValues } from 'react-together'
 
-const { useViewId } = Croquet
+const { useViewId } = CroquetReact
 
 function Score({ score, clickable, onClick, onContextMenu }) {
   const clickableStyle = clickable ? 'cursor-pointer shadow-sm bg-slate-500 text-white' : ''

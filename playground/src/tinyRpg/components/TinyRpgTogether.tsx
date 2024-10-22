@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from 'react'
-import { Croquet, useMyId } from 'react-together'
+import { CroquetReact, useMyId } from 'react-together'
 import { ArrowButtons, Board, Coins, Players, Scores } from '.'
 import { OverrideModel } from '../models'
 import { MoveArgs } from '../models/TinyRpgModel'
 
-const { useModelSelector, usePublish } = Croquet
+const { useModelSelector, usePublish } = CroquetReact
 
 export default function TinyRpgTogether() {
   // console.log('<TinyRpg/>')

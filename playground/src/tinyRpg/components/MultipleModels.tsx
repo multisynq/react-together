@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Croquet, useMyId, useStateTogether } from 'react-together'
+import { CroquetReact, useMyId, useStateTogether } from 'react-together'
 import { OverrideModel } from '../models'
 import TinyRpgTogether from './TinyRpgTogether'
 
-const { useModelRoot, usePublish, useSubscribe } = Croquet
+const { useModelRoot, usePublish, useSubscribe } = CroquetReact
 
 export function MultipleModels() {
   const [count, setCount] = useStateTogether('count', 0)
