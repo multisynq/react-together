@@ -4,10 +4,10 @@ import ReactTogetherModel from '../models/ReactTogetherModel'
 import { SESSION_NAME_PARAM, SESSION_PASSWORD_PARAM } from '../hooks/useJoinUrl'
 
 type ReactTogetherSessionParams = {
+  apiKey: string
+  appId: string
   name?: string
   password?: string
-  appId: string
-  apiKey: string
   sessionIgnoresUrl?: boolean
   model?: typeof ReactTogetherModel
 }
