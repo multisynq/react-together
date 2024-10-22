@@ -1,5 +1,5 @@
 import { useSessionParams } from '@croquet/react'
-import { useIsTogether } from '..'
+import { useIsTogether } from '.'
 
 export const SESSION_NAME_PARAM = 'rtName'
 export const SESSION_PASSWORD_PARAM = 'rtPwd'
