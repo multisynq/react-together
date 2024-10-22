@@ -105,7 +105,7 @@ export default function AppRoutes() {
         <Route path='HeroDemo' element={<HeroDemo />} />
         <Route path='CountButtonTogether' element={<CountButtonTogether />} />
         <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWPUVDemo />} />
-        <Route path='SessionManagerDemo' element={<SessionManagerDemo />} />
+        <Route path='SessionManager' element={<SessionManagerDemo />} />
         <Route path='ConnectedUsers' element={<ConnectedUsers />} />
         <Route path='HoverHighlighter' element={<HoverHighlighterDemo />} />
         <Route path='primereact'>
