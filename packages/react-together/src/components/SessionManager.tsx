@@ -6,7 +6,7 @@ import { useCreateRandomSession, useIsTogether, useJoinUrl } from '..'
 import { useLeaveSession } from '../hooks'
 import { Icons } from './icons'
 
-export function SessionManager() {
+export default function SessionManager() {
   const [isOpen, setIsOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const leaveSession = useLeaveSession()
