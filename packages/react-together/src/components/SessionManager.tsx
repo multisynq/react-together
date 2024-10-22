@@ -1,9 +1,9 @@
-import { useLeaveSession } from '@croquet/react'
 import 'primeicons/primeicons.css'
 import { Dialog } from 'primereact/dialog'
 import QRCode from 'qrcode.react'
 import { useCallback, useState } from 'react'
 import { useCreateRandomSession, useIsTogether, useJoinUrl } from '..'
+import { useLeaveSession } from '../hooks'
 import { Icons } from './icons'
 
 export function SessionManager() {
