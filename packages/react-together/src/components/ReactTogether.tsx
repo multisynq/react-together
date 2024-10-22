@@ -45,7 +45,7 @@ export default function ReactTogether({
   return (
     <CroquetRoot
       sessionParams={{ model, name, password, appId, apiKey, options }}
-      deferSession={!name && !password}
+      deferSession={!name || !password}
       showChildrenWithoutSession
     >
       {children}
