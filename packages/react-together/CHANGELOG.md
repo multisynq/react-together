@@ -1,8 +1,24 @@
 ## 0.2.0 Prerelease
 
 ### 0.2.0-3
-
-TODO: WRITE THIS
+ - Removed `ReactTogetherContext`
+ - Removed `useReactTogetherContext`
+ - Renamed `ConnectedViews` to `ConnectedUsers` (old name still available as an alias)
+ - Renamed `PresenceDiv` to `HoverHighlighter` (old name still available as an alias)
+ - Added prop `highlightMyself` to `HoverHighlighter` component
+ - Exported `SESSION_NAME_PARAM` and `SESSION_PASSWORD_PARAM`
+ - Added `name` prop to `ReactTogether`
+ - Added `password` prop to `ReactTogether`
+ - `ReactTogether` component joins session if `rtName` and `rtPwd` specified in URL search parameters
+ - Added `SessionManager` component
+ - Renamed `useConnectedViews` to `useConnectedUsers` (old name still available as an alias)
+ - Renamed `useHoveringViews` to `useHoveringUsers` (old name still available as an alias)
+ - Removed `useReactTogetherContext` hook
+ - Added `useIsTogether` hook
+ - Added `useMyId` hook
+ - Added `useCreateRandomSession` hook
+ - Added `useJoinUrl`
+ - Added `useLeaveSession` hook
 
 ### 0.2.0-2
  - experimental `useFunctionTogether`
