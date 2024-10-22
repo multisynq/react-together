@@ -5,13 +5,13 @@ import {
   uniqueNamesGenerator
 } from 'unique-names-generator'
 
-export type ConnectedView = {
+export type ConnectedUser = {
   userId: string
   name: string
   isYou: boolean
 }
 
-export default function useConnectedUsers(): ConnectedView[] {
+export default function useConnectedUsers(): ConnectedUser[] {
   const { views } = ujv()
   const myId = useViewId()
 
