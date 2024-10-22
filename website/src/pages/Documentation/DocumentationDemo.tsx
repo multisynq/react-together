@@ -2,7 +2,9 @@ import { DocumentDemoContainer } from '@components/ui/DocumentDemoContainer'
 import Iframe from 'react-iframe'
 import { SESSION_NAME_PARAM, SESSION_PASSWORD_PARAM } from 'react-together'
 
-function buildUrl(path: string, session: SessionParams): string {
+function buildUrl(path: string, session: SessionParams | null): string {
+  if (!session) return `#${path}`
+
   const params = new URLSearchParams([
     [SESSION_NAME_PARAM, session.name],
     [SESSION_PASSWORD_PARAM, session.password],

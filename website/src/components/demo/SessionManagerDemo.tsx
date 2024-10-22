@@ -84,7 +84,7 @@ export default function SessionManagerDemo() {
         <CountButtonTogether />
         <p className='text-xs px-12'>
           {isTogether
-            ? `You are in session "${name}". You can invite your friends by sending them the URL in the bar above!`
+            ? `You are in session "${name}". You can invite your friends or leave the current session by clicking on the button below`
             : `You are currently disconnected. Paste a Join URL in the bar above, or click on the button below to create a private session!`}
         </p>
       </div>
