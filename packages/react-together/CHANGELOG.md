@@ -1,24 +1,26 @@
 ## 0.2.0 Prerelease
 
 ### 0.2.0-3
- - Removed `ReactTogetherContext`
- - Removed `useReactTogetherContext`
- - Renamed `ConnectedViews` to `ConnectedUsers` (old name still available as an alias)
- - Renamed `PresenceDiv` to `HoverHighlighter` (old name still available as an alias)
- - Added prop `highlightMyself` to `HoverHighlighter` component
- - Exported `SESSION_NAME_PARAM` and `SESSION_PASSWORD_PARAM`
- - Added `name` prop to `ReactTogether`
- - Added `password` prop to `ReactTogether`
- - `ReactTogether` component joins session if `rtName` and `rtPwd` specified in URL search parameters
- - Added `SessionManager` component
- - Renamed `useConnectedViews` to `useConnectedUsers` (old name still available as an alias)
- - Renamed `useHoveringViews` to `useHoveringUsers` (old name still available as an alias)
- - Removed `useReactTogetherContext` hook
- - Added `useIsTogether` hook
- - Added `useMyId` hook
  - Added `useCreateRandomSession` hook
+ - Added `useIsTogether` hook
  - Added `useJoinUrl`
  - Added `useLeaveSession` hook
+ - Added `useMyId` hook
+ - Added `SessionManager` component
+ - Added `name` prop to `ReactTogether.sessionParams`
+ - Added `password` prop to `ReactTogether.sessionParams`
+ - Added `highlightMyself` prop to `HoverHighlighter` component
+ - Added `SESSION_NAME_PARAM` and `SESSION_PASSWORD_PARAM` constants
+ - Renamed `ConnectedViews` to `ConnectedUsers` (old name still available as an alias)
+ - Renamed `PresenceDiv` to `HoverHighlighter` (old name still available as an alias)
+ - Renamed `useConnectedViews` to `useConnectedUsers` (old name still available as an alias)
+ - Renamed `useHoveringViews` to `useHoveringUsers` (old name still available as an alias)
+ - `useHoveringUsers` now returns whether the local user is hovering the targeted element
+ - `useHoveringUsers` options do not receive the `highlightMyself` parameter anymore
+ - `ReactTogether` component joins session if `rtName` and `rtPwd` specified in URL search parameters
+ - Reexport `@croquet/react` as `CroquetReact` object
+ - Removed `ReactTogetherContext`
+ - Removed `useReactTogetherContext`
 
 ### 0.2.0-2
  - experimental `useFunctionTogether`
