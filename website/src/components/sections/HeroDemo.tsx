@@ -16,7 +16,7 @@ export function WithReactTogetherProvider({ children }) {
 }
 
 export function HeroDemo() {
-  const path = '/#/demos/HeroDemo'
+  const path = '/demos/HeroDemo'
   const origin = window.origin
   const url = `${origin}${path}`
   return (

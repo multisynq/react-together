@@ -3,7 +3,7 @@ import Iframe from 'react-iframe'
 import { SESSION_NAME_PARAM, SESSION_PASSWORD_PARAM } from 'react-together'
 
 function buildUrl(path: string, session: SessionParams | null): string {
-  if (!session) return `#${path}`
+  if (!session) return `${path}`
 
   const params = new URLSearchParams([
     [SESSION_NAME_PARAM, session.name],
@@ -11,7 +11,8 @@ function buildUrl(path: string, session: SessionParams | null): string {
   ])
   // If the search parameters are after the hash,
   // they will be treated as part of the hash
-  return `?${params.toString()}#${path}`
+  // return `?${params.toString()}#${path}`
+  return `${path}?${params.toString()}`
 }
 
 const defaultSession: SessionParams = Object.freeze({

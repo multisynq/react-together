@@ -2,7 +2,7 @@ import MSQ_logo from '../../images/MSQ_logo.jpg'
 import Background from '../../images/pricing_background.png'
 
 export function PricingBanner() {
-  const COST_LINK = '/#/pricing'
+  const COST_LINK = '/pricing'
   const SYNQER_LINK = 'https://multisynq.io/'
 
   const divStyle = {
