@@ -1,4 +1,5 @@
 import AfonsoGoncalves from '@images/people/AfonsoGoncalves.jpeg'
+import ElijahLeeh from '@images/people/ElijahLee.jpg'
 // import AranLunzer from '@images/people/AranLunzer.jpeg'
 // import DavidSmith from '@images/people/DavidSmith.jpeg'
 import JoaoSantos from '@images/people/JoaoSantos.jpeg'
@@ -88,6 +89,13 @@ const people: Person[] = [
     company: 'Sereneus',
     profileUrl: 'https://www.linkedin.com/in/joaops95',
     companyUrl: 'https://www.sereneus.pt/pt',
+  },
+  {
+    img: ElijahLeeh,
+    name: 'Elijah Lee',
+    company: 'Multisynq.io',
+    profileUrl: 'http://www.linkedin.com/in/elijah-lee51',
+    companyUrl: 'https://laikaventures.co/',
   },
   {
     name: 'Miguel Matos',
