@@ -12,6 +12,7 @@ import jdcLogo from '@images/partners/jdc_logo.png'
 import jeknowledgeLogo from '@images/partners/jeKnowledge_logo.png'
 import junitecLogo from '@images/partners/junitec.png'
 import leWagonLogo from '@images/partners/lewagon_logo.png'
+import lisboaJSLogo from '@images/partners/LisboaJS.png'
 import moveToFundaoLogo from '@images/partners/moveToFundao.jpg'
 import neetiLogo from '@images/partners/neeti_logo.png'
 import neiistLogo from '@images/partners/neiist_logo.png'
@@ -101,6 +102,11 @@ const startupPartners = [
     src: pangeaLogo,
     url: 'https://pangea.foundation/',
     alt: 'Pangea',
+  },
+  {
+    src: lisboaJSLogo,
+    url: 'https://www.meetup.com/lisboajs/',
+    alt: 'LisboaJS',
   },
   {
     src: _351Logo,
