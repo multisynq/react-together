@@ -51,14 +51,20 @@ export default function ReactTogetherDocumentationPage() {
             name: 'name?',
             type: 'string',
             description: (
-              <p>If this parameter is defined, React Together will connect to a session with the given name when it first renders</p>
+              <p>
+                If this parameter and <CodeSpan text='password' /> are defined, React Together will connect to a session with the given name
+                when it first renders
+              </p>
             ),
           },
           {
             name: 'password?',
             type: 'string',
             description: (
-              <p>If this parameter is defined, React Together will connect to a session with the given password when it first renders</p>
+              <p>
+                If this parameter and <CodeSpan text='name' /> are defined, React Together will connect to a session with the given password
+                when it first renders
+              </p>
             ),
           },
           {
@@ -80,7 +86,23 @@ export default function ReactTogetherDocumentationPage() {
   const content = (
     <GenericDocPage
       title='ReactTogether'
-      description='This component provides the context required to synchronize multiple users within the same session. Every React Together hook and component should be used within the scope of this component.'
+      description={
+        <>
+          <p>
+            This component provides the context required to synchronize multiple users within the same session. Every React Together hook
+            and component should be used within the scope of this component.
+          </p>
+          <p>
+            If <CodeSpan text='name' /> and <CodeSpan text='password' /> are passed in the <CodeSpan text='sessionParams' /> prop,{' '}
+            <CodeSpan text='ReactTogether' /> will immediately connect to a session with the given <CodeSpan text='name' /> and{' '}
+            <CodeSpan text='password' />.
+          </p>
+          <p>
+            If <CodeSpan text='rtName' /> and <CodeSpan text='rtPwd' /> are specified in the URL search parameters, those values will
+            override the ones passed in <CodeSpan text='sessionParams' />.
+          </p>
+        </>
+      }
       usage={
         <>
           <CodeBlock language='javascript' code1={`import { ReactTogether } from 'react-together'`} />

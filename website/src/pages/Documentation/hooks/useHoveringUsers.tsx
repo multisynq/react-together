@@ -39,6 +39,11 @@ export default function UseHoveringUsersDocumentationPage() {
               </p>
             ),
           },
+          {
+            name: '2',
+            type: 'boolean',
+            description: <p>A boolean indicating whether the local user is hovering the targeted element.</p>,
+          },
         ]}
       />
     </>
@@ -62,11 +67,11 @@ export default function UseHoveringUsersDocumentationPage() {
           <CodeBlock language='jsx' code1={`import { useHoveringUsers } from 'react-together'`} />
           <CodeBlock
             language='jsx'
-            code1={`const [ref, hoveringViews] = useHoveringUsers(‘hovering-views’)
+            code1={`const [ref, hoveringViews, isHovering] = useHoveringUsers(‘hovering-views’)
 
 return (
   <div>
-    <div ref={ref}>Hover me!</div>
+    <div ref={ref}>{isHovering ? "You're hovering me!" : 'Hover me!'}</div>
     <h3>Hovering Ids:</h3>
     <ul>
       {hoveringViews.map((viewId) => (

@@ -5,6 +5,7 @@ import UseHoveringUsersDocumentationPage from './useHoveringUsers'
 import UseIsTogetherDocumentationPage from './useIsTogether'
 import UseJoinUrlDocumentationPage from './useJoinUrl'
 import UseLeaveSessionDocumentationPage from './useLeaveSession'
+import UseMyIdDocumentationPage from './useMyId'
 import UseStateTogetherDocumentationPage from './useStateTogether'
 import UseStateTogetherWithPerUserValuesDocumentationPage from './useStateTogetherWithPerUserValues'
 
@@ -16,6 +17,7 @@ export {
   UseIsTogetherDocumentationPage,
   UseJoinUrlDocumentationPage,
   UseLeaveSessionDocumentationPage,
+  UseMyIdDocumentationPage,
   UseStateTogetherDocumentationPage,
   UseStateTogetherWithPerUserValuesDocumentationPage,
 }

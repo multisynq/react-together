@@ -71,6 +71,7 @@ const items: PatchedMenuItem[] = [
           { key: 'use-is-together', label: 'useIsTogether', url: `${baseUrl}/useIsTogether` },
           { key: 'use-leave-session', label: 'useLeaveSession', url: `${baseUrl}/useLeaveSession` },
           { key: 'use-join-url', label: 'useJoinUrl', url: `${baseUrl}/useJoinUrl` },
+          { key: 'use-my-id', label: 'useMyId', url: `${baseUrl}/useMyId` },
         ],
       },
     ],

@@ -47,10 +47,19 @@ function UrlContainer({ localUrl, setLocalUrl, onSubmit }: UrlContainerProps) {
   )
 }
 
+function ConnectionStatus({ connectionStatus, name }: { connectionStatus: boolean; name: string | null }) {
+  return (
+    <div className='flex gap-2 items-center justify-center border border-gray-500 rounded-xl shadow-lineStyleMedium py-1 px-2 bg-gray-50'>
+      <div className={`w-3 h-3 rounded-3xl ${connectionStatus ? 'bg-green-500' : 'bg-red-500'}`} />
+      <label className='text-xs font-semibold'>{connectionStatus ? `Connected to ${name}` : 'Disconnected'}</label>
+    </div>
+  )
+}
+
 export default function SessionManagerDemo() {
   const joinUrl = useJoinUrl()
   const isTogether = useIsTogether()
-  // const { name } = useSessionParams()
+  const { name } = useSessionParams()
 
   const [visible, setVisible] = useState(true)
 
@@ -62,15 +71,6 @@ export default function SessionManagerDemo() {
   }
   function handleMouseLeave() {
     setVisible(true)
-  }
-
-  function ConnectionStatus({ connectionStatus }: { connectionStatus: boolean }) {
-    return (
-      <div className='flex gap-2 items-center justify-center border border-gray-500 rounded-xl shadow-lineStyleMedium py-1 px-2 bg-gray-50'>
-        <div className={`w-3 h-3 rounded-3xl ${connectionStatus ? 'bg-green-500' : 'bg-red-500'}`} />
-        <label className='text-xs font-semibold'>{connectionStatus ? 'In session' : 'Not in session'}</label>
-      </div>
-    )
   }
 
   useEffect(() => {
@@ -95,12 +95,9 @@ export default function SessionManagerDemo() {
   }, [localUrl, setLocalUrl, joinUrl])
 
   return (
-    <div className='h-full w-full relative flex justify-center'>
-      <div
-        className='flex w-full flex-col gap-8 p-4 items-center justify-center'
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+    <div className='h-full w-full relative flex justify-center' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <div className='flex w-full flex-col gap-8 p-4 items-center justify-center'>
+        <ConnectionStatus connectionStatus={isTogether} name={name} />
         <div>
           <CountButtonTogether />
           <div className='h-[1rem]' />
@@ -114,8 +111,7 @@ export default function SessionManagerDemo() {
             className={`transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'} w-[8rem] border rounded-lg px-2 py-1 flex items-center justify-center bg-blue-50 shadow-lineStyleLight`}
           >
             <p className='text-xs leading-tight tracking-tight'>
-              Paste a Join <strong>URL </strong>
-              in the bar above!
+              Paste a Join <strong>URL</strong> in the bar above and press Enter to join a session
             </p>
           </div>
         )}
@@ -128,11 +124,11 @@ export default function SessionManagerDemo() {
           <p className='text-xs leading-tight tracking-tight'>
             {isTogether ? (
               <>
-                Click on the button below to <strong>Invite</strong> your friends or <strong>Leave</strong> the current session.
+                Click the button below to <strong>invite</strong> your friends or <strong>leave</strong> the current session.
               </>
             ) : (
               <>
-                Click on the button below to <strong>create </strong>a private session!
+                Click the button below to <strong>create</strong> a private session!
               </>
             )}
           </p>
@@ -143,7 +139,6 @@ export default function SessionManagerDemo() {
               <SessionManager />
             </div>
           </div>
-          <ConnectionStatus connectionStatus={isTogether} />
           <div />
         </div>
       </div>

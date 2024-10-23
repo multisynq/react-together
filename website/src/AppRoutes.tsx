@@ -22,6 +22,7 @@ import {
   UseIsTogetherDocumentationPage,
   UseJoinUrlDocumentationPage,
   UseLeaveSessionDocumentationPage,
+  UseMyIdDocumentationPage,
   UseStateTogetherDocumentationPage,
   UseStateTogetherWithPerUserValuesDocumentationPage,
 } from '@pages/Documentation'
@@ -74,6 +75,7 @@ export default function AppRoutes() {
           <Route path='useStateTogether' element={<UseStateTogetherDocumentationPage />} />
           <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWithPerUserValuesDocumentationPage />} />
           <Route path='useConnectedUsers' element={<UseConnectedUsersDocumentationPage />} />
+          <Route path='useMyId' element={<UseMyIdDocumentationPage />} />
           <Route path='useHoveringUsers' element={<UseHoveringUsersDocumentationPage />} />
           <Route path='useIsTogether' element={<UseIsTogetherDocumentationPage />} />
           <Route path='useCreateRandomSession' element={<UseCreateRandomSessionDocumentationPage />} />

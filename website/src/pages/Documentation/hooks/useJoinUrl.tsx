@@ -1,4 +1,5 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import CodeSpan from '@components/ui/CodeSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
@@ -21,7 +22,10 @@ export default function UseJoinUrlDocumentationPage() {
     <GenericDocPage
       title='useJoinUrl'
       description={
-        'The useJoinUrl hook returns the url other users should connect to to join the current session. If there is no current session, this hook returns null'
+        <p>
+          The <CodeSpan text='useJoinUrl' /> hook returns the url other users should connect to to join the current session. If there is no
+          current session, this hook returns <CodeSpan text='null' />.
+        </p>
       }
       usage={
         <>
