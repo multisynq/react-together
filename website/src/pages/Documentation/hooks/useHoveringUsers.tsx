@@ -55,9 +55,11 @@ export default function UseHoveringUsersDocumentationPage() {
       description={
         <>
           <p>
-            The <CodeSpan text='useHoveringUsers' /> hook identifies which users are hovering a given DOM element. If a user is hovering a
-            component that is nested within other ‘hoverable’ components, only the innermost component will indicate that it's being
-            hovered.
+            The <CodeSpan text='useHoveringUsers' /> hook identifies which users are hovering a given DOM element.
+          </p>
+          <p>
+            If a user is hovering a component that is nested within other <CodeSpan text='hoverable' /> components, only the innermost
+            component will indicate that it's being hovered.
           </p>
           <DocumentationDemo url='HoverHighlighter' />
         </>
