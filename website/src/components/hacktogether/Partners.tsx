@@ -2,6 +2,8 @@ import multisynqLogo from '@images/blue.png'
 import _351Logo from '@images/partners/351_logo.png'
 import _42LisbonLogo from '@images/partners/42Lisboa_logo.svg'
 import buildUpLabsLogo from '@images/partners/build_up_labs_logo.jpg'
+import dominosLogo from '@images/partners/Dominos.png'
+import eatTastyLogo from '@images/partners/eatTasty.png'
 import gamingHubLogo from '@images/partners/gaming_hub_logo.jpg'
 import growincLogo from '@images/partners/growinc_logo.png'
 import hackerSchoolLogo from '@images/partners/hackerschool_logo.png'
@@ -66,6 +68,19 @@ const partners = [
     src: hoodLogo,
     url: 'https://www.hood.pt/',
     alt: 'Hood',
+  },
+]
+
+const foodPartners = [
+  {
+    src: dominosLogo,
+    url: 'https://www.dominospizza.pt/',
+    alt: "Domino's Pizza",
+  },
+  {
+    src: eatTastyLogo,
+    url: 'https://eattasty.pt/home',
+    alt: 'Eat Tasty',
   },
 ]
 
@@ -195,6 +210,11 @@ export default function Partners() {
         {partners.map((p) => (
           <PartnerIcon key={p.url} url={p.url} src={p.src} alt={p.alt} />
         ))}
+        <div className='grid grid-cols-2 gap-4 sm:gap-8'>
+          {foodPartners.map((p) => (
+            <CommunityPartnerIcon key={p.url} url={p.url} src={p.src} alt={p.alt} />
+          ))}
+        </div>
         <div className='flex flex-col gap-8'>
           <div className='flex w-full'>
             <span className='text-3xl font-poppins font-semibold mt-4'>Community</span>
