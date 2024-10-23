@@ -31,6 +31,7 @@ import { HomePage } from './pages/HomePage'
 
 import {
   HoverHighlighterDemo,
+  MeditationBell,
   PrimeReactCheckboxTogetherDemo,
   PrimeReactColorPickerTogetherDemo,
   PrimeReactDropdownTogetherDemo,
@@ -110,6 +111,7 @@ export default function AppRoutes() {
         <Route path='SessionManager' element={<SessionManagerDemo />} />
         <Route path='ConnectedUsers' element={<ConnectedUsers />} />
         <Route path='HoverHighlighter' element={<HoverHighlighterDemo />} />
+        <Route path='useFunctionTogether' element={<MeditationBell />} />
         <Route path='primereact'>
           {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDemo />} /> */}
           <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDemo />} />

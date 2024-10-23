@@ -1,6 +1,7 @@
 import CountButtonTogether from './CountButtonTogether'
 import HeroDemo from './HeroDemo'
 import { HoverHighlighterDemo } from './HoverHighlighterDemo'
+import { MeditationBell } from './MeditationBell'
 import { PrimeReactCalendarTogetherDemo } from './PrimeReactCalendarTogetherDemo'
 import { PrimeReactCheckboxTogetherDemo } from './PrimeReactCheckboxTogetherDemo'
 import { PrimeReactColorPickerTogetherDemo } from './PrimeReactColorPickerTogetherDemo'
@@ -13,12 +14,13 @@ import { PrimeReactSelectButtonTogetherDemo } from './PrimeReactSelectButtonToge
 import { PrimeReactTabViewTogetherDemo } from './PrimeReactTabViewTogetherDemo'
 import { PrimeReactToggleButtonTogetherDemo } from './PrimeReactToggleButtonTogetherDemo'
 import { PrimeReactTriStateCheckboxTogetherDemo } from './PrimeReactTriStateCheckboxTogetherDemo'
-import SessionManagerDemo from './SessionManagerDemo'
+import { SessionManagerDemo } from './SessionManagerDemo'
 import { UseStateTogetherWPUVDemo } from './UseStateTogetherWPUVDemo'
 export {
   CountButtonTogether,
   HeroDemo,
   HoverHighlighterDemo,
+  MeditationBell,
   PrimeReactCalendarTogetherDemo,
   PrimeReactCheckboxTogetherDemo,
   PrimeReactColorPickerTogetherDemo,

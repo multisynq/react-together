@@ -2,6 +2,7 @@ import { CodeBlock } from '@components/ui/CodeBlock'
 import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
@@ -19,6 +20,7 @@ const description = (
       take a look at the underlying library:{' '}
       <LinkSpan text='@croquet/react' to='https://www.npmjs.com/package/@croquet/react' target='_blank' /> 😉.
     </p>
+    <DocumentationDemo url='useFunctionTogether' />
   </>
 )
 

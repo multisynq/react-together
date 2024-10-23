@@ -56,7 +56,7 @@ function ConnectionStatus({ connectionStatus, name }: { connectionStatus: boolea
   )
 }
 
-export default function SessionManagerDemo() {
+export function SessionManagerDemo() {
   const joinUrl = useJoinUrl()
   const isTogether = useIsTogether()
   const { name } = useSessionParams()
