@@ -59,7 +59,7 @@ function CroquetViaScriptTag(): Plugin {
             injectTo: 'head',
             tag: 'script',
             attrs: {
-              src: `assets/${CROQUET_SCRIPT_NAME}`,
+              src: `/assets/${CROQUET_SCRIPT_NAME}`,
             },
           },
         ]
