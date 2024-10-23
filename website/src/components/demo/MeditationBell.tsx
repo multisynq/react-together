@@ -1,7 +1,6 @@
 import bellAudio from '@assets/tuningFork440Hz.mp3'
-import { useState } from 'react'
-// import { useCallback, useState } from 'react'
-// import { useFunctionTogether } from 'react-together'
+import { useCallback, useState } from 'react'
+import { useFunctionTogether } from 'react-together'
 
 // Create audio context outside component to persist between renders
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
@@ -19,11 +18,9 @@ const FADE_DURATION = 6
 export function MeditationBell() {
   const [isRinging, setIsRinging] = useState(false)
 
-  // const ringBell = useFunctionTogether(
-  //   'meditation-bell',
-  //   useCallback(() => {
-  const ringBell = () => {
-      // prettier-ignore-start
+  const ringBell = useFunctionTogether(
+    'meditation-bell',
+    useCallback(() => {
       if (isRinging) return
 
       // Reset gain to full volume
@@ -54,10 +51,8 @@ export function MeditationBell() {
         },
         1000 * (FADE_AFTER + FADE_DURATION)
       )
-      // prettier-ignore-stop
-  }
-  //   }, [isRinging, setIsRinging])
-  // )
+    }, [isRinging, setIsRinging])
+  )
 
   return (
     <div className='h-screen w-screen flex items-center justify-center bg-slate-100'>
