@@ -60,7 +60,7 @@ export function MeditationBell() {
         {/* Bell icon with bounce animation */}
         <button
           onClick={() => ringBell()}
-          className={`text-6xl cursor-pointer transition-transform ${isRinging ? 'scale-110' : 'scale-100'} hover:scale-105`}
+          className={`text-6xl transition-transform ${isRinging ? 'scale-110 cursor-not-allowed' : 'scale-100 cursor-pointer'} hover:scale-105`}
           aria-label='Ring meditation bell'
         >
           🔔
@@ -69,7 +69,7 @@ export function MeditationBell() {
         {/* Visual "Dong..." text that appears and fades */}
         {isRinging && (
           <div className='absolute -right-24 top-0'>
-            <span className='text-2xl text-gray-600 italic'>Dong...</span>
+            <span className='text-2xl text-gray-600 italic'>Ding...</span>
           </div>
         )}
       </div>
