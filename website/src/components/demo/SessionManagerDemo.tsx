@@ -49,12 +49,29 @@ function UrlContainer({ localUrl, setLocalUrl, onSubmit }: UrlContainerProps) {
 
 export default function SessionManagerDemo() {
   const joinUrl = useJoinUrl()
+  const isTogether = useIsTogether()
+  // const { name } = useSessionParams()
+
+  const [visible, setVisible] = useState(true)
 
   // Keep local URL up to date with joinUrl
   const [localUrl, setLocalUrl] = useState(joinUrl ?? window.location.href)
 
-  const isTogether = useIsTogether()
-  const { name } = useSessionParams()
+  function handleMouseEnter() {
+    setVisible(false)
+  }
+  function handleMouseLeave() {
+    setVisible(true)
+  }
+
+  function ConnectionStatus({ connectionStatus }: { connectionStatus: boolean }) {
+    return (
+      <div className='flex gap-2 items-center justify-center border border-gray-500 rounded-xl shadow-lineStyleMedium py-1 px-2 bg-gray-50'>
+        <div className={`w-3 h-3 rounded-3xl ${connectionStatus ? 'bg-green-500' : 'bg-red-500'}`} />
+        <label className='text-xs font-semibold'>{connectionStatus ? 'In session' : 'Not in session'}</label>
+      </div>
+    )
+  }
 
   useEffect(() => {
     setLocalUrl(joinUrl ?? window.location.href)
@@ -79,17 +96,47 @@ export default function SessionManagerDemo() {
 
   return (
     <div className='h-full w-full relative flex justify-center'>
-      <div className='flex w-full flex-col gap-8 p-4 items-center'>
-        <UrlContainer {...{ localUrl, setLocalUrl, onSubmit }} />
-        <CountButtonTogether />
-        <p className='text-xs px-12'>
-          {isTogether
-            ? `You are in session "${name}". You can invite your friends or leave the current session by clicking on the button below`
-            : `You are currently disconnected. Paste a Join URL in the bar above, or click on the button below to create a private session!`}
-        </p>
+      <div
+        className='flex w-full flex-col gap-8 p-4 items-center justify-center'
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div>
+          <CountButtonTogether />
+          <div className='h-[1rem]' />
+        </div>
       </div>
-      <div className='fixed bottom-2 left-2'>
-        <SessionManager />
+      <div className='fixed top-2 flex w-full flex-col px-2 gap-2'>
+        <UrlContainer {...{ localUrl, setLocalUrl, onSubmit }} />
+
+        {!isTogether && (
+          <div
+            className={`transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'} w-[8rem] border rounded-lg px-2 py-1 flex items-center justify-center bg-blue-50 shadow-lineStyleLight`}
+          >
+            <p className='text-xs leading-tight tracking-tight'>Paste a Join URL in the bar above!</p>
+          </div>
+        )}
+      </div>
+
+      <div className='fixed bottom-2 flex w-full flex-col px-2 gap-2'>
+        <div
+          className={`transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'} w-[11rem] border rounded-lg px-2 py-1 items-center justify-center bg-blue-50 shadow-lineStyleLight`}
+        >
+          <p className='text-xs leading-tight tracking-tight'>
+            {isTogether
+              ? `Click on the button below to invite your friends or leave the current session.`
+              : `Click on the button below to create a private session!`}
+          </p>
+        </div>
+        <div className='flex justify-between w-full'>
+          <div className='flex flex-col gap-2'>
+            <div className='flex'>
+              <SessionManager />
+            </div>
+          </div>
+          <ConnectionStatus connectionStatus={isTogether} />
+          <div />
+        </div>
       </div>
     </div>
   )
