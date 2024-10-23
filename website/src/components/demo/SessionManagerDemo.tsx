@@ -113,7 +113,10 @@ export default function SessionManagerDemo() {
           <div
             className={`transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'} w-[8rem] border rounded-lg px-2 py-1 flex items-center justify-center bg-blue-50 shadow-lineStyleLight`}
           >
-            <p className='text-xs leading-tight tracking-tight'>Paste a Join URL in the bar above!</p>
+            <p className='text-xs leading-tight tracking-tight'>
+              Paste a Join <strong>URL </strong>
+              in the bar above!
+            </p>
           </div>
         )}
       </div>
@@ -123,9 +126,15 @@ export default function SessionManagerDemo() {
           className={`transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'} w-[11rem] border rounded-lg px-2 py-1 items-center justify-center bg-blue-50 shadow-lineStyleLight`}
         >
           <p className='text-xs leading-tight tracking-tight'>
-            {isTogether
-              ? `Click on the button below to invite your friends or leave the current session.`
-              : `Click on the button below to create a private session!`}
+            {isTogether ? (
+              <>
+                Click on the button below to <strong>Invite</strong> your friends or <strong>Leave</strong> the current session.
+              </>
+            ) : (
+              <>
+                Click on the button below to <strong>create </strong>a private session!
+              </>
+            )}
           </p>
         </div>
         <div className='flex justify-between w-full'>
