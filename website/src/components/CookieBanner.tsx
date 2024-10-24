@@ -7,7 +7,11 @@ interface ConsentMode {
   analytics_storage?: boolean
 }
 
-export function CookieBanner() {
+interface CookieBannerProps {
+  forceShow?: boolean
+}
+
+export function CookieBanner({ forceShow = false }: CookieBannerProps) {
   const [consentMode, setConsentMode] = useLocalStorage<ConsentMode>('consentMode', undefined)
 
   // Eventually we may allow the users to control the consent configuration, but now
@@ -26,8 +30,6 @@ export function CookieBanner() {
   // Do not show cookie banner if inside iframe
   if (window.self !== window.top) return null
 
-  if (consentMode) return null
-
   const footerContent = (
     <div>
       <Button label="Please don't" icon='pi pi-times' onClick={() => onDecline()} className='p-button-text' />
@@ -41,12 +43,18 @@ export function CookieBanner() {
       position='bottom-left'
       closeIcon={<></>}
       draggable={false}
-      visible={consentMode === undefined}
+      visible={forceShow || consentMode === undefined}
       onHide={() => null}
       style={{ width: '50vw' }}
       footer={footerContent}
     >
       <p className='m-0'>Welcome to React Together!! Do you mind if we gather your usage data to improve our website?</p>
+      <p className='m-0'>
+        Learn more about our cookie policy{' '}
+        <a className='text-blue-600 rounded-sm bg-slate-100 px-1' href='#/cookies'>
+          here.
+        </a>
+      </p>
     </Dialog>
   )
 }

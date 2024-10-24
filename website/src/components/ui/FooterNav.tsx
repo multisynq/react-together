@@ -17,6 +17,7 @@ const footerData: FooterSection[] = [
       { label: 'Home', url: '/' },
       { label: 'Contributing', url: '/#/contributing' },
       { label: 'Pricing', url: '/#/pricing' },
+      { label: 'Cookie Policy', url: '/#/cookies' },
     ],
   },
   {

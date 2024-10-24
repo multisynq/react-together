@@ -39,6 +39,7 @@ import {
 import CountButtonTogether from '@components/demo/CountButtonTogether'
 import HeroDemo from '@components/demo/HeroDemo'
 import TinyRpgTogether from '@components/demo/TinyRpg'
+import { CookiePolicy } from '@pages/CookiePolicy'
 import { DemoWrapper } from '@pages/DemoWrapper'
 import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
 import { MarkdownPage } from '@pages/Documentation/MarkdownPage'
@@ -57,6 +58,7 @@ export default function AppRoutes() {
       <Route element={<WebsiteWrapper />}>
         <Route path='hackathon' element={<HackTogetherPage />} />
         <Route path='/' element={<HomePage />} />
+        <Route path='/cookies' element={<CookiePolicy />} />
         <Route element={<DocumentationWrapper />}>
           <Route path='getting-started' element={<IntroductionPage />} />
           <Route path='ReactTogether' element={<ReactTogetherDocumentationPage />} />
