@@ -31,7 +31,7 @@ function UrlContainer({ localUrl, setLocalUrl, onSubmit }: UrlContainerProps) {
   }
 
   return (
-    <div className='flex align-items-center gap-2 border rounded-xl border-gray-800 items-center py-2 px-4 w-full justify-between shadow-lineStyleDark hover:shadow-lineStyleMedium'>
+    <div className='flex align-items-center gap-2 border rounded-xl border-gray-800 items-center py-1 px-4 w-full justify-between shadow-lineStyleDark hover:shadow-lineStyleMedium text-xs'>
       <input
         type='text'
         value={localUrl ?? ''}
@@ -49,9 +49,9 @@ function UrlContainer({ localUrl, setLocalUrl, onSubmit }: UrlContainerProps) {
 
 function ConnectionStatus({ connectionStatus, name }: { connectionStatus: boolean; name: string | null }) {
   return (
-    <div className='flex gap-2 items-center justify-center border border-gray-500 rounded-xl shadow-lineStyleMedium py-1 px-2 bg-gray-50'>
+    <div className='flex gap-2 items-center justify-center border border-gray-400 rounded-xl py-1 px-2 bg-gray-50 h-[2rem]'>
       <div className={`w-3 h-3 rounded-3xl ${connectionStatus ? 'bg-green-500' : 'bg-red-500'}`} />
-      <label className='text-xs font-semibold'>{connectionStatus ? `Connected to ${name}` : 'Disconnected'}</label>
+      <label className='text-xs font-semibold'>{connectionStatus ? `Connected: ${name}` : 'Disconnected'}</label>
     </div>
   )
 }
@@ -61,17 +61,17 @@ export function SessionManagerDemo() {
   const isTogether = useIsTogether()
   const { name } = useSessionParams()
 
-  const [visible, setVisible] = useState(true)
+  // const [visible, setVisible] = useState(true)
 
   // Keep local URL up to date with joinUrl
   const [localUrl, setLocalUrl] = useState(joinUrl ?? window.location.href)
 
-  function handleMouseEnter() {
-    setVisible(false)
-  }
-  function handleMouseLeave() {
-    setVisible(true)
-  }
+  // function handleMouseEnter() {
+  //   setVisible(false)
+  // }
+  // function handleMouseLeave() {
+  //   setVisible(true)
+  // }
 
   useEffect(() => {
     setLocalUrl(joinUrl ?? window.location.href)
@@ -95,9 +95,8 @@ export function SessionManagerDemo() {
   }, [localUrl, setLocalUrl, joinUrl])
 
   return (
-    <div className='h-full w-full relative flex justify-center' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className='h-full w-full relative flex justify-center'>
       <div className='flex w-full flex-col gap-8 p-4 items-center justify-center'>
-        <ConnectionStatus connectionStatus={isTogether} name={name} />
         <div>
           <CountButtonTogether />
           <div className='h-[1rem]' />
@@ -108,10 +107,10 @@ export function SessionManagerDemo() {
 
         {!isTogether && (
           <div
-            className={`transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'} w-[8rem] border rounded-lg px-2 py-1 flex items-center justify-center bg-blue-50 shadow-lineStyleLight`}
+            className={`transition-opacity duration-1000 w-full border rounded-lg px-2 py-1 flex items-center justify-center bg-blue-50 shadow-lineStyleLight`}
           >
             <p className='text-xs leading-tight tracking-tight'>
-              Paste a Join <strong>URL</strong> in the bar above and press Enter to join a session
+              Paste a Join <strong>URL</strong> in the bar above and press Enter to join.
             </p>
           </div>
         )}
@@ -119,12 +118,12 @@ export function SessionManagerDemo() {
 
       <div className='fixed bottom-2 flex w-full flex-col px-2 gap-2'>
         <div
-          className={`transition-opacity duration-1000 ${visible ? 'opacity-100' : 'opacity-0'} w-[11rem] border rounded-lg px-2 py-1 items-center justify-center bg-blue-50 shadow-lineStyleLight`}
+          className={`transition-opacity duration-1000 w-full border rounded-lg px-2 py-1 items-center justify-center bg-blue-50 shadow-lineStyleLight`}
         >
-          <p className='text-xs leading-tight tracking-tight'>
+          <p className='text-xs leading-tight tracking-tight text-center'>
             {isTogether ? (
               <>
-                Click the button below to <strong>invite</strong> your friends or <strong>leave</strong> the current session.
+                Click the button below to <strong>invite</strong> your friends or <strong>leave</strong> the session.
               </>
             ) : (
               <>
@@ -133,13 +132,10 @@ export function SessionManagerDemo() {
             )}
           </p>
         </div>
-        <div className='flex justify-between w-full'>
-          <div className='flex flex-col gap-2'>
-            <div className='flex'>
-              <SessionManager />
-            </div>
-          </div>
-          <div />
+        <div className='flex justify-between w-full items-center'>
+          <SessionManager />
+          <ConnectionStatus connectionStatus={isTogether} name={name} />
+          <div className='w-[2rem]' />
         </div>
       </div>
     </div>
