@@ -1,8 +1,10 @@
 import React from 'react'
+import Link from './Link'
 
 interface FooterLink {
   label: string
   url: string
+  target?: string
 }
 
 interface FooterSection {
@@ -32,10 +34,10 @@ const footerData: FooterSection[] = [
   {
     title: 'Resources',
     links: [
-      { label: 'Croquet Labs', url: 'https://croquet.io/' },
-      { label: 'Multisynq', url: 'https://multisynq.io/' },
-      { label: 'Github', url: 'https://github.com/multisynq' },
-      { label: 'X/Twitter', url: 'https://x.com/multisynq' },
+      { label: 'Croquet Labs', url: 'https://croquet.io/', target: '_blank' },
+      { label: 'Multisynq', url: 'https://multisynq.io/', target: '_blank' },
+      { label: 'Github', url: 'https://github.com/multisynq', target: '_blank' },
+      { label: 'X/Twitter', url: 'https://x.com/multisynq', target: '_blank' },
     ],
   },
 ]
@@ -49,9 +51,9 @@ const FooterNav: React.FC = () => {
           <ul className='flex flex-col'>
             {section.links.map((link, idx) => (
               <li key={idx}>
-                <a href={link.url} className='text-xs text-gray-600 hover:underline hover:underline-offset-4'>
+                <Link to={link.url} target={link.target} className='text-xs text-gray-600 hover:underline hover:underline-offset-4'>
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
