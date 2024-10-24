@@ -87,7 +87,7 @@ const people: Person[] = [
     img: JoaoSantos,
     name: 'João Santos',
     company: 'Sereneus',
-    profileUrl: 'https://www.linkedin.com/in/joaops95',
+    profileUrl: 'http://x.com/joaointech',
     companyUrl: 'https://www.sereneus.pt/pt',
   },
   {
