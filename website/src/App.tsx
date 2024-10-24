@@ -4,38 +4,12 @@ import '@styles/mdx.css'
 import 'react-json-view-lite/dist/index.css'
 import './App.scss'
 
-import ReactGA from 'react-ga4'
-import TagManager from 'react-gtm-module'
+import { setupGoogleAnalytics } from '@utils/cookies'
 import { Helmet } from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
 import AppRoutes from './AppRoutes'
 
-// Only load Google Analytics if inside iframe
-if (window.self === window.top) {
-  // Set up consent mode before initializing GTM and GA4
-  const storedConsent = localStorage.getItem('consentMode')
-  const defaultConsent = {
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-    analytics_storage: 'denied',
-  }
-  if (storedConsent === null) {
-    ReactGA.gtag('consent', 'default', defaultConsent)
-  } else {
-    const parsed = JSON.parse(storedConsent)
-    const consent = { ...defaultConsent }
-    Object.keys(defaultConsent).forEach((key) => {
-      if (parsed[key]) consent[key] = 'granted'
-    })
-    ReactGA.gtag('consent', 'default', consent)
-  }
-
-  TagManager.initialize({
-    gtmId: import.meta.env.VITE_GTM_ID,
-  })
-  ReactGA.initialize(import.meta.env.VITE_GA4_ID)
-}
+setupGoogleAnalytics()
 
 export default function App() {
   return (

@@ -1,30 +1,28 @@
 import { useLocalStorage } from '@uidotdev/usehooks'
+import { COOKIE_POLICY_LAST_UPDATE, COOKIE_SETTINGS_LOCAL_STORAGE_KEY, CookieSettings, getGoogleConsent } from '@utils/cookies'
 import { Button } from 'primereact/button'
 import { Dialog } from 'primereact/dialog'
 import ReactGA from 'react-ga4'
-
-interface ConsentMode {
-  analytics_storage?: boolean
-}
 
 interface CookieBannerProps {
   forceShow?: boolean
 }
 
 export function CookieBanner({ forceShow = false }: CookieBannerProps) {
-  const [consentMode, setConsentMode] = useLocalStorage<ConsentMode>('consentMode', undefined)
+  const [consentMode, setConsentMode] = useLocalStorage<CookieSettings>(COOKIE_SETTINGS_LOCAL_STORAGE_KEY, undefined)
 
   // Eventually we may allow the users to control the consent configuration, but now
   // we're only enabling analytics consent
   const onAccept = () => {
-    setConsentMode({ analytics_storage: true })
-    ReactGA.gtag('consent', 'update', {
-      analytucs_storage: 'granted',
-    })
+    const newConsentMode = { analytics_storage: true }
+    ReactGA.gtag('consent', 'update', getGoogleConsent(newConsentMode))
+    setConsentMode({ writtenAt: Date.now(), consentMode: newConsentMode })
   }
 
   const onDecline = () => {
-    setConsentMode({})
+    const newConsentMode = {}
+    ReactGA.gtag('consent', 'update', getGoogleConsent(newConsentMode))
+    setConsentMode({ writtenAt: Date.now(), consentMode: newConsentMode })
   }
 
   // Do not show cookie banner if inside iframe
@@ -37,14 +35,15 @@ export function CookieBanner({ forceShow = false }: CookieBannerProps) {
     </div>
   )
 
+  const showBanner = forceShow || !consentMode || !consentMode.writtenAt || consentMode.writtenAt <= COOKIE_POLICY_LAST_UPDATE
+
   return (
     <Dialog
       modal={false}
       position='bottom-left'
-      closeIcon={<></>}
       draggable={false}
-      visible={forceShow || consentMode === undefined}
-      onHide={() => null}
+      visible={showBanner}
+      onHide={() => onDecline()}
       style={{ width: '50vw' }}
       footer={footerContent}
     >
