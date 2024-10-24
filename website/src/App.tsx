@@ -4,7 +4,6 @@ import '@styles/mdx.css'
 import 'react-json-view-lite/dist/index.css'
 import './App.scss'
 
-import { CookieBanner } from '@components/CookieBanner'
 import ReactGA from 'react-ga4'
 import TagManager from 'react-gtm-module'
 import { Helmet } from 'react-helmet'
@@ -52,7 +51,6 @@ export default function App() {
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
-      <CookieBanner />
     </div>
   )
 }
