@@ -5,7 +5,7 @@ import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
-export default function PresenceDivDocumentationPage() {
+export default function HoverHighlighterDocumentationPage() {
   const api = (
     <>
       <h5>Props</h5>
@@ -16,7 +16,7 @@ export default function PresenceDivDocumentationPage() {
             type: 'string',
             description: (
               <p>
-                The key used to identify this state, passed to the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook.
+                The key used to identify this state, passed to the <LinkSpan to='/useHoveringUsers' text='useHoveringUsers' /> hook.
               </p>
             ),
           },
@@ -30,6 +30,12 @@ export default function PresenceDivDocumentationPage() {
             ),
           },
           {
+            name: 'highlightMyself',
+            type: 'boolean',
+            default: <CodeSpan text='false' />,
+            description: <p>If true, the nested component will be highlighted when the local user hovers it.</p>,
+          },
+          {
             name: 'className',
             type: 'string',
             description: (
@@ -38,30 +44,21 @@ export default function PresenceDivDocumentationPage() {
               </p>
             ),
           },
-          // {
-          //   name: 'options?',
-          //   type: 'UseHoveringViewOptions',
-          //   description: (
-          //     <p>
-          //       The options to be passed to the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook'
-          //     </p>
-          //   ),
-          // },
         ]}
       />
     </>
   )
   const content = (
     <GenericDocPage
-      title='PresenceDiv'
+      title='HoverHighlighter'
       description={
         <>
           <p>
-            This component wraps its children inside a <CodeSpan text='div' /> that is highlighted whenever a view is hovering it. This
+            This component wraps its children inside a <CodeSpan text='div' /> that is highlighted whenever a user is hovering it. This
             component can be customized by passing a <CodeSpan text='className' /> prop. Alternatively, you can create your own component
-            using the <LinkSpan to='/useHoveringViews' text='useHoveringViews' /> hook.
+            using the <LinkSpan to='/useHoveringUsers' text='useHoveringUsers' /> hook.
           </p>
-          <DocumentationDemo url='PresenceDiv' />
+          <DocumentationDemo url='HoverHighlighter' />
         </>
       }
       usage={
@@ -70,9 +67,9 @@ export default function PresenceDivDocumentationPage() {
           <CodeBlock
             language='javascript'
             code1={`return (
-  <PresenceDiv rtKey='unique-key'>
+  <HoverHighlighter rtKey='unique-key'>
     <YourComponent/>
-  </PresenceDiv>
+  </HoverHighlighter>
 )`}
           />
         </>
@@ -80,5 +77,5 @@ export default function PresenceDivDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('PresenceDiv')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('HoverHighlighter')} />
 }

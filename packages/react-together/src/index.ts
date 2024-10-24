@@ -1,35 +1,11 @@
-import ReactTogetherModel from './models/ReactTogetherModel'
+// Re-export @croquet/react as is into CroquetReact
+// export type { CroquetSession, CroquetSessionParameters } from '@croquet/react'
+import * as CroquetReact from '@croquet/react'
+export { CroquetReact }
 
-// Re-export from @croquet/react
-export {
-  App,
-  Constants,
-  CroquetReactView,
-  Data,
-  Model,
-  ReactModel,
-  Session,
-  View,
-  createCroquetSession,
-  // useChangeSession,
-  // Not exporting this hook since we override it on react-together
-  // useConnectedViews,
-  useCroquetContext,
-  useCroquetSession,
-  useCroquetView,
-  useDetachCallback,
-  useModelById,
-  useModelRoot,
-  useModelSelector,
-  usePublish,
-  useReactModelRoot,
-  useSessionId,
-  useSubscribe,
-  useSyncedCallback,
-  useUpdateCallback,
-  useViewId
-} from '@croquet/react'
-export type { CroquetSession, CroquetSessionParameters } from '@croquet/react'
+// Export parameter constants
+export { SESSION_NAME_PARAM, SESSION_PASSWORD_PARAM } from './hooks/useJoinUrl'
+
 export * from './components'
 export * from './hooks'
-export { ReactTogetherModel }
+export * from './models'

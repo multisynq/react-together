@@ -29,7 +29,7 @@ export default defineConfig({
       },
     },
   ],
-  base: './',
+  base: '/',
   assetsInclude: ['./src/images/*', '**/*.md'],
   build: {
     minify: true,

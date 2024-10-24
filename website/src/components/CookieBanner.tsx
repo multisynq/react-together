@@ -51,7 +51,7 @@ export function CookieBanner({ forceShow = false }: CookieBannerProps) {
       <p className='m-0'>Welcome to React Together!! Do you mind if we gather your usage data to improve our website?</p>
       <p className='m-0'>
         Learn more about our cookie policy{' '}
-        <a className='text-blue-600 rounded-sm bg-slate-100 px-1' href='#/cookies'>
+        <a className='text-blue-600 rounded-sm bg-slate-100 px-1' href='/cookies'>
           here.
         </a>
       </p>

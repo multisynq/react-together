@@ -14,7 +14,6 @@ type ReactTogetherModelOptions = Record<string, unknown>
 
 type FunctionTogetherArgs = {
   rtKey: string
-  viewId: string
   args: unknown[]
 }
 
@@ -55,8 +54,8 @@ export default class ReactTogetherModel extends ReactModel {
     this.publish(id, 'updated', {})
   }
 
-  functionTogether({ rtKey, viewId, args }: FunctionTogetherArgs) {
-    this.publish(rtKey, 'call', { data: args, viewId, ts: this.now() })
+  functionTogether({ rtKey, args }: FunctionTogetherArgs) {
+    this.publish(rtKey, 'call', args)
   }
 
   handleViewExit(viewId: string): void {

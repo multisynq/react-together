@@ -6,36 +6,36 @@ import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import InterfaceApi from '../InterfaceApi'
 import HookReturnApi from './HookReturnApi'
-export default function UseConnectedViewsDocumentationPage() {
+export default function UseConnectedUsersDocumentationPage() {
   const api = (
     <>
       <HookReturnApi
         items={[
           {
-            name: 'connectedViews',
+            name: 'connectedUsers',
             type: <LinkSpan text='ConnectedView[]' to='#connected-view' />,
-            description: 'A list containing all the views connected to the current React Together session.',
+            description: 'A list containing all the users connected to the current React Together session.',
           },
         ]}
       />
       <InterfaceApi
-        title='ConnectedView'
-        id='connected-view'
+        title='ConnectedUser'
+        id='connected-user'
         items={[
           {
-            name: 'viewId',
+            name: 'userId',
             type: 'string',
-            description: 'The ID of the view to which the current entry corresponds.',
+            description: 'The ID of the user to which the current entry corresponds.',
           },
           {
             name: 'isYou',
             type: 'boolean',
-            description: 'Indicates whether this is the current view for the user.',
+            description: 'Indicates whether this is the current user.',
           },
           {
             name: 'name',
             type: 'string',
-            description: 'An alias to make the view more easily identifiable by other users.',
+            description: 'An alias to make the user more easily identifiable by other users.',
           },
         ]}
       />
@@ -43,27 +43,27 @@ export default function UseConnectedViewsDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='useConnectedViews'
+      title='useConnectedUsers'
       description={
         <>
           <p>
-            The <CodeSpan text='useConnectedViews' /> hook returns an array of objects representing all the views that are connected to the
+            The <CodeSpan text='useConnectedUsers' /> hook returns an array of objects representing all the users that are connected to the
             current session.
           </p>
-          <DocumentationDemo url='ConnectedViews' />
+          <DocumentationDemo url='ConnectedUsers' />
         </>
       }
       usage={
         <>
-          <CodeBlock language='jsx' code1={`import { useConnectedViews } from 'react-together'`} />
+          <CodeBlock language='jsx' code1={`import { useConnectedUsers } from 'react-together'`} />
           <CodeBlock
             language='jsx'
-            code1={`const connectedViews = useConnectedViews()
+            code1={`const connectedUsers = useConnectedUsers()
 
 return (
   <div ref={ref}>
     Connected views:
-    <ul>{hoveringViews.map(
+    <ul>{hoveringUsers.map(
       (viewId) => (
         <li key={viewId}>{viewId}</li>
       )
@@ -76,5 +76,5 @@ return (
       api={api}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('useConnectedViews')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('useConnectedUsers')} />
 }

@@ -1,6 +1,6 @@
 import { BrowserWrapper } from '@components/ui/BrowserWrapper'
 import Iframe from 'react-iframe'
-import { ReactTogether } from 'react-together'
+import { ReactTogether, SESSION_NAME_PARAM, SESSION_PASSWORD_PARAM } from 'react-together'
 
 export function WithReactTogetherProvider({ children }) {
   return (
@@ -16,7 +16,7 @@ export function WithReactTogetherProvider({ children }) {
 }
 
 export function HeroDemo() {
-  const path = '/#/demos/HeroDemo'
+  const path = `/demos/HeroDemo?${SESSION_NAME_PARAM}=heroDemo&${SESSION_PASSWORD_PARAM}=welcome`
   const origin = window.origin
   const url = `${origin}${path}`
   return (

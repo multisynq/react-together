@@ -1,7 +1,7 @@
 import {
-  ConnectedViewsDocumentationPage,
+  ConnectedUsersDocumentationPage,
+  HoverHighlighterDocumentationPage,
   IntroductionPage,
-  PresenceDivDocumentationPage,
   PrimeReactCheckboxTogetherDocumentationPage,
   PrimeReactColorPickerTogetherDocumentationPage,
   PrimeReactDropdownTogetherDocumentationPage,
@@ -14,15 +14,24 @@ import {
   PrimeReactToggleButtonTogetherDocumentationPage,
   PrimeReactTriStateCheckboxTogetherDocumentationPage,
   ReactTogetherDocumentationPage,
-  UseConnectedViewsDocumentationPage,
-  UseHoveringViewsDocumentationPage,
+  SessionManagerDocumentationPage,
+  UseConnectedUsersDocumentationPage,
+  UseCreateRandomSessionDocumentationPage,
+  UseFunctionTogetherDocumentationPage,
+  UseHoveringUsersDocumentationPage,
+  UseIsTogetherDocumentationPage,
+  UseJoinUrlDocumentationPage,
+  UseLeaveSessionDocumentationPage,
+  UseMyIdDocumentationPage,
   UseStateTogetherDocumentationPage,
   UseStateTogetherWithPerUserValuesDocumentationPage,
 } from '@pages/Documentation'
+import { ConnectedUsers } from 'react-together'
 import { HomePage } from './pages/HomePage'
 
 import {
-  PresenceDivDemo,
+  HoverHighlighterDemo,
+  MeditationBell,
   PrimeReactCheckboxTogetherDemo,
   PrimeReactColorPickerTogetherDemo,
   PrimeReactDropdownTogetherDemo,
@@ -34,9 +43,11 @@ import {
   PrimeReactTabViewTogetherDemo,
   PrimeReactToggleButtonTogetherDemo,
   PrimeReactTriStateCheckboxTogetherDemo,
+  SessionManagerDemo,
   UseStateTogetherWPUVDemo,
 } from '@components/demo'
 import CountButtonTogether from '@components/demo/CountButtonTogether'
+import { DynamicsSession } from '@components/demo/DynamicSessions'
 import HeroDemo from '@components/demo/HeroDemo'
 import TinyRpgTogether from '@components/demo/TinyRpg'
 import { CookiePolicy } from '@pages/CookiePolicy'
@@ -47,7 +58,6 @@ import { HackTogetherPage } from '@pages/HackTogetherPage'
 import { NotFoundPage } from '@pages/NotFoundPage'
 import { WebsiteWrapper } from '@pages/WebsiteWrapper'
 import { Route, Routes } from 'react-router-dom'
-import { ConnectedViews } from 'react-together'
 import changelog from 'react-together/CHANGELOG.md'
 import contributing from '../../contributing/CONTRIBUTING.md'
 import pricing from './pages/Documentation/pricing/PRICING.md'
@@ -62,17 +72,22 @@ export default function AppRoutes() {
         <Route element={<DocumentationWrapper />}>
           <Route path='getting-started' element={<IntroductionPage />} />
           <Route path='ReactTogether' element={<ReactTogetherDocumentationPage />} />
-          <Route path='ConnectedViews' element={<ConnectedViewsDocumentationPage />} />
-          <Route path='PresenceDiv' element={<PresenceDivDocumentationPage />} />
+          <Route path='SessionManager' element={<SessionManagerDocumentationPage />} />
+          <Route path='ConnectedUsers' element={<ConnectedUsersDocumentationPage />} />
+          <Route path='HoverHighlighter' element={<HoverHighlighterDocumentationPage />} />
           <Route path='useStateTogether' element={<UseStateTogetherDocumentationPage />} />
           <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWithPerUserValuesDocumentationPage />} />
-          <Route path='useConnectedViews' element={<UseConnectedViewsDocumentationPage />} />
-          <Route path='useHoveringViews' element={<UseHoveringViewsDocumentationPage />} />
-          {/* <Route path='useIsTogether' element={<UseIsTogetherDocumentationPage />} />
-          <Route path='useConnectNewSession' element={<UseConnectNewSessionDocumentationPage />} />
-          <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} /> */}
+          <Route path='useConnectedUsers' element={<UseConnectedUsersDocumentationPage />} />
+          <Route path='useMyId' element={<UseMyIdDocumentationPage />} />
+          <Route path='useHoveringUsers' element={<UseHoveringUsersDocumentationPage />} />
+          <Route path='useIsTogether' element={<UseIsTogetherDocumentationPage />} />
+          <Route path='useCreateRandomSession' element={<UseCreateRandomSessionDocumentationPage />} />
+          <Route path='useJoinUrl' element={<UseJoinUrlDocumentationPage />} />
+          <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} />
+          <Route path='useFunctionTogether' element={<UseFunctionTogetherDocumentationPage />} />
           <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
           <Route path='/pricing' element={<MarkdownPage markdown={pricing} />} />
+          <Route path='/examples' element={<DynamicsSession />} />
           <Route path='/changelog' element={<MarkdownPage markdown={changelog} />} />
           <Route path='primereact'>
             {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDocumentationPage />} /> */}
@@ -95,8 +110,10 @@ export default function AppRoutes() {
         <Route path='HeroDemo' element={<HeroDemo />} />
         <Route path='CountButtonTogether' element={<CountButtonTogether />} />
         <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWPUVDemo />} />
-        <Route path='ConnectedViews' element={<ConnectedViews />} />
-        <Route path='PresenceDiv' element={<PresenceDivDemo />} />
+        <Route path='SessionManager' element={<SessionManagerDemo />} />
+        <Route path='ConnectedUsers' element={<ConnectedUsers />} />
+        <Route path='HoverHighlighter' element={<HoverHighlighterDemo />} />
+        <Route path='useFunctionTogether' element={<MeditationBell />} />
         <Route path='primereact'>
           {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDemo />} /> */}
           <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDemo />} />

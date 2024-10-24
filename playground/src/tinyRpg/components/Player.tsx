@@ -1,6 +1,8 @@
-import { useModelSelector } from 'react-together'
+import { Croquet } from 'react-together'
 import { CELL_SIZE } from '../constants'
 import { OverrideModel } from '../models'
+
+const { useModelSelector } = Croquet
 
 const stringToColor = (s: string) => {
   return [

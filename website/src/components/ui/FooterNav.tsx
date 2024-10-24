@@ -15,18 +15,18 @@ const footerData: FooterSection[] = [
     title: 'General',
     links: [
       { label: 'Home', url: '/' },
-      { label: 'Contributing', url: '/#/contributing' },
-      { label: 'Pricing', url: '/#/pricing' },
-      { label: 'Cookie Policy', url: '/#/cookies' },
+      { label: 'Contributing', url: '/contributing' },
+      { label: 'Pricing', url: '/pricing' },
+      { label: 'Cookie Policy', url: '/cookies' },
     ],
   },
   {
     title: 'Documentation',
     links: [
-      { label: 'Get Started', url: '/#/getting-started' },
-      { label: 'Components', url: '/#/ReactTogether' },
-      { label: 'Hooks', url: '/#/useStateTogether' },
-      { label: 'Change Log', url: '/#/changelog' },
+      { label: 'Get Started', url: '/getting-started' },
+      { label: 'Components', url: '/ReactTogether' },
+      { label: 'Hooks', url: '/useStateTogether' },
+      { label: 'Change Log', url: '/changelog' },
     ],
   },
   {
