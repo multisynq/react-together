@@ -38,8 +38,17 @@ export function CookieBanner({ forceShow = false }: CookieBannerProps) {
         outlined
         size='small'
         rounded
+        aria-label='Decline cookie consent'
       />
-      <Button label='Sure thing!' icon='pi pi-check' onClick={() => onAccept()} autoFocus rounded size='small' />
+      <Button
+        label='Sure thing!'
+        icon='pi pi-check'
+        onClick={() => onAccept()}
+        autoFocus
+        rounded
+        size='small'
+        aria-label='Accept cookie consent'
+      />
     </div>
   )
 
@@ -47,13 +56,15 @@ export function CookieBanner({ forceShow = false }: CookieBannerProps) {
 
   return (
     <Dialog
+      aria-labelledby='cookie-banner-header'
+      aria-describedby='cookie-banner-description'
       modal={false}
       position='bottom-left'
       draggable={false}
       visible={showBanner}
       onHide={() => onDecline()}
       header={'Welcome to React Together'}
-      className='w-[22.5rem] md:w-[32rem]'
+      className='w-full md:w-[32rem]'
       pt={{
         root: { className: 'bg-gray-50 overfill-none rounded-xl border border-gray-400' },
         header: { className: 'bg-transparent' },
@@ -62,11 +73,11 @@ export function CookieBanner({ forceShow = false }: CookieBannerProps) {
       }}
       footer={footerContent}
     >
-      <div className='flex gap-2 flex-col text-sm md:text-base text-gray-600 px-1'>
+      <div id='cookie-banner-description' className='flex gap-2 flex-col text-sm md:text-base text-gray-600 px-1'>
         <span>Would you mind if we gather a little information while you’re here?</span>
         <span>
           It’ll help us keep things running smoothly and make sure you have the best experience!
-          <a className='text-blue-600 rounded-sm bg-slate-100 px-1 mx-2' href='/cookies'>
+          <a className='text-blue-600 rounded-sm bg-slate-100 px-1 mx-2' href='/cookies' aria-label='Learn more about the policy here'>
             Learn more
           </a>
         </span>
