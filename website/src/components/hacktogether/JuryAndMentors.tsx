@@ -1,9 +1,10 @@
 import AfonsoGoncalves from '@images/people/AfonsoGoncalves.jpeg'
 import ElijahLeeh from '@images/people/ElijahLee.jpg'
 // import AranLunzer from '@images/people/AranLunzer.jpeg'
-// import DavidSmith from '@images/people/DavidSmith.jpeg'
+import CharlesPoole from '@images/people/CharlesPoole.png'
+import DavidSmith from '@images/people/DavidSmith.png'
 import JoaoSantos from '@images/people/JoaoSantos.jpeg'
-// import JohnPayne from '@images/people/JohnPayne.jpeg'
+import JohnPayne from '@images/people/JohnPayne.jpg'
 import KenLane from '@images/people/KenLane.jpeg'
 import MaximLegg from '@images/people/MaximLegg.png'
 import MiguelMatos from '@images/people/MiguelMatos.jpeg'
@@ -22,26 +23,33 @@ interface Person {
 }
 
 const people: Person[] = [
-  // {
-  //   name: 'John Payne',
-  //   img: JohnPayne,
-  //   company: 'Multisynq.io',
-  //   profileUrl: 'https://www.linkedin.com/in/johnpayne',
-  //   companyUrl: 'https://www.multisynq.io',
-  // },
-  // {
-  //   name: 'David Smith',
-  //   img: DavidSmith,
-  //   company: 'Multisynq.io',
-  //   profileUrl: 'https://www.linkedin.com/in/croquet',
-  //   companyUrl: 'https://www.multisynq.io',
-  // },
+  {
+    name: 'John Payne',
+    img: JohnPayne,
+    company: 'Multisynq.io',
+    profileUrl: 'https://www.linkedin.com/in/johnpayne',
+    companyUrl: 'https://www.multisynq.io',
+  },
+  {
+    name: 'David Smith',
+    img: DavidSmith,
+    company: 'Multisynq.io',
+    profileUrl: 'https://en.wikipedia.org/wiki/David_A._Smith_(computer_scientist)',
+    companyUrl: 'https://www.multisynq.io',
+  },
   {
     name: 'Vanessa Freudenberg',
     img: VanessaFreudenberg,
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/codefrau',
     companyUrl: 'https://www.multisynq.io',
+  },
+  {
+    img: YuliiaBilyk,
+    name: 'Yuliia Bilyk',
+    company: 'NoDress.Code',
+    profileUrl: 'https://www.linkedin.com/in/yuliia-bilyk-winb',
+    companyUrl: 'https://nodress.codes/',
   },
   {
     name: 'Ken Lane',
@@ -70,13 +78,6 @@ const people: Person[] = [
     profileUrl: 'https://tinlizzie.org/ohshima',
   },
   {
-    img: YuliiaBilyk,
-    name: 'Yuliia Bilyk',
-    company: 'NoDress.Code',
-    profileUrl: 'https://www.linkedin.com/in/yuliia-bilyk-winb',
-    companyUrl: 'https://nodress.codes/',
-  },
-  {
     img: SandraLeonor,
     name: 'Sandra Leonor',
     company: 'Laika Ventures',
@@ -96,6 +97,13 @@ const people: Person[] = [
     company: 'Multisynq.io',
     profileUrl: 'http://www.linkedin.com/in/elijah-lee51',
     companyUrl: 'https://laikaventures.co/',
+  },
+  {
+    img: CharlesPoole,
+    name: 'Charles Poole',
+    company: 'Multisynq',
+    profileUrl: 'https://linkedin.com/in/ceedeepee',
+    companyUrl: 'https://pangea.foundation/',
   },
   {
     name: 'Miguel Matos',
