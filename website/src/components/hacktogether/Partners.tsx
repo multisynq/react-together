@@ -2,14 +2,17 @@ import multisynqLogo from '@images/blue.png'
 import _351Logo from '@images/partners/351_logo.png'
 import _42LisbonLogo from '@images/partners/42Lisboa_logo.svg'
 import buildUpLabsLogo from '@images/partners/build_up_labs_logo.jpg'
+import dominosLogo from '@images/partners/Dominos.png'
+import eatTastyLogo from '@images/partners/eatTasty.png'
 import gamingHubLogo from '@images/partners/gaming_hub_logo.jpg'
 import growincLogo from '@images/partners/growinc_logo.png'
 import hackerSchoolLogo from '@images/partners/hackerschool_logo.png'
 import hoodLogo from '@images/partners/hood_logo.png'
 import jdcLogo from '@images/partners/jdc_logo.png'
 import jeknowledgeLogo from '@images/partners/jeKnowledge_logo.png'
-import junitecLogo from '@images/partners/junitec.jpeg'
+import junitecLogo from '@images/partners/junitec.png'
 import leWagonLogo from '@images/partners/lewagon_logo.png'
+import lisboaJSLogo from '@images/partners/LisboaJS.png'
 import moveToFundaoLogo from '@images/partners/moveToFundao.jpg'
 import neetiLogo from '@images/partners/neeti_logo.png'
 import neiistLogo from '@images/partners/neiist_logo.png'
@@ -69,6 +72,19 @@ const partners = [
   },
 ]
 
+const foodPartners = [
+  {
+    src: dominosLogo,
+    url: 'https://www.dominospizza.pt/',
+    alt: "Domino's Pizza",
+  },
+  {
+    src: eatTastyLogo,
+    url: 'https://eattasty.pt/home',
+    alt: 'Eat Tasty',
+  },
+]
+
 function zipArrays(arr1, arr2) {
   const maxLength = Math.max(arr1.length, arr2.length)
   const result = []
@@ -86,6 +102,11 @@ const startupPartners = [
     src: pangeaLogo,
     url: 'https://pangea.foundation/',
     alt: 'Pangea',
+  },
+  {
+    src: lisboaJSLogo,
+    url: 'https://www.meetup.com/lisboajs/',
+    alt: 'LisboaJS',
   },
   {
     src: _351Logo,
@@ -195,6 +216,11 @@ export default function Partners() {
         {partners.map((p) => (
           <PartnerIcon key={p.alt} url={p.url} src={p.src} alt={p.alt} />
         ))}
+        <div className='grid grid-cols-2 gap-4 sm:gap-8'>
+          {foodPartners.map((p) => (
+            <CommunityPartnerIcon key={p.url} url={p.url} src={p.src} alt={p.alt} />
+          ))}
+        </div>
         <div className='flex flex-col gap-8'>
           <div className='flex w-full'>
             <span className='text-3xl font-poppins font-semibold mt-4'>Community</span>
