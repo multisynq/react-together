@@ -7,7 +7,7 @@ interface GenericPageProps {
   usage?: ReactNode | ReactNode[]
   api?: ReactNode | ReactNode[]
 }
-export function GenericDocPage({ title, description, usage, api, parameter }: GenericPageProps) {
+export function GenericDocPage({ title, description, usage, api }: GenericPageProps) {
   const ref = useRef(null)
   return (
     <>
@@ -39,11 +39,14 @@ export function GenericDocPage({ title, description, usage, api, parameter }: Ge
   )
 }
 
-export function GenericDocNav(name) {
+interface GenericDocNavOptions {
+  exclude?: string[]
+}
+export function GenericDocNav(name, { exclude = [] }: GenericDocNavOptions = {}) {
   return [
     { key: 'title', label: name },
     // { key: 'installation', label: 'Installation' },
     { key: 'usage', label: 'Usage' },
     { key: 'api', label: 'API' },
-  ]
+  ].filter(({ key }) => !exclude.includes(key))
 }
