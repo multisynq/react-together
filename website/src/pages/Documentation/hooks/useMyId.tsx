@@ -13,7 +13,7 @@ export default function UseMyIdDocumentationPage() {
           {
             name: 'myId',
             type: 'string | null',
-            description: 'The join url',
+            description: 'The Id of the local user',
           },
         ]}
       />

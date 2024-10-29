@@ -1,7 +1,7 @@
 import { CroquetRoot } from '@croquet/react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 
-import { SESSION_NAME_PARAM, SESSION_PASSWORD_PARAM } from '../hooks/useJoinUrl'
+import { getSessionNameFromUrl, getSessionPasswordFromUrl } from '../utils'
 
 type ReactTogetherSessionParams = {
   apiKey: string
@@ -34,9 +34,9 @@ export default function ReactTogether({
   }
 
   // Check if there are session params in the URL
-  const searchParams = new URLSearchParams(window.location.search)
-  const searchName = searchParams.get(SESSION_NAME_PARAM)
-  const searchPassword = searchParams.get(SESSION_PASSWORD_PARAM)
+  const url = new URL(window.location.href)
+  const searchName = getSessionNameFromUrl(url)
+  const searchPassword = getSessionPasswordFromUrl(url)
 
   const model = sessionParams.model || ReactTogetherModel
   const name = searchName || sessionParams.name

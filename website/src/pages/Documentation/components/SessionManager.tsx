@@ -40,5 +40,5 @@ export default function SessionManagerDocumentationPage() {
       }
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('ReactTogether')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('SessionManager', { exclude: ['api'] })} />
 }

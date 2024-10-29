@@ -1,18 +1,17 @@
 import { DocumentDemoContainer } from '@components/ui/DocumentDemoContainer'
 import Iframe from 'react-iframe'
-import { SESSION_NAME_PARAM, SESSION_PASSWORD_PARAM } from 'react-together'
+import { utils } from 'react-together'
+
+const { getJoinUrl } = utils
 
 function buildUrl(path: string, session: SessionParams | null): string {
-  if (!session) return `${path}`
+  const url = new URL(window.location.href)
+  url.pathname = path
+  if (!session) {
+    return url.toString()
+  }
 
-  const params = new URLSearchParams([
-    [SESSION_NAME_PARAM, session.name],
-    [SESSION_PASSWORD_PARAM, session.password],
-  ])
-  // If the search parameters are after the hash,
-  // they will be treated as part of the hash
-  // return `?${params.toString()}#${path}`
-  return `${path}?${params.toString()}`
+  return getJoinUrl(url, session.name, session.password).toString()
 }
 
 const defaultSession: SessionParams = Object.freeze({
