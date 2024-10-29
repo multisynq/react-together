@@ -70,11 +70,12 @@ export function SessionManagerDemo() {
 
   const onSubmit = useCallback(() => {
     try {
-      // Assert that users only change the searchParams
-      const newSearchParams = new URL(localUrl).searchParams
-      const newUrl = new URL(window.location.href)
-      newUrl.search = newSearchParams.toString()
-      setLocalUrl(newUrl.toString())
+      // Assert that users only change the searchParams / hash
+      const newUrl = new URL(localUrl)
+      const result = new URL(window.location.href)
+      result.search = newUrl.searchParams.toString()
+      result.hash = newUrl.hash
+      setLocalUrl(result.toString())
 
       window.location.assign(newUrl)
     } catch (e) {
