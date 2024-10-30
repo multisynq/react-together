@@ -1,8 +1,12 @@
 import AfonsoGoncalves from '@images/people/AfonsoGoncalves.jpeg'
-// import AranLunzer from '@images/people/AranLunzer.jpeg'
-// import DavidSmith from '@images/people/DavidSmith.jpeg'
+import CharlesPoole from '@images/people/CharlesPoole.png'
+import DavidSmith from '@images/people/DavidSmith.png'
+import ElijahLeeh from '@images/people/ElijahLee.jpg'
+import FranciscoBelo from '@images/people/FranciscoBelo.jpg'
+import JoaoRosado from '@images/people/JoaoNunesRosado.jpg'
+import JoaoPereira from '@images/people/JoaoPereira.png'
 import JoaoSantos from '@images/people/JoaoSantos.jpeg'
-// import JohnPayne from '@images/people/JohnPayne.jpeg'
+import JohnPayne from '@images/people/JohnPayne.jpg'
 import KenLane from '@images/people/KenLane.jpeg'
 import MaximLegg from '@images/people/MaximLegg.png'
 import MiguelMatos from '@images/people/MiguelMatos.jpeg'
@@ -21,26 +25,54 @@ interface Person {
 }
 
 const people: Person[] = [
-  // {
-  //   name: 'John Payne',
-  //   img: JohnPayne,
-  //   company: 'Multisynq.io',
-  //   profileUrl: 'https://www.linkedin.com/in/johnpayne',
-  //   companyUrl: 'https://www.multisynq.io',
-  // },
-  // {
-  //   name: 'David Smith',
-  //   img: DavidSmith,
-  //   company: 'Multisynq.io',
-  //   profileUrl: 'https://www.linkedin.com/in/croquet',
-  //   companyUrl: 'https://www.multisynq.io',
-  // },
+  {
+    name: 'John Payne',
+    img: JohnPayne,
+    company: 'Multisynq.io',
+    profileUrl: 'https://www.linkedin.com/in/johnpayne',
+    companyUrl: 'https://www.multisynq.io',
+  },
+  {
+    name: 'David Smith',
+    img: DavidSmith,
+    company: 'Multisynq.io',
+    profileUrl: 'https://en.wikipedia.org/wiki/David_A._Smith_(computer_scientist)',
+    companyUrl: 'https://www.multisynq.io',
+  },
+  {
+    name: 'Yuliia Bilyk',
+    img: YuliiaBilyk,
+    company: 'NoDress.Code',
+    profileUrl: 'https://www.linkedin.com/in/yuliia-bilyk-winb',
+    companyUrl: 'https://nodress.codes/',
+  },
+  {
+    name: 'Maxim Legg',
+    img: MaximLegg,
+    company: 'Pangea',
+    profileUrl: 'https://www.linkedin.com/in/maximlegg/',
+    companyUrl: 'https://pangea.foundation/',
+  },
+  {
+    name: 'João Nunes Rosado',
+    img: JoaoRosado,
+    company: 'Unicorn Factory Lisboa',
+    profileUrl: 'https://www.linkedin.com/in/joaofnrosado/',
+    companyUrl: 'https://unicornfactorylisboa.com/',
+  },
   {
     name: 'Vanessa Freudenberg',
     img: VanessaFreudenberg,
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/codefrau',
     companyUrl: 'https://www.multisynq.io',
+  },
+  {
+    name: 'João Pereira',
+    img: JoaoPereira,
+    company: 'Build Up Labs',
+    profileUrl: 'https://www.linkedin.com/in/jpgpereira',
+    companyUrl: 'https://builduplabs.com/',
   },
   {
     name: 'Ken Lane',
@@ -50,44 +82,44 @@ const people: Person[] = [
     companyUrl: 'https://www.multisynq.io',
   },
   {
-    name: 'Maxim Legg',
-    img: MaximLegg,
-    company: 'Pangea',
-    profileUrl: 'https://www.linkedin.com/in/maximlegg/',
-    companyUrl: 'https://pangea.foundation/',
-  },
-  // {
-  //   name: 'Aran Lunzer',
-  //   img: AranLunzer,
-  //   company: 'Multisynq.io',
-  //   profileUrl: 'https://www.linkedin.com/in/aran-lunzer-6506221',
-  //   companyUrl: 'https://www.multisynq.io',
-  // },
-  {
     name: 'Yoshiki Ohshima',
     img: YoshikiOhshima,
     profileUrl: 'https://tinlizzie.org/ohshima',
   },
   {
-    img: YuliiaBilyk,
-    name: 'Yuliia Bilyk',
-    company: 'NoDress.Code',
-    profileUrl: 'https://www.linkedin.com/in/yuliia-bilyk-winb',
-    companyUrl: 'https://nodress.codes/',
-  },
-  {
-    img: SandraLeonor,
     name: 'Sandra Leonor',
+    img: SandraLeonor,
     company: 'Laika Ventures',
     profileUrl: 'https://www.linkedin.com/in/sandra-leonor/',
     companyUrl: 'https://laikaventures.co/',
   },
   {
-    img: JoaoSantos,
+    name: 'Elijah Lee',
+    img: ElijahLeeh,
+    company: 'Multisynq.io',
+    profileUrl: 'http://www.linkedin.com/in/elijah-lee51',
+    companyUrl: 'https://laikaventures.co/',
+  },
+  {
     name: 'João Santos',
+    img: JoaoSantos,
     company: 'Sereneus',
-    profileUrl: 'https://www.linkedin.com/in/joaops95',
+    profileUrl: 'http://x.com/joaointech',
     companyUrl: 'https://www.sereneus.pt/pt',
+  },
+  {
+    name: 'Francisco Belo',
+    img: FranciscoBelo,
+    company: 'Granter.ai',
+    profileUrl: 'https://www.linkedin.com/in/francisco-mariano-belo/',
+    companyUrl: 'https://granter.ai/',
+  },
+  {
+    name: 'Charles Poole',
+    img: CharlesPoole,
+    company: 'Multisynq.io',
+    profileUrl: 'https://linkedin.com/in/ceedeepee',
+    companyUrl: 'https://pangea.foundation/',
   },
   {
     name: 'Miguel Matos',
@@ -97,8 +129,8 @@ const people: Person[] = [
     companyUrl: 'https://www.multisynq.io',
   },
   {
-    img: AfonsoGoncalves,
     name: 'Afonso Gonçalves',
+    img: AfonsoGoncalves,
     company: 'Multisynq.io',
     profileUrl: 'https://www.linkedin.com/in/afonsocrg',
     companyUrl: 'https://www.multisynq.io',
