@@ -1,5 +1,6 @@
 import {
   ConnectedUsersDocumentationPage,
+  HelpersDocumentationPage,
   HoverHighlighterDocumentationPage,
   IntroductionPage,
   PrimeReactCheckboxTogetherDocumentationPage,
@@ -83,6 +84,7 @@ export default function AppRoutes() {
           <Route path='useJoinUrl' element={<UseJoinUrlDocumentationPage />} />
           <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} />
           <Route path='useFunctionTogether' element={<UseFunctionTogetherDocumentationPage />} />
+          <Route path='utils' element={<HelpersDocumentationPage />} />
           <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
           <Route path='/pricing' element={<MarkdownPage markdown={pricing} />} />
           <Route path='/examples' element={<DynamicsSession />} />
