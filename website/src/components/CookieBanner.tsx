@@ -30,8 +30,25 @@ export function CookieBanner({ forceShow = false }: CookieBannerProps) {
 
   const footerContent = (
     <div>
-      <Button label="Please don't" icon='pi pi-times' onClick={() => onDecline()} className='p-button-text' />
-      <Button label='Sure thing!' icon='pi pi-check' onClick={() => onAccept()} autoFocus />
+      <Button
+        label='no thanks...'
+        onClick={() => onDecline()}
+        className='p-button-text'
+        severity='secondary'
+        outlined
+        size='small'
+        rounded
+        aria-label='Decline cookie consent'
+      />
+      <Button
+        label='Sure thing!'
+        icon='pi pi-check'
+        onClick={() => onAccept()}
+        autoFocus
+        rounded
+        size='small'
+        aria-label='Accept cookie consent'
+      />
     </div>
   )
 
@@ -39,21 +56,32 @@ export function CookieBanner({ forceShow = false }: CookieBannerProps) {
 
   return (
     <Dialog
+      aria-labelledby='cookie-banner-header'
+      aria-describedby='cookie-banner-description'
       modal={false}
       position='bottom-left'
       draggable={false}
       visible={showBanner}
       onHide={() => onDecline()}
-      style={{ width: '50vw' }}
+      header={'Welcome to React Together'}
+      className='w-full md:w-[32rem]'
+      pt={{
+        root: { className: 'bg-gray-50 overfill-none rounded-xl border border-gray-400' },
+        header: { className: 'bg-transparent' },
+        footer: { className: 'bg-transparent' },
+        content: { className: 'bg-transparent' },
+      }}
       footer={footerContent}
     >
-      <p className='m-0'>Welcome to React Together!! Do you mind if we gather your usage data to improve our website?</p>
-      <p className='m-0'>
-        Learn more about our cookie policy{' '}
-        <a className='text-blue-600 rounded-sm bg-slate-100 px-1' href='/cookies'>
-          here.
-        </a>
-      </p>
+      <div id='cookie-banner-description' className='flex gap-2 flex-col text-sm md:text-base text-gray-600 px-1'>
+        <span>Would you mind if we gather a little information while you’re here?</span>
+        <span>
+          It’ll help us keep things running smoothly and make sure you have the best experience!
+          <a className='text-blue-600 rounded-sm bg-slate-100 px-1 mx-2' href='/cookies' aria-label='Learn more about the policy here'>
+            Learn more
+          </a>
+        </span>
+      </div>
     </Dialog>
   )
 }
