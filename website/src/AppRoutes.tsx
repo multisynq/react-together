@@ -55,6 +55,7 @@ import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
 import { MarkdownPage } from '@pages/Documentation/MarkdownPage'
 import { HackTogetherPage } from '@pages/HackTogetherPage'
 import { NotFoundPage } from '@pages/NotFoundPage'
+import { UseCaseProject } from '@pages/UseCaseProjects'
 import { WebsiteWrapper } from '@pages/WebsiteWrapper'
 import { Route, Routes } from 'react-router-dom'
 import changelog from 'react-together/CHANGELOG.md'
@@ -66,6 +67,7 @@ export default function AppRoutes() {
     <Routes>
       <Route element={<WebsiteWrapper />}>
         <Route path='hackathon' element={<HackTogetherPage />} />
+        <Route path='usecase' element={<UseCaseProject />} />
         <Route path='/' element={<HomePage />} />
         <Route element={<DocumentationWrapper />}>
           <Route path='getting-started' element={<IntroductionPage />} />
