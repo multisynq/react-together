@@ -3,6 +3,7 @@ import CharlesPoole from '@images/people/CharlesPoole.png'
 import DavidSmith from '@images/people/DavidSmith.png'
 import ElijahLeeh from '@images/people/ElijahLee.jpg'
 import FranciscoBelo from '@images/people/FranciscoBelo.jpg'
+import JoanaPinto from '@images/people/JoanaPinto.png'
 import JoaoRosado from '@images/people/JoaoNunesRosado.jpg'
 import JoaoPereira from '@images/people/JoaoPereira.png'
 import JoaoSantos from '@images/people/JoaoSantos.jpeg'
@@ -99,6 +100,12 @@ const people: Person[] = [
     company: 'Multisynq.io',
     profileUrl: 'http://www.linkedin.com/in/elijah-lee51',
     companyUrl: 'https://www.multisynq.io',
+  },
+  {
+    name: 'Joana Pinto',
+    img: JoanaPinto,
+    company: 'Lampsy, IT, Clynx Health',
+    profileUrl: 'https://www.linkedin.com/in/joana-figueiredo-pinto/',
   },
   {
     name: 'João Santos',

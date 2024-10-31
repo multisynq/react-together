@@ -145,4 +145,4 @@ By contributing to React Together, you agree that your contributions will be lic
 
 ### Getting in Touch
 
-You can get in touch with the project team, as well as with the developer community, via the [Croquet Discord](https://croquet.io/discord).
+You can get in touch with the project team, as well as with the developer community, via the [Multisynq Discord](https://multisynq.dev/discord).
