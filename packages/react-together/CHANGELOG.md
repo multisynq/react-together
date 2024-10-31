@@ -1,12 +1,5 @@
-## 0.2.0 Prerelease
-
-### 0.2.0-5
- - Updated to `@croquet/react` v2.2.1-1
-
-### 0.2.0-4
- - Updated to `@croquet/react` v2.2.1-0
-
-### 0.2.0-3
+### 0.2.0
+ - Added `useFunctionTogether` hook
  - Added `useCreateRandomSession` hook
  - Added `useIsTogether` hook
  - Added `useJoinUrl`
@@ -16,7 +9,11 @@
  - Added `name` prop to `ReactTogether.sessionParams`
  - Added `password` prop to `ReactTogether.sessionParams`
  - Added `highlightMyself` prop to `HoverHighlighter` component
- - Added `SESSION_NAME_PARAM` and `SESSION_PASSWORD_PARAM` constants
+ - Added `utils` module with:
+   - `getSessionNameFromUrl` function
+   - `getSessionPasswordFromUrl` function
+   - `getJoinUrl` function
+   - `getCleanUrl` function
  - Renamed `ConnectedViews` to `ConnectedUsers`
  - Renamed `PresenceDiv` to `HoverHighlighter`
  - Renamed `useConnectedViews` to `useConnectedUsers`
@@ -26,9 +23,6 @@
  - `ReactTogether` component joins session if `rtName` and `rtPwd` specified in URL search parameters
  - Reexport `@croquet/react` as `CroquetReact` obj
  - Removed `useReactTogetherContext`
-
-### 0.2.0-2
- - Added `useFunctionTogether`
 
 ## 0.1.1
 `2024-08-31`
