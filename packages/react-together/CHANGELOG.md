@@ -20,7 +20,7 @@
  - Renamed `useHoveringViews` to `useHoveringUsers`
  - `useHoveringUsers` now returns whether the local user is hovering the targeted element
  - `useHoveringUsers` options do not receive the `highlightMyself` parameter anymore
- - `ReactTogether` component joins session if `rtName` and `rtPwd` specified in URL search parameters
+ - `ReactTogether` component joins session if `rtName` and `rtPwd` specified in URL
  - Reexport `@croquet/react` as `CroquetReact` obj
  - Removed `useReactTogetherContext`
 
