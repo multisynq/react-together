@@ -1,3 +1,5 @@
+import LinkSpan from '@components/ui/LinkSpan'
+
 interface Event {
   time: string
   event: string | React.ReactElement
@@ -12,7 +14,7 @@ const fridaySchedule: Event[] = [
       <span>
         Hacking Begins!!
         <br />
-        Ideation session w/ Yuliia
+        Ideation session w/ <LinkSpan text='Yuliia' to='https://www.linkedin.com/in/yuliia-bilyk-winb/' />
       </span>
     ),
   },
@@ -26,9 +28,9 @@ const saturdaySchedule: Event[] = [
   { time: '07:30', event: 'Breakfast is served' },
   { time: '12:00', event: <strong>Coding Ends!!</strong> },
   { time: '12:30', event: 'Lunch is served' },
-  { time: '15:00', event: <strong>Submission deadline</strong> },
-  { time: '17:00', event: 'Winner Announcement' },
-  { time: '18:00', event: 'After Party' },
+  { time: '14:00', event: <strong>Submission deadline</strong> },
+  { time: '17:00', event: 'Finalist pitches' },
+  { time: '18:30', event: 'Winner announcement & After Party' },
 ]
 
 function EventContainer({ time, event }: Event) {
