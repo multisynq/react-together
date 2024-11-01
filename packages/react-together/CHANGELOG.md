@@ -1,4 +1,6 @@
 ### 0.2.0
+`2024-11-01`
+
  - Added `useFunctionTogether` hook
  - Added `useCreateRandomSession` hook
  - Added `useIsTogether` hook
