@@ -25,7 +25,15 @@ export default function ReactTogetherDocumentationPage() {
           {
             name: 'appId',
             type: 'string',
-            description: "The owner's ID.",
+            description: (
+              <p>
+                Unique application identifier as{' '}
+                <Link to='https://developer.android.com/studio/build/application-id' target='_blank'>
+                  dot-separated
+                </Link>{' '}
+                words (e.g. "com.example.myapp")
+              </p>
+            ),
           },
           {
             name: 'apiKey',
@@ -33,14 +41,34 @@ export default function ReactTogetherDocumentationPage() {
             description: (
               <p>
                 The Multisynq API key. Get yours at{' '}
-                <Link to='https://croquet.io/keys' target='_blank'>
-                  croquet.io/keys
+                <Link to='https://multisynq.io/account' target='_blank'>
+                  multisynq.io/account
                 </Link>
               </p>
             ),
           },
           {
-            name: 'sessionIgnoresUrl',
+            name: 'name?',
+            type: 'string',
+            description: (
+              <p>
+                If this parameter and <CodeSpan text='password' /> are defined, React Together will connect to a session with the given name
+                when it first renders
+              </p>
+            ),
+          },
+          {
+            name: 'password?',
+            type: 'string',
+            description: (
+              <p>
+                If this parameter and <CodeSpan text='name' /> are defined, React Together will connect to a session with the given password
+                when it first renders
+              </p>
+            ),
+          },
+          {
+            name: 'sessionIgnoresUrl?',
             type: 'boolean',
             default: 'false',
             description: (
@@ -58,7 +86,23 @@ export default function ReactTogetherDocumentationPage() {
   const content = (
     <GenericDocPage
       title='ReactTogether'
-      description='This component provides the context required to synchronize multiple users within the same session. Every React Together hook and component should be used within the scope of this component.'
+      description={
+        <>
+          <p>
+            This component provides the context required to synchronize multiple users within the same session. Every React Together hook
+            and component should be used within the scope of this component.
+          </p>
+          <p>
+            If <CodeSpan text='name' /> and <CodeSpan text='password' /> are passed in the <CodeSpan text='sessionParams' /> prop,{' '}
+            <CodeSpan text='ReactTogether' /> will immediately connect to a session with the given <CodeSpan text='name' /> and{' '}
+            <CodeSpan text='password' />.
+          </p>
+          <p>
+            If <CodeSpan text='rtName' /> and <CodeSpan text='rtPwd' /> are specified in the URL search parameters, those values will
+            override the ones passed in <CodeSpan text='sessionParams' />.
+          </p>
+        </>
+      }
       usage={
         <>
           <CodeBlock language='javascript' code1={`import { ReactTogether } from 'react-together'`} />

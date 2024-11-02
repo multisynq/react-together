@@ -1,4 +1,3 @@
-import { useViewId } from '@croquet/react'
 import { MutableRefObject, useEffect, useRef } from 'react'
 import { useStateTogetherWithPerUserValues } from '../hooks'
 
@@ -6,19 +5,14 @@ interface CustomMouseEvent extends MouseEvent {
   rtProcessedBy?: string
 }
 
-export interface useHoveringViewsOptions {
-  highlightMyself?: boolean
-}
-export default function useHoveringViews(
+export interface UseHoveringUsersOptions {}
+export default function useHoveringUsers(
   rtKey: string,
-  options: useHoveringViewsOptions = {}
-): [MutableRefObject<HTMLDivElement | null>, string[]] {
-  const { highlightMyself = false } = options
-
-  const myViewId = useViewId()
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _options: UseHoveringUsersOptions = {}
+): [MutableRefObject<HTMLDivElement | null>, string[], boolean] {
   const ref = useRef<HTMLDivElement | null>(null)
-  const [, set_hovering, allHovered] =
+  const [isHovering, set_hovering, allHovered] =
     useStateTogetherWithPerUserValues<boolean>(rtKey, false)
 
   useEffect(() => {
@@ -76,12 +70,9 @@ export default function useHoveringViews(
     }
   }, [set_hovering, rtKey])
 
-  const hoveringViews = Object.entries(allHovered)
-    .filter(
-      ([viewId, isHovering]) =>
-        isHovering && (viewId !== myViewId || highlightMyself)
-    )
-    .map(([viewId]) => viewId)
+  const hoveringUsers = Object.entries(allHovered)
+    .filter(([, isHovering]) => isHovering)
+    .map(([userId]) => userId)
 
-  return [ref, hoveringViews]
+  return [ref, hoveringUsers, isHovering]
 }

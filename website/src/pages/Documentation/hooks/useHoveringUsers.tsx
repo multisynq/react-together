@@ -6,7 +6,7 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
-export default function UseHoveringViewsDocumentationPage() {
+export default function UseHoveringUsersDocumentationPage() {
   const api = (
     <>
       <HookParamsApi
@@ -35,9 +35,14 @@ export default function UseHoveringViewsDocumentationPage() {
             type: 'string[]',
             description: (
               <p>
-                An array containing all the view IDs that are currently hovering over the element with the returned <CodeSpan text='ref' />.
+                An array containing all the user IDs that are currently hovering over the element with the returned <CodeSpan text='ref' />.
               </p>
             ),
+          },
+          {
+            name: '2',
+            type: 'boolean',
+            description: <p>A boolean indicating whether the local user is hovering the targeted element.</p>,
           },
         ]}
       />
@@ -45,28 +50,30 @@ export default function UseHoveringViewsDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='useHoveringViews'
+      title='useHoveringUsers'
       parameter='(rtKey, options)'
       description={
         <>
           <p>
-            The <CodeSpan text='useHoveringViews' /> hook identifies which views are hovering a given DOM element. If a view is hovering a
-            component that is nested within other ‘hoverable’ components, only the innermost component will indicate that it's being
-            hovered.
+            The <CodeSpan text='useHoveringUsers' /> hook identifies which users are hovering a given DOM element.
           </p>
-          <DocumentationDemo url='PresenceDiv' />
+          <p>
+            If a user is hovering a component that is nested within other <CodeSpan text='hoverable' /> components, only the innermost
+            component will indicate that it's being hovered.
+          </p>
+          <DocumentationDemo url='HoverHighlighter' />
         </>
       }
       usage={
         <>
-          <CodeBlock language='jsx' code1={`import { useHoveringViews } from 'react-together'`} />
+          <CodeBlock language='jsx' code1={`import { useHoveringUsers } from 'react-together'`} />
           <CodeBlock
             language='jsx'
-            code1={`const [ref, hoveringViews] = useHoveringViews(‘hovering-views’)
+            code1={`const [ref, hoveringViews, isHovering] = useHoveringUsers(‘hovering-views’)
 
 return (
   <div>
-    <div ref={ref}>Hover me!</div>
+    <div ref={ref}>{isHovering ? "You're hovering me!" : 'Hover me!'}</div>
     <h3>Hovering Ids:</h3>
     <ul>
       {hoveringViews.map((viewId) => (
@@ -81,5 +88,5 @@ return (
       api={api}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('useHoveringViews')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('useHoveringUsers')} />
 }

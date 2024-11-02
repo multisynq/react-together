@@ -19,7 +19,7 @@ export const ReactTogetherPage: React.FC = () => {
       <p>everyone knows everyone else’s state</p>
       <DocumentDemoBox />
       <CodeBlockExample />
-      <h4 id='useConnectedViews'>useConnectedViews</h4>
+      <h4 id='useConnectedUsers'>useConnectedUsers</h4>
       <p>everyone knows everyone else’s state</p>
       <DocumentDemoBox />
       <CodeBlockExample />

@@ -99,7 +99,7 @@ const people: Person[] = [
     img: ElijahLeeh,
     company: 'Multisynq.io',
     profileUrl: 'http://www.linkedin.com/in/elijah-lee51',
-    companyUrl: 'https://laikaventures.co/',
+    companyUrl: 'https://www.multisynq.io',
   },
   {
     name: 'Joana Pinto',

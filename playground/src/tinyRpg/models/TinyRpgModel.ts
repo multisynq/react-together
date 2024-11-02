@@ -1,4 +1,6 @@
-import { ReactModel } from 'react-together'
+import { Croquet } from 'react-together'
+
+const { ReactModel } = Croquet
 
 export type Direction = 'up' | 'down' | 'left' | 'right'
 export type Position = { x: number; y: number }

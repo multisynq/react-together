@@ -1,9 +1,10 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
+import CodeSpan from '@components/ui/CodeSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
 
-export default function UseIsTogetherDocumentationPage() {
+export default function UseJoinUrlDocumentationPage() {
   const api = (
     <>
       <HookReturnApi
@@ -20,7 +21,12 @@ export default function UseIsTogetherDocumentationPage() {
   const content = (
     <GenericDocPage
       title='useIsTogether'
-      description={'The useIsTogether hook returns true if the user is connected to a React Together session, and false otherwise.'}
+      description={
+        <p>
+          The <CodeSpan text='useIsTogether' /> hook returns <CodeSpan text='true' /> if the user is connected to a React Together session,
+          and <CodeSpan text='false' /> otherwise.
+        </p>
+      }
       usage={
         <>
           <CodeBlock language='jsx' code1={`import { useIsTogether } from 'react-together'`} />
@@ -30,5 +36,5 @@ export default function UseIsTogetherDocumentationPage() {
       api={api}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('useIsTogether')} />
+  return <DocumentationPage content={content} navItems={GenericDocNav('useJoinUrl')} />
 }

@@ -1,76 +1,26 @@
 import { CroquetRoot } from '@croquet/react'
-import { createContext, useState } from 'react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 
+import { getSessionNameFromUrl, getSessionPasswordFromUrl } from '../utils'
+
 type ReactTogetherSessionParams = {
-  appId: string
   apiKey: string
+  appId: string
+  name?: string
+  password?: string
   sessionIgnoresUrl?: boolean
   model?: typeof ReactTogetherModel
 }
-
-export interface ReactTogetherContext {
-  createNewSession: () => void
-  leaveSession: () => void
-  isTogether: boolean
-  sessionName: string | null
-  sessionPassword: string | null
-}
-export const ReactTogetherContext = createContext<
-  ReactTogetherContext | undefined
->(undefined)
-
 export type ReactTogetherProps = {
   children: ReactChildren
   sessionParams: ReactTogetherSessionParams
 }
+
 export default function ReactTogether({
   children,
   sessionParams
 }: ReactTogetherProps) {
   const { appId, apiKey, sessionIgnoresUrl } = sessionParams
-
-  const [sessionName, set_sessionName] = useState<null | string>(
-    // import.meta.env.VITE_CROQUET_NAME || null
-    'Test session'
-  )
-  const [sessionPassword, set_sessionPassword] = useState<null | string>(
-    // import.meta.env.VITE_CROQUET_PASSWORD || null
-    '123'
-  )
-
-  const isTogether = sessionName !== null && sessionPassword !== null
-
-  const createNewSession = () => {
-    // TODO: Eventually these values will be random
-    // Math.random().toString(36).substring(16);
-    // Do we want to add them to the URL? Maybe that could be an option passed to this function
-    const newSessionName = 'v0_session'
-    const newSessionPassword = 'pwd'
-    set_sessionName(newSessionName)
-    set_sessionPassword(newSessionPassword)
-  }
-
-  const leaveSession = () => {
-    set_sessionName(null)
-    set_sessionPassword(null)
-  }
-  // TODO: eventually get circle from search param
-  /*
-    const sessionId = 
-    useEffect(() => {
-        const baseUrl = getWebsiteBaseURL()
-        const circleId = searchParams.get('reactTogetherCircleId', null)
-        if(circleId !== null) {
-            const { sessionId, password } = circlesApi.getSessionCredentials(baseUrl, circleId)
-            set_sessionId(sessionId)
-            set_password(password)
-        }
-    }, [])
-
-    // We would need some logic to not render anything until we are connected
-    // to the right session
-  */
 
   // By default, sessions hosted in different URLs
   // should be different sessions even if they have the same name.
@@ -83,35 +33,22 @@ export default function ReactTogether({
     }
   }
 
+  // Check if there are session params in the URL
+  const url = new URL(window.location.href)
+  const searchName = getSessionNameFromUrl(url)
+  const searchPassword = getSessionPasswordFromUrl(url)
+
+  const model = sessionParams.model || ReactTogetherModel
+  const name = searchName || sessionParams.name
+  const password = searchPassword || sessionParams.password
+
   return (
-    <ReactTogetherContext.Provider
-      value={{
-        createNewSession,
-        leaveSession,
-        isTogether,
-        sessionName,
-        sessionPassword
-      }}
+    <CroquetRoot
+      sessionParams={{ model, name, password, appId, apiKey, options }}
+      deferSession={!name || !password}
+      showChildrenWithoutSession
     >
-      {sessionName !== null && sessionPassword !== null ? (
-        <CroquetRoot
-          sessionParams={{
-            model: sessionParams.model || ReactTogetherModel,
-            appId,
-            apiKey,
-            name: sessionName,
-            password: sessionPassword,
-            options
-          }}
-        >
-          <>
-            {/* Connected to session {sessionName}!! */}
-            {children}
-          </>
-        </CroquetRoot>
-      ) : (
-        children
-      )}
-    </ReactTogetherContext.Provider>
+      {children}
+    </CroquetRoot>
   )
 }

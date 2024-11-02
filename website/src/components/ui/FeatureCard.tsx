@@ -44,7 +44,7 @@ export function FeatureCard() {
             }
             color={color1}
             imgSource={gif1}
-            linkURL={'#/getting-started'}
+            linkURL={'getting-started'}
           />
           <EachFeature
             header={'Wrap'}
@@ -55,14 +55,14 @@ export function FeatureCard() {
             }
             color={color1}
             imgSource={gif2}
-            linkURL={'#/ReactTogether'}
+            linkURL={'ReactTogether'}
           />
           <EachFeature
             header={'Synchronize'}
             body={'Use our hooks to instantly create interactive experiences!'}
             color={color1}
             imgSource={gif3}
-            linkURL={'#/primereact/Checkbox'}
+            linkURL={'primereact/Checkbox'}
           />
         </div>
       </div>

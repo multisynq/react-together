@@ -1,4 +1,4 @@
-import { PresenceDiv } from 'react-together'
+import { HoverHighlighter } from 'react-together'
 
 function Box({
   color,
@@ -34,43 +34,43 @@ function Box({
 
 function GreenDice({ rtKey }: { rtKey: string }) {
   return (
-    <PresenceDiv rtKey={rtKey} options={{ highlightMyself: true }}>
+    <HoverHighlighter rtKey={rtKey} highlightMyself>
       <Box color="#00AF54" size="60px" id="b2">
-        <PresenceDiv rtKey={`${rtKey}-1`}>
+        <HoverHighlighter rtKey={`${rtKey}-1`}>
           <Box color="yellow" size="20px" id="b2" />
-        </PresenceDiv>
+        </HoverHighlighter>
       </Box>
-    </PresenceDiv>
+    </HoverHighlighter>
   )
 }
 
-export default function NestedPresenceDivs() {
+export default function NestedHoverHighlighter() {
   return (
-    <PresenceDiv rtKey="div-1">
+    <HoverHighlighter rtKey="div-1">
       <Box color="#fcd7ad" size="230px" id="b1">
-        <PresenceDiv rtKey="div-2">
+        <HoverHighlighter rtKey="div-2">
           <Box color="#007CBE" size="60px" id="b2" />
-        </PresenceDiv>
+        </HoverHighlighter>
         <GreenDice rtKey="g1" />
-        <PresenceDiv rtKey="div-5">
+        <HoverHighlighter rtKey="div-5">
           <Box color="#007CBE" size="60px" id="b2" />
-        </PresenceDiv>
+        </HoverHighlighter>
 
         <GreenDice rtKey="g2" />
-        <PresenceDiv rtKey="div-8">
+        <HoverHighlighter rtKey="div-8">
           <Box color="#007CBE" size="60px" id="b2" />
-        </PresenceDiv>
+        </HoverHighlighter>
 
         <GreenDice rtKey="g3" />
-        <PresenceDiv rtKey="div-b">
+        <HoverHighlighter rtKey="div-b">
           <Box color="#007CBE" size="60px" id="b2" />
-        </PresenceDiv>
+        </HoverHighlighter>
 
         <GreenDice rtKey="g4" />
-        <PresenceDiv rtKey="div-e">
+        <HoverHighlighter rtKey="div-e">
           <Box color="#007CBE" size="60px" id="b2" />
-        </PresenceDiv>
+        </HoverHighlighter>
       </Box>
-    </PresenceDiv>
+    </HoverHighlighter>
   )
 }

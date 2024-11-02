@@ -74,7 +74,7 @@ export default function InfoTable() {
           <div className='sticky top-[60px] p-4 bg-lime-100 border border-gray-800 rounded-xl shadow-lineStyleDark'>
             <div>
               <span className='mt-3 font-light '>
-                {/* {`Join us for a weekend of fun and hackinghacking! `} */}
+                {/* {`Join us for a weekend of fun and hacking! `} */}
                 Discover the power of ReactTogether and build interactive web experiences. This hackathon is your opportunity to
                 <span className='font-bold'> reimagine the internet</span> as we know it.
                 <HashLink smooth to='#register'>

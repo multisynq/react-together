@@ -1,20 +1,18 @@
 import ColorHash from 'color-hash'
-import { useHoveringViews } from 'react-together'
-import { useHoveringViewsOptions } from 'react-together/dist/hooks/useHoveringViews'
+import { useHoveringUsers } from 'react-together'
 
 const colorHash = new ColorHash()
 
-type PresenceDivStyledProps = {
+type HoverHighlighterStyledProps = {
   rtKey: string
   children: React.ReactNode
   className?: string
-  options?: useHoveringViewsOptions
   animation?: string
 }
 
-export function PresenceDivStyled({ rtKey, children, className, options, animation }: PresenceDivStyledProps) {
+export function HoverHighlighterStyled({ rtKey, children, className, animation }: HoverHighlighterStyledProps) {
   const debug = false
-  const [ref, hoveringViews] = useHoveringViews(rtKey, options)
+  const [ref, hoveringViews] = useHoveringUsers(rtKey)
 
   let style: React.CSSProperties = {} // Start with external styles
 

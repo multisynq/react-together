@@ -1,22 +1,20 @@
 import { useState } from 'react'
-import {
-  useModelRoot,
-  usePublish,
-  useStateTogether,
-  useSubscribe
-} from 'react-together'
+import { CroquetReact, useMyId, useStateTogether } from 'react-together'
 import { OverrideModel } from '../models'
 import TinyRpgTogether from './TinyRpgTogether'
 
+const { useModelRoot, usePublish, useSubscribe } = CroquetReact
+
 export function MultipleModels() {
   const [count, setCount] = useStateTogether('count', 0)
-  const rootModel = useModelRoot<OverrideModel>()!
+  const rootModel = useModelRoot<OverrideModel>()
 
-  const counterModel = rootModel.counter
-  const [counter, setCounter] = useState(counterModel.count)
+  const counterModel = rootModel?.counter
+  const [counter, setCounter] = useState(counterModel?.count ?? 0)
+  const myId = useMyId()
 
-  useSubscribe('count', 'update', () => setCounter(counterModel.count))
-  const publishReset = usePublish((d) => [counterModel.id, 'reset', d])
+  useSubscribe('count', 'update', () => setCounter(counterModel?.count ?? 0))
+  const publishReset = usePublish((d) => [counterModel?.id ?? '', 'reset', d])
   return (
     <>
       <div className="flex justify-center gap-5 mt-5">
@@ -48,6 +46,7 @@ export function MultipleModels() {
             {count}
           </button>
         </div>
+        <span>{myId}</span>
       </div>
       <TinyRpgTogether />
     </>

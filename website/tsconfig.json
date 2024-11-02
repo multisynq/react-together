@@ -19,6 +19,7 @@
       "@*": ["./src/*"],
       "@/*": ["./src/*"],
       "@package": ["./package.json"],
+      "@assets/*": ["./src/assets/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@pages/*": ["./src/pages/*"],
       "@utils/*": ["./src/utils/*"],

@@ -214,7 +214,7 @@ export default function Partners() {
     <>
       <div className='flex flex-col align-items-center justify-content-between gap-8'>
         {partners.map((p) => (
-          <PartnerIcon key={p.url} url={p.url} src={p.src} alt={p.alt} />
+          <PartnerIcon key={p.alt} url={p.url} src={p.src} alt={p.alt} />
         ))}
         <div className='grid grid-cols-2 gap-4 sm:gap-8'>
           {foodPartners.map((p) => (

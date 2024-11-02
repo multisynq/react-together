@@ -1,38 +1,40 @@
 import { useCallback, useEffect } from 'react'
-import { useModelSelector, usePublish, useViewId } from 'react-together'
+import { CroquetReact, useMyId } from 'react-together'
 import { ArrowButtons, Board, Coins, Players, Scores } from '.'
 import { OverrideModel } from '../models'
 import { MoveArgs } from '../models/TinyRpgModel'
 
+const { useModelSelector, usePublish } = CroquetReact
+
 export default function TinyRpgTogether() {
   // console.log('<TinyRpg/>')
-  const viewId = useViewId()!
+  const myId = useMyId()!
   const modelId = useModelSelector((m: OverrideModel) => m.rpg.id)
 
-  const publishMove = usePublish<MoveArgs>((d) => [modelId, 'move', d])
+  const publishMove = usePublish<MoveArgs>((d) => [modelId ?? '', 'move', d])
 
   const moveCharacter = useCallback(
     (direction: string) => {
       switch (direction) {
         case 'w':
         case 'arrowup':
-          publishMove({ viewId, direction: 'up' })
+          publishMove({ viewId: myId, direction: 'up' })
           break
         case 's':
         case 'arrowdown':
-          publishMove({ viewId, direction: 'down' })
+          publishMove({ viewId: myId, direction: 'down' })
           break
         case 'a':
         case 'arrowleft':
-          publishMove({ viewId, direction: 'left' })
+          publishMove({ viewId: myId, direction: 'left' })
           break
         case 'd':
         case 'arrowright':
-          publishMove({ viewId, direction: 'right' })
+          publishMove({ viewId: myId, direction: 'right' })
           break
       }
     },
-    [viewId, publishMove]
+    [myId, publishMove]
   )
 
   useEffect(() => {

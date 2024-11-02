@@ -1,18 +1,26 @@
-// import useCreateNewSession from "./useConnectNewSession";
-// import useIsTogether from "./useIsTogether";
-// import useLeaveSession from "./useLeaveSession";
-import useConnectedViews from './useConnectedViews'
+import useConnectedUsers from './useConnectedUsers'
+import useCreateRandomSession from './useCreateRandomSession'
 import useFunctionTogether from './useFunctionTogether'
-import useHoveringViews from './useHoveringViews'
-import useReactTogetherContext from './useReactTogetherContext'
+import useHoveringUsers from './useHoveringUsers'
+import useJoinUrl from './useJoinUrl'
+import useLeaveSession from './useLeaveSession'
 import useStateTogether from './useStateTogether'
 import useStateTogetherWithPerUserValues from './useStateTogetherWithPerUserValues'
 
+// Create hook alias from @croquet/react
+import { useIsJoined, useViewId } from '@croquet/react'
+const useIsTogether = useIsJoined
+const useMyId = useViewId
+
 export {
-  useConnectedViews,
+  useConnectedUsers,
+  useCreateRandomSession,
   useFunctionTogether,
-  useHoveringViews,
-  useReactTogetherContext,
+  useHoveringUsers,
+  useIsTogether,
+  useJoinUrl,
+  useLeaveSession,
+  useMyId,
   useStateTogether,
   useStateTogetherWithPerUserValues
 }
