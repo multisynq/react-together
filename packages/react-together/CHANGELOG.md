@@ -1,3 +1,31 @@
+### 0.2.0
+`2024-11-01`
+
+ - Added `useFunctionTogether` hook
+ - Added `useCreateRandomSession` hook
+ - Added `useIsTogether` hook
+ - Added `useJoinUrl`
+ - Added `useLeaveSession` hook
+ - Added `useMyId` hook
+ - Added `SessionManager` component
+ - Added `name` prop to `ReactTogether.sessionParams`
+ - Added `password` prop to `ReactTogether.sessionParams`
+ - Added `highlightMyself` prop to `HoverHighlighter` component
+ - Added `utils` module with:
+   - `getSessionNameFromUrl` function
+   - `getSessionPasswordFromUrl` function
+   - `getJoinUrl` function
+   - `getCleanUrl` function
+ - Renamed `ConnectedViews` to `ConnectedUsers`
+ - Renamed `PresenceDiv` to `HoverHighlighter`
+ - Renamed `useConnectedViews` to `useConnectedUsers`
+ - Renamed `useHoveringViews` to `useHoveringUsers`
+ - `useHoveringUsers` now returns whether the local user is hovering the targeted element
+ - `useHoveringUsers` options do not receive the `highlightMyself` parameter anymore
+ - `ReactTogether` component joins session if `rtName` and `rtPwd` specified in URL
+ - Reexport `@croquet/react` as `CroquetReact` obj
+ - Removed `useReactTogetherContext`
+
 ## 0.1.1
 `2024-08-31`
 

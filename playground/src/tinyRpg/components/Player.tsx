@@ -1,6 +1,8 @@
-import { ReactModel, useModelSelector } from 'react-together'
+import { Croquet } from 'react-together'
 import { CELL_SIZE } from '../constants'
 import { OverrideModel } from '../models'
+
+const { useModelSelector } = Croquet
 
 const stringToColor = (s: string) => {
   return [
@@ -28,8 +30,7 @@ interface PlayerProps {
 }
 export default function Player({ id }: PlayerProps) {
   const position = useModelSelector(
-    (model: ReactModel) =>
-      (model as OverrideModel).rpg.playerData.get(id)?.position
+    (model: OverrideModel) => model.rpg.playerData.get(id)?.position || null
   )
   if (!position) return
   const { x, y } = position

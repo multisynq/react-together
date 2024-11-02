@@ -1,5 +1,6 @@
-import { useViewId } from '@croquet/react'
-import { useStateTogetherWithPerUserValues } from 'react-together'
+import { CroquetReact, useStateTogetherWithPerUserValues } from 'react-together'
+
+const { useViewId } = CroquetReact
 
 function Score({ score, clickable, onClick, onContextMenu }) {
   const clickableStyle = clickable ? 'cursor-pointer shadow-sm bg-slate-500 text-white' : ''
@@ -28,15 +29,15 @@ export function UseStateTogetherWPUVDemo() {
   const increment = () => setMyScore((p) => p + 1)
   const reset = () => setMyScore(0)
 
-  const myViewId = useViewId()
+  const myId = useViewId()
   return (
     <div className='flex flex-col items-center gap-2 mx-2'>
       <div className='flex gap-5 flex-wrap'>
-        {Object.entries(scoresByUser).map(([viewId, score]) => {
-          const clickable = viewId === myViewId
+        {Object.entries(scoresByUser).map(([userId, score]) => {
+          const clickable = userId === myId
           return (
             <Score
-              key={viewId}
+              key={userId}
               // label={viewId}
               score={score}
               clickable={clickable}

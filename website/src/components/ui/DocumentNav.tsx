@@ -14,21 +14,23 @@ interface PatchedMenuItemCommandEvent extends MenuItemCommandEvent {
   item: PatchedMenuItem
 }
 
-const baseUrl = '#'
+const baseUrl = ''
 
 const items: PatchedMenuItem[] = [
   {
     key: 'getting-started',
     label: 'Getting Started',
     url: `${baseUrl}/getting-started`,
+    // items: [{ key: 'Examples', label: 'Examples', url: `${baseUrl}/Examples` }],
   },
   {
     key: 'components',
     label: 'Components',
     items: [
       { key: 'react-together', label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
-      { key: 'connected-views', label: 'ConnectedViews', url: `${baseUrl}/ConnectedViews` },
-      { key: 'presence-div', label: 'PresenceDiv', url: `${baseUrl}/PresenceDiv` },
+      { key: 'react-together-mgr', label: 'SessionManager', url: `${baseUrl}/SessionManager` },
+      { key: 'connected-views', label: 'ConnectedUsers', url: `${baseUrl}/ConnectedUsers` },
+      { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
       {
         key: 'prime-react',
         label: 'Prime React',
@@ -58,9 +60,26 @@ const items: PatchedMenuItem[] = [
         label: 'useStateTogetherWithPerUserValues',
         url: `${baseUrl}/useStateTogetherWithPerUserValues`,
       },
-      { key: 'use-connected-views', label: 'useConnectedViews', url: `${baseUrl}/useConnectedViews` },
-      { key: 'use-hovering-views', label: 'useHoveringViews', url: `${baseUrl}/useHoveringViews` },
+      { key: 'use-function-together', label: 'useFunctionTogether', url: `${baseUrl}/useFunctionTogether` },
+      {
+        key: 'useful-hooks',
+        label: 'Other useful hooks',
+        items: [
+          { key: 'use-connected-users', label: 'useConnectedUsers', url: `${baseUrl}/useConnectedUsers` },
+          { key: 'use-hovering-views', label: 'useHoveringUsers', url: `${baseUrl}/useHoveringUsers` },
+          { key: 'use-create-session', label: 'useCreateRandomSession', url: `${baseUrl}/useCreateRandomSession` },
+          { key: 'use-is-together', label: 'useIsTogether', url: `${baseUrl}/useIsTogether` },
+          { key: 'use-leave-session', label: 'useLeaveSession', url: `${baseUrl}/useLeaveSession` },
+          { key: 'use-join-url', label: 'useJoinUrl', url: `${baseUrl}/useJoinUrl` },
+          { key: 'use-my-id', label: 'useMyId', url: `${baseUrl}/useMyId` },
+        ],
+      },
     ],
+  },
+  {
+    key: 'utils',
+    label: 'Utils module',
+    url: `${baseUrl}/utils`,
   },
   {
     key: 'discover',

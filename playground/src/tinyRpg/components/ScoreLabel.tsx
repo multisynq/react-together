@@ -1,13 +1,15 @@
-import { ReactModel, useModelSelector, useViewId } from 'react-together'
+import { CroquetReact, useMyId } from 'react-together'
 import { OverrideModel } from '../models'
 import Label from './Label'
 
+const { useModelSelector } = CroquetReact
+
 export default function ScoreLabel() {
-  const viewId = useViewId()!
+  const myId = useMyId()!
   const value = useModelSelector(
-    (m: ReactModel) => (m as OverrideModel).rpg.playerData.get(viewId)?.score
-  ) as number | null
+    (m: OverrideModel) => m.rpg.playerData.get(myId)?.score.toString() || '?'
+  )
 
   // console.log(`<ScoreLabel value=${value}/>`)
-  return <Label label="Score" value={value !== null ? value.toString() : '?'} />
+  return <Label label="Score" value={value ?? 0} />
 }

@@ -1,13 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, LinkProps } from 'react-router-dom'
 import HighlightedSpan from './HighlightedSpan'
 
-interface LinkSpanProps {
+interface LinkSpanProps extends LinkProps {
   text: string
-  to: string
 }
-export default function LinkSpan({ text, to }: LinkSpanProps) {
+export default function LinkSpan({ text, ...props }: LinkSpanProps) {
   return (
-    <Link to={to}>
+    <Link {...props}>
       <HighlightedSpan text={text} className='bg-blue-100 underline' />
     </Link>
   )

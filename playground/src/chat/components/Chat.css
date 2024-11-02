@@ -1,0 +1,62 @@
+.chat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100vh;
+    padding: 2rem;
+}
+
+.chat h3 {
+    margin: 0;
+}
+
+.messages-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow: auto;
+}
+
+.messages-container .message {
+    text-align: start;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.messages-container .message:hover {
+    background-color: #4d4d4d;
+}
+
+.message-editor {
+    display: flex;
+    gap: 10px;
+}
+
+.message-editor .input-container {
+    flex-grow: 1;
+}
+
+.message-editor input {
+    width: 100%;
+}
+
+.message {
+    display: flex;
+    align-items: baseline;
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: #888;
+    margin-right: 8px;
+}
+
+.sender {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.content {
+    word-break: break-word;
+}

@@ -44,7 +44,7 @@ If you decide to fix an [issue](https://github.com/multisynq/react-together/issu
 
 ### Development Workflow
 
-#### Setting up locally 
+#### Setting up locally
 
 1. Clone the React Together repository from [GitHub](https://github.com/multisynq/react-together).
 
@@ -79,20 +79,28 @@ react-together/
 
 #### Branch Organization
 
-The React Together repository uses the following branch structure:
+The React Together repository uses the [git-flow](https://nvie.com/posts/a-successful-git-branching-model/) branching model with the following branch structure:
 
-```
-- website    // Live version of the website
-- release    // Latest stable version of npm packages
-- main       // Staging area for packages and website (release-ready)
-- feature-x  // Individual developer branches for work in progress
-```
+- `develop`: (default) main development branch
+- `feature-x`: individual developer branches for work in progress, to be merged into `develop`
+- `release-x`: branched off `develop` for new regular releases of npm packages, merged into `main`
+- `main`: latest stable release
+- `hotfix-x`: branched off `main` for hotfix releases, merged back into main
+
+Here is an illustration (from [Git Kraken](https://www.gitkraken.com/learn/git/git-flow)):
+
+![](git-flow.svg)
+
+In addition, there are the website deployment branches:
+
+- `deploy`: live version of [reacttogether.dev](https://reacttogether.dev)
+- `staging`: staging area for website at [staging.reacttogether.dev](https://staging.reacttogether.dev)
 
 Important notes:
 
- - The `website` branch should never contain documentation ahead of the `release` branch;
- - New features should be in their own branch and merged into `main`;
- - Bug fixes can be merged directly into the `main` branch;
+ - The `deploy` branch should never contain documentation ahead of the `main` branch;
+ - New features should be in their own branch and merged into `develop`;
+ - Bug fixes can be merged into/developed directly on the `develop` branch;
 
 #### Development commands
 
@@ -112,11 +120,19 @@ To do so, delete `react-together` from your project's dependencies and run the f
 $ cd ~/path_to_your_react-together_clone/
 $ cd packages/react-together
 $ npm run build
-$ npm run link # Register package locally
+$ npm link # Register package locally
 
 $ cd ~/path/to/your/project
-$ npm uninstall react-together # Remove npm version
 $ npm link react-together # Link to local version
+```
+
+#### Package development
+
+The package is written in TypeScript but distributed and imported as JavaScript. While developing, it is recommended to continuously rebuild the JavaScript so that your app uses the latest TypeScript package code:
+
+``` bash
+$ cd packages/react-together
+$ npm run watch
 ```
 
 #### Editor extensions
@@ -129,4 +145,4 @@ By contributing to React Together, you agree that your contributions will be lic
 
 ### Getting in Touch
 
-You can get in touch with the project team, as well as with the developer community, via the [Croquet Discord](https://croquet.io/discord).
+You can get in touch with the project team, as well as with the developer community, via the [Multisynq Discord](https://multisynq.dev/discord).

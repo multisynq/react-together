@@ -18,7 +18,7 @@
     "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
-    "react-together": "^0.1.1"
+    "react-together": "^0.2.0"
   },
   "peerDependencies": {
     "primereact": "^10.6.6"

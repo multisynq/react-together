@@ -1,7 +1,17 @@
+import { AutoSizeKeepRatio } from '@utils/AutoSizeKeepRatio'
+import { Button } from 'primereact/button'
 import { useEffect, useState } from 'react'
-import { ConnectedViews, PresenceDiv } from 'react-together'
-import { CheckboxTogether, ColorPickerTogether, DropdownTogether, SelectButtonTogether } from 'react-together-primereact'
-import { PresenceDivStyled } from '../ui/PresenceDivStyled'
+import { ConnectedUsers, HoverHighlighter } from 'react-together'
+import {
+  CheckboxTogether,
+  ColorPickerTogether,
+  DropdownTogether,
+  InputSwitchTogether,
+  SelectButtonTogether,
+  TriStateCheckboxTogether,
+} from 'react-together-primereact'
+import { HoverHighlighterStyled } from '../ui/HoverHighlighterStyled'
+import TinyRpgTogether from './TinyRpg'
 
 // Constants
 const CITIES = [
@@ -23,13 +33,6 @@ const ITEMS = [
   { name: '❤️', value: 6 },
 ]
 
-const HOVER_BUTTONS = [
-  { key: 'div1', rtKey: 'div1', animation: 'hoverBob 1s infinite ease-in-out' },
-  { key: 'div2', rtKey: 'div2', animation: 'hoverIn 1s forwards ease' },
-  { key: 'div3', rtKey: 'div3', animation: 'hoverOut 1s infinite ease-in-out' },
-]
-
-// Custom hook for message handling
 const useMessageHandler = () => {
   const [isHomePage, setIsHomePage] = useState(true)
 
@@ -51,100 +54,132 @@ const useMessageHandler = () => {
   return isHomePage
 }
 
-// Reusable components
-const HoverButtons = () => (
-  <>
-    {HOVER_BUTTONS.map(({ key, rtKey, animation }) => (
-      <PresenceDivStyled key={key} rtKey={rtKey} animation={animation}>
-        <div className='w-16 h-8 px-2 py-1 bg-blue-300 cursor-pointer text-center rounded-md text-gray-600 text-sm flex items-center justify-center font-base border border-gray-400 hover:bg-blue-500 hover:text-gray-50'>
-          Hover
-        </div>
-      </PresenceDivStyled>
-    ))}
-  </>
+const UIWrapper = ({ children, label }) => (
+  <div className='flex flex-col gap-2 py-1'>
+    <span className='text-xs text-neutral-500 tracking-tight'>{label}</span>
+    {children}
+  </div>
 )
 
-const ColorPickerWithLabel = () => (
-  <PresenceDiv
-    rtKey='hero-demo-color-picker-presence'
-    className='flex justify-center items-center gap-1 border mx-0 rounded-md border-gray-300 px-2 h-[48px]'
-  >
-    <ColorPickerTogether rtKey='hero-demo-color-picker' publishWhileOpen defaultColor='#93C5FD' />
-    <p className='text-gray-700 text-xs'>Color Picker</p>
-  </PresenceDiv>
+const HoverPrese = () => (
+  <UIWrapper label={'Hover'}>
+    <HoverHighlighterStyled key='hover-presence' rtKey='hover-presence' animation='hoverBob 1s infinite ease-in-out'>
+      <Button label='Here' size='small' />
+    </HoverHighlighterStyled>
+  </UIWrapper>
 )
 
-const CityDropdown = () => (
-  <PresenceDiv rtKey='dropdown-presence'>
-    <DropdownTogether rtKey='dropdown' options={CITIES} optionLabel='name' placeholder='Select a City' className='w-auto md:w-14rem' />
-  </PresenceDiv>
+const InputSwithchWithPrese = () => (
+  <UIWrapper label={'Input Swtich'}>
+    <HoverHighlighter rtKey='input-switch-presence'>
+      <InputSwitchTogether rtKey='input-switch' />
+    </HoverHighlighter>
+  </UIWrapper>
 )
 
-const ConnectedViewsWrapper = () => (
+const CheckBoxWithPrese = () => (
+  <UIWrapper label={'Checkbox'}>
+    <HoverHighlighter rtKey='checkbox-presence'>
+      <CheckboxTogether rtKey='checkbox' />
+    </HoverHighlighter>{' '}
+  </UIWrapper>
+)
+
+const TriStatePrese = () => (
+  <UIWrapper label={'Tri State'}>
+    <HoverHighlighter rtKey='triState-presence'>
+      <TriStateCheckboxTogether rtKey='triState' />
+    </HoverHighlighter>
+  </UIWrapper>
+)
+
+const ColorPickerPrese = () => (
+  <UIWrapper label={'Colors'}>
+    <HoverHighlighter
+      rtKey='hero-demo-color-picker-presence'
+      className='flex justify-center items-center gap-1 border mx-0 rounded-md border-gray-300 px-2 h-[48px]'
+    >
+      <ColorPickerTogether rtKey='hero-demo-color-picker' publishWhileOpen defaultColor='#93C5FD' />
+      <p className='text-gray-700 text-xs'>Color Picker</p>
+    </HoverHighlighter>
+  </UIWrapper>
+)
+
+const CityDropdownPrese = () => (
+  <UIWrapper label={'Drop Down'}>
+    <HoverHighlighter rtKey='dropdown-presence'>
+      <DropdownTogether rtKey='dropdown' options={CITIES} optionLabel='name' placeholder='Select a City' className='w-auto md:w-14rem' />
+    </HoverHighlighter>
+  </UIWrapper>
+)
+
+const SelectButtonPrese = () => (
+  <UIWrapper label={'Select'}>
+    <HoverHighlighter rtKey='select-button-presence'>
+      <SelectButtonTogether rtKey='select-button' options={ITEMS} optionLabel='name' />
+    </HoverHighlighter>
+  </UIWrapper>
+)
+
+const ConnectedUsersWrapper = () => (
   <div className='flex flex-col items-end absolute bottom-2 right-2 gap-2'>
     <div className='flex gap-1 items-end'>
-      <ConnectedViews maxAvatars={6} />
+      <ConnectedUsers maxAvatars={6} />
     </div>
   </div>
 )
 
-// Main components
-const NonHomePage = () => (
-  <div className='bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] h-full relative w-full flex justify-center items-center'>
-    <div className='flex justify-center absolute bottom-2 right-2'>
-      <ConnectedViews maxAvatars={6} />
+const DemoContent = () => (
+  <>
+    <div className='w-1/2'>
+      <AutoSizeKeepRatio maxHeight={364} maxWidth={320} wrapStyle={''}>
+        <div className='w-full h-full flex flex-col'>
+          <span className='tracking-tighter font-bold text-neutral-300'>Sample UI</span>
+          <div className='w-full flex flex-col items-start rounded-lg border border-gray700 overflow-hidden p-3 gap-1 overflow-y-auto h-full mt-2 bg-white'>
+            <div className='flex gap-4 justify-between'>
+              <HoverPrese />
+              <InputSwithchWithPrese />
+              <CheckBoxWithPrese />
+              <TriStatePrese />
+            </div>
+            <div className='flex gap-4 mt-4 border-t w-full pt-2 justify-between'>
+              <ColorPickerPrese />
+              <CityDropdownPrese />
+            </div>
+            <div className='flex gap-4 mt-4 border-t w-full'>
+              <SelectButtonPrese />
+            </div>
+          </div>
+        </div>
+      </AutoSizeKeepRatio>
     </div>
-    <div className='w-full flex flex-col items-start rounded-lg border border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto mx-2 my-3 max-w-[360px]'>
-      <div className='w-full items-center justify-center flex'>
-        <PresenceDiv rtKey='select-button-presence'>
-          <SelectButtonTogether rtKey='select-button' options={ITEMS} optionLabel='name' />
-        </PresenceDiv>
+    <div className='w-1/2 flex items-center justify-center'>
+      <AutoSizeKeepRatio maxHeight={664} maxWidth={444} wrapStyle={''}>
+        <TinyRpgTogether />
+      </AutoSizeKeepRatio>
+    </div>
+  </>
+)
+
+// Main components
+
+const NonHomePage = () => (
+  <div className='bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] flex w-full h-full items-center'>
+    <div className='w-full overflow-hidden' style={{ aspectRatio: '5 / 3' }}>
+      <div className='w-full h-full px-2 py-4 flex ml-4'>
+        <DemoContent />
       </div>
-      <div className='flex items-center justify-between w-full'>
-        <HoverButtons />
-        <PresenceDiv rtKey='checkbox-presence'>
-          <CheckboxTogether rtKey='checkbox' />
-        </PresenceDiv>
-      </div>
-      <div className='flex items-center justify-between w-full h-full'>
-        <ColorPickerWithLabel />
-        <div className='w-auto' />
-        <CityDropdown />
-      </div>
+      <ConnectedUsersWrapper />
     </div>
   </div>
 )
 
 const HomePage = () => (
   <div className='w-full overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
-    <div className='px-2 py-2 bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] h-full'>
-      <div className='w-full h-full flex gap-2'>
-        <div className='h-full flex flex-col items-start w-[20rem] rounded-lg border border-gray700 bg-white overflow-hidden p-3 gap-6 overflow-y-auto'>
-          <PresenceDiv rtKey='select-button-presence'>
-            <SelectButtonTogether rtKey='select-button' options={ITEMS} optionLabel='name' />
-          </PresenceDiv>
-          <div className='flex items-center justify-between w-full'>
-            <HoverButtons />
-            <PresenceDiv rtKey='checkbox-presence'>
-              <CheckboxTogether rtKey='checkbox' />
-            </PresenceDiv>
-          </div>
-          <div className='flex items-center justify-between w-full'>
-            <ColorPickerWithLabel />
-            <div className='w-auto' />
-            <CityDropdown />
-          </div>
-        </div>
-        <div className='flex-grow flex rounded-lg items-center justify-center'>
-          <p className='text-center font-bold text-sm text-gray-300 text-wrap'>
-            {'CursorTogether'}
-            <br />
-            {'[Coming Soon!]'}
-          </p>
-        </div>
-      </div>
-      <ConnectedViewsWrapper />
+    <div className='w-full h-full bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] px-2 py-4 flex'>
+      <DemoContent />
     </div>
+    <ConnectedUsersWrapper />
   </div>
 )
 

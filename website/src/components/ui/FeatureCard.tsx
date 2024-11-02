@@ -8,7 +8,7 @@ import CodeSpan from './CodeSpan'
 
 function EachFeature({ header, body, color, imgSource, linkURL }) {
   return (
-    <a href={linkURL} className='block w-1/3 moveUp'>
+    <a href={linkURL} className='block w-full moveUp md:w-1/3'>
       <div className={`${color} w-full line-border overflow-hidden`}>
         <div className='aspect-video'>
           <div className='w-full h-full shadow-md flex items-center justify-center overflow-hidden'>
@@ -44,7 +44,7 @@ export function FeatureCard() {
             }
             color={color1}
             imgSource={gif1}
-            linkURL={'#/getting-started'}
+            linkURL={'getting-started'}
           />
           <EachFeature
             header={'Wrap'}
@@ -55,14 +55,14 @@ export function FeatureCard() {
             }
             color={color1}
             imgSource={gif2}
-            linkURL={'#/ReactTogether'}
+            linkURL={'ReactTogether'}
           />
           <EachFeature
             header={'Synchronize'}
             body={'Use our hooks to instantly create interactive experiences!'}
             color={color1}
             imgSource={gif3}
-            linkURL={'#/primereact/Checkbox'}
+            linkURL={'primereact/Checkbox'}
           />
         </div>
       </div>
