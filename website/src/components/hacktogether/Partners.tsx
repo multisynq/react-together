@@ -18,6 +18,7 @@ import neetiLogo from '@images/partners/neeti_logo.png'
 import neiistLogo from '@images/partners/neiist_logo.png'
 import novaeLogo from '@images/partners/novae_logo.svg'
 import pangeaLogo from '@images/partners/pangea_logo.png'
+import serraLogo from '@images/partners/serra.png'
 import starJeLogo from '@images/partners/starJe_logo.png'
 import startupPortugalLogo from '@images/partners/startupportugal_logo.svg'
 import techstarsStartupDigestLogo from '@images/partners/techstarsStartupDigest_logo.jpg'
@@ -127,6 +128,11 @@ const startupPartners = [
     src: womenInTechLogo,
     url: 'https://www.womenintech.pt/',
     alt: 'Women in Tech Portugal',
+  },
+  {
+    src: serraLogo,
+    url: 'https://twitch.tv/serra',
+    alt: 'twitch.tv/serra',
   },
   {
     src: buildUpLabsLogo,
