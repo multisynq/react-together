@@ -1,6 +1,9 @@
 import gitProfileImage from '@images/GitProfile/image.png'
 import headerGraphic from '@images/useCaseGraphic.svg'
 
+const TAIKAI_BASE_URL = 'https://taikai.network'
+const PROJECT_BASE_URL = 'https://taikai.network'
+
 type Member = {
   userName: string
   profileImage: string
@@ -8,6 +11,8 @@ type Member = {
 
 type Project = {
   name: string
+  taikaiRoute: string
+  projectRoute: string
   description: string
   member: Member[]
 }
@@ -16,42 +21,8 @@ export function UseCaseProject() {
   const exampleProjects: Project[] = [
     {
       name: 'Project 1',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      member: [
-        { userName: 'aloha-elijah', profileImage: gitProfileImage },
-        { userName: 'aloha-elijah', profileImage: gitProfileImage },
-      ],
-    },
-    {
-      name: 'Project 1',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      member: [
-        { userName: 'aloha-elijah', profileImage: gitProfileImage },
-        { userName: 'aloha-elijah', profileImage: gitProfileImage },
-      ],
-    },
-    {
-      name: 'Project 1',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      member: [
-        { userName: 'aloha-elijah', profileImage: gitProfileImage },
-        { userName: 'aloha-elijah', profileImage: gitProfileImage },
-      ],
-    },
-    {
-      name: 'Project 1',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      member: [
-        { userName: 'aloha-elijah', profileImage: gitProfileImage },
-        { userName: 'aloha-elijah', profileImage: gitProfileImage },
-      ],
-    },
-    {
-      name: 'Project 1',
+      taikaiRoute: 'taikaiRoute',
+      projectRoute: 'projectRoute',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       member: [
@@ -83,16 +54,18 @@ export function UseCaseProject() {
     </div>
   )
 
-  const ProjectCard = ({ name, description, member }: Project) => (
+  const ProjectCard = ({ name, description, member, taikaiRoute, projectRoute }: Project) => (
     <div className='flex flex-col gap-2'>
-      <article className='aspect-[4/3] w-full rounded-lg flex flex-col justify-start line-border m-0 items-start'>
-        {/* Placeholder for additional card content */}
-      </article>
+      <a href={`${PROJECT_BASE_URL}/${projectRoute}`}>
+        <article className='aspect-[4/3] w-full rounded-lg flex flex-col justify-start line-border m-0 items-start'>
+          {/* Placeholder for additional card content */}
+        </article>
+      </a>
       <div className='flex flex-col gap-2'>
         <div className='flex flex-col'>
           <span className='text-lg font-semibold m-0 font-poppins tracking-tight'>{name}</span>
           <span className='text-sm mt-2'>
-            {description} <a href={'#'}>Learn more</a> {/* Replace with dynamic link if available */}
+            {description} <a href={`${TAIKAI_BASE_URL}/${taikaiRoute}`}>Learn more</a>
           </span>
         </div>
         <div className='flex gap-2'>
