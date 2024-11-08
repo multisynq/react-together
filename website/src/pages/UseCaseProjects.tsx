@@ -1,3 +1,5 @@
+import LinkSpan from '@components/ui/LinkSpan'
+import UseCaseThumbNail from '@components/ui/UseCaseThumbNail'
 import gitProfileImage from '@images/GitProfile/image.png'
 import headerGraphic from '@images/useCaseGraphic.svg'
 
@@ -77,17 +79,15 @@ export function UseCaseProject() {
   )
 
   const ProjectCard = ({ name, description, member, taikaiRoute, projectRoute }: Project) => (
-    <div className='flex flex-col gap-2'>
-      <a href={`${PROJECT_BASE_URL}/${projectRoute}`}>
-        <article className='aspect-[4/3] rounded-lg flex flex-col justify-start active-border items-start'>
-          {/* Placeholder for additional card content */}
-        </article>
-      </a>
-      <div className='flex flex-col gap-2'>
+    <div className='flex flex-col'>
+      {/* ---THUMBNAIL IMAGE--- */}
+      <UseCaseThumbNail urlLink={`${PROJECT_BASE_URL}/${projectRoute}`} imageSource={headerGraphic} />
+      {/* ---PROJECT DESCRIPTION--- */}
+      <div className='flex flex-col gap-2 mx-4'>
         <div className='flex flex-col'>
           <span className='text-lg font-semibold m-0 font-poppins tracking-tight'>{name}</span>
           <span className='text-sm mt-2'>
-            {description} <a href={`${TAIKAI_BASE_URL}/${taikaiRoute}`}>Learn more</a>
+            {description} <LinkSpan to={taikaiRoute} text='Learn More' />
           </span>
         </div>
         <div className='flex gap-2'>
@@ -101,7 +101,7 @@ export function UseCaseProject() {
 
   const ProjectList = () => (
     <div className='w-full px-[2rem] sm:px-[2rem] md:px-[4rem] max-w-[84rem] flex items-center justify-center py-[3rem] flex-col'>
-      <div className='grid gap-12 w-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-3'>
+      <div className='grid w-full grid-cols-1 sm:grid-cols-2 xl:grid-cols-3'>
         {exampleProjects.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
