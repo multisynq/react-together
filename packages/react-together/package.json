@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
+    "README.md",
     "CHANGELOG.md",
     "dist"
   ],
@@ -13,7 +14,8 @@
   ],
   "scripts": {
     "start": "npm run watch",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && cp ../../README.md .",
+    "postpublish": "rm README.md",
     "prettier": "prettier . --check",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "build": "tsc && vite build",
