@@ -57,7 +57,7 @@ import { MarkdownPage } from '@pages/Documentation/MarkdownPage'
 import { HackTogetherPage } from '@pages/HackTogetherPage'
 import { NotFoundPage } from '@pages/NotFoundPage'
 import { WebsiteWrapper } from '@pages/WebsiteWrapper'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import changelog from 'react-together/CHANGELOG.md'
 import contributing from '../../contributing/CONTRIBUTING.md'
 import pricing from './pages/Documentation/pricing/PRICING.md'
@@ -104,6 +104,7 @@ export default function AppRoutes() {
             <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDocumentationPage />} />
           </Route>
         </Route>
+        <Route path='docs' element={<Navigate to='/getting-started' />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
       <Route path='demos' element={<DemoWrapper />}>
