@@ -1,4 +1,6 @@
 ### Unreleased
+`0.3.0-1`
+ - Include `CHANGELOG.md` in package
 `0.3.0-0`
  - Added support for viewInfo
 
