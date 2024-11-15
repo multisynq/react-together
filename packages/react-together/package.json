@@ -20,7 +20,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@croquet/react": "^2.2.1-1",
+    "@croquet/react": "^2.3.0-0",
     "object-hash": "^3.0.0",
     "primeicons": "^7.0.0"
   },
