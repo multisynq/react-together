@@ -10,6 +10,7 @@ type ReactTogetherSessionParams = {
   password?: string
   sessionIgnoresUrl?: boolean
   model?: typeof ReactTogetherModel
+  viewInfo?: object
 }
 export type ReactTogetherProps = {
   children: ReactChildren
@@ -20,7 +21,7 @@ export default function ReactTogether({
   children,
   sessionParams
 }: ReactTogetherProps) {
-  const { appId, apiKey, sessionIgnoresUrl } = sessionParams
+  const { appId, apiKey, sessionIgnoresUrl, viewInfo } = sessionParams
 
   // By default, sessions hosted in different URLs
   // should be different sessions even if they have the same name.
@@ -44,7 +45,15 @@ export default function ReactTogether({
 
   return (
     <CroquetRoot
-      sessionParams={{ model, name, password, appId, apiKey, options }}
+      sessionParams={{
+        model,
+        name,
+        password,
+        appId,
+        apiKey,
+        options,
+        viewInfo
+      }}
       deferSession={!name || !password}
       showChildrenWithoutSession
     >

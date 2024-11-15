@@ -5,22 +5,24 @@ import {
   uniqueNamesGenerator
 } from 'unique-names-generator'
 
-export type ConnectedUser = {
+export interface ConnectedUser<T = undefined> {
   userId: string
   name: string
   isYou: boolean
+  info?: T
 }
 
-export default function useConnectedUsers(): ConnectedUser[] {
+export default function useConnectedUsers<T = undefined>(): ConnectedUser<T>[] {
   const { views } = ujv()
   const myId = useViewId()
 
-  return Array.from(views).map((vid: string) => {
+  return views.map(({ viewId, info }) => {
     return {
-      userId: vid,
-      isYou: vid === myId,
+      userId: viewId,
+      info,
+      isYou: viewId === myId,
       name: uniqueNamesGenerator({
-        seed: vid,
+        seed: viewId,
         dictionaries: [adjectives, animals],
         length: 2,
         separator: ' ',

@@ -8,7 +8,10 @@ export default function App() {
         name: 'Gallery Default session',
         password: 'super-secret-password',
         appId: import.meta.env['VITE_APP_ID'],
-        apiKey: import.meta.env['VITE_API_KEY']
+        apiKey: import.meta.env['VITE_API_KEY'],
+        viewInfo: {
+          testInfo: 'This is a test'
+        }
       }}
     >
       <Gallery />
