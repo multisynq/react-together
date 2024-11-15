@@ -7,6 +7,11 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from './vite.croquet'
 
 export default defineConfig({
+  optimizeDeps: {
+    exclude: [
+      'react-together', // so we always use the latest (local) version
+    ],
+  },
   plugins: [
     ViteYaml(),
     react(),
