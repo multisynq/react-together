@@ -3,10 +3,9 @@ import UseCaseThumbNail from '@components/ui/UseCaseThumbNail'
 import gitProfileImage from '@images/GitProfile/image.png'
 import headerGraphic from '@images/useCaseGraphic.svg'
 
-const TAIKAI_BASE_URL = 'https://taikai.network'
 const PROJECT_BASE_URL = 'https://taikai.network'
 
-type Member = {
+type Author = {
   userName: string
   profileImage: string
 }
@@ -16,7 +15,7 @@ type Project = {
   taikaiRoute: string
   projectRoute: string
   description: string
-  member: Member[]
+  authors: Author[]
 }
 
 export function UseCaseProject() {
@@ -27,7 +26,7 @@ export function UseCaseProject() {
       projectRoute: 'projectRoute',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      member: [
+      authors: [
         { userName: 'aloha-elijah', profileImage: gitProfileImage },
         { userName: 'aloha-elijah', profileImage: gitProfileImage },
       ],
@@ -38,7 +37,7 @@ export function UseCaseProject() {
       projectRoute: 'projectRoute',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      member: [
+      authors: [
         { userName: 'aloha-elijah', profileImage: gitProfileImage },
         { userName: 'aloha-elijah', profileImage: gitProfileImage },
       ],
@@ -49,7 +48,7 @@ export function UseCaseProject() {
       projectRoute: 'projectRoute',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      member: [
+      authors: [
         { userName: 'aloha-elijah', profileImage: gitProfileImage },
         { userName: 'aloha-elijah', profileImage: gitProfileImage },
       ],
@@ -78,7 +77,7 @@ export function UseCaseProject() {
     </div>
   )
 
-  const ProjectCard = ({ name, description, member, taikaiRoute, projectRoute }: Project) => (
+  const ProjectCard = ({ name, description, authors, taikaiRoute, projectRoute }: Project) => (
     <div className='flex flex-col'>
       {/* ---THUMBNAIL IMAGE--- */}
       <UseCaseThumbNail urlLink={`${PROJECT_BASE_URL}/${projectRoute}`} imageSource={headerGraphic} />
@@ -91,7 +90,7 @@ export function UseCaseProject() {
           </span>
         </div>
         <div className='flex gap-2'>
-          {member.map((m, index) => (
+          {authors.map((m, index) => (
             <GitProfile key={index} userName={m.userName} imageSource={m.profileImage} />
           ))}
         </div>

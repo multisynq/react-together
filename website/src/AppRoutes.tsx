@@ -67,7 +67,7 @@ export default function AppRoutes() {
     <Routes>
       <Route element={<WebsiteWrapper />}>
         <Route path='hackathon' element={<HackTogetherPage />} />
-        <Route path='use-case' element={<UseCaseProject />} />
+        <Route path='examples' element={<UseCaseProject />} />
         <Route path='/' element={<HomePage />} />
         <Route element={<DocumentationWrapper />}>
           <Route path='getting-started' element={<IntroductionPage />} />

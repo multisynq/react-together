@@ -1,10 +1,13 @@
-import imageBackround from '@images/useCaseGraphic.svg'
+import multiPlanner from '@images/projects/Multiplanner.png'
+import scratchMapBanner from '@images/projects/scratchMap.png'
+import slicrBanner from '@images/projects/slicr_banner.png'
+import synqCity from '@images/projects/SynqCity.png'
+import tripSync from '@images/projects/tripSync.png'
+
 import { Carousel, CarouselResponsiveOption } from 'primereact/carousel'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import UseCaseThumbNail from './UseCaseThumbNail'
-
-const TAIAKI_BASR_URL = 'taikai.network/'
 
 interface Project {
   title: string
@@ -16,29 +19,34 @@ interface Project {
 export default function UseCaseCarousel() {
   const [projects] = useState<Project[]>([
     {
-      title: 'Project 1',
-      description: 'Duis aute irure dolor in reprehenderit ',
-      projectLink: 'test_1',
-      thumbnailImage: imageBackround,
+      title: 'Slicr',
+      description: 'Collaboratively order food with friends, family & colleagues. Save time, delivery fees & have fun',
+      projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3a6b7qy075kbssltzt81ksz/idea',
+      thumbnailImage: slicrBanner,
     },
     {
-      title: 'Project 2',
-
-      description: 'Duis aute irure dolor in reprehenderit ',
-      projectLink: 'test_2',
-      thumbnailImage: imageBackround,
+      title: 'ScratchMap',
+      description: 'The easiest way to coordinate ad hoc location-based events with groups of people.',
+      projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3biszdo07m967do3tlzotpu/idea',
+      thumbnailImage: scratchMapBanner,
     },
     {
-      title: 'Project 3',
-      description: 'Duis aute irure dolor in reprehenderit ',
-      projectLink: 'test_2',
-      thumbnailImage: imageBackround,
+      title: 'TripSync',
+      description: 'A collaborative trip planning web app designed for seamless multi user interaction',
+      projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3347i7g05e9ao9a3hq50vsk/idea',
+      thumbnailImage: tripSync,
     },
     {
-      title: 'Project 4',
-      description: 'Duis aute irure dolor in reprehenderit ',
-      projectLink: 'test_4',
-      thumbnailImage: imageBackround,
+      title: 'Synq City',
+      description: "A social network based on your location. Know what's happening around you in real time!",
+      projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3a76znk07z1ao9a6r8y8nje/idea',
+      thumbnailImage: synqCity,
+    },
+    {
+      title: 'Multi Planner',
+      description: 'An app for collaborative shopping lists and trip planning!',
+      projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3bme6jn07h0bssl0zgwri0w/idea',
+      thumbnailImage: multiPlanner,
     },
   ])
 
@@ -63,7 +71,7 @@ export default function UseCaseCarousel() {
   const projectTemplate = (project: Project) => {
     return (
       <>
-        <UseCaseThumbNail urlLink={`${TAIAKI_BASR_URL}${project.projectLink}`} imageSource={project.thumbnailImage} />
+        <UseCaseThumbNail urlLink={project.projectLink} imageSource={project.thumbnailImage} />
         <p className='text-black px-4 leading-tight text-md'>{project.description}</p>
       </>
     )
@@ -75,7 +83,7 @@ export default function UseCaseCarousel() {
         Experiencing
         <br className='block sm:hidden' /> Web Together
       </h2>
-      <NavLink key={'/use-case'} to='/use-case'>
+      <NavLink key={'/examples'} to='/examples'>
         <div className='flex items-center justify-center px-4 bg-blue-500 text-white py-2 active-border'>
           <span className='font-poppins font-semibold tracking-tight text-lg'>View All</span>
         </div>
