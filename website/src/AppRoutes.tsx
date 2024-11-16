@@ -52,6 +52,7 @@ import { DynamicsSession } from '@components/demo/DynamicSessions'
 import HeroDemo from '@components/demo/HeroDemo'
 import TinyRpgTogether from '@components/demo/TinyRpg'
 import { DemoWrapper } from '@pages/DemoWrapper'
+import DependenciesPage from '@pages/Documentation/DependenciesPage'
 import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
 import { MarkdownPage } from '@pages/Documentation/MarkdownPage'
 import { HackTogetherPage } from '@pages/HackTogetherPage'
@@ -70,6 +71,7 @@ export default function AppRoutes() {
         <Route path='/' element={<HomePage />} />
         <Route element={<DocumentationWrapper />}>
           <Route path='getting-started' element={<IntroductionPage />} />
+          <Route path='Dependencies' element={<DependenciesPage />} />
           <Route path='ReactTogether' element={<ReactTogetherDocumentationPage />} />
           <Route path='SessionManager' element={<SessionManagerDocumentationPage />} />
           <Route path='ConnectedUsers' element={<ConnectedUsersDocumentationPage />} />

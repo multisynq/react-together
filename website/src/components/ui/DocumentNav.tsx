@@ -18,10 +18,13 @@ const baseUrl = ''
 
 const items: PatchedMenuItem[] = [
   {
-    key: 'getting-started',
-    label: 'Getting Started',
-    url: `${baseUrl}/getting-started`,
-    // items: [{ key: 'Examples', label: 'Examples', url: `${baseUrl}/Examples` }],
+    key: 'Introduction',
+    label: 'Introduction',
+    // url: `${baseUrl}/getting-started`,
+    items: [
+      { key: 'Getting Started', label: 'Getting Started', url: `${baseUrl}/Getting-Started` },
+      { key: 'Dependencies', label: 'Dependencies', url: `${baseUrl}/Dependencies` },
+    ],
   },
   {
     key: 'components',
