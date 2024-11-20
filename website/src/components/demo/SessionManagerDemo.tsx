@@ -61,17 +61,8 @@ export function SessionManagerDemo() {
   const isTogether = useIsTogether()
   const { name } = useSessionParams()
 
-  // const [visible, setVisible] = useState(true)
-
   // Keep local URL up to date with joinUrl
   const [localUrl, setLocalUrl] = useState(joinUrl ?? window.location.href)
-
-  // function handleMouseEnter() {
-  //   setVisible(false)
-  // }
-  // function handleMouseLeave() {
-  //   setVisible(true)
-  // }
 
   useEffect(() => {
     setLocalUrl(joinUrl ?? window.location.href)
@@ -79,13 +70,12 @@ export function SessionManagerDemo() {
 
   const onSubmit = useCallback(() => {
     try {
-      // Assert that users only change the searchParams
-      const newSearchParams = new URL(localUrl).searchParams
-      const newUrl = new URL(window.location.href)
-      newSearchParams.forEach((value, key) => {
-        newUrl.searchParams.set(key, value)
-      })
-      setLocalUrl(newUrl.toString())
+      // Assert that users only change the searchParams / hash
+      const newUrl = new URL(localUrl)
+      const result = new URL(window.location.href)
+      result.search = newUrl.searchParams.toString()
+      result.hash = newUrl.hash
+      setLocalUrl(result.toString())
 
       window.location.assign(newUrl)
     } catch (e) {
@@ -104,34 +94,9 @@ export function SessionManagerDemo() {
       </div>
       <div className='fixed top-2 flex w-full flex-col px-2 gap-2'>
         <UrlContainer {...{ localUrl, setLocalUrl, onSubmit }} />
-
-        {!isTogether && (
-          <div
-            className={`transition-opacity duration-1000 w-full border rounded-lg px-2 py-1 flex items-center justify-center bg-blue-50 shadow-lineStyleLight`}
-          >
-            <p className='text-xs leading-tight tracking-tight'>
-              Paste a Join <strong>URL</strong> in the bar above and press Enter to join.
-            </p>
-          </div>
-        )}
       </div>
 
       <div className='fixed bottom-2 flex w-full flex-col px-2 gap-2'>
-        <div
-          className={`transition-opacity duration-1000 w-full border rounded-lg px-2 py-1 items-center justify-center bg-blue-50 shadow-lineStyleLight`}
-        >
-          <p className='text-xs leading-tight tracking-tight text-center'>
-            {isTogether ? (
-              <>
-                Click the button below to <strong>invite</strong> your friends or <strong>leave</strong> the session.
-              </>
-            ) : (
-              <>
-                Click the button below to <strong>create</strong> a private session!
-              </>
-            )}
-          </p>
-        </div>
         <div className='flex justify-between w-full items-center'>
           <SessionManager />
           <ConnectionStatus connectionStatus={isTogether} name={name} />

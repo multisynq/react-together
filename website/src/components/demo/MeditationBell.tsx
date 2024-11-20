@@ -23,12 +23,11 @@ export function MeditationBell() {
     useCallback(() => {
       if (isRinging) return
 
-      // Reset gain to full volume
-      gainNode.gain.cancelScheduledValues(audioContext.currentTime)
-      gainNode.gain.setValueAtTime(1, audioContext.currentTime)
-
       // Schedule the fade out
-      gainNode.gain.setValueAtTime(1, audioContext.currentTime + FADE_AFTER)
+      const defaultVolume = 0.03
+      gainNode.gain.cancelScheduledValues(audioContext.currentTime)
+      gainNode.gain.setValueAtTime(defaultVolume, audioContext.currentTime)
+      gainNode.gain.setValueAtTime(defaultVolume, audioContext.currentTime + FADE_AFTER)
       gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + FADE_AFTER + FADE_DURATION)
 
       // Play the bell sound

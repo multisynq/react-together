@@ -1,5 +1,6 @@
 import {
   ConnectedUsersDocumentationPage,
+  HelpersDocumentationPage,
   HoverHighlighterDocumentationPage,
   IntroductionPage,
   PrimeReactCheckboxTogetherDocumentationPage,
@@ -48,9 +49,7 @@ import {
   UseStateTogetherWPUVDemo,
 } from '@components/demo'
 import CountButtonTogether from '@components/demo/CountButtonTogether'
-import { DynamicsSession } from '@components/demo/DynamicSessions'
 import HeroDemo from '@components/demo/HeroDemo'
-import TinyRpgTogether from '@components/demo/TinyRpg'
 import { CookiePolicy } from '@pages/CookiePolicy'
 import { DemoWrapper } from '@pages/DemoWrapper'
 import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
@@ -58,7 +57,7 @@ import { MarkdownPage } from '@pages/Documentation/MarkdownPage'
 import { HackTogetherPage } from '@pages/HackTogetherPage'
 import { NotFoundPage } from '@pages/NotFoundPage'
 import { WebsiteWrapper } from '@pages/WebsiteWrapper'
-import { Outlet, Route, Routes } from 'react-router-dom'
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import changelog from 'react-together/CHANGELOG.md'
 import contributing from '../../contributing/CONTRIBUTING.md'
 import pricing from './pages/Documentation/pricing/PRICING.md'
@@ -96,9 +95,10 @@ export default function AppRoutes() {
             <Route path='useJoinUrl' element={<UseJoinUrlDocumentationPage />} />
             <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} />
             <Route path='useFunctionTogether' element={<UseFunctionTogetherDocumentationPage />} />
+            <Route path='utils' element={<HelpersDocumentationPage />} />
             <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
             <Route path='/pricing' element={<MarkdownPage markdown={pricing} />} />
-            <Route path='/examples' element={<DynamicsSession />} />
+            {/* <Route path='/examples' element={<DynamicsSession />} /> */}
             <Route path='/changelog' element={<MarkdownPage markdown={changelog} />} />
             <Route path='primereact'>
               {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDocumentationPage />} /> */}
@@ -115,31 +115,31 @@ export default function AppRoutes() {
               <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDocumentationPage />} />
             </Route>
           </Route>
-          <Route path='*' element={<NotFoundPage />} />
         </Route>
-        <Route path='demos' element={<DemoWrapper />}>
-          <Route path='HeroDemo' element={<HeroDemo />} />
-          <Route path='CountButtonTogether' element={<CountButtonTogether />} />
-          <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWPUVDemo />} />
-          <Route path='SessionManager' element={<SessionManagerDemo />} />
-          <Route path='ConnectedUsers' element={<ConnectedUsers />} />
-          <Route path='HoverHighlighter' element={<HoverHighlighterDemo />} />
-          <Route path='useFunctionTogether' element={<MeditationBell />} />
-          <Route path='primereact'>
-            {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDemo />} /> */}
-            <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDemo />} />
-            <Route path='ColorPicker' element={<PrimeReactColorPickerTogetherDemo />} />
-            <Route path='Dropdown' element={<PrimeReactDropdownTogetherDemo />} />
-            <Route path='InputSwitch' element={<PrimeReactInputSwitchTogetherDemo />} />
-            <Route path='Knob' element={<PrimeReactKnobTogetherDemo />} />
-            <Route path='Multiselect' element={<PrimeReactMultiSelectTogetherDemo />} />
-            <Route path='Rating' element={<PrimeReactRatingTogetherDemo />} />
-            <Route path='SelectButton' element={<PrimeReactSelectButtonTogetherDemo />} />
-            <Route path='TabView' element={<PrimeReactTabViewTogetherDemo />} />
-            <Route path='ToggleButton' element={<PrimeReactToggleButtonTogetherDemo />} />
-            <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDemo />} />
-          </Route>
-          <Route path='TinyRpg' element={<TinyRpgTogether />} />
+        <Route path='docs' element={<Navigate to='/getting-started' />} />
+        <Route path='*' element={<NotFoundPage />} />
+      </Route>
+      <Route path='demos' element={<DemoWrapper />}>
+        <Route path='HeroDemo' element={<HeroDemo />} />
+        <Route path='CountButtonTogether' element={<CountButtonTogether />} />
+        <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWPUVDemo />} />
+        <Route path='SessionManager' element={<SessionManagerDemo />} />
+        <Route path='ConnectedUsers' element={<ConnectedUsers />} />
+        <Route path='HoverHighlighter' element={<HoverHighlighterDemo />} />
+        <Route path='useFunctionTogether' element={<MeditationBell />} />
+        <Route path='primereact'>
+          {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDemo />} /> */}
+          <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDemo />} />
+          <Route path='ColorPicker' element={<PrimeReactColorPickerTogetherDemo />} />
+          <Route path='Dropdown' element={<PrimeReactDropdownTogetherDemo />} />
+          <Route path='InputSwitch' element={<PrimeReactInputSwitchTogetherDemo />} />
+          <Route path='Knob' element={<PrimeReactKnobTogetherDemo />} />
+          <Route path='Multiselect' element={<PrimeReactMultiSelectTogetherDemo />} />
+          <Route path='Rating' element={<PrimeReactRatingTogetherDemo />} />
+          <Route path='SelectButton' element={<PrimeReactSelectButtonTogetherDemo />} />
+          <Route path='TabView' element={<PrimeReactTabViewTogetherDemo />} />
+          <Route path='ToggleButton' element={<PrimeReactToggleButtonTogetherDemo />} />
+          <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDemo />} />
         </Route>
       </Route>
     </Routes>

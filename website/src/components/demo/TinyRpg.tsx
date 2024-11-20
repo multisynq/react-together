@@ -156,6 +156,7 @@ export default function TinyRpgTogether() {
               <div
                 className='character absolute bg-blue-500 rounded-full flex items-center justify-center'
                 id={`position-${viewId}`}
+                key={viewId}
                 style={{
                   width: `${CELL_SIZE - 4}px`,
                   height: `${CELL_SIZE - 8}px`,
