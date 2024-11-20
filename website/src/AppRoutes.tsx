@@ -50,6 +50,7 @@ import {
 } from '@components/demo'
 import CountButtonTogether from '@components/demo/CountButtonTogether'
 import HeroDemo from '@components/demo/HeroDemo'
+import TinyRpgTogether from '@components/demo/TinyRpg'
 import { CookiePolicy } from '@pages/CookiePolicy'
 import { DemoWrapper } from '@pages/DemoWrapper'
 import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
@@ -141,6 +142,7 @@ export default function AppRoutes() {
           <Route path='ToggleButton' element={<PrimeReactToggleButtonTogetherDemo />} />
           <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDemo />} />
         </Route>
+        <Route path='TinyRpg' element={<TinyRpgTogether />} />
       </Route>
     </Routes>
   )
