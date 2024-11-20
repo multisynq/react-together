@@ -31,7 +31,7 @@ export function CookieBanner({ forceShow = false }: CookieBannerProps) {
   const footerContent = (
     <div>
       <Button
-        label='no thanks...'
+        label='No thanks...'
         onClick={() => onDecline()}
         className='p-button-text'
         severity='secondary'
