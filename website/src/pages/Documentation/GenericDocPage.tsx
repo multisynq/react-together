@@ -6,13 +6,14 @@ interface GenericPageProps {
   description?: ReactNode | ReactNode[]
   usage?: ReactNode | ReactNode[]
   api?: ReactNode | ReactNode[]
+  id?: string
 }
-export function GenericDocPage({ title, description, usage, api }: GenericPageProps) {
+export function GenericDocPage({ title, description, usage, api, id }: GenericPageProps) {
   const ref = useRef(null)
   return (
     <>
       <div className='flex gap-2 items-baseline break-all'>
-        <h2 id='title' ref={ref}>
+        <h2 id={id} ref={ref}>
           {title}
         </h2>
         {/* <span>{parameter}</span> */}

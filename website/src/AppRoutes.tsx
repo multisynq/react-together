@@ -1,5 +1,6 @@
 import {
   ConnectedUsersDocumentationPage,
+  HelpersDocumentationPage,
   HoverHighlighterDocumentationPage,
   IntroductionPage,
   PrimeReactCheckboxTogetherDocumentationPage,
@@ -57,7 +58,7 @@ import { HackTogetherPage } from '@pages/HackTogetherPage'
 import { NotFoundPage } from '@pages/NotFoundPage'
 import { UseCaseProject } from '@pages/UseCaseProjects'
 import { WebsiteWrapper } from '@pages/WebsiteWrapper'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import changelog from 'react-together/CHANGELOG.md'
 import contributing from '../../contributing/CONTRIBUTING.md'
 import pricing from './pages/Documentation/pricing/PRICING.md'
@@ -85,6 +86,7 @@ export default function AppRoutes() {
           <Route path='useJoinUrl' element={<UseJoinUrlDocumentationPage />} />
           <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} />
           <Route path='useFunctionTogether' element={<UseFunctionTogetherDocumentationPage />} />
+          <Route path='utils' element={<HelpersDocumentationPage />} />
           <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
           <Route path='/pricing' element={<MarkdownPage markdown={pricing} />} />
           <Route path='/examples' element={<DynamicsSession />} />
@@ -104,6 +106,7 @@ export default function AppRoutes() {
             <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDocumentationPage />} />
           </Route>
         </Route>
+        <Route path='docs' element={<Navigate to='/getting-started' />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
       <Route path='demos' element={<DemoWrapper />}>

@@ -77,6 +77,11 @@ const items: PatchedMenuItem[] = [
     ],
   },
   {
+    key: 'utils',
+    label: 'Utils module',
+    url: `${baseUrl}/utils`,
+  },
+  {
     key: 'discover',
     label: 'Discover',
     items: [

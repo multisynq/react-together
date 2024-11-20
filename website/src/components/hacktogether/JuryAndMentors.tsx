@@ -2,6 +2,8 @@ import AfonsoGoncalves from '@images/people/AfonsoGoncalves.jpeg'
 import CharlesPoole from '@images/people/CharlesPoole.png'
 import DavidSmith from '@images/people/DavidSmith.png'
 import ElijahLeeh from '@images/people/ElijahLee.jpg'
+import FranciscoBelo from '@images/people/FranciscoBelo.jpg'
+import JoanaPinto from '@images/people/JoanaPinto.png'
 import JoaoRosado from '@images/people/JoaoNunesRosado.jpg'
 import JoaoPereira from '@images/people/JoaoPereira.png'
 import JoaoSantos from '@images/people/JoaoSantos.jpeg'
@@ -97,7 +99,13 @@ const people: Person[] = [
     img: ElijahLeeh,
     company: 'Multisynq.io',
     profileUrl: 'http://www.linkedin.com/in/elijah-lee51',
-    companyUrl: 'https://laikaventures.co/',
+    companyUrl: 'https://www.multisynq.io',
+  },
+  {
+    name: 'Joana Pinto',
+    img: JoanaPinto,
+    company: 'Lampsy, IT, Clynx Health',
+    profileUrl: 'https://www.linkedin.com/in/joana-figueiredo-pinto/',
   },
   {
     name: 'João Santos',
@@ -105,6 +113,13 @@ const people: Person[] = [
     company: 'Sereneus',
     profileUrl: 'http://x.com/joaointech',
     companyUrl: 'https://www.sereneus.pt/pt',
+  },
+  {
+    name: 'Francisco Belo',
+    img: FranciscoBelo,
+    company: 'Granter.ai',
+    profileUrl: 'https://www.linkedin.com/in/francisco-mariano-belo/',
+    companyUrl: 'https://granter.ai/',
   },
   {
     name: 'Charles Poole',

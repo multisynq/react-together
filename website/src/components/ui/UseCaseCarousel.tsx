@@ -1,12 +1,12 @@
-import multiPlanner from '@images/projects/Multiplanner.png'
+import learnTogether from '@images/projects/learnTogether.png'
+import multiPlanner from '@images/projects/multiPlanner.png'
 import scratchMapBanner from '@images/projects/scratchMap.png'
-import slicrBanner from '@images/projects/slicr_banner.png'
-import synqCity from '@images/projects/SynqCity.png'
+import slicrBanner from '@images/projects/slicr.png'
+import synqCity from '@images/projects/synqCity.png'
 import tripSync from '@images/projects/tripSync.png'
 
 import { Carousel, CarouselResponsiveOption } from 'primereact/carousel'
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
 import UseCaseThumbNail from './UseCaseThumbNail'
 
 interface Project {
@@ -48,6 +48,12 @@ export default function UseCaseCarousel() {
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3bme6jn07h0bssl0zgwri0w/idea',
       thumbnailImage: multiPlanner,
     },
+    {
+      title: 'Learn Together',
+      description: "A way to bring closer students and teachers, making online classes feel like you're really there",
+      projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3a9cvnf076jbssl3oazlry2/idea',
+      thumbnailImage: learnTogether,
+    },
   ])
 
   const responsiveOptions: CarouselResponsiveOption[] = [
@@ -79,7 +85,8 @@ export default function UseCaseCarousel() {
 
   const HeaderContent = (
     <div className='flex gap-4 sm:gap-4 items-center justify-between sm:justify-start'>
-      <h2>
+      <h2>Examples</h2>
+      {/* <h2>
         Experiencing
         <br className='block sm:hidden' /> Web Together
       </h2>
@@ -87,7 +94,7 @@ export default function UseCaseCarousel() {
         <div className='flex items-center justify-center px-4 bg-blue-500 text-white py-2 active-border'>
           <span className='font-poppins font-semibold tracking-tight text-lg'>View All</span>
         </div>
-      </NavLink>
+      </NavLink> */}
     </div>
   )
 
