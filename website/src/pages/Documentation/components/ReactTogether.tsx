@@ -79,6 +79,17 @@ export default function ReactTogetherDocumentationPage() {
               </p>
             ),
           },
+          {
+            name: 'model?',
+            type: 'class T extends ReactTogetherModel',
+            default: 'ReactTogetherModel',
+            description: (
+              <p>
+                If this parameter is set, the Croquet session will use the given class as the Root model. Please refer to{' '}
+                <LinkSpan text='Advanced Usage' to='/croquet' /> for more details.
+              </p>
+            ),
+          },
         ]}
       />
     </>
