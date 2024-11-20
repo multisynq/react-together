@@ -4,7 +4,7 @@ _Last updated: 2024-10-24_
 
 Welcome to reacttogether.dev ("we", "us", "our"). We are committed to protecting your privacy. This Cookie Policy explains how we use cookies and similar technologies on our website.
 
-When you visit our website [reacttogether.dev](http://reacttogether.dev) dev, we ask for your consent to use cookies in accordance with this policy. You can manage your cookie preferences at any time by clicking the "Manage Cookies" link.
+When you visit our website [reacttogether.dev](http://reacttogether.dev), we ask for your consent to use cookies in accordance with this policy. You can manage your cookie preferences at any time by clicking the "Manage Cookies" link.
 
 
 ### **What Are Cookies?**
