@@ -7,6 +7,7 @@ import tripSync from '@images/projects/tripSync.png'
 
 import { Carousel, CarouselResponsiveOption } from 'primereact/carousel'
 import { useState } from 'react'
+import Link from './Link'
 import UseCaseThumbNail from './UseCaseThumbNail'
 
 interface Project {
@@ -20,7 +21,7 @@ export default function UseCaseCarousel() {
   const [projects] = useState<Project[]>([
     {
       title: 'Slicr',
-      description: 'Collaboratively order food with friends, family & colleagues. Save time, delivery fees & have fun',
+      description: 'Collaboratively order food with friends, family & colleagues. Save time, delivery fees & have fun.',
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3a6b7qy075kbssltzt81ksz/idea',
       thumbnailImage: slicrBanner,
     },
@@ -32,7 +33,7 @@ export default function UseCaseCarousel() {
     },
     {
       title: 'TripSync',
-      description: 'A collaborative trip planning web app designed for seamless multi user interaction',
+      description: 'A collaborative trip planning web app designed for seamless multi user interaction.',
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3347i7g05e9ao9a3hq50vsk/idea',
       thumbnailImage: tripSync,
     },
@@ -50,7 +51,7 @@ export default function UseCaseCarousel() {
     },
     {
       title: 'Learn Together',
-      description: "A way to bring closer students and teachers, making online classes feel like you're really there",
+      description: "A way to bring closer students and teachers, making online classes feel like you're really there.",
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3a9cvnf076jbssl3oazlry2/idea',
       thumbnailImage: learnTogether,
     },
@@ -74,18 +75,29 @@ export default function UseCaseCarousel() {
     },
   ]
 
-  const projectTemplate = (project: Project) => {
+  const projectTemplate = ({ title, description, projectLink, thumbnailImage }: Project) => {
     return (
       <>
-        <UseCaseThumbNail urlLink={project.projectLink} imageSource={project.thumbnailImage} />
-        <p className='text-black px-4 leading-tight text-md'>{project.description}</p>
+        <UseCaseThumbNail urlLink={projectLink} imageSource={thumbnailImage} />
+        <div className='px-4'>
+          <h5 style={{ marginTop: '0px' }}>{title}</h5>
+          <p className='text-black leading-tight text-md'>{description}</p>
+        </div>
       </>
     )
   }
 
   const HeaderContent = (
-    <div className='flex gap-4 sm:gap-4 items-center justify-between sm:justify-start'>
+    // <div className='flex gap-4 sm:gap-4 items-center justify-between sm:justify-start'>
+    <div>
       <h2>Examples</h2>
+      <p className='pt-5'>
+        The examples below were developed during <Link to='/hackathon'>HackTogether</Link>. Click{' '}
+        <Link to='https://taikai.network/multisynq/hackathons/hacktogether/results' target='_blank'>
+          here
+        </Link>{' '}
+        to see the full list of projects.
+      </p>
       {/* <h2>
         Experiencing
         <br className='block sm:hidden' /> Web Together
