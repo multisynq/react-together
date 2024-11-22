@@ -8,13 +8,13 @@ import tripSync from '@images/projects/tripSync.png'
 import { Carousel, CarouselResponsiveOption } from 'primereact/carousel'
 import { useState } from 'react'
 import Link from './Link'
-import UseCaseThumbNail from './UseCaseThumbNail'
 
 interface Project {
   title: string
   description: string
   projectLink: string
   thumbnailImage: string
+  websiteLink: string
 }
 
 export default function UseCaseCarousel() {
@@ -24,36 +24,43 @@ export default function UseCaseCarousel() {
       description: 'Collaboratively order food with friends, family & colleagues. Save time, delivery fees & have fun.',
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3a6b7qy075kbssltzt81ksz/idea',
       thumbnailImage: slicrBanner,
+      websiteLink: 'https://react-togather.vercel.app/',
     },
     {
       title: 'ScratchMap',
       description: 'The easiest way to coordinate ad hoc location-based events with groups of people.',
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3biszdo07m967do3tlzotpu/idea',
       thumbnailImage: scratchMapBanner,
+      websiteLink: 'https://scratch-map.pages.dev/',
     },
     {
       title: 'TripSync',
-      description: 'A collaborative trip planning web app designed for seamless multi user interaction.',
+      description: 'A collaborative trip planning web app designed for seamless multiuser interaction.',
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3347i7g05e9ao9a3hq50vsk/idea',
       thumbnailImage: tripSync,
+      websiteLink: 'https://hacktogether-ariel.pages.dev/',
     },
     {
       title: 'Synq City',
-      description: "A social network based on your location. Know what's happening around you in real time!",
+      description:
+        'Stay connected to what’s happening around you in real time. A location-based social network that keeps you in the loop.',
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3a76znk07z1ao9a6r8y8nje/idea',
       thumbnailImage: synqCity,
+      websiteLink: 'https://multisynq-hackathon-frontend.vercel.app/',
     },
     {
       title: 'Multi Planner',
       description: 'An app for collaborative shopping lists and trip planning!',
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3bme6jn07h0bssl0zgwri0w/idea',
       thumbnailImage: multiPlanner,
+      websiteLink: 'https://deployrepo-a74.pages.dev/',
     },
     {
       title: 'Learn Together',
       description: "A way to bring closer students and teachers, making online classes feel like you're really there.",
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3a9cvnf076jbssl3oazlry2/idea',
       thumbnailImage: learnTogether,
+      websiteLink: 'https://hack-together.vercel.app/',
     },
   ])
 
@@ -75,30 +82,58 @@ export default function UseCaseCarousel() {
     },
   ]
 
-  const projectTemplate = ({ title, description, projectLink, thumbnailImage }: Project) => {
+  const projectTemplate = ({ title, description, projectLink, thumbnailImage, websiteLink }: Project) => {
     return (
-      <>
-        <UseCaseThumbNail urlLink={projectLink} imageSource={thumbnailImage} />
+      <div className='group'>
+        <a href={projectLink} target='_blank'>
+          <div className='flex flex-col py-5 px-3 gap-4 '>
+            <div
+              className='aspect-[4/3] flex overflow-hidden relative active-border bg-cover bg-center'
+              style={{ backgroundImage: `url(${thumbnailImage})` }}
+            >
+              <div className='bg-blue-400 border-gray-800 w-full flex px-4 py-1 border-t h-[4rem] absolute bottom-[-5rem] group-hover:bottom-[0rem] transition-all duration-300'>
+                <div className='text-lg font-bold flex items-center text-white'>
+                  Learn more!
+                  <i className='pi pi-arrow-right ml-2'></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
         <div className='px-4'>
           <h5 style={{ marginTop: '0px' }}>{title}</h5>
           <p className='text-black leading-tight text-md'>{description}</p>
+          <div className='mt-2'>
+            <Link to={websiteLink} target='_blank'>
+              See Website
+            </Link>
+          </div>
         </div>
-      </>
+      </div>
     )
   }
 
   const HeaderContent = (
     // <div className='flex gap-4 sm:gap-4 items-center justify-between sm:justify-start'>
-    <div>
-      <h2>Examples</h2>
-      <p className='pt-5'>
-        The examples below were developed during <Link to='/hackathon'>HackTogether</Link>. Click{' '}
-        <Link to='https://taikai.network/multisynq/hackathons/hacktogether/results' target='_blank'>
-          here
-        </Link>{' '}
-        to see the full list of projects.
-      </p>
-      {/* <h2>
+    <div className='flex justify-start w-full'>
+      <div className='flex pl-[2rem] gap-5 flex-col sm:flex-row lg:gap-[3rem]'>
+        <div className='border px-8 py-4 line-border flex flex-col gap-2 bg-lime-100 justify-center items-center'>
+          <h2 style={{ fontWeight: 600, fontSize: '40px', lineHeight: '40px' }}>See Our Examples</h2>
+        </div>
+        <div className='flex items-center '>
+          <div className='flex flex-col'>
+            <span className='text-xl tracking-tight font-medium text-center sm:text-left'>
+              The examples below were developed during <Link to='/hackathon'>HackTogether</Link>.
+            </span>
+            <span className='text-xl tracking-tight font-medium text-center sm:text-left'>
+              See the full list of{' '}
+              <Link to='https://taikai.network/multisynq/hackathons/hacktogether/results' target='_blank'>
+                projects .
+              </Link>
+            </span>
+          </div>
+        </div>
+        {/* <h2>
         Experiencing
         <br className='block sm:hidden' /> Web Together
       </h2>
@@ -107,6 +142,7 @@ export default function UseCaseCarousel() {
           <span className='font-poppins font-semibold tracking-tight text-lg'>View All</span>
         </div>
       </NavLink> */}
+      </div>
     </div>
   )
 
