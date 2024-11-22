@@ -9,13 +9,15 @@ import {
 import ReactTogetherModel from '../models/ReactTogetherModel'
 import getNewValue from './getNewValue'
 
-interface UseStateTogetherOptions {}
+interface UseStateTogetherOptions {
+  resetOnDisconnect?: boolean
+}
 
 export default function useStateTogether<T>(
   rtKey: string,
   initialValue: T,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _options: UseStateTogetherOptions = {}
+  { resetOnDisconnect = false }: UseStateTogetherOptions = {}
 ): [T, Dispatch<SetStateAction<T>>] {
   // If a session is active, it uses the shared state from the session by
   // subscribing to updates and publishing changes.
@@ -37,7 +39,12 @@ export default function useStateTogether<T>(
   })
 
   useEffect(() => {
-    if (!session || !view || !model) return
+    if (!session || !view || !model) {
+      if (resetOnDisconnect) {
+        set_value(initialValue)
+      }
+      return
+    }
 
     const handler = () => {
       set_value((prev) => {
@@ -56,7 +63,7 @@ export default function useStateTogether<T>(
     )
     handler()
     return () => view.unsubscribe(rtKey, 'updated', handler)
-  }, [session, view, model, rtKey, set_value])
+  }, [session, view, model, rtKey, set_value, initialValue, resetOnDisconnect])
 
   const setter = useCallback(
     (newValueOrFn: SetStateAction<T>): void => {
