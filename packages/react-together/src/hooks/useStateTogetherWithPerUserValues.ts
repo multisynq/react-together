@@ -23,6 +23,10 @@ interface LocalState<T> {
   allValuesHash: string | null
 }
 
+interface UseStateTogetherWithPerUserValuesOptions {
+  resetOnDisconnect?: boolean
+}
+
 // The empty object is used as the allValues value
 // when the user is not connected to a session.
 // Using this constant object avoids triggering
@@ -38,7 +42,8 @@ export default function useStateTogetherWithPerUserValues<
   T extends NotUndefined
 >(
   rtKey: string,
-  initialValue: T
+  initialValue: T,
+  { resetOnDisconnect = false }: UseStateTogetherWithPerUserValuesOptions = {}
 ): [T, Dispatch<SetStateAction<T>>, ValueMap<T>] {
   // Memoize the initial value to ignore subsequent changes
   // https://react.dev/reference/react/useState
@@ -73,7 +78,7 @@ export default function useStateTogetherWithPerUserValues<
   useEffect(() => {
     if (!session || !view || !model || !viewId) {
       setAllValuesState((prev) => ({
-        localValue: prev.localValue,
+        localValue: resetOnDisconnect ? initialValue : prev.localValue,
         allValues: EMPTY_OBJECT,
         allValuesHash: null
       }))
@@ -129,7 +134,7 @@ export default function useStateTogetherWithPerUserValues<
       })
       view.unsubscribe(rtKey, 'updated', handler)
     }
-  }, [session, view, viewId, model, rtKey])
+  }, [session, view, viewId, model, rtKey, resetOnDisconnect, initialValue])
 
   // Setter function to update local and shared state
   const setter = useCallback(
