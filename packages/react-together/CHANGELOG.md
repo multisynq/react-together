@@ -2,6 +2,8 @@
 `0.3.0-2`
  - Added `resetOnDisconnect` option flag in `useStateTogether`
  - Added `resetOnDisconnect` option flag in `useStateTogetherWithPerUserValues`
+ - Added `persistDisconnectedUserData` option flag in `useStateTogetherWithPerUserValues`
+ - Added `userIdOverride` option flag in `useStateTogetherWithPerUserValues`
 `0.3.0-1`
  - Include `CHANGELOG.md` in package
 `0.3.0-0`
