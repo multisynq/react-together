@@ -1,7 +1,9 @@
 import { useStateTogether } from 'react-together'
 
 export default function CountButtonTogether() {
-  const [count, set_count] = useStateTogether('count', 0)
+  const [count, set_count] = useStateTogether('count', 0, {
+    resetOnDisconnect: true
+  })
   return (
     <div>
       <button
