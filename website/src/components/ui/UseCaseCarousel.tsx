@@ -85,29 +85,31 @@ export default function UseCaseCarousel() {
   const projectTemplate = ({ title, description, projectLink, thumbnailImage, websiteLink }: Project) => {
     return (
       <div className='group'>
-        <a href={projectLink} target='_blank'>
-          <div className='flex flex-col py-5 px-3 gap-4 '>
-            <div
-              className='aspect-[4/3] flex overflow-hidden relative active-border bg-cover bg-center'
-              style={{ backgroundImage: `url(${thumbnailImage})` }}
-            >
-              <div className='bg-blue-400 border-gray-800 w-full flex px-4 py-1 border-t h-[4rem] absolute bottom-[-5rem] group-hover:bottom-[0rem] transition-all duration-300'>
+        <div className='flex flex-col py-5 px-3 gap-4 '>
+          <div
+            className='aspect-[4/3] flex overflow-hidden relative line-border bg-cover bg-center'
+            style={{ backgroundImage: `url(${thumbnailImage})` }}
+          >
+            <div className='absolute md:top-[-5rem] md:group-hover:top-[0rem] transition-all duration-300 flex right-4'>
+              <a href={websiteLink} target='_blank'>
+                <div className='bg-blue-500 interactive-border w-full flex px-4 py-1 h-[3rem] items-center rounded-xl m-2 justify-center'>
+                  <span className='text-lg font-bold text-center text-white'>Live demo</span>
+                </div>
+              </a>
+            </div>
+            <a href={projectLink} target='_blank'>
+              <div className='bg-gray-700 border-gray-800 w-full flex px-4 py-1 border-t h-[4rem] absolute bottom-[0rem] md:bottom-[-5rem] md:group-hover:bottom-[0rem] transition-all duration-300'>
                 <div className='text-lg font-bold flex items-center text-white'>
                   Learn more!
                   <i className='pi pi-arrow-right ml-2'></i>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
-        </a>
+        </div>
         <div className='px-4'>
           <h5 style={{ marginTop: '0px' }}>{title}</h5>
           <p className='text-black leading-tight text-md'>{description}</p>
-          <div className='mt-2'>
-            <Link to={websiteLink} target='_blank'>
-              See Website
-            </Link>
-          </div>
         </div>
       </div>
     )
@@ -120,10 +122,11 @@ export default function UseCaseCarousel() {
         <div className='border px-8 py-4 line-border flex flex-col gap-2 bg-lime-100 justify-center items-center'>
           <h2 style={{ fontWeight: 600, fontSize: '40px', lineHeight: '40px' }}>See Our Examples</h2>
         </div>
-        <div className='flex items-center '>
+        <div className='flex items-center justify-center'>
           <div className='flex flex-col'>
             <span className='text-xl tracking-tight font-medium text-center sm:text-left'>
-              The examples below were developed during <Link to='/hackathon'>HackTogether</Link>.
+              The examples below were
+              <br className='block sm:hidden' /> developed during <Link to='/hackathon'>HackTogether</Link>.
             </span>
             <span className='text-xl tracking-tight font-medium text-center sm:text-left'>
               See the full list of{' '}
@@ -133,15 +136,6 @@ export default function UseCaseCarousel() {
             </span>
           </div>
         </div>
-        {/* <h2>
-        Experiencing
-        <br className='block sm:hidden' /> Web Together
-      </h2>
-      <NavLink key={'/examples'} to='/examples'>
-        <div className='flex items-center justify-center px-4 bg-blue-500 text-white py-2 active-border'>
-          <span className='font-poppins font-semibold tracking-tight text-lg'>View All</span>
-        </div>
-      </NavLink> */}
       </div>
     </div>
   )
