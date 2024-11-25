@@ -61,6 +61,7 @@ import { WebsiteWrapper } from '@pages/WebsiteWrapper'
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import changelog from 'react-together/CHANGELOG.md'
 import contributing from '../../contributing/CONTRIBUTING.md'
+import croquet from './pages/Documentation/croquet-react.md'
 import pricing from './pages/Documentation/pricing/PRICING.md'
 
 function GlobalWrapper() {
@@ -97,6 +98,7 @@ export default function AppRoutes() {
             <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} />
             <Route path='useFunctionTogether' element={<UseFunctionTogetherDocumentationPage />} />
             <Route path='utils' element={<HelpersDocumentationPage />} />
+            <Route path='croquet' element={<MarkdownPage markdown={croquet} />} />
             <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
             <Route path='/pricing' element={<MarkdownPage markdown={pricing} />} />
             {/* <Route path='/examples' element={<DynamicsSession />} /> */}
