@@ -8,6 +8,10 @@ export default function App() {
     <Layout>
       <Routes>
         <Route index element={<HomePage />} />
+        {/*
+        To add a new demo, add it to the demos array in ./demos.tsx.
+        Doing so will automatically add a route and card for the demo.
+        */}
         {demos.map(({ path, element }) => (
           <Route key={path} path={path} element={element} />
         ))}
