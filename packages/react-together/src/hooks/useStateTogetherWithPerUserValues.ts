@@ -74,7 +74,7 @@ export default function useStateTogetherWithPerUserValues<
     // We don't need to publish a setState event here, since that
     // will be done in the useEffect below
     const allValues = mapToObject(
-      (model.stateTogether.get(rtKey) as Map<string, T>) ??
+      (model.statePerUser.get(rtKey) as Map<string, T>) ??
         new Map([[key, actualInitialValue]])
     )
     return {
@@ -100,12 +100,12 @@ export default function useStateTogetherWithPerUserValues<
         // If the user joins a session before having a local value assigned,
         // we use the initial value passed in the arguments
         const localValue = prev.localValue ?? actualInitialValue
-        const map = new Map(model.stateTogether.get(rtKey) as Map<string, T>)
+        const map = new Map(model.statePerUser.get(rtKey) as Map<string, T>)
 
         // Ensure current user's value is in the map
         // Publish a setState event if it is not
         if (!map.has(key)) {
-          view.publish(model.id, 'setStateTogether', {
+          view.publish(model.id, 'setStatePerUser', {
             id: rtKey,
             viewId: key,
             newValue: localValue
@@ -139,7 +139,7 @@ export default function useStateTogetherWithPerUserValues<
     // Cleanup: remove value from model and unsubscribe
     return () => {
       if (!persistDisconnectedUserData) {
-        view.publish(model.id, 'setStateTogether', {
+        view.publish(model.id, 'setStatePerUser', {
           id: rtKey,
           viewId: key,
           newValue: undefined
@@ -176,7 +176,7 @@ export default function useStateTogetherWithPerUserValues<
         })
       } else {
         // Update shared state when connected
-        const allValues = model.stateTogether.get(rtKey) as Map<string, T>
+        const allValues = model.statePerUser.get(rtKey) as Map<string, T>
         let prevLocalValue = allValues.get(key)
         if (prevLocalValue === undefined) {
           // If the key is not in the allValues mapping, it is because
@@ -190,7 +190,7 @@ export default function useStateTogetherWithPerUserValues<
         }
         const newLocalValue = getNewValue<T>(prevLocalValue, newValueOrFn)
 
-        view.publish(model.id, 'setStateTogether', {
+        view.publish(model.id, 'setStatePerUser', {
           id: rtKey,
           viewId: key,
           newValue: newLocalValue

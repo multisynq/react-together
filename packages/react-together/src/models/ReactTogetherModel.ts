@@ -4,7 +4,7 @@ type setStateArgs<T> = {
   id: string
   newValue: T | undefined
 }
-type setStateTogetherArgs<T> = {
+type setStatePerUserArgs<T> = {
   id: string
   viewId: string
   newValue: T | undefined
@@ -19,15 +19,15 @@ type FunctionTogetherArgs = {
 
 export default class ReactTogetherModel extends ReactModel {
   state: Map<string, unknown>
-  stateTogether: Map<string, Map<string, unknown>>
+  statePerUser: Map<string, Map<string, unknown>>
 
   init(options: ReactTogetherModelOptions) {
     super.init({ ...options, trackViews: true })
     this.state = new Map()
-    this.stateTogether = new Map()
+    this.statePerUser = new Map()
 
     this.subscribe(this.id, 'setState', this.setState)
-    this.subscribe(this.id, 'setStateTogether', this.setStateTogether)
+    this.subscribe(this.id, 'setStatePerUser', this.setStatePerUser)
     this.subscribe(this.id, 'functionTogether', this.functionTogether)
   }
 
@@ -40,8 +40,8 @@ export default class ReactTogetherModel extends ReactModel {
     this.publish(id, 'updated', {})
   }
 
-  setStateTogether<T>({ id, viewId, newValue }: setStateTogetherArgs<T>) {
-    let st = this.stateTogether.get(id)
+  setStatePerUser<T>({ id, viewId, newValue }: setStatePerUserArgs<T>) {
+    let st = this.statePerUser.get(id)
     if (st === undefined) {
       st = new Map<string, T>()
     }
@@ -50,7 +50,7 @@ export default class ReactTogetherModel extends ReactModel {
     } else {
       st.set(viewId, newValue)
     }
-    this.stateTogether.set(id, st)
+    this.statePerUser.set(id, st)
     this.publish(id, 'updated', {})
   }
 
