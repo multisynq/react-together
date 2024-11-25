@@ -20,16 +20,9 @@ interface Project {
 export default function UseCaseCarousel() {
   const [projects] = useState<Project[]>([
     {
-      title: 'Slicr',
-      description: 'Collaboratively order food with friends, family & colleagues. Save time, delivery fees & have fun.',
-      projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3a6b7qy075kbssltzt81ksz/idea',
-      thumbnailImage: slicrBanner,
-      websiteLink: 'https://react-togather.vercel.app/',
-    },
-    {
       title: 'ScratchMap',
       description: 'The easiest way to coordinate ad hoc location-based events with groups of people.',
-      projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3biszdo07m967do3tlzotpu/idea',
+      projectLink: 'https://scratchmap.app/',
       thumbnailImage: scratchMapBanner,
       websiteLink: 'https://scratch-map.pages.dev/',
     },
@@ -39,6 +32,13 @@ export default function UseCaseCarousel() {
       projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3347i7g05e9ao9a3hq50vsk/idea',
       thumbnailImage: tripSync,
       websiteLink: 'https://hacktogether-ariel.pages.dev/',
+    },
+    {
+      title: 'Slicr',
+      description: 'Collaboratively order food with friends, family & colleagues. Save time, delivery fees & have fun.',
+      projectLink: 'https://taikai.network/multisynq/hackathons/hacktogether/projects/cm3a6b7qy075kbssltzt81ksz/idea',
+      thumbnailImage: slicrBanner,
+      websiteLink: 'https://react-togather.vercel.app/',
     },
     {
       title: 'Synq City',
