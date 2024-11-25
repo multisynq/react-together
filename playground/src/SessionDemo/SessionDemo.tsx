@@ -1,7 +1,7 @@
 import { Dialog } from 'primereact/dialog'
 import QRCode from 'qrcode.react'
 import { SetStateAction, useState } from 'react'
-import { Icons } from './SessionDemo/icons'
+import { Icons } from './icons'
 
 function UrlContainer() {
   const [url, setUrl] = useState('https://current-address.com/294spwd') // Replace with your dynamic URL

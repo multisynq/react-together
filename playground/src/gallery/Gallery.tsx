@@ -12,7 +12,6 @@ import {
   TriStateCheckboxTogether
 } from 'react-together-primereact'
 import CountButtonTogether from './components/CountButtonTogether'
-import CountPerUser from './components/CountPerUser'
 import NestedHoverHighlighter from './components/NestedHoverHighlighter'
 import SamplePage from './components/SamplePage'
 import SyncedTabs from './components/SyncedTabs'
@@ -34,7 +33,9 @@ export default function Gallery() {
 
   return (
     <div className="my-5">
-      <SessionManager />
+      <div className="fixed bottom-2 right-2 z-50">
+        <SessionManager />
+      </div>
       <div className="flex flex-col gap-2 items-center">
         <ConnectedUsers maxAvatars={5} />
         {isTogether ? 'Connected' : 'Disconnected'}
@@ -46,9 +47,6 @@ export default function Gallery() {
           <TriStateCheckboxTogether rtKey="tristate-checkbox" />
           <InputSwitchTogether rtKey="input-switch" />
           <RatingTogether rtKey="rating" />
-        </div>
-        <div>
-          <CountPerUser />
         </div>
         <div className="flex gap-2 items-center">
           <DropdownTogether
