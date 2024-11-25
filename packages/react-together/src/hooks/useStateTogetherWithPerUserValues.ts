@@ -95,10 +95,12 @@ export default function useStateTogetherWithPerUserValues<
     // The handler will only be called when we are connected to a session
     const handler = () => {
       setAllValuesState((prev) => {
-        const { localValue, allValuesHash } = prev
+        // If the user joins a session before having a local value assigned,
+        // we use the initial value passed in the arguments
+        const localValue = prev.localValue ?? actualInitialValue
         const map = new Map(model.stateTogether.get(rtKey) as Map<string, T>)
 
-        // Ensure current view's value is in the map
+        // Ensure current user's value is in the map
         // Publish a setState event if it is not
         if (!map.has(key)) {
           view.publish(model.id, 'setStateTogether', {
@@ -113,7 +115,7 @@ export default function useStateTogetherWithPerUserValues<
         const newAllValuesHash = hash_fn(newAllValues)
 
         // Only update state if values have changed
-        return allValuesHash === newAllValuesHash
+        return prev.allValuesHash === newAllValuesHash
           ? prev
           : {
               localValue: map.get(key)!,
