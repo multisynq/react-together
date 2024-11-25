@@ -79,6 +79,7 @@ export default function AppRoutes() {
       <Route element={<GlobalWrapper />}>
         <Route element={<WebsiteWrapper />}>
           <Route path='hackathon' element={<HackTogetherPage />} />
+          {/* <Route path='examples' element={<UseCaseProject />} /> */}
           <Route path='/' element={<HomePage />} />
           <Route path='/cookies' element={<CookiePolicy />} />
           <Route element={<DocumentationWrapper />}>
