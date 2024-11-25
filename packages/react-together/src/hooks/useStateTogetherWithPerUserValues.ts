@@ -60,7 +60,7 @@ export default function useStateTogetherWithPerUserValues<
   const key = userIdOverride ?? viewId
 
   const [allValuesState, setAllValuesState] = useState<LocalState<T>>(() => {
-    if (!view || !model || !viewId) {
+    if (!view || !model || !key) {
       return {
         localValue: actualInitialValue,
         allValues: EMPTY_OBJECT,
@@ -83,7 +83,7 @@ export default function useStateTogetherWithPerUserValues<
   })
 
   useEffect(() => {
-    if (!session || !view || !model) {
+    if (!session || !view || !model || !key) {
       setAllValuesState((prev) => ({
         localValue: resetOnDisconnect ? initialValue : prev.localValue,
         allValues: EMPTY_OBJECT,
@@ -151,13 +151,14 @@ export default function useStateTogetherWithPerUserValues<
     resetOnDisconnect,
     initialValue,
     persistDisconnectedUserData,
-    key
+    key,
+    actualInitialValue
   ])
 
   // Setter function to update local and shared state
   const setter = useCallback(
     (newValueOrFn: SetStateAction<T>): void => {
-      if (!view || !model) {
+      if (!view || !model || !key) {
         // Update local state when not connected
         setAllValuesState((prev) => {
           const newLocalValue = getNewValue(prev.localValue, newValueOrFn)
