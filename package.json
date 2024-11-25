@@ -11,6 +11,6 @@
     "website": "./scripts/run.sh website",
     "build": "npm run build -ws --if-present",
     "build-cf": "./scripts/cloudflare-build.sh main",
-    "clean": "rm -rf node_modules && npm run clean -ws --if-present"
+    "clean": "rm -rf node_modules bun.lockb package-lock.json && npm run clean -ws --if-present"
   }
 }
