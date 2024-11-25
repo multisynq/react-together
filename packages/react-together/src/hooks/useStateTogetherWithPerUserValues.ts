@@ -57,6 +57,8 @@ export default function useStateTogetherWithPerUserValues<
 
   const { session, view, model } = useCroquetContext<ReactTogetherModel>()
   const viewId = useViewId()
+
+  // This is the key to which the local value is assigned
   const key = userIdOverride ?? viewId
 
   const [allValuesState, setAllValuesState] = useState<LocalState<T>>(() => {

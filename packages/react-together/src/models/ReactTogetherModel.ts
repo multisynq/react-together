@@ -1,4 +1,4 @@
-import { ReactModel, ViewInfo } from '@croquet/react'
+import { ReactModel } from '@croquet/react'
 
 type setStateArgs<T> = {
   id: string
@@ -56,14 +56,6 @@ export default class ReactTogetherModel extends ReactModel {
 
   functionTogether({ rtKey, args }: FunctionTogetherArgs) {
     this.publish(rtKey, 'call', args)
-  }
-
-  handleViewExit(viewId: string | ViewInfo<unknown>) {
-    const id = typeof viewId !== 'string' ? viewId.viewId : viewId
-    this.stateTogether.forEach((st, key) => {
-      st.delete(id)
-      this.publish(key, 'updated', {})
-    })
   }
 }
 ReactTogetherModel.register('ReactTogetherModel')
