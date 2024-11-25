@@ -76,7 +76,7 @@ export default function useStateTogetherWithPerUserValues<
         new Map([[key, actualInitialValue]])
     )
     return {
-      localValue: actualInitialValue,
+      localValue: allValues[key],
       allValues,
       allValuesHash: hash_fn(allValues)
     }
