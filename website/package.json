@@ -8,7 +8,7 @@
     "start": "vite --host",
     "dev": "vite --host",
     "build": "vite build",
-    "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && rm -f package-lock.json bun.lockb dist",
+    "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && rm -rf package-lock.json bun.lockb dist",
     "lines_of_code": "cloc --exclude-dir=node_modules --not-match-f='.*\\.(svg|md|toml)' .",
     "lines_of_code_dist": "cloc --exclude-dir=node_modules --not-match-f='.*\\.(svg|md|toml)' dist"
   },
