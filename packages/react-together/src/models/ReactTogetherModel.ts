@@ -1,18 +1,18 @@
 import { ReactModel } from '@croquet/react'
 
-type setStateArgs<T> = {
+interface setStateArgs<T> {
   id: string
   newValue: T | undefined
 }
-type setStatePerUserArgs<T> = {
+interface setStatePerUserArgs<T> {
   id: string
   viewId: string
   newValue: T | undefined
 }
 
-type ReactTogetherModelOptions = Record<string, unknown>
+interface ReactTogetherModelOptions extends Record<string, unknown> {}
 
-type FunctionTogetherArgs = {
+interface FunctionTogetherArgs {
   rtKey: string
   args: unknown[]
 }
