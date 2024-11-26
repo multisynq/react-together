@@ -2,6 +2,7 @@ import { PricingBanner } from '@components/sections/PricingBanner'
 import { FeatureCard } from '@components/ui/FeatureCard'
 import { HeroDemo } from '../components/sections/HeroDemo'
 import { PageHeader } from '../components/sections/PageHeader'
+import UseCaseCarousel from '../components/ui/UseCaseCarousel'
 
 export function HomePage() {
   return (
@@ -13,6 +14,7 @@ export function HomePage() {
             <div className='w-full h-8' />
             <HeroDemo />
             <div className='w-full h-20 sm:h-32' />
+            <UseCaseCarousel />
             <FeatureCard />
           </div>
         </div>
