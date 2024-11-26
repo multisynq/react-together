@@ -100,6 +100,7 @@ module.exports = {
         '.line-border': {
           '@apply border border-gray-700 shadow-lineStyleDark rounded-xl': {},
         },
+        '.active-border': { '@apply border border-gray-700 shadow-lineStyleDark rounded-2xl hover:shadow-lineStyleLight': {} },
         '.button-primary': {
           '@apply py-1 px-3 bg-blue-500 text-neutral-50 border border-neutral-900 hover:bg-blue-400 rounded-full shadow-button': {},
         },

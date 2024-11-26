@@ -83,15 +83,6 @@ const CenterRow = () => (
       </div>
 
       {/* Register Button (mobile) */}
-      <a
-        className='w-full h-[5rem] bg-blue-500 hover:bg-blue-600 md:hidden overflow-hidden rounded-xl border border-gray-800 shadow-lineStyleDark flex items-center justify-center cursor-pointer text-white hover:text-slate-300 '
-        href={registrationUrl}
-        target='_blank'
-        rel='noopener noreferrer'
-        aria-label='Register for HackTogether hackathon'
-      >
-        <span className='font-poppins font-bold text-xl'>Register</span>
-      </a>
     </div>
 
     {/* Side Column (desktop) */}
@@ -100,15 +91,6 @@ const CenterRow = () => (
       <div className='h-full w-full'>
         <EventContentVertical />
       </div>
-      <a
-        className='w-full h-[5rem] hidden overflow-hidden rounded-xl border border-gray-800 shadow-lineStyleDark items-center justify-center md:flex bg-blue-500 hover:bg-blue-600 cursor-pointer text-white hover:text-slate-300'
-        href={registrationUrl}
-        target='_blank'
-        rel='noopener noreferrer'
-        aria-label='Register for HackTogether hackathon'
-      >
-        <span className='font-poppins font-bold text-xl'>Register</span>
-      </a>
     </div>
   </div>
 )
