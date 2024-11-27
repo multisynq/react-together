@@ -3,8 +3,9 @@ import { SessionManager } from 'react-together'
 import { CountPerUser } from './CountPerUser'
 
 export function CountPerUserDemo() {
-  const [username, setUsername] = useState('')
-  const [localUsername, setLocalUsername] = useState('')
+  const searchParams = new URLSearchParams(window.location.search)
+  const [username, setUsername] = useState(searchParams.get('username') || '')
+  const [localUsername, setLocalUsername] = useState(username || '')
 
   return (
     <div className="m-5">
@@ -29,7 +30,7 @@ export function CountPerUserDemo() {
                 Logout
               </button>
             </p>
-            <CountPerUser username={username} />
+            {/* <CountPerUser username={username} /> */}
           </>
         ) : (
           <>
@@ -47,6 +48,7 @@ export function CountPerUserDemo() {
           </>
         )}
       </div>
+      <CountPerUser username={username} />
     </div>
   )
 }

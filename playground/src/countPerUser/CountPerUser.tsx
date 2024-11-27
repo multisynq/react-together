@@ -7,7 +7,10 @@ export function CountPerUser({ username }: CountPerUserProps) {
   const [count, set_count, allValues] =
     useStateTogetherWithPerUserValues<number>('countPerUser', 0, {
       persistDisconnectedUserData: true,
-      userIdOverride: username
+      keyOverride: username,
+      // resetOnConnect: true,
+      // resetOnDisconnect: true,
+      overwriteSessionValue: true
     })
   return (
     <>
