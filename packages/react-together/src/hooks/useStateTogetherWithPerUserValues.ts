@@ -93,17 +93,25 @@ export default function useStateTogetherWithPerUserValues<
   // because the publish on cleanup was not being sent
   useEffect(() => {
     // TODO: Only send if needed i.e. if config is not already set, and if keyOverride is outdated
-    if (view && model) {
-      view.publish(model.id, 'configureStatePerUser', {
-        id: rtKey,
-        viewId,
-        options: {
-          // intentionally not passing resetOnDisconnect and resetOnConnect
-          // to save on bandwidth
-          persistDisconnectedUserData,
-          keyOverride
-        }
-      })
+    if (view && model && viewId) {
+      const config = model.statePerUserConfig.get(rtKey)
+      if (
+        !config ||
+        config.persistDisconnectedUserData !== persistDisconnectedUserData ||
+        (keyOverride &&
+          config.viewKeyOverrideMapping?.get(viewId) !== keyOverride)
+      ) {
+        view.publish(model.id, 'configureStatePerUser', {
+          id: rtKey,
+          viewId,
+          options: {
+            // intentionally not passing resetOnDisconnect and resetOnConnect
+            // to save on bandwidth
+            persistDisconnectedUserData,
+            keyOverride
+          }
+        })
+      }
     }
   }, [
     view,
