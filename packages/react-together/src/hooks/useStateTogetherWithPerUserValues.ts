@@ -39,6 +39,7 @@ export interface UseStateTogetherWithPerUserValuesOptions {
   resetOnConnect?: boolean
   persistDisconnectedUserData?: boolean
   keyOverride?: string
+  overwriteSessionValue?: boolean
 }
 export default function useStateTogetherWithPerUserValues<
   T extends NotUndefined
@@ -51,6 +52,7 @@ export default function useStateTogetherWithPerUserValues<
     resetOnDisconnect = false,
     resetOnConnect = false,
     persistDisconnectedUserData = false,
+    overwriteSessionValue = false,
     keyOverride
   } = options
   // Memoize the initial value to ignore subsequent changes
@@ -130,23 +132,50 @@ export default function useStateTogetherWithPerUserValues<
         // Create a copy of the model state map to avoid mutating it
         const map = new Map(model.statePerUser.get(rtKey) as Map<string, T>)
 
-        // If resetOnConnect is set, we reset the local value to the initial value
-        // Otherwise, we use the previous value. If that value is not defined,
-        // we default to the initial value
-        const localValue =
-          resetOnConnect || prev.localValue === undefined
-            ? actualInitialValue
-            : prev.localValue
+        /*
+         * This code determines what value to use when connecting to a session.
+         * The logic follows these rules:
+         *
+         * 1. If resetOnConnect is true:
+         *    - Always use the initial value
+         *
+         * 2. If resetOnConnect is false:
+         *    - First check if we have a previous local value:
+         *      a) If no previous value exists:
+         *         - Use session value if it exists
+         *         - Otherwise use initial value
+         *      b) If previous value exists:
+         *         - Use previous value if no session value exists
+         *         - If session value exists:
+         *           • Use previous value if overwriteSessionValue is true
+         *           • Use session value if overwriteSessionValue is false
+         *
+         * The function also tracks whether we need to publish the chosen value
+         * back to the session (needed when we override the session value).
+         */
 
-        // Ensure current user's value is in the map
-        // Publish a setState event if it is not
-        if (!map.has(key) || resetOnConnect) {
+        const prevLocalValue = prev.localValue
+        const sessionValue = map.get(key)
+
+        let valueToUse: T
+
+        if (resetOnConnect) {
+          valueToUse = actualInitialValue
+        } else if (prevLocalValue === undefined) {
+          valueToUse = sessionValue ?? actualInitialValue
+        } else if (sessionValue === undefined) {
+          valueToUse = prevLocalValue ?? actualInitialValue
+        } else {
+          valueToUse = overwriteSessionValue ? prevLocalValue : sessionValue
+        }
+
+        if (valueToUse !== sessionValue) {
           view.publish(model.id, 'setStatePerUser', {
             id: rtKey,
             key,
-            newValue: localValue
+            newValue: valueToUse
           })
-          map.set(key, localValue)
+          map.set(key, valueToUse)
         }
 
         const newAllValues = mapToObject(map)
@@ -156,7 +185,7 @@ export default function useStateTogetherWithPerUserValues<
         return prev.allValuesHash === newAllValuesHash
           ? prev
           : {
-              localValue: map.get(key)!,
+              localValue: valueToUse,
               allValues: newAllValues,
               allValuesHash: newAllValuesHash
             }
@@ -195,15 +224,16 @@ export default function useStateTogetherWithPerUserValues<
       view.unsubscribe(rtKey, 'updated', handleUpdate)
     }
   }, [
+    rtKey,
     session,
     view,
     model,
-    rtKey,
+    actualInitialValue,
+    key,
     resetOnDisconnect,
     resetOnConnect,
     persistDisconnectedUserData,
-    key,
-    actualInitialValue
+    overwriteSessionValue
   ])
 
   // Setter function to update local and shared state
