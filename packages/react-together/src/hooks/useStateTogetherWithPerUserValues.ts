@@ -23,12 +23,6 @@ interface LocalState<T> {
   allValuesHash: string | null
 }
 
-interface UseStateTogetherWithPerUserValuesOptions {
-  resetOnDisconnect?: boolean
-  persistDisconnectedUserData?: boolean
-  userIdOverride?: string
-}
-
 // The empty object is used as the allValues value
 // when the user is not connected to a session.
 // Using this constant object avoids triggering
@@ -40,17 +34,25 @@ function mapToObject<T>(map: Map<string, T>): ValueMap<T> {
   return Object.fromEntries(map.entries())
 }
 
+export interface UseStateTogetherWithPerUserValuesOptions {
+  resetOnDisconnect?: boolean
+  resetOnConnect?: boolean
+  persistDisconnectedUserData?: boolean
+  keyOverride?: string
+}
 export default function useStateTogetherWithPerUserValues<
   T extends NotUndefined
 >(
   rtKey: string,
   initialValue: T,
-  {
-    resetOnDisconnect = false,
-    persistDisconnectedUserData = false,
-    userIdOverride
-  }: UseStateTogetherWithPerUserValuesOptions = {}
+  options: UseStateTogetherWithPerUserValuesOptions = {}
 ): [T, Dispatch<SetStateAction<T>>, ValueMap<T>] {
+  const {
+    resetOnDisconnect = false,
+    resetOnConnect = false,
+    persistDisconnectedUserData = false,
+    keyOverride
+  } = options
   // Memoize the initial value to ignore subsequent changes
   // https://react.dev/reference/react/useState
   const [actualInitialValue] = useState(initialValue)
@@ -59,7 +61,7 @@ export default function useStateTogetherWithPerUserValues<
   const viewId = useViewId()
 
   // This is the key to which the local value is assigned
-  const key = userIdOverride ?? viewId
+  const key = keyOverride ?? viewId
 
   const [allValuesState, setAllValuesState] = useState<LocalState<T>>(() => {
     if (!view || !model || !key) {
@@ -84,30 +86,64 @@ export default function useStateTogetherWithPerUserValues<
     }
   })
 
+  // Configure the state per user for this rtKey
+  // We have to store the options configuration on the model side
+  // because the publish on cleanup was not being sent
+  useEffect(() => {
+    // TODO: Only send if needed i.e. if config is not already set, and if keyOverride is outdated
+    if (view && model) {
+      view.publish(model.id, 'configureStatePerUser', {
+        id: rtKey,
+        viewId,
+        options: {
+          // intentionally not passing resetOnDisconnect and resetOnConnect
+          // to save on bandwidth
+          persistDisconnectedUserData,
+          keyOverride
+        }
+      })
+    }
+  }, [
+    view,
+    model,
+    rtKey,
+    resetOnDisconnect,
+    resetOnConnect,
+    persistDisconnectedUserData,
+    viewId,
+    keyOverride
+  ])
+
   useEffect(() => {
     if (!session || !view || !model || !key) {
       setAllValuesState((prev) => ({
-        localValue: resetOnDisconnect ? initialValue : prev.localValue,
+        localValue: resetOnDisconnect ? actualInitialValue : prev.localValue,
         allValues: EMPTY_OBJECT,
         allValuesHash: null
       }))
       return
     }
 
-    // The handler will only be called when we are connected to a session
-    const handler = () => {
+    // This handler is called when we connect to a session
+    const handleConnect = () => {
       setAllValuesState((prev) => {
-        // If the user joins a session before having a local value assigned,
-        // we use the initial value passed in the arguments
-        const localValue = prev.localValue ?? actualInitialValue
+        // Create a copy of the model state map to avoid mutating it
         const map = new Map(model.statePerUser.get(rtKey) as Map<string, T>)
+
+        // If resetOnConnect is set, we reset the local value to the initial value
+        // Otherwise, we use the previous value. If that value is not defined,
+        // we default to the initial value
+        const localValue =
+          resetOnConnect || prev.localValue === undefined
+            ? actualInitialValue
+            : prev.localValue
 
         // Ensure current user's value is in the map
         // Publish a setState event if it is not
-        if (!map.has(key)) {
+        if (!map.has(key) || resetOnConnect) {
           view.publish(model.id, 'setStatePerUser', {
             id: rtKey,
-            viewId: key,
+            key,
             newValue: localValue
           })
           map.set(key, localValue)
@@ -127,25 +163,36 @@ export default function useStateTogetherWithPerUserValues<
       })
     }
 
+    handleConnect()
+
+    // This handler is called when the model state is updated
+    const handleUpdate = () => {
+      setAllValuesState((prev) => {
+        const newAllValues = mapToObject(
+          (model.statePerUser.get(rtKey) as Map<string, T>) ?? new Map()
+        )
+        const newAllValuesHash = hash_fn(newAllValues)
+
+        // Only update state if values have changed
+        return prev.allValuesHash === newAllValuesHash
+          ? prev
+          : {
+              localValue: newAllValues[key],
+              allValues: newAllValues,
+              allValuesHash: newAllValuesHash
+            }
+      })
+    }
+
     view.subscribe(
       rtKey,
       { event: 'updated', handling: 'oncePerFrame' },
-      handler
+      handleUpdate
     )
-
-    // Initial call to sync state
-    handler()
 
     // Cleanup: remove value from model and unsubscribe
     return () => {
-      if (!persistDisconnectedUserData) {
-        view.publish(model.id, 'setStatePerUser', {
-          id: rtKey,
-          viewId: key,
-          newValue: undefined
-        })
-      }
-      view.unsubscribe(rtKey, 'updated', handler)
+      view.unsubscribe(rtKey, 'updated', handleUpdate)
     }
   }, [
     session,
@@ -153,7 +200,7 @@ export default function useStateTogetherWithPerUserValues<
     model,
     rtKey,
     resetOnDisconnect,
-    initialValue,
+    resetOnConnect,
     persistDisconnectedUserData,
     key,
     actualInitialValue
@@ -192,7 +239,7 @@ export default function useStateTogetherWithPerUserValues<
 
         view.publish(model.id, 'setStatePerUser', {
           id: rtKey,
-          viewId: key,
+          key,
           newValue: newLocalValue
         })
       }

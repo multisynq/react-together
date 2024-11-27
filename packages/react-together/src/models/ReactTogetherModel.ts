@@ -1,4 +1,5 @@
-import { ReactModel } from '@croquet/react'
+import { ReactModel, ViewInfo } from '@croquet/react'
+import { UseStateTogetherWithPerUserValuesOptions } from '../hooks/useStateTogetherWithPerUserValues'
 
 interface setStateArgs<T> {
   id: string
@@ -6,7 +7,7 @@ interface setStateArgs<T> {
 }
 interface setStatePerUserArgs<T> {
   id: string
-  viewId: string
+  key: string
   newValue: T | undefined
 }
 
@@ -17,18 +18,34 @@ interface FunctionTogetherArgs {
   args: unknown[]
 }
 
+interface ConfigureStatePerUserArgs {
+  id: string
+  viewId: string
+  options: UseStateTogetherWithPerUserValuesOptions
+}
+
+interface StatePerUserConfig {
+  viewKeyOverrideMapping?: Map<string, string>
+  persistDisconnectedUserData?: boolean
+}
+
 export default class ReactTogetherModel extends ReactModel {
   state: Map<string, unknown>
   statePerUser: Map<string, Map<string, unknown>>
+
+  statePerUserConfig: Map<string, StatePerUserConfig>
 
   init(options: ReactTogetherModelOptions) {
     super.init({ ...options, trackViews: true })
     this.state = new Map()
     this.statePerUser = new Map()
+    this.statePerUserConfig = new Map()
 
     this.subscribe(this.id, 'setState', this.setState)
     this.subscribe(this.id, 'setStatePerUser', this.setStatePerUser)
     this.subscribe(this.id, 'functionTogether', this.functionTogether)
+
+    this.subscribe(this.id, 'configureStatePerUser', this.configureStatePerUser)
   }
 
   setState<T>({ id, newValue }: setStateArgs<T>) {
@@ -40,22 +57,69 @@ export default class ReactTogetherModel extends ReactModel {
     this.publish(id, 'updated', {})
   }
 
-  setStatePerUser<T>({ id, viewId, newValue }: setStatePerUserArgs<T>) {
-    let st = this.statePerUser.get(id)
-    if (st === undefined) {
-      st = new Map<string, T>()
+  setStatePerUser<T>({ id, key, newValue }: setStatePerUserArgs<T>) {
+    let spu = this.statePerUser.get(id)
+    if (spu === undefined) {
+      spu = new Map<string, T>()
     }
     if (newValue === undefined) {
-      st.delete(viewId)
+      spu.delete(key)
     } else {
-      st.set(viewId, newValue)
+      spu.set(key, newValue)
     }
-    this.statePerUser.set(id, st)
+    this.statePerUser.set(id, spu)
     this.publish(id, 'updated', {})
   }
 
   functionTogether({ rtKey, args }: FunctionTogetherArgs) {
     this.publish(rtKey, 'call', args)
+  }
+
+  configureStatePerUser({ id, viewId, options }: ConfigureStatePerUserArgs) {
+    const { keyOverride, persistDisconnectedUserData } = options
+
+    const config = this.statePerUserConfig.get(id) ?? {}
+    if (keyOverride !== undefined) {
+      if (config.viewKeyOverrideMapping === undefined) {
+        config.viewKeyOverrideMapping = new Map()
+      }
+      config.viewKeyOverrideMapping.set(viewId, keyOverride)
+    }
+    if (persistDisconnectedUserData !== undefined) {
+      config.persistDisconnectedUserData = persistDisconnectedUserData
+    }
+    this.statePerUserConfig.set(id, config)
+  }
+
+  handleViewExit(viewId: string | ViewInfo<unknown>) {
+    viewId = typeof viewId !== 'string' ? viewId.viewId : viewId
+    this.statePerUser.forEach((st, rtKey) => {
+      const config = this.statePerUserConfig.get(rtKey)
+      const persistData = config?.persistDisconnectedUserData
+      const viewKeyOverrideMapping = config?.viewKeyOverrideMapping
+      if (!persistData) {
+        // If the exiting view has a keyOverride, we just delete it if any other view
+        // has the same keyOverride
+        const keyOverride = viewKeyOverrideMapping?.get(viewId)
+        if (!viewKeyOverrideMapping || !keyOverride) {
+          st.delete(viewId)
+          this.publish(rtKey, 'updated', {})
+        } else {
+          // If the exiting view has a keyOverride, we need to delete it if any other view
+          // has the same keyOverride
+          const otherViewIdsHaveSameKeyOverride = Array.from(
+            viewKeyOverrideMapping.entries()
+          ).some(([otherViewId, otherKeyOverride]) => {
+            return otherViewId !== viewId && otherKeyOverride === keyOverride
+          })
+          if (!otherViewIdsHaveSameKeyOverride) {
+            st.delete(keyOverride)
+            this.publish(rtKey, 'updated', {})
+          }
+        }
+      }
+      viewKeyOverrideMapping?.delete(viewId)
+    })
   }
 }
 ReactTogetherModel.register('ReactTogetherModel')
