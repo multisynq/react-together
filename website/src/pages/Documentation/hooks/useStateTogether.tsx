@@ -1,9 +1,12 @@
+import { Markdown } from '@components/Markdown'
 import { CodeBlock } from '@components/ui/CodeBlock'
 import CodeSpan from '@components/ui/CodeSpan'
 import Link from '@components/ui/Link'
+import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
+import InterfaceApi from '../InterfaceApi'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
@@ -48,6 +51,11 @@ const api = (
           type: 'T',
           description: 'The initial value to use when the state is first created.',
         },
+        {
+          name: 'options',
+          type: <LinkSpan text='UseStateTogetherOptions' to='#options' />,
+          description: 'An option object that allows configuring the behavior of the hook. See more details below.',
+        },
       ]}
     />
     <HookReturnApi
@@ -62,6 +70,23 @@ const api = (
           type: '(T | (T) => T) => void',
           description:
             'The setter function that allows updating the state to a different value, changing it for every user in the same session.',
+        },
+      ]}
+    />
+    <InterfaceApi
+      title='UseStateTogetherOptions'
+      id='options'
+      items={[
+        {
+          name: 'resetOnDisconnect',
+          type: 'boolean',
+          default: 'false',
+          description: (
+            <Markdown>
+              If `true`, the user's state will be reset to `initialValue` after the user disconnects from the session. Note that this only
+              affects the user's local state, *after* the user disconnects.
+            </Markdown>
+          ),
         },
       ]}
     />
