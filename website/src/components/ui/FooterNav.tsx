@@ -40,6 +40,10 @@ const footerData: FooterSection[] = [
       { label: 'X/Twitter', url: 'https://x.com/multisynq', target: '_blank' },
     ],
   },
+  {
+    title: 'Archive',
+    links: [{ label: 'hackathon', url: '/hackathon', target: '_top' }],
+  },
 ]
 
 const FooterNav: React.FC = () => {
