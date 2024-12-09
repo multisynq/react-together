@@ -21,7 +21,7 @@ export function PageHeader() {
   return (
     <div className='flex flex-col items-center max-w-[105rem]'>
       <div className='h-8'></div>
-      <h1 className='flex flex-col sm:flex-row items-center gap-2'>
+      <h1 className='flex flex-col sm:flex-row items-center gap-2 text-center sm:text-start'>
         {`Bring users together`} <span className='textEffect'>seamlessly</span>
       </h1>
       <div className='h-4'></div>

@@ -5,7 +5,7 @@ import slicrBanner from '@images/projects/slicr.png'
 import synqCity from '@images/projects/synqCity.png'
 import tripSync from '@images/projects/tripSync.png'
 
-import { Carousel, CarouselResponsiveOption } from 'primereact/carousel'
+import { CarouselResponsiveOption } from 'primereact/carousel'
 import { useState } from 'react'
 import Link from './Link'
 
@@ -116,8 +116,7 @@ export default function UseCaseCarousel() {
   }
 
   const HeaderContent = (
-    // <div className='flex gap-4 sm:gap-4 items-center justify-between sm:justify-start'>
-    <div className='flex justify-start w-full'>
+    <div className='flex justify-center sm:justify-start w-full'>
       <div className='flex pl-[2rem] gap-5 flex-col sm:flex-row lg:gap-[3rem]'>
         <div className='border px-8 py-4 line-border flex flex-col gap-2 bg-lime-100 justify-center items-center'>
           <h2 style={{ fontWeight: 600, fontSize: '40px', lineHeight: '40px' }}>See Our Examples</h2>
@@ -131,8 +130,9 @@ export default function UseCaseCarousel() {
             <span className='text-xl tracking-tight font-medium text-center sm:text-left'>
               See the full list of{' '}
               <Link to='https://taikai.network/multisynq/hackathons/hacktogether/results' target='_blank'>
-                projects .
+                projects
               </Link>
+              .
             </span>
           </div>
         </div>
@@ -144,15 +144,15 @@ export default function UseCaseCarousel() {
     <>
       <div className='mb-[5rem] flex flex-col w-full gap-[2rem]'>
         {HeaderContent}
-        <div className='card w-full flex items-center justify-center'>
-          <Carousel
+        <div className='card w-full flex items-center justify-center bg-slate-600'>
+          {/* <Carousel
             className='w-[28rem] sm:w-full'
             value={projects}
             numScroll={1}
             numVisible={3}
             responsiveOptions={responsiveOptions}
             itemTemplate={projectTemplate}
-          />
+          /> */}
         </div>
       </div>
     </>

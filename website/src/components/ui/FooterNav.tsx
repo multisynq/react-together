@@ -48,19 +48,26 @@ const footerData: FooterSection[] = [
 
 const FooterNav: React.FC = () => {
   return (
-    <div className='flex p-2 w-full justify-between'>
+    <div className='grid grid-cols-2 gap-4 p-1 sm:p-2 w-full sm:flex'>
       {footerData.map((section, index) => (
-        <div key={index} className='flex flex-col gap-1 text-gray-900'>
-          <span className='text-sm'>{section.title}</span>
-          <ul className='flex flex-col'>
-            {section.links.map((link, idx) => (
-              <li key={idx}>
-                <Link to={link.url} target={link.target} className='text-xs text-gray-600 hover:underline hover:underline-offset-4'>
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div key={index} className='flex flex-col gap-1 text-gray-900 items-center sm:items-start flex-1'>
+          {/* <div className='flex w-full justify-between'>
+      {footerData.map((section, index) => (
+        <div key={index} className='flex flex-col gap-1 text-gray-900'> */}
+          <div>
+            <div className='w-28 sm:w-auto'>
+              <span className='text-sm'>{section.title}</span>
+            </div>
+            <ul className='flex flex-col'>
+              {section.links.map((link, idx) => (
+                <li key={idx}>
+                  <Link to={link.url} target={link.target} className='text-xs text-gray-600 hover:underline hover:underline-offset-4'>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       ))}
     </div>
