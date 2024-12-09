@@ -42,7 +42,7 @@ const footerData: FooterSection[] = [
   },
   {
     title: 'Archive',
-    links: [{ label: 'hackathon', url: '/hackathon', target: '_top' }],
+    links: [{ label: 'Hackathon', url: '/hackathon', target: '_top' }],
   },
 ]
 
