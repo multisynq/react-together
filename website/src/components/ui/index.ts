@@ -1,7 +1,7 @@
 import { Badge, badgeVariants } from './badge'
 import { Button, buttonVariants } from './button'
 
-import CodeBlock from './CodeBlock'
+import CodeBlock, { type CodeBlockCodeType } from './CodeBlock'
 import CodeHighlight from './CodeHighlight'
 import CodeSpan from './CodeSpan'
 
@@ -54,6 +54,7 @@ export {
   Button,
   buttonVariants,
   CodeBlock,
+  CodeBlockCodeType,
   CodeHighlight,
   CodeSpan,
   Command,

@@ -6,9 +6,10 @@ interface GenericPageProps {
   description?: ReactNode | ReactNode[]
   usage?: ReactNode | ReactNode[]
   api?: ReactNode | ReactNode[]
+  source?: ReactNode | ReactNode[]
   id?: string
 }
-export function GenericDocPage({ title, description, usage, api, id }: GenericPageProps) {
+export function GenericDocPage({ title, description, usage, api, source, id }: GenericPageProps) {
   const ref = useRef(null)
   return (
     <>
@@ -36,6 +37,13 @@ export function GenericDocPage({ title, description, usage, api, id }: GenericPa
           {api}
         </>
       )}
+
+      {source && (
+        <>
+          <h3 id='source'>Source Code</h3>
+          {source}
+        </>
+      )}
     </>
   )
 }
@@ -49,5 +57,6 @@ export function GenericDocNav(name, { exclude = [] }: GenericDocNavOptions = {})
     // { key: 'installation', label: 'Installation' },
     { key: 'usage', label: 'Usage' },
     { key: 'api', label: 'API' },
+    { key: 'source', label: 'Source Code' },
   ].filter(({ key }) => !exclude.includes(key))
 }

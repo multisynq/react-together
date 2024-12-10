@@ -7,8 +7,12 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 const originalName = 'TriStateCheckbox'
 const name = 'TriStateCheckboxTogether'
 const docUrl = 'https://primereact.org/tristatecheckbox/'
+const demoGithub = ''
+const sourceGithub = ''
 
-const sourceCode = `
+const codes = {
+  source: {
+    basic: `
 import {
   TriStateCheckbox,
   TriStateCheckboxProps
@@ -30,9 +34,11 @@ export default function TriStateCheckboxTogether({ rtKey, ...props }) {
     </>
   )
 }
-`
+`,
+  },
 
-const demoCode = `
+  demo: {
+    basic: `
 import { TriStateCheckboxTogether } from 'react-together-primereact'
 
 export function PrimeReactTriStateCheckboxTogetherDemo() {
@@ -42,7 +48,9 @@ export function PrimeReactTriStateCheckboxTogetherDemo() {
     </div>
   )
 }
-`
+`,
+  },
+}
 
 export default function PrimeReactTriStateTriStateCheckboxTogetherDocumentationPage() {
   const api = (
@@ -73,7 +81,18 @@ export default function PrimeReactTriStateTriStateCheckboxTogetherDocumentationP
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        docUrl,
+        api,
+        demo: { code: codes.demo, github: demoGithub },
+        source: { code: codes.source, github: sourceGithub },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('TriStateCheckboxTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('TriStateCheckboxTogether') }} />
 }

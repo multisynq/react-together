@@ -8,7 +8,7 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
 
 const codes = {
-  code1: {
+  code_1: {
     basic: `
 import { ConnectedUsers } from 'react-together'
 
@@ -18,11 +18,11 @@ export function ConnectedUsersDemo() {
 `,
   },
 
-  code2: {
+  code_2: {
     basic: `import { ConnectedUsers } from 'react-together'`,
   },
 
-  code3: {
+  code_3: {
     basic: `return <ConnectedUsers />`,
   },
 }
@@ -62,15 +62,15 @@ export default function ConnectedUsersDocumentationPage() {
             <PreviewSourceCodeTabs
               {...{
                 preview: <DocumentationDemo url='ConnectedUsers' />,
-                code: <CodeBlock code={codes.code1} />,
+                code: <CodeBlock code={codes.code_1} />,
               }}
             />
           </>
         ),
         usage: (
           <>
-            <CodeBlock code={codes.code2} />
-            <CodeBlock code={codes.code3} />
+            <CodeBlock code={codes.code_2} />
+            <CodeBlock code={codes.code_3} />
           </>
         ),
         api,

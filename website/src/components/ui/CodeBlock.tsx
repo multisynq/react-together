@@ -7,14 +7,16 @@ import { Button, CodeHighlight } from '@components'
 import { useCodeEditor } from '@utils/codeeditor'
 import { useEffect, useState } from 'react'
 
+export type CodeBlockCodeType = {
+  basic?: string
+  javascript?: string
+  typescript?: string
+  bash?: string
+  data?: string
+}
+
 interface CodeBlockProps {
-  code: {
-    basic?: string
-    javascript?: string
-    typescript?: string
-    bash?: string
-    data?: string
-  }
+  code: CodeBlockCodeType
   embedded?: boolean
   hideToggleCode?: boolean
   hideStackBlitz?: boolean
