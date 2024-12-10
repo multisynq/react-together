@@ -1,6 +1,7 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import Link from '@components/ui/Link'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
+import { TabPanel, TabView } from 'primereact/tabview'
 import { ReactNode } from 'react'
 import { GenericDocPage } from '../../GenericDocPage'
 import ApiChangesPrelude from './ApiChangesPrelude'
@@ -9,9 +10,10 @@ interface GenericComponentPageProps {
   name: string
   originalName: string
   docUrl: string
+  sourceCode: string
   api?: ReactNode | ReactNode[]
 }
-export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api }: GenericComponentPageProps) {
+export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api, sourceCode }: GenericComponentPageProps) {
   const description = (
     <>
       <p>
@@ -21,7 +23,14 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
         </Link>{' '}
         component to synchronized the state across all users.
       </p>
-      <DocumentationDemo url={`primereact/${originalName}`} />
+      <TabView>
+        <TabPanel header='Preview'>
+          <DocumentationDemo url={`primereact/${originalName}`} />
+        </TabPanel>
+        <TabPanel header='Code'>
+          <CodeBlock language='tsx' code1={sourceCode} />
+        </TabPanel>
+      </TabView>
     </>
   )
 
@@ -37,8 +46,8 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
 
   const usage = (
     <>
-      <CodeBlock language='jsx' code1={`import { ${name} } from 'react-together-primereact'`} />
-      <CodeBlock language='jsx' code1={`return <${name} rtKey='your-unique-key' />`} />
+      <CodeBlock language='tsx' code1={`import { ${name} } from 'react-together-primereact'`} />
+      <CodeBlock language='tsx' code1={`<${name} rtKey='your-unique-key' />`} />
     </>
   )
   return <GenericDocPage title={name} description={description} usage={usage} api={api} />

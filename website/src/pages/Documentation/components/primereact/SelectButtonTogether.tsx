@@ -8,6 +8,29 @@ const name = 'SelectButtonTogether'
 const originalName = 'SelectButton'
 const docUrl = `https://primereact.org/selectbutton`
 
+const sourceCode = `
+import { SelectButton, SelectButtonProps } from 'primereact/selectbutton'
+import { useStateTogether } from 'react-together'
+
+export default function SelectButtonTogether({ rtKey, options, ...props }) {
+  const [value, set_value] = useStateTogether<unknown>(rtKey, null)
+
+  return (
+    <SelectButton
+      {...props}
+      onChange={(e) => set_value(e.value || false)}
+      options={options}
+      value={value || options?.[0]}
+      pt={{
+        button: (ctx) => ({
+          className: \`border h-[15px] \${(ctx || { props: {} }).props.className}\`
+        })
+      }}
+    />
+  )
+}
+`
+
 export default function PrimeReactSelectButtonTogetherDocumentationPage() {
   const api = (
     <>
@@ -37,7 +60,7 @@ export default function PrimeReactSelectButtonTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('SelectButtonTogether')} />
 }

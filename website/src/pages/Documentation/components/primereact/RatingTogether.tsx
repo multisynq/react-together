@@ -8,6 +8,24 @@ const name = 'RatingTogether'
 const originalName = 'Rating'
 const docUrl = `https://primereact.org/rating`
 
+const sourceCode = `
+import { Rating, RatingProps } from 'primereact/rating'
+import { Nullable } from 'primereact/ts-helpers'
+import { useStateTogether } from 'react-together'
+
+export default function RatingTogether({ rtKey, ...props }) {
+}: RatingTogetherProps) {
+  const [value, set_value] = useStateTogether<Nullable<number>>(rtKey, null)
+  return (
+    <Rating
+      {...props}
+      value={value || undefined}
+      onChange={(e) => set_value(e.value)}
+    />
+  )
+}
+`
+
 export default function PrimeReactRatingTogetherDocumentationPage() {
   const api = (
     <>
@@ -42,7 +60,7 @@ export default function PrimeReactRatingTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('RatingTogether')} />
 }

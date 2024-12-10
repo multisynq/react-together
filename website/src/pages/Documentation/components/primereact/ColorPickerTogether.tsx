@@ -9,6 +9,66 @@ const name = 'ColorPickerTogether'
 const originalName = 'ColorPicker'
 const docUrl = `https://primereact.org/colorpicker`
 
+const sourceCode = `
+import {
+  ColorPicker,
+  ColorPickerChangeEvent,
+  ColorPickerHSBType,
+  ColorPickerProps,
+  ColorPickerRGBType
+} from 'primereact/colorpicker'
+import { useCallback, useEffect, useState } from 'react'
+import { useStateTogether } from 'react-together'
+
+
+export default function ColorPickerTogether({
+  rtKey,
+  publishWhileOpen = false,
+  onChange,
+  ...props
+}) {
+  const [localValue, setLocalValue] = useState<ColorPickerValueType>(undefined)
+  const [remoteValue, setRemoteValue] = useStateTogether<ColorPickerValueType>(
+    rtKey,
+    undefined
+  )
+
+  const inline = props.inline
+
+  const handleChange = useCallback(
+    (e: ColorPickerChangeEvent) => {
+      if (e.value === null) {
+        e.value = undefined
+      }
+      if (inline || publishWhileOpen) {
+        setRemoteValue(e.value)
+      } else {
+        setLocalValue(e.value)
+      }
+      onChange?.(e)
+    },
+    [setRemoteValue, setLocalValue, inline, publishWhileOpen, onChange]
+  )
+
+  const handleHide = useCallback(() => {
+    setRemoteValue(localValue)
+  }, [setRemoteValue, localValue])
+
+  useEffect(() => {
+    setLocalValue(remoteValue)
+  }, [remoteValue, setLocalValue])
+
+  return (
+    <ColorPicker
+      {...props}
+      value={localValue}
+      onChange={handleChange}
+      onHide={handleHide}
+    />
+  )
+}
+`
+
 export default function PrimeReactColorPickerTogetherDocumentationPage() {
   const api = (
     <>
@@ -52,7 +112,7 @@ export default function PrimeReactColorPickerTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('ColorPickerTogether')} />
 }

@@ -8,6 +8,19 @@ const name = 'KnobTogether'
 const originalName = 'Knob'
 const docUrl = `https://primereact.org/knob`
 
+const sourceCode = `
+import { Knob, KnobProps } from 'primereact/knob'
+import { useStateTogether } from 'react-together'
+
+export default function KnobTogether({ rtKey, ...props }) {
+  const [value, set_value] = useStateTogether<number>(rtKey, 0)
+
+  return (
+    <Knob {...props} value={value || 0} onChange={(e) => set_value(e.value)} />
+  )
+}
+`
+
 export default function PrimeReactKnobTogetherDocumentationPage() {
   const api = (
     <>
@@ -37,7 +50,7 @@ export default function PrimeReactKnobTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('KnobTogether')} />
 }
