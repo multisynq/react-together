@@ -20,7 +20,7 @@ function IntroductionContent() {
       <p>
         Install the <CodeSpan text='react-together' /> package via <CodeSpan text='npm' />
       </p>
-      <CodeBlock language='bash' code1={`npm i react-together`} />
+      <CodeBlock language='bash' codeShort={`npm i react-together`} />
 
       <h4 id='context'>Context</h4>
       <p>
@@ -31,10 +31,10 @@ function IntroductionContent() {
         </Link>
         .
       </p>
-      <CodeBlock language='tsx' code1={`import { ReactTogether } from 'react-together'`} />
+      <CodeBlock language='tsx' codeShort={`import { ReactTogether } from 'react-together'`} />
       <CodeBlock
         language='tsx'
-        code1={`
+        codeShort={`
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ReactTogether
     sessionParams={{
@@ -52,7 +52,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <DocumentationDemo url='CountButtonTogether' />
       <CodeBlock
         language='tsx'
-        code1={`const [count, set_count] = useStateTogether('count', 0)
+        codeShort={`const [count, set_count] = useStateTogether('count', 0)
   
 return (
   <button 
@@ -62,7 +62,7 @@ return (
     Count: {count}
   </button>
 )`}
-        code2={`import { useStateTogether } from './react-together'
+        codeLong={`import { useStateTogether } from './react-together'
 
 export default function CountButtonTogether() {
   const [count, set_count] = useStateTogether('count', 0)

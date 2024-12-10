@@ -34,8 +34,8 @@ export default function SessionManagerDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { SessionManager } from 'react-together'`} />
-          <CodeBlock language='javascript' code1={`return <SessionManager />`} />
+          <CodeBlock language='javascript' codeShort={`import { SessionManager } from 'react-together'`} />
+          <CodeBlock language='javascript' codeShort={`return <SessionManager />`} />
         </>
       }
     />

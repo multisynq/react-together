@@ -55,10 +55,10 @@ export default function UseConnectedUsersDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='jsx' code1={`import { useConnectedUsers } from 'react-together'`} />
+          <CodeBlock language='jsx' codeShort={`import { useConnectedUsers } from 'react-together'`} />
           <CodeBlock
             language='jsx'
-            code1={`const connectedUsers = useConnectedUsers()
+            codeShort={`const connectedUsers = useConnectedUsers()
 
 return (
   <div ref={ref}>

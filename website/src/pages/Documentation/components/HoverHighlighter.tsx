@@ -63,10 +63,10 @@ export default function HoverHighlighterDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { ReactTogether } from 'react-together'`} />
+          <CodeBlock language='javascript' codeShort={`import { ReactTogether } from 'react-together'`} />
           <CodeBlock
             language='javascript'
-            code1={`return (
+            codeShort={`return (
   <HoverHighlighter rtKey='unique-key'>
     <YourComponent/>
   </HoverHighlighter>

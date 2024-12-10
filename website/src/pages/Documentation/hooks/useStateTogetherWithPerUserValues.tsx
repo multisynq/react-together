@@ -69,10 +69,10 @@ const content = (
     }
     usage={
       <>
-        <CodeBlock language='jsx' code1={`import { useStateTogetherWithPerUserValues } from 'react-together'`} />
+        <CodeBlock language='jsx' codeShort={`import { useStateTogetherWithPerUserValues } from 'react-together'`} />
         <CodeBlock
           language='jsx'
-          code1={`const [count, setCount, countPerUser] = useStateTogetherWithPerUserValues('unique-key', 0)
+          codeShort={`const [count, setCount, countPerUser] = useStateTogetherWithPerUserValues('unique-key', 0)
 
 const increment = () => setCount((prev) => prev + 1)
 const reset = () => setCount(0)`}

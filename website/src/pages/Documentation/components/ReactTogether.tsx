@@ -116,10 +116,10 @@ export default function ReactTogetherDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { ReactTogether } from 'react-together'`} />
+          <CodeBlock language='javascript' codeShort={`import { ReactTogether } from 'react-together'`} />
           <CodeBlock
             language='javascript'
-            code1={`ReactDOM.createRoot(document.getElementById('root')!).render(
+            codeShort={`ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ReactTogether
       sessionParams={{

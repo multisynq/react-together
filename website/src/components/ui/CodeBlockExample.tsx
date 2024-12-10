@@ -15,7 +15,7 @@ greet('World');
 
   return (
     <>
-      <CodeBlock language='javascript' code1={sampleCode1} code2={sampleCode2} />
+      <CodeBlock language='javascript' codeShort={sampleCode1} codeLong={sampleCode2} />
     </>
   )
 }

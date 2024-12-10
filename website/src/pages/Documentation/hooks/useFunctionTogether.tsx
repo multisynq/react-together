@@ -64,10 +64,10 @@ export default function UseFunctionTogetherDocumentationPage() {
       description={description}
       usage={
         <>
-          <CodeBlock language='jsx' code1={`import { useLeaveSession } from 'react-together'`} />
+          <CodeBlock language='jsx' codeShort={`import { useLeaveSession } from 'react-together'`} />
           <CodeBlock
             language='jsx'
-            code1={`\
+            codeShort={`\
 export default function YourComponent() {
   const ding = useFunctionTogether('ding', () => {
     alert('Dong!')

@@ -5,17 +5,19 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 interface CodeBlockProps {
   language: string
-  code1: string
-  code2?: string
+  codeShort: string
+  codeLong?: string
+  stackblitz?: boolean
+  github?: string
 }
 
-export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
+export function CodeBlock({ language, codeShort, codeLong, stackblitz, github }: CodeBlockProps) {
   const [copySuccess, setCopySuccess] = useState(false)
   const [showCode1, setShowCode1] = useState(true)
 
   const copyToClipboard = () => {
     navigator.clipboard
-      .writeText(code2 && !showCode1 ? code2 : code1)
+      .writeText(codeLong && !showCode1 ? codeLong : codeShort)
       .then(() => {
         setCopySuccess(true)
         setTimeout(() => setCopySuccess(false), 2000)
@@ -30,7 +32,7 @@ export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
   return (
     <div className='relative w-full'>
       <div className='top-2 right-2 absolute flex gap-2 z-10'>
-        {code2 && (
+        {codeLong && (
           <button
             onClick={toggleCode}
             className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded-lg text-sm flex items-center justify-center'
@@ -39,6 +41,27 @@ export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
             <i className='pi pi-code' style={{ fontSize: '1rem' }}></i>
           </button>
         )}
+
+        {stackblitz && (
+          <button
+            onClick={() => window.open('https://stackblitz.com/edit/stackblitz-generator', '_blank')}
+            className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded-lg text-sm flex items-center justify-center'
+            title='Edit on StackBlitz'
+          >
+            <i className='pi pi-stackblitz' style={{ fontSize: '1rem' }}></i>
+          </button>
+        )}
+
+        {github && (
+          <button
+            onClick={() => window.open(github, '_blank')}
+            className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded-lg text-sm flex items-center justify-center'
+            title='View on GitHub'
+          >
+            <i className='pi pi-github' style={{ fontSize: '1rem' }}></i>
+          </button>
+        )}
+
         <button
           onClick={copyToClipboard}
           className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded-lg text-sm flex items-center justify-center'
@@ -63,7 +86,7 @@ export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
           marginBottom: 0,
         }}
       >
-        {code2 && !showCode1 ? String(code2) : String(code1)}
+        {codeLong && !showCode1 ? String(codeLong) : String(codeShort)}
       </SyntaxHighlighter>
     </div>
   )

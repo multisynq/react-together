@@ -14,13 +14,13 @@ export default function GetSessionPasswordFromUrlDocumentationPage() {
     <>
       <CodeBlock
         language='jsx'
-        code1={`\
+        codeShort={`\
 import { utils } from 'react-together'
 const { getSessionPasswordFromUrl } = utils`}
       />
       <CodeBlock
         language='jsx'
-        code1={`\
+        codeShort={`\
 const url = new URL('https://reacttogether.dev?rtName=session1#rtPwd=secret');
 const sessionName = getSessionPasswordFromUrl(url); // 'secret'
 

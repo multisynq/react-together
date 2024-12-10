@@ -30,10 +30,10 @@ export default function UseCreateRandomSessionDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='jsx' code1={`import { useCreateRandomSession } from 'react-together'`} />
+          <CodeBlock language='jsx' codeShort={`import { useCreateRandomSession } from 'react-together'`} />
           <CodeBlock
             language='jsx'
-            code1={`\
+            codeShort={`\
 const createRandomSession = useCreateRandomSession()
 
 return (

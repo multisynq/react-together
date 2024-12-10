@@ -29,8 +29,8 @@ export default function UseJoinUrlDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='jsx' code1={`import { useIsTogether } from 'react-together'`} />
-          <CodeBlock language='jsx' code1={`const isTogether = useIsTogether()`} />
+          <CodeBlock language='jsx' codeShort={`import { useIsTogether } from 'react-together'`} />
+          <CodeBlock language='jsx' codeShort={`const isTogether = useIsTogether()`} />
         </>
       }
       api={api}

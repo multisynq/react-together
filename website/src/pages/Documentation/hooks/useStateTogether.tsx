@@ -23,10 +23,10 @@ const description = (
 
 const usage = (
   <>
-    <CodeBlock language='jsx' code1={`import { useStateTogether } from 'react-together'`} />
+    <CodeBlock language='jsx' codeShort={`import { useStateTogether } from 'react-together'`} />
     <CodeBlock
       language='jsx'
-      code1={`const [count, setCount] = useStateTogether('unique-key', 0)
+      codeShort={`const [count, setCount] = useStateTogether('unique-key', 0)
         
 const increment = () => setCount((prev) => prev + 1)
 const reset = () => setCount(0)`}

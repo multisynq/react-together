@@ -42,8 +42,8 @@ export default function ConnectedUsersDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='javascript' code1={`import { ConnectedUsers } from 'react-together'`} />
-          <CodeBlock language='javascript' code1={`return <ConnectedUsers/>`} />
+          <CodeBlock language='javascript' codeShort={`import { ConnectedUsers } from 'react-together'`} />
+          <CodeBlock language='javascript' codeShort={`return <ConnectedUsers/>`} />
         </>
       }
       api={api}

@@ -66,10 +66,10 @@ export default function UseHoveringUsersDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='jsx' code1={`import { useHoveringUsers } from 'react-together'`} />
+          <CodeBlock language='jsx' codeShort={`import { useHoveringUsers } from 'react-together'`} />
           <CodeBlock
             language='jsx'
-            code1={`const [ref, hoveringViews, isHovering] = useHoveringUsers(‘hovering-views’)
+            codeShort={`const [ref, hoveringViews, isHovering] = useHoveringUsers(‘hovering-views’)
 
 return (
   <div>

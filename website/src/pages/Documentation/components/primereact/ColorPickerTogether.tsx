@@ -8,6 +8,7 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 const name = 'ColorPickerTogether'
 const originalName = 'ColorPicker'
 const docUrl = `https://primereact.org/colorpicker`
+const github = `https://github.com/multisynq/react-together/blob/develop/packages/react-together-primereact/src/components/ColorPickerTogether.tsx`
 
 const sourceCode = `
 import {
@@ -112,7 +113,7 @@ export default function PrimeReactColorPickerTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, github }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('ColorPickerTogether')} />
 }

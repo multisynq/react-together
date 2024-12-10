@@ -31,8 +31,8 @@ export default function UseMyIdDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='jsx' code1={`import { useMyId } from 'react-together'`} />
-          <CodeBlock language='jsx' code1={`const myId = useMyId()`} />
+          <CodeBlock language='jsx' codeShort={`import { useMyId } from 'react-together'`} />
+          <CodeBlock language='jsx' codeShort={`const myId = useMyId()`} />
         </>
       }
       api={api}

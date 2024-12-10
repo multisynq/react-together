@@ -9,13 +9,13 @@ export default function GetJoinUrlDocumentationPage() {
     <>
       <CodeBlock
         language='jsx'
-        code1={`\
+        codeShort={`\
 import { utils } from 'react-together'
 const { getJoinUrl } = utils`}
       />
       <CodeBlock
         language='jsx'
-        code1={`\
+        codeShort={`\
 const url = new URL('https://reacttogether.dev');
 const joinUrl = getJoinUrl(url, 'session1', 'password123');
 console.log(joinUrl.toString()); // 'https://reacttogether.dev?rtName=session1#rtPwd=password123'

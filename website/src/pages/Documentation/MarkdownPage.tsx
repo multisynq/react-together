@@ -34,7 +34,7 @@ export function MarkdownPage({ markdown }: MarkdownPageProps) {
               const isInline = children.toString().split('\n').length === 1
               const match = /language-(\w+)/.exec(className || '')
               return !isInline ? (
-                <CodeBlock language={match?.[1]} code1={String(children)} {...props} />
+                <CodeBlock language={match?.[1]} codeShort={String(children)} {...props} />
               ) : (
                 <code className={className} {...props}>
                   {children}

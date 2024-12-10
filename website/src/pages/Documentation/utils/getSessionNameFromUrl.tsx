@@ -14,13 +14,13 @@ export default function GetSessionNameFromUrlDocumentationPage() {
     <>
       <CodeBlock
         language='jsx'
-        code1={`\
+        codeShort={`\
 import { utils } from 'react-together'
 const { getSessionNameFromUrl } = utils`}
       />
       <CodeBlock
         language='jsx'
-        code1={`\
+        codeShort={`\
 const url = new URL('https://reacttogether.dev?rtName=session1');
 const sessionName = getSessionNameFromUrl(url); // 'session1'
 
