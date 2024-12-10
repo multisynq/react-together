@@ -78,6 +78,8 @@
     "multiplayer",
     "websockets",
     "sockets",
+    "interaction",
+    "interactive",
     "collaboration",
     "collaborative",
     "presence",
