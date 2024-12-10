@@ -14,7 +14,7 @@ interface GenericComponentPageProps {
   demoCode: string
   api?: ReactNode | ReactNode[]
 }
-export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api, demoCode }: GenericComponentPageProps) {
+export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api, demoCode, sourceCode }: GenericComponentPageProps) {
   const description = (
     <>
       <p>
@@ -49,6 +49,9 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
     <>
       <CodeBlock language='tsx' code1={`import { ${name} } from 'react-together-primereact'`} />
       <CodeBlock language='tsx' code1={`<${name} rtKey='your-unique-key' />`} />
+      <h3>Source Code</h3>
+      <p>Feel free to copy the code below to adjust the component to your needs!! It's easy peasy lemon squeezy.</p>
+      <CodeBlock language='tsx' code1={sourceCode} />
     </>
   )
   return <GenericDocPage title={name} description={description} usage={usage} api={api} />
