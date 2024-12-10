@@ -125,7 +125,7 @@ export default function PrimeReactColorPickerTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, github }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, demoCode, sourceCode, github }} />
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('ColorPickerTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('ColorPickerTogether') }} />
 }

@@ -13,11 +13,11 @@ interface CodeBlockProps {
 
 export function CodeBlock({ language, codeShort, codeLong, stackblitz, github }: CodeBlockProps) {
   const [copySuccess, setCopySuccess] = useState(false)
-  const [showCode1, setShowCode1] = useState(true)
+  const [showCodeShort, setShowCodeShort] = useState(true)
 
   const copyToClipboard = () => {
     navigator.clipboard
-      .writeText(codeLong && !showCode1 ? codeLong : codeShort)
+      .writeText(codeLong && !showCodeShort ? codeLong : codeShort)
       .then(() => {
         setCopySuccess(true)
         setTimeout(() => setCopySuccess(false), 2000)
@@ -26,7 +26,7 @@ export function CodeBlock({ language, codeShort, codeLong, stackblitz, github }:
   }
 
   const toggleCode = () => {
-    setShowCode1(!showCode1)
+    setShowCodeShort(!showCodeShort)
   }
 
   return (
@@ -86,7 +86,7 @@ export function CodeBlock({ language, codeShort, codeLong, stackblitz, github }:
           marginBottom: 0,
         }}
       >
-        {codeLong && !showCode1 ? String(codeLong) : String(codeShort)}
+        {codeLong && !showCodeShort ? String(codeLong) : String(codeShort)}
       </SyntaxHighlighter>
     </div>
   )
