@@ -9,7 +9,7 @@ import ComponentPropsTable from './ComponentPropsTable'
 
 export const codes = {
   demo: {
-    typescript: `
+    basic: `
 import { useState } from 'react'
 import { HoverHighlighter } from 'react-together'
 
@@ -62,10 +62,12 @@ function getDarkerShade(hexColor: string, darkenFactor = 0.8): string {
 
   return \`#\${newHex}\`
 }
-    `,
+`,
   },
 
-  usage_1: { basic: `import { ReactTogether } from 'react-together` },
+  usage_1: {
+    basic: `import { ReactTogether } from 'react-together`,
+  },
 
   usage_2: {
     basic: `
@@ -73,7 +75,8 @@ return (
   <HoverHighlighter rtKey='unique-key'>
     <YourComponent/>
   </HoverHighlighter>
-)`,
+)
+`,
   },
 }
 
@@ -122,25 +125,27 @@ export default function HoverHighlighterDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='HoverHighlighter'
-      description={
-        <>
-          <p>
-            This component wraps its children inside a <CodeSpan text='div' /> that is highlighted whenever a user is hovering it. This
-            component can be customized by passing a <CodeSpan text='className' /> prop. Alternatively, you can create your own component
-            using the <LinkSpan to='/useHoveringUsers' text='useHoveringUsers' /> hook.
-          </p>
-          <PreviewSourceCodeTabs preview={<DocumentationDemo url='HoverHighlighter' />} code={<CodeBlock code={codes.demo} />} />
-        </>
-      }
-      usage={
-        <>
-          <CodeBlock code={codes.usage_1} />
-          <CodeBlock code={codes.usage_2} />
-        </>
-      }
-      api={api}
+      {...{
+        title: 'HoverHighlighter',
+        description: (
+          <>
+            <p>
+              This component wraps its children inside a <CodeSpan text='div' /> that is highlighted whenever a user is hovering it. This
+              component can be customized by passing a <CodeSpan text='className' /> prop. Alternatively, you can create your own component
+              using the <LinkSpan to='/useHoveringUsers' text='useHoveringUsers' /> hook.
+            </p>
+            <PreviewSourceCodeTabs preview={<DocumentationDemo url='HoverHighlighter' />} code={<CodeBlock code={codes.demo} />} />
+          </>
+        ),
+        usage: (
+          <>
+            <CodeBlock code={codes.usage_1} />
+            <CodeBlock code={codes.usage_2} />
+          </>
+        ),
+        api,
+      }}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('HoverHighlighter')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('HoverHighlighter') }} />
 }

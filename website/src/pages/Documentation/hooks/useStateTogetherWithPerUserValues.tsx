@@ -8,14 +8,17 @@ import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
 const codes = {
-  usage_1: { javascript: `import { useStateTogetherWithPerUserValues } from 'react-together'` },
+  usage_1: {
+    basic: `import { useStateTogetherWithPerUserValues } from 'react-together'`,
+  },
+
   usage_2: {
-    javascript: `
+    basic: `
 const [count, setCount, countPerUser] = useStateTogetherWithPerUserValues('unique-key', 0)
 
 const increment = () => setCount((prev) => prev + 1)
 const reset = () => setCount(0)
-  `,
+`,
   },
 }
 

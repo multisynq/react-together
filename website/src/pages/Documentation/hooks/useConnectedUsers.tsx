@@ -10,7 +10,7 @@ import HookReturnApi from './HookReturnApi'
 
 const codes = {
   demo: {
-    typescript: `
+    basic: `
 import { Avatar } from 'primereact/avatar'
 import { AvatarGroup } from 'primereact/avatargroup'
 import { useConnectedUsers } from '../hooks'
@@ -79,13 +79,15 @@ export default function ConnectedUsers({
     </>
   )
 }
-  `,
+`,
   },
 
-  usage_1: { javascript: `import { useConnectedUsers } from 'react-together'` },
+  usage_1: {
+    basic: `import { useConnectedUsers } from 'react-together'`,
+  },
 
   usage_2: {
-    javascript: `
+    basic: `
 const connectedUsers = useConnectedUsers()
 
 return (
@@ -98,7 +100,7 @@ return (
     }</ul>
   </div>
 )
-  `,
+`,
   },
 }
 
@@ -139,24 +141,26 @@ export default function UseConnectedUsersDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='useConnectedUsers'
-      description={
-        <>
-          <p>
-            The <CodeSpan text='useConnectedUsers' /> hook returns an array of objects representing all the users that are connected to the
-            current session.
-          </p>
-          <PreviewSourceCodeTabs preview={<DocumentationDemo url='ConnectedUsers' />} code={<CodeBlock code={codes.demo} />} />
-        </>
-      }
-      usage={
-        <>
-          <CodeBlock code={codes.usage_1} />
-          <CodeBlock code={codes.usage_2} />
-        </>
-      }
-      api={api}
+      {...{
+        title: 'useConnectedUsers',
+        description: (
+          <>
+            <p>
+              The <CodeSpan text='useConnectedUsers' /> hook returns an array of objects representing all the users that are connected to
+              the current session.
+            </p>
+            <PreviewSourceCodeTabs preview={<DocumentationDemo url='ConnectedUsers' />} code={<CodeBlock code={codes.demo} />} />
+          </>
+        ),
+        usage: (
+          <>
+            <CodeBlock code={codes.usage_1} />
+            <CodeBlock code={codes.usage_2} />
+          </>
+        ),
+        api,
+      }}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('useConnectedUsers')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useConnectedUsers') }} />
 }

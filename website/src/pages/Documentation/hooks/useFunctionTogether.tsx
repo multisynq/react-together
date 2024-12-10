@@ -10,7 +10,7 @@ import HookReturnApi from './HookReturnApi'
 
 const codes = {
   demo: {
-    typescript: `
+    basic: `
 import bellAudio from '@assets/tuningFork440Hz.mp3'
 import { useCallback, useState } from 'react'
 import { useFunctionTogether } from 'react-together'
@@ -91,13 +91,15 @@ export function MeditationBell() {
     </div>
   )
 }
-  `,
+`,
   },
 
-  usage_1: { javascript: `import { useLeaveSession } from 'react-together'` },
+  usage_1: {
+    basic: `import { useLeaveSession } from 'react-together'`,
+  },
 
   usage_2: {
-    javascript: `
+    basic: `
 export default function YourComponent() {
   const ding = useFunctionTogether('ding', () => {
     alert('Dong!')
@@ -112,23 +114,6 @@ export default function YourComponent() {
   `,
   },
 }
-
-const description = (
-  <>
-    <p>
-      The <CodeSpan text='useFunctionTogether' /> hook allows all users to execute the same function simultaneously, using the same
-      arguments. Whenever any user calls the function returned by the hook, all users that are rendering this hook with the same{' '}
-      <CodeSpan text='rtKey' /> will execute their local version of the function.
-    </p>
-    <p>
-      Keep in mind that only the function arguments are guaranteed to be the same across every user. If the given function captures local
-      variables, those may differ from user to user! If you want a perfectly synchronized state, with stronger guarantees, we invite you to
-      take a look at the underlying library:{' '}
-      <LinkSpan text='@croquet/react' to='https://www.npmjs.com/package/@croquet/react' target='_blank' /> 😉.
-    </p>
-    <PreviewSourceCodeTabs preview={<DocumentationDemo url='useFunctionTogether' />} code={<CodeBlock code={codes.demo} />} />
-  </>
-)
 
 export default function UseFunctionTogetherDocumentationPage() {
   const api = (
@@ -166,16 +151,33 @@ export default function UseFunctionTogetherDocumentationPage() {
 
   const content = (
     <GenericDocPage
-      title='useFunctionTogether'
-      description={description}
-      usage={
-        <>
-          <CodeBlock code={codes.usage_1} />
-          <CodeBlock code={codes.usage_2} />
-        </>
-      }
-      api={api}
+      {...{
+        title: 'useFunctionTogether',
+        description: (
+          <>
+            <p>
+              The <CodeSpan text='useFunctionTogether' /> hook allows all users to execute the same function simultaneously, using the same
+              arguments. Whenever any user calls the function returned by the hook, all users that are rendering this hook with the same{' '}
+              <CodeSpan text='rtKey' /> will execute their local version of the function.
+            </p>
+            <p>
+              Keep in mind that only the function arguments are guaranteed to be the same across every user. If the given function captures
+              local variables, those may differ from user to user! If you want a perfectly synchronized state, with stronger guarantees, we
+              invite you to take a look at the underlying library:{' '}
+              <LinkSpan text='@croquet/react' to='https://www.npmjs.com/package/@croquet/react' target='_blank' /> 😉.
+            </p>
+            <PreviewSourceCodeTabs preview={<DocumentationDemo url='useFunctionTogether' />} code={<CodeBlock code={codes.demo} />} />
+          </>
+        ),
+        usage: (
+          <>
+            <CodeBlock code={codes.usage_1} />
+            <CodeBlock code={codes.usage_2} />
+          </>
+        ),
+        api,
+      }}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('useFunctionTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useFunctionTogether') }} />
 }

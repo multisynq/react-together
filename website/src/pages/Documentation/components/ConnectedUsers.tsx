@@ -9,7 +9,7 @@ import ComponentPropsTable from './ComponentPropsTable'
 
 const codes = {
   code1: {
-    typescript: `
+    basic: `
 import { ConnectedUsers } from 'react-together'
 
 export function ConnectedUsersDemo() {
@@ -18,8 +18,13 @@ export function ConnectedUsersDemo() {
 `,
   },
 
-  code2: { javascript: `import { ConnectedUsers } from 'react-together'` },
-  code3: { javascript: `return <ConnectedUsers />` },
+  code2: {
+    basic: `import { ConnectedUsers } from 'react-together'`,
+  },
+
+  code3: {
+    basic: `return <ConnectedUsers />`,
+  },
 }
 
 export default function ConnectedUsersDocumentationPage() {
@@ -46,24 +51,31 @@ export default function ConnectedUsersDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='ConnectedUsers'
-      description={
-        <>
-          <p>
-            This component uses the <LinkSpan to='/useConnectedUsers' text='useConnectedUsers' /> hook to display the users connected to the
-            current React Together session.
-          </p>
-          <PreviewSourceCodeTabs {...{ preview: <DocumentationDemo url='ConnectedUsers' />, code: <CodeBlock code={codes.code1} /> }} />
-        </>
-      }
-      usage={
-        <>
-          <CodeBlock code={codes.code2} />
-          <CodeBlock code={codes.code3} />
-        </>
-      }
-      api={api}
+      {...{
+        title: 'ConnectedUsers',
+        description: (
+          <>
+            <p>
+              This component uses the <LinkSpan to='/useConnectedUsers' text='useConnectedUsers' /> hook to display the users connected to
+              the current React Together session.
+            </p>
+            <PreviewSourceCodeTabs
+              {...{
+                preview: <DocumentationDemo url='ConnectedUsers' />,
+                code: <CodeBlock code={codes.code1} />,
+              }}
+            />
+          </>
+        ),
+        usage: (
+          <>
+            <CodeBlock code={codes.code2} />
+            <CodeBlock code={codes.code3} />
+          </>
+        ),
+        api,
+      }}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('ConnectedUsers')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('ConnectedUsers') }} />
 }

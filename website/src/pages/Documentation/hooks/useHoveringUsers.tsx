@@ -10,10 +10,12 @@ import HookReturnApi from './HookReturnApi'
 const codes = {
   demo: _codes.demo,
 
-  usage_1: { javascript: `import { useHoveringUsers } from 'react-together'` },
+  usage_1: {
+    basic: `import { useHoveringUsers } from 'react-together'`,
+  },
 
   usage_2: {
-    javascript: `
+    basic: `
 const [ref, hoveringViews, isHovering] = useHoveringUsers(‘hovering-views’)
 
 return (
@@ -75,28 +77,30 @@ export default function UseHoveringUsersDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='useHoveringUsers'
-      parameter='(rtKey, options)'
-      description={
-        <>
-          <p>
-            The <CodeSpan text='useHoveringUsers' /> hook identifies which users are hovering a given DOM element.
-          </p>
-          <p>
-            If a user is hovering a component that is nested within other <CodeSpan text='hoverable' /> components, only the innermost
-            component will indicate that it's being hovered.
-          </p>
-          <PreviewSourceCodeTabs preview={<DocumentationDemo url='HoverHighlighter' />} code={<CodeBlock code={codes.demo} />} />
-        </>
-      }
-      usage={
-        <>
-          <CodeBlock code={codes.usage_1} />
-          <CodeBlock code={codes.usage_2} />
-        </>
-      }
-      api={api}
+      {...{
+        title: 'useHoveringUsers',
+        parameter: '(rtKey, options)',
+        description: (
+          <>
+            <p>
+              The <CodeSpan text='useHoveringUsers' /> hook identifies which users are hovering a given DOM element.
+            </p>
+            <p>
+              If a user is hovering a component that is nested within other <CodeSpan text='hoverable' /> components, only the innermost
+              component will indicate that it's being hovered.
+            </p>
+            <PreviewSourceCodeTabs preview={<DocumentationDemo url='HoverHighlighter' />} code={<CodeBlock code={codes.demo} />} />
+          </>
+        ),
+        usage: (
+          <>
+            <CodeBlock code={codes.usage_1} />
+            <CodeBlock code={codes.usage_2} />
+          </>
+        ),
+        api,
+      }}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('useHoveringUsers')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useHoveringUsers') }} />
 }

@@ -9,7 +9,7 @@ import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 
 const codes = {
   demo: {
-    typescript: `
+    basic: `
 import { CroquetReact, SessionManager, useIsTogether } from 'react-together'
 import CountButtonTogether from './CountButtonTogether'
 
@@ -50,47 +50,53 @@ export function SessionManagerDemo() {
     `,
   },
 
-  usage_1: { javascript: `import { SessionManager } from 'react-together'` },
+  usage_1: {
+    basic: `import { SessionManager } from 'react-together'`,
+  },
 
-  usage_2: { javascript: `return <SessionManager />` },
+  usage_2: {
+    basic: `return <SessionManager />`,
+  },
 }
 
 export default function SessionManagerDocumentationPage() {
   const content = (
     <GenericDocPage
-      title='SessionManager'
-      description={
-        <>
-          <p>
-            This component provides a simple UI to manage the current React Together session, i.e. connecting to a new session, sharing it
-            with other people, and leaving the current session. If you want to implement your own session manager component, feel free to
-            checkout the <LinkSpan to='/useCreateRandomSession' text='useCreateRandomSession' />,{' '}
-            <LinkSpan to='/useLeaveSession' text='useLeaveSession' />, and <LinkSpan to='/useJoinUrl' text='useJoinUrl' /> hooks!
-          </p>
-          <p>
-            In the example below, you can see how the <CodeSpan text='SessionManager' /> component works. Each window represents a separate
-            browser. The browser on the left connects to the <CodeSpan text='ReactTogetherDemo' /> session, while the one on the right
-            doesn’t connect to any session. As a result, the count values in each session are not synchronized.
-          </p>
-          <p>
-            You can access the Session Manager by clicking the blue button (<Icons.logo className='h-4 w-4 inline mx-1' />) in the
-            bottom-left corner of each browser. This component provides a UI to share or leave your current session or to create a private
-            one. To join a session, you can paste the Join URL on the top bar (representing the browser URL bar) and press{' '}
-            <CodeSpan text='Enter' />, or click on the arrow icon.
-          </p>
-          <PreviewSourceCodeTabs
-            preview={<DocumentationDemo url='SessionManager' session2={null} />}
-            code={<CodeBlock code={codes.demo} />}
-          />
-        </>
-      }
-      usage={
-        <>
-          <CodeBlock code={codes.usage_1} />
-          <CodeBlock code={codes.usage_2} />
-        </>
-      }
+      {...{
+        title: 'SessionManager',
+        description: (
+          <>
+            <p>
+              This component provides a simple UI to manage the current React Together session, i.e. connecting to a new session, sharing it
+              with other people, and leaving the current session. If you want to implement your own session manager component, feel free to
+              checkout the <LinkSpan to='/useCreateRandomSession' text='useCreateRandomSession' />,{' '}
+              <LinkSpan to='/useLeaveSession' text='useLeaveSession' />, and <LinkSpan to='/useJoinUrl' text='useJoinUrl' /> hooks!
+            </p>
+            <p>
+              In the example below, you can see how the <CodeSpan text='SessionManager' /> component works. Each window represents a
+              separate browser. The browser on the left connects to the <CodeSpan text='ReactTogetherDemo' /> session, while the one on the
+              right doesn’t connect to any session. As a result, the count values in each session are not synchronized.
+            </p>
+            <p>
+              You can access the Session Manager by clicking the blue button (<Icons.logo className='h-4 w-4 inline mx-1' />) in the
+              bottom-left corner of each browser. This component provides a UI to share or leave your current session or to create a private
+              one. To join a session, you can paste the Join URL on the top bar (representing the browser URL bar) and press{' '}
+              <CodeSpan text='Enter' />, or click on the arrow icon.
+            </p>
+            <PreviewSourceCodeTabs
+              preview={<DocumentationDemo url='SessionManager' session2={null} />}
+              code={<CodeBlock code={codes.demo} />}
+            />
+          </>
+        ),
+        usage: (
+          <>
+            <CodeBlock code={codes.usage_1} />
+            <CodeBlock code={codes.usage_2} />
+          </>
+        ),
+      }}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('SessionManager', { exclude: ['api'] })} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('SessionManager', { exclude: ['api'] }) }} />
 }

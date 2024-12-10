@@ -5,8 +5,13 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
 
 const codes = {
-  usage_1: { javascript: `import { useIsTogether } from 'react-together'` },
-  usage_2: { javascript: `const isTogether = useIsTogether()` },
+  usage_1: {
+    basic: `import { useIsTogether } from 'react-together'`,
+  },
+
+  usage_2: {
+    basic: `const isTogether = useIsTogether()`,
+  },
 }
 
 export default function UseJoinUrlDocumentationPage() {
@@ -25,21 +30,23 @@ export default function UseJoinUrlDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='useIsTogether'
-      description={
-        <p>
-          The <CodeSpan text='useIsTogether' /> hook returns <CodeSpan text='true' /> if the user is connected to a React Together session,
-          and <CodeSpan text='false' /> otherwise.
-        </p>
-      }
-      usage={
-        <>
-          <CodeBlock code={codes.usage_1} />
-          <CodeBlock code={codes.usage_2} />
-        </>
-      }
-      api={api}
+      {...{
+        title: 'useIsTogether',
+        description: (
+          <p>
+            The <CodeSpan text='useIsTogether' /> hook returns <CodeSpan text='true' /> if the user is connected to a React Together
+            session, and <CodeSpan text='false' /> otherwise.
+          </p>
+        ),
+        usage: (
+          <>
+            <CodeBlock code={codes.usage_1} />
+            <CodeBlock code={codes.usage_2} />
+          </>
+        ),
+        api,
+      }}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('useJoinUrl')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useJoinUrl') }} />
 }

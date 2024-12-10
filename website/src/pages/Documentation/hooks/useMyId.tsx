@@ -6,8 +6,13 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
 
 const codes = {
-  usage_1: { javascript: `import { useMyId } from 'react-together'` },
-  usage_2: { javascript: `const myId = useMyId()` },
+  usage_1: {
+    basic: `import { useMyId } from 'react-together'`,
+  },
+
+  usage_2: {
+    basic: `const myId = useMyId()`,
+  },
 }
 
 export default function UseMyIdDocumentationPage() {

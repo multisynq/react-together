@@ -6,10 +6,12 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
 
 const codes = {
-  usage_1: { javascript: `import { useLeaveSession } from 'react-together'` },
+  usage_1: {
+    basic: `import { useLeaveSession } from 'react-together'`,
+  },
 
   usage_2: {
-    javascript: `
+    basic: `
 export default function YourComponent() {
   const leaveSession = useLeaveSession()
 
@@ -18,8 +20,7 @@ export default function YourComponent() {
       Disconnect from current session
     </button>
   )
-}
-  `,
+}`,
   },
 }
 
@@ -40,29 +41,31 @@ export default function UseLeaveSessionDocumentationPage() {
 
   const content = (
     <GenericDocPage
-      title='useLeaveSession'
-      description={
-        <>
-          <p>
-            The <CodeSpan text='useLeaveSession' /> hook returns a function that when called, disconnects the user from the current React
-            Together session. If the user is not connected to any session, calling that function has no effect.
-            <br />
-          </p>
-          <p>
-            When leaving a session, the state that comes from <LinkSpan to='useStateTogether' text='useStateTogether' /> and{' '}
-            <LinkSpan to='useStateTogetherWithPerUserValues' text='useStateTogetherWithPerUserValues' /> will be kept locally.
-          </p>
-          <p>If there are session parameters in the window URL, they will be removed when leaving the session.</p>
-        </>
-      }
-      usage={
-        <>
-          <CodeBlock code={codes.usage_1} />
-          <CodeBlock code={codes.usage_2} />
-        </>
-      }
-      api={api}
+      {...{
+        title: 'useLeaveSession',
+        description: (
+          <>
+            <p>
+              The <CodeSpan text='useLeaveSession' /> hook returns a function that when called, disconnects the user from the current React
+              Together session. If the user is not connected to any session, calling that function has no effect.
+              <br />
+            </p>
+            <p>
+              When leaving a session, the state that comes from <LinkSpan to='useStateTogether' text='useStateTogether' /> and{' '}
+              <LinkSpan to='useStateTogetherWithPerUserValues' text='useStateTogetherWithPerUserValues' /> will be kept locally.
+            </p>
+            <p>If there are session parameters in the window URL, they will be removed when leaving the session.</p>
+          </>
+        ),
+        usage: (
+          <>
+            <CodeBlock code={codes.usage_1} />
+            <CodeBlock code={codes.usage_2} />
+          </>
+        ),
+        api,
+      }}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('useLeaveSession')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useLeaveSession') }} />
 }

@@ -7,10 +7,16 @@ import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { NavItem } from './types'
 
 const codes = {
-  code1: { typescript: `import { ReactTogether } from 'react-together'` },
+  code_1: {
+    bash: 'npm i react-together',
+  },
 
-  code2: {
-    typescript: `ReactDOM.createRoot(document.getElementById('root')!).render(
+  code_2: {
+    basic: `import { ReactTogether } from 'react-together'`,
+  },
+
+  code_3: {
+    basic: `ReactDOM.createRoot(document.getElementById('root')!).render(
   <ReactTogether
     sessionParams={{
       appId: import.meta.env['VITE_APP_ID'],
@@ -22,7 +28,7 @@ const codes = {
 )`,
   },
 
-  code3: {
+  code_4: {
     basic: `
 const [count, set_count] = useStateTogether('count', 0)
 
@@ -60,8 +66,8 @@ export default function CountButtonTogether() {
   },
 }
 
-function IntroductionContent() {
-  return (
+export default function IntroductionPage() {
+  const content = (
     <>
       <h2 id='getting-started'>Getting Started</h2>
       <p>In the future, websites are all live and connect visitors with each other all the time. That future is now!</p>
@@ -74,7 +80,7 @@ function IntroductionContent() {
       <p>
         Install the <CodeSpan text='react-together' /> package via <CodeSpan text='npm' />
       </p>
-      <CodeBlock code={{ bash: 'npm i react-together' }} />
+      <CodeBlock code={codes.code_1} />
 
       <h4 id='context'>Context</h4>
       <p>
@@ -85,24 +91,30 @@ function IntroductionContent() {
         </Link>
         .
       </p>
-      {/* <CodeBlock language='tsx' codeShort={`import { ReactTogether } from 'react-together'`} /> */}
-      <CodeBlock code={codes.code1} />
-      <CodeBlock code={codes.code2} />
+      <CodeBlock code={codes.code_2} />
+      <CodeBlock code={codes.code_3} />
+
       <h4 id='sdf'>Use ReactTogether</h4>
       <p>That's it! Now you just need to import and use our components to create awesome interactive websites!</p>
+
       <h5>Example</h5>
       <DocumentationDemo url='CountButtonTogether' />
-      <CodeBlock code={codes.code3} />
+      <CodeBlock code={codes.code_4} />
     </>
+  )
+
+  return (
+    <DocumentationPage
+      {...{
+        content,
+        navItems: introductionNavItems,
+      }}
+    />
   )
 }
 
-const introductionNavItems: NavItem[] = [
+export const introductionNavItems: NavItem[] = [
   { key: 'getting-started', label: 'Getting Started' },
   { key: 'installation', label: 'Installation' },
   { key: 'context', label: 'Context' },
 ]
-
-export default function IntroductionPage() {
-  return <DocumentationPage content={<IntroductionContent />} navItems={introductionNavItems} />
-}
