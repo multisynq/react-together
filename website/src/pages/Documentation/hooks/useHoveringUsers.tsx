@@ -1,8 +1,10 @@
 import { CodeBlock } from '@components/ui/CodeBlock'
 import CodeSpan from '@components/ui/CodeSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import { demoCode } from '../components/HoverHighlighter'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
+import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
@@ -61,7 +63,10 @@ export default function UseHoveringUsersDocumentationPage() {
             If a user is hovering a component that is nested within other <CodeSpan text='hoverable' /> components, only the innermost
             component will indicate that it's being hovered.
           </p>
-          <DocumentationDemo url='HoverHighlighter' />
+          <PreviewSourceCodeTabs
+            preview={<DocumentationDemo url='HoverHighlighter' />}
+            code={<CodeBlock language='tsx' code1={demoCode} />}
+          />
         </>
       }
       usage={
@@ -76,8 +81,8 @@ return (
     <div ref={ref}>{isHovering ? "You're hovering me!" : 'Hover me!'}</div>
     <h3>Hovering Ids:</h3>
     <ul>
-      {hoveringViews.map((viewId) => (
-        <li key={viewId}>{viewId}</li>
+      {hoveringUsers.map((userId) => (
+        <li key={userId}>{userId}</li>
       )}
     </ul>
   </div>

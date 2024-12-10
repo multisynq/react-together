@@ -13,7 +13,7 @@ import { Checkbox, CheckboxProps } from 'primereact/checkbox'
 import { useStateTogether } from 'react-together'
 
 export default function CheckboxTogether({ rtKey, ...props }) {
-  const [checked, setChecked] = useStateTogether<boolean>(rtKey, false)
+  const [checked, setChecked] = useStateTogether(rtKey, false)
 
   return (
     <>
