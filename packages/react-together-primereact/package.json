@@ -1,6 +1,8 @@
 {
   "name": "react-together-primereact",
+  "description": "A set of ready-to-use PrimeReact components that are synchronized across multiple users in real-time!",
   "version": "0.1.0",
+  "license": "Apache-2.0",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -40,5 +42,36 @@
     "vite": "^4.5.3",
     "vite-plugin-dts": "^3.7.3",
     "vite-plugin-lib-inject-css": "^2.0.1"
-  }
+  },
+  "bugs": "https://github.com/multisynq/react-together/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/multisynq/react-together.git",
+    "directory": "packages/react-together-primereact"
+  },
+  "homepage": "https://reacttogether.dev",
+  "keywords": [
+    "react",
+    "together",
+    "primereact",
+    "components",
+    "react-together",
+    "real-time",
+    "multi-user",
+    "websockets",
+    "sockets",
+    "interaction",
+    "interactive",
+    "collaboration",
+    "collaborative",
+    "presence",
+    "synchronize",
+    "synchronized",
+    "rooms",
+    "sessions",
+    "interaction",
+    "shared state",
+    "croquet",
+    "multisynq"
+  ]
 }
