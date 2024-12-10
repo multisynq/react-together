@@ -27,11 +27,8 @@ export default function ColorPickerTogether({
   onChange,
   ...props
 }) {
-  const [localValue, setLocalValue] = useState<ColorPickerValueType>(undefined)
-  const [remoteValue, setRemoteValue] = useStateTogether<ColorPickerValueType>(
-    rtKey,
-    undefined
-  )
+  const [localValue, setLocalValue] = useState(undefined)
+  const [remoteValue, setRemoteValue] = useStateTogether(rtKey, undefined)
 
   const inline = props.inline
 

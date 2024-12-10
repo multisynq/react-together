@@ -20,7 +20,7 @@ export default function CalendarTogether({
   rtKey,
   ...props
 }: CalendarTogetherProps) {
-  const [value, setChecked] = useStateTogether<string | null>(rtKey, null)
+  const [value, setChecked] = useStateTogether(rtKey, null)
 
   return (
     <Calendar

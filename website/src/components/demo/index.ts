@@ -1,3 +1,4 @@
+import { ConnectedUsersDemo } from './ConnectedUsersDemo'
 import CountButtonTogether from './CountButtonTogether'
 import HeroDemo from './HeroDemo'
 import { HoverHighlighterDemo } from './HoverHighlighterDemo'
@@ -17,6 +18,7 @@ import { PrimeReactTriStateCheckboxTogetherDemo } from './PrimeReactTriStateChec
 import { SessionManagerDemo } from './SessionManagerDemo'
 import { UseStateTogetherWPUVDemo } from './UseStateTogetherWPUVDemo'
 export {
+  ConnectedUsersDemo,
   CountButtonTogether,
   HeroDemo,
   HoverHighlighterDemo,
