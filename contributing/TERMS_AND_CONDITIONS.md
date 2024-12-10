@@ -1,8 +1,8 @@
-Contributing to ReactTogether: Terms and Conditions
+Contributing to React Together: Terms and Conditions
 ================================================
 
-**Important**: submitting any contributions to the ReactTogether project implies your **full acceptance of these terms**,
-including the *"ReactTogether Individual Contributor License Agreement"* detailed at the end. 
+**Important**: submitting any contributions to the React Together project implies your **full acceptance of these terms**,
+including the *"React Together Individual Contributor License Agreement"* detailed at the end. 
 
 Who can contribute?
 -------------------
@@ -16,7 +16,7 @@ of your contribution on the project's website or code, including but not limited
 or package names.
 
 
-How will your relation with the ReactTogether project be?
+How will your relation with the React Together project be?
 -----------------------------------------------------
 
 Your contributions will have the form of GitHub *pull requests*. Note that contributors do not 
@@ -47,13 +47,13 @@ About the code you contribute
 About the documentation/articles you contribute
 -----------------------------------------------
 
-Note the following only applies to documentation/articles meant to be published at the ReactTogether website.
+Note the following only applies to documentation/articles meant to be published at the React Together website.
 
   - All documentation artifacts, including articles, must be written **in correct English**.
   - Topic and text structure must be first discussed and agreed upon with the project members.
   - Project members may edit and make small changes to your texts --of which you will be informed-- before 
     publishing them.
-  - Format and visual styles must adhere to the ReactTogether website standards, of which you will be informed
+  - Format and visual styles must adhere to the React Together website standards, of which you will be informed
     by the project members.
 
 
@@ -61,47 +61,47 @@ Note the following only applies to documentation/articles meant to be published 
 Pay special attention to this
 -----------------------------
 
-All ReactTogether software is distributed under the **Apache 2.0** open source license, and your contributions
+All React Together software is distributed under the **Apache 2.0** open source license, and your contributions
 will be licensed in the same way.
 
 If you work for a company which, by the way or place in which your code was written, by your contract terms 
 or by the laws in your country, could claim any rights (including but not limited to intellectual or industrial 
 property) over your contributed code, you will have to send the project members (by email from your 
 authorised superiors), a statement indicating that your company agrees with the terms 
-explained in this page, and that it both authorises your contribution to ReactTogether and states that will 
+explained in this page, and that it both authorises your contribution to React Together and states that will 
 never claim any kind of rights over it.
 
 
 
-ReactTogether Individual Contributor License Agreement
+React Together Individual Contributor License Agreement
 --------------------------------------------------
 
-This contributor agreement ("Agreement") documents the rights granted by contributors to the ReactTogether Project. 
+This contributor agreement ("Agreement") documents the rights granted by contributors to the React Together Project. 
 
 This is a legally binding document, so please read it carefully before agreeing to it. The Agreement
-may cover more than one software project managed by ReactTogether.
+may cover more than one software project managed by React Together.
 
 ### 1. Definitions
 
-  * _"ReactTogether"_ means the "ReactTogether project and members".
-  * _"You"_ means the individual who submits a Contribution to ReactTogether.
-  * _"Contribution"_ means any work of authorship that is submitted by you to ReactTogether in which you own
+  * _"React Together"_ means the "React Together project and members".
+  * _"You"_ means the individual who submits a Contribution to React Together.
+  * _"Contribution"_ means any work of authorship that is submitted by you to React Together in which you own
     or assert ownership of the Copyright.
   * _"Copyright"_ means all rights protecting works of authorship owned or controlled by you,
     including copyright, moral and neighboring rights, as appropriate, for the full term of their
     existence including any extensions by you.
-  * _"Material"_ means the work of authorship which is made available by ReactTogether to third parties. When
+  * _"Material"_ means the work of authorship which is made available by React Together to third parties. When
     this Agreement covers more than one software project, the Material means the work of authorship
     to which the Contribution was submitted. After you submit the Contribution, it may be included
     in the Material.
-  * _"Submit"_ means any form of electronic, verbal, or written communication sent to ReactTogether or its
+  * _"Submit"_ means any form of electronic, verbal, or written communication sent to React Together or its
     representatives, including but not limited to electronic mailing lists, source code control systems,
-    and issue tracking systems that are managed by, or on behalf of, ReactTogether for the purpose of discussing
+    and issue tracking systems that are managed by, or on behalf of, React Together for the purpose of discussing
     and improving the Material, but excluding communication that is conspicuously marked or
     otherwise designated in writing by you as _"Not a Contribution."
-  * _"Submission Date"_ means the date on which you submit a Contribution to ReactTogether.
+  * _"Submission Date"_ means the date on which you submit a Contribution to React Together.
   * _"Effective Date"_ means the date you execute this agreement or the date You first submit a
-    Contribution to ReactTogether, whichever is earlier.
+    Contribution to React Together, whichever is earlier.
   
 ### 2. Grant of Rights
 
@@ -109,7 +109,7 @@ may cover more than one software project managed by ReactTogether.
 
     (a) You retain ownership of the copyright in your Contribution and have the same rights to use or
         license the Contribution which you would have had without entering into the agreement.
-    (b) To the maximum extent permitted by the relevant law, you grant to ReactTogether a perpetual, worldwide,
+    (b) To the maximum extent permitted by the relevant law, you grant to React Together a perpetual, worldwide,
         non-exclusive, transferable, royalty-free, irrevocable license under the copyright covering the
         Contribution, with the right to sublicense such rights through multiple tiers of sublicensees, to
         reproduce, modify, display, perform and distribute the Contribution as part of the Material; provided
@@ -118,7 +118,7 @@ may cover more than one software project managed by ReactTogether.
 #### 2.2 Patent License
 
 For patent claims including, without limitation, method, process, and apparatus claims which you
-own, control or have the right to grant, now or in the future, you grant to ReactTogether a perpetual, worldwide,
+own, control or have the right to grant, now or in the future, you grant to React Together a perpetual, worldwide,
 non-exclusive, transferable, royalty-free, irrevocable patent license, with the right to sublicense these
 rights to multiple tiers of sublicensees, to make, have made, use, sell, offer for sale, import and
 otherwise transfer the Contribution and the Contribution in combination with the Material (and
@@ -129,7 +129,7 @@ compliance with Section 2.3.
 
 #### 2.3 Outbound License
 
-As a condition on the grant of rights in Sections 2.1 and 2.2, ReactTogether agrees to license the Contribution only
+As a condition on the grant of rights in Sections 2.1 and 2.2, React Together agrees to license the Contribution only
 under the terms of the MIT License (including any right to adopt any future version of this license if 
 permitted).
 
@@ -137,14 +137,14 @@ permitted).
 #### 2.4 Moral Rights 
 
 If moral rights apply to the Contribution, to the maximum extent permitted by law, you waive and agree not 
-to assert such moral rights against ReactTogether or its successors in interest, or any of our licensees, either 
+to assert such moral rights against React Together or its successors in interest, or any of our licensees, either 
 direct or indirect.
 
 
-#### 2.5 ReactTogether Rights 
+#### 2.5 React Together Rights 
 
-You acknowledge that ReactTogether is not obligated to use your Contribution as part of the
-Material and may decide to include any Contributions ReactTogether considers appropriate.
+You acknowledge that React Together is not obligated to use your Contribution as part of the
+Material and may decide to include any Contributions React Together considers appropriate.
 
 #### 2.6 Reservation of Rights
 
@@ -170,15 +170,15 @@ You confirm that:
 
 EXCEPT FOR THE EXPRESS WARRANTIES IN SECTION 3, THE CONTRIBUTION IS PROVIDED "AS IS". MORE PARTICULARLY, 
 ALL EXPRESS OR IMPLIED WARRANTIES INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTY OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE EXPRESSLY DISCLAIMED BY YOU TO ReactTogether AND BY
-ReactTogether TO YOU. TO THE EXTENT THAT ANY SUCH WARRANTIES CANNOT BE DISCLAIMED, SUCH WARRANTY IS LIMITED IN 
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE EXPRESSLY DISCLAIMED BY YOU TO React Together AND BY
+React Together TO YOU. TO THE EXTENT THAT ANY SUCH WARRANTIES CANNOT BE DISCLAIMED, SUCH WARRANTY IS LIMITED IN 
 DURATION TO THE MINIMUM PERIOD PERMITTED BY LAW.
 
 
 
 ### 5. Consequential Damage Waiver
 
-TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL YOU OR ReactTogether BE LIABLE FOR ANY LOSS OF 
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL YOU OR React Together BE LIABLE FOR ANY LOSS OF 
 PROFITS, LOSS OF ANTICIPATED SAVINGS, LOSS OF DATA, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL AND EXEMPLARY
 DAMAGES ARISING OUT OF THIS AGREEMENT REGARDLESS OF THE LEGAL OR EQUITABLE THEORY (CONTRACT, TORT OR OTHERWISE) 
 UPON WHICH THE CLAIM IS BASED.
@@ -192,9 +192,9 @@ UPON WHICH THE CLAIM IS BASED.
         superseded by the United Nations Convention on Contracts for the International Sale of Goods ("UN
         Convention") and the parties intend to avoid the application of the UN Convention to this Agreement
         and, thus, exclude the application of the UN Convention in its entirety to this Agreement.
-    6.2 This Agreement sets out the entire agreement between you and ReactTogether for your Contributions to
-        ReactTogether and overrides all other agreements or understandings.
-    6.3 If You or ReactTogether assign the rights or obligations received through this Agreement to a third party, 
+    6.2 This Agreement sets out the entire agreement between you and React Together for your Contributions to
+        React Together and overrides all other agreements or understandings.
+    6.3 If You or React Together assign the rights or obligations received through this Agreement to a third party, 
         as a condition of the assignment, that third party must agree in writing to abide by all the rights and
         obligations in the Agreement.
     6.4 The failure of either party to require performance by the other party of any provision of this
