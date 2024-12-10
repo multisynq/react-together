@@ -1,4 +1,4 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
@@ -8,7 +8,9 @@ import InterfaceApi from '../InterfaceApi'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 import HookReturnApi from './HookReturnApi'
 
-const demoCode = `
+const codes = {
+  demo: {
+    typescript: `
 import { Avatar } from 'primereact/avatar'
 import { AvatarGroup } from 'primereact/avatargroup'
 import { useConnectedUsers } from '../hooks'
@@ -77,7 +79,28 @@ export default function ConnectedUsers({
     </>
   )
 }
-`
+  `,
+  },
+
+  usage_1: { javascript: `import { useConnectedUsers } from 'react-together'` },
+
+  usage_2: {
+    javascript: `
+const connectedUsers = useConnectedUsers()
+
+return (
+  <div ref={ref}>
+    Connected views:
+    <ul>{hoveringUsers.map(
+      (viewId) => (
+        <li key={viewId}>{viewId}</li>
+      )
+    }</ul>
+  </div>
+)
+  `,
+  },
+}
 
 export default function UseConnectedUsersDocumentationPage() {
   const api = (
@@ -123,30 +146,13 @@ export default function UseConnectedUsersDocumentationPage() {
             The <CodeSpan text='useConnectedUsers' /> hook returns an array of objects representing all the users that are connected to the
             current session.
           </p>
-          <PreviewSourceCodeTabs
-            preview={<DocumentationDemo url='ConnectedUsers' />}
-            code={<CodeBlock language='tsx' code1={demoCode} />}
-          />
+          <PreviewSourceCodeTabs preview={<DocumentationDemo url='ConnectedUsers' />} code={<CodeBlock code={codes.demo} />} />
         </>
       }
       usage={
         <>
-          <CodeBlock language='jsx' codeShort={`import { useConnectedUsers } from 'react-together'`} />
-          <CodeBlock
-            language='jsx'
-            codeShort={`const connectedUsers = useConnectedUsers()
-
-return (
-  <div ref={ref}>
-    Connected views:
-    <ul>{hoveringUsers.map(
-      (viewId) => (
-        <li key={viewId}>{viewId}</li>
-      )
-    }</ul>
-  </div>
-)`}
-          />
+          <CodeBlock code={codes.usage_1} />
+          <CodeBlock code={codes.usage_2} />
         </>
       }
       api={api}

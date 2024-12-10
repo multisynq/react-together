@@ -1,4 +1,4 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import Link from '@components/ui/Link'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
@@ -6,6 +6,18 @@ import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
+
+const codes = {
+  usage_1: { javascript: `import { useStateTogether } from 'react-together'` },
+  usage_2: {
+    javascript: `
+const [count, setCount] = useStateTogether('unique-key', 0)
+        
+const increment = () => setCount((prev) => prev + 1)
+const reset = () => setCount(0)
+  `,
+  },
+}
 
 const description = (
   <>
@@ -23,14 +35,8 @@ const description = (
 
 const usage = (
   <>
-    <CodeBlock language='jsx' codeShort={`import { useStateTogether } from 'react-together'`} />
-    <CodeBlock
-      language='jsx'
-      codeShort={`const [count, setCount] = useStateTogether('unique-key', 0)
-        
-const increment = () => setCount((prev) => prev + 1)
-const reset = () => setCount(0)`}
-    />
+    <CodeBlock code={codes.usage_1} />
+    <CodeBlock code={codes.usage_2} />
   </>
 )
 
@@ -70,13 +76,15 @@ const api = (
 
 const content = (
   <GenericDocPage
-    title='useStateTogether'
-    parameter='<T>(rtKey, initial_value, options)'
-    description={description}
-    usage={usage}
-    api={api}
+    {...{
+      title: 'useStateTogether',
+      parameter: '<T>(rtKey, initial_value, options)',
+      description,
+      usage,
+      api,
+    }}
   />
 )
 export default function UseStateTogetherDocumentationPage() {
-  return <DocumentationPage content={content} navItems={GenericDocNav('useStateTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useStateTogether') }} />
 }

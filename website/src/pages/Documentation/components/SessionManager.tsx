@@ -1,5 +1,5 @@
 import { Icons } from '@components/icons'
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
@@ -7,7 +7,9 @@ import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 
-const demoCode = `
+const codes = {
+  demo: {
+    typescript: `
 import { CroquetReact, SessionManager, useIsTogether } from 'react-together'
 import CountButtonTogether from './CountButtonTogether'
 
@@ -45,7 +47,13 @@ export function SessionManagerDemo() {
     </div>
   )
 }
-`
+    `,
+  },
+
+  usage_1: { javascript: `import { SessionManager } from 'react-together'` },
+
+  usage_2: { javascript: `return <SessionManager />` },
+}
 
 export default function SessionManagerDocumentationPage() {
   const content = (
@@ -72,14 +80,14 @@ export default function SessionManagerDocumentationPage() {
           </p>
           <PreviewSourceCodeTabs
             preview={<DocumentationDemo url='SessionManager' session2={null} />}
-            code={<CodeBlock language='tsx' code1={demoCode} />}
+            code={<CodeBlock code={codes.demo} />}
           />
         </>
       }
       usage={
         <>
-          <CodeBlock language='javascript' codeShort={`import { SessionManager } from 'react-together'`} />
-          <CodeBlock language='javascript' codeShort={`return <SessionManager />`} />
+          <CodeBlock code={codes.usage_1} />
+          <CodeBlock code={codes.usage_2} />
         </>
       }
     />

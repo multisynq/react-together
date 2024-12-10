@@ -1,10 +1,31 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import Link from '@components/ui/Link'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
+
+const codes = {
+  usage_1: { javascript: `import { ReactTogether } from 'react-together'` },
+
+  usage_2: {
+    javascript: `
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <ReactTogether
+      sessionParams={{
+        appId: import.meta.env['VITE_APP_ID'],
+        apiKey: import.meta.env['VITE_API_KEY']
+      }}
+    >
+      <App />
+    </ReactTogether>
+  </React.StrictMode>
+)
+    `,
+  },
+}
 
 export default function ReactTogetherDocumentationPage() {
   const api = (
@@ -116,22 +137,8 @@ export default function ReactTogetherDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='javascript' codeShort={`import { ReactTogether } from 'react-together'`} />
-          <CodeBlock
-            language='javascript'
-            codeShort={`ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ReactTogether
-      sessionParams={{
-        appId: import.meta.env['VITE_APP_ID'],
-        apiKey: import.meta.env['VITE_API_KEY']
-      }}
-    >
-      <App />
-    </ReactTogether>
-  </React.StrictMode>
-)`}
-          />
+          <CodeBlock code={codes.usage_1} />
+          <CodeBlock code={codes.usage_2} />
         </>
       }
       api={api}

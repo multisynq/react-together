@@ -1,4 +1,4 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import { GenericDocPage } from '../GenericDocPage'
 import FunctionArgsApi from './FunctionArgsApi'
 import FunctionReturnApi from './FunctionReturnApi'
@@ -8,14 +8,15 @@ export default function GetCleanUrlDocumentationPage() {
   const usage = (
     <>
       <CodeBlock
-        language='jsx'
-        codeShort={`\
+        code={{
+          typescript: `\
 import { utils } from 'react-together'
-const { getCleanUrl } = utils`}
+const { getCleanUrl } = utils`,
+        }}
       />
       <CodeBlock
-        language='jsx'
-        codeShort={`\
+        code={{
+          typescript: `\
 const url = new URL('https://reacttogether.dev?rtName=session1#rtPwd=password123');
 const cleanUrl = getCleanUrl(url);
 console.log(cleanUrl.toString()); // 'https://reacttogether.dev'
@@ -23,7 +24,8 @@ console.log(cleanUrl.toString()); // 'https://reacttogether.dev'
 const url2 = new URL('https://reacttogether.dev?name=session1#pwd=password123');
 const cleanUrl2 = getCleanUrl(url2, { nameKey: 'name', passwordKey: 'pwd' });
 console.log(cleanUrl2.toString()); // 'https://reacttogether.dev'
-`}
+`,
+        }}
       />
     </>
   )

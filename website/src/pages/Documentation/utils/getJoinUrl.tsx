@@ -1,4 +1,4 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import { GenericDocPage } from '../GenericDocPage'
 import FunctionArgsApi from './FunctionArgsApi'
 import FunctionReturnApi from './FunctionReturnApi'
@@ -8,21 +8,23 @@ export default function GetJoinUrlDocumentationPage() {
   const usage = (
     <>
       <CodeBlock
-        language='jsx'
-        codeShort={`\
+        code={{
+          typescript: `\
 import { utils } from 'react-together'
-const { getJoinUrl } = utils`}
+const { getJoinUrl } = utils`,
+        }}
       />
       <CodeBlock
-        language='jsx'
-        codeShort={`\
+        code={{
+          typescript: `\
 const url = new URL('https://reacttogether.dev');
 const joinUrl = getJoinUrl(url, 'session1', 'password123');
 console.log(joinUrl.toString()); // 'https://reacttogether.dev?rtName=session1#rtPwd=password123'
 
 const joinUrl2 = getJoinUrl(url, 'session1', 'password123', { nameKey: 'name', rtPwd: 'secret' });
 console.log(joinUrl2.toString()); // 'https://reacttogether.dev?name=session1#secret=password123'
-`}
+`,
+        }}
       />
     </>
   )

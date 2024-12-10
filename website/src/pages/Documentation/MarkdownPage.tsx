@@ -1,4 +1,4 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import { Column } from 'primereact/column'
 import { DataTable } from 'primereact/datatable'
 import Markdown from 'react-markdown'
@@ -34,7 +34,8 @@ export function MarkdownPage({ markdown }: MarkdownPageProps) {
               const isInline = children.toString().split('\n').length === 1
               const match = /language-(\w+)/.exec(className || '')
               return !isInline ? (
-                <CodeBlock language={match?.[1]} codeShort={String(children)} {...props} />
+                // <CodeBlock language={match?.[1]} codeShort={String(children)} {...props} />
+                <CodeBlock code={{ [match?.[1] || 'javascript']: String(children) }} {...props} />
               ) : (
                 <code className={className} {...props}>
                   {children}

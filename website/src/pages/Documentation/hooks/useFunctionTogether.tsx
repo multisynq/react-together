@@ -1,4 +1,4 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
@@ -8,7 +8,9 @@ import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
-const demoCode = `
+const codes = {
+  demo: {
+    typescript: `
 import bellAudio from '@assets/tuningFork440Hz.mp3'
 import { useCallback, useState } from 'react'
 import { useFunctionTogether } from 'react-together'
@@ -89,7 +91,27 @@ export function MeditationBell() {
     </div>
   )
 }
-`
+  `,
+  },
+
+  usage_1: { javascript: `import { useLeaveSession } from 'react-together'` },
+
+  usage_2: {
+    javascript: `
+export default function YourComponent() {
+  const ding = useFunctionTogether('ding', () => {
+    alert('Dong!')
+  })
+
+  return (
+    <button onClick={() => ding()}>
+      Ring the bell!
+    </button>
+  )
+}
+  `,
+  },
+}
 
 const description = (
   <>
@@ -104,7 +126,7 @@ const description = (
       take a look at the underlying library:{' '}
       <LinkSpan text='@croquet/react' to='https://www.npmjs.com/package/@croquet/react' target='_blank' /> 😉.
     </p>
-    <PreviewSourceCodeTabs preview={<DocumentationDemo url='useFunctionTogether' />} code={<CodeBlock language='tsx' code1={demoCode} />} />
+    <PreviewSourceCodeTabs preview={<DocumentationDemo url='useFunctionTogether' />} code={<CodeBlock code={codes.demo} />} />
   </>
 )
 
@@ -148,23 +170,8 @@ export default function UseFunctionTogetherDocumentationPage() {
       description={description}
       usage={
         <>
-          <CodeBlock language='jsx' codeShort={`import { useLeaveSession } from 'react-together'`} />
-          <CodeBlock
-            language='jsx'
-            codeShort={`\
-export default function YourComponent() {
-  const ding = useFunctionTogether('ding', () => {
-    alert('Dong!')
-  })
-
-  return (
-    <button onClick={() => ding()}>
-      Ring the bell!
-    </button>
-  )
-}
-`}
-          />
+          <CodeBlock code={codes.usage_1} />
+          <CodeBlock code={codes.usage_2} />
         </>
       }
       api={api}

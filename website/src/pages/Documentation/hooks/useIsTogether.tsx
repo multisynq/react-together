@@ -1,8 +1,13 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
+
+const codes = {
+  usage_1: { javascript: `import { useIsTogether } from 'react-together'` },
+  usage_2: { javascript: `const isTogether = useIsTogether()` },
+}
 
 export default function UseJoinUrlDocumentationPage() {
   const api = (
@@ -29,8 +34,8 @@ export default function UseJoinUrlDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='jsx' codeShort={`import { useIsTogether } from 'react-together'`} />
-          <CodeBlock language='jsx' codeShort={`const isTogether = useIsTogether()`} />
+          <CodeBlock code={codes.usage_1} />
+          <CodeBlock code={codes.usage_2} />
         </>
       }
       api={api}

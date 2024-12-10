@@ -1,4 +1,4 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
@@ -7,13 +7,20 @@ import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
 
-export const demoCode = `
+const codes = {
+  code1: {
+    typescript: `
 import { ConnectedUsers } from 'react-together'
 
 export function ConnectedUsersDemo() {
   return <ConnectedUsers />
 }
-`
+`,
+  },
+
+  code2: { javascript: `import { ConnectedUsers } from 'react-together'` },
+  code3: { javascript: `return <ConnectedUsers />` },
+}
 
 export default function ConnectedUsersDocumentationPage() {
   const api = (
@@ -46,16 +53,13 @@ export default function ConnectedUsersDocumentationPage() {
             This component uses the <LinkSpan to='/useConnectedUsers' text='useConnectedUsers' /> hook to display the users connected to the
             current React Together session.
           </p>
-          <PreviewSourceCodeTabs
-            preview={<DocumentationDemo url='ConnectedUsers' />}
-            code={<CodeBlock language='tsx' code1={demoCode} />}
-          />
+          <PreviewSourceCodeTabs {...{ preview: <DocumentationDemo url='ConnectedUsers' />, code: <CodeBlock code={codes.code1} /> }} />
         </>
       }
       usage={
         <>
-          <CodeBlock language='javascript' codeShort={`import { ConnectedUsers } from 'react-together'`} />
-          <CodeBlock language='javascript' codeShort={`return <ConnectedUsers/>`} />
+          <CodeBlock code={codes.code2} />
+          <CodeBlock code={codes.code3} />
         </>
       }
       api={api}

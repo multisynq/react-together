@@ -1,12 +1,35 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
-import CodeSpan from '@components/ui/CodeSpan'
+import { CodeBlock, CodeSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
-import { demoCode } from '../components/HoverHighlighter'
+import { codes as _codes } from '../components/HoverHighlighter'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
+
+const codes = {
+  demo: _codes.demo,
+
+  usage_1: { javascript: `import { useHoveringUsers } from 'react-together'` },
+
+  usage_2: {
+    javascript: `
+const [ref, hoveringViews, isHovering] = useHoveringUsers(‘hovering-views’)
+
+return (
+  <div>
+    <div ref={ref}>{isHovering ? "You're hovering me!" : 'Hover me!'}</div>
+    <h3>Hovering Ids:</h3>
+    <ul>
+      {hoveringUsers.map((userId) => (
+        <li key={userId}>{userId}</li>
+      )}
+    </ul>
+  </div>
+)
+  `,
+  },
+}
 
 export default function UseHoveringUsersDocumentationPage() {
   const api = (
@@ -63,31 +86,13 @@ export default function UseHoveringUsersDocumentationPage() {
             If a user is hovering a component that is nested within other <CodeSpan text='hoverable' /> components, only the innermost
             component will indicate that it's being hovered.
           </p>
-          <PreviewSourceCodeTabs
-            preview={<DocumentationDemo url='HoverHighlighter' />}
-            code={<CodeBlock language='tsx' code1={demoCode} />}
-          />
+          <PreviewSourceCodeTabs preview={<DocumentationDemo url='HoverHighlighter' />} code={<CodeBlock code={codes.demo} />} />
         </>
       }
       usage={
         <>
-          <CodeBlock language='jsx' codeShort={`import { useHoveringUsers } from 'react-together'`} />
-          <CodeBlock
-            language='jsx'
-            codeShort={`const [ref, hoveringViews, isHovering] = useHoveringUsers(‘hovering-views’)
-
-return (
-  <div>
-    <div ref={ref}>{isHovering ? "You're hovering me!" : 'Hover me!'}</div>
-    <h3>Hovering Ids:</h3>
-    <ul>
-      {hoveringUsers.map((userId) => (
-        <li key={userId}>{userId}</li>
-      )}
-    </ul>
-  </div>
-)`}
-          />
+          <CodeBlock code={codes.usage_1} />
+          <CodeBlock code={codes.usage_2} />
         </>
       }
       api={api}

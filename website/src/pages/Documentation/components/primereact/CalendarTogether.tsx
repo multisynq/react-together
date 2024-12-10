@@ -70,5 +70,5 @@ export default function PrimeReactCalendarTogetherDocumentationPage() {
   )
   const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode: '' }} />
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('CalendarTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('CalendarTogether') }} />
 }

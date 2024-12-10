@@ -1,8 +1,24 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
+
+const codes = {
+  usage_1: { javascript: `import { useCreateRandomSession } from 'react-together'` },
+
+  usage_2: {
+    javascript: `
+const createRandomSession = useCreateRandomSession()
+
+return (
+  <button onClick={() => createRandomSession()}>
+    Connect to a new session!
+  </button>
+)
+  `,
+  },
+}
 
 export default function UseCreateRandomSessionDocumentationPage() {
   const api = (
@@ -30,18 +46,8 @@ export default function UseCreateRandomSessionDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='jsx' codeShort={`import { useCreateRandomSession } from 'react-together'`} />
-          <CodeBlock
-            language='jsx'
-            codeShort={`\
-const createRandomSession = useCreateRandomSession()
-
-return (
-  <button onClick={() => createRandomSession()}>
-    Connect to a new session!
-  </button>
-)`}
-          />
+          <CodeBlock code={codes.usage_1} />
+          <CodeBlock code={codes.usage_2} />
         </>
       }
       api={api}

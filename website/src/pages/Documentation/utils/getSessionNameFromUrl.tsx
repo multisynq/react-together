@@ -1,4 +1,4 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import { GenericDocPage } from '../GenericDocPage'
 import FunctionArgsApi from './FunctionArgsApi'
@@ -13,20 +13,22 @@ export default function GetSessionNameFromUrlDocumentationPage() {
   const usage = (
     <>
       <CodeBlock
-        language='jsx'
-        codeShort={`\
+        code={{
+          typescript: `\
 import { utils } from 'react-together'
-const { getSessionNameFromUrl } = utils`}
+const { getSessionNameFromUrl } = utils`,
+        }}
       />
       <CodeBlock
-        language='jsx'
-        codeShort={`\
+        code={{
+          typescript: `\
 const url = new URL('https://reacttogether.dev?rtName=session1');
 const sessionName = getSessionNameFromUrl(url); // 'session1'
 
 const url2 = new URL('https://reacttogether.dev?anotherParam=session2');
 const sessionName2 = getSessionNameFromUrl(url, { nameKey: 'anotherParam' }); // 'session2'\
-`}
+`,
+        }}
       />
     </>
   )

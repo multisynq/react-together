@@ -1,4 +1,4 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
@@ -7,7 +7,9 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 import ComponentPropsTable from './ComponentPropsTable'
 
-export const demoCode = `
+export const codes = {
+  demo: {
+    typescript: `
 import { useState } from 'react'
 import { HoverHighlighter } from 'react-together'
 
@@ -60,7 +62,20 @@ function getDarkerShade(hexColor: string, darkenFactor = 0.8): string {
 
   return \`#\${newHex}\`
 }
-`
+    `,
+  },
+
+  usage_1: { basic: `import { ReactTogether } from 'react-together` },
+
+  usage_2: {
+    basic: `
+return (
+  <HoverHighlighter rtKey='unique-key'>
+    <YourComponent/>
+  </HoverHighlighter>
+)`,
+  },
+}
 
 export default function HoverHighlighterDocumentationPage() {
   const api = (
@@ -115,23 +130,13 @@ export default function HoverHighlighterDocumentationPage() {
             component can be customized by passing a <CodeSpan text='className' /> prop. Alternatively, you can create your own component
             using the <LinkSpan to='/useHoveringUsers' text='useHoveringUsers' /> hook.
           </p>
-          <PreviewSourceCodeTabs
-            preview={<DocumentationDemo url='HoverHighlighter' />}
-            code={<CodeBlock language='tsx' code1={demoCode} />}
-          />
+          <PreviewSourceCodeTabs preview={<DocumentationDemo url='HoverHighlighter' />} code={<CodeBlock code={codes.demo} />} />
         </>
       }
       usage={
         <>
-          <CodeBlock language='javascript' codeShort={`import { ReactTogether } from 'react-together'`} />
-          <CodeBlock
-            language='javascript'
-            codeShort={`return (
-  <HoverHighlighter rtKey='unique-key'>
-    <YourComponent/>
-  </HoverHighlighter>
-)`}
-          />
+          <CodeBlock code={codes.usage_1} />
+          <CodeBlock code={codes.usage_2} />
         </>
       }
       api={api}

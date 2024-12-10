@@ -1,9 +1,27 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
+
+const codes = {
+  usage_1: { javascript: `import { useLeaveSession } from 'react-together'` },
+
+  usage_2: {
+    javascript: `
+export default function YourComponent() {
+  const leaveSession = useLeaveSession()
+
+  return (
+    <button onClick={() => leaveSession()}>
+      Disconnect from current session
+    </button>
+  )
+}
+  `,
+  },
+}
 
 export default function UseLeaveSessionDocumentationPage() {
   const api = (
@@ -39,21 +57,8 @@ export default function UseLeaveSessionDocumentationPage() {
       }
       usage={
         <>
-          <CodeBlock language='jsx' codeShort={`import { useLeaveSession } from 'react-together'`} />
-          <CodeBlock
-            language='jsx'
-            codeShort={`\
-export default function YourComponent() {
-  const leaveSession = useLeaveSession()
-
-  return (
-    <button onClick={() => leaveSession()}>
-      Disconnect from current session
-    </button>
-  )
-}
-`}
-          />
+          <CodeBlock code={codes.usage_1} />
+          <CodeBlock code={codes.usage_2} />
         </>
       }
       api={api}
