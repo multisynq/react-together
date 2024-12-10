@@ -1,3 +1,8 @@
+import '@styles/CodeBlock.scss'
+
+import { PiCode, PiCopy, PiDatabase } from 'react-icons/pi'
+import { SiGithub, SiStackblitz } from 'react-icons/si'
+
 import { Button, CodeHighlight } from '@components'
 import { useCodeEditor } from '@utils/codeeditor'
 import { useEffect, useState } from 'react'
@@ -41,11 +46,13 @@ export default function CodeBlock({
 
   const copyCode = async () => await navigator.clipboard.writeText(code[codeLang])
 
+  const btnClass = 'h-2rem w-2rem p-0 inline-flex align-items-center justify-content-center shadow-none'
+
   return (
     <>
       {!embedded && (
         <div className='doc-section-code'>
-          <div className='doc-section-code-buttons scalein animation-duration-300'>
+          <div className='doc-section-code-buttons animation-duration-300'>
             {codeMode !== 'basic' && !hideToggleCode && codeMode !== 'data' && (
               <>
                 <Button
@@ -69,11 +76,11 @@ export default function CodeBlock({
               <Button
                 type='button'
                 onClick={() => toggleCodeMode('javascript')}
-                className='h-2rem w-2rem p-0 inline-flex align-items-center justify-content-center shadow-none'
+                className={btnClass}
                 // tooltip='Toggle Full Code'
                 // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
               >
-                <i className='pi pi-code' />
+                <PiCode />
               </Button>
             )}
 
@@ -81,48 +88,46 @@ export default function CodeBlock({
               <Button
                 type='button'
                 onClick={() => setCodeMode('data')}
-                className='h-2rem w-2rem p-0 inline-flex align-items-center justify-content-center shadow-none'
+                className={btnClass}
                 // tooltip='View Data'
                 // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
               >
-                <i className='pi pi-database' />
+                <PiDatabase />
               </Button>
             ) : null}
 
             {!hideStackBlitz && (
               <Button
                 type='button'
-                className='h-2rem w-2rem p-0 inline-flex align-items-center justify-content-center shadow-none'
+                className={btnClass}
                 onClick={() => codeEditor.openStackBlitz(codeLang)}
                 // tooltip='Edit in StackBlitz'
                 // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
               >
-                <svg role='img' viewBox='0 0 13 19' width={13} height={18} fill={'currentColor'} style={{ display: 'block' }}>
-                  <path d='M0 10.6533H5.43896L2.26866 18.1733L12.6667 7.463H7.1986L10.3399 0L0 10.6533Z' />
-                </svg>
+                <SiStackblitz />
               </Button>
             )}
 
             {github && (
               <Button
                 type='button'
-                className='h-2rem w-2rem p-0 inline-flex align-items-center justify-content-center shadow-none'
+                className={btnClass}
                 onClick={() => window.open(github, '_blank')}
                 // tooltip='View on GitHub'
                 // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
               >
-                <i className='pi pi-github' />
+                <SiGithub />
               </Button>
             )}
 
             <Button
               type='button'
               onClick={copyCode}
-              className='h-2rem w-2rem p-0 inline-flex align-items-center justify-content-center shadow-none'
+              className={btnClass}
               // tooltip='Copy Code'
               // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
             >
-              <i className='pi pi-copy' />
+              <PiCopy />
             </Button>
           </div>
 

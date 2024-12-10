@@ -26,8 +26,8 @@ export function PrimeReactComponentDocumentationPage({
 }: GenericComponentPageProps) {
   const codes = {
     demo: {
-      // basic: demoCode,
-      basic: 'Hello Basic',
+      basic: demoCode,
+      // basic: 'Hello Basic',
       typescript: `Hello I'm TS`,
       javascript: `Hello I'm JS`,
     },
