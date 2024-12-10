@@ -1,9 +1,8 @@
 {
-  "name": "react-together-playground",
-  "version": "0.0.0",
-  "private": true,
+  "name": "react-together-ant-design",
+  "version": "0.0.1",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -12,20 +11,18 @@
     "**/*.css"
   ],
   "scripts": {
-    "dev": "vite",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prettier": "prettier . --check",
-    "preview": "vite preview",
-    "clean": "rm -rf node_modules bun.lockb package-lock.json dist"
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "build": "tsc && vite build",
+    "watch": "npm run build -- --watch",
+    "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
+    "react-together": "^0.3.0-1"
+  },
+  "peerDependencies": {
     "primereact": "^10.6.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.26.1",
-    "react-together": "^0.2.0",
-    "react-together-primereact": "^0.1.0",
-    "react-together-ant-design": "^0.0.1"
+    "antd": "^5.19.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
@@ -35,16 +32,11 @@
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
-    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "glob": "^10.3.10",
-    "postcss": "^8.4.41",
     "prettier": "^3.3.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.4.10",
     "typescript": "^5.4.3",
     "vite": "^4.5.3",
     "vite-plugin-dts": "^3.7.3",

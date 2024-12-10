@@ -1,3 +1,4 @@
+import AntDemos from './antDemos'
 import Chat from './chat'
 import CountPerUserDemo from './countPerUser'
 import Gallery from './gallery'
@@ -42,5 +43,11 @@ export const demos: Demo[] = [
     element: <CountPerUserDemo />,
     description:
       'A simple count per user demo using useStateTogetherWithPerUserValues.'
+  },
+  {
+    label: 'Ant Demos',
+    path: 'antDemos',
+    element: <AntDemos />,
+    description: 'A simple ant demos demo using antNewMqPackage.'
   }
 ]
