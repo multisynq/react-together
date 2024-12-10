@@ -26,6 +26,18 @@ export default function RatingTogether({ rtKey, ...props }) {
 }
 `
 
+const demoCode = `
+import { RatingTogether } from 'react-together-primereact'
+
+export function PrimeReactRatingTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <RatingTogether rtKey='rating-doc-demo' />
+    </div>
+  )
+}
+`
+
 export default function PrimeReactRatingTogetherDocumentationPage() {
   const api = (
     <>
@@ -60,7 +72,7 @@ export default function PrimeReactRatingTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('RatingTogether')} />
 }

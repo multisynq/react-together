@@ -11,6 +11,7 @@ interface GenericComponentPageProps {
   originalName: string
   docUrl: string
   sourceCode: string
+  demoCode: string
   api?: ReactNode | ReactNode[]
   github?: string
 }
@@ -29,13 +30,7 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
           <DocumentationDemo url={`primereact/${originalName}`} />
         </TabPanel>
         <TabPanel header='Code'>
-          <CodeBlock
-            {...{
-              language: 'tsx',
-              codeShort: sourceCode,
-              github,
-            }}
-          />
+          <CodeBlock language='tsx' code1={sourceCode} />
         </TabPanel>
       </TabView>
     </>
@@ -53,8 +48,8 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
 
   const usage = (
     <>
-      <CodeBlock language='tsx' codeShort={`import { ${name} } from 'react-together-primereact'`} />
-      <CodeBlock language='tsx' codeShort={`<${name} rtKey='your-unique-key' />`} />
+      <CodeBlock language='tsx' code1={`import { ${name} } from 'react-together-primereact'`} />
+      <CodeBlock language='tsx' code1={`<${name} rtKey='your-unique-key' />`} />
     </>
   )
   return <GenericDocPage title={name} description={description} usage={usage} api={api} />

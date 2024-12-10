@@ -24,6 +24,25 @@ export default function MultiSelectTogether({ rtKey, ...props }) {
 }
 `
 
+const demoCode = `
+import { MultiSelectTogether } from 'react-together-primereact'
+
+export function PrimeReactMultiSelectTogetherDemo() {
+  const cities = [
+    { name: 'New York', code: 'NY' },
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' },
+  ]
+  return (
+    <div className='flex-col place-items-center'>
+      <MultiSelectTogether rtKey='multi-select-doc-demo' options={cities} optionLabel='name' multiple display='chip' />
+    </div>
+  )
+}
+`
+
 export default function PrimeReactMultiSelectTogetherDocumentationPage() {
   const api = (
     <>
@@ -53,7 +72,7 @@ export default function PrimeReactMultiSelectTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('MultiSelectTogether')} />
 }

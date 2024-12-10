@@ -12,14 +12,7 @@ const sourceCode = `
 import { InputSwitch, InputSwitchProps } from 'primereact/inputswitch'
 import { useStateTogether } from 'react-together'
 
-export interface InputSwitchTogetherProps
-  extends Omit<InputSwitchProps, 'checked' | 'onChange'> {
-  rtKey: string
-}
-export default function InputSwitchTogether({
-  rtKey,
-  ...props
-}: InputSwitchTogetherProps) {
+export default function InputSwitchTogether({ rtKey, ...props }) {
   const [checked, set_checked] = useStateTogether<boolean>(rtKey, false)
 
   return (
@@ -28,6 +21,18 @@ export default function InputSwitchTogether({
       checked={checked}
       onChange={(e) => set_checked(e.value)}
     />
+  )
+}
+`
+
+const demoCode = `
+import { InputSwitchTogether } from 'react-together-primereact'
+
+export function PrimeReactInputSwitchTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <InputSwitchTogether rtKey='input-switch-doc-demo' />
+    </div>
   )
 }
 `
@@ -61,7 +66,7 @@ export default function PrimeReactInputSwitchTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('InputSwitchTogether')} />
 }
