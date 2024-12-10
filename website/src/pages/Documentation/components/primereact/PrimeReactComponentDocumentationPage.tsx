@@ -11,9 +11,10 @@ interface GenericComponentPageProps {
   originalName: string
   docUrl: string
   sourceCode: string
+  demoCode: string
   api?: ReactNode | ReactNode[]
 }
-export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api, sourceCode }: GenericComponentPageProps) {
+export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api, demoCode }: GenericComponentPageProps) {
   const description = (
     <>
       <p>
@@ -28,7 +29,7 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
           <DocumentationDemo url={`primereact/${originalName}`} />
         </TabPanel>
         <TabPanel header='Code'>
-          <CodeBlock language='tsx' code1={sourceCode} />
+          <CodeBlock language='tsx' code1={demoCode} />
         </TabPanel>
       </TabView>
     </>

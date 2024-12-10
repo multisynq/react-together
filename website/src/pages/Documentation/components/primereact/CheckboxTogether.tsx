@@ -28,6 +28,18 @@ export default function CheckboxTogether({ rtKey, ...props }) {
 }
 `
 
+const demoCode = `
+import { CheckboxTogether } from 'react-together-primereact'
+
+export function PrimeReactCheckboxTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <CheckboxTogether rtKey='checkbox-doc-demo' />
+    </div>
+  )
+}
+`
+
 export default function PrimeReactCheckboxTogetherDocumentationPage() {
   const api = (
     <>
@@ -57,7 +69,7 @@ export default function PrimeReactCheckboxTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('CheckboxTogether')} />
 }

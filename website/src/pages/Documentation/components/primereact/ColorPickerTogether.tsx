@@ -69,6 +69,18 @@ export default function ColorPickerTogether({
 }
 `
 
+const demoCode = `
+import { ColorPickerTogether } from 'react-together-primereact'
+
+export function PrimeReactColorPickerTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <ColorPickerTogether rtKey='color-picker-doc-demo' publishWhileOpen />
+    </div>
+  )
+}
+`
+
 export default function PrimeReactColorPickerTogetherDocumentationPage() {
   const api = (
     <>
@@ -112,7 +124,7 @@ export default function PrimeReactColorPickerTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('ColorPickerTogether')} />
 }

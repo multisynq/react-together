@@ -20,6 +20,29 @@ export default function DropdownTogether({ rtKey, ...props }) {
 }
 `
 
+const demoCode = `
+import { DropdownTogether } from 'react-together-primereact'
+
+export function PrimeReactDropdownTogetherDemo() {
+  const cities = [
+    { name: 'Los Angeles', code: 'LA' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Lisbon', code: 'LIS' },
+  ]
+  return (
+    <div className='flex-col place-items-center'>
+      <DropdownTogether
+        rtKey='dropdown-doc-demo'
+        options={cities}
+        optionLabel='name'
+        placeholder='Select a City'
+        className='w-full md:w-14rem'
+      />
+    </div>
+  )
+}
+`
+
 export default function PrimeReactDropdownTogetherDocumentationPage() {
   const api = (
     <>
@@ -49,7 +72,7 @@ export default function PrimeReactDropdownTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode }} />
+  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
 
   return <DocumentationPage content={content} navItems={GenericDocNav('DropdownTogether')} />
 }
