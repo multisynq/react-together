@@ -40,6 +40,7 @@ export function getGoogleConsent(consentMode: ConsentMode | null | undefined) {
 export function setupGoogleAnalytics() {
   // If inside iframe, do nothing
   if (window.self !== window.top) return
+  if (!import.meta.env.VITE_GA4_ID || !import.meta.env.VITE_GTM_ID) return
 
   let consent: ConsentMode | null = null
   const storedConsent = localStorage.getItem(COOKIE_SETTINGS_LOCAL_STORAGE_KEY)
@@ -65,5 +66,6 @@ export function setupGoogleAnalytics() {
   TagManager.initialize({
     gtmId: import.meta.env.VITE_GTM_ID,
   })
+  
   ReactGA.initialize(import.meta.env.VITE_GA4_ID)
 }
