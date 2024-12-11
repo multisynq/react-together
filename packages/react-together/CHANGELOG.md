@@ -3,7 +3,7 @@
  - Added `resetOnDisconnect` option flag in `useStateTogether`
  - Added `resetOnDisconnect` option flag in `useStateTogetherWithPerUserValues`
  - Added `resetOnConnect` option flag in `useStateTogetherWithPerUserValues`
- - Added `persistDisconnectedUserData` option flag in `useStateTogetherWithPerUserValues`
+ - Added `keepValues` option flag in `useStateTogetherWithPerUserValues`
  - Added `keyOverride` option flag in `useStateTogetherWithPerUserValues`
  - Added `overwriteSessionValue` option flag in `useStateTogetherWithPerUserValues`
 `0.3.0-1`

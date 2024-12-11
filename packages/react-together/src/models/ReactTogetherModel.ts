@@ -26,7 +26,7 @@ interface ConfigureStatePerUserArgs {
 
 interface StatePerUserConfig {
   viewKeyOverrideMapping?: Map<string, string>
-  persistDisconnectedUserData?: boolean
+  keepValues?: boolean
 }
 
 export default class ReactTogetherModel extends ReactModel {
@@ -76,7 +76,7 @@ export default class ReactTogetherModel extends ReactModel {
   }
 
   configureStatePerUser({ id, viewId, options }: ConfigureStatePerUserArgs) {
-    const { keyOverride, persistDisconnectedUserData } = options
+    const { keyOverride, keepValues } = options
 
     const config = this.statePerUserConfig.get(id) ?? {}
     if (keyOverride !== undefined) {
@@ -85,8 +85,8 @@ export default class ReactTogetherModel extends ReactModel {
       }
       config.viewKeyOverrideMapping.set(viewId, keyOverride)
     }
-    if (persistDisconnectedUserData !== undefined) {
-      config.persistDisconnectedUserData = persistDisconnectedUserData
+    if (keepValues !== undefined) {
+      config.keepValues = keepValues
     }
     this.statePerUserConfig.set(id, config)
   }
@@ -95,7 +95,7 @@ export default class ReactTogetherModel extends ReactModel {
     viewId = typeof viewId !== 'string' ? viewId.viewId : viewId
     this.statePerUser.forEach((st, rtKey) => {
       const config = this.statePerUserConfig.get(rtKey)
-      const persistData = config?.persistDisconnectedUserData
+      const persistData = config?.keepValues
       const viewKeyOverrideMapping = config?.viewKeyOverrideMapping
       if (!persistData) {
         // If the exiting view has a keyOverride, we just delete it if any other view

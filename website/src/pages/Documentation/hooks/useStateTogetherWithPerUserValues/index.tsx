@@ -61,9 +61,8 @@ const api = (
           description: (
             <Markdown>
               By default, user's state is associated with their `userId`. This option allows associating state with custom identifiers (e.g.
-              an external ID). When multiple users share the same `keyOverride`, their values are synchronized. If
-              `persistDisconnectedUserData` is false, values associated with a `keyOverride` are only removed from the session after all
-              users with that key disconnect.
+              an external ID). When multiple users share the same `keyOverride`, their values are synchronized. If `keepValues` is false,
+              values associated with a `keyOverride` are only removed from the session after all users with that key disconnect.
             </Markdown>
           ),
         },
@@ -87,7 +86,7 @@ const api = (
           ),
         },
         {
-          name: 'persistDisconnectedUserData',
+          name: 'keepValues',
           type: 'boolean',
           default: 'false',
           description: "If true, the user's state will be persisted in the session even after disconnection.",

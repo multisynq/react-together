@@ -37,7 +37,7 @@ function mapToObject<T>(map: Map<string, T>): ValueMap<T> {
 export interface UseStateTogetherWithPerUserValuesOptions {
   resetOnDisconnect?: boolean
   resetOnConnect?: boolean
-  persistDisconnectedUserData?: boolean
+  keepValues?: boolean
   keyOverride?: string
   overwriteSessionValue?: boolean
 }
@@ -51,7 +51,7 @@ export default function useStateTogetherWithPerUserValues<
   const {
     resetOnDisconnect = false,
     resetOnConnect = false,
-    persistDisconnectedUserData = false,
+    keepValues = false,
     overwriteSessionValue = false,
     keyOverride
   } = options
@@ -97,7 +97,7 @@ export default function useStateTogetherWithPerUserValues<
       const config = model.statePerUserConfig.get(rtKey)
       if (
         !config ||
-        config.persistDisconnectedUserData !== persistDisconnectedUserData ||
+        config.keepValues !== keepValues ||
         (keyOverride &&
           config.viewKeyOverrideMapping?.get(viewId) !== keyOverride)
       ) {
@@ -107,7 +107,7 @@ export default function useStateTogetherWithPerUserValues<
           options: {
             // intentionally not passing resetOnDisconnect and resetOnConnect
             // to save on bandwidth
-            persistDisconnectedUserData,
+            keepValues,
             keyOverride
           }
         })
@@ -119,7 +119,7 @@ export default function useStateTogetherWithPerUserValues<
     rtKey,
     resetOnDisconnect,
     resetOnConnect,
-    persistDisconnectedUserData,
+    keepValues,
     viewId,
     keyOverride
   ])
@@ -240,7 +240,7 @@ export default function useStateTogetherWithPerUserValues<
     key,
     resetOnDisconnect,
     resetOnConnect,
-    persistDisconnectedUserData,
+    keepValues,
     overwriteSessionValue
   ])
 
