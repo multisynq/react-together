@@ -46,6 +46,7 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
     <GenericDocPage
       {...{
         title: name,
+        id: 'title',
         description: (
           <>
             <p>

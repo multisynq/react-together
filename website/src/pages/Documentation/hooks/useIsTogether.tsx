@@ -10,7 +10,13 @@ const codes = {
   },
 
   usage_2: {
-    basic: `const isTogether = useIsTogether()`,
+    basic: `
+function YourComponent() {
+  const isTogether = useIsTogether()
+
+  return <div>Is Together: {isTogether ? 'Yes' : 'No'}</div>
+}
+`,
   },
 }
 
@@ -48,5 +54,5 @@ export default function UseJoinUrlDocumentationPage() {
       }}
     />
   )
-  return <DocumentationPage {...{ content, navItems: GenericDocNav('useJoinUrl') }} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useJoinUrl', { exclude: ['source'] }) }} />
 }

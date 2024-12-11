@@ -78,6 +78,42 @@ return (
 )
 `,
   },
+
+  source: {
+    basic: `
+import { useViewId } from '@croquet/react'
+import ColorHash from 'color-hash'
+import { useHoveringUsers } from '../hooks'
+
+const colorHash = new ColorHash()
+
+export default function HoverHighlighter({ rtKey, children, className, highlightMyself = false }) {
+  const [ref, hoveringUsers, isHovering] = useHoveringUsers(rtKey)
+  const myId = useViewId()
+
+  let style = {}
+  const users = highlightMyself
+    ? hoveringUsers
+    : hoveringUsers.filter((v) => v !== myId)
+  if (users.length > 0 || (highlightMyself && isHovering)) {
+    const color = colorHash.hex(users[0] ?? rtKey)
+    style = {
+      outline: \`2px solid \${color}\`,
+      animation: 'clippath 3s linear infinite',
+      borderRadius: '10px'
+    }
+  }
+
+  return (
+    <>
+      <div ref={ref} style={style} {...{ className }}>
+        {children}
+      </div>
+    </>
+  )
+}
+`,
+  },
 }
 
 export default function HoverHighlighterDocumentationPage() {
@@ -144,6 +180,7 @@ export default function HoverHighlighterDocumentationPage() {
           </>
         ),
         api,
+        source: <CodeBlock code={codes.source} />,
       }}
     />
   )
