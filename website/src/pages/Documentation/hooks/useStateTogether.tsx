@@ -147,5 +147,5 @@ const content = (
   />
 )
 export default function UseStateTogetherDocumentationPage() {
-  return <DocumentationPage {...{ content, navItems: GenericDocNav('useStateTogether') }} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useStateTogether', { exclude: ['source'] }) }} />
 }

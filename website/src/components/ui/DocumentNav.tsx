@@ -27,6 +27,32 @@ const items: PatchedMenuItem[] = [
     ],
   },
   {
+    key: 'hooks',
+    label: 'Hooks',
+    items: [
+      { key: 'use-state-together', label: 'useStateTogether', url: `${baseUrl}/useStateTogether` },
+      {
+        key: 'use-state-together-with-per-user-values',
+        label: 'useStateTogetherWithPerUserValues',
+        url: `${baseUrl}/useStateTogetherWithPerUserValues`,
+      },
+      { key: 'use-function-together', label: 'useFunctionTogether', url: `${baseUrl}/useFunctionTogether` },
+      {
+        key: 'useful-hooks',
+        label: 'Other useful hooks',
+        items: [
+          { key: 'use-connected-users', label: 'useConnectedUsers', url: `${baseUrl}/useConnectedUsers` },
+          { key: 'use-hovering-views', label: 'useHoveringUsers', url: `${baseUrl}/useHoveringUsers` },
+          { key: 'use-create-session', label: 'useCreateRandomSession', url: `${baseUrl}/useCreateRandomSession` },
+          { key: 'use-is-together', label: 'useIsTogether', url: `${baseUrl}/useIsTogether` },
+          { key: 'use-leave-session', label: 'useLeaveSession', url: `${baseUrl}/useLeaveSession` },
+          { key: 'use-join-url', label: 'useJoinUrl', url: `${baseUrl}/useJoinUrl` },
+          { key: 'use-my-id', label: 'useMyId', url: `${baseUrl}/useMyId` },
+        ],
+      },
+    ],
+  },
+  {
     key: 'components',
     label: 'Components',
     items: [
@@ -53,32 +79,7 @@ const items: PatchedMenuItem[] = [
       },
     ],
   },
-  {
-    key: 'hooks',
-    label: 'Hooks',
-    items: [
-      { key: 'use-state-together', label: 'useStateTogether', url: `${baseUrl}/useStateTogether` },
-      {
-        key: 'use-state-together-with-per-user-values',
-        label: 'useStateTogetherWithPerUserValues',
-        url: `${baseUrl}/useStateTogetherWithPerUserValues`,
-      },
-      { key: 'use-function-together', label: 'useFunctionTogether', url: `${baseUrl}/useFunctionTogether` },
-      {
-        key: 'useful-hooks',
-        label: 'Other useful hooks',
-        items: [
-          { key: 'use-connected-users', label: 'useConnectedUsers', url: `${baseUrl}/useConnectedUsers` },
-          { key: 'use-hovering-views', label: 'useHoveringUsers', url: `${baseUrl}/useHoveringUsers` },
-          { key: 'use-create-session', label: 'useCreateRandomSession', url: `${baseUrl}/useCreateRandomSession` },
-          { key: 'use-is-together', label: 'useIsTogether', url: `${baseUrl}/useIsTogether` },
-          { key: 'use-leave-session', label: 'useLeaveSession', url: `${baseUrl}/useLeaveSession` },
-          { key: 'use-join-url', label: 'useJoinUrl', url: `${baseUrl}/useJoinUrl` },
-          { key: 'use-my-id', label: 'useMyId', url: `${baseUrl}/useMyId` },
-        ],
-      },
-    ],
-  },
+
   {
     key: 'advanced',
     label: 'Advanced usage',
