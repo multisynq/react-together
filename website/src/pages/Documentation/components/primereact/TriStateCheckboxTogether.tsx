@@ -6,11 +6,22 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const originalName = 'TriStateCheckbox'
 const name = 'TriStateCheckboxTogether'
-const docUrl = 'https://primereact.org/tristatecheckbox/'
-const demoGithub = ''
-const sourceGithub = ''
 
 const codes = {
+  demo: {
+    basic: `
+import { TriStateCheckboxTogether } from 'react-together-primereact'
+
+export function PrimeReactTriStateCheckboxTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <TriStateCheckboxTogether rtKey='tri-state-checkbox-doc-demo' />
+    </div>
+  )
+}
+`,
+  },
+
   source: {
     basic: `
 import {
@@ -32,20 +43,6 @@ export default function TriStateCheckboxTogether({ rtKey, ...props }) {
         className={\`outline outline-1 outline-slate-400 rounded \${props.className}\`}
       />
     </>
-  )
-}
-`,
-  },
-
-  demo: {
-    basic: `
-import { TriStateCheckboxTogether } from 'react-together-primereact'
-
-export function PrimeReactTriStateCheckboxTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <TriStateCheckboxTogether rtKey='tri-state-checkbox-doc-demo' />
-    </div>
   )
 }
 `,
@@ -86,10 +83,9 @@ export default function PrimeReactTriStateTriStateCheckboxTogetherDocumentationP
       {...{
         name,
         originalName,
-        docUrl,
         api,
-        demo: { code: codes.demo, github: demoGithub },
-        source: { code: codes.source, github: sourceGithub },
+        demo: { code: codes.demo },
+        source: { code: codes.source },
       }}
     />
   )

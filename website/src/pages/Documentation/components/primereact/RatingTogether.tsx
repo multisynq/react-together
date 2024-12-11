@@ -6,9 +6,24 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'RatingTogether'
 const originalName = 'Rating'
-const docUrl = `https://primereact.org/rating`
 
-const sourceCode = `
+const codes = {
+  demo: {
+    basic: `
+import { RatingTogether } from 'react-together-primereact'
+
+export function PrimeReactRatingTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <RatingTogether rtKey='rating-doc-demo' />
+    </div>
+  )
+}
+`,
+  },
+
+  source: {
+    basic: `
 import { Rating, RatingProps } from 'primereact/rating'
 import { Nullable } from 'primereact/ts-helpers'
 import { useStateTogether } from 'react-together'
@@ -24,19 +39,9 @@ export default function RatingTogether({ rtKey, ...props }) {
     />
   )
 }
-`
-
-const demoCode = `
-import { RatingTogether } from 'react-together-primereact'
-
-export function PrimeReactRatingTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <RatingTogether rtKey='rating-doc-demo' />
-    </div>
-  )
+`,
+  },
 }
-`
 
 export default function PrimeReactRatingTogetherDocumentationPage() {
   const api = (
@@ -72,7 +77,17 @@ export default function PrimeReactRatingTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('RatingTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('RatingTogether') }} />
 }

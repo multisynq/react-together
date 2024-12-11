@@ -6,9 +6,24 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'KnobTogether'
 const originalName = 'Knob'
-const docUrl = `https://primereact.org/knob`
 
-const sourceCode = `
+const codes = {
+  demo: {
+    basic: `
+import { KnobTogether } from 'react-together-primereact'
+
+export function PrimeReactKnobTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <KnobTogether rtKey='knob-doc-demo' />
+    </div>
+  )
+}
+`,
+  },
+
+  source: {
+    basic: `
 import { Knob, KnobProps } from 'primereact/knob'
 import { useStateTogether } from 'react-together'
 
@@ -19,19 +34,9 @@ export default function KnobTogether({ rtKey, ...props }) {
     <Knob {...props} value={value || 0} onChange={(e) => set_value(e.value)} />
   )
 }
-`
-
-const demoCode = `
-import { KnobTogether } from 'react-together-primereact'
-
-export function PrimeReactKnobTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <KnobTogether rtKey='knob-doc-demo' />
-    </div>
-  )
+`,
+  },
 }
-`
 
 export default function PrimeReactKnobTogetherDocumentationPage() {
   const api = (
@@ -62,7 +67,17 @@ export default function PrimeReactKnobTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('KnobTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('KnobTogether') }} />
 }

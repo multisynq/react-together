@@ -6,32 +6,10 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'TabViewTogether'
 const originalName = 'TabView'
-const docUrl = `https://primereact.org/tabview`
 
-const sourceCode = `
-import { TabView, TabViewProps } from 'primereact/tabview'
-import { useStateTogether } from 'react-together'
-
-export default function TabViewTogether({ rtKey, ...props }) {
-  const [activeIndex, set_activeIndex] = useStateTogether<number>(rtKey, 0)
-
-  return (
-    <TabView
-      {...props}
-      activeIndex={activeIndex}
-      onTabChange={(e) => set_activeIndex(e.index)}
-      pt={{
-        panelContainer: { className: 'bg-transparent' },
-        root: {
-          className: 'border-gray-700 shadow-md px-4 rounded-xl'
-        }
-      }}
-    />
-  )
-}
-`
-
-const demoCode = `
+const codes = {
+  demo: {
+    basic: `
 import { TabPanel } from 'primereact/tabview'
 import { TabViewTogether } from 'react-together-primereact'
 
@@ -55,7 +33,34 @@ export function PrimeReactTabViewTogetherDemo() {
     </div>
   )
 }
-`
+`,
+  },
+
+  source: {
+    basic: `
+import { TabView, TabViewProps } from 'primereact/tabview'
+import { useStateTogether } from 'react-together'
+
+export default function TabViewTogether({ rtKey, ...props }) {
+  const [activeIndex, set_activeIndex] = useStateTogether<number>(rtKey, 0)
+
+  return (
+    <TabView
+      {...props}
+      activeIndex={activeIndex}
+      onTabChange={(e) => set_activeIndex(e.index)}
+      pt={{
+        panelContainer: { className: 'bg-transparent' },
+        root: {
+          className: 'border-gray-700 shadow-md px-4 rounded-xl'
+        }
+      }}
+    />
+  )
+}
+`,
+  },
+}
 
 export default function PrimeReactTabViewTogetherDocumentationPage() {
   const api = (
@@ -86,7 +91,17 @@ export default function PrimeReactTabViewTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('TabViewTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('TabViewTogether') }} />
 }

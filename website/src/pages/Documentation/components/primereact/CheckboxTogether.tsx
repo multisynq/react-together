@@ -4,11 +4,26 @@ import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
-const originalName = 'Checkbox'
 const name = 'CheckboxTogether'
-const docUrl = 'https://primereact.org/checkbox/'
+const originalName = 'Checkbox'
 
-const sourceCode = `
+const codes = {
+  demo: {
+    basic: `
+import { CheckboxTogether } from 'react-together-primereact'
+
+export function PrimeReactCheckboxTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <CheckboxTogether rtKey='checkbox-doc-demo' />
+    </div>
+  )
+}
+`,
+  },
+
+  source: {
+    basic: `
 import { Checkbox, CheckboxProps } from 'primereact/checkbox'
 import { useStateTogether } from 'react-together'
 
@@ -26,19 +41,9 @@ export default function CheckboxTogether({ rtKey, ...props }) {
     </>
   )
 }
-`
-
-const demoCode = `
-import { CheckboxTogether } from 'react-together-primereact'
-
-export function PrimeReactCheckboxTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <CheckboxTogether rtKey='checkbox-doc-demo' />
-    </div>
-  )
+`,
+  },
 }
-`
 
 export default function PrimeReactCheckboxTogetherDocumentationPage() {
   const api = (
@@ -69,7 +74,17 @@ export default function PrimeReactCheckboxTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('CheckboxTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('CheckboxTogether') }} />
 }

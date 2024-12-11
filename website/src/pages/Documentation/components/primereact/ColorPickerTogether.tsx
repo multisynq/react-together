@@ -7,10 +7,24 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'ColorPickerTogether'
 const originalName = 'ColorPicker'
-const docUrl = `https://primereact.org/colorpicker`
-const github = `https://github.com/multisynq/react-together/blob/develop/packages/react-together-primereact/src/components/ColorPickerTogether.tsx`
 
-const sourceCode = `
+const codes = {
+  demo: {
+    basic: `
+import { ColorPickerTogether } from 'react-together-primereact'
+
+export function PrimeReactColorPickerTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <ColorPickerTogether rtKey='color-picker-doc-demo' publishWhileOpen />
+    </div>
+  )
+}
+`,
+  },
+
+  source: {
+    basic: `
 import {
   ColorPicker,
   ColorPickerChangeEvent,
@@ -65,19 +79,9 @@ export default function ColorPickerTogether({
     />
   )
 }
-`
-
-const demoCode = `
-import { ColorPickerTogether } from 'react-together-primereact'
-
-export function PrimeReactColorPickerTogetherDemo() {
-  return (
-    <div className='flex-col place-items-center'>
-      <ColorPickerTogether rtKey='color-picker-doc-demo' publishWhileOpen />
-    </div>
-  )
+`,
+  },
 }
-`
 
 export default function PrimeReactColorPickerTogetherDocumentationPage() {
   const api = (
@@ -122,7 +126,17 @@ export default function PrimeReactColorPickerTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, demoCode, sourceCode, github }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
   return <DocumentationPage {...{ content, navItems: GenericDocNav('ColorPickerTogether') }} />
 }

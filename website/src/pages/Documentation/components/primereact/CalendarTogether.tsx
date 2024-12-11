@@ -6,9 +6,14 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'CalendarTogether'
 const originalName = 'Calendar'
-const docUrl = `https://primereact.org/calendar`
 
-const sourceCode = `
+const codes = {
+  demo: {
+    basic: ``,
+  },
+
+  source: {
+    basic: `
 import { Calendar, CalendarProps } from 'primereact/calendar'
 import { useStateTogether } from 'react-together'
 
@@ -37,7 +42,9 @@ export default function CalendarTogether({
     />
   )
 }
-`
+`,
+  },
+}
 
 export default function PrimeReactCalendarTogetherDocumentationPage() {
   const api = (
@@ -68,7 +75,17 @@ export default function PrimeReactCalendarTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode: '' }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
   return <DocumentationPage {...{ content, navItems: GenericDocNav('CalendarTogether') }} />
 }

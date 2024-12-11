@@ -6,25 +6,10 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'MultiSelectTogether'
 const originalName = 'MultiSelect'
-const docUrl = `https://primereact.org/multiselect`
 
-const sourceCode = `
-import { MultiSelect, MultiSelectProps } from 'primereact/multiselect'
-import { useStateTogether } from 'react-together'
-
-export default function MultiSelectTogether({ rtKey, ...props }) {
-  const [value, set_value] = useStateTogether(rtKey, [])
-  return (
-    <MultiSelect
-      {...props}
-      value={value}
-      onChange={(e) => set_value(e.value)}
-    />
-  )
-}
-`
-
-const demoCode = `
+const codes = {
+  demo: {
+    basic: `
 import { MultiSelectTogether } from 'react-together-primereact'
 
 export function PrimeReactMultiSelectTogetherDemo() {
@@ -41,7 +26,27 @@ export function PrimeReactMultiSelectTogetherDemo() {
     </div>
   )
 }
-`
+`,
+  },
+
+  source: {
+    basic: `
+import { MultiSelect, MultiSelectProps } from 'primereact/multiselect'
+import { useStateTogether } from 'react-together'
+
+export default function MultiSelectTogether({ rtKey, ...props }) {
+  const [value, set_value] = useStateTogether(rtKey, [])
+  return (
+    <MultiSelect
+      {...props}
+      value={value}
+      onChange={(e) => set_value(e.value)}
+    />
+  )
+}
+`,
+  },
+}
 
 export default function PrimeReactMultiSelectTogetherDocumentationPage() {
   const api = (
@@ -72,7 +77,17 @@ export default function PrimeReactMultiSelectTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('MultiSelectTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('MultiSelectTogether') }} />
 }

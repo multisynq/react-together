@@ -6,9 +6,29 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'SelectButtonTogether'
 const originalName = 'SelectButton'
-const docUrl = `https://primereact.org/selectbutton`
 
-const sourceCode = `
+const codes = {
+  demo: {
+    basic: `
+import { SelectButtonTogether } from 'react-together-primereact'
+
+export function PrimeReactSelectButtonTogetherDemo() {
+  const items = [
+    { name: 'Option 1', value: 1 },
+    { name: 'Option 2', value: 2 },
+    { name: 'Option 3', value: 3, disabled: false },
+  ]
+  return (
+    <div className='flex-col place-items-center'>
+      <SelectButtonTogether rtKey='select-button-doc-demo' options={items} optionLabel='name' />
+    </div>
+  )
+}
+`,
+  },
+
+  source: {
+    basic: `
 import { SelectButton, SelectButtonProps } from 'primereact/selectbutton'
 import { useStateTogether } from 'react-together'
 
@@ -29,24 +49,9 @@ export default function SelectButtonTogether({ rtKey, options, ...props }) {
     />
   )
 }
-`
-
-const demoCode = `
-import { SelectButtonTogether } from 'react-together-primereact'
-
-export function PrimeReactSelectButtonTogetherDemo() {
-  const items = [
-    { name: 'Option 1', value: 1 },
-    { name: 'Option 2', value: 2 },
-    { name: 'Option 3', value: 3, disabled: false },
-  ]
-  return (
-    <div className='flex-col place-items-center'>
-      <SelectButtonTogether rtKey='select-button-doc-demo' options={items} optionLabel='name' />
-    </div>
-  )
+`,
+  },
 }
-`
 
 export default function PrimeReactSelectButtonTogetherDocumentationPage() {
   const api = (
@@ -77,7 +82,17 @@ export default function PrimeReactSelectButtonTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('SelectButtonTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('SelectButtonTogether') }} />
 }

@@ -6,21 +6,10 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'DropdownTogether'
 const originalName = 'Dropdown'
-const docUrl = `https://primereact.org/dropdown`
 
-const sourceCode = `
-import { Dropdown, DropdownProps } from 'primereact/dropdown'
-import { useStateTogether } from 'react-together'
-
-export default function DropdownTogether({ rtKey, ...props }) {
-  const [value, set_value] = useStateTogether(rtKey, null)
-  return (
-    <Dropdown {...props} value={value} onChange={(e) => set_value(e.value)} />
-  )
-}
-`
-
-const demoCode = `
+const codes = {
+  demo: {
+    basic: `
 import { DropdownTogether } from 'react-together-primereact'
 
 export function PrimeReactDropdownTogetherDemo() {
@@ -41,7 +30,23 @@ export function PrimeReactDropdownTogetherDemo() {
     </div>
   )
 }
-`
+`,
+  },
+
+  source: {
+    basic: `
+import { Dropdown, DropdownProps } from 'primereact/dropdown'
+import { useStateTogether } from 'react-together'
+
+export default function DropdownTogether({ rtKey, ...props }) {
+  const [value, set_value] = useStateTogether(rtKey, null)
+  return (
+    <Dropdown {...props} value={value} onChange={(e) => set_value(e.value)} />
+  )
+}
+`,
+  },
+}
 
 export default function PrimeReactDropdownTogetherDocumentationPage() {
   const api = (
@@ -72,7 +77,17 @@ export default function PrimeReactDropdownTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api, sourceCode, demoCode }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('DropdownTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('DropdownTogether') }} />
 }
