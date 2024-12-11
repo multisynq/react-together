@@ -26,10 +26,8 @@ export default function ColorPickerTogether({
   ...props
 }: ColorPickerTogetherProps) {
   const [localValue, setLocalValue] = useState<ColorPickerValueType>(undefined)
-  const [remoteValue, setRemoteValue] = useStateTogether<ColorPickerValueType>(
-    rtKey,
-    undefined
-  )
+  const [sessionValue, setSessionValue] =
+    useStateTogether<ColorPickerValueType>(rtKey, undefined)
 
   const inline = props.inline
 
@@ -39,22 +37,22 @@ export default function ColorPickerTogether({
         e.value = undefined
       }
       if (inline || publishWhileOpen) {
-        setRemoteValue(e.value)
+        setSessionValue(e.value)
       } else {
         setLocalValue(e.value)
       }
       onChange?.(e)
     },
-    [setRemoteValue, setLocalValue, inline, publishWhileOpen, onChange]
+    [setSessionValue, setLocalValue, inline, publishWhileOpen, onChange]
   )
 
   const handleHide = useCallback(() => {
-    setRemoteValue(localValue)
-  }, [setRemoteValue, localValue])
+    setSessionValue(localValue)
+  }, [setSessionValue, localValue])
 
   useEffect(() => {
-    setLocalValue(remoteValue)
-  }, [remoteValue, setLocalValue])
+    setLocalValue(sessionValue)
+  }, [sessionValue, setLocalValue])
 
   return (
     <ColorPicker
