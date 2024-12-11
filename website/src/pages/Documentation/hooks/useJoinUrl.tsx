@@ -10,7 +10,19 @@ const codes = {
   },
 
   usage_2: {
-    basic: `const joinUrl = useJoinUrl()`,
+    basic: `
+function YourComponent() {
+  const joinUrl = useJoinUrl()
+
+  if (!joinUrl) {
+    return <p>You are not in a React Together session...</p>
+  }
+  return (
+    <>
+      <p>Send this URL to your friends for them to join the session</p>
+      <p>{joinUrl}</p>
+    </>
+}`,
   },
 }
 

@@ -67,5 +67,5 @@ export default function UseLeaveSessionDocumentationPage() {
       }}
     />
   )
-  return <DocumentationPage {...{ content, navItems: GenericDocNav('useLeaveSession') }} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useLeaveSession', { exclude: ['source'] }) }} />
 }

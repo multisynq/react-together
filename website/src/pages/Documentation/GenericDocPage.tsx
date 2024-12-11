@@ -14,7 +14,7 @@ export function GenericDocPage({ title, description, usage, api, source, id }: G
   return (
     <>
       <div className='flex gap-2 items-baseline break-all'>
-        <h2 id={id} ref={ref}>
+        <h2 id={id ?? 'title'} ref={ref}>
           {title}
         </h2>
         {/* <span>{parameter}</span> */}

@@ -6,17 +6,16 @@ import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { NavItem } from './types'
 
-const codes = {
-  code_1: {
-    bash: 'npm i react-together',
-  },
+const installCode = {
+  basic: '$ npm i react-together',
+}
 
-  code_2: {
-    basic: `import { ReactTogether } from 'react-together'`,
-  },
+const importCode = {
+  basic: `import { ReactTogether } from 'react-together'`,
+}
 
-  code_3: {
-    basic: `ReactDOM.createRoot(document.getElementById('root')!).render(
+const createRootCode = {
+  basic: `ReactDOM.createRoot(document.getElementById('root')!).render(
   <ReactTogether
     sessionParams={{
       appId: import.meta.env['VITE_APP_ID'],
@@ -26,22 +25,24 @@ const codes = {
     <App />
   </ReactTogether>
 )`,
-  },
+}
+const usageCode = {
+  basic: `
+function YourComponent() {
+  const [count, set_count] = useStateTogether('count', 0)
 
-  code_4: {
-    basic: `
-const [count, set_count] = useStateTogether('count', 0)
+  return (
+    <button 
+      onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
+      onContextMenu={(e) => { e.preventDefault(); set_count(0) }}
+    >
+      Count: {count}
+    </button>
+  )
+}
+`,
 
-return (
-  <button 
-    onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
-    onContextMenu={(e) => { e.preventDefault(); set_count(0) }}
-  >
-    Count: {count}
-  </button>
-)`,
-
-    typescript: `
+  typescript: `
 import { useStateTogether } from './react-together'
 
 export default function CountButtonTogether() {
@@ -63,7 +64,6 @@ export default function CountButtonTogether() {
     </div>
   )
 }`,
-  },
 }
 
 export default function IntroductionPage() {
@@ -80,7 +80,7 @@ export default function IntroductionPage() {
       <p>
         Install the <CodeSpan text='react-together' /> package via <CodeSpan text='npm' />
       </p>
-      <CodeBlock code={codes.code_1} />
+      <CodeBlock code={installCode} />
 
       <h4 id='context'>Context</h4>
       <p>
@@ -91,15 +91,16 @@ export default function IntroductionPage() {
         </Link>
         .
       </p>
-      <CodeBlock code={codes.code_2} />
-      <CodeBlock code={codes.code_3} />
+      <CodeBlock code={importCode} />
+      <CodeBlock code={createRootCode} />
 
       <h4 id='sdf'>Use ReactTogether</h4>
       <p>That's it! Now you just need to import and use our components to create awesome interactive websites!</p>
 
+      <CodeBlock code={usageCode} />
+
       <h5>Example</h5>
       <DocumentationDemo url='CountButtonTogether' />
-      <CodeBlock code={codes.code_4} />
     </>
   )
 

@@ -88,18 +88,22 @@ export default function ConnectedUsers({
 
   usage_2: {
     basic: `
-const connectedUsers = useConnectedUsers()
+function YourComponent() {
+  const connectedUsers = useConnectedUsers()
 
-return (
-  <div ref={ref}>
-    Connected views:
-    <ul>{hoveringUsers.map(
-      (viewId) => (
-        <li key={viewId}>{viewId}</li>
-      )
-    }</ul>
-  </div>
-)
+  return (
+    <div>
+      Connected users:
+      <ul>
+        {connectedUsers.map(({ userId, name, isYou }) => (
+          <li key={userId}>
+            {isYou ? <strong>{userId}: {name}</strong> : <span>{userId}: {name}</span>}
+          </li>
+        ))}
+      }</ul>
+    </div>
+  )
+}
 `,
   },
 }

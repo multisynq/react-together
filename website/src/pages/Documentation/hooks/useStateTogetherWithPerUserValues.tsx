@@ -4,6 +4,7 @@ import Link from '@components/ui/Link'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
+import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
@@ -14,10 +15,74 @@ const codes = {
 
   usage_2: {
     basic: `
-const [count, setCount, countPerUser] = useStateTogetherWithPerUserValues('unique-key', 0)
+function YourComponent() {
+  const [count, setCount, countPerUser] = useStateTogetherWithPerUserValues('unique-key', 0)
 
-const increment = () => setCount((prev) => prev + 1)
-const reset = () => setCount(0)
+  const increment = () => setCount((prev) => prev + 1)
+  const reset = () => setCount(0)
+
+  return (
+    <div>
+      {Object.entries(countPerUser).map(([userId, count]) => {
+        return <div key={userId}>{count}</div>
+      })}
+    </div>
+  )
+}
+`,
+  },
+  demo: {
+    basic: `
+import { CroquetReact, useStateTogetherWithPerUserValues } from 'react-together'
+
+const { useViewId } = CroquetReact
+
+function Score({ score, clickable, onClick, onContextMenu }) {
+  const clickableStyle = clickable ? 'cursor-pointer shadow-sm bg-slate-500 text-white' : ''
+  return (
+    <div className='flex flex-col align-items-start'>
+      <div
+        className={'py-2 px-4 flex items-center justify-center bg-slate-100 rounded-lg select-none ' + clickableStyle}
+        onClick={onClick}
+        onContextMenu={onContextMenu}
+      >
+        {score}
+      </div>
+    </div>
+  )
+}
+export function UseStateTogetherWPUVDemo() {
+  const [, setMyScore, scoresByUser] = useStateTogetherWithPerUserValues<number>('useStateTogetherWithValuesPerUser-demo', 0)
+
+  const increment = () => setMyScore((p) => p + 1)
+  const reset = () => setMyScore(0)
+
+  const myId = useViewId()
+  return (
+    <div className='flex flex-col items-center gap-2 mx-2'>
+      <div className='flex gap-5 flex-wrap'>
+        {Object.entries(scoresByUser).map(([userId, score]) => {
+          const clickable = userId === myId
+          return (
+            <Score
+              key={userId}
+              score={score}
+              clickable={clickable}
+              onClick={() => clickable && increment()}
+              onContextMenu={(e) => {
+                if (clickable) {
+                  e.preventDefault()
+                  reset()
+                }
+              }}
+            />
+          )
+        })}
+      </div>
+      <p style={{ color: '#888888', fontSize: '0.7rem' }}>Right click to reset to zero</p>
+    </div>
+  )
+}
 `,
   },
 }
@@ -80,7 +145,11 @@ const content = (
             local count is highlighted with a darker background. Although each user can only change its local count (by clicking on it),
             everyone can see the count values of everyone else!
           </p>
-          <DocumentationDemo url='useStateTogetherWithPerUserValues' />
+          <PreviewSourceCodeTabs
+            preview={<DocumentationDemo url='useStateTogetherWithPerUserValues' />}
+            code={<CodeBlock code={codes.demo} />}
+          />
+          {/* <DocumentationDemo url='useStateTogetherWithPerUserValues' /> */}
         </>
       ),
       usage: (

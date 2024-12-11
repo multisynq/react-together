@@ -11,7 +11,16 @@ const codes = {
   },
 
   usage_2: {
-    basic: `const myId = useMyId()`,
+    basic: `
+function YourComponent() {
+  const myId = useMyId()
+
+  if (!myId) {
+    return <p>You are not in a React Together session...</p>
+  }
+
+  return <p>My ID: {myId}</p>
+}`,
   },
 }
 

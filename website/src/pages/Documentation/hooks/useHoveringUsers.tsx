@@ -16,20 +16,22 @@ const codes = {
 
   usage_2: {
     basic: `
-const [ref, hoveringViews, isHovering] = useHoveringUsers(‘hovering-views’)
+function YourComponent() {
+  const [ref, hoveringUsers, isHovering] = useHoveringUsers('hovering-views')
 
-return (
-  <div>
-    <div ref={ref}>{isHovering ? "You're hovering me!" : 'Hover me!'}</div>
-    <h3>Hovering Ids:</h3>
-    <ul>
-      {hoveringUsers.map((userId) => (
-        <li key={userId}>{userId}</li>
-      )}
-    </ul>
-  </div>
-)
-  `,
+  return (
+    <div>
+      <div ref={ref}>{isHovering ? "You're hovering me!" : 'Hover me!'}</div>
+      <h3>Hovering Ids:</h3>
+      <ul>
+        {hoveringUsers.map((userId) => (
+          <li key={userId}>{userId}</li>
+        )}
+      </ul>
+    </div>
+  )
+}
+`,
   },
 }
 

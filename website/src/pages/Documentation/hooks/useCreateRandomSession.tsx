@@ -11,14 +11,16 @@ const codes = {
 
   usage_2: {
     basic: `
-const createRandomSession = useCreateRandomSession()
+function YourComponent() {
+  const createRandomSession = useCreateRandomSession()
 
-return (
-  <button onClick={() => createRandomSession()}>
-    Connect to a new session!
-  </button>
-)
-  `,
+  return (
+    <button onClick={() => createRandomSession()}>
+      Connect to a new session!
+    </button>
+  )
+}
+`,
   },
 }
 
@@ -57,5 +59,5 @@ export default function UseCreateRandomSessionDocumentationPage() {
       }}
     />
   )
-  return <DocumentationPage {...{ content, navItems: GenericDocNav('useCreateRandomSession') }} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useCreateRandomSession', { exclude: ['source'] }) }} />
 }

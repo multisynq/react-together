@@ -1,4 +1,3 @@
-import { Markdown } from '@components/Markdown'
 import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import Link from '@components/ui/Link'
@@ -6,7 +5,7 @@ import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
-import InterfaceApi from '../InterfaceApi'
+import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
@@ -17,10 +16,46 @@ const codes = {
 
   usage_2: {
     basic: `
-const [count, setCount] = useStateTogether('unique-key', 0)
+function YourComponent() {
+  const [count, setCount] = useStateTogether('unique-key', 0)
         
-const increment = () => setCount((prev) => prev + 1)
-const reset = () => setCount(0)
+  const increment = () => setCount((prev) => prev + 1)
+  const reset = () => setCount(0)
+
+  return (
+    <div>
+      <button onClick={increment}>Increment</button>
+      <button onClick={reset}>Reset</button>
+      <p>Count: {count}</p>
+    </div>
+  )
+}
+`,
+  },
+
+  demo: {
+    basic: `
+import { useStateTogether } from 'react-together'
+
+export default function CountButtonTogether() {
+  const [count, set_count] = useStateTogether('count', 0)
+  return (
+    <div className='flex flex-row align-items-center gap-2'>
+      <button
+        className='bg-slate-400 py-2 px-4 rounded-md text-white'
+        onClick={() => set_count(0)}
+      >
+        <i className='pi pi-refresh'></i>
+      </button>
+      <button
+        className='bg-slate-400 py-2 px-4 rounded-md text-white'
+        onClick={() => set_count((prev) => prev + 1)}
+      >
+        Count: {count}
+      </button>
+    </div>
+  )
+}
 `,
   },
 }
@@ -96,7 +131,7 @@ const content = (
             </Link>
             .
           </p>
-          <DocumentationDemo url='CountButtonTogether' />
+          <PreviewSourceCodeTabs preview={<DocumentationDemo url='CountButtonTogether' />} code={<CodeBlock code={codes.demo} />} />
         </>
       ),
       usage: (
