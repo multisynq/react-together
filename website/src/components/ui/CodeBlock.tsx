@@ -24,7 +24,7 @@ interface CodeBlockProps {
   github?: string
 }
 
-export default function CodeBlock({
+export function CodeBlock({
   code,
   embedded = false,
   hideToggleCode = false,
