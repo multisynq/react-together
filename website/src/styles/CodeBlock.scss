@@ -1,8 +1,8 @@
 :root {
-  --demo-code-bg: #1e1e1e;
-  --demo-code-button-color: #cccccc;
-  --demo-code-button-hover-bg: #094771;
-  --demo-code-button-hover-color: #ffffff;
+  --code-block-bg: #1e1e1e;
+  --code-block-button-color: #cccccc;
+  --code-block-button-hover-bg: #094771;
+  --code-block-button-hover-color: #ffffff;
   --code-block-background-overlay: rgba(255, 255, 255, 0.05);
   --code-block-keyword-color: #c485bf;
   --code-block-punctuation-color: #808080;
@@ -17,11 +17,14 @@
   --code-block-regex-color: #d16969;
   --code-block-number-color: #b5cea8;
   --code-block-tag-color: #569cd6;
+
+  --code-block-min-height: 4rem;
 }
 
 .doc-section-code {
   position: relative;
   width: 100%;
+
   div::-webkit-scrollbar {
     width: 5px;
   }
@@ -56,11 +59,11 @@
         background-color 0.2s,
         box-shadow 0.2s;
       border: 0 none;
-      color: var(--demo-code-button-color);
+      color: var(--code-block-button-color);
       cursor: pointer;
       &:hover {
-        background-color: var(--demo-code-button-hover-bg);
-        color: var(--demo-code-button-hover-color);
+        background-color: var(--code-block-button-hover-bg);
+        color: var(--code-block-button-hover-color);
       }
       &.code-active {
         color: var(--code-block-comment-color);
@@ -73,6 +76,7 @@
   }
   code[class*='language-'],
   pre[class*='language-'] {
+    min-height: var(--code-block-min-height);
     background: none;
     font-family:
       ui-monospace,
@@ -189,7 +193,7 @@
     display: none;
   }
   pre[class*='language-'] code {
-    background: var(--demo-code-bg);
+    background: var(--code-block-bg);
   }
   .layout-light &[data-p-theme^='md'] pre[class*='language-'] code {
     background: #1e1e1e;
