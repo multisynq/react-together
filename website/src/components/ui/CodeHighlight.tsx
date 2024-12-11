@@ -11,7 +11,7 @@ export default function CodeHighlight({ code, lang, style, codeClassName }: Code
   const codeElement = useRef()
   const languageClassName = `language-${lang || 'jsx'}`
 
-  code = `\n${code.trim()}\n`
+  code = `\n${code?.trim() || ''}\n`
 
   useEffect(() => {
     // @ts-expect-error - Prism is a global variable
