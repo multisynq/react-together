@@ -2,12 +2,12 @@ import 'primeicons/primeicons.css'
 import { useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
-export function InstallCodeBlock({ language, code1 }) {
+export function InstallCodeBlock({ language, codeShort }) {
   const [copySuccess, setCopySuccess] = useState(false)
 
   const copyToClipboard = () => {
     navigator.clipboard
-      .writeText(code1)
+      .writeText(codeShort)
       .then(() => {
         setCopySuccess(true)
         setTimeout(() => setCopySuccess(false), 2000)
@@ -41,7 +41,7 @@ export function InstallCodeBlock({ language, code1 }) {
         }}
         className='w-full line-border'
       >
-        {code1}
+        {codeShort}
       </SyntaxHighlighter>
     </div>
   )

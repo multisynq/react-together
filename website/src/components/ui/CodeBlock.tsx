@@ -1,70 +1,151 @@
-import 'primeicons/primeicons.css'
-import { useState } from 'react'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import '@styles/CodeBlock.scss'
 
-interface CodeBlockProps {
-  language: string
-  code1: string
-  code2?: string
+import { PiCode, PiCopy, PiDatabase } from 'react-icons/pi'
+import { SiGithub, SiStackblitz } from 'react-icons/si'
+
+import { Button, CodeHighlight } from '@components'
+import { useCodeEditor } from '@utils/codeeditor'
+import { useEffect, useState } from 'react'
+
+export type CodeBlockCodeType = {
+  basic?: string
+  javascript?: string
+  typescript?: string
+  bash?: string
+  data?: string
 }
 
-export function CodeBlock({ language, code1, code2 }: CodeBlockProps) {
-  const [copySuccess, setCopySuccess] = useState(false)
-  const [showCode1, setShowCode1] = useState(true)
+interface CodeBlockProps {
+  code: CodeBlockCodeType
+  embedded?: boolean
+  hideToggleCode?: boolean
+  hideStackBlitz?: boolean
+  codeClassName?: string
+  github?: string
+}
 
-  const copyToClipboard = () => {
-    navigator.clipboard
-      .writeText(code2 && !showCode1 ? code2 : code1)
-      .then(() => {
-        setCopySuccess(true)
-        setTimeout(() => setCopySuccess(false), 2000)
-      })
-      .catch((err) => console.error('Failed to copy text: ', err))
+export function CodeBlock({
+  code,
+  embedded = false,
+  hideToggleCode = false,
+  hideStackBlitz = false,
+  codeClassName,
+  github,
+}: CodeBlockProps) {
+  const [codeMode, setCodeMode] = useState('basic')
+  const [codeLang, setCodeLang] = useState(code?.javascript ? 'javascript' : 'basic')
+  const codeEditor = useCodeEditor({ template: 'vite' })
+
+  useEffect(() => {
+    if (embedded) codeEditor.openStackBlitz(codeLang)
+  }, [codeEditor, codeLang, embedded])
+
+  const toggleCodeMode = (content: string) => {
+    if (codeMode === 'data') setCodeMode('javascript')
+    else setCodeMode(codeMode === 'basic' ? content : 'basic')
+    setCodeLang('javascript')
   }
 
-  const toggleCode = () => {
-    setShowCode1(!showCode1)
-  }
+  const copyCode = async () => await navigator.clipboard.writeText(code[codeLang])
+
+  const btnClass = 'h-2rem w-2rem p-0 inline-flex align-items-center justify-content-center shadow-none'
 
   return (
-    <div className='relative w-full'>
-      <div className='top-2 right-2 absolute flex gap-2 z-10'>
-        {code2 && (
-          <button
-            onClick={toggleCode}
-            className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded-lg text-sm flex items-center justify-center'
-            title='Toggle Code'
-          >
-            <i className='pi pi-code' style={{ fontSize: '1rem' }}></i>
-          </button>
-        )}
-        <button
-          onClick={copyToClipboard}
-          className='bg-gray-700 hover:bg-gray-600 text-white font-bold p-2 w-8 h-8 rounded-lg text-sm flex items-center justify-center'
-          title={copySuccess ? 'Copied!' : 'Copy'}
-        >
-          <i className={copySuccess ? 'pi pi-check' : 'pi pi-copy'} style={{ fontSize: '1rem' }}></i>
-        </button>
-      </div>
-      <SyntaxHighlighter
-        lineProps={{ style: { wordBreak: 'break-all', whiteSpace: 'pre-wrap' } }}
-        wrapLines={true}
-        language={language}
-        style={vscDarkPlus}
-        customStyle={{
-          paddingLeft: '32px',
-          paddingRight: '32px',
-          paddingTop: '18px',
-          paddingBottom: '18px',
-          borderRadius: '16px',
-          fontSize: '14px',
-          marginTop: 0,
-          marginBottom: 0,
-        }}
-      >
-        {code2 && !showCode1 ? String(code2) : String(code1)}
-      </SyntaxHighlighter>
-    </div>
+    <>
+      {!embedded && (
+        <div className='doc-section-code'>
+          <div className='doc-section-code-buttons animation-duration-300'>
+            {codeMode !== 'basic' && !hideToggleCode && codeMode !== 'data' && (
+              <>
+                <Button
+                  onClick={() => setCodeLang('javascript')}
+                  className={`py-0 px-2 border-round h-2rem shadow-none${codeLang === 'javascript' && codeMode !== 'data' ? ' code-active' : ''}`}
+                  // label='JS'
+                  // tooltip='JavaScript Code'
+                  // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
+                />
+                <Button
+                  onClick={() => setCodeLang('typescript')}
+                  className={`py-0 px-2 border-round h-2rem shadow-none${codeLang === 'typescript' ? ' code-active' : ''}`}
+                  // label='TS'
+                  // tooltip='TypeScript Code'
+                  // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
+                />
+              </>
+            )}
+
+            {!hideToggleCode && (
+              <Button
+                type='button'
+                onClick={() => toggleCodeMode('javascript')}
+                className={btnClass}
+                // tooltip='Toggle Full Code'
+                // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
+              >
+                <PiCode />
+              </Button>
+            )}
+
+            {!hideToggleCode && code?.data ? (
+              <Button
+                type='button'
+                onClick={() => setCodeMode('data')}
+                className={btnClass}
+                // tooltip='View Data'
+                // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
+              >
+                <PiDatabase />
+              </Button>
+            ) : null}
+
+            {!hideStackBlitz && (
+              <Button
+                type='button'
+                className={btnClass}
+                onClick={() => codeEditor.openStackBlitz(codeLang)}
+                // tooltip='Edit in StackBlitz'
+                // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
+              >
+                <SiStackblitz />
+              </Button>
+            )}
+
+            {github && (
+              <Button
+                type='button'
+                className={btnClass}
+                onClick={() => window.open(github, '_blank')}
+                // tooltip='View on GitHub'
+                // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
+              >
+                <SiGithub />
+              </Button>
+            )}
+
+            <Button
+              type='button'
+              onClick={copyCode}
+              className={btnClass}
+              // tooltip='Copy Code'
+              // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
+            >
+              <PiCopy />
+            </Button>
+          </div>
+
+          {/* {JSON.stringify({ codeMode, code })} */}
+          {/* {codeMode === 'basic' && JSON.stringify(code?.basic)} */}
+
+          {codeMode === 'basic' && <CodeHighlight {...{ code: code?.basic, codeClassName }} />}
+          {codeMode === 'bash' && <CodeHighlight {...{ code: code?.bash, lang: 'bash', codeClassName }} />}
+          {codeMode === 'data' && <CodeHighlight {...{ code: code?.data, lang: 'json', codeClassName }} />}
+          {codeMode !== 'basic' && codeLang === 'javascript' && <CodeHighlight {...{ code: code?.javascript, codeClassName }} />}
+          {codeMode !== 'basic' && codeLang === 'typescript' && (
+            <CodeHighlight {...{ code: code?.typescript, lang: 'tsx', codeClassName }} />
+          )}
+        </div>
+      )}
+      {embedded && <div id='embed' />}
+    </>
   )
 }

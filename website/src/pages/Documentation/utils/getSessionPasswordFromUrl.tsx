@@ -1,35 +1,29 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import { GenericDocPage } from '../GenericDocPage'
 import FunctionArgsApi from './FunctionArgsApi'
 import FunctionReturnApi from './FunctionReturnApi'
 
-export default function GetSessionPasswordFromUrlDocumentationPage() {
-  const description = (
-    <>
-      <p>Retrieves the session password from a URL.</p>
-    </>
-  )
-  const usage = (
-    <>
-      <CodeBlock
-        language='jsx'
-        code1={`\
+const codes = {
+  usage_1: {
+    basic: `
 import { utils } from 'react-together'
-const { getSessionPasswordFromUrl } = utils`}
-      />
-      <CodeBlock
-        language='jsx'
-        code1={`\
+const { getSessionPasswordFromUrl } = utils
+`,
+  },
+
+  usage_2: {
+    basic: `
 const url = new URL('https://reacttogether.dev?rtName=session1#rtPwd=secret');
 const sessionName = getSessionPasswordFromUrl(url); // 'secret'
 
 const url2 = new URL('https://reacttogether.dev?rtName=session1#rtPassword=secret');
 const sessionName2 = getSessionPasswordFromUrl(url2, { passwordKey: 'rtPassword' }); // 'secret'
-`}
-      />
-    </>
-  )
+`,
+  },
+}
+
+export default function GetSessionPasswordFromUrlDocumentationPage() {
   const api = (
     <>
       <FunctionArgsApi
@@ -63,6 +57,19 @@ const sessionName2 = getSessionPasswordFromUrl(url2, { passwordKey: 'rtPassword'
     </>
   )
   return (
-    <GenericDocPage id='getSessionPasswordFromUrl' title='getSessionPasswordFromUrl' description={description} usage={usage} api={api} />
+    <GenericDocPage
+      {...{
+        id: 'getSessionPasswordFromUrl',
+        title: 'getSessionPasswordFromUrl',
+        description: 'Retrieves the session password from a URL.',
+        usage: (
+          <>
+            <CodeBlock code={codes.usage_1} />
+            <CodeBlock code={codes.usage_2} />
+          </>
+        ),
+        api,
+      }}
+    />
   )
 }

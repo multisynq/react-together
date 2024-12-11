@@ -1,10 +1,33 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import Link from '@components/ui/Link'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
+
+const codes = {
+  usage_1: {
+    basic: `import { ReactTogether } from 'react-together'`,
+  },
+
+  usage_2: {
+    basic: `
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <ReactTogether
+      sessionParams={{
+        appId: import.meta.env['VITE_APP_ID'],
+        apiKey: import.meta.env['VITE_API_KEY']
+      }}
+    >
+      <App />
+    </ReactTogether>
+  </React.StrictMode>
+)
+    `,
+  },
+}
 
 export default function ReactTogetherDocumentationPage() {
   const api = (
@@ -96,46 +119,34 @@ export default function ReactTogetherDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='ReactTogether'
-      description={
-        <>
-          <p>
-            This component provides the context required to synchronize multiple users within the same session. Every React Together hook
-            and component should be used within the scope of this component.
-          </p>
-          <p>
-            If <CodeSpan text='name' /> and <CodeSpan text='password' /> are passed in the <CodeSpan text='sessionParams' /> prop,{' '}
-            <CodeSpan text='ReactTogether' /> will immediately connect to a session with the given <CodeSpan text='name' /> and{' '}
-            <CodeSpan text='password' />.
-          </p>
-          <p>
-            If <CodeSpan text='rtName' /> and <CodeSpan text='rtPwd' /> are specified in the URL search parameters, those values will
-            override the ones passed in <CodeSpan text='sessionParams' />.
-          </p>
-        </>
-      }
-      usage={
-        <>
-          <CodeBlock language='javascript' code1={`import { ReactTogether } from 'react-together'`} />
-          <CodeBlock
-            language='javascript'
-            code1={`ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ReactTogether
-      sessionParams={{
-        appId: import.meta.env['VITE_APP_ID'],
-        apiKey: import.meta.env['VITE_API_KEY']
+      {...{
+        title: 'ReactTogether',
+        description: (
+          <>
+            <p>
+              This component provides the context required to synchronize multiple users within the same session. Every React Together hook
+              and component should be used within the scope of this component.
+            </p>
+            <p>
+              If <CodeSpan text='name' /> and <CodeSpan text='password' /> are passed in the <CodeSpan text='sessionParams' /> prop,{' '}
+              <CodeSpan text='ReactTogether' /> will immediately connect to a session with the given <CodeSpan text='name' /> and{' '}
+              <CodeSpan text='password' />.
+            </p>
+            <p>
+              If <CodeSpan text='rtName' /> and <CodeSpan text='rtPwd' /> are specified in the URL search parameters, those values will
+              override the ones passed in <CodeSpan text='sessionParams' />.
+            </p>
+          </>
+        ),
+        usage: (
+          <>
+            <CodeBlock code={codes.usage_1} />
+            <CodeBlock code={codes.usage_2} />
+          </>
+        ),
+        api,
       }}
-    >
-      <App />
-    </ReactTogether>
-  </React.StrictMode>
-)`}
-          />
-        </>
-      }
-      api={api}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('ReactTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('ReactTogether') }} />
 }
