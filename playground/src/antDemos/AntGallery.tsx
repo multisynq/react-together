@@ -20,7 +20,7 @@ import {
   RatingTogether as AD_RatingTogether,
   SelectButtonTogether as AD_SelectButtonTogether,
   SliderTogether as AD_SliderTogether,
-  ToggleButtonTogether as AD_ToggleButtonTogether
+  ToggleButtonTogether as AD_ToggleButtonTogether,
 } from 'react-together-ant-design'
 
 
@@ -48,6 +48,7 @@ export default function BothGallery() {
       <Header title="PrimeReact" />
       <PrimeGallery />
       <hr />
+      {/* <DrawOnGridTogether rtKey="draw-grid" width={10} height={10} /> */}
     </div>
   )
 }
@@ -55,9 +56,9 @@ export default function BothGallery() {
 function AntGallery() {
   const isTogether = useIsTogether()
   return (<div className='flex flex-col gap-2 bg-gray-50 p-2'>
-    <div className="fixed bottom-2 right-2 z-50">
-      <SessionManager />
-    </div>
+    <CompRow>
+      <ConnectedUsers maxAvatars={5} />
+    </CompRow>
     <CompRow>
       <div className='text-black'>
         {isTogether ? 'Ants Connected' : 'Ants Disconnected'}

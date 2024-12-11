@@ -1,6 +1,7 @@
 import CheckboxTogether from './CheckboxTogether'
 import ColorPickerTogether from './ColorPickerTogether'
 import DatePickerTogether from './DatePickerTogether'
+import DrawOnGridTogether from './DrawOnGridTogether'
 import DropdownTogether from './DropdownTogether'
 import InputSwitchTogether from './InputSwitchTogether'
 import KnobTogether from './KnobTogether'
@@ -14,7 +15,10 @@ import TriStateCheckboxTogether from './TriStateCheckboxTogether'
 
 export {
   CheckboxTogether,
-  ColorPickerTogether, DatePickerTogether, DropdownTogether,
+  ColorPickerTogether,
+  DatePickerTogether,
+  DrawOnGridTogether,
+  DropdownTogether,
   InputSwitchTogether,
   KnobTogether,
   MultiSelectTogether,
@@ -25,4 +29,5 @@ export {
   ToggleButtonTogether,
   TriStateCheckboxTogether
 }
+
 

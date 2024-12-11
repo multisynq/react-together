@@ -1,35 +1,74 @@
-import { useEffect } from 'react'
-import { useStateTogether } from 'react-together'
+//! DANGER: This is broken and loops infinitely
+// TODO: Fix loop
+import { useEffect, useRef } from 'react';
+import { useStateTogether } from 'react-together';
 
-export function DrawOnGridTogether({width, height}: {width: number, height: number}){
-  const [gridColors, set_gridColors] = useStateTogether('grid-colors', [[]] as string[][])
+type GridData = (string[][] | null)
+
+export default function DrawOnGridTogether({rtKey, width, height}: {rtKey: string, width: number, height: number}) {
+  const [gridColors, set_gridColors] = useStateTogether<GridData>(rtKey, null);
+  const initRef = useRef({ done: false, width: 0, height: 0 });
+
   useEffect(() => {
-    // keep any values that are present, but make the array size expand or shrink as is needed
-    const newGrid = gridColors.map((row, y) => row.map((color, x) => {
-      if (x < width && y < height) {
-        return color
+    // Skip if already initialized with same dimensions
+    if (initRef.current.done && 
+        initRef.current.width === width && 
+        initRef.current.height === height) {
+      return;
+    }
+
+    const newGrid = Array(height).fill(null).map(() => Array(width).fill('black'));
+
+    // Copy existing data if available
+    if (gridColors) {
+      for (let y = 0; y < Math.min(height, gridColors.length); y++) {
+        for (let x = 0; x < Math.min(width, gridColors[y].length); x++) {
+          newGrid[y][x] = gridColors[y][x];
+        }
       }
-      return 'white'
-    }))
-    set_gridColors(newGrid)
-  }, [width, height,gridColors, set_gridColors])
-  function modGrid(x: number, y: number, new_color: string){
-    set_gridColors(prevCols => prevCols.map((row, i) => row.map((color, j) => {
-      if (j === x && i === y) return new_color
-      else                    return color
-    })))
-  }
+    }
+
+    initRef.current = { done: true, width, height };
+    set_gridColors(newGrid);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [width, height]);
+
+  const toggleCell = (x: number, y: number) => {
+    if (!gridColors) return;
+    const newColor = gridColors[y][x] === 'black' ? 'cyan' : 'black';
+    set_gridColors(prev => 
+      prev?.map((row, i) => 
+        row.map((cell, j) => 
+          i === y && j === x ? newColor : cell
+        )
+      ) ?? null
+    );
+  };
+
+  if (!gridColors) return <div>Loading...</div>;
+
   return (
     <div>
-      {
-        gridColors.map((row, y) => row.map((color, x) => {
-          return <div key={`${x}-${y}`} 
-            style={{backgroundColor: color}} 
-            className='w-1 h-1'
-            onClick={() => modGrid(x, y, 'red')}
-          />
-        }))
-      }
+      <h1>The Grid</h1>
+      <div className="flex flex-col">
+        {gridColors.map((row, y) => (
+          <div key={`row-${y}`} className="flex flex-row">
+            {row.map((color, x) => (
+              <div
+                key={`${x}-${y}`}
+                style={{
+                  backgroundColor: color,
+                  width: '30px',
+                  height: '30px',
+                  display: 'block'
+                }}
+                className='border border-cyan'
+                onClick={() => toggleCell(x, y)}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
-  )
+  );
 }
