@@ -18,3 +18,6 @@
     @apply text-white bg-blue-500 border-gray-800 shadow-lineStyleDark;
   }
 }
+.p-toggleable-content ul .p-menuitem {
+  margin-right: 0.1rem;
+}
