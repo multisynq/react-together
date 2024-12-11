@@ -1,4 +1,13 @@
 import {
+  AntDesignCheckboxTogetherDocumentationPage,
+  AntDesignDatePickerTogetherDocumentationPage,
+  AntDesignMultiSelectTogetherDocumentationPage,
+  AntDesignRateTogetherDocumentationPage,
+  AntDesignSelectButtonTogetherDocumentationPage,
+  AntDesignSelectTogetherDocumentationPage,
+  AntDesignSliderTogetherDocumentationPage,
+  AntDesignSwitchTogetherDocumentationPage,
+  AntDesignToggleButtonTogetherDocumentationPage,
   ConnectedUsersDocumentationPage,
   HelpersDocumentationPage,
   HoverHighlighterDocumentationPage,
@@ -32,6 +41,15 @@ import { HomePage } from './pages/HomePage'
 
 import { CookieBanner } from '@components/CookieBanner'
 import {
+  AntDesignCheckboxTogetherDemo,
+  AntDesignDatePickerTogetherDemo,
+  AntDesignMultiSelectTogetherDemo,
+  AntDesignRateTogetherDemo,
+  AntDesignSelectButtonTogetherDemo,
+  AntDesignSelectTogetherDemo,
+  AntDesignSliderTogetherDemo,
+  AntDesignSwitchTogetherDemo,
+  AntDesignToggleButtonTogetherDemo,
   HoverHighlighterDemo,
   MeditationBell,
   PrimeReactCheckboxTogetherDemo,
@@ -48,6 +66,7 @@ import {
   SessionManagerDemo,
   UseStateTogetherWPUVDemo,
 } from '@components/demo'
+
 import CountButtonTogether from '@components/demo/CountButtonTogether'
 import HeroDemo from '@components/demo/HeroDemo'
 import TinyRpgTogether from '@components/demo/TinyRpg'
@@ -75,6 +94,7 @@ function GlobalWrapper() {
 }
 
 export default function AppRoutes() {
+  // prettier-ignore
   return (
     <Routes>
       <Route element={<GlobalWrapper />}>
@@ -84,40 +104,51 @@ export default function AppRoutes() {
           <Route path='/' element={<HomePage />} />
           <Route path='/cookies' element={<CookiePolicy />} />
           <Route element={<DocumentationWrapper />}>
-            <Route path='getting-started' element={<IntroductionPage />} />
-            <Route path='Dependencies' element={<DependenciesPage />} />
-            <Route path='ReactTogether' element={<ReactTogetherDocumentationPage />} />
-            <Route path='SessionManager' element={<SessionManagerDocumentationPage />} />
-            <Route path='ConnectedUsers' element={<ConnectedUsersDocumentationPage />} />
-            <Route path='HoverHighlighter' element={<HoverHighlighterDocumentationPage />} />
-            <Route path='useStateTogether' element={<UseStateTogetherDocumentationPage />} />
+            <Route path='getting-started'                   element={<IntroductionPage                                   />} />
+            <Route path='Dependencies'                      element={<DependenciesPage                                   />} />
+            <Route path='ReactTogether'                     element={<ReactTogetherDocumentationPage                     />} />
+            <Route path='SessionManager'                    element={<SessionManagerDocumentationPage                    />} />
+            <Route path='ConnectedUsers'                    element={<ConnectedUsersDocumentationPage                    />} />
+            <Route path='HoverHighlighter'                  element={<HoverHighlighterDocumentationPage                  />} />
+            <Route path='useStateTogether'                  element={<UseStateTogetherDocumentationPage                  />} />
             <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWithPerUserValuesDocumentationPage />} />
-            <Route path='useConnectedUsers' element={<UseConnectedUsersDocumentationPage />} />
-            <Route path='useMyId' element={<UseMyIdDocumentationPage />} />
-            <Route path='useHoveringUsers' element={<UseHoveringUsersDocumentationPage />} />
-            <Route path='useIsTogether' element={<UseIsTogetherDocumentationPage />} />
-            <Route path='useCreateRandomSession' element={<UseCreateRandomSessionDocumentationPage />} />
-            <Route path='useJoinUrl' element={<UseJoinUrlDocumentationPage />} />
-            <Route path='useLeaveSession' element={<UseLeaveSessionDocumentationPage />} />
-            <Route path='useFunctionTogether' element={<UseFunctionTogetherDocumentationPage />} />
-            <Route path='utils' element={<HelpersDocumentationPage />} />
-            <Route path='croquet' element={<MarkdownPage markdown={croquet} />} />
-            <Route path='/contributing' element={<MarkdownPage markdown={contributing} />} />
-            <Route path='/pricing' element={<MarkdownPage markdown={pricing} />} />
-            {/* <Route path='/examples' element={<DynamicsSession />} /> */}
-            <Route path='/changelog' element={<MarkdownPage markdown={changelog} />} />
+            <Route path='useConnectedUsers'                 element={<UseConnectedUsersDocumentationPage                 />} />
+            <Route path='useMyId'                           element={<UseMyIdDocumentationPage                           />} />
+            <Route path='useHoveringUsers'                  element={<UseHoveringUsersDocumentationPage                  />} />
+            <Route path='useIsTogether'                     element={<UseIsTogetherDocumentationPage                     />} />
+            <Route path='useCreateRandomSession'            element={<UseCreateRandomSessionDocumentationPage            />} />
+            <Route path='useJoinUrl'                        element={<UseJoinUrlDocumentationPage                        />} />
+            <Route path='useLeaveSession'                   element={<UseLeaveSessionDocumentationPage                   />} />
+            <Route path='useFunctionTogether'               element={<UseFunctionTogetherDocumentationPage               />} />
+            <Route path='utils'                             element={<HelpersDocumentationPage                           />} />
+            <Route path='croquet'                           element={<MarkdownPage markdown={croquet}                    />} />
+            <Route path='/contributing'                     element={<MarkdownPage markdown={contributing}               />} />
+            <Route path='/pricing'                          element={<MarkdownPage markdown={pricing}                    />} />
+            {/* <Route path='/examples'                         element={<DynamicsSession                                    />} /> */}
+            <Route path='/changelog'                        element={<MarkdownPage markdown={changelog}                  />} />
+            <Route path='antdesign'>
+              <Route path='Checkbox'     element={<AntDesignCheckboxTogetherDocumentationPage     />} />
+              <Route path='DatePicker'   element={<AntDesignDatePickerTogetherDocumentationPage   />} />
+              <Route path='Select'       element={<AntDesignSelectTogetherDocumentationPage     />} />
+              <Route path='Switch'       element={<AntDesignSwitchTogetherDocumentationPage  />} />
+              <Route path='MultiSelect'  element={<AntDesignMultiSelectTogetherDocumentationPage  />} />
+              <Route path='Rate'         element={<AntDesignRateTogetherDocumentationPage       />} />
+              <Route path='SelectButton' element={<AntDesignSelectButtonTogetherDocumentationPage />} />
+              <Route path='Slider'       element={<AntDesignSliderTogetherDocumentationPage       />} />
+              <Route path='ToggleButton' element={<AntDesignToggleButtonTogetherDocumentationPage />} />
+            </Route>
             <Route path='primereact'>
-              {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDocumentationPage />} /> */}
-              <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDocumentationPage />} />
-              <Route path='ColorPicker' element={<PrimeReactColorPickerTogetherDocumentationPage />} />
-              <Route path='Dropdown' element={<PrimeReactDropdownTogetherDocumentationPage />} />
-              <Route path='InputSwitch' element={<PrimeReactInputSwitchTogetherDocumentationPage />} />
-              <Route path='Knob' element={<PrimeReactKnobTogetherDocumentationPage />} />
-              <Route path='Multiselect' element={<PrimeReactMultiSelectTogetherDocumentationPage />} />
-              <Route path='Rating' element={<PrimeReactRatingTogetherDocumentationPage />} />
-              <Route path='SelectButton' element={<PrimeReactSelectButtonTogetherDocumentationPage />} />
-              <Route path='TabView' element={<PrimeReactTabViewTogetherDocumentationPage />} />
-              <Route path='ToggleButton' element={<PrimeReactToggleButtonTogetherDocumentationPage />} />
+              {/* <Route path='Calendar'         element={<PrimeReactCalendarTogetherDocumentationPage         />} /> */}
+              <Route path='Checkbox'         element={<PrimeReactCheckboxTogetherDocumentationPage         />} />
+              <Route path='ColorPicker'      element={<PrimeReactColorPickerTogetherDocumentationPage      />} />
+              <Route path='Dropdown'         element={<PrimeReactDropdownTogetherDocumentationPage         />} />
+              <Route path='InputSwitch'      element={<PrimeReactInputSwitchTogetherDocumentationPage      />} />
+              <Route path='Knob'             element={<PrimeReactKnobTogetherDocumentationPage             />} />
+              <Route path='Multiselect'      element={<PrimeReactMultiSelectTogetherDocumentationPage      />} />
+              <Route path='Rating'           element={<PrimeReactRatingTogetherDocumentationPage           />} />
+              <Route path='SelectButton'     element={<PrimeReactSelectButtonTogetherDocumentationPage     />} />
+              <Route path='TabView'          element={<PrimeReactTabViewTogetherDocumentationPage          />} />
+              <Route path='ToggleButton'     element={<PrimeReactToggleButtonTogetherDocumentationPage     />} />
               <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDocumentationPage />} />
             </Route>
           </Route>
@@ -126,26 +157,37 @@ export default function AppRoutes() {
         <Route path='*' element={<NotFoundPage />} />
       </Route>
       <Route path='demos' element={<DemoWrapper />}>
-        <Route path='HeroDemo' element={<HeroDemo />} />
-        <Route path='CountButtonTogether' element={<CountButtonTogether />} />
+        <Route path='HeroDemo'                          element={<HeroDemo                 />} />
+        <Route path='CountButtonTogether'               element={<CountButtonTogether      />} />
         <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWPUVDemo />} />
-        <Route path='SessionManager' element={<SessionManagerDemo />} />
-        <Route path='ConnectedUsers' element={<ConnectedUsers />} />
-        <Route path='HoverHighlighter' element={<HoverHighlighterDemo />} />
-        <Route path='useFunctionTogether' element={<MeditationBell />} />
+        <Route path='SessionManager'                    element={<SessionManagerDemo       />} />
+        <Route path='ConnectedUsers'                    element={<ConnectedUsers           />} />
+        <Route path='HoverHighlighter'                  element={<HoverHighlighterDemo     />} />
+        <Route path='useFunctionTogether'               element={<MeditationBell           />} />
         <Route path='primereact'>
-          {/* <Route path='Calendar' element={<PrimeReactCalendarTogetherDemo />} /> */}
-          <Route path='Checkbox' element={<PrimeReactCheckboxTogetherDemo />} />
-          <Route path='ColorPicker' element={<PrimeReactColorPickerTogetherDemo />} />
-          <Route path='Dropdown' element={<PrimeReactDropdownTogetherDemo />} />
-          <Route path='InputSwitch' element={<PrimeReactInputSwitchTogetherDemo />} />
-          <Route path='Knob' element={<PrimeReactKnobTogetherDemo />} />
-          <Route path='Multiselect' element={<PrimeReactMultiSelectTogetherDemo />} />
-          <Route path='Rating' element={<PrimeReactRatingTogetherDemo />} />
-          <Route path='SelectButton' element={<PrimeReactSelectButtonTogetherDemo />} />
-          <Route path='TabView' element={<PrimeReactTabViewTogetherDemo />} />
-          <Route path='ToggleButton' element={<PrimeReactToggleButtonTogetherDemo />} />
+          {/* <Route path='Calendar'         element={<PrimeReactCalendarTogetherDemo         />} /> */}
+          <Route path='Checkbox'         element={<PrimeReactCheckboxTogetherDemo         />} />
+          <Route path='ColorPicker'      element={<PrimeReactColorPickerTogetherDemo      />} />
+          <Route path='Dropdown'         element={<PrimeReactDropdownTogetherDemo         />} />
+          <Route path='InputSwitch'      element={<PrimeReactInputSwitchTogetherDemo      />} />
+          <Route path='Knob'             element={<PrimeReactKnobTogetherDemo             />} />
+          <Route path='Multiselect'      element={<PrimeReactMultiSelectTogetherDemo      />} />
+          <Route path='Rating'           element={<PrimeReactRatingTogetherDemo           />} />
+          <Route path='SelectButton'     element={<PrimeReactSelectButtonTogetherDemo     />} />
+          <Route path='TabView'          element={<PrimeReactTabViewTogetherDemo          />} />
+          <Route path='ToggleButton'     element={<PrimeReactToggleButtonTogetherDemo     />} />
           <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDemo />} />
+        </Route>
+        <Route path='antdesign'>
+          <Route path='Checkbox'     element={ <AntDesignCheckboxTogetherDemo /> } />
+          <Route path='DatePicker'   element={ <AntDesignDatePickerTogetherDemo /> } />
+          <Route path='Select'       element={ <AntDesignSelectTogetherDemo /> } />
+          <Route path='Switch'       element={ <AntDesignSwitchTogetherDemo /> } />
+          <Route path='MultiSelect'  element={ <AntDesignMultiSelectTogetherDemo /> } />
+          <Route path='Rate'         element={ <AntDesignRateTogetherDemo /> } />
+          <Route path='SelectButton' element={ <AntDesignSelectButtonTogetherDemo /> } />
+          <Route path='Slider'       element={ <AntDesignSliderTogetherDemo /> } />
+          <Route path='Button'       element={ <AntDesignToggleButtonTogetherDemo /> } />
         </Route>
         <Route path='TinyRpg' element={<TinyRpgTogether />} />
       </Route>

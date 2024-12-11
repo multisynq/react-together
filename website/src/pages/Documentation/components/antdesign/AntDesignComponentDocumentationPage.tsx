@@ -20,9 +20,9 @@ interface GenericComponentPageProps {
   demo: CodeBlockData
   source: CodeBlockData
 }
-export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api, demo, source }: GenericComponentPageProps) {
+export function AntDesignComponentDocumentationPage({ name, originalName, docUrl, api, demo, source }: GenericComponentPageProps) {
   const codes = {
-    usage_1: { basic: `import { ${name} } from 'react-together-primereact'` },
+    usage_1: { basic: `import { ${name} } from 'react-together-ant-design'` },
     usage_2: { basic: `<${name} rtKey='your-unique-key' />` },
   }
 
@@ -54,11 +54,11 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
               <Link to={docUrl} target='_blank'>
                 {originalName}
               </Link>{' '}
-              component to synchronized the state across all users.
+              component to synchronize the state across all users.
             </p>
             <TabView className='w-full'>
               <TabPanel header='Preview'>
-                <DocumentationDemo url={`primereact/${originalName}`} />
+                <DocumentationDemo url={`antdesign/${originalName}`} />
               </TabPanel>
               <TabPanel header='Code'>
                 <CodeBlock {...demo} />

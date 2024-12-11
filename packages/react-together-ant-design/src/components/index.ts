@@ -1,33 +1,28 @@
 import CheckboxTogether from './CheckboxTogether'
-import ColorPickerTogether from './ColorPickerTogether'
+// import ColorPickerTogether from './ColorPickerTogether'
 import DatePickerTogether from './DatePickerTogether'
 import DrawOnGridTogether from './DrawOnGridTogether'
-import DropdownTogether from './DropdownTogether'
-import InputSwitchTogether from './InputSwitchTogether'
-import KnobTogether from './KnobTogether'
 import MultiSelectTogether from './MultiSelectTogether'
-import RatingTogether from './RatingTogether'
+import RateTogether from './RateTogether'
 import SelectButtonTogether from './SelectButtonTogether'
+import SelectTogether from './SelectTogether'
 import SliderTogether from './SliderTogether'
-import TabViewTogether from './TabViewTogether'
+import SwitchTogether from './SwitchTogether'
+// import TabViewTogether from './TabViewTogether'
 import ToggleButtonTogether from './ToggleButtonTogether'
-import TriStateCheckboxTogether from './TriStateCheckboxTogether'
+// import TriStateCheckboxTogether from './TriStateCheckboxTogether'
 
 export {
   CheckboxTogether,
-  ColorPickerTogether,
+  // ColorPickerTogether,
   DatePickerTogether,
-  DrawOnGridTogether,
-  DropdownTogether,
-  InputSwitchTogether,
-  KnobTogether,
-  MultiSelectTogether,
-  RatingTogether,
+  DrawOnGridTogether, MultiSelectTogether,
+  RateTogether,
   SelectButtonTogether,
-  SliderTogether,
-  TabViewTogether,
-  ToggleButtonTogether,
-  TriStateCheckboxTogether
+  SelectTogether,
+  SliderTogether, SwitchTogether,
+  // TabViewTogether,
+  ToggleButtonTogether
 }
 
 

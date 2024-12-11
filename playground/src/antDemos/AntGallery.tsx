@@ -14,12 +14,12 @@ import {
 import {
   CheckboxTogether as AD_CheckboxTogether,
   DatePickerTogether as AD_DatePickerTogether,
-  DropdownTogether as AD_DropdownTogether,
-  InputSwitchTogether as AD_InputSwitchTogether,
   MultiSelectTogether as AD_MultiSelectTogether,
-  RatingTogether as AD_RatingTogether,
+  RateTogether as AD_RateTogether,
   SelectButtonTogether as AD_SelectButtonTogether,
+  SelectTogether as AD_SelectTogether,
   SliderTogether as AD_SliderTogether,
+  SwitchTogether as AD_SwitchTogether,
   ToggleButtonTogether as AD_ToggleButtonTogether,
 } from 'react-together-ant-design'
 
@@ -66,11 +66,11 @@ function AntGallery() {
     </CompRow>
     <CompRow>
       <AD_CheckboxTogether    rtKey="checkbox" />
-      <AD_InputSwitchTogether rtKey="input-switch" />
-      <AD_RatingTogether      rtKey="rating" />
+      <AD_SwitchTogether rtKey="input-switch" />
+      <AD_RateTogether      rtKey="rating" />
     </CompRow>
     <CompRow>
-      <AD_DropdownTogether rtKey="ant_dropdown" 
+      <AD_SelectTogether rtKey="ant_dropdown" 
         options={options} 
         className='w-[110px]' 
         placeholder="Select a City"

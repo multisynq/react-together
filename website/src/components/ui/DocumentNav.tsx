@@ -61,6 +61,21 @@ const items: PatchedMenuItem[] = [
       { key: 'connected-views', label: 'ConnectedUsers', url: `${baseUrl}/ConnectedUsers` },
       { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
       {
+        key: 'antdesign',
+        label: 'Ant Design',
+        items: [
+          { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/antdesign/Checkbox` },
+          // { key: 'date-picker-together', label: 'DatePickerTogether', url: `${baseUrl}/antdesign/DatePicker` },
+          { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/antdesign/MultiSelect` },
+          { key: 'rate-together', label: 'RateTogether', url: `${baseUrl}/antdesign/Rate` },
+          { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/antdesign/SelectButton` },
+          { key: 'select-together', label: 'SelectTogether', url: `${baseUrl}/antdesign/Select` },
+          { key: 'slider-together', label: 'SliderTogether', url: `${baseUrl}/antdesign/Slider` },
+          { key: 'switch-together', label: 'SwitchTogether', url: `${baseUrl}/antdesign/Switch` },
+          { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/antdesign/ToggleButton` },
+        ],
+      },
+      {
         key: 'prime-react',
         label: 'Prime React',
         items: [

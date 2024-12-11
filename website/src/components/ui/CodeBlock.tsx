@@ -29,7 +29,7 @@ export function CodeBlock({
   code,
   embedded = false,
   hideToggleCode = false,
-  hideStackBlitz = false,
+  hideStackBlitz = true,
   codeClassName,
   github,
 }: CodeBlockProps) {
@@ -38,7 +38,7 @@ export function CodeBlock({
   const codeEditor = useCodeEditor({ template: 'vite' })
 
   useEffect(() => {
-    if (embedded) codeEditor.openStackBlitz(codeLang)
+    if (embedded) codeEditor?.openStackBlitz(codeLang)
   }, [codeEditor, codeLang, embedded])
 
   const toggleCodeMode = (content: string) => {

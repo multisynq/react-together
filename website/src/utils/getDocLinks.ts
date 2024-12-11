@@ -4,32 +4,36 @@ interface DocLink {
   ad_name?: string
 }
 
+const pr = {
+  docs: 'https://primereact.org/',
+  git: {
+    src: 'https://github.com/multisynq/react-together/blob/develop/packages/react-together-primereact/src/components',
+    demo: 'https://github.com/multisynq/react-together/blob/develop/website/src/components/demo/primereact',
+  }
+}
+
+const ad = {
+  docs: 'https://ant.design/components/',
+  git: {
+    src: 'https://github.com/multisynq/react-together/blob/develop/packages/react-together-ant-design/src/components',
+    demo: 'https://github.com/multisynq/react-together/blob/develop/website/src/components/demo/antdesign',
+  }
+}
+
 export default function getDocLinks({ rt_name, pr_name, ad_name }: DocLink) {
-  const github_source_pre = 'https://github.com/multisynq/react-together/blob/develop/packages/react-together-primereact/src/components'
-  const github_demo_pre = 'https://github.com/multisynq/react-together/blob/develop/website/src/components/demo'
-  const primereact_pre = 'https://primereact.org/'
-
   if (pr_name) {
-    const doc_primereact = `${primereact_pre}${pr_name.toLowerCase()}/`
-    const github_demo = `${github_demo_pre}/PrimeReact${rt_name}Demo.tsx`
-    const github_source = `${github_source_pre}/${rt_name}.tsx`
-
     return {
-      doc_primereact,
-      github_demo,
-      github_source,
+      doc_primereact:`${pr.docs}${pr_name.toLowerCase()}/`,
+      github_demo:`${pr.git.demo}/PrimeReact${rt_name}Demo.tsx`,
+      github_source:`${pr.git.src}/${rt_name}.tsx`,
     }
   }
 
   if (ad_name) {
-    const doc_antdesign = `https://ant.design/components/${ad_name.toLowerCase()}/`
-    const github_demo = `${github_demo_pre}/AntDesign${rt_name}Demo.tsx`
-    const github_source = `${github_source_pre}/${rt_name}.tsx`
-
     return {
-      doc_antdesign,
-      github_demo,
-      github_source,
+      doc_antdesign: `${ad.docs}${ad_name.toLowerCase()}/`,
+      github_demo: `${ad.git.demo}/AntDesign${rt_name}Demo.tsx`,
+      github_source: `${ad.git.src}/${rt_name}.tsx`,
     }
   }
 

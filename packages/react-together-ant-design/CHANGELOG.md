@@ -6,9 +6,9 @@
   - `<CalendarTogether />`
   - `<CheckboxTogether />`
   - `<DropdownTogether />`
-  - `<InputSwitchTogether />`
+  - `<SwitchTogether />`
   - `<SliderTogether />`
-  - `<RatingTogether />`
+  - `<RateTogether />`
   - `<SelectButtonTogether />`
   - `<TabViewTogether />`
   - `<ToggleButtonTogether />`

@@ -11,6 +11,7 @@ import {
   ToggleButtonTogether,
   TriStateCheckboxTogether
 } from 'react-together-primereact'
+
 import CountButtonTogether from './components/CountButtonTogether'
 import NestedHoverHighlighter from './components/NestedHoverHighlighter'
 import SamplePage from './components/SamplePage'
