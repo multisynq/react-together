@@ -27,7 +27,7 @@ No backend or net-code required!
 [twitter-url]: https://twitter.com/Multisynq
 [size-image]: https://img.shields.io/bundlephobia/minzip/react-together?label=size
 [size-url]: https://bundlephobia.com/result?p=react-together
-[discord-image]: https://img.shields.io/discord/1219357019212087419
+[discord-image]: https://img.shields.io/discord/1219357019212087419?label=Join%20our%20Discord&color=7289da
 [discord-url]: https://multisynq.io/discord
 [github-issues-url]: https://new-issue.ant.design
 
