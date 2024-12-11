@@ -1,18 +1,22 @@
 :root {
-  --demo-code-bg: var(--surface-700);
-  --demo-code-button-color: var(--surface-300);
-  --demo-code-button-hover-bg: hsla(0, 0%, 100%, 0.1);
-  --demo-code-button-hover-color: var(--surface-100);
+  --demo-code-bg: #1e1e1e;
+  --demo-code-button-color: #cccccc;
+  --demo-code-button-hover-bg: #094771;
+  --demo-code-button-hover-color: #ffffff;
   --code-block-background-overlay: rgba(255, 255, 255, 0.05);
   --code-block-keyword-color: #c485bf;
-  --code-block-punctuation-color: #bfdbfe;
+  --code-block-punctuation-color: #808080;
   --code-block-property-color: #93c5fd;
-  --code-block-default-text-color: #ffffff;
+  --code-block-default-text-color: #cccccc;
   --code-block-important-color: #fde68a;
   --code-block-class-color: #4ec9b0;
   --code-block-string-color: #ce9178;
   --code-block-function-color: #dcdcaa;
   --code-block-comment-color: #6a9956;
+  --code-block-attribute-color: #9cdcfe;
+  --code-block-regex-color: #d16969;
+  --code-block-number-color: #b5cea8;
+  --code-block-tag-color: #569cd6;
 }
 
 .doc-section-code {
@@ -132,18 +136,26 @@
         &.punctuation {
           color: var(--code-block-punctuation-color);
         }
+        &.tag {
+          color: var(--code-block-tag-color);
+        }
         &.property,
-        &.tag,
         &.boolean,
-        &.number,
-        &.function-name,
         &.constant,
         &.symbol,
         &.deleted {
           color: var(--code-block-property-color);
         }
+        &.number {
+          color: var(--code-block-number-color);
+        }
+        &.function {
+          color: var(--code-block-function-color);
+        }
+        &.attr-name {
+          color: var(--code-block-attribute-color);
+        }
         &.selector,
-        &.attr-name,
         &.string,
         &.char,
         &.builtin,
@@ -164,9 +176,11 @@
         &.class-name {
           color: var(--code-block-class-color);
         }
-        &.regex,
         &.important {
           color: var(--code-block-important-color);
+        }
+        &.regex {
+          color: var(--code-block-regex-color);
         }
       }
     }
@@ -178,6 +192,6 @@
     background: var(--demo-code-bg);
   }
   .layout-light &[data-p-theme^='md'] pre[class*='language-'] code {
-    background: var(--surface-900);
+    background: #1e1e1e;
   }
 }
