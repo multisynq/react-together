@@ -55,7 +55,7 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
               </Link>{' '}
               component to synchronized the state across all users.
             </p>
-            <TabView>
+            <TabView className='w-full'>
               <TabPanel header='Preview'>
                 <DocumentationDemo url={`primereact/${originalName}`} />
               </TabPanel>
