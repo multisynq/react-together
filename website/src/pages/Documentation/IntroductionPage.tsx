@@ -8,7 +8,7 @@ import { NavItem } from './types'
 
 const codes = {
   code_1: {
-    bash: 'npm i react-together',
+    basic: '$ npm i react-together',
   },
 
   code_2: {
