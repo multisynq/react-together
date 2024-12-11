@@ -49,6 +49,8 @@ export function CodeBlock({
 
   const copyCode = async () => await navigator.clipboard.writeText(code[codeLang])
 
+  if (Object.keys(code).length <= 1) hideToggleCode = true
+
   return (
     <>
       {!embedded && (
