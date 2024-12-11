@@ -1,11 +1,12 @@
 import '@styles/CodeBlock.scss'
+import { useEffect, useState } from 'react'
 
 import { PiCode, PiCopy, PiDatabase } from 'react-icons/pi'
 import { SiGithub, SiStackblitz } from 'react-icons/si'
 
-import { Button, CodeHighlight } from '@components'
+import { Button as _Button, CodeHighlight } from '@components'
 import { useCodeEditor } from '@utils/codeeditor'
-import { useEffect, useState } from 'react'
+import { Tooltip } from 'antd'
 
 export type CodeBlockCodeType = {
   basic?: string
@@ -48,8 +49,6 @@ export function CodeBlock({
 
   const copyCode = async () => await navigator.clipboard.writeText(code[codeLang])
 
-  const btnClass = 'h-2rem w-2rem p-0 inline-flex align-items-center justify-content-center shadow-none'
-
   return (
     <>
       {!embedded && (
@@ -58,83 +57,72 @@ export function CodeBlock({
             {codeMode !== 'basic' && !hideToggleCode && codeMode !== 'data' && (
               <>
                 <Button
-                  onClick={() => setCodeLang('javascript')}
-                  className={`py-0 px-2 border-round h-2rem shadow-none${codeLang === 'javascript' && codeMode !== 'data' ? ' code-active' : ''}`}
-                  // label='JS'
-                  // tooltip='JavaScript Code'
-                  // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
+                  {...{
+                    onClick: () => setCodeLang('javascript'),
+                    className: `py-0 px-2 border-round h-2rem shadow-none${codeLang === 'javascript' && codeMode !== 'data' ? ' code-active' : ''}`,
+                    tooltip: 'JavaScript Code',
+                    label: 'JS',
+                  }}
                 />
                 <Button
-                  onClick={() => setCodeLang('typescript')}
-                  className={`py-0 px-2 border-round h-2rem shadow-none${codeLang === 'typescript' ? ' code-active' : ''}`}
-                  // label='TS'
-                  // tooltip='TypeScript Code'
-                  // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
+                  {...{
+                    onClick: () => setCodeLang('typescript'),
+                    className: `py-0 px-2 border-round h-2rem shadow-none${codeLang === 'typescript' ? ' code-active' : ''}`,
+                    tooltip: 'TypeScript Code',
+                    label: 'TS',
+                  }}
                 />
               </>
             )}
 
             {!hideToggleCode && (
               <Button
-                type='button'
-                onClick={() => toggleCodeMode('javascript')}
-                className={btnClass}
-                // tooltip='Toggle Full Code'
-                // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
-              >
-                <PiCode />
-              </Button>
+                {...{
+                  onClick: () => toggleCodeMode('javascript'),
+                  tooltip: 'Toggle Full Code',
+                  label: <PiCode />,
+                }}
+              />
             )}
 
             {!hideToggleCode && code?.data ? (
               <Button
-                type='button'
-                onClick={() => setCodeMode('data')}
-                className={btnClass}
-                // tooltip='View Data'
-                // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
-              >
-                <PiDatabase />
-              </Button>
+                {...{
+                  onClick: () => setCodeMode('data'),
+                  tooltip: 'View Data',
+                  label: <PiDatabase />,
+                }}
+              />
             ) : null}
 
             {!hideStackBlitz && (
               <Button
-                type='button'
-                className={btnClass}
-                onClick={() => codeEditor.openStackBlitz(codeLang)}
-                // tooltip='Edit in StackBlitz'
-                // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
-              >
-                <SiStackblitz />
-              </Button>
+                {...{
+                  onClick: () => codeEditor.openStackBlitz(codeLang),
+                  tooltip: 'Edit in StackBlitz',
+                  label: <SiStackblitz />,
+                }}
+              />
             )}
 
             {github && (
               <Button
-                type='button'
-                className={btnClass}
-                onClick={() => window.open(github, '_blank')}
-                // tooltip='View on GitHub'
-                // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
-              >
-                <SiGithub />
-              </Button>
+                {...{
+                  onClick: () => window.open(github, '_blank'),
+                  tooltip: 'View on GitHub',
+                  label: <SiGithub />,
+                }}
+              />
             )}
 
             <Button
-              type='button'
-              onClick={copyCode}
-              className={btnClass}
-              // tooltip='Copy Code'
-              // tooltipOptions={{ position: 'bottom', className: 'doc-section-code-tooltip' }}
-            >
-              <PiCopy />
-            </Button>
+              {...{
+                onClick: copyCode,
+                tooltip: 'Copy Code',
+                label: <PiCopy />,
+              }}
+            />
           </div>
-
-          {/* {JSON.stringify({ codeMode, code })} */}
-          {/* {codeMode === 'basic' && JSON.stringify(code?.basic)} */}
 
           {codeMode === 'basic' && <CodeHighlight {...{ code: code?.basic, codeClassName }} />}
           {codeMode === 'bash' && <CodeHighlight {...{ code: code?.bash, lang: 'bash', codeClassName }} />}
@@ -147,5 +135,41 @@ export function CodeBlock({
       )}
       {embedded && <div id='embed' />}
     </>
+  )
+}
+
+interface ButtonProps {
+  className?: string
+  label: string | JSX.Element
+  tooltip?: string
+  tooltipPlacement?:
+    | 'top'
+    | 'bottom'
+    | 'left'
+    | 'right'
+    | 'topLeft'
+    | 'topRight'
+    | 'bottomLeft'
+    | 'bottomRight'
+    | 'leftTop'
+    | 'leftBottom'
+    | 'rightTop'
+    | 'rightBottom'
+  onClick: () => void
+}
+
+function Button({ className, label, tooltip, tooltipPlacement, onClick, ...props }: ButtonProps) {
+  return (
+    <Tooltip {...{ title: tooltip, placement: tooltipPlacement || 'bottom' }}>
+      <_Button
+        {...{
+          onClick,
+          className: className || `h-2rem w-2rem p-0 inline-flex align-items-center justify-content-center shadow-none`,
+          ...props,
+        }}
+      >
+        {label}
+      </_Button>
+    </Tooltip>
   )
 }

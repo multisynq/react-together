@@ -20,6 +20,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@stackblitz/sdk": "^1.11.0",
     "@uidotdev/usehooks": "^2.4.1",
+    "antd": "^5.22.4",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
     "bootstrap-5-breakpoint-react-hook": "^1.1.0",
