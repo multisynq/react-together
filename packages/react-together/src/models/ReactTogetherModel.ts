@@ -105,7 +105,7 @@ export default class ReactTogetherModel extends ReactModel {
           st.delete(viewId)
           this.publish(rtKey, 'updated', {})
         } else {
-          // If the exiting view has a keyOverride, we need to delete it if any other view
+          // If the exiting view has a keyOverride, we need to delete it if no other view
           // has the same keyOverride
           const otherViewIdsHaveSameKeyOverride = Array.from(
             viewKeyOverrideMapping.entries()

@@ -1,9 +1,10 @@
-import { useJoinedViews as ujv, useViewId } from '@croquet/react'
+import { useJoinedViews as ujv } from '@croquet/react'
 import {
   adjectives,
   animals,
   uniqueNamesGenerator
 } from 'unique-names-generator'
+import { useMyId } from '.'
 
 export interface ConnectedUser<T = undefined> {
   userId: string
@@ -14,7 +15,7 @@ export interface ConnectedUser<T = undefined> {
 
 export default function useConnectedUsers<T = undefined>(): ConnectedUser<T>[] {
   const { views } = ujv()
-  const myId = useViewId()
+  const myId = useMyId()
 
   return views.map(({ viewId, info }) => {
     return {
