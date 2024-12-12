@@ -5,8 +5,12 @@ import { PiCode, PiCopy, PiDatabase } from 'react-icons/pi'
 import { SiGithub, SiStackblitz } from 'react-icons/si'
 
 import { Button as _Button, CodeHighlight } from '@components'
-import { useCodeEditor } from '@utils/codeeditor'
+import { openStackBlitz } from '@utils/codeeditor'
 import { Tooltip } from 'antd'
+
+export type CodeBlockCodeMetaData = {
+  componentName: string
+}
 
 export type CodeBlockCodeType = {
   basic?: string
@@ -17,35 +21,36 @@ export type CodeBlockCodeType = {
 
 export interface CodeBlockProps {
   code: CodeBlockCodeType
+  codeMetadata?: CodeBlockCodeMetaData
   embedded?: boolean
   hideToggleCode?: boolean
-  hideStackBlitz?: boolean
+  stackBlitz?: boolean
   codeClassName?: string
   github?: string
 }
 
 export function CodeBlock({
   code,
+  codeMetadata = null,
   embedded = false,
   hideToggleCode = false,
-  hideStackBlitz = true,
+  stackBlitz = false,
   codeClassName,
   github,
 }: CodeBlockProps) {
   const [codeMode, setCodeMode] = useState('basic')
   const [codeLang, setCodeLang] = useState(code?.typescript ? 'typescript' : 'basic')
-  const codeEditor = useCodeEditor()
 
   const availableCodeTypes = Object.entries(code).filter(([, value]) => value).length
   const multipleCodeTypes = availableCodeTypes > 1
 
   useEffect(() => {
-    if (embedded) codeEditor?.openStackBlitz(codeLang)
+    // if (embedded) openStackBlitz(codeLang)
     if (availableCodeTypes === 1 && code.typescript) {
       setCodeMode('typescript')
       setCodeLang('typescript')
     }
-  }, [codeEditor, codeLang, embedded, availableCodeTypes, code.typescript])
+  }, [codeLang, embedded, availableCodeTypes, code.typescript])
 
   const toggleCodeMode = (content: string) => {
     if (codeMode === 'data') setCodeMode('typescript')
@@ -97,10 +102,10 @@ export function CodeBlock({
               />
             ) : null}
 
-            {!hideStackBlitz && (
+            {stackBlitz && (
               <Button
                 {...{
-                  onClick: () => codeEditor.openStackBlitz(codeLang),
+                  onClick: () => openStackBlitz({ files: { [`src/${codeMetadata?.componentName || 'Component'}.tsx`]: code[codeMode] } }),
                   tooltip: `Edit in StackBlitz (${codeLang})`,
                   label: <SiStackblitz />,
                 }}

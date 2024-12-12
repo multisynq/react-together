@@ -9,6 +9,16 @@ function getTemplateFiles() {
     files[relativePath] = template[path]
   }
 
+  // Manually add .env.example
+  files['.env.example'] = `
+# RENAME THIS FILE TO .env
+# AND FILL IN THE VALUES WITH YOUR OWN API KEY THAT YOU CAN GET HERE FOR FREE:
+# https://multisynq.io/coder
+
+VITE_API_KEY=""
+VITE_APP_ID=""
+`
+
   return files
 }
 
@@ -18,6 +28,6 @@ export const project = {
   template: 'node',
   files: getTemplateFiles(),
   dependencies: {
-    'date-fns': '^2',
+    'react-together': '^0.2.0',
   },
 }
