@@ -1,7 +1,6 @@
-import { CodeBlock } from '@components/ui'
-import CodeSpan from '@components/ui/CodeSpan'
-import LinkSpan from '@components/ui/LinkSpan'
+import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import getDocLinks from '@utils/getDocLinks'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import InterfaceApi from '../InterfaceApi'
@@ -153,7 +152,19 @@ export default function UseConnectedUsersDocumentationPage() {
               The <CodeSpan text='useConnectedUsers' /> hook returns an array of objects representing all the users that are connected to
               the current session.
             </p>
-            <PreviewSourceCodeTabs preview={<DocumentationDemo url='ConnectedUsers' />} code={<CodeBlock code={codes.demo} />} />
+            <PreviewSourceCodeTabs
+              {...{
+                preview: <DocumentationDemo url='ConnectedUsers' />,
+                code: (
+                  <CodeBlock
+                    {...{
+                      code: codes.demo,
+                      github: getDocLinks({ rt_name: 'ConnectedUsers' }).github_demo,
+                    }}
+                  />
+                ),
+              }}
+            />
           </>
         ),
         usage: (

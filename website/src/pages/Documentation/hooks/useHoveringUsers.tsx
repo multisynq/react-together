@@ -1,5 +1,6 @@
 import { CodeBlock, CodeSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import getDocLinks from '@utils/getDocLinks'
 import { codes as _codes } from '../components/HoverHighlighter'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
@@ -91,7 +92,19 @@ export default function UseHoveringUsersDocumentationPage() {
               If a user is hovering a component that is nested within other <CodeSpan text='hoverable' /> components, only the innermost
               component will indicate that it's being hovered.
             </p>
-            <PreviewSourceCodeTabs preview={<DocumentationDemo url='HoverHighlighter' />} code={<CodeBlock code={codes.demo} />} />
+            <PreviewSourceCodeTabs
+              {...{
+                preview: <DocumentationDemo url='HoverHighlighter' />,
+                code: (
+                  <CodeBlock
+                    {...{
+                      code: codes.demo,
+                      github: getDocLinks({ rt_name: 'HoverHighlighter' }).github_demo,
+                    }}
+                  />
+                ),
+              }}
+            />
           </>
         ),
         usage: (

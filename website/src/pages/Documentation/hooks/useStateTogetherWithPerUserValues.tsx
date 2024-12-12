@@ -1,7 +1,6 @@
-import { CodeBlock } from '@components/ui'
-import CodeSpan from '@components/ui/CodeSpan'
-import Link from '@components/ui/Link'
+import { CodeBlock, CodeSpan, Link } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import getDocLinks from '@utils/getDocLinks'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
@@ -31,6 +30,7 @@ function YourComponent() {
 }
 `,
   },
+
   demo: {
     basic: `
 import { CroquetReact, useStateTogetherWithPerUserValues } from 'react-together'
@@ -146,8 +146,17 @@ const content = (
             everyone can see the count values of everyone else!
           </p>
           <PreviewSourceCodeTabs
-            preview={<DocumentationDemo url='useStateTogetherWithPerUserValues' />}
-            code={<CodeBlock code={codes.demo} />}
+            {...{
+              preview: <DocumentationDemo url='useStateTogetherWithPerUserValues' />,
+              code: (
+                <CodeBlock
+                  {...{
+                    code: codes.demo,
+                    github: getDocLinks({ rt_name: 'UseStateTogetherWPUV' }).github_demo,
+                  }}
+                />
+              ),
+            }}
           />
           {/* <DocumentationDemo url='useStateTogetherWithPerUserValues' /> */}
         </>

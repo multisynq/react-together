@@ -4,18 +4,21 @@ import Link from '@components/ui/Link'
 import LinkSpan from '@components/ui/LinkSpan'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import { TabPanel, TabView } from 'primereact/tabview'
 import { NavItem } from './types'
 
-const installCode = {
-  basic: '$ npm i react-together',
-}
+const codes = {
+  install: {
+    basic: '$ npm i react-together',
+  },
 
-const importCode = {
-  basic: `import { ReactTogether } from 'react-together'`,
-}
+  import: {
+    basic: `import { ReactTogether } from 'react-together'`,
+  },
 
-const createRootCode = {
-  basic: `ReactDOM.createRoot(document.getElementById('root')!).render(
+  createRoot: {
+    basic: `
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <ReactTogether
     sessionParams={{
       appId: import.meta.env['VITE_APP_ID'],
@@ -24,10 +27,12 @@ const createRootCode = {
   >
     <App />
   </ReactTogether>
-)`,
-}
-const usageCode = {
-  basic: `
+)
+`,
+  },
+
+  usage_1: {
+    basic: `
 function YourComponent() {
   const [count, set_count] = useStateTogether('count', 0)
 
@@ -41,8 +46,10 @@ function YourComponent() {
   )
 }
 `,
+  },
 
-  typescript: `
+  usage_2: {
+    basic: `
 import { useStateTogether } from './react-together'
 
 export default function CountButtonTogether() {
@@ -63,7 +70,9 @@ export default function CountButtonTogether() {
       <p style={{ color: '#888888', fontSize: '0.7rem' }}>Right click to reset to zero</p>
     </div>
   )
-}`,
+}
+`,
+  },
 }
 
 export default function IntroductionPage() {
@@ -80,7 +89,7 @@ export default function IntroductionPage() {
       <p>
         Install the <CodeSpan text='react-together' /> package via <CodeSpan text='npm' />
       </p>
-      <CodeBlock code={installCode} />
+      <CodeBlock code={codes.createRoot} />
 
       <h4 id='context'>Context</h4>
       <p>
@@ -91,16 +100,23 @@ export default function IntroductionPage() {
         </Link>
         .
       </p>
-      <CodeBlock code={importCode} />
-      <CodeBlock code={createRootCode} />
+      <CodeBlock code={codes.import} />
+      <CodeBlock code={codes.install} />
 
       <h4 id='sdf'>Use ReactTogether</h4>
       <p>That's it! Now you just need to import and use our components to create awesome interactive websites!</p>
 
-      <CodeBlock code={usageCode} />
+      <CodeBlock code={codes.usage_1} />
 
       <h5>Example</h5>
-      <DocumentationDemo url='CountButtonTogether' />
+      <TabView className='w-full'>
+        <TabPanel header='Preview'>
+          <DocumentationDemo url='CountButtonTogether' />
+        </TabPanel>
+        <TabPanel header='Code'>
+          <CodeBlock code={codes.usage_2} />
+        </TabPanel>
+      </TabView>
     </>
   )
 

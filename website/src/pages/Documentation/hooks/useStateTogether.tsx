@@ -1,9 +1,7 @@
 import { Markdown } from '@components/Markdown'
-import { CodeBlock } from '@components/ui'
-import CodeSpan from '@components/ui/CodeSpan'
-import Link from '@components/ui/Link'
-import LinkSpan from '@components/ui/LinkSpan'
+import { CodeBlock, CodeSpan, Link, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import getDocLinks from '@utils/getDocLinks'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import InterfaceApi from '../InterfaceApi'
@@ -12,29 +10,6 @@ import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
 const codes = {
-  usage_1: {
-    basic: `import { useStateTogether } from 'react-together'`,
-  },
-
-  usage_2: {
-    basic: `
-function YourComponent() {
-  const [count, setCount] = useStateTogether('unique-key', 0)
-        
-  const increment = () => setCount((prev) => prev + 1)
-  const reset = () => setCount(0)
-
-  return (
-    <div>
-      <button onClick={increment}>Increment</button>
-      <button onClick={reset}>Reset</button>
-      <p>Count: {count}</p>
-    </div>
-  )
-}
-`,
-  },
-
   demo: {
     basic: `
 import { useStateTogether } from 'react-together'
@@ -55,6 +30,29 @@ export default function CountButtonTogether() {
       >
         Count: {count}
       </button>
+    </div>
+  )
+}
+`,
+  },
+
+  usage_1: {
+    basic: `import { useStateTogether } from 'react-together'`,
+  },
+
+  usage_2: {
+    basic: `
+function YourComponent() {
+  const [count, setCount] = useStateTogether('unique-key', 0)
+        
+  const increment = () => setCount((prev) => prev + 1)
+  const reset = () => setCount(0)
+
+  return (
+    <div>
+      <button onClick={increment}>Increment</button>
+      <button onClick={reset}>Reset</button>
+      <p>Count: {count}</p>
     </div>
   )
 }
@@ -133,7 +131,19 @@ const content = (
             </Link>
             .
           </p>
-          <PreviewSourceCodeTabs preview={<DocumentationDemo url='CountButtonTogether' />} code={<CodeBlock code={codes.demo} />} />
+          <PreviewSourceCodeTabs
+            {...{
+              preview: <DocumentationDemo url='CountButtonTogether' />,
+              code: (
+                <CodeBlock
+                  {...{
+                    code: codes.demo,
+                    github: getDocLinks({ rt_path: 'CountButtonTogether.tsx' }).github_demo,
+                  }}
+                />
+              ),
+            }}
+          />
         </>
       ),
       usage: (

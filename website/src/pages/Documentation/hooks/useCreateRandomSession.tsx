@@ -1,5 +1,4 @@
-import { CodeBlock } from '@components/ui'
-import CodeSpan from '@components/ui/CodeSpan'
+import { CodeBlock, CodeSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'

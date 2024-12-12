@@ -1,5 +1,8 @@
 import { Badge, badgeVariants } from './badge'
 import { Button, buttonVariants } from './button'
+import Link from './Link'
+import LinkSpan from './LinkSpan'
+import { TableContainer } from './TableContainer'
 
 import { CodeBlock, type CodeBlockCodeType } from './CodeBlock'
 import CodeHighlight from './CodeHighlight'
@@ -91,4 +94,7 @@ export {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
+  Link,
+  LinkSpan,
+  TableContainer,
 }

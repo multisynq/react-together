@@ -1,7 +1,6 @@
-import { CodeBlock } from '@components/ui'
-import CodeSpan from '@components/ui/CodeSpan'
-import LinkSpan from '@components/ui/LinkSpan'
+import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import getDocLinks from '@utils/getDocLinks'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
@@ -166,7 +165,19 @@ export default function UseFunctionTogetherDocumentationPage() {
               invite you to take a look at the underlying library:{' '}
               <LinkSpan text='@croquet/react' to='https://www.npmjs.com/package/@croquet/react' target='_blank' /> 😉.
             </p>
-            <PreviewSourceCodeTabs preview={<DocumentationDemo url='useFunctionTogether' />} code={<CodeBlock code={codes.demo} />} />
+            <PreviewSourceCodeTabs
+              {...{
+                preview: <DocumentationDemo url='useFunctionTogether' />,
+                code: (
+                  <CodeBlock
+                    {...{
+                      code: codes.demo,
+                      github: getDocLinks({ rt_path: 'MeditationBell.tsx' }).github_demo,
+                    }}
+                  />
+                ),
+              }}
+            />
           </>
         ),
         usage: (
