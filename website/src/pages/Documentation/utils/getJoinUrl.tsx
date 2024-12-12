@@ -76,8 +76,8 @@ export default function GetJoinUrlDocumentationPage() {
         description: 'Creates a new URL with specified session name and password parameters in the query string and hash.',
         usage: (
           <>
-            <CodeBlock code={codes.usage_1} />
-            <CodeBlock code={codes.usage_2} />
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
           </>
         ),
         api,

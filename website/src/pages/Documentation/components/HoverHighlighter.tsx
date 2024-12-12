@@ -1,7 +1,6 @@
-import { CodeBlock } from '@components/ui'
-import CodeSpan from '@components/ui/CodeSpan'
-import LinkSpan from '@components/ui/LinkSpan'
+import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import getDocLinks from '@utils/getDocLinks'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
@@ -170,17 +169,22 @@ export default function HoverHighlighterDocumentationPage() {
               component can be customized by passing a <CodeSpan text='className' /> prop. Alternatively, you can create your own component
               using the <LinkSpan to='/useHoveringUsers' text='useHoveringUsers' /> hook.
             </p>
-            <PreviewSourceCodeTabs preview={<DocumentationDemo url='HoverHighlighter' />} code={<CodeBlock code={codes.demo} />} />
+            <PreviewSourceCodeTabs
+              {...{
+                preview: <DocumentationDemo url='HoverHighlighter' />,
+                code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_name: 'HoverHighlighter' }).github_demo }} />,
+              }}
+            />
           </>
         ),
         usage: (
           <>
-            <CodeBlock code={codes.usage_1} />
-            <CodeBlock code={codes.usage_2} />
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
           </>
         ),
         api,
-        source: <CodeBlock code={codes.source} />,
+        source: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_path: 'components/HoverHighlighter.tsx' }).github_source }} />,
       }}
     />
   )
