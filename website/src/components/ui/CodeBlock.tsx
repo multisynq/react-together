@@ -10,7 +10,6 @@ import { Tooltip } from 'antd'
 
 export type CodeBlockCodeType = {
   basic?: string
-  javascript?: string
   typescript?: string
   bash?: string
   data?: string
@@ -34,17 +33,24 @@ export function CodeBlock({
   github,
 }: CodeBlockProps) {
   const [codeMode, setCodeMode] = useState('basic')
-  const [codeLang, setCodeLang] = useState(code?.javascript ? 'javascript' : 'basic')
+  const [codeLang, setCodeLang] = useState(code?.typescript ? 'typescript' : 'basic')
   const codeEditor = useCodeEditor({ template: 'vite' })
+
+  const availableCodeTypes = Object.entries(code).filter(([, value]) => value).length
+  const multipleCodeTypes = availableCodeTypes > 1
 
   useEffect(() => {
     if (embedded) codeEditor?.openStackBlitz(codeLang)
-  }, [codeEditor, codeLang, embedded])
+    if (availableCodeTypes === 1 && code.typescript) {
+      setCodeMode('typescript')
+      setCodeLang('typescript')
+    }
+  }, [codeEditor, codeLang, embedded, availableCodeTypes, code.typescript])
 
   const toggleCodeMode = (content: string) => {
-    if (codeMode === 'data') setCodeMode('javascript')
+    if (codeMode === 'data') setCodeMode('typescript')
     else setCodeMode(codeMode === 'basic' ? content : 'basic')
-    setCodeLang('javascript')
+    setCodeLang('typescript')
   }
 
   const copyCode = async () => await navigator.clipboard.writeText(code[codeLang])
@@ -56,31 +62,25 @@ export function CodeBlock({
       {!embedded && (
         <div className='doc-section-code'>
           <div className='doc-section-code-buttons animation-duration-300'>
-            {codeMode !== 'basic' && !hideToggleCode && codeMode !== 'data' && (
+            {(codeMode !== 'basic' || availableCodeTypes === 1) && !hideToggleCode && codeMode !== 'data' && (
               <>
-                <Button
-                  {...{
-                    onClick: () => setCodeLang('javascript'),
-                    className: `py-0 px-2 border-round h-2rem shadow-none${codeLang === 'javascript' && codeMode !== 'data' ? ' code-active' : ''}`,
-                    tooltip: 'JavaScript Code',
-                    label: 'JS',
-                  }}
-                />
-                <Button
-                  {...{
-                    onClick: () => setCodeLang('typescript'),
-                    className: `py-0 px-2 border-round h-2rem shadow-none${codeLang === 'typescript' ? ' code-active' : ''}`,
-                    tooltip: 'TypeScript Code',
-                    label: 'TS',
-                  }}
-                />
+                {code.typescript && (
+                  <Button
+                    {...{
+                      onClick: () => setCodeLang('typescript'),
+                      className: `py-0 px-2 border-round h-2rem shadow-none${codeLang === 'typescript' ? ' code-active' : ''}`,
+                      tooltip: 'TypeScript Code',
+                      label: 'TS',
+                    }}
+                  />
+                )}
               </>
             )}
 
-            {!hideToggleCode && (
+            {!hideToggleCode && multipleCodeTypes && (
               <Button
                 {...{
-                  onClick: () => toggleCodeMode('javascript'),
+                  onClick: () => toggleCodeMode('typescript'),
                   tooltip: 'Toggle Full Code',
                   label: <PiCode />,
                 }}
@@ -129,8 +129,7 @@ export function CodeBlock({
           {codeMode === 'basic' && <CodeHighlight {...{ code: code?.basic, codeClassName }} />}
           {codeMode === 'bash' && <CodeHighlight {...{ code: code?.bash, lang: 'bash', codeClassName }} />}
           {codeMode === 'data' && <CodeHighlight {...{ code: code?.data, lang: 'json', codeClassName }} />}
-          {codeMode !== 'basic' && codeLang === 'javascript' && <CodeHighlight {...{ code: code?.javascript, codeClassName }} />}
-          {codeMode !== 'basic' && codeLang === 'typescript' && (
+          {codeMode !== 'basic' && (codeLang === 'typescript' || codeLang === 'tsx') && (
             <CodeHighlight {...{ code: code?.typescript, lang: 'tsx', codeClassName }} />
           )}
         </div>

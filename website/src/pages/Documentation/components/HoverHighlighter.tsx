@@ -8,7 +8,7 @@ import ComponentPropsTable from './ComponentPropsTable'
 
 export const codes = {
   demo: {
-    basic: `
+    typescript: `
 import { useState } from 'react'
 import { HoverHighlighter } from 'react-together'
 
@@ -184,7 +184,9 @@ export default function HoverHighlighterDocumentationPage() {
           </>
         ),
         api,
-        source: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_path: 'components/HoverHighlighter.tsx' }).github_source }} />,
+        source: (
+          <CodeBlock {...{ code: codes.source, github: getDocLinks({ rt_path: 'components/HoverHighlighter.tsx' }).github_source }} />
+        ),
       }}
     />
   )
