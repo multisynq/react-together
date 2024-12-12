@@ -71,7 +71,7 @@ export default defineConfig({
     },
   ],
   base: '/',
-  assetsInclude: ['./src/images/*', '**/*.md', '**/*.vtt'],
+  assetsInclude: ['./src/images/*', '**/*.md', '**/*.vtt', '**/*.html'],
   build: {
     minify: true,
     cssMinify: 'esbuild',

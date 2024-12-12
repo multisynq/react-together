@@ -1,4 +1,4 @@
-import { CodeBlock, type CodeBlockCodeType } from '@components/ui'
+import { CodeBlock, CodeBlockProps } from '@components/ui'
 import Link from '@components/ui/Link'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
 import getDocLinks from '@utils/getDocLinks'
@@ -7,18 +7,13 @@ import { ReactNode } from 'react'
 import { GenericDocPage } from '../../GenericDocPage'
 import ApiChangesPrelude from './ApiChangesPrelude'
 
-type CodeBlockData = {
-  code: CodeBlockCodeType
-  github?: string
-}
-
 interface GenericComponentPageProps {
   name: string
   originalName: string
   docUrl?: string
   api?: ReactNode | ReactNode[]
-  demo: CodeBlockData
-  source: CodeBlockData
+  demo: CodeBlockProps
+  source: CodeBlockProps
 }
 export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api, demo, source }: GenericComponentPageProps) {
   const codes = {

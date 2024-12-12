@@ -15,7 +15,7 @@ export type CodeBlockCodeType = {
   data?: string
 }
 
-interface CodeBlockProps {
+export interface CodeBlockProps {
   code: CodeBlockCodeType
   embedded?: boolean
   hideToggleCode?: boolean
@@ -34,7 +34,7 @@ export function CodeBlock({
 }: CodeBlockProps) {
   const [codeMode, setCodeMode] = useState('basic')
   const [codeLang, setCodeLang] = useState(code?.typescript ? 'typescript' : 'basic')
-  const codeEditor = useCodeEditor({ template: 'vite' })
+  const codeEditor = useCodeEditor()
 
   const availableCodeTypes = Object.entries(code).filter(([, value]) => value).length
   const multipleCodeTypes = availableCodeTypes > 1
@@ -101,7 +101,7 @@ export function CodeBlock({
               <Button
                 {...{
                   onClick: () => codeEditor.openStackBlitz(codeLang),
-                  tooltip: 'Edit in StackBlitz',
+                  tooltip: `Edit in StackBlitz (${codeLang})`,
                   label: <SiStackblitz />,
                 }}
               />
