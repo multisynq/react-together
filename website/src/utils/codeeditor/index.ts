@@ -1,5 +1,6 @@
 import sdk, { type Project } from '@stackblitz/sdk'
 
+import { CodeBlockCodeMetaData } from '@components/ui/CodeBlock'
 import { project as p_ts } from './typescript'
 import { project as p_vite_ts } from './vite-ts'
 
@@ -24,8 +25,9 @@ const defaultOpenFiles = ['src/App.tsx', '.env.example']
 type StackBlitzProps = {
   template?: keyof typeof TEMPLATES
   files?: Record<string, string>
+  codeMetadata?: CodeBlockCodeMetaData
 }
-export function openStackBlitz({ template = 'vite_ts', files = null }: StackBlitzProps) {
+export function openStackBlitz({ template = 'vite_ts', files = null, codeMetadata = null }: StackBlitzProps) {
   console.log('openStackBlitz', template, files)
 
   // Add files to the template project, depending on what template is selected
@@ -40,6 +42,15 @@ export function openStackBlitz({ template = 'vite_ts', files = null }: StackBlit
   files = { ...getFilesFromTemplate(defaultOpenFiles), ...files } as Record<string, string>
 
   const newProject = { ...selected_template, files: { ...selected_template.files, ...files } } as Project
+
+  const component = codeMetadata?.componentName || 'Component'
+
+  // Add the Import statement
+  const importStatement = `import ${component} from '${`./${component}`}'`
+  newProject.files['src/App.tsx'] = newProject.files['src/App.tsx'].replace('%%%IMPORT%%%', importStatement)
+
+  // Add the Component itself
+  newProject.files['src/App.tsx'] = newProject.files['src/App.tsx'].replace('%%%USAGE%%%', codeMetadata.usage || '"<CONFIGURE USAGE>"')
 
   // Open the files that are passed in, if none, open "src/App.tsx"
   // If there are more than 1 file passed in, add them into a string and separate it by a single comma

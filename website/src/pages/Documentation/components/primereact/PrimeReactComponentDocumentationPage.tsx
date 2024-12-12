@@ -27,6 +27,13 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
   if (!source.github) source.github = github_source
   if (!docUrl) docUrl = doc_primereact
 
+  function addMetaData(code: CodeBlockProps) {
+    return { ...code, codeMetadata: { componentName: name, usage: codes.usage_2.basic } }
+  }
+
+  demo = addMetaData(demo)
+  source = addMetaData(source)
+
   // Add prelude forwarding to the original documentation
   if (api) {
     api = (

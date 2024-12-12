@@ -10,6 +10,7 @@ import { Tooltip } from 'antd'
 
 export type CodeBlockCodeMetaData = {
   componentName: string
+  usage?: string
 }
 
 export type CodeBlockCodeType = {
@@ -105,7 +106,11 @@ export function CodeBlock({
             {stackBlitz && (
               <Button
                 {...{
-                  onClick: () => openStackBlitz({ files: { [`src/${codeMetadata?.componentName || 'Component'}.tsx`]: code[codeMode] } }),
+                  onClick: () =>
+                    openStackBlitz({
+                      files: { [`src/${codeMetadata?.componentName || 'Component'}.tsx`]: code[codeMode] },
+                      codeMetadata,
+                    }),
                   tooltip: `Edit in StackBlitz (${codeLang})`,
                   label: <SiStackblitz />,
                 }}
