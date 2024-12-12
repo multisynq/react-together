@@ -32,7 +32,7 @@ export default function useStateTogether<T>(
     // Otherwise, it retrieves and returns the existing value from the model's state.
     if (!view || !model) return initialValue
     if (!model.state.has(rtKey)) {
-      view.publish(model.id, 'setState', { id: rtKey, newValue: initialValue })
+      view.publish(model.id, 'setState', { rtKey, value: initialValue })
       return initialValue
     }
     return model.state.get(rtKey) as T
@@ -49,7 +49,7 @@ export default function useStateTogether<T>(
     const handler = () => {
       set_value((prev) => {
         if (!model.state.has(rtKey)) {
-          view.publish(model.id, 'setState', { id: rtKey, newValue: prev })
+          view.publish(model.id, 'setState', { rtKey, value: prev })
           return prev
         }
         const newValue = model.state.get(rtKey) as T
@@ -71,8 +71,8 @@ export default function useStateTogether<T>(
         // Eventually we will want to throttle publish calls
         const oldValue = model.state.get(rtKey) as T
         view.publish(model.id, 'setState', {
-          id: rtKey,
-          newValue: getNewValue(oldValue, newValueOrFn)
+          rtKey,
+          value: getNewValue(oldValue, newValueOrFn)
         })
       } else {
         set_value(newValueOrFn)

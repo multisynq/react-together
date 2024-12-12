@@ -1,4 +1,4 @@
-import { useCroquetContext, useViewId } from '@croquet/react'
+import { useCroquetContext } from '@croquet/react'
 import hash_fn, { NotUndefined } from 'object-hash'
 import {
   Dispatch,
@@ -9,6 +9,7 @@ import {
 } from 'react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 import getNewValue from './getNewValue'
+import useMyId from './useMyId'
 
 interface ValueMap<T> {
   [id: string]: T
@@ -37,8 +38,7 @@ function mapToObject<T>(map: Map<string, T>): ValueMap<T> {
 export interface UseStateTogetherWithPerUserValuesOptions {
   resetOnDisconnect?: boolean
   resetOnConnect?: boolean
-  persistDisconnectedUserData?: boolean
-  keyOverride?: string
+  keepValues?: boolean
   overwriteSessionValue?: boolean
 }
 export default function useStateTogetherWithPerUserValues<
@@ -51,22 +51,18 @@ export default function useStateTogetherWithPerUserValues<
   const {
     resetOnDisconnect = false,
     resetOnConnect = false,
-    persistDisconnectedUserData = false,
-    overwriteSessionValue = false,
-    keyOverride
+    keepValues = false,
+    overwriteSessionValue = false
   } = options
   // Memoize the initial value to ignore subsequent changes
   // https://react.dev/reference/react/useState
   const [actualInitialValue] = useState(initialValue)
 
   const { session, view, model } = useCroquetContext<ReactTogetherModel>()
-  const viewId = useViewId()
-
-  // This is the key to which the local value is assigned
-  const key = keyOverride ?? viewId
+  const myId = useMyId()
 
   const [allValuesState, setAllValuesState] = useState<LocalState<T>>(() => {
-    if (!view || !model || key === null) {
+    if (!view || !model || !myId) {
       return {
         localValue: actualInitialValue,
         allValues: EMPTY_OBJECT,
@@ -79,10 +75,10 @@ export default function useStateTogetherWithPerUserValues<
     // will be done in the useEffect below
     const allValues = mapToObject(
       (model.statePerUser.get(rtKey) as Map<string, T>) ??
-        new Map([[key, actualInitialValue]])
+        new Map([[myId, actualInitialValue]])
     )
     return {
-      localValue: allValues[key],
+      localValue: allValues[myId],
       allValues,
       allValuesHash: hash_fn(allValues)
     }
@@ -92,40 +88,27 @@ export default function useStateTogetherWithPerUserValues<
   // We have to store the options configuration on the model side
   // because the publish on cleanup was not being sent
   useEffect(() => {
-    // TODO: Only send if needed i.e. if config is not already set, and if keyOverride is outdated
-    if (view && model && viewId) {
+    if (view && model && myId) {
+      // Configuring the state per user for this rtKey
+      // We only need to send the config if it has not been set yet
+      // or if the keepValues option has changed
       const config = model.statePerUserConfig.get(rtKey)
-      if (
-        !config ||
-        config.persistDisconnectedUserData !== persistDisconnectedUserData ||
-        (keyOverride &&
-          config.viewKeyOverrideMapping?.get(viewId) !== keyOverride)
-      ) {
+      if (!config || config.keepValues !== keepValues) {
         view.publish(model.id, 'configureStatePerUser', {
-          id: rtKey,
-          viewId,
+          rtKey,
           options: {
             // intentionally not passing resetOnDisconnect and resetOnConnect
-            // to save on bandwidth
-            persistDisconnectedUserData,
-            keyOverride
+            // to save on bandwidth. These values do not need to be synchronized
+            // across users, and are only used to determine the behavior of the setter
+            keepValues
           }
         })
       }
     }
-  }, [
-    view,
-    model,
-    rtKey,
-    resetOnDisconnect,
-    resetOnConnect,
-    persistDisconnectedUserData,
-    viewId,
-    keyOverride
-  ])
+  }, [view, model, rtKey, resetOnDisconnect, resetOnConnect, keepValues, myId])
 
   useEffect(() => {
-    if (!session || !view || !model || key === null) {
+    if (!session || !view || !model || myId === null) {
       setAllValuesState((prev) => ({
         localValue: resetOnDisconnect ? actualInitialValue : prev.localValue,
         allValues: EMPTY_OBJECT,
@@ -163,7 +146,7 @@ export default function useStateTogetherWithPerUserValues<
          */
 
         const prevLocalValue = prev.localValue
-        const sessionValue = map.get(key)
+        const sessionValue = map.get(myId)
 
         let valueToUse: T
 
@@ -180,10 +163,10 @@ export default function useStateTogetherWithPerUserValues<
         if (valueToUse !== sessionValue) {
           view.publish(model.id, 'setStatePerUser', {
             id: rtKey,
-            key,
+            userId: myId,
             newValue: valueToUse
           })
-          map.set(key, valueToUse)
+          map.set(myId, valueToUse)
         }
 
         const newAllValues = mapToObject(map)
@@ -214,7 +197,7 @@ export default function useStateTogetherWithPerUserValues<
         return prev.allValuesHash === newAllValuesHash
           ? prev
           : {
-              localValue: newAllValues[key],
+              localValue: newAllValues[myId],
               allValues: newAllValues,
               allValuesHash: newAllValuesHash
             }
@@ -237,17 +220,17 @@ export default function useStateTogetherWithPerUserValues<
     view,
     model,
     actualInitialValue,
-    key,
+    myId,
     resetOnDisconnect,
     resetOnConnect,
-    persistDisconnectedUserData,
+    keepValues,
     overwriteSessionValue
   ])
 
   // Setter function to update local and shared state
   const setter = useCallback(
     (newValueOrFn: SetStateAction<T>): void => {
-      if (!view || !model || key === null) {
+      if (!view || !model || myId === null) {
         // Update local state when not connected
         setAllValuesState((prev) => {
           const newLocalValue = getNewValue(prev.localValue, newValueOrFn)
@@ -262,7 +245,7 @@ export default function useStateTogetherWithPerUserValues<
       } else {
         // Update shared state when connected
         const allValues = model.statePerUser.get(rtKey) as Map<string, T>
-        let prevLocalValue = allValues.get(key)
+        let prevLocalValue = allValues.get(myId)
         if (prevLocalValue === undefined) {
           // If the key is not in the allValues mapping, it is because
           // the publish(initialValue) has not been received by the current user yet
@@ -277,12 +260,12 @@ export default function useStateTogetherWithPerUserValues<
 
         view.publish(model.id, 'setStatePerUser', {
           id: rtKey,
-          key,
+          userId: myId,
           newValue: newLocalValue
         })
       }
     },
-    [view, model, rtKey, actualInitialValue, key]
+    [rtKey, view, model, actualInitialValue, myId]
   )
 
   const { localValue, allValues } = allValuesState
