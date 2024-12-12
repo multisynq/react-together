@@ -21,7 +21,7 @@ interface MarkdownPageProps {
 export function MarkdownPage({ markdown }: MarkdownPageProps) {
   return (
     <div className='flex justify-center w-full'>
-      <div className='max-w-[54rem] line-border bg-white px-6 py-4'>
+      <div className='line-border bg-white px-6 py-4 flex-1'>
         <Markdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeRaw]}

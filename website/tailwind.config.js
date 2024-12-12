@@ -89,7 +89,7 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       fontFamily: {
-        heading: ['Lato', 'sans-serif'],
+        heading: ['Poppins', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
       },
     },

@@ -1,7 +1,7 @@
 @layer tailwind-base, primereact, tailwind-utilities;
 
 /* IMPORTANT: In "styled" mode you must add the PrimeReact Theme here. Do NOT include in "unstyled" mode */
-@import "primereact/resources/themes/lara-light-blue/theme.css" layer(primereact);
+@import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
 
 @layer tailwind-base {
   @tailwind base;
@@ -90,7 +90,7 @@
   }
 
   .chunk-container::after {
-    content: "";
+    content: '';
     @apply absolute -inset-4 shadow-xl rounded-xl border;
   }
 }
@@ -107,27 +107,27 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Lato", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 h1 {
-  @apply text-4xl font-bold mt-4;
+  @apply text-4xl font-semibold mt-4 tracking-tight;
 } /* Bold */
 h2 {
   /* @apply text-3xl font-bold mt-4; */
-  @apply text-3xl font-bold;
+  @apply text-3xl font-semibold tracking-tight;
 } /* Regular */
 h3 {
-  @apply text-2xl font-bold mt-4;
+  @apply text-2xl font-bold mt-4 tracking-tight;
 }
 h4 {
-  @apply text-xl font-bold mt-4;
+  @apply text-xl font-bold mt-4 tracking-tight;
 } /* Regular */
 h5 {
-  @apply text-lg font-bold mt-4;
+  @apply text-lg font-bold mt-4 tracking-tight;
 } /* Regular */
 h6 {
-  /* font-weight: 400; */
+  font-weight: 400;
 }
 
 .markdown-content {
