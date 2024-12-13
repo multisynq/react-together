@@ -46,7 +46,7 @@
   "bugs": "https://github.com/multisynq/react-together/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/multisynq/react-together.git",
+    "url": "git+https://github.com/multisynq/react-together.git",
     "directory": "packages/react-together-primereact"
   },
   "homepage": "https://reacttogether.dev",

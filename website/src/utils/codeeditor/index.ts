@@ -19,7 +19,8 @@ const TEMPLATES = {
 // }
 
 // const defaultOpenFiles = ['main.tsx', 'src/App.tsx', '.env.example']
-const defaultOpenFiles = ['src/App.tsx', '.env.example']
+// const defaultOpenFiles = ['src/App.tsx', '.env.example']
+const defaultOpenFiles = ['src/App.tsx']
 
 //  Open the project in a new window on StackBlitz
 type StackBlitzProps = {
@@ -27,7 +28,7 @@ type StackBlitzProps = {
   files?: Record<string, string>
   codeMetadata?: CodeBlockCodeMetaData
 }
-export function openStackBlitz({ template = 'vite_ts', files = null, codeMetadata = null }: StackBlitzProps) {
+export function openStackBlitz({ template = 'typescript', files = null, codeMetadata = null }: StackBlitzProps) {
   console.log('openStackBlitz', template, files)
 
   // Add files to the template project, depending on what template is selected
@@ -41,13 +42,18 @@ export function openStackBlitz({ template = 'vite_ts', files = null, codeMetadat
 
   files = { ...getFilesFromTemplate(defaultOpenFiles), ...files } as Record<string, string>
 
-  const newProject = { ...selected_template, files: { ...selected_template.files, ...files } } as Project
+  const newProject = {
+    ...selected_template,
+    files: { ...selected_template.files, ...files },
+  } as Project
 
   const component = codeMetadata?.componentName || 'Component'
 
   // Add the Import statement
   const importStatement = `import ${component} from '${`./${component}`}'`
-  newProject.files['src/App.tsx'] = newProject.files['src/App.tsx'].replace('%%%IMPORT%%%', importStatement)
+  newProject.files['src/App.tsx'] = newProject.files['src/App.tsx']
+    .replace('//%%%IMPORT%%%', importStatement)
+    .replace('%%%IMPORT%%%', importStatement)
 
   // Add the Component itself
   newProject.files['src/App.tsx'] = newProject.files['src/App.tsx'].replace('%%%USAGE%%%', codeMetadata.usage || '"<CONFIGURE USAGE>"')
@@ -57,7 +63,12 @@ export function openStackBlitz({ template = 'vite_ts', files = null, codeMetadat
   const filesToOpen = files ? Object?.keys(files) : ['src/App.tsx']
   const openFile = filesToOpen?.length > 1 ? filesToOpen.join(',') : filesToOpen[0]
 
-  sdk.openProject(newProject, { openFile })
+  sdk.openProject(newProject, {
+    devToolsHeight: 50,
+    hideDevTools: false,
+    terminalHeight: 1,
+    openFile,
+  })
 }
 
 export function useCodeEditor() {

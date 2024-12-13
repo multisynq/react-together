@@ -1,5 +1,6 @@
 {
   "name": "react-together-ant-design",
+  "description": "A set of ready-to-use Ant Design components that are synchronized across multiple users in real-time!",
   "version": "0.0.1",
   "type": "module",
   "main": "dist/index.js",
@@ -21,7 +22,6 @@
     "react-together": "^0.3.0"
   },
   "peerDependencies": {
-    "primereact": "^10.6.6",
     "antd": "^5.19.0"
   },
   "devDependencies": {
@@ -41,5 +41,36 @@
     "vite": "^4.5.3",
     "vite-plugin-dts": "^3.7.3",
     "vite-plugin-lib-inject-css": "^2.0.1"
-  }
+  },
+  "bugs": "https://github.com/multisynq/react-together/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multisynq/react-together.git",
+    "directory": "packages/react-together-primereact"
+  },
+  "homepage": "https://reacttogether.dev",
+  "keywords": [
+    "react",
+    "together",
+    "antd",
+    "components",
+    "react-together",
+    "real-time",
+    "multi-user",
+    "websockets",
+    "sockets",
+    "interaction",
+    "interactive",
+    "collaboration",
+    "collaborative",
+    "presence",
+    "synchronize",
+    "synchronized",
+    "rooms",
+    "sessions",
+    "interaction",
+    "shared state",
+    "croquet",
+    "multisynq"
+  ]
 }

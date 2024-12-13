@@ -111,7 +111,22 @@ export function CodeBlock({
                       files: { [`src/${codeMetadata?.componentName || 'Component'}.tsx`]: code[codeMode] },
                       codeMetadata,
                     }),
-                  tooltip: `Edit in StackBlitz (${codeLang})`,
+                  tooltip: `Edit in StackBlitz (typescript)`,
+                  label: <SiStackblitz />,
+                }}
+              />
+            )}
+
+            {stackBlitz && (
+              <Button
+                {...{
+                  onClick: () =>
+                    openStackBlitz({
+                      template: 'vite_ts',
+                      files: { [`src/${codeMetadata?.componentName || 'Component'}.tsx`]: code[codeMode] },
+                      codeMetadata,
+                    }),
+                  tooltip: `Edit in StackBlitz (node)`,
                   label: <SiStackblitz />,
                 }}
               />

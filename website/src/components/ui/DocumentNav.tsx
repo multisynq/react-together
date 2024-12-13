@@ -159,6 +159,7 @@ export default function DocumentNav() {
         action: classNames('py-2'),
         label: classNames('text-gray-900 tracking-tight break-all text-sm'),
         content: classNames('rounded-md'),
+        toggleableContent: classNames('ml-4'),
       }}
       multiple
     />
