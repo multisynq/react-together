@@ -39,7 +39,7 @@ export function PrimeReactTabViewTogetherDemo() {
   source: {
     basic: `
 import { TabView, TabViewProps } from 'primereact/tabview'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export default function TabViewTogether({ rtKey, ...props }) {
   const [activeIndex, set_activeIndex] = useStateTogether<number>(rtKey, 0)

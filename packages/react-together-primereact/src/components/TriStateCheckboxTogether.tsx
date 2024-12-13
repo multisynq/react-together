@@ -1,9 +1,9 @@
+import { useStateTogether } from '@multisynq/react-together'
 import {
   TriStateCheckbox,
   TriStateCheckboxProps
 } from 'primereact/tristatecheckbox'
 import { Nullable } from 'primereact/ts-helpers'
-import { useStateTogether } from 'react-together'
 
 export interface TriStateCheckboxTogetherProps
   extends Omit<TriStateCheckboxProps, 'value' | 'onChange'> {

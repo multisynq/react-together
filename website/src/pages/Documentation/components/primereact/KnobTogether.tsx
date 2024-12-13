@@ -25,7 +25,7 @@ export function PrimeReactKnobTogetherDemo() {
   source: {
     basic: `
 import { Knob, KnobProps } from 'primereact/knob'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export default function KnobTogether({ rtKey, ...props }) {
   const [value, set_value] = useStateTogether<number>(rtKey, 0)

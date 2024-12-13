@@ -1,5 +1,5 @@
+import { useStateTogether } from '@multisynq/react-together'
 import { MultiSelect, MultiSelectProps } from 'primereact/multiselect'
-import { useStateTogether } from 'react-together'
 
 export interface MultiSelectTogetherProps
   extends Omit<MultiSelectProps, 'value' | 'onChange'> {

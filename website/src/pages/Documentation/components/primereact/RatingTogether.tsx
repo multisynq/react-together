@@ -26,7 +26,7 @@ export function PrimeReactRatingTogetherDemo() {
     basic: `
 import { Rating, RatingProps } from 'primereact/rating'
 import { Nullable } from 'primereact/ts-helpers'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export default function RatingTogether({ rtKey, ...props }) {
 }: RatingTogetherProps) {

@@ -30,7 +30,7 @@ export function PrimeReactSelectButtonTogetherDemo() {
   source: {
     basic: `
 import { SelectButton, SelectButtonProps } from 'primereact/selectbutton'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export default function SelectButtonTogether({ rtKey, options, ...props }) {
   const [value, set_value] = useStateTogether<unknown>(rtKey, null)

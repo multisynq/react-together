@@ -3,7 +3,7 @@
 //   TriStateCheckboxProps
 // } from 'primereact/tristatecheckbox'
 // import { Nullable } from 'primereact/ts-helpers'
-// import { useStateTogether } from 'react-together'
+// import { useStateTogether } from '@multisynq/react-together'
 
 // export interface TriStateCheckboxTogetherProps
 //   extends Omit<TriStateCheckboxProps, 'value' | 'onChange'> {
@@ -18,7 +18,7 @@
 
 //   return (
 //     <>
-//       {/* Need the above div to ensure that tailwind will import the dynamic class. 
+//       {/* Need the above div to ensure that tailwind will import the dynamic class.
 //           The code below will not import it. =/  */}
 //       {/* alternately, add all classes to the safeList: in tailwind.config.js  */}
 //       {/* <div className="outline outline-1 outline-slate-400 rounded" style={{width: '1px', height: '10px'}}>x</div> */}
@@ -34,8 +34,8 @@
 // }
 
 // Use AntDesign Checkbox instead
+import { useStateTogether } from '@multisynq/react-together'
 import { Checkbox, CheckboxProps } from 'antd'
-import { useStateTogether } from 'react-together'
 
 export interface TriStateCheckboxTogetherProps
   extends Omit<CheckboxProps, 'checked' | 'onChange'> {
@@ -48,5 +48,11 @@ export default function TriStateCheckboxTogether({
   ...props
 }: TriStateCheckboxTogetherProps) {
   const [checked, setChecked] = useStateTogether<boolean>(rtKey, false)
-  return <Checkbox {...props} checked={checked} onChange={(e) => setChecked(e.target.checked || false)} />
+  return (
+    <Checkbox
+      {...props}
+      checked={checked}
+      onChange={(e) => setChecked(e.target.checked || false)}
+    />
+  )
 }

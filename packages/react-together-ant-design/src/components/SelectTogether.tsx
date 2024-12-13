@@ -1,5 +1,5 @@
+import { useStateTogether } from '@multisynq/react-together'
 import { Select, SelectProps } from 'antd'
-import { useStateTogether } from 'react-together'
 
 export interface SelectTogetherProps
   extends Omit<SelectProps, 'value' | 'onChange'> {
@@ -11,7 +11,5 @@ export default function SelectTogether({
   ...props
 }: SelectTogetherProps) {
   const [value, set_value] = useStateTogether(rtKey, null)
-  return (
-    <Select {...props} value={value} onChange={(e) => set_value(e)} />
-  )
+  return <Select {...props} value={value} onChange={(e) => set_value(e)} />
 }

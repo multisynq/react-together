@@ -29,7 +29,7 @@ import {
   TriStateCheckboxProps
 } from 'primereact/tristatecheckbox'
 import { Nullable } from 'primereact/ts-helpers'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export default function TriStateCheckboxTogether({ rtKey, ...props }) {
   const [value, setValue] = useStateTogether<Nullable<boolean>>(rtKey, false)

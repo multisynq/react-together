@@ -33,7 +33,7 @@ import {
   ColorPickerRGBType
 } from 'primereact/colorpicker'
 import { useCallback, useEffect, useState } from 'react'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 
 export default function ColorPickerTogether({

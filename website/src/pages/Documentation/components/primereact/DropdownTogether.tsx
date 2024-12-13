@@ -36,7 +36,7 @@ export function PrimeReactDropdownTogetherDemo() {
   source: {
     basic: `
 import { Dropdown, DropdownProps } from 'primereact/dropdown'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export default function DropdownTogether({ rtKey, ...props }) {
   const [value, set_value] = useStateTogether(rtKey, null)

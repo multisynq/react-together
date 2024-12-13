@@ -1,5 +1,5 @@
+import { useStateTogether } from '@multisynq/react-together'
 import { Knob, KnobProps } from 'primereact/knob'
-import { useStateTogether } from 'react-together'
 
 export interface KnobTogetherProps
   extends Omit<KnobProps, 'value' | 'onChange'> {

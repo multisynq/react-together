@@ -25,7 +25,7 @@ export function PrimeReactCheckboxTogetherDemo() {
   source: {
     typescript: `
 import { Checkbox, CheckboxProps } from 'primereact/checkbox'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export default function CheckboxTogether({ rtKey, ...props }) {
   const [checked, setChecked] = useStateTogether(rtKey, false)

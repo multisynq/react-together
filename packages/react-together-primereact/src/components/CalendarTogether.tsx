@@ -1,5 +1,5 @@
+import { useStateTogether } from '@multisynq/react-together'
 import { Calendar, CalendarProps } from 'primereact/calendar'
-import { useStateTogether } from 'react-together'
 
 export interface CalendarTogetherProps
   extends Omit<CalendarProps, 'value' | 'onChange'> {

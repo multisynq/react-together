@@ -15,7 +15,7 @@ const codes = {
   source: {
     basic: `
 import { Calendar, CalendarProps } from 'primereact/calendar'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export interface CalendarTogetherProps
   extends Omit<CalendarProps, 'value' | 'onChange'> {

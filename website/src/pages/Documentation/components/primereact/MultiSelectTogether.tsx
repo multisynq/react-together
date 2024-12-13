@@ -32,7 +32,7 @@ export function PrimeReactMultiSelectTogetherDemo() {
   source: {
     basic: `
 import { MultiSelect, MultiSelectProps } from 'primereact/multiselect'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export default function MultiSelectTogether({ rtKey, ...props }) {
   const [value, set_value] = useStateTogether(rtKey, [])
