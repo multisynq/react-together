@@ -36,5 +36,5 @@ Licensed under the Apache License 2.0, Copyright © 2024-present Croquet Labs.
 
 See [LICENSE](./LICENSE) for more information.
 
-[npm-image]: https://img.shields.io/npm/v/react-together-primereact.svg
-[npm-url]: https://www.npmjs.com/package/react-together-primereact
+[npm-image]: https://img.shields.io/npm/v/react-together-ant-design.svg
+[npm-url]: https://www.npmjs.com/package/react-together-ant-design
