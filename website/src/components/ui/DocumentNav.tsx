@@ -15,8 +15,12 @@ export interface PatchedMenuItem extends Omit<MenuItem, 'label' | 'items'> {
 
 function LogoLabel(props: { logo: string; label: string }) {
   return (
-    <div>
-      <img src={props.logo} alt={props.label} style={{ height: '1em', verticalAlign: 'middle', display: 'inline', marginRight: '0.5em' }} />
+    <div className='flex items-center'>
+      <img
+        src={props.logo}
+        alt={props.label}
+        style={{ height: '0.875rem', verticalAlign: 'middle', display: 'inline', marginRight: '0.5rem' }}
+      />
       <span>{props.label}</span>
     </div>
   )
@@ -68,38 +72,38 @@ const items: PatchedMenuItem[] = [
       { key: 'react-together-mgr', label: 'SessionManager', url: `${baseUrl}/SessionManager` },
       { key: 'connected-views', label: 'ConnectedUsers', url: `${baseUrl}/ConnectedUsers` },
       { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
-      {
-        key: 'antdesign',
-        label: <LogoLabel logo={antDesignLogo} label='Ant Design' />,
-        items: [
-          { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/antdesign/Checkbox` },
-          // { key: 'date-picker-together', label: 'DatePickerTogether', url: `${baseUrl}/antdesign/DatePicker` },
-          { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/antdesign/MultiSelect` },
-          { key: 'rate-together', label: 'RateTogether', url: `${baseUrl}/antdesign/Rate` },
-          { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/antdesign/SelectButton` },
-          { key: 'select-together', label: 'SelectTogether', url: `${baseUrl}/antdesign/Select` },
-          { key: 'slider-together', label: 'SliderTogether', url: `${baseUrl}/antdesign/Slider` },
-          { key: 'switch-together', label: 'SwitchTogether', url: `${baseUrl}/antdesign/Switch` },
-          { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/antdesign/ToggleButton` },
-        ],
-      },
-      {
-        key: 'prime-react',
-        label: <LogoLabel logo={primeReactLogo} label='Prime React' />,
-        items: [
-          { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
-          { key: 'color-picker-together', label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
-          { key: 'dropdown-together', label: 'DropdownTogether', url: `${baseUrl}/primereact/Dropdown` },
-          { key: 'input-switch-together', label: 'InputSwitchTogether', url: `${baseUrl}/primereact/InputSwitch` },
-          { key: 'knob-together', label: 'KnobTogether', url: `${baseUrl}/primereact/Knob` },
-          { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/primereact/MultiSelect` },
-          { key: 'rating-together', label: 'RatingTogether', url: `${baseUrl}/primereact/Rating` },
-          { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/primereact/SelectButton` },
-          { key: 'tab-view-together', label: 'TabViewTogether', url: `${baseUrl}/primereact/TabView` },
-          { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/primereact/ToggleButton` },
-          { key: 'tri-state-checkbox-together', label: 'TriStateCheckboxTogether', url: `${baseUrl}/primereact/TriStateCheckbox` },
-        ],
-      },
+    ],
+  },
+  {
+    key: 'antDesign',
+    label: <LogoLabel logo={antDesignLogo} label='Ant Design' />,
+    items: [
+      { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/antdesign/Checkbox` },
+      // { key: 'date-picker-together', label: 'DatePickerTogether', url: `${baseUrl}/antdesign/DatePicker` },
+      { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/antdesign/MultiSelect` },
+      { key: 'rate-together', label: 'RateTogether', url: `${baseUrl}/antdesign/Rate` },
+      { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/antdesign/SelectButton` },
+      { key: 'select-together', label: 'SelectTogether', url: `${baseUrl}/antdesign/Select` },
+      { key: 'slider-together', label: 'SliderTogether', url: `${baseUrl}/antdesign/Slider` },
+      { key: 'switch-together', label: 'SwitchTogether', url: `${baseUrl}/antdesign/Switch` },
+      { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/antdesign/ToggleButton` },
+    ],
+  },
+  {
+    key: 'prime-react',
+    label: <LogoLabel logo={primeReactLogo} label='Prime React' />,
+    items: [
+      { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
+      { key: 'color-picker-together', label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
+      { key: 'dropdown-together', label: 'DropdownTogether', url: `${baseUrl}/primereact/Dropdown` },
+      { key: 'input-switch-together', label: 'InputSwitchTogether', url: `${baseUrl}/primereact/InputSwitch` },
+      { key: 'knob-together', label: 'KnobTogether', url: `${baseUrl}/primereact/Knob` },
+      { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/primereact/MultiSelect` },
+      { key: 'rating-together', label: 'RatingTogether', url: `${baseUrl}/primereact/Rating` },
+      { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/primereact/SelectButton` },
+      { key: 'tab-view-together', label: 'TabViewTogether', url: `${baseUrl}/primereact/TabView` },
+      { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/primereact/ToggleButton` },
+      { key: 'tri-state-checkbox-together', label: 'TriStateCheckboxTogether', url: `${baseUrl}/primereact/TriStateCheckbox` },
     ],
   },
 
@@ -155,11 +159,12 @@ export default function DocumentNav() {
         headerAction: classNames('pt-4 pb-3'),
         panel: classNames('border-0'),
         headerLabel: classNames('text-gray-900'),
-        menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
+        menuContent: classNames('py-0 border-0 rounded-none bg-transparent flex-1 pr-3'),
         action: classNames('py-2'),
         label: classNames('text-gray-900 tracking-tight break-all text-sm'),
         content: classNames('rounded-md'),
-        toggleableContent: classNames('ml-4'),
+        toggleableContent: classNames('ml-4 flex item-center'),
+        icon: classNames('bg-lime-500'),
       }}
       multiple
     />
