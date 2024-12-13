@@ -1,13 +1,31 @@
 html {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 @layer primereact {
   :root {
-    --font-family: "Poppins", sans-serif;
+    --font-family: 'Poppins', sans-serif;
   }
   .p-component {
     font-size: 1rem;
+  }
+  .p-tabview {
+    @apply bg-white border-0;
+  }
+
+  .p-tabview .p-tabview-nav {
+    @apply border-0 mb-4;
+  }
+
+  .p-tabview .p-tabview-panels {
+    @apply p-0;
+  }
+  .p-tabview .p-tabview-nav li.p-unselectable-text a {
+    @apply px-4 py-2 mr-2 shadow-lineStyleMedium rounded-xl border border-gray-500;
+  }
+
+  .p-tabview .p-tabview-nav li.p-unselectable-text.p-tabview-selected a {
+    @apply text-white bg-blue-500 border-gray-800 shadow-lineStyleDark;
   }
 }
 
@@ -68,6 +86,7 @@ html {
 
 .p-toggleable-content ul .p-menuitem {
   margin-left: 0.4rem;
+  margin-right: 0.1rem;
   .p-toggleable-content .p-submenu-list .p-menuitem .p-menuitem-content .p-menuitem-link {
     margin-left: 0.2rem;
   }
@@ -85,11 +104,11 @@ html {
 }
 
 @keyframes shine {
-  from {
-    background-position: var(--gradient-width) 0;
+  0% {
+    background-position: -100% 0;
   }
-  to {
-    background-position: 0 0;
+  100% {
+    background-position: 100% 0;
   }
 }
 
@@ -124,14 +143,7 @@ html {
   }
 }
 
-.p-toggleable-content
-  ul
-  .p-menuitem
-  .p-toggleable-content
-  .p-submenu-list
-  .p-menuitem
-  .p-menuitem-content
-  .p-menuitem-link {
+.p-toggleable-content ul .p-menuitem .p-toggleable-content .p-submenu-list .p-menuitem .p-menuitem-content .p-menuitem-link {
   margin-left: 0;
 }
 
