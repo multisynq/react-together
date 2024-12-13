@@ -1,19 +1,25 @@
 import antDesignLogo from '@images/antDesignLogo.svg'
 import primeReactLogo from '@images/primeReactLogo.svg'
 import { useLocalStorage } from '@uidotdev/usehooks'
-import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem'
+import { MenuItem } from 'primereact/menuitem'
 import { PanelMenu } from 'primereact/panelmenu'
 import { classNames } from 'primereact/utils'
 
 // Add `key` and `to` properties to MenuItem and to its nested elements
-export interface PatchedMenuItem extends MenuItem {
+export interface PatchedMenuItem extends Omit<MenuItem, 'label' | 'items'> {
   key?: string
+  label: string | React.ReactNode | React.ReactNode[]
   items?: PatchedMenuItem[]
   to?: string
-  command?: (e: PatchedMenuItemCommandEvent) => void
 }
-interface PatchedMenuItemCommandEvent extends MenuItemCommandEvent {
-  item: PatchedMenuItem
+
+function LogoLabel(props: { logo: string; label: string }) {
+  return (
+    <div>
+      <img src={props.logo} alt={props.label} style={{ height: '1em', verticalAlign: 'middle', display: 'inline', marginRight: '0.5em' }} />
+      <span>{props.label}</span>
+    </div>
+  )
 }
 
 const baseUrl = ''
@@ -64,16 +70,7 @@ const items: PatchedMenuItem[] = [
       { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
       {
         key: 'antdesign',
-        label: (
-          <div>
-            <img
-              src={antDesignLogo}
-              alt='Ant Design'
-              style={{ height: '1em', verticalAlign: 'middle', display: 'inline', marginRight: '0.5em' }}
-            />
-            <span>Ant Design</span>
-          </div>
-        ),
+        label: <LogoLabel logo={antDesignLogo} label='Ant Design' />,
         items: [
           { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/antdesign/Checkbox` },
           // { key: 'date-picker-together', label: 'DatePickerTogether', url: `${baseUrl}/antdesign/DatePicker` },
@@ -88,16 +85,7 @@ const items: PatchedMenuItem[] = [
       },
       {
         key: 'prime-react',
-        label: (
-          <div>
-            <img
-              src={primeReactLogo}
-              alt='Prime React'
-              style={{ height: '1em', verticalAlign: 'middle', display: 'inline', marginRight: '0.5em' }}
-            />
-            <span>Prime React</span>
-          </div>
-        ),
+        label: <LogoLabel logo={primeReactLogo} label='Prime React' />,
         items: [
           { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
           { key: 'color-picker-together', label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
