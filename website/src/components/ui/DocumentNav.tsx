@@ -1,3 +1,5 @@
+import antDesignLogo from '@images/antDesignLogo.svg'
+import primeReactLogo from '@images/primeReactLogo.svg'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem'
 import { PanelMenu } from 'primereact/panelmenu'
@@ -62,7 +64,16 @@ const items: PatchedMenuItem[] = [
       { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
       {
         key: 'antdesign',
-        label: 'Ant Design',
+        label: (
+          <div>
+            <img
+              src={antDesignLogo}
+              alt='Ant Design'
+              style={{ height: '1em', verticalAlign: 'middle', display: 'inline', marginRight: '0.5em' }}
+            />
+            <span>Ant Design</span>
+          </div>
+        ),
         items: [
           { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/antdesign/Checkbox` },
           // { key: 'date-picker-together', label: 'DatePickerTogether', url: `${baseUrl}/antdesign/DatePicker` },
@@ -77,7 +88,16 @@ const items: PatchedMenuItem[] = [
       },
       {
         key: 'prime-react',
-        label: 'Prime React',
+        label: (
+          <div>
+            <img
+              src={primeReactLogo}
+              alt='Prime React'
+              style={{ height: '1em', verticalAlign: 'middle', display: 'inline', marginRight: '0.5em' }}
+            />
+            <span>Prime React</span>
+          </div>
+        ),
         items: [
           { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
           { key: 'color-picker-together', label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
