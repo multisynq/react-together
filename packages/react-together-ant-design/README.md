@@ -1,28 +1,28 @@
-# React Together PrimeReact
+# React Together Ant Design
 
 [![NPM version][npm-image]][npm-url]
 
-This library wraps a series of [PrimeReact](https://primereact.org/) components to make them synchronized across multiple clients.
+This library wraps a series of [Ant Design](https://ant.design/) components to make them synchronized across multiple clients.
 All components maintain most of their original API, so you can use them as you would use the original components.
 
-For more information about the wrapped components API, please refer to our [documentation](https://reacttogether.dev/primereact/Checkbox).
+For more information about the wrapped components API, please refer to our [documentation](https://reacttogether.dev/antdesign/Checkbox).
 
 ## 📦 Installation
 
 ```bash
-npm install react-together-primereact
+npm install react-together-ant-design
 ```
 
 ## 🔨 Usage
 
 ```tsx
-import { ColorPickerTogether } from 'react-together-primereact'
+import { CheckboxTogether } from 'react-together-ant-design'
 
 export function YourComponent() {
   return (
     <div>
-      <h1>Color Picker</h1>
-      <ColorPickerTogether rtKey="color-picker" />
+      <h1>Checkbox Demo</h1>
+      <CheckboxTogether rtKey="checkbox-demo" />
     </div>
   )
 }
