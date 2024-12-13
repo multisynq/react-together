@@ -3,9 +3,11 @@
  - Added `resetOnDisconnect` option flag in `useStateTogether`
  - Added `resetOnDisconnect` option flag in `useStateTogetherWithPerUserValues`
  - Added `resetOnConnect` option flag in `useStateTogetherWithPerUserValues`
- - Added `persistDisconnectedUserData` option flag in `useStateTogetherWithPerUserValues`
- - Added `keyOverride` option flag in `useStateTogetherWithPerUserValues`
+ - Added `keepValues` option flag in `useStateTogetherWithPerUserValues`
  - Added `overwriteSessionValue` option flag in `useStateTogetherWithPerUserValues`
+ - Added `userId` prop to `ReactTogether` component
+ - Removed `sessionIgnoresUrl` attribute from `ReactTogether.sessionParams` property
+ - Added `sessionIgnoresUrl` prop to `ReactTogether` component
 `0.3.0-1`
  - Include `CHANGELOG.md` in package
 `0.3.0-0`
