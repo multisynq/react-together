@@ -134,14 +134,7 @@ const content = (
           <PreviewSourceCodeTabs
             {...{
               preview: <DocumentationDemo url='CountButtonTogether' />,
-              code: (
-                <CodeBlock
-                  {...{
-                    code: codes.demo,
-                    github: getDocLinks({ rt_path: 'CountButtonTogether.tsx' }).github_demo,
-                  }}
-                />
-              ),
+              code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_path: 'CountButtonTogether.tsx' }).github_demo }} />,
             }}
           />
         </>

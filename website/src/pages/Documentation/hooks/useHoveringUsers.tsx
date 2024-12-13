@@ -95,22 +95,15 @@ export default function UseHoveringUsersDocumentationPage() {
             <PreviewSourceCodeTabs
               {...{
                 preview: <DocumentationDemo url='HoverHighlighter' />,
-                code: (
-                  <CodeBlock
-                    {...{
-                      code: codes.demo,
-                      github: getDocLinks({ rt_name: 'HoverHighlighter' }).github_demo,
-                    }}
-                  />
-                ),
+                code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_name: 'HoverHighlighter' }).github_demo }} />,
               }}
             />
           </>
         ),
         usage: (
           <>
-            <CodeBlock code={codes.usage_1} />
-            <CodeBlock code={codes.usage_2} />
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
           </>
         ),
         api,

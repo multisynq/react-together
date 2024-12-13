@@ -64,8 +64,8 @@ export default function GetSessionPasswordFromUrlDocumentationPage() {
         description: 'Retrieves the session password from a URL.',
         usage: (
           <>
-            <CodeBlock code={codes.usage_1} />
-            <CodeBlock code={codes.usage_2} />
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
           </>
         ),
         api,

@@ -1,4 +1,4 @@
-import { CodeBlock, type CodeBlockCodeType } from '@components/ui'
+import { CodeBlock, CodeBlockProps } from '@components/ui'
 import Link from '@components/ui/Link'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
 import getDocLinks from '@utils/getDocLinks'
@@ -7,18 +7,13 @@ import { ReactNode } from 'react'
 import { GenericDocPage } from '../../GenericDocPage'
 import ApiChangesPrelude from './ApiChangesPrelude'
 
-type CodeBlockData = {
-  code: CodeBlockCodeType
-  github?: string
-}
-
 interface GenericComponentPageProps {
   name: string
   originalName: string
   docUrl?: string
   api?: ReactNode | ReactNode[]
-  demo: CodeBlockData
-  source: CodeBlockData
+  demo: CodeBlockProps
+  source: CodeBlockProps
 }
 export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api, demo, source }: GenericComponentPageProps) {
   const codes = {
@@ -31,6 +26,13 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
   if (!demo.github) demo.github = github_demo
   if (!source.github) source.github = github_source
   if (!docUrl) docUrl = doc_primereact
+
+  function addMetaData(code: CodeBlockProps) {
+    return { ...code, codeMetadata: { componentName: name, usage: codes.usage_2.basic } }
+  }
+
+  demo = addMetaData(demo)
+  source = addMetaData(source)
 
   // Add prelude forwarding to the original documentation
   if (api) {
@@ -68,8 +70,8 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
         ),
         usage: (
           <>
-            <CodeBlock code={codes.usage_1} />
-            <CodeBlock code={codes.usage_2} />
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
           </>
         ),
         api,

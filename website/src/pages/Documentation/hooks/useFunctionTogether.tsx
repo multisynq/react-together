@@ -168,22 +168,15 @@ export default function UseFunctionTogetherDocumentationPage() {
             <PreviewSourceCodeTabs
               {...{
                 preview: <DocumentationDemo url='useFunctionTogether' />,
-                code: (
-                  <CodeBlock
-                    {...{
-                      code: codes.demo,
-                      github: getDocLinks({ rt_path: 'MeditationBell.tsx' }).github_demo,
-                    }}
-                  />
-                ),
+                code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_path: 'MeditationBell.tsx' }).github_demo }} />,
               }}
             />
           </>
         ),
         usage: (
           <>
-            <CodeBlock code={codes.usage_1} />
-            <CodeBlock code={codes.usage_2} />
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
           </>
         ),
         api,

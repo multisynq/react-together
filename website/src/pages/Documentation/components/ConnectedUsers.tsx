@@ -1,14 +1,13 @@
-import { CodeBlock } from '@components/ui'
-import CodeSpan from '@components/ui/CodeSpan'
-import LinkSpan from '@components/ui/LinkSpan'
+import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { PreviewSourceCodeTabs } from '@pages/Documentation/PreviewSourceCodeTabs'
+import getDocLinks from '@utils/getDocLinks'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
 
 const codes = {
-  code_1: {
+  demo: {
     basic: `
 import { ConnectedUsers } from 'react-together'
 
@@ -18,11 +17,11 @@ export function ConnectedUsersDemo() {
 `,
   },
 
-  code_2: {
+  usage_1: {
     basic: `import { ConnectedUsers } from 'react-together'`,
   },
 
-  code_3: {
+  usage_2: {
     basic: `return <ConnectedUsers />`,
   },
 
@@ -125,19 +124,19 @@ export default function ConnectedUsersDocumentationPage() {
             <PreviewSourceCodeTabs
               {...{
                 preview: <DocumentationDemo url='ConnectedUsers' />,
-                code: <CodeBlock code={codes.code_1} />,
+                code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_name: 'ConnectedUsers' }).github_demo }} />,
               }}
             />
           </>
         ),
         usage: (
           <>
-            <CodeBlock code={codes.code_2} />
-            <CodeBlock code={codes.code_3} />
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
           </>
         ),
         api,
-        source: <CodeBlock code={codes.source} />,
+        source: <CodeBlock {...{ code: codes.source, github: getDocLinks({ rt_path: 'components/ConnectedUsers.tsx' }).github_source }} />,
       }}
     />
   )

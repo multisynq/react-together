@@ -1,8 +1,7 @@
 import { Icons } from '@components/icons'
-import { CodeBlock } from '@components/ui'
-import CodeSpan from '@components/ui/CodeSpan'
-import LinkSpan from '@components/ui/LinkSpan'
+import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import getDocLinks from '@utils/getDocLinks'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
@@ -212,8 +211,10 @@ export default function SessionManagerDocumentationPage() {
               <LinkSpan to='/useLeaveSession' text='useLeaveSession' />, and <LinkSpan to='/useJoinUrl' text='useJoinUrl' /> hooks!
             </p>
             <PreviewSourceCodeTabs
-              preview={<DocumentationDemo url='SessionManager' session2={null} />}
-              code={<CodeBlock code={codes.demo} />}
+              {...{
+                preview: <DocumentationDemo url='SessionManager' session2={null} />,
+                code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_name: 'SessionManager' }).github_demo }} />,
+              }}
             />
             <p>
               In the example above, you can see how the <CodeSpan text='SessionManager' /> component works. Each window represents a
@@ -230,8 +231,8 @@ export default function SessionManagerDocumentationPage() {
         ),
         usage: (
           <>
-            <CodeBlock code={codes.usage_1} />
-            <CodeBlock code={codes.usage_2} />
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
           </>
         ),
         source: (
@@ -240,7 +241,7 @@ export default function SessionManagerDocumentationPage() {
               This component is one of many possible ways to use the session management hooks. Below you have the source code for this
               component as inspiration for you to create your own session manager component, tailor made to your needs.
             </p>
-            <CodeBlock code={codes.source} />
+            <CodeBlock {...{ code: codes.source, github: getDocLinks({ rt_path: 'components/SessionManager.tsx' }).github_source }} />
           </>
         ),
       }}

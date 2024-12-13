@@ -1,9 +1,7 @@
-import { CodeBlock } from '@components/ui'
-import CodeSpan from '@components/ui/CodeSpan'
-import Link from '@components/ui/Link'
-import LinkSpan from '@components/ui/LinkSpan'
+import { CodeBlock, CodeSpan, Link, LinkSpan } from '@components/ui'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import getDocLinks from '@utils/getDocLinks'
 import { TabPanel, TabView } from 'primereact/tabview'
 import { NavItem } from './types'
 
@@ -114,7 +112,7 @@ export default function IntroductionPage() {
           <DocumentationDemo url='CountButtonTogether' />
         </TabPanel>
         <TabPanel header='Code'>
-          <CodeBlock code={codes.usage_2} />
+          <CodeBlock {...{ code: codes.usage_2, github: getDocLinks({ rt_path: 'CountButtonTogether.tsx' }).github_demo }} />
         </TabPanel>
       </TabView>
     </>

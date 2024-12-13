@@ -23,7 +23,7 @@ export function PrimeReactCheckboxTogetherDemo() {
   },
 
   source: {
-    basic: `
+    typescript: `
 import { Checkbox, CheckboxProps } from 'primereact/checkbox'
 import { useStateTogether } from 'react-together'
 
@@ -81,7 +81,11 @@ export default function PrimeReactCheckboxTogetherDocumentationPage() {
         originalName,
         api,
         demo: { code: codes.demo },
-        source: { code: codes.source },
+        source: {
+          code: codes.source,
+          stackBlitz: true,
+          codeMetadata: { componentName: 'CheckboxTogether' },
+        },
       }}
     />
   )

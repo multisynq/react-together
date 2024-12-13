@@ -68,8 +68,8 @@ export default function GetCleanUrlDocumentationPage() {
         description: 'Creates a new URL with specified session name and password parameters removed from the query string and hash.',
         usage: (
           <>
-            <CodeBlock code={codes.usage_1} />
-            <CodeBlock code={codes.usage_2} />
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
           </>
         ),
         api,

@@ -64,8 +64,8 @@ export default function GetSessionNameFromUrlDocumentationPage() {
         description: 'Retrieves the session name from a URL.',
         usage: (
           <>
-            <CodeBlock code={codes.usage_1} />
-            <CodeBlock code={codes.usage_2} />
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
           </>
         ),
         api,

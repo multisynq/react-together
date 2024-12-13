@@ -4,7 +4,7 @@ import Link from './Link'
 import LinkSpan from './LinkSpan'
 import { TableContainer } from './TableContainer'
 
-import { CodeBlock, type CodeBlockCodeType } from './CodeBlock'
+import { CodeBlock, type CodeBlockProps } from './CodeBlock'
 import CodeHighlight from './CodeHighlight'
 import CodeSpan from './CodeSpan'
 
@@ -57,7 +57,7 @@ export {
   Button,
   buttonVariants,
   CodeBlock,
-  CodeBlockCodeType,
+  CodeBlockProps,
   CodeHighlight,
   CodeSpan,
   Command,
