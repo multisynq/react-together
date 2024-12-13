@@ -38,7 +38,7 @@ export default function Gallery() {
         <SessionManager />
       </div>
       <div className="flex flex-col gap-2 items-center">
-        <ConnectedUsers maxAvatars={5} />
+        <ConnectedUsers maxAvatars={5} debug />
         {isTogether ? 'Connected' : 'Disconnected'}
         <SamplePage />
         <SyncedTabs />

@@ -1,20 +1,15 @@
 import { useStateTogetherWithPerUserValues } from 'react-together'
 
-interface CountPerUserProps {
-  username: string
-}
-export function CountPerUser({ username }: CountPerUserProps) {
+export function CountPerUser() {
   const [count, set_count, allValues] =
     useStateTogetherWithPerUserValues<number>('countPerUser', 0, {
-      persistDisconnectedUserData: true,
-      keyOverride: username,
+      keepValues: true
       // resetOnConnect: true,
-      // resetOnDisconnect: true,
-      overwriteSessionValue: true
+      // resetOnDisconnect: true
     })
   return (
     <>
-      <strong>{username}: </strong>
+      <strong>You: </strong>
       <button
         onClick={() => set_count((p) => p + 1)}
         className="bg-neutral-500 py-1 px-3 rounded"
@@ -26,13 +21,11 @@ export function CountPerUser({ username }: CountPerUserProps) {
         {count}
       </button>
       <ul>
-        {Object.entries(allValues)
-          .filter(([userId]) => userId !== username)
-          .map(([key, count]) => (
-            <li key={key}>
-              {key}: {count}
-            </li>
-          ))}
+        {Object.entries(allValues).map(([key, count]) => (
+          <li key={key}>
+            {key}: {count}
+          </li>
+        ))}
       </ul>
     </>
   )
