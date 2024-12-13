@@ -15,8 +15,12 @@ export interface PatchedMenuItem extends Omit<MenuItem, 'label' | 'items'> {
 
 function LogoLabel(props: { logo: string; label: string }) {
   return (
-    <div>
-      <img src={props.logo} alt={props.label} style={{ height: '1em', verticalAlign: 'middle', display: 'inline', marginRight: '0.5em' }} />
+    <div className='flex items-center'>
+      <img
+        src={props.logo}
+        alt={props.label}
+        style={{ height: '0.875rem', verticalAlign: 'middle', display: 'inline', marginRight: '0.5rem' }}
+      />
       <span>{props.label}</span>
     </div>
   )
@@ -155,11 +159,12 @@ export default function DocumentNav() {
         headerAction: classNames('pt-4 pb-3'),
         panel: classNames('border-0'),
         headerLabel: classNames('text-gray-900'),
-        menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
+        menuContent: classNames('py-0 border-0 rounded-none bg-transparent flex-1 pr-3'),
         action: classNames('py-2'),
         label: classNames('text-gray-900 tracking-tight break-all text-sm'),
         content: classNames('rounded-md'),
-        toggleableContent: classNames('ml-4'),
+        toggleableContent: classNames('ml-4 flex item-center'),
+        icon: classNames('bg-lime-500'),
       }}
       multiple
     />
