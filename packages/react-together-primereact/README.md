@@ -38,7 +38,3 @@ See [LICENSE](./LICENSE) for more information.
 
 [npm-image]: https://img.shields.io/npm/v/react-together-primereact.svg
 [npm-url]: https://www.npmjs.com/package/react-together-primereact
-[twitter-image]: https://img.shields.io/twitter/follow/Multisynq.svg?label=Multisynq
-[twitter-url]: https://twitter.com/Multisynq
-[discord-image]: https://img.shields.io/badge/Join%20our%20Discord-7289da
-[discord-url]: https://multisynq.io/discord
