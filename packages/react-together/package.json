@@ -1,6 +1,8 @@
 {
   "name": "react-together",
+  "description": "A library to seamlessly add real-time multi-user interaction to your React app!",
   "version": "0.3.0-1",
+  "license": "Apache-2.0",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -59,5 +61,35 @@
     "vite": "^4.5.3",
     "vite-plugin-dts": "^3.7.3",
     "vite-plugin-lib-inject-css": "^2.0.1"
-  }
+  },
+  "bugs": "https://github.com/multisynq/react-together/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/multisynq/react-together.git",
+    "directory": "packages/react-together"
+  },
+  "homepage": "https://reacttogether.dev",
+  "keywords": [
+    "react",
+    "together",
+    "react-together",
+    "real-time",
+    "multi-user",
+    "multiplayer",
+    "websockets",
+    "sockets",
+    "interaction",
+    "interactive",
+    "collaboration",
+    "collaborative",
+    "presence",
+    "synchronize",
+    "synchronized",
+    "rooms",
+    "sessions",
+    "interaction",
+    "shared state",
+    "croquet",
+    "multisynq"
+  ]
 }

@@ -140,7 +140,7 @@ export default function DocumentNav() {
       model={items}
       expandedKeys={expandedKeys}
       onExpandedKeysChange={setExpandedKeys}
-      className='w-full md:w-20rem'
+      className='w-[]'
       pt={{
         root: classNames('sm:line-border overflow-hidden bg-white w-[200px] md:w-[240px]'),
         headerContent: classNames('border-0 bg-transparent'),
@@ -149,7 +149,7 @@ export default function DocumentNav() {
         headerLabel: classNames('text-gray-900'),
         menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
         action: classNames('py-2'),
-        label: classNames('text-gray-800 text-xs md:text-sm break-all'),
+        label: classNames('text-gray-900 tracking-tight break-all text-sm'),
         content: classNames('rounded-md'),
       }}
       multiple

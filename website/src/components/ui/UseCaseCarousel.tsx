@@ -116,14 +116,15 @@ export default function UseCaseCarousel() {
   }
 
   const HeaderContent = (
-    // <div className='flex gap-4 sm:gap-4 items-center justify-between sm:justify-start'>
-    <div className='flex justify-start w-full'>
-      <div className='flex pl-[2rem] gap-5 flex-col sm:flex-row lg:gap-[3rem]'>
-        <div className='border px-8 py-4 line-border flex flex-col gap-2 bg-lime-100 justify-center items-center'>
-          <h2 style={{ fontWeight: 600, fontSize: '40px', lineHeight: '40px' }}>See Our Examples</h2>
+    <div className='flex justify-center w-full'>
+      <div className='flex flex-col sm:flex-row justify-center px-2 sm:px-4 gap-2 sm:gap-4'>
+        <div className='border px-8 py-4 line-border flex flex-col bg-lime-100 justify-center items-center'>
+          <h2 className='text-center' style={{ fontWeight: 600, fontSize: '40px', lineHeight: '40px' }}>
+            See Our Examples
+          </h2>
         </div>
         <div className='flex items-center justify-center'>
-          <div className='flex flex-col'>
+          <div className='flex flex-col px-2'>
             <span className='text-xl tracking-tight font-medium text-center sm:text-left'>
               The examples below were
               <br className='block sm:hidden' /> developed during <Link to='/hackathon'>HackTogether</Link>.
@@ -131,8 +132,9 @@ export default function UseCaseCarousel() {
             <span className='text-xl tracking-tight font-medium text-center sm:text-left'>
               See the full list of{' '}
               <Link to='https://taikai.network/multisynq/hackathons/hacktogether/results' target='_blank'>
-                projects .
+                projects
               </Link>
+              .
             </span>
           </div>
         </div>
@@ -146,7 +148,7 @@ export default function UseCaseCarousel() {
         {HeaderContent}
         <div className='card w-full flex items-center justify-center'>
           <Carousel
-            className='w-[28rem] sm:w-full'
+            className='w-[20rem] sm:w-[40rem] md:w-[48rem] lg:w-full'
             value={projects}
             numScroll={1}
             numVisible={3}

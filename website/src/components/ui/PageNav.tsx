@@ -46,7 +46,7 @@ export default function PageNav({ items }: PageNavProps) {
           headerLabel: classNames('text-gray-900'),
           headerSubmenuIcon: classNames('hidden'),
           menuContent: classNames('py-0 border-0 rounded-none'),
-          label: classNames('text-gray-800 break-all'),
+          label: classNames('text-gray-900 break-all text-sm'),
           action: classNames('pl-8 py-2'),
         }}
       />
