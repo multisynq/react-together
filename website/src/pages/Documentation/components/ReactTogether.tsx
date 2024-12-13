@@ -1,3 +1,4 @@
+import { Markdown } from '@components/Markdown'
 import { CodeBlock } from '@components/ui'
 import CodeSpan from '@components/ui/CodeSpan'
 import Link from '@components/ui/Link'
@@ -39,6 +40,28 @@ export default function ReactTogetherDocumentationPage() {
             name: 'sessionParams',
             type: <LinkSpan to='#ReactTogetherSessionParams' text='ReactTogetherSessionParams' />,
             description: 'The parameters passed to the Multisynq session.',
+          },
+          {
+            name: 'userId?',
+            type: 'string',
+            description: (
+              <Markdown>
+                An override for the `userId`. If this value is set, it will be used to identify the current user. If multiple windows are
+                opened with the same `userId`, they will be considered the same user and will share their state.
+              </Markdown>
+            ),
+          },
+          {
+            name: 'sessionIgnoresUrl?',
+            type: 'boolean',
+            default: 'false',
+            description: (
+              <p>
+                Sessions with the same name are typically treated as separate if they are hosted at different URLs. However, if
+                <CodeSpan text='sessionIgnoresUrl' /> is set to <CodeSpan text='true' />, sessions with the same name will be considered the
+                same session regardless of their hosting URL.
+              </p>
+            ),
           },
         ]}
       />
@@ -87,18 +110,6 @@ export default function ReactTogetherDocumentationPage() {
               <p>
                 If this parameter and <CodeSpan text='name' /> are defined, React Together will connect to a session with the given password
                 when it first renders
-              </p>
-            ),
-          },
-          {
-            name: 'sessionIgnoresUrl?',
-            type: 'boolean',
-            default: 'false',
-            description: (
-              <p>
-                Sessions with the same name are typically treated as separate if they are hosted at different URLs. However, if
-                <CodeSpan text='sessionIgnoresUrl' /> is set to <CodeSpan text='true' />, sessions with the same name will be considered the
-                same session regardless of their hosting URL.
               </p>
             ),
           },
