@@ -4,7 +4,7 @@ import {
   animals,
   uniqueNamesGenerator
 } from 'unique-names-generator'
-import ReactTogetherModel, { getUserId } from '../models/ReactTogetherModel'
+import ReactTogetherModel from '../models/ReactTogetherModel'
 import useMyId from './useMyId'
 
 export interface ConnectedUser {
@@ -16,7 +16,9 @@ export interface ConnectedUser {
 const EMPTY_ARRAY: ConnectedUser[] = []
 
 export default function useConnectedUsers(): ConnectedUser[] {
-  const { viewIds } = ujv()
+  // Use this hook to refresh every time the views change
+  ujv()
+
   const model = useModelRoot<ReactTogetherModel>()
   const myId = useMyId()
 
@@ -24,12 +26,12 @@ export default function useConnectedUsers(): ConnectedUser[] {
     return EMPTY_ARRAY
   }
 
-  return viewIds.map((viewId) => {
+  return Array.from(model.userIdCount.keys()).map((userId) => {
     return {
-      userId: getUserId(model, viewId),
-      isYou: viewId === myId,
+      userId,
+      isYou: userId === myId,
       name: uniqueNamesGenerator({
-        seed: viewId,
+        seed: userId,
         dictionaries: [adjectives, animals],
         length: 2,
         separator: ' ',

@@ -12,7 +12,7 @@ import getNewValue from './getNewValue'
 import useMyId from './useMyId'
 
 interface ValueMap<T> {
-  [id: string]: T
+  [userId: string]: T
 }
 
 // Represents the local state for the useStateTogetherWithPerUserValues hook.
@@ -62,7 +62,7 @@ export default function useStateTogetherWithPerUserValues<
   const myId = useMyId()
 
   const [allValuesState, setAllValuesState] = useState<LocalState<T>>(() => {
-    if (!view || !model || !myId) {
+    if (!view || !model || myId === null) {
       return {
         localValue: actualInitialValue,
         allValues: EMPTY_OBJECT,
@@ -97,9 +97,9 @@ export default function useStateTogetherWithPerUserValues<
         view.publish(model.id, 'configureStatePerUser', {
           rtKey,
           options: {
-            // intentionally not passing resetOnDisconnect and resetOnConnect
-            // to save on bandwidth. These values do not need to be synchronized
-            // across users, and are only used to determine the behavior of the setter
+            // intentionally not passing other options to save bandwidth.
+            // These values do not need to be synchronized
+            // across users, and are only used locally to determine the behavior of the setter
             keepValues
           }
         })
@@ -162,9 +162,9 @@ export default function useStateTogetherWithPerUserValues<
 
         if (valueToUse !== sessionValue) {
           view.publish(model.id, 'setStatePerUser', {
-            id: rtKey,
+            rtKey,
             userId: myId,
-            newValue: valueToUse
+            value: valueToUse
           })
           map.set(myId, valueToUse)
         }
@@ -259,9 +259,9 @@ export default function useStateTogetherWithPerUserValues<
         const newLocalValue = getNewValue<T>(prevLocalValue, newValueOrFn)
 
         view.publish(model.id, 'setStatePerUser', {
-          id: rtKey,
+          rtKey,
           userId: myId,
-          newValue: newLocalValue
+          value: newLocalValue
         })
       }
     },
