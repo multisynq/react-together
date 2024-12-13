@@ -10,7 +10,7 @@ const originalName = 'DatePicker'
 const codes = {
   demo: {
     basic: `
-import { DatePickerTogether } from 'react-together-ant-design'
+import { DatePickerTogether } from '@multisynq/react-together-ant-design'
 
 export function AntDesignDatePickerTogetherDemo() {
   return (
@@ -29,7 +29,7 @@ export function AntDesignDatePickerTogetherDemo() {
     basic: `
 import { DatePicker, DatePickerProps } from 'antd'
 import { Dayjs } from 'dayjs'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export interface CalendarTogetherProps
   extends Omit<DatePickerProps, 'value' | 'onChange'> {

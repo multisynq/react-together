@@ -1,4 +1,4 @@
-import { CheckboxTogether } from 'react-together-ant-design'
+import { CheckboxTogether } from '@multisynq/react-together-ant-design'
 
 export function AntDesignCheckboxTogetherDemo() {
   return (

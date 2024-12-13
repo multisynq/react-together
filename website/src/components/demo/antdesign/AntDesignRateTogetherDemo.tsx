@@ -1,4 +1,4 @@
-import { RateTogether } from 'react-together-ant-design'
+import { RateTogether } from '@multisynq/react-together-ant-design'
 
 export function AntDesignRateTogetherDemo() {
   return (

@@ -10,7 +10,7 @@ const originalName = 'Switch'
 const codes = {
   demo: {
     basic: `
-import { SwitchTogether } from 'react-together-ant-design'
+import { SwitchTogether } from '@multisynq/react-together-ant-design'
 
 export function AntDesignSwitchTogetherDemo() {
   return (
@@ -25,7 +25,7 @@ export function AntDesignSwitchTogetherDemo() {
   source: {
     basic: `
 import { Switch, SwitchProps } from 'antd'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export interface SwitchTogetherProps
   extends Omit<SwitchProps, 'checked' | 'onChange'> {

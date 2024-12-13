@@ -1,4 +1,4 @@
-import { CroquetReact, useStateTogetherWithPerUserValues } from 'react-together'
+import { CroquetReact, useStateTogetherWithPerUserValues } from '@multisynq/react-together'
 
 const { useViewId } = CroquetReact
 

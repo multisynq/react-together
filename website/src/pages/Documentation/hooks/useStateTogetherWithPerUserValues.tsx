@@ -9,7 +9,7 @@ import HookReturnApi from './HookReturnApi'
 
 const codes = {
   usage_1: {
-    basic: `import { useStateTogetherWithPerUserValues } from 'react-together'`,
+    basic: `import { useStateTogetherWithPerUserValues } from '@multisynq/react-together'`,
   },
 
   usage_2: {
@@ -33,7 +33,7 @@ function YourComponent() {
 
   demo: {
     basic: `
-import { CroquetReact, useStateTogetherWithPerUserValues } from 'react-together'
+import { CroquetReact, useStateTogetherWithPerUserValues } from '@multisynq/react-together'
 
 const { useViewId } = CroquetReact
 

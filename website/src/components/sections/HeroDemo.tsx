@@ -1,6 +1,6 @@
 import { BrowserWrapper } from '@components/ui/BrowserWrapper'
+import { ReactTogether, utils } from '@multisynq/react-together'
 import Iframe from 'react-iframe'
-import { ReactTogether, utils } from 'react-together'
 const { getJoinUrl } = utils
 
 export function WithReactTogetherProvider({ children }) {

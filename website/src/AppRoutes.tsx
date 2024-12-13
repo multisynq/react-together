@@ -1,3 +1,4 @@
+import { ConnectedUsers } from '@multisynq/react-together'
 import {
   AntDesignCheckboxTogetherDocumentationPage,
   AntDesignDatePickerTogetherDocumentationPage,
@@ -36,7 +37,6 @@ import {
   UseStateTogetherDocumentationPage,
   UseStateTogetherWithPerUserValuesDocumentationPage,
 } from '@pages/Documentation'
-import { ConnectedUsers } from 'react-together'
 import { HomePage } from './pages/HomePage'
 
 import { CookieBanner } from '@components/CookieBanner'
@@ -70,6 +70,7 @@ import {
 import CountButtonTogether from '@components/demo/CountButtonTogether'
 import HeroDemo from '@components/demo/HeroDemo'
 import TinyRpgTogether from '@components/demo/TinyRpg'
+import changelog from '@multisynq/react-together/CHANGELOG.md'
 import { CookiePolicy } from '@pages/CookiePolicy'
 import { DemoWrapper } from '@pages/DemoWrapper'
 import DependenciesPage from '@pages/Documentation/DependenciesPage'
@@ -79,7 +80,6 @@ import { HackTogetherPage } from '@pages/HackTogetherPage'
 import { NotFoundPage } from '@pages/NotFoundPage'
 import { WebsiteWrapper } from '@pages/WebsiteWrapper'
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
-import changelog from 'react-together/CHANGELOG.md'
 import contributing from '../../contributing/CONTRIBUTING.md'
 import croquet from './pages/Documentation/croquet-react.md'
 import pricing from './pages/Documentation/pricing/PRICING.md'

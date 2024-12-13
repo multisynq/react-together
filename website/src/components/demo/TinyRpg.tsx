@@ -1,5 +1,5 @@
+import { useStateTogether, useStateTogetherWithPerUserValues } from '@multisynq/react-together'
 import { useCallback, useEffect, useState } from 'react'
-import { useStateTogether, useStateTogetherWithPerUserValues } from 'react-together'
 
 const GRID_SIZE = 12
 const CELL_SIZE = 32

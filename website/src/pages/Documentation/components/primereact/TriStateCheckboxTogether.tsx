@@ -10,7 +10,7 @@ const name = 'TriStateCheckboxTogether'
 const codes = {
   demo: {
     basic: `
-import { TriStateCheckboxTogether } from 'react-together-primereact'
+import { TriStateCheckboxTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactTriStateCheckboxTogetherDemo() {
   return (

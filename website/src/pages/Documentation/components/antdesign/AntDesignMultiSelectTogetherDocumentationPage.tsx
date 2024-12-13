@@ -10,7 +10,7 @@ const originalName = 'MultiSelect'
 const codes = {
   demo: {
     basic: `
-import { MultiSelectTogether } from 'react-together-ant-design'
+import { MultiSelectTogether } from '@multisynq/react-together-ant-design'
 
 const options = [
   { label: 'Rome',     value: 'RM' },
@@ -37,7 +37,7 @@ export function AntDesignMultiSelectTogetherDemo() {
   source: {
     basic: `
 import { Select, SelectProps } from 'antd'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export interface MultiSelectTogetherProps 
   extends Omit<SelectProps, 'value' | 'onChange'> {

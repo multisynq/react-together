@@ -1,7 +1,4 @@
-import { AutoSizeKeepRatio } from '@utils/AutoSizeKeepRatio'
-import { Button } from 'primereact/button'
-import { useEffect, useState } from 'react'
-import { ConnectedUsers, HoverHighlighter } from 'react-together'
+import { ConnectedUsers, HoverHighlighter } from '@multisynq/react-together'
 import {
   CheckboxTogether,
   ColorPickerTogether,
@@ -9,7 +6,10 @@ import {
   InputSwitchTogether,
   SelectButtonTogether,
   TriStateCheckboxTogether,
-} from 'react-together-primereact'
+} from '@multisynq/react-together-primereact'
+import { AutoSizeKeepRatio } from '@utils/AutoSizeKeepRatio'
+import { Button } from 'primereact/button'
+import { useEffect, useState } from 'react'
 import { HoverHighlighterStyled } from '../ui/HoverHighlighterStyled'
 import TinyRpgTogether from './TinyRpg'
 

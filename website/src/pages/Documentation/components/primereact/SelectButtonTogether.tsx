@@ -10,7 +10,7 @@ const originalName = 'SelectButton'
 const codes = {
   demo: {
     basic: `
-import { SelectButtonTogether } from 'react-together-primereact'
+import { SelectButtonTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactSelectButtonTogetherDemo() {
   const items = [

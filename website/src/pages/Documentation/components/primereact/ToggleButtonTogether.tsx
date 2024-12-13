@@ -10,7 +10,7 @@ const originalName = 'ToggleButton'
 const codes = {
   demo: {
     basic: `
-import { ToggleButtonTogether } from 'react-together-primereact'
+import { ToggleButtonTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactToggleButtonTogetherDemo() {
   return (

@@ -1,6 +1,6 @@
+import { ReactTogether } from '@multisynq/react-together'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ReactTogether } from 'react-together'
 import './index.css'
 import App from './src/App'
 

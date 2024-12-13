@@ -10,7 +10,7 @@ const originalName = 'Dropdown'
 const codes = {
   demo: {
     basic: `
-import { DropdownTogether } from 'react-together-primereact'
+import { DropdownTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactDropdownTogetherDemo() {
   const cities = [

@@ -9,7 +9,7 @@ import ComponentPropsTable from './ComponentPropsTable'
 const codes = {
   demo: {
     basic: `
-import { ConnectedUsers } from 'react-together'
+import { ConnectedUsers } from '@multisynq/react-together'
 
 export function ConnectedUsersDemo() {
   return <ConnectedUsers />
@@ -18,7 +18,7 @@ export function ConnectedUsersDemo() {
   },
 
   usage_1: {
-    basic: `import { ConnectedUsers } from 'react-together'`,
+    basic: `import { ConnectedUsers } from '@multisynq/react-together'`,
   },
 
   usage_2: {

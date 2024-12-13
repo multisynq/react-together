@@ -11,7 +11,7 @@ const codes = {
   demo: {
     basic: `
 import { TabPanel } from 'primereact/tabview'
-import { TabViewTogether } from 'react-together-primereact'
+import { TabViewTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactTabViewTogetherDemo() {
   const content1 = 'Everyone is viewing Tab 1'

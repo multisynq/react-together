@@ -10,7 +10,7 @@ const originalName = 'InputSwitch'
 const codes = {
   demo: {
     basic: `
-import { InputSwitchTogether } from 'react-together-primereact'
+import { InputSwitchTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactInputSwitchTogetherDemo() {
   return (

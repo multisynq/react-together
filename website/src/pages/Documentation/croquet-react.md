@@ -34,7 +34,7 @@ We recommend checking their [documentation](https://multisynq.io/docs/croquet-re
 Ensure your model extends `ReactTogetherModel` to maintain React Together functionality
 
 ```typescript
-import { ReactTogetherModel } from 'react-together'
+import { ReactTogetherModel } from '@multisynq/react-together'
 
 export class OverrideModel extends ReactTogetherModel {
   init() {
@@ -56,7 +56,7 @@ OverrideModel.register('OverrideModel')
 Configure React Together to use your custom model by passing the class in the `sessionParams` prop of the `ReactTogether` component:
 
 ```typescript
-import { ReactTogether } from 'react-together'
+import { ReactTogether } from '@multisynq/react-together'
 import { OverrideModel } from './models'
 
 export default function App() {
@@ -76,7 +76,7 @@ export default function App() {
 Now that we have React Together running our model, we can use the `usePublish` hook to publish events to be executed on the model side:
 
 ```typescript
-import { CroquetReact } from 'react-together'
+import { CroquetReact } from '@multisynq/react-together'
 
 const { usePublish, useModelSelector } = CroquetReact
 

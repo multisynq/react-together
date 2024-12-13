@@ -12,7 +12,7 @@ import HookReturnApi from './HookReturnApi'
 const codes = {
   demo: {
     basic: `
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export default function CountButtonTogether() {
   const [count, set_count] = useStateTogether('count', 0)
@@ -37,7 +37,7 @@ export default function CountButtonTogether() {
   },
 
   usage_1: {
-    basic: `import { useStateTogether } from 'react-together'`,
+    basic: `import { useStateTogether } from '@multisynq/react-together'`,
   },
 
   usage_2: {

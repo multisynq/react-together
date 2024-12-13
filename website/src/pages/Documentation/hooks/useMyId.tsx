@@ -5,7 +5,7 @@ import HookReturnApi from './HookReturnApi'
 
 const codes = {
   usage_1: {
-    basic: `import { useMyId } from 'react-together'`,
+    basic: `import { useMyId } from '@multisynq/react-together'`,
   },
 
   usage_2: {

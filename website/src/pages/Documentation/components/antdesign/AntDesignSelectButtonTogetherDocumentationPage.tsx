@@ -10,7 +10,7 @@ const originalName = 'SelectButton'
 const codes = {
   demo: {
     basic: `
-import { SelectButtonTogether } from 'react-together-ant-design'
+import { SelectButtonTogether } from '@multisynq/react-together-ant-design'
 
 const options = [
   { label: 'Rome',     value: 'RM' },
@@ -31,7 +31,7 @@ export function AntDesignSelectButtonTogetherDemo() {
   source: {
     basic: `
 import { Radio, RadioProps } from 'antd'
-import { useStateTogether } from 'react-together'
+import { useStateTogether } from '@multisynq/react-together'
 
 export interface SelectButtonTogetherProps 
   extends Omit<RadioProps, 'value' | 'onChange'> {

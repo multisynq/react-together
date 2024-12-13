@@ -11,7 +11,7 @@ const codes = {
   },
 
   import: {
-    basic: `import { ReactTogether } from 'react-together'`,
+    basic: `import { ReactTogether } from '@multisynq/react-together'`,
   },
 
   createRoot: {

@@ -10,7 +10,7 @@ const originalName = 'MultiSelect'
 const codes = {
   demo: {
     basic: `
-import { MultiSelectTogether } from 'react-together-primereact'
+import { MultiSelectTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactMultiSelectTogetherDemo() {
   const cities = [

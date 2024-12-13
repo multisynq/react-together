@@ -10,7 +10,7 @@ const originalName = 'Checkbox'
 const codes = {
   demo: {
     basic: `
-import { CheckboxTogether } from 'react-together-primereact'
+import { CheckboxTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactCheckboxTogetherDemo() {
   return (

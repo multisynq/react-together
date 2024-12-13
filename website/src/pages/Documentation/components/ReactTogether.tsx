@@ -9,7 +9,7 @@ import ComponentPropsTable from './ComponentPropsTable'
 
 const codes = {
   usage_1: {
-    basic: `import { ReactTogether } from 'react-together'`,
+    basic: `import { ReactTogether } from '@multisynq/react-together'`,
   },
 
   usage_2: {

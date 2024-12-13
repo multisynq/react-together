@@ -10,7 +10,7 @@ const originalName = 'Knob'
 const codes = {
   demo: {
     basic: `
-import { KnobTogether } from 'react-together-primereact'
+import { KnobTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactKnobTogetherDemo() {
   return (

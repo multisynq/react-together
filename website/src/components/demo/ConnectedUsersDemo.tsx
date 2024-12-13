@@ -1,4 +1,4 @@
-import { ConnectedUsers } from 'react-together'
+import { ConnectedUsers } from '@multisynq/react-together'
 
 export function ConnectedUsersDemo() {
   return <ConnectedUsers />

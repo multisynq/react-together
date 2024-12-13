@@ -1,6 +1,6 @@
 import { DocumentDemoContainer } from '@components/ui/DocumentDemoContainer'
+import { utils } from '@multisynq/react-together'
 import Iframe from 'react-iframe'
-import { utils } from 'react-together'
 
 const { getJoinUrl } = utils
 

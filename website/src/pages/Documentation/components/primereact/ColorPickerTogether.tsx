@@ -11,7 +11,7 @@ const originalName = 'ColorPicker'
 const codes = {
   demo: {
     basic: `
-import { ColorPickerTogether } from 'react-together-primereact'
+import { ColorPickerTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactColorPickerTogetherDemo() {
   return (

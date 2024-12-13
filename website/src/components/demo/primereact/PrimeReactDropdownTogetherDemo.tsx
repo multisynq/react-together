@@ -1,4 +1,4 @@
-import { DropdownTogether } from 'react-together-primereact'
+import { DropdownTogether } from '@multisynq/react-together-primereact'
 
 export function PrimeReactDropdownTogetherDemo() {
   const cities = [

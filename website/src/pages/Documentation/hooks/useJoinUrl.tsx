@@ -5,7 +5,7 @@ import HookReturnApi from './HookReturnApi'
 
 const codes = {
   usage_1: {
-    basic: `import { useJoinUrl } from 'react-together'`,
+    basic: `import { useJoinUrl } from '@multisynq/react-together'`,
   },
 
   usage_2: {

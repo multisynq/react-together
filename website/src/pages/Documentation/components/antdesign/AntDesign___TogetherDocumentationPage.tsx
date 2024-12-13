@@ -11,7 +11,7 @@ const codes = {
   demo: {
     basic: `
     UNDER CONSTRUCTION
-import { ___Together } from 'react-together-ant-design'
+import { ___Together } from '@multisynq/react-together-ant-design'
 
 export function AntDesign___TogetherDemo() {
   return (

@@ -1,6 +1,6 @@
 import bellAudio from '@assets/tuningFork440Hz.mp3'
+import { useFunctionTogether } from '@multisynq/react-together'
 import { useCallback, useState } from 'react'
-import { useFunctionTogether } from 'react-together'
 
 // Create audio context outside component to persist between renders
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()

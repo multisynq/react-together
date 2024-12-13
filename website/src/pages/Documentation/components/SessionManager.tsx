@@ -9,7 +9,7 @@ import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 const codes = {
   demo: {
     basic: `
-import { CroquetReact, SessionManager, useIsTogether } from 'react-together'
+import { CroquetReact, SessionManager, useIsTogether } from '@multisynq/react-together'
 import CountButtonTogether from './CountButtonTogether'
 
 const { useSessionParams } = CroquetReact
@@ -50,7 +50,7 @@ export function SessionManagerDemo() {
   },
 
   usage_1: {
-    basic: `import { SessionManager } from 'react-together'`,
+    basic: `import { SessionManager } from '@multisynq/react-together'`,
   },
 
   usage_2: {

@@ -12,7 +12,7 @@ const codes = {
     basic: `
 import bellAudio from '@assets/tuningFork440Hz.mp3'
 import { useCallback, useState } from 'react'
-import { useFunctionTogether } from 'react-together'
+import { useFunctionTogether } from '@multisynq/react-together'
 
 // Create audio context outside component to persist between renders
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
@@ -94,7 +94,7 @@ export function MeditationBell() {
   },
 
   usage_1: {
-    basic: `import { useLeaveSession } from 'react-together'`,
+    basic: `import { useLeaveSession } from '@multisynq/react-together'`,
   },
 
   usage_2: {
