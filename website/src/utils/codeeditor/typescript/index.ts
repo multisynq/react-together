@@ -1,3 +1,5 @@
+import { type Project } from '@stackblitz/sdk'
+
 const template = import.meta.glob('./template/**/*', { as: 'raw', eager: true })
 
 function getTemplateFiles() {
@@ -12,12 +14,18 @@ function getTemplateFiles() {
   return files
 }
 
-export const project = {
+export const project: Project = {
   title: 'React Together Example',
   description: `Simple example from ReactTogether's documentation.`,
-  template: 'typescript',
+  template: 'create-react-app',
   files: getTemplateFiles(),
   dependencies: {
-    'date-fns': '^2',
+    react: '^18.2.0',
+    'react-dom': '^18.2.0',
+    'react-router-dom': '^6.26.1',
+    'react-together': '^0.2.0',
+    '@types/react': '^18.2.71',
+    '@types/react-dom': '^18.2.22',
+    primereact: '^10.6.6',
   },
 }
