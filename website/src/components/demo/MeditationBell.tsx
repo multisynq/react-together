@@ -54,7 +54,7 @@ export function MeditationBell() {
   )
 
   return (
-    <div className='h-screen w-screen flex items-center justify-center bg-slate-100'>
+    <div className='h-screen w-screen flex items-center justify-center bg-gray-100'>
       <div className='relative'>
         {/* Bell icon with bounce animation */}
         <button

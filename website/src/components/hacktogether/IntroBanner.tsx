@@ -31,7 +31,7 @@ export default function IntroBanner() {
         <span className='text-2xl text-white tracking-tight font-poppin font-medium text-center'>
           Limited to <strong>100 seats</strong>
           <br />
-          <a href={registrationUrl} target='_blank' className='cursor-pointer underline text-white hover:text-slate-300'>
+          <a href={registrationUrl} target='_blank' className='cursor-pointer underline text-white hover:text-gray-300'>
             Save your seat now!
           </a>
         </span>

@@ -225,7 +225,7 @@ export default function TinyRpgTogether() {
             <div className='flex flex-col'>
               <span className='text-sm text-white font-bold'>Team Score:</span>
               <div className='flex justify-end rounded-md bg-blue-100 shadow-md px-2'>
-                <span className='font-bold text-gray-800'>{teamScore.toLocaleString()}</span>
+                <span className='font-bold text-primary'>{teamScore.toLocaleString()}</span>
               </div>
             </div>
           </div>

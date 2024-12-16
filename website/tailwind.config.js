@@ -3,7 +3,7 @@ module.exports = {
   darkMode: ['class'],
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
   prefix: '',
-  safelist: ['outline', 'outline-1', 'outline-slate-400'],
+  safelist: ['outline', 'outline-1', 'outline-gray-400'],
   theme: {
     container: {
       center: true,
