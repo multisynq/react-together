@@ -3,7 +3,7 @@ import { CroquetReact, useStateTogetherWithPerUserValues } from '@multisynq/reac
 const { useViewId } = CroquetReact
 
 function Score({ score, clickable, onClick, onContextMenu }) {
-  const clickableStyle = clickable ? 'cursor-pointer shadow-sm bg-slate-500 text-white' : ''
+  const clickableStyle = clickable ? 'cursor-pointer shadow-sm bg-gray-500 text-white' : ''
   return (
     <div className='flex flex-col align-items-start'>
       {/* {clickable && (
@@ -13,7 +13,7 @@ function Score({ score, clickable, onClick, onContextMenu }) {
               </span>
             )} */}
       <div
-        className={'py-2 px-4 flex items-center justify-center bg-slate-100 rounded-lg select-none ' + clickableStyle}
+        className={'py-2 px-4 flex items-center justify-center bg-gray-100 rounded-lg select-none ' + clickableStyle}
         onClick={onClick}
         onContextMenu={onContextMenu}
       >

@@ -40,7 +40,7 @@ export default function TriStateCheckboxTogether({ rtKey, ...props }) {
         {...props}
         onChange={(e) => setValue(e.value)}
         value={value}
-        className={\`outline outline-1 outline-slate-400 rounded \${props.className}\`}
+        className={\`outline outline-1 outline-gray-400 rounded \${props.className}\`}
       />
     </>
   )

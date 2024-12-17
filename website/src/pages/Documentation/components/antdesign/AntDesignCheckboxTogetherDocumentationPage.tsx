@@ -44,7 +44,7 @@ export default function CheckboxTogether({
         {...props}
         onChange={(e) => setChecked(e.target.checked || false)}
         checked={checked}
-        className={\`outline outline-1 outline-slate-400 rounded \${props.className}\`}
+        className={\`outline outline-1 outline-gray-400 rounded \${props.className}\`}
       />
     </>
   )

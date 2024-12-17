@@ -43,10 +43,10 @@ export default function PageNav({ items }: PageNavProps) {
           panel: classNames('w-full overflow-hidden line-border bg-white'),
           headerAction: classNames('pt-4 pb-2'),
           headerContent: classNames('border-0 bg-transparent'),
-          headerLabel: classNames('text-gray-900'),
+          headerLabel: classNames('text-primary'),
           headerSubmenuIcon: classNames('hidden'),
           menuContent: classNames('py-0 border-0 rounded-none'),
-          label: classNames('text-gray-900 break-all text-sm'),
+          label: classNames('text-primary break-all text-sm'),
           action: classNames('pl-8 py-2'),
         }}
       />

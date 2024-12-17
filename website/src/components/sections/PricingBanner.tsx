@@ -23,7 +23,7 @@ export function PricingBanner() {
             Multiuser Experiences
           </h2>
           <span
-            className='max-w-[36rem] text-gray-800 text-center md:text-left'
+            className='max-w-[36rem] text-primary text-center md:text-left'
             style={{ fontWeight: '300', fontSize: '14px', lineHeight: '1.5', fontFamily: 'Inter' }}
           >
             This project is open source and free. Using the DePIN infra has its{' '}
