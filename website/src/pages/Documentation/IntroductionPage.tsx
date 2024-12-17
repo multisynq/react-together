@@ -20,7 +20,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <ReactTogether
     sessionParams={{
       appId: import.meta.env['VITE_APP_ID'],
-      apiKey: import.meta.env['VITE_API_KEY']
+      apiKey: import.meta.env['VITE_API_KEY'],
+
+      // The options below will make every user immediately join session 'hello-world'
+      name: 'hello-world',
+      password: 'super-secret!!',
     }}
   >
     <App />
