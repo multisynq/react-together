@@ -10,5 +10,11 @@ export default function SwitchTogether({
   ...props
 }: SwitchTogetherProps) {
   const [checked, setChecked] = useStateTogether<boolean>(rtKey, false)
-  return <Switch {...props} checked={checked} onChange={() => setChecked(!checked)} />
+  return (
+    <Switch
+      {...props}
+      checked={checked}
+      onChange={() => setChecked(!checked)}
+    />
+  )
 }

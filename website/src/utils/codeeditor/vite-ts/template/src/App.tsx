@@ -1,12 +1,10 @@
 import './App.css'
-%%%IMPORT%%%
+// %%%IMPORT%%%
 
 export default function App() {
   return (
     <div className='App'>
-      <header className='App-header'>
-        %%%USAGE%%%
-      </header>
+      <header className='App-header'>%%%USAGE%%%</header>
     </div>
   )
 }

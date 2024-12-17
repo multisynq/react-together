@@ -11,7 +11,7 @@ export interface ToggleButtonTogetherProps
 }
 export default function ToggleButtonTogether({
   rtKey,
-  onLabel  = 'Yes',
+  onLabel = 'Yes',
   offLabel = 'No',
   onIcon,
   offIcon,
@@ -19,11 +19,15 @@ export default function ToggleButtonTogether({
 }: ToggleButtonTogetherProps) {
   const [isOn, setIsOn] = useStateTogether<boolean>(rtKey, false)
   const label = isOn ? onLabel : offLabel
-  const icon  = isOn ? onIcon  : offIcon
-  return <Button {...props} type={isOn ? 'primary' : 'default'} onClick={() => setIsOn(!isOn)}>
-    {icon}
-    {label}
-  </Button>
+  const icon = isOn ? onIcon : offIcon
+  return (
+    <Button
+      {...props}
+      type={isOn ? 'primary' : 'default'}
+      onClick={() => setIsOn(!isOn)}
+    >
+      {icon}
+      {label}
+    </Button>
+  )
 }
-
-

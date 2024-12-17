@@ -11,7 +11,5 @@ export default function SelectTogether({
   ...props
 }: SelectTogetherProps) {
   const [value, set_value] = useStateTogether(rtKey, null)
-  return (
-    <Select {...props} value={value} onChange={(e) => set_value(e)} />
-  )
+  return <Select {...props} value={value} onChange={(e) => set_value(e)} />
 }
