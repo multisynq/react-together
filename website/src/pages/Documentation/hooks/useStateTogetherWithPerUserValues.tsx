@@ -9,7 +9,7 @@ import HookReturnApi from './HookReturnApi'
 
 const codes = {
   usage_1: {
-    basic: `import { useStateTogetherWithPerUserValues } from '@multisynq/react-together'`,
+    basic: `import { useStateTogetherWithPerUserValues } from 'react-together'`,
   },
 
   usage_2: {
@@ -33,16 +33,16 @@ function YourComponent() {
 
   demo: {
     basic: `
-import { CroquetReact, useStateTogetherWithPerUserValues } from '@multisynq/react-together'
+import { CroquetReact, useStateTogetherWithPerUserValues } from 'react-together'
 
 const { useViewId } = CroquetReact
 
 function Score({ score, clickable, onClick, onContextMenu }) {
-  const clickableStyle = clickable ? 'cursor-pointer shadow-sm bg-slate-500 text-white' : ''
+  const clickableStyle = clickable ? 'cursor-pointer shadow-sm bg-gray-500 text-white' : ''
   return (
     <div className='flex flex-col align-items-start'>
       <div
-        className={'py-2 px-4 flex items-center justify-center bg-slate-100 rounded-lg select-none ' + clickableStyle}
+        className={'py-2 px-4 flex items-center justify-center bg-gray-100 rounded-lg select-none ' + clickableStyle}
         onClick={onClick}
         onContextMenu={onContextMenu}
       >

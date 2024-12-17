@@ -1,5 +1,5 @@
-import { useStateTogether } from '@multisynq/react-together'
 import { Switch, SwitchProps } from 'antd'
+import { useStateTogether } from 'react-together'
 
 export interface SwitchTogetherProps
   extends Omit<SwitchProps, 'checked' | 'onChange'> {

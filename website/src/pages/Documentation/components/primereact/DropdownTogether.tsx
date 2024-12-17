@@ -10,7 +10,7 @@ const originalName = 'Dropdown'
 const codes = {
   demo: {
     basic: `
-import { DropdownTogether } from '@multisynq/react-together-primereact'
+import { DropdownTogether } from 'react-together-primereact'
 
 export function PrimeReactDropdownTogetherDemo() {
   const cities = [
@@ -36,7 +36,7 @@ export function PrimeReactDropdownTogetherDemo() {
   source: {
     basic: `
 import { Dropdown, DropdownProps } from 'primereact/dropdown'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export default function DropdownTogether({ rtKey, ...props }) {
   const [value, set_value] = useStateTogether(rtKey, null)

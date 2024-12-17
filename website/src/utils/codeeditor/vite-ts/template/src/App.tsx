@@ -1,5 +1,5 @@
 import './App.css'
-//%%%IMPORT%%%
+// %%%IMPORT%%%
 
 export default function App() {
   return (

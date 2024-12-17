@@ -17,7 +17,7 @@ interface GenericComponentPageProps {
 }
 export function PrimeReactComponentDocumentationPage({ name, originalName, docUrl, api, demo, source }: GenericComponentPageProps) {
   const codes = {
-    usage_1: { basic: `import { ${name} } from '@multisynq/react-together-primereact'` },
+    usage_1: { basic: `import { ${name} } from 'react-together-primereact'` },
     usage_2: { basic: `<${name} rtKey='your-unique-key' />` },
   }
 

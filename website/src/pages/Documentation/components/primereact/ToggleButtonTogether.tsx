@@ -10,7 +10,7 @@ const originalName = 'ToggleButton'
 const codes = {
   demo: {
     basic: `
-import { ToggleButtonTogether } from '@multisynq/react-together-primereact'
+import { ToggleButtonTogether } from 'react-together-primereact'
 
 export function PrimeReactToggleButtonTogetherDemo() {
   return (
@@ -25,7 +25,7 @@ export function PrimeReactToggleButtonTogetherDemo() {
   source: {
     basic: `
 import { ToggleButton, ToggleButtonProps } from 'primereact/togglebutton'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export default function ToggleButtonTogether({ rtKey, ...props }) {
   const [checked, set_checked] = useStateTogether<boolean>(rtKey, false)

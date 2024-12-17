@@ -1,5 +1,5 @@
-import { CroquetReact, SessionManager, useIsTogether, useJoinUrl } from '@multisynq/react-together'
 import { useCallback, useEffect, useState } from 'react'
+import { CroquetReact, SessionManager, useIsTogether, useJoinUrl } from 'react-together'
 import CountButtonTogether from './CountButtonTogether'
 
 const { useSessionParams } = CroquetReact

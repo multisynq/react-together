@@ -1,5 +1,5 @@
-import { useHoveringUsers } from '@multisynq/react-together'
 import ColorHash from 'color-hash'
+import { useHoveringUsers } from 'react-together'
 
 const colorHash = new ColorHash()
 

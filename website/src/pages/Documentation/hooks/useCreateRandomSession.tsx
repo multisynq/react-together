@@ -5,7 +5,7 @@ import HookReturnApi from './HookReturnApi'
 
 const codes = {
   usage_1: {
-    basic: `import { useCreateRandomSession } from '@multisynq/react-together'`,
+    basic: `import { useCreateRandomSession } from 'react-together'`,
   },
 
   usage_2: {

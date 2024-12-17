@@ -1,4 +1,4 @@
-import { ToggleButtonTogether } from '@multisynq/react-together-ant-design'
+import { ToggleButtonTogether } from 'react-together-ant-design'
 
 export function AntDesignToggleButtonTogetherDemo() {
   return (

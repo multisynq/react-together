@@ -1,4 +1,4 @@
-import { SelectButtonTogether } from '@multisynq/react-together-ant-design'
+import { SelectButtonTogether } from 'react-together-ant-design'
 
 const options = [
   { label: 'Rome', value: 'RM' },

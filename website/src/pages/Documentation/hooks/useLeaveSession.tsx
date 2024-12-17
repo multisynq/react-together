@@ -5,7 +5,7 @@ import HookReturnApi from './HookReturnApi'
 
 const codes = {
   usage_1: {
-    basic: `import { useLeaveSession } from '@multisynq/react-together'`,
+    basic: `import { useLeaveSession } from 'react-together'`,
   },
 
   usage_2: {

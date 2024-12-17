@@ -1,4 +1,4 @@
-import { MultiSelectTogether } from '@multisynq/react-together-ant-design'
+import { MultiSelectTogether } from 'react-together-ant-design'
 
 const options = [
   { label: 'Rome', value: 'RM' },

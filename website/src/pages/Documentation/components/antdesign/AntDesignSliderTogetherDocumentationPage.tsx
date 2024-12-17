@@ -10,7 +10,7 @@ const originalName = 'Slider'
 const codes = {
   demo: {
     basic: `
-import { SliderTogether } from '@multisynq/react-together-ant-design'
+import { SliderTogether } from 'react-together-ant-design'
 
 export function AntDesignSliderTogetherDemo() {
   return (
@@ -29,7 +29,7 @@ export function AntDesignSliderTogetherDemo() {
     basic: `
 import { Slider } from 'antd'
 import type { SliderSingleProps } from 'antd/es/slider'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export interface SliderTogetherProps
   extends Omit<SliderSingleProps, 'onChange'> {

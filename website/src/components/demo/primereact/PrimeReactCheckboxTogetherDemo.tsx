@@ -1,4 +1,4 @@
-import { CheckboxTogether } from '@multisynq/react-together-primereact'
+import { CheckboxTogether } from 'react-together-primereact'
 
 export function PrimeReactCheckboxTogetherDemo() {
   return (

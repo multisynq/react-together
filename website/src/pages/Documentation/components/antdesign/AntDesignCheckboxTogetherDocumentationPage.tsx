@@ -10,7 +10,7 @@ const originalName = 'Checkbox'
 const codes = {
   demo: {
     basic: `
-import { CheckboxTogether } from '@multisynq/react-together-ant-design'
+import { CheckboxTogether } from 'react-together-ant-design'
 
 export function AntDesignCheckboxTogetherDemo() {
   return (
@@ -25,7 +25,7 @@ export function AntDesignCheckboxTogetherDemo() {
   source: {
     basic: `
 import { Checkbox, CheckboxProps } from 'antd'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export interface CheckboxTogetherProps
   extends Omit<CheckboxProps, 'checked' | 'onChange'> {
@@ -44,7 +44,7 @@ export default function CheckboxTogether({
         {...props}
         onChange={(e) => setChecked(e.target.checked || false)}
         checked={checked}
-        className={\`outline outline-1 outline-slate-400 rounded \${props.className}\`}
+        className={\`outline outline-1 outline-gray-400 rounded \${props.className}\`}
       />
     </>
   )

@@ -1,5 +1,5 @@
-import { useStateTogether } from '@multisynq/react-together'
 import { Checkbox, CheckboxProps } from 'primereact/checkbox'
+import { useStateTogether } from 'react-together'
 
 export interface CheckboxTogetherProps
   extends Omit<CheckboxProps, 'checked' | 'onChange'> {
@@ -23,7 +23,7 @@ export default function CheckboxTogether({
         {...props}
         onChange={(e) => setChecked(e.checked || false)}
         checked={checked}
-        className={`outline outline-1 outline-slate-400 rounded ${props.className}`}
+        className={`outline outline-1 outline-gray-400 rounded ${props.className}`}
       />
     </>
   )

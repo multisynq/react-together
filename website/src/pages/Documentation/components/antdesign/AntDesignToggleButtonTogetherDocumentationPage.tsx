@@ -10,7 +10,7 @@ const originalName = 'Button'
 const codes = {
   demo: {
     basic: `
-import { ToggleButtonTogether } from '@multisynq/react-together-ant-design'
+import { ToggleButtonTogether } from 'react-together-ant-design'
 
 export function AntDesignToggleButtonTogetherDemo() {
   return (
@@ -28,7 +28,7 @@ export function AntDesignToggleButtonTogetherDemo() {
   source: {
     basic: `
 import { Button, ButtonProps } from 'antd'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export interface ToggleButtonTogetherProps
   extends Omit<ButtonProps, 'checked' | 'onChange'> {

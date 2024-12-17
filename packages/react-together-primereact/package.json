@@ -1,5 +1,5 @@
 {
-  "name": "@multisynq/react-together-primereact",
+  "name": "react-together-primereact",
   "description": "A set of ready-to-use PrimeReact components that are synchronized across multiple users in real-time!",
   "version": "0.1.1",
   "license": "Apache-2.0",
@@ -17,11 +17,12 @@
     "prepublishOnly": "npm run build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "build": "tsc && vite build",
+    "prepublishOnly": "npm run build",
     "watch": "npm run build -- --watch",
     "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
-    "@multisynq/react-together": "^0.3.0"
+    "react-together": "^0.3.0"
   },
   "peerDependencies": {
     "primereact": "^10.6.6"

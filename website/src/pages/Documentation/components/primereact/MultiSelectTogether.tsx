@@ -10,7 +10,7 @@ const originalName = 'MultiSelect'
 const codes = {
   demo: {
     basic: `
-import { MultiSelectTogether } from '@multisynq/react-together-primereact'
+import { MultiSelectTogether } from 'react-together-primereact'
 
 export function PrimeReactMultiSelectTogetherDemo() {
   const cities = [
@@ -32,7 +32,7 @@ export function PrimeReactMultiSelectTogetherDemo() {
   source: {
     basic: `
 import { MultiSelect, MultiSelectProps } from 'primereact/multiselect'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export default function MultiSelectTogether({ rtKey, ...props }) {
   const [value, set_value] = useStateTogether(rtKey, [])

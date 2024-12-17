@@ -10,7 +10,7 @@ const originalName = 'Knob'
 const codes = {
   demo: {
     basic: `
-import { KnobTogether } from '@multisynq/react-together-primereact'
+import { KnobTogether } from 'react-together-primereact'
 
 export function PrimeReactKnobTogetherDemo() {
   return (
@@ -25,7 +25,7 @@ export function PrimeReactKnobTogetherDemo() {
   source: {
     basic: `
 import { Knob, KnobProps } from 'primereact/knob'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export default function KnobTogether({ rtKey, ...props }) {
   const [value, set_value] = useStateTogether<number>(rtKey, 0)

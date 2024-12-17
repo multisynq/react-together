@@ -1,5 +1,5 @@
-import { useStateTogether } from '@multisynq/react-together'
 import { Rate, RateProps } from 'antd'
+import { useStateTogether } from 'react-together'
 
 export interface RateTogetherProps
   extends Omit<RateProps, 'value' | 'onChange'> {

@@ -7,7 +7,7 @@ import FunctionReturnApi from './FunctionReturnApi'
 const codes = {
   usage_1: {
     basic: `
-import { utils } from '@multisynq/react-together'
+import { utils } from 'react-together'
 const { getSessionNameFromUrl } = utils
 `,
   },

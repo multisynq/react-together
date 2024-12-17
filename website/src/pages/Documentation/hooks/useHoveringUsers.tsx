@@ -12,7 +12,7 @@ const codes = {
   demo: _codes.demo,
 
   usage_1: {
-    basic: `import { useHoveringUsers } from '@multisynq/react-together'`,
+    basic: `import { useHoveringUsers } from 'react-together'`,
   },
 
   usage_2: {

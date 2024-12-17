@@ -1,4 +1,4 @@
-import { CalendarTogether } from '@multisynq/react-together-primereact'
+import { CalendarTogether } from 'react-together-primereact'
 
 export function PrimeReactCalendarTogetherDemo() {
   return (

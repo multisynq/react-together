@@ -1,5 +1,5 @@
-import { useStateTogether } from '@multisynq/react-together'
 import { Button, ButtonProps } from 'antd'
+import { useStateTogether } from 'react-together'
 
 export interface ToggleButtonTogetherProps
   extends Omit<ButtonProps, 'checked' | 'onChange'> {

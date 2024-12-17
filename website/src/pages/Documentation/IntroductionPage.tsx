@@ -11,7 +11,7 @@ const codes = {
   },
 
   import: {
-    basic: `import { ReactTogether } from '@multisynq/react-together'`,
+    basic: `import { ReactTogether } from 'react-together'`,
   },
 
   createRoot: {
@@ -20,7 +20,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <ReactTogether
     sessionParams={{
       appId: import.meta.env['VITE_APP_ID'],
-      apiKey: import.meta.env['VITE_API_KEY']
+      apiKey: import.meta.env['VITE_API_KEY'],
+
+      // The options below will make every user immediately join session 'hello-world'
+      name: 'hello-world',
+      password: 'super-secret!!',
     }}
   >
     <App />
@@ -56,7 +60,7 @@ export default function CountButtonTogether() {
   return (
     <div className='flex flex-col align-items-center'>
       <button
-        className='bg-slate-400 py-2 px-4 rounded-md text-white'
+        className='bg-gray-400 py-2 px-4 rounded-md text-white'
         onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
         onContextMenu={(e) => {
           e.preventDefault()

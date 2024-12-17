@@ -16,7 +16,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: (id) =>
-        ['@multisynq/react-together', 'primereact', 'react'].some((v) =>
+        ['react-together', 'primereact', 'react'].some((v) =>
           id.startsWith(v)
         ),
       input: Object.fromEntries(

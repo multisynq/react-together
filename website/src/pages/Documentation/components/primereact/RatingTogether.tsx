@@ -10,7 +10,7 @@ const originalName = 'Rating'
 const codes = {
   demo: {
     basic: `
-import { RatingTogether } from '@multisynq/react-together-primereact'
+import { RatingTogether } from 'react-together-primereact'
 
 export function PrimeReactRatingTogetherDemo() {
   return (
@@ -26,7 +26,7 @@ export function PrimeReactRatingTogetherDemo() {
     basic: `
 import { Rating, RatingProps } from 'primereact/rating'
 import { Nullable } from 'primereact/ts-helpers'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export default function RatingTogether({ rtKey, ...props }) {
 }: RatingTogetherProps) {

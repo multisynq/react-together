@@ -1,5 +1,5 @@
 {
-  "name": "@multisynq/react-together-ant-design",
+  "name": "react-together-ant-design",
   "description": "A set of ready-to-use Ant Design components that are synchronized across multiple users in real-time!",
   "version": "0.0.1",
   "type": "module",
@@ -16,11 +16,12 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepublishOnly": "npm run build",
     "build": "tsc && vite build",
+    "prepublishOnly": "npm run build",
     "watch": "npm run build -- --watch",
     "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
-    "@multisynq/react-together": "^0.3.0"
+    "react-together": "^0.3.0"
   },
   "peerDependencies": {
     "antd": "^5.19.0"

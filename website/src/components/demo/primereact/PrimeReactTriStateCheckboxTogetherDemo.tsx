@@ -1,4 +1,4 @@
-import { TriStateCheckboxTogether } from '@multisynq/react-together-primereact'
+import { TriStateCheckboxTogether } from 'react-together-primereact'
 
 export function PrimeReactTriStateCheckboxTogetherDemo() {
   return (

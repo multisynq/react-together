@@ -1,6 +1,6 @@
 import bellAudio from '@assets/tuningFork440Hz.mp3'
-import { useFunctionTogether } from '@multisynq/react-together'
 import { useCallback, useState } from 'react'
+import { useFunctionTogether } from 'react-together'
 
 // Create audio context outside component to persist between renders
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
@@ -42,24 +42,23 @@ export function MeditationBell() {
       setIsRinging(true)
 
       // Reset animations and audio
-      setTimeout(
-        () => {
-          setIsRinging(false)
-          audio.pause()
-          audio.currentTime = 0
-        },
-        1000 * (FADE_AFTER + FADE_DURATION)
-      )
+      setTimeout(() => {
+        setIsRinging(false)
+        audio.pause()
+        audio.currentTime = 0
+      }, 1000 * (FADE_AFTER + FADE_DURATION))
     }, [isRinging, setIsRinging])
   )
 
   return (
-    <div className='h-screen w-screen flex items-center justify-center bg-slate-100'>
+    <div className='h-screen w-screen flex items-center justify-center bg-gray-100'>
       <div className='relative'>
         {/* Bell icon with bounce animation */}
         <button
           onClick={() => ringBell()}
-          className={`text-6xl transition-transform ${isRinging ? 'scale-110 cursor-not-allowed' : 'scale-100 cursor-pointer'} hover:scale-105`}
+          className={`text-6xl transition-transform ${
+            isRinging ? 'scale-110 cursor-not-allowed' : 'scale-100 cursor-pointer'
+          } hover:scale-105`}
           aria-label='Ring meditation bell'
         >
           🔔

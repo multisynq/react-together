@@ -10,7 +10,7 @@ const originalName = 'InputSwitch'
 const codes = {
   demo: {
     basic: `
-import { InputSwitchTogether } from '@multisynq/react-together-primereact'
+import { InputSwitchTogether } from 'react-together-primereact'
 
 export function PrimeReactInputSwitchTogetherDemo() {
   return (
@@ -25,7 +25,7 @@ export function PrimeReactInputSwitchTogetherDemo() {
   source: {
     basic: `
 import { InputSwitch, InputSwitchProps } from 'primereact/inputswitch'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export default function InputSwitchTogether({ rtKey, ...props }) {
   const [checked, set_checked] = useStateTogether<boolean>(rtKey, false)

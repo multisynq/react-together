@@ -1,4 +1,4 @@
-import { SwitchTogether } from '@multisynq/react-together-ant-design'
+import { SwitchTogether } from 'react-together-ant-design'
 
 export function AntDesignSwitchTogetherDemo() {
   return (

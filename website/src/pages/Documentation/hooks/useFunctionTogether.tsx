@@ -12,7 +12,7 @@ const codes = {
     basic: `
 import bellAudio from '@assets/tuningFork440Hz.mp3'
 import { useCallback, useState } from 'react'
-import { useFunctionTogether } from '@multisynq/react-together'
+import { useFunctionTogether } from 'react-together'
 
 // Create audio context outside component to persist between renders
 const audioContext = new (window.AudioContext || window.webkitAudioContext)()
@@ -66,7 +66,7 @@ export function MeditationBell() {
   )
 
   return (
-    <div className='h-screen w-screen flex items-center justify-center bg-slate-100'>
+    <div className='h-screen w-screen flex items-center justify-center bg-gray-100'>
       <div className='relative'>
         {/* Bell icon with bounce animation */}
         <button
@@ -94,7 +94,7 @@ export function MeditationBell() {
   },
 
   usage_1: {
-    basic: `import { useLeaveSession } from '@multisynq/react-together'`,
+    basic: `import { useLeaveSession } from 'react-together'`,
   },
 
   usage_2: {

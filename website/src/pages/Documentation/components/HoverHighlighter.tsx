@@ -10,7 +10,7 @@ export const codes = {
   demo: {
     typescript: `
 import { useState } from 'react'
-import { HoverHighlighter } from '@multisynq/react-together'
+import { HoverHighlighter } from 'react-together'
 
 interface HoverHighlighterRecursiveProps {
   height: number
@@ -65,7 +65,7 @@ function getDarkerShade(hexColor: string, darkenFactor = 0.8): string {
   },
 
   usage_1: {
-    basic: `import { ReactTogether } from '@multisynq/react-together`,
+    basic: `import { ReactTogether } from 'react-together`,
   },
 
   usage_2: {

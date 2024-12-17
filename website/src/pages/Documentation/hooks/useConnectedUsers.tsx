@@ -82,7 +82,7 @@ export default function ConnectedUsers({
   },
 
   usage_1: {
-    basic: `import { useConnectedUsers } from '@multisynq/react-together'`,
+    basic: `import { useConnectedUsers } from 'react-together'`,
   },
 
   usage_2: {

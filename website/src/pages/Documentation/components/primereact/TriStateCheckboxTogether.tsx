@@ -10,7 +10,7 @@ const name = 'TriStateCheckboxTogether'
 const codes = {
   demo: {
     basic: `
-import { TriStateCheckboxTogether } from '@multisynq/react-together-primereact'
+import { TriStateCheckboxTogether } from 'react-together-primereact'
 
 export function PrimeReactTriStateCheckboxTogetherDemo() {
   return (
@@ -29,7 +29,7 @@ import {
   TriStateCheckboxProps
 } from 'primereact/tristatecheckbox'
 import { Nullable } from 'primereact/ts-helpers'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export default function TriStateCheckboxTogether({ rtKey, ...props }) {
   const [value, setValue] = useStateTogether<Nullable<boolean>>(rtKey, false)
@@ -40,7 +40,7 @@ export default function TriStateCheckboxTogether({ rtKey, ...props }) {
         {...props}
         onChange={(e) => setValue(e.value)}
         value={value}
-        className={\`outline outline-1 outline-slate-400 rounded \${props.className}\`}
+        className={\`outline outline-1 outline-gray-400 rounded \${props.className}\`}
       />
     </>
   )

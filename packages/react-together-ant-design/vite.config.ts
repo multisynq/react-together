@@ -16,9 +16,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: (id) =>
-        ['@multisynq/react-together', 'react', 'antd'].some((v) =>
-          id.startsWith(v)
-        ),
+        ['react-together', 'antd', 'react'].some((v) => id.startsWith(v)),
       input: Object.fromEntries(
         glob
           .sync('src/**/*.{ts,tsx}', {

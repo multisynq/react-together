@@ -1,12 +1,12 @@
-import { useStateTogether } from '@multisynq/react-together'
 import {
-  ColorPicker,
-  ColorPickerChangeEvent,
-  ColorPickerHSBType,
-  ColorPickerProps,
-  ColorPickerRGBType
+    ColorPicker,
+    ColorPickerChangeEvent,
+    ColorPickerHSBType,
+    ColorPickerProps,
+    ColorPickerRGBType
 } from 'primereact/colorpicker'
 import { useCallback, useEffect, useState } from 'react'
+import { useStateTogether } from 'react-together'
 
 type ColorPickerValueType =
   | string

@@ -1,4 +1,4 @@
-import { ToggleButtonTogether } from '@multisynq/react-together-primereact'
+import { ToggleButtonTogether } from 'react-together-primereact'
 
 export function PrimeReactToggleButtonTogetherDemo() {
   return (

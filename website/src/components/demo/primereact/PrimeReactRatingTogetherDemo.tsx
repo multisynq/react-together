@@ -1,4 +1,4 @@
-import { RatingTogether } from '@multisynq/react-together-primereact'
+import { RatingTogether } from 'react-together-primereact'
 
 export function PrimeReactRatingTogetherDemo() {
   return (

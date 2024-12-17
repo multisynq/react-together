@@ -1,6 +1,6 @@
-import { useStateTogether } from '@multisynq/react-together'
 import { Slider } from 'antd'
 import type { SliderSingleProps } from 'antd/es/slider'
+import { useStateTogether } from 'react-together'
 
 export interface SliderTogetherProps
   extends Omit<SliderSingleProps, 'onChange'> {

@@ -1,5 +1,5 @@
-import { useStateTogether } from '@multisynq/react-together'
 import { Select, SelectProps } from 'antd'
+import { useStateTogether } from 'react-together'
 
 export interface MultiSelectTogetherProps
   extends Omit<SelectProps, 'value' | 'onChange'> {

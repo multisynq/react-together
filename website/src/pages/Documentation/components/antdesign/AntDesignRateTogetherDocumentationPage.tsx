@@ -11,7 +11,7 @@ const codes = {
   demo: {
     basic: `
     UNDER CONSTRUCTION
-import { RateTogether } from '@multisynq/react-together-ant-design'
+import { RateTogether } from 'react-together-ant-design'
 
 export function AntDesignRateTogetherDemo() {
   return (
@@ -26,7 +26,7 @@ export function AntDesignRateTogetherDemo() {
   source: {
     basic: `
 import { Rate, RateProps } from 'antd'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export interface RateTogetherProps
   extends Omit<RateProps, 'value' | 'onChange'> {

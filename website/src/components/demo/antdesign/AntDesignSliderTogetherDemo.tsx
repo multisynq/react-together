@@ -1,4 +1,4 @@
-import { SliderTogether } from '@multisynq/react-together-ant-design'
+import { SliderTogether } from 'react-together-ant-design'
 
 export function AntDesignSliderTogetherDemo() {
   return (

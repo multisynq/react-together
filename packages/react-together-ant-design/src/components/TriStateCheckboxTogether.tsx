@@ -3,7 +3,7 @@
 //   TriStateCheckboxProps
 // } from 'primereact/tristatecheckbox'
 // import { Nullable } from 'primereact/ts-helpers'
-// import { useStateTogether } from '@multisynq/react-together'
+// import { useStateTogether } from 'react-together'
 
 // export interface TriStateCheckboxTogetherProps
 //   extends Omit<TriStateCheckboxProps, 'value' | 'onChange'> {
@@ -34,8 +34,8 @@
 // }
 
 // Use AntDesign Checkbox instead
-import { useStateTogether } from '@multisynq/react-together'
 import { Checkbox, CheckboxProps } from 'antd'
+import { useStateTogether } from 'react-together'
 
 export interface TriStateCheckboxTogetherProps
   extends Omit<CheckboxProps, 'checked' | 'onChange'> {

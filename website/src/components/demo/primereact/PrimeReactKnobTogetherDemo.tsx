@@ -1,4 +1,4 @@
-import { KnobTogether } from '@multisynq/react-together-primereact'
+import { KnobTogether } from 'react-together-primereact'
 
 export function PrimeReactKnobTogetherDemo() {
   return (

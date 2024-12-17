@@ -1,5 +1,5 @@
-import { useStateTogether } from '@multisynq/react-together'
 import { Radio, RadioProps } from 'antd'
+import { useStateTogether } from 'react-together'
 
 export interface SelectButtonTogetherProps
   extends Omit<RadioProps, 'value' | 'onChange'> {

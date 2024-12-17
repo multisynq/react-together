@@ -11,7 +11,7 @@ const codes = {
   demo: {
     basic: `
 import { TabPanel } from 'primereact/tabview'
-import { TabViewTogether } from '@multisynq/react-together-primereact'
+import { TabViewTogether } from 'react-together-primereact'
 
 export function PrimeReactTabViewTogetherDemo() {
   const content1 = 'Everyone is viewing Tab 1'
@@ -39,7 +39,7 @@ export function PrimeReactTabViewTogetherDemo() {
   source: {
     basic: `
 import { TabView, TabViewProps } from 'primereact/tabview'
-import { useStateTogether } from '@multisynq/react-together'
+import { useStateTogether } from 'react-together'
 
 export default function TabViewTogether({ rtKey, ...props }) {
   const [activeIndex, set_activeIndex] = useStateTogether<number>(rtKey, 0)

@@ -1,4 +1,4 @@
-import { InputSwitchTogether } from '@multisynq/react-together-primereact'
+import { InputSwitchTogether } from 'react-together-primereact'
 
 export function PrimeReactInputSwitchTogetherDemo() {
   return (

@@ -1,6 +1,6 @@
-import { useStateTogether } from '@multisynq/react-together'
 import { Rating, RatingProps } from 'primereact/rating'
 import { Nullable } from 'primereact/ts-helpers'
+import { useStateTogether } from 'react-together'
 
 // There are some implications about making this component readOnly
 // For example: How to ensure every user sees the same readOnly state

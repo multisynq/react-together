@@ -1,5 +1,5 @@
-import { useStateTogether } from '@multisynq/react-together'
 import { SelectButton, SelectButtonProps } from 'primereact/selectbutton'
+import { useStateTogether } from 'react-together'
 
 export interface SelectButtonTogetherProps
   extends Omit<SelectButtonProps, 'value' | 'onChange'> {
