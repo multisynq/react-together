@@ -1,11 +1,11 @@
 import '@styles/CodeBlock.scss'
 import { useEffect, useState } from 'react'
 
-import { PiCode, PiCopy, PiDatabase } from 'react-icons/pi'
+import { PiCode, PiCodepenLogo, PiCopy, PiDatabase } from 'react-icons/pi'
 import { SiGithub, SiStackblitz } from 'react-icons/si'
 
 import { Button as _Button, CodeHighlight } from '@components'
-import { openStackBlitz } from '@utils/codeeditor'
+import { openCodePen, openStackBlitz } from '@utils/codeeditor'
 import { Tooltip } from 'antd'
 
 export type CodeBlockCodeMetaData = {
@@ -26,6 +26,7 @@ export interface CodeBlockProps {
   embedded?: boolean
   hideToggleCode?: boolean
   stackBlitz?: boolean
+  codepen?: boolean
   codeClassName?: string
   github?: string
 }
@@ -36,6 +37,7 @@ export function CodeBlock({
   embedded = false,
   hideToggleCode = false,
   stackBlitz = false,
+  codepen = false,
   codeClassName,
   github,
 }: CodeBlockProps) {
@@ -128,6 +130,21 @@ export function CodeBlock({
                     }),
                   tooltip: `Edit in StackBlitz (node)`,
                   label: <SiStackblitz />,
+                }}
+              />
+            )}
+
+            {codepen && (
+              <Button
+                {...{
+                  onClick: () =>
+                    openCodePen({
+                      template: 'typescript',
+                      files: { [`src/${codeMetadata?.componentName || 'Component'}.tsx`]: code[codeMode] },
+                      codeMetadata,
+                    }),
+                  tooltip: 'Edit in CodePen',
+                  label: <PiCodepenLogo />,
                 }}
               />
             )}
