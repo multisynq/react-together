@@ -1,9 +1,26 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
-import CodeSpan from '@components/ui/CodeSpan'
-import LinkSpan from '@components/ui/LinkSpan'
+import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '../DocumentationPage'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
+
+const codes = {
+  usage_1: {
+    basic: `import { useMyId } from 'react-together'`,
+  },
+
+  usage_2: {
+    basic: `
+function YourComponent() {
+  const myId = useMyId()
+
+  if (!myId) {
+    return <p>You are not in a React Together session...</p>
+  }
+
+  return <p>My ID: {myId}</p>
+}`,
+  },
+}
 
 export default function UseMyIdDocumentationPage() {
   const api = (
@@ -21,22 +38,24 @@ export default function UseMyIdDocumentationPage() {
   )
   const content = (
     <GenericDocPage
-      title='useMyId'
-      description={
-        <p>
-          The <CodeSpan text='useMyId' /> hook returns the <CodeSpan text='userId' /> of the local user. This ID is an alias for the{' '}
-          <LinkSpan text='useViewId' to='https://multisynq.io/docs/croquet-react/global.html#useViewId' target='_blank' /> hook of{' '}
-          <CodeSpan text='@croquet/react' />.
-        </p>
-      }
-      usage={
-        <>
-          <CodeBlock language='jsx' code1={`import { useMyId } from 'react-together'`} />
-          <CodeBlock language='jsx' code1={`const myId = useMyId()`} />
-        </>
-      }
-      api={api}
+      {...{
+        title: 'useMyId',
+        description: (
+          <p>
+            The <CodeSpan text='useMyId' /> hook returns the <CodeSpan text='userId' /> of the local user. This ID is an alias for the{' '}
+            <LinkSpan text='useViewId' to='https://multisynq.io/docs/croquet-react/global.html#useViewId' target='_blank' /> hook of{' '}
+            <CodeSpan text='@croquet/react' />.
+          </p>
+        ),
+        usage: (
+          <>
+            <CodeBlock {...{ code: codes.usage_1 }} />
+            <CodeBlock {...{ code: codes.usage_2 }} />
+          </>
+        ),
+        api,
+      }}
     />
   )
-  return <DocumentationPage content={content} navItems={GenericDocNav('useMyId')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useMyId') }} />
 }

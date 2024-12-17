@@ -3,7 +3,7 @@ module.exports = {
   darkMode: ['class'],
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
   prefix: '',
-  safelist: ['outline', 'outline-1', 'outline-slate-400'],
+  safelist: ['outline', 'outline-1', 'outline-gray-400'],
   theme: {
     container: {
       center: true,
@@ -89,7 +89,7 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       fontFamily: {
-        heading: ['Lato', 'sans-serif'],
+        heading: ['Poppins', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
       },
     },
@@ -100,6 +100,7 @@ module.exports = {
         '.line-border': {
           '@apply border border-gray-700 shadow-lineStyleDark rounded-xl': {},
         },
+        '.active-border': { '@apply border border-gray-700 shadow-lineStyleDark rounded-2xl hover:shadow-lineStyleLight': {} },
         '.button-primary': {
           '@apply py-1 px-3 bg-blue-500 text-neutral-50 border border-neutral-900 hover:bg-blue-400 rounded-full shadow-button': {},
         },

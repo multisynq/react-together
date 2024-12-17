@@ -1,18 +1,15 @@
-import { CodeBlock } from '@components/ui/CodeBlock'
+import { CodeBlock } from '@components/ui'
 import { Column } from 'primereact/column'
 import { DataTable } from 'primereact/datatable'
 import Markdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 
-// The two interfaces below are used to type
-// the `table` renderer
 interface DomChild {
-  props: DomProps
   type: string
-}
-interface DomProps {
-  children: DomChild[]
+  props: {
+    children: DomChild[] | DomChild
+  }
 }
 
 interface MarkdownPageProps {
@@ -20,8 +17,8 @@ interface MarkdownPageProps {
 }
 export function MarkdownPage({ markdown }: MarkdownPageProps) {
   return (
-    <div className='w-full'>
-      <div className='max-w-[54rem] line-border bg-white px-6 py-4'>
+    <div className='flex justify-center w-full'>
+      <div className='line-border bg-white px-6 py-4 flex-1'>
         <Markdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeRaw]}
@@ -34,8 +31,11 @@ export function MarkdownPage({ markdown }: MarkdownPageProps) {
               const isInline = children.toString().split('\n').length === 1
               const match = /language-(\w+)/.exec(className || '')
               return !isInline ? (
-                <CodeBlock language={match?.[1]} code1={String(children)} {...props} />
+                // <CodeBlock language={match?.[1]} codeShort={String(children)} {...props} />
+                // <CodeBlock code={{ [match?.[1] || 'javascript']: String(children) }} {...props} />
+                <CodeBlock code={{ [match?.[1] || 'basic']: String(children) }} {...props} />
               ) : (
+                // match?.[1] || 'basic'
                 <code className={className} {...props}>
                   {children}
                 </code>
@@ -49,25 +49,21 @@ export function MarkdownPage({ markdown }: MarkdownPageProps) {
                 if (c.type === 'thead') {
                   // Here we know that tr is not inside an array
                   const tr = c.props.children as unknown as DomChild
-                  tr.props.children.forEach((th) => {
-                    columns.push({ field: th.props.children, header: th.props.children })
-                  })
+                  const children = Array.isArray(tr.props.children) ? tr.props.children : [tr.props.children]
+                  children.forEach((th) => columns.push({ field: th.props.children, header: th.props.children }))
                 } else if (c.type === 'tbody') {
                   // Iterate over all the <tr/>
-                  c.props.children.forEach((tr) => {
+                  const rows = Array.isArray(c.props.children) ? c.props.children : [c.props.children]
+                  rows.forEach((tr) => {
                     const rowData = {}
-                    tr.props.children.forEach((td, idx) => {
-                      if (idx < columns.length) {
-                        rowData[columns[idx].field] = td.props.children
-                      } else {
-                        console.error('Table row has more columns than header')
-                      }
+                    const cells = Array.isArray(tr.props.children) ? tr.props.children : [tr.props.children]
+                    cells.forEach((td, idx) => {
+                      if (idx < columns.length) rowData[columns[idx].field] = td.props.children
+                      else console.error('Table row has more columns than header')
                     })
                     data.push(rowData)
                   })
-                } else {
-                  console.error('Unknown table child', c)
-                }
+                } else console.error('Unknown table child', c)
               })
 
               return (

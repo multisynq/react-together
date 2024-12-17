@@ -6,7 +6,41 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'ToggleButtonTogether'
 const originalName = 'ToggleButton'
-const docUrl = `https://primereact.org/togglebutton`
+
+const codes = {
+  demo: {
+    basic: `
+import { ToggleButtonTogether } from 'react-together-primereact'
+
+export function PrimeReactToggleButtonTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <ToggleButtonTogether rtKey='toggle-button-doc-demo' />
+    </div>
+  )
+}
+`,
+  },
+
+  source: {
+    basic: `
+import { ToggleButton, ToggleButtonProps } from 'primereact/togglebutton'
+import { useStateTogether } from 'react-together'
+
+export default function ToggleButtonTogether({ rtKey, ...props }) {
+  const [checked, set_checked] = useStateTogether<boolean>(rtKey, false)
+
+  return (
+    <ToggleButton
+      {...props}
+      checked={checked}
+      onChange={(e) => set_checked(e.value)}
+    />
+  )
+}
+`,
+  },
+}
 
 export default function PrimeReactToggleButtonTogetherDocumentationPage() {
   const api = (
@@ -37,7 +71,17 @@ export default function PrimeReactToggleButtonTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('ToggleButtonTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('ToggleButtonTogether') }} />
 }

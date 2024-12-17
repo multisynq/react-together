@@ -45,9 +45,9 @@ case "$CF_PAGES_BRANCH" in
 esac
 
 if [ "$RESULT" = "FAILURE" ]; then
-    JSON="{\"text\": \"❌ *ReactTogether: Deployment to ${ENV_LABEL} site failed* ❌\n${ENV_LABEL}: ${URL}\nCommit: \`${CF_PAGES_BRANCH}@${CF_PAGES_COMMIT_SHA}\`\"}"
+    JSON="{\"text\": \"❌ *React Together: Deployment to ${ENV_LABEL} site failed* ❌\n${ENV_LABEL}: ${URL}\nCommit: \`${CF_PAGES_BRANCH}@${CF_PAGES_COMMIT_SHA}\`\"}"
 else
-    JSON="{\"text\": \"${X} *ReactTogether: Deployed to ${ENV_LABEL} site* ${X}\n${ENV_LABEL}: ${URL}\nCommit: \`${CF_PAGES_BRANCH}@${CF_PAGES_COMMIT_SHA}\` (${CF_PAGES_URL})\"}"
+    JSON="{\"text\": \"${X} *React Together: Deployed to ${ENV_LABEL} site* ${X}\n${ENV_LABEL}: ${URL}\nCommit: \`${CF_PAGES_BRANCH}@${CF_PAGES_COMMIT_SHA}\` (${CF_PAGES_URL})\"}"
 fi
 
 echo

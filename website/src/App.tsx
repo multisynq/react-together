@@ -1,12 +1,16 @@
-import '@styles/Comps.scss'
 import '@styles/globals.css'
 import '@styles/mdx.css'
 import 'react-json-view-lite/dist/index.css'
 import './App.scss'
 
+import '@styles/override.scss'
+
+import { setupGoogleAnalytics } from '@utils/cookies'
 import { Helmet } from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
 import AppRoutes from './AppRoutes'
+
+setupGoogleAnalytics()
 
 export default function App() {
   return (
@@ -19,11 +23,9 @@ export default function App() {
         <link href='https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;800&display=swap' rel='stylesheet' />
         <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap' rel='stylesheet' />
       </Helmet>
-      {/* <HashRouter> */}
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
-      {/* </HashRouter> */}
     </div>
   )
 }

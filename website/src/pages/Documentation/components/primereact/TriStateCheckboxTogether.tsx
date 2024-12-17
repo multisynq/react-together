@@ -6,7 +6,48 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const originalName = 'TriStateCheckbox'
 const name = 'TriStateCheckboxTogether'
-const docUrl = 'https://primereact.org/tristatecheckbox/'
+
+const codes = {
+  demo: {
+    basic: `
+import { TriStateCheckboxTogether } from 'react-together-primereact'
+
+export function PrimeReactTriStateCheckboxTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <TriStateCheckboxTogether rtKey='tri-state-checkbox-doc-demo' />
+    </div>
+  )
+}
+`,
+  },
+
+  source: {
+    basic: `
+import {
+  TriStateCheckbox,
+  TriStateCheckboxProps
+} from 'primereact/tristatecheckbox'
+import { Nullable } from 'primereact/ts-helpers'
+import { useStateTogether } from 'react-together'
+
+export default function TriStateCheckboxTogether({ rtKey, ...props }) {
+  const [value, setValue] = useStateTogether<Nullable<boolean>>(rtKey, false)
+
+  return (
+    <>
+      <TriStateCheckbox
+        {...props}
+        onChange={(e) => setValue(e.value)}
+        value={value}
+        className={\`outline outline-1 outline-gray-400 rounded \${props.className}\`}
+      />
+    </>
+  )
+}
+`,
+  },
+}
 
 export default function PrimeReactTriStateTriStateCheckboxTogetherDocumentationPage() {
   const api = (
@@ -37,7 +78,17 @@ export default function PrimeReactTriStateTriStateCheckboxTogetherDocumentationP
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('TriStateCheckboxTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('TriStateCheckboxTogether') }} />
 }

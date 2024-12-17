@@ -1,5 +1,4 @@
-import CodeSpan from '@components/ui/CodeSpan'
-import { TableContainer } from '@components/ui/TableContainer'
+import { CodeSpan, TableContainer } from '@components/ui'
 interface PropObject {
   name: string
   type: string | React.ReactNode

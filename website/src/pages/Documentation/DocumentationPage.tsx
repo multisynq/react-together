@@ -7,8 +7,8 @@ interface DocumentationPageProps {
 export function DocumentationPage({ content, navItems }: DocumentationPageProps) {
   return (
     <>
-      <div className='flex flex-col items-start gap-4 w-full bg-white px-6 py-4 line-border overflow-x-auto'>{content}</div>
-      <PageNav items={navItems} />
+      <div className='flex flex-col items-start gap-4 w-full bg-white px-4 md:px-6 py-4 line-border overflow-x-auto'>{content}</div>
+      {navItems.length > 0 && <PageNav items={navItems} />}
     </>
   )
 }

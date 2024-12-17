@@ -3,10 +3,12 @@ import HoverHighlighterDocumentationPage from './HoverHighlighter'
 import ReactTogetherDocumentationPage from './ReactTogether'
 import SessionManagerDocumentationPage from './SessionManager'
 
+export * from './antdesign'
 export * from './primereact'
 export {
   ConnectedUsersDocumentationPage,
   HoverHighlighterDocumentationPage,
   ReactTogetherDocumentationPage,
-  SessionManagerDocumentationPage,
+  SessionManagerDocumentationPage
 }
+

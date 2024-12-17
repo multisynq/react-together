@@ -1,6 +1,8 @@
 {
   "name": "react-together-primereact",
-  "version": "0.1.0",
+  "description": "A set of ready-to-use PrimeReact components that are synchronized across multiple users in real-time!",
+  "version": "0.1.1",
+  "license": "Apache-2.0",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,11 +16,12 @@
     "prettier": "prettier . --check",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "build": "tsc && vite build",
+    "prepublishOnly": "npm run build",
     "watch": "npm run build -- --watch",
     "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
-    "react-together": "^0.2.0"
+    "react-together": "^0.3.0"
   },
   "peerDependencies": {
     "primereact": "^10.6.6"
@@ -40,5 +43,36 @@
     "vite": "^4.5.3",
     "vite-plugin-dts": "^3.7.3",
     "vite-plugin-lib-inject-css": "^2.0.1"
-  }
+  },
+  "bugs": "https://github.com/multisynq/react-together/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multisynq/react-together.git",
+    "directory": "packages/react-together-primereact"
+  },
+  "homepage": "https://reacttogether.dev",
+  "keywords": [
+    "react",
+    "together",
+    "primereact",
+    "components",
+    "react-together",
+    "real-time",
+    "multi-user",
+    "websockets",
+    "sockets",
+    "interaction",
+    "interactive",
+    "collaboration",
+    "collaborative",
+    "presence",
+    "synchronize",
+    "synchronized",
+    "rooms",
+    "sessions",
+    "interaction",
+    "shared state",
+    "croquet",
+    "multisynq"
+  ]
 }
