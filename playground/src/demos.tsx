@@ -3,6 +3,7 @@ import Chat from './chat'
 import CountPerUserDemo from './countPerUser'
 import Gallery from './gallery'
 import SessionDemo from './sessionDemo'
+import SharedCursors from './sharedCursors'
 import TinyRpg from './tinyRpg'
 
 export interface Demo {
@@ -49,5 +50,11 @@ export const demos: Demo[] = [
     path: 'antDemos',
     element: <AntDemos />,
     description: 'A simple ant demos demo using antNewMqPackage.'
+  },
+  {
+    label: 'Shared Cursors',
+    path: 'sharedCursors',
+    element: <SharedCursors />,
+    description: 'A simple shared cursors demo using useFunctionTogether.'
   }
 ]
