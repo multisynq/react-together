@@ -91,7 +91,7 @@ export default function IntroductionPage() {
       <p>
         Install the <CodeSpan text='react-together' /> package via <CodeSpan text='npm' />
       </p>
-      <CodeBlock code={codes.createRoot} />
+      <CodeBlock code={codes.install} />
 
       <h4 id='context'>Context</h4>
       <p>
@@ -103,7 +103,7 @@ export default function IntroductionPage() {
         .
       </p>
       <CodeBlock code={codes.import} />
-      <CodeBlock code={codes.install} />
+      <CodeBlock code={codes.createRoot} />
 
       <h4 id='sdf'>Use ReactTogether</h4>
       <p>That's it! Now you just need to import and use our components to create awesome interactive websites!</p>
