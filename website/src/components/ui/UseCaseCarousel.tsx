@@ -148,12 +148,13 @@ export default function UseCaseCarousel() {
         {HeaderContent}
         <div className='card w-full flex items-center justify-center'>
           <Carousel
-            className='w-[20rem] sm:w-[40rem] md:w-[48rem] lg:w-full'
+            className='w-[20rem] sm:w-[40rem] md:w-[48rem] lg:w-max-[100rem] lg:flex-1 px-[2rem]'
             value={projects}
             numScroll={1}
             numVisible={3}
             responsiveOptions={responsiveOptions}
             itemTemplate={projectTemplate}
+            circular
           />
         </div>
       </div>
