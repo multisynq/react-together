@@ -71,11 +71,75 @@ export function openStackBlitz({ template = 'typescript', files = null, codeMeta
   })
 }
 
-export function useCodeEditor() {
-  // const openCodeSandbox = useCodeSandbox(props)
+type CodePenProps = {
+  template?: keyof typeof TEMPLATES
+  files?: Record<string, string>
+  codeMetadata?: CodeBlockCodeMetaData
+}
 
+export function openCodePen({ template = 'typescript', files = null, codeMetadata = null }: CodePenProps) {
+  if (!files && !codeMetadata) return
+
+  // Get the selected template
+  // const selected_template = TEMPLATES[template]
+
+  // Get the HTML content from the template's index.html
+  const htmlContent = `
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.js"></script>
+  </body>
+  `
+
+  // Create a form to submit to CodePen
+  const form = document.createElement('form')
+  form.action = 'https://codepen.io/pen/define'
+  form.method = 'POST'
+  form.target = '_blank'
+
+  // Merge css files into one: (broken atm)
+  // const cssFiles = Object.entries(files || {}).filter(([fileName]) => fileName.endsWith('.css'))
+  // const cssContent = cssFiles.map(([, content]) => content).join('\n')
+
+  // Merge all TS files into one:
+  const tsFiles = Object.entries(files || {}).filter(([fileName]) => fileName.endsWith('.ts') || fileName.endsWith('.tsx'))
+  // tsFiles.forEach(([fileName, content]) => (files[fileName] = content.replace(/export /g, '')))
+  // Remove any exports
+
+  const tsContent = tsFiles.map(([, content]) => content).join('\n')
+
+  // Prepare the data for CodePen
+  const data = {
+    title: codeMetadata?.componentName || 'React Component',
+    description: 'Created with React Together',
+    html: htmlContent.trim(),
+    // css: cssContent,
+    js: tsContent,
+    css_pre_processor: 'none',
+    js_pre_processor: 'TypeScript',
+    js_external: [
+      'https://unpkg.com/react@18/umd/react.development.js',
+      'https://unpkg.com/react-dom@18/umd/react-dom.development.js',
+    ].join(';'),
+    editors: '101', // Show HTML and JS editors
+  }
+
+  // Create a hidden input with the stringified data
+  const input = document.createElement('input')
+  input.type = 'hidden'
+  input.name = 'data'
+  input.value = JSON.stringify(data)
+
+  // Add the input to the form and submit
+  form.appendChild(input)
+  document.body.appendChild(form)
+  form.submit()
+  document.body.removeChild(form)
+}
+
+export function useCodeEditor() {
   return {
-    // openCodeSandbox,
     openStackBlitz,
+    openCodePen,
   }
 }

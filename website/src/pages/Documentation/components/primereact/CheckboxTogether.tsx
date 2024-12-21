@@ -92,6 +92,7 @@ export default function PrimeReactCheckboxTogetherDocumentationPage() {
         source: {
           code: codes.source,
           stackBlitz: true,
+          codepen: true,
           codeMetadata: { componentName: 'CheckboxTogether' },
         },
       }}
