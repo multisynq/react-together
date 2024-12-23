@@ -1,6 +1,5 @@
 import { Carousel, CarouselResponsiveOption } from 'primereact/carousel'
 import { useEffect, useState } from 'react'
-// import { ProductService } from './service/ProductService'
 
 import learnTogether from '@images/projects/learnTogether.png'
 import multiPlanner from '@images/projects/multiPlanner.png'
