@@ -3,25 +3,28 @@ import ReactTogetherModel from '../models/ReactTogetherModel'
 
 import { getSessionNameFromUrl, getSessionPasswordFromUrl } from '../utils'
 
-type ReactTogetherSessionParams = {
+type ReactTogetherSessionParams<D> = {
   apiKey: string
   appId: string
   name?: string
   password?: string
-  sessionIgnoresUrl?: boolean
   model?: typeof ReactTogetherModel
-  viewInfo?: object
+  viewData?: D
 }
-export type ReactTogetherProps = {
+export type ReactTogetherProps<D = undefined> = {
   children: ReactChildren
-  sessionParams: ReactTogetherSessionParams
+  sessionParams: ReactTogetherSessionParams<D>
+  sessionIgnoresUrl?: boolean
+  userId?: string
 }
 
-export default function ReactTogether({
+export default function ReactTogether<D>({
   children,
-  sessionParams
-}: ReactTogetherProps) {
-  const { appId, apiKey, sessionIgnoresUrl, viewInfo } = sessionParams
+  sessionParams,
+  sessionIgnoresUrl,
+  userId
+}: ReactTogetherProps<D & { userId?: string }>) {
+  const { appId, apiKey } = sessionParams
 
   // By default, sessions hosted in different URLs
   // should be different sessions even if they have the same name.
@@ -40,8 +43,18 @@ export default function ReactTogether({
   const searchPassword = getSessionPasswordFromUrl(url)
 
   const model = sessionParams.model || ReactTogetherModel
+
   const name = searchName || sessionParams.name
   const password = searchPassword || sessionParams.password
+
+  let viewData = sessionParams.viewData
+  if (userId !== undefined) {
+    if (viewData === undefined) {
+      viewData = { userId } as D & { userId?: string }
+    } else {
+      viewData.userId = userId
+    }
+  }
 
   return (
     <CroquetRoot
@@ -52,7 +65,7 @@ export default function ReactTogether({
         appId,
         apiKey,
         options,
-        viewInfo
+        viewData
       }}
       deferSession={!name || !password}
       showChildrenWithoutSession

@@ -7,9 +7,7 @@ const { getJoinUrl } = utils
 function buildUrl(path: string, session: SessionParams | null): string {
   const url = new URL(window.location.href)
   url.pathname = path
-  if (!session) {
-    return url.toString()
-  }
+  if (!session) return url.toString()
 
   return getJoinUrl(url, session.name, session.password).toString()
 }
@@ -31,12 +29,8 @@ interface DocumentationDemoProps {
 }
 export default function DocumentationDemo({ url, session1, session2 }: DocumentationDemoProps) {
   const demoPath = `/demos/${url}`
-  if (session1 === undefined) {
-    session1 = defaultSession
-  }
-  if (session2 === undefined) {
-    session2 = session1
-  }
+  if (session1 === undefined) session1 = defaultSession
+  if (session2 === undefined) session2 = session1
   const url1 = buildUrl(demoPath, session1)
   const url2 = buildUrl(demoPath, session2)
 

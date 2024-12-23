@@ -55,7 +55,7 @@ OverrideModel.register('OverrideModel')
 
 Configure React Together to use your custom model by passing the class in the `sessionParams` prop of the `ReactTogether` component:
 
-```tsx
+```typescript
 import { ReactTogether } from 'react-together'
 import { OverrideModel } from './models'
 
@@ -75,7 +75,7 @@ export default function App() {
 
 Now that we have React Together running our model, we can use the `usePublish` hook to publish events to be executed on the model side:
 
-```tsx
+```typescript
 import { CroquetReact } from 'react-together'
 
 const { usePublish, useModelSelector } = CroquetReact

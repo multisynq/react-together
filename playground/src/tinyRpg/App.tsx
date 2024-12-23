@@ -8,6 +8,8 @@ export default function App() {
       sessionParams={{
         appId: import.meta.env['VITE_APP_ID'],
         apiKey: import.meta.env['VITE_API_KEY'],
+        name: 'tinyRpg',
+        password: 'tinyRpg-password',
         model: OverrideModel
       }}
     >

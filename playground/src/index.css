@@ -27,14 +27,16 @@
   -moz-osx-font-smoothing: grayscale;
 
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 0;
-  text-align: center;
 }
 
 body {
   margin: 0;
   padding: 0;
+}
+
+nav {
+  padding: 1rem;
+  background-color: #1b1b1b;
 }
 
 @media (prefers-color-scheme: light) {
@@ -89,9 +91,18 @@ body {
 @layer base {
   h1 {
     @apply text-2xl;
+    @apply mt-4;
   }
   h2 {
     @apply text-xl;
+    @apply mt-4;
+  }
+  h3 {
+    @apply text-lg;
+    @apply mt-4;
+  }
+  p {
+    @apply mt-4;
   }
   /* ... */
 }

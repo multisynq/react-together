@@ -11,6 +11,7 @@ import {
   ToggleButtonTogether,
   TriStateCheckboxTogether
 } from 'react-together-primereact'
+
 import CountButtonTogether from './components/CountButtonTogether'
 import NestedHoverHighlighter from './components/NestedHoverHighlighter'
 import SamplePage from './components/SamplePage'
@@ -33,9 +34,11 @@ export default function Gallery() {
 
   return (
     <div className="my-5">
-      <SessionManager />
+      <div className="fixed bottom-2 right-2 z-50">
+        <SessionManager />
+      </div>
       <div className="flex flex-col gap-2 items-center">
-        <ConnectedUsers maxAvatars={5} />
+        <ConnectedUsers maxAvatars={5} debug />
         {isTogether ? 'Connected' : 'Disconnected'}
         <SamplePage />
         <SyncedTabs />

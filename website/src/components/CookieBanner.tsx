@@ -77,7 +77,7 @@ export function CookieBanner({ forceShow = false }: CookieBannerProps) {
         <span>Would you mind if we gather a little information while you’re here?</span>
         <span>
           It’ll help us keep things running smoothly and make sure you have the best experience!
-          <a className='text-blue-600 rounded-sm bg-slate-100 px-1 mx-2' href='/cookies' aria-label='Learn more about the policy here'>
+          <a className='text-blue-600 rounded-sm bg-gray-100 px-1 mx-2' href='/cookies' aria-label='Learn more about the policy here'>
             Learn more
           </a>
         </span>

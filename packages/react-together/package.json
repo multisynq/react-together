@@ -1,7 +1,7 @@
 {
   "name": "react-together",
   "description": "A library to seamlessly add real-time multi-user interaction to your React app!",
-  "version": "0.3.0-1",
+  "version": "0.3.0",
   "license": "Apache-2.0",
   "type": "module",
   "main": "dist/index.js",
@@ -26,9 +26,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@croquet/react": "^2.3.0-0",
+    "@croquet/react": "^2.3.0-1",
     "object-hash": "^3.0.0",
-    "primeicons": "^7.0.0"
+    "primeicons": "^7.0.0",
+    "qrcode.react": "^3.1.0"
   },
   "peerDependencies": {
     "color-hash": "^2.0.2",
@@ -65,7 +66,7 @@
   "bugs": "https://github.com/multisynq/react-together/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/multisynq/react-together.git",
+    "url": "git+https://github.com/multisynq/react-together.git",
     "directory": "packages/react-together"
   },
   "homepage": "https://reacttogether.dev",

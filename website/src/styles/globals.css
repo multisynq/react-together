@@ -34,6 +34,8 @@
     --input: 240 5.9% 90%;
     --ring: 240 5% 64.9%;
     --radius: 0.5rem;
+
+    --gradientBackground: radial-gradient(162.17% 100% at 100% 0%, #eff6ff 0%, #eff6ff 23%, #fff 100%);
   }
 
   .dark {
@@ -131,7 +133,7 @@ h6 {
 }
 
 .markdown-content {
-  @apply text-gray-800 leading-normal;
+  @apply text-primary leading-normal;
 
   h1 {
     @apply text-4xl font-bold mb-4 mt-6;
@@ -181,4 +183,8 @@ h6 {
   strong {
     @apply font-bold;
   }
+}
+
+.bg-gradientBackground {
+  background: var(--gradientBackground);
 }

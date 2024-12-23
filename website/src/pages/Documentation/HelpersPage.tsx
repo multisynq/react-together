@@ -32,5 +32,5 @@ const content = (
 )
 
 export default function HelpersDocumentationPage() {
-  return <DocumentationPage content={content} navItems={navItems} />
+  return <DocumentationPage {...{ content, navItems }} />
 }

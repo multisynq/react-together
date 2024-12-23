@@ -4,9 +4,54 @@ import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocumentationPage'
 
-const originalName = 'Checkbox'
 const name = 'CheckboxTogether'
-const docUrl = 'https://primereact.org/checkbox/'
+const originalName = 'Checkbox'
+
+const codes = {
+  demo: {
+    basic: `
+import { CheckboxTogether } from 'react-together-primereact'
+
+export function PrimeReactCheckboxTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <CheckboxTogether rtKey='checkbox-doc-demo' />
+    </div>
+  )
+}
+`,
+  },
+
+  source: {
+    typescript: `
+import { Checkbox, CheckboxProps } from 'primereact/checkbox'
+import { useStateTogether } from 'react-together'
+
+export interface CheckboxTogetherProps
+  extends Omit<CheckboxProps, 'checked' | 'onChange'> {
+  rtKey: string
+  className?: string
+}
+export default function CheckboxTogether({
+  rtKey,
+  ...props
+}: CheckboxTogetherProps) {
+  const [checked, setChecked] = useStateTogether<boolean>(rtKey, false)
+
+  return (
+    <>
+      <Checkbox
+        {...props}
+        onChange={(e) => setChecked(e.checked || false)}
+        checked={checked}
+        className={\`outline outline-1 outline-gray-400 rounded \${props.className}\`}
+      />
+    </>
+  )
+}
+`,
+  },
+}
 
 export default function PrimeReactCheckboxTogetherDocumentationPage() {
   const api = (
@@ -37,7 +82,22 @@ export default function PrimeReactCheckboxTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: {
+          code: codes.source,
+          stackBlitz: true,
+          codepen: true,
+          codeMetadata: { componentName: 'CheckboxTogether' },
+        },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('CheckboxTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('CheckboxTogether') }} />
 }

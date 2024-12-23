@@ -6,7 +6,47 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'MultiSelectTogether'
 const originalName = 'MultiSelect'
-const docUrl = `https://primereact.org/multiselect`
+
+const codes = {
+  demo: {
+    basic: `
+import { MultiSelectTogether } from 'react-together-primereact'
+
+export function PrimeReactMultiSelectTogetherDemo() {
+  const cities = [
+    { name: 'New York', code: 'NY' },
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' },
+  ]
+  return (
+    <div className='flex-col place-items-center'>
+      <MultiSelectTogether rtKey='multi-select-doc-demo' options={cities} optionLabel='name' multiple display='chip' />
+    </div>
+  )
+}
+`,
+  },
+
+  source: {
+    basic: `
+import { MultiSelect, MultiSelectProps } from 'primereact/multiselect'
+import { useStateTogether } from 'react-together'
+
+export default function MultiSelectTogether({ rtKey, ...props }) {
+  const [value, set_value] = useStateTogether(rtKey, [])
+  return (
+    <MultiSelect
+      {...props}
+      value={value}
+      onChange={(e) => set_value(e.value)}
+    />
+  )
+}
+`,
+  },
+}
 
 export default function PrimeReactMultiSelectTogetherDocumentationPage() {
   const api = (
@@ -37,7 +77,17 @@ export default function PrimeReactMultiSelectTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('MultiSelectTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('MultiSelectTogether') }} />
 }
