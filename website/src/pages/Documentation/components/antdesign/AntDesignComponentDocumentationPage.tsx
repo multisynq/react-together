@@ -16,11 +16,12 @@ interface GenericComponentPageProps {
   name: string
   originalName: string
   docUrl?: string
-  api?: ReactNode | ReactNode[]
   demo: CodeBlockData
   source: CodeBlockData
+  api?: ReactNode | ReactNode[]
+  demoUrl?: string
 }
-export function AntDesignComponentDocumentationPage({ name, originalName, docUrl, api, demo, source }: GenericComponentPageProps) {
+export function AntDesignComponentDocumentationPage({ name, originalName, docUrl, api, demo, source, demoUrl }: GenericComponentPageProps) {
   const codes = {
     usage_1: { basic: `import { ${name} } from 'react-together-ant-design'` },
     usage_2: { basic: `<${name} rtKey='your-unique-key' />` },
@@ -58,7 +59,7 @@ export function AntDesignComponentDocumentationPage({ name, originalName, docUrl
             </p>
             <TabView className='w-full'>
               <TabPanel header='Preview'>
-                <DocumentationDemo url={`antdesign/${originalName}`} />
+                <DocumentationDemo url={demoUrl ?? `antdesign/${originalName}`} />
               </TabPanel>
               <TabPanel header='Code'>
                 <CodeBlock {...demo} />
