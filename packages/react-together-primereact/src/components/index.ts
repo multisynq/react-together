@@ -3,6 +3,7 @@ import CheckboxTogether from './CheckboxTogether'
 import ColorPickerTogether from './ColorPickerTogether'
 import DropdownTogether from './DropdownTogether'
 import InputSwitchTogether from './InputSwitchTogether'
+import InputTextTogether from './InputTextTogether'
 import KnobTogether from './KnobTogether'
 import MultiSelectTogether from './MultiSelectTogether'
 import RatingTogether from './RatingTogether'
@@ -17,6 +18,7 @@ export {
   ColorPickerTogether,
   DropdownTogether,
   InputSwitchTogether,
+  InputTextTogether,
   KnobTogether,
   MultiSelectTogether,
   RatingTogether,
