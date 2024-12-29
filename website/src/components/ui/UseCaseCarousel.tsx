@@ -1,3 +1,4 @@
+import investmentSimulatorBanner from '@images/projects/investmentSimulator.png'
 import learnTogether from '@images/projects/learnTogether.png'
 import multiPlanner from '@images/projects/multiPlanner.png'
 import scratchMapBanner from '@images/projects/scratchMap.png'
@@ -12,13 +13,19 @@ import Link from './Link'
 interface Project {
   title: string
   description: string
-  projectLink: string
+  projectLink?: string
   thumbnailImage: string
-  websiteLink: string
+  websiteLink?: string
 }
 
 export default function UseCaseCarousel() {
   const [projects] = useState<Project[]>([
+    {
+      title: 'Investment Simulator',
+      description: 'An investment simulator to plan your financial future with friends!',
+      thumbnailImage: investmentSimulatorBanner,
+      websiteLink: 'https://calculator.afonsocrg.com/',
+    },
     {
       title: 'ScratchMap',
       description: 'The easiest way to coordinate ad hoc location-based events with groups of people.',
@@ -90,21 +97,25 @@ export default function UseCaseCarousel() {
             className='aspect-[4/3] flex overflow-hidden relative line-border bg-cover bg-center'
             style={{ backgroundImage: `url(${thumbnailImage})` }}
           >
-            <div className='absolute md:top-[-5rem] md:group-hover:top-[0rem] transition-all duration-300 flex right-4'>
-              <a href={websiteLink} target='_blank'>
-                <div className='bg-blue-500 interactive-border w-full flex px-4 py-1 h-[3rem] items-center rounded-xl m-2 justify-center'>
-                  <span className='text-lg font-bold text-center text-white'>Live demo</span>
+            {websiteLink && (
+              <div className='absolute md:top-[-5rem] md:group-hover:top-[0rem] transition-all duration-300 flex right-4'>
+                <a href={websiteLink} target='_blank'>
+                  <div className='bg-blue-500 interactive-border w-full flex px-4 py-1 h-[3rem] items-center rounded-xl m-2 justify-center'>
+                    <span className='text-lg font-bold text-center text-white'>Live demo</span>
+                  </div>
+                </a>
+              </div>
+            )}
+            {projectLink && (
+              <a href={projectLink} target='_blank'>
+                <div className='bg-gray-700 border-gray-800 w-full flex px-4 py-1 border-t h-[4rem] absolute bottom-[0rem] md:bottom-[-5rem] md:group-hover:bottom-[0rem] transition-all duration-300'>
+                  <div className='text-lg font-bold flex items-center text-white'>
+                    Learn more!
+                    <i className='pi pi-arrow-right ml-2'></i>
+                  </div>
                 </div>
               </a>
-            </div>
-            <a href={projectLink} target='_blank'>
-              <div className='bg-gray-700 border-gray-800 w-full flex px-4 py-1 border-t h-[4rem] absolute bottom-[0rem] md:bottom-[-5rem] md:group-hover:bottom-[0rem] transition-all duration-300'>
-                <div className='text-lg font-bold flex items-center text-white'>
-                  Learn more!
-                  <i className='pi pi-arrow-right ml-2'></i>
-                </div>
-              </div>
-            </a>
+            )}
           </div>
         </div>
         <div className='px-4'>
