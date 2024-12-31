@@ -1,5 +1,5 @@
 import { ReactTogether, SessionManager } from 'react-together'
-import Chat from './components/Chat'
+import Chat from './components/ModelChat'
 export default function App() {
   return (
     <ReactTogether
