@@ -1,3 +1,4 @@
+import ChatModel from './ChatModel'
 import ReactTogetherModel from './ReactTogetherModel'
 
-export { ReactTogetherModel }
+export { ChatModel, ReactTogetherModel }
