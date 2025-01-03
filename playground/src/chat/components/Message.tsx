@@ -37,13 +37,15 @@ export default function Message({
 
   return (
     <div>
-      <div className="rt-message-box">
-        {isMe && <span>is ME!</span>}
-        <div className="rt-avatar" style={{ backgroundColor: senderColor }}>
+      <div className={`rt-message-box ${isMe ? 'isMe' : ''}`}>
+        <div
+          className={`rt-avatar ${isMe ? 'isMe' : ''}`}
+          style={{ backgroundColor: senderColor }}
+        >
           <label className="rt-initials">{initials}</label>
         </div>
-        <div className="rt-message-divider">
-          <div className="rt-message-border">
+        <div className={`rt-message-divider ${isMe ? 'isMe' : ''}`}>
+          <div className={`rt-message-border ${isMe ? 'isMe' : ''}`}>
             <span className="rt-messageLabel">{sender}</span>
             <div>
               <span className="rt-message-text">{message}</span>{' '}
