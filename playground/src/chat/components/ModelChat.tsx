@@ -6,15 +6,17 @@ import Message from './Message'
 
 const CHAT_HEADER_TITLE = 'Chat Group'
 
-function ChatWindow({ isMinimized, toggleMinimize }) {
+interface ChatWindowProps {
+  isMinimized: boolean
+  toggleMinimize: () => void
+}
+
+function ChatWindow({ isMinimized, toggleMinimize }: ChatWindowProps) {
   return (
-    <div className="px-4 pt-3 pb-2 flex items-center bg-gray-50 border-b border-gray-200 justify-between">
-      <span className="font-bold">{CHAT_HEADER_TITLE}</span>
-      <button
-        className="ml-2 h-[2rem] w-[2rem] rounded-full flex items-center justify-center"
-        onClick={toggleMinimize}
-      >
-        <span className="font-semibold text-2xl mb-1">
+    <div className="rt-chatHeader">
+      <span className="rt-chatHeader-title">{CHAT_HEADER_TITLE}</span>
+      <button className="rt-chatHeader-button" onClick={toggleMinimize}>
+        <span className="rt-chatHeader-button-label">
           {isMinimized ? '+' : '-'}
         </span>
       </button>

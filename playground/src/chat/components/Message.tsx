@@ -48,7 +48,7 @@ export default function Message({
           <div className={`rt-message-border ${isMe ? 'isMe' : ''}`}>
             <span className="rt-messageLabel">{sender}</span>
             <div>
-              <span className="rt-message-text">{message}</span>{' '}
+              <span className="rt-message-text text-wrap">{message}</span>{' '}
               <span className="rt-messageLabel">
                 {timestamp ? formatTime(timestamp) : '???'}
               </span>
