@@ -20,7 +20,10 @@ export default function useChat(rtKey: string) {
   })
 
   useEffect(() => {
-    if (!model || !view) return
+    if (!model || !view) {
+      setMessages(EMPTY_ARRAY)
+      return
+    }
 
     const chat = getChat(model, rtKey)
     if (!chat) {
