@@ -39,6 +39,7 @@ export default function useChat(rtKey: string) {
       setMessages([...chat.messages])
     }
 
+    handler()
     view.subscribe(rtKey, 'messageSent', handler)
     return () => view.unsubscribe(rtKey, 'messageSent', handler)
   }, [model, view, rtKey])
