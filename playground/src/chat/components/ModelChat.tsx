@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useChat } from 'react-together'
+import { useChat, useMyId } from 'react-together'
 import './Chat.css'
 import ChatInput from './ChatInput'
 import Message from './Message'
@@ -7,6 +7,8 @@ import Message from './Message'
 export default function Chat() {
   const lastMessageRef = useRef<HTMLDivElement>(null)
   const { messages, sendMessage } = useChat('chat')
+  const myId = useMyId()
+  // const { messages } = useChat('the-key');
 
   useEffect(() => {
     if (lastMessageRef.current) {
@@ -15,16 +17,20 @@ export default function Chat() {
   }, [messages])
 
   return (
-    <div className="chat">
-      <h3>IRC Together</h3>
-      <div className="messages-container">
+    <div className="rt-chatContainer">
+      <div className="rt-messageContainer">
         {messages.map(({ id, senderId, sentAt, message }) => {
           return (
             <div
               key={id}
               ref={id === messages.length - 1 ? lastMessageRef : undefined}
             >
-              <Message sender={senderId} message={message} timestamp={sentAt} />
+              <Message
+                sender={senderId}
+                message={message}
+                timestamp={sentAt}
+                isMe={senderId === myId}
+              />
             </div>
           )
         })}
