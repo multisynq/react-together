@@ -148,7 +148,6 @@ export default class ReactTogetherModel extends ReactModel {
 
   createChat({ rtKey }: CreateChatArgs) {
     const chat = ChatModel.create({ rtKey })
-    console.log('creating chat', { chat })
     this.chats.set(rtKey, chat)
   }
 }

@@ -10,6 +10,7 @@ export interface ChatMessage {
 interface SendMessageArgs {
   message: string
   senderId: string
+  sentAt: number
 }
 
 export default class ChatModel extends ReactModel {
@@ -27,11 +28,11 @@ export default class ChatModel extends ReactModel {
     this.subscribe(rtKey, 'sendMessage', this.sendMessage)
   }
 
-  sendMessage({ message, senderId }: SendMessageArgs) {
+  sendMessage({ message, senderId, sentAt }: SendMessageArgs) {
     this.messages.push({
       message,
       senderId,
-      sentAt: Date.now(),
+      sentAt,
       id: this.nextMessageId++
     })
     this.publish(this.rtKey, 'messageSent', {})
