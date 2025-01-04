@@ -6,24 +6,6 @@ import Message from './Message'
 
 const CHAT_HEADER_TITLE = 'Chat Group'
 
-interface ChatWindowProps {
-  isMinimized: boolean
-  toggleMinimize: () => void
-}
-
-function ChatWindow({ isMinimized, toggleMinimize }: ChatWindowProps) {
-  return (
-    <div className="rt-chatHeader">
-      <span className="rt-chatHeader-title">{CHAT_HEADER_TITLE}</span>
-      <button className="rt-chatHeader-button" onClick={toggleMinimize}>
-        <span className="rt-chatHeader-button-label">
-          {isMinimized ? '+' : '-'}
-        </span>
-      </button>
-    </div>
-  )
-}
-
 export default function Chat() {
   const lastMessageRef = useRef<HTMLDivElement>(null)
   const { messages, sendMessage } = useChat('chat')
@@ -42,10 +24,23 @@ export default function Chat() {
   }, [messages, isMinimized])
 
   return (
-    <div className="rt-chatContainer">
-      <ChatWindow isMinimized={isMinimized} toggleMinimize={toggleMinimize} />
-      {!isMinimized && (
-        <>
+    <div className="rt-chat">
+      {isMinimized ? (
+        <button className="rt-minChatContainer" onClick={toggleMinimize}>
+          <span className="rt-chatHeader-title">{CHAT_HEADER_TITLE}</span>
+          <div className="rt-chatHeader-button">
+            <span className="rt-chatHeader-button-label">+</span>
+          </div>
+        </button>
+      ) : (
+        <div className="rt-chatContainer">
+          <button className="rt-chatHeader" onClick={toggleMinimize}>
+            <span className="rt-chatHeader-title">{CHAT_HEADER_TITLE}</span>
+            <div className="rt-chatHeader-button">
+              <span className="rt-chatHeader-button-label">-</span>
+            </div>
+          </button>
+
           <div className="rt-messageContainer">
             {messages.map(({ id, senderId, sentAt, message }, index) => (
               <div
@@ -62,7 +57,7 @@ export default function Chat() {
             ))}
           </div>
           <ChatInput onSend={sendMessage} />
-        </>
+        </div>
       )}
     </div>
   )
