@@ -1,17 +1,24 @@
+import { InputSwitch } from 'primereact/inputswitch'
+import { useState } from 'react'
 import { useMyId, useStateTogetherWithPerUserValues } from 'react-together'
 
 export function CountPerUser() {
   const myId = useMyId()
+  const [omitLocalValue, setOmitLocalValue] = useState(false)
   const [count, set_count, allValues] =
     useStateTogetherWithPerUserValues<number>('countPerUser', 0, {
       // keepValues: false
       // resetOnConnect: true,
       // resetOnDisconnect: true
-      omitLocalValue: true
+      omitLocalValue
     })
-  console.log(Object.keys(allValues))
+
   return (
     <>
+      <InputSwitch
+        checked={omitLocalValue}
+        onChange={(e) => setOmitLocalValue(e.value)}
+      />
       <strong>You ({myId}): </strong>
       <button
         onClick={() => set_count((p) => p + 1)}
