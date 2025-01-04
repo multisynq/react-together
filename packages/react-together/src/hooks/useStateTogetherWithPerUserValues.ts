@@ -213,17 +213,12 @@ export default function useStateTogetherWithPerUserValues<
           map.set(myId, localValue)
         }
 
-        const { allValues: newAllValues, allValuesHash: newAllValuesHash } =
-          getAllValuesAndHash(map, omitLocalValue ? myId : undefined)
+        const { allValues, allValuesHash } = getAllValuesAndHash(
+          map,
+          omitLocalValue ? myId : undefined
+        )
 
-        // Only update state if values have changed
-        return prev.allValuesHash === newAllValuesHash
-          ? prev
-          : {
-              localValue,
-              allValues: newAllValues,
-              allValuesHash: newAllValuesHash
-            }
+        return { localValue, allValues, allValuesHash }
       })
     }
 
