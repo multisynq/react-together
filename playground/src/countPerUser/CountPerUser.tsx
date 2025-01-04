@@ -4,20 +4,20 @@ import { useMyId, useStateTogetherWithPerUserValues } from 'react-together'
 
 export function CountPerUser() {
   const myId = useMyId()
-  const [omitLocalValue, setOmitLocalValue] = useState(false)
+  const [omitMyValue, setOmitMyValue] = useState(false)
   const [count, set_count, allValues] =
     useStateTogetherWithPerUserValues<number>('countPerUser', 0, {
       // keepValues: false
       // resetOnConnect: true,
       // resetOnDisconnect: true
-      omitLocalValue
+      omitMyValue
     })
 
   return (
     <>
       <InputSwitch
-        checked={omitLocalValue}
-        onChange={(e) => setOmitLocalValue(e.value)}
+        checked={omitMyValue}
+        onChange={(e) => setOmitMyValue(e.value)}
       />
       <strong>You ({myId}): </strong>
       <button

@@ -105,7 +105,7 @@ export interface UseStateTogetherWithPerUserValuesOptions {
   resetOnConnect?: boolean
   keepValues?: boolean
   overwriteSessionValue?: boolean
-  omitLocalValue?: boolean
+  omitMyValue?: boolean
 }
 export default function useStateTogetherWithPerUserValues<
   T extends NotUndefined
@@ -119,7 +119,7 @@ export default function useStateTogetherWithPerUserValues<
     resetOnConnect = false,
     keepValues = false,
     overwriteSessionValue = false,
-    omitLocalValue = false
+    omitMyValue = false
   } = options
 
   // Memoize the initial value to ignore subsequent changes
@@ -146,7 +146,7 @@ export default function useStateTogetherWithPerUserValues<
       new Map([[myId, actualInitialValue]])
     const { allValues, allValuesHash } = getAllValuesAndHash(
       allValuesMap,
-      omitLocalValue ? myId : undefined
+      omitMyValue ? myId : undefined
     )
     return {
       localValue: allValuesMap.get(myId) ?? actualInitialValue,
@@ -215,7 +215,7 @@ export default function useStateTogetherWithPerUserValues<
 
         const { allValues, allValuesHash } = getAllValuesAndHash(
           map,
-          omitLocalValue ? myId : undefined
+          omitMyValue ? myId : undefined
         )
 
         return { localValue, allValues, allValuesHash }
@@ -230,7 +230,7 @@ export default function useStateTogetherWithPerUserValues<
         const allValuesMap =
           (model.statePerUser.get(rtKey) as Map<string, T>) ?? new Map()
         const { allValues: newAllValues, allValuesHash: newAllValuesHash } =
-          getAllValuesAndHash(allValuesMap, omitLocalValue ? myId : undefined)
+          getAllValuesAndHash(allValuesMap, omitMyValue ? myId : undefined)
 
         // Only update state if values have changed
         return prev.allValuesHash === newAllValuesHash
@@ -262,7 +262,7 @@ export default function useStateTogetherWithPerUserValues<
     resetOnConnect,
     keepValues,
     overwriteSessionValue,
-    omitLocalValue
+    omitMyValue
   ])
 
   // Setter function to update local and shared state
