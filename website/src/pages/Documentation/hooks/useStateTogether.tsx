@@ -1,41 +1,64 @@
 import { Markdown } from '@components/Markdown'
-import { CodeBlock } from '@components/ui/CodeBlock'
-import CodeSpan from '@components/ui/CodeSpan'
-import Link from '@components/ui/Link'
-import LinkSpan from '@components/ui/LinkSpan'
+import { CodeBlock, CodeSpan, Link, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import getDocLinks from '@utils/getDocLinks'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import InterfaceApi from '../InterfaceApi'
+import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
 
-const description = (
-  <>
-    <p>
-      The <CodeSpan text='useStateTogether' /> hook allows all users to see the same state simultaneously. If a user is not connected to any
-      session, this hook behaves like a normal{' '}
-      <Link to='https://react.dev/reference/react/useState' target='_blank'>
-        useState
-      </Link>
-      .
-    </p>
-    <DocumentationDemo url='CountButtonTogether' />
-  </>
-)
+const codes = {
+  demo: {
+    basic: `
+import { useStateTogether } from 'react-together'
 
-const usage = (
-  <>
-    <CodeBlock language='jsx' code1={`import { useStateTogether } from 'react-together'`} />
-    <CodeBlock
-      language='jsx'
-      code1={`const [count, setCount] = useStateTogether('unique-key', 0)
+export default function CountButtonTogether() {
+  const [count, set_count] = useStateTogether('count', 0)
+  return (
+    <div className='flex flex-row align-items-center gap-2'>
+      <button
+        className='bg-gray-400 py-2 px-4 rounded-md text-white'
+        onClick={() => set_count(0)}
+      >
+        <i className='pi pi-refresh'></i>
+      </button>
+      <button
+        className='bg-gray-400 py-2 px-4 rounded-md text-white'
+        onClick={() => set_count((prev) => prev + 1)}
+      >
+        Count: {count}
+      </button>
+    </div>
+  )
+}
+`,
+  },
+
+  usage_1: {
+    basic: `import { useStateTogether } from 'react-together'`,
+  },
+
+  usage_2: {
+    basic: `
+function YourComponent() {
+  const [count, setCount] = useStateTogether('unique-key', 0)
         
-const increment = () => setCount((prev) => prev + 1)
-const reset = () => setCount(0)`}
-    />
-  </>
-)
+  const increment = () => setCount((prev) => prev + 1)
+  const reset = () => setCount(0)
+
+  return (
+    <div>
+      <button onClick={increment}>Increment</button>
+      <button onClick={reset}>Reset</button>
+      <p>Count: {count}</p>
+    </div>
+  )
+}
+`,
+  },
+}
 
 const api = (
   <>
@@ -95,13 +118,37 @@ const api = (
 
 const content = (
   <GenericDocPage
-    title='useStateTogether'
-    parameter='<T>(rtKey, initial_value, options)'
-    description={description}
-    usage={usage}
-    api={api}
+    {...{
+      title: 'useStateTogether',
+      parameter: '<T>(rtKey, initial_value, options)',
+      description: (
+        <>
+          <p>
+            The <CodeSpan text='useStateTogether' /> hook allows all users to see the same state simultaneously. If a user is not connected
+            to any session, this hook behaves like a normal{' '}
+            <Link to='https://react.dev/reference/react/useState' target='_blank'>
+              useState
+            </Link>
+            .
+          </p>
+          <PreviewSourceCodeTabs
+            {...{
+              preview: <DocumentationDemo url='CountButtonTogether' />,
+              code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_path: 'CountButtonTogether.tsx' }).github_demo }} />,
+            }}
+          />
+        </>
+      ),
+      usage: (
+        <>
+          <CodeBlock code={codes.usage_1} />
+          <CodeBlock code={codes.usage_2} />
+        </>
+      ),
+      api,
+    }}
   />
 )
 export default function UseStateTogetherDocumentationPage() {
-  return <DocumentationPage content={content} navItems={GenericDocNav('useStateTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useStateTogether', { exclude: ['source'] }) }} />
 }

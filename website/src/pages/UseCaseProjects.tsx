@@ -57,7 +57,7 @@ export function UseCaseProject() {
 
   const GitProfile = ({ userName, imageSource }: { userName: string; imageSource: string }) => (
     <a href={`https://github.com/${userName}`}>
-      <div className='bg-slate-600 rounded-3xl h-[2rem] w-[2rem] border border-gray-800 overflow-hidden'>
+      <div className='bg-gray-600 rounded-3xl h-[2rem] w-[2rem] border border-gray-800 overflow-hidden'>
         <img src={imageSource} alt={`${userName}'s GitHub profile`} />
       </div>
     </a>

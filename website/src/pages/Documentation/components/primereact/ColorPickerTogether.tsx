@@ -7,7 +7,81 @@ import { PrimeReactComponentDocumentationPage } from './PrimeReactComponentDocum
 
 const name = 'ColorPickerTogether'
 const originalName = 'ColorPicker'
-const docUrl = `https://primereact.org/colorpicker`
+
+const codes = {
+  demo: {
+    basic: `
+import { ColorPickerTogether } from 'react-together-primereact'
+
+export function PrimeReactColorPickerTogetherDemo() {
+  return (
+    <div className='flex-col place-items-center'>
+      <ColorPickerTogether rtKey='color-picker-doc-demo' publishWhileOpen />
+    </div>
+  )
+}
+`,
+  },
+
+  source: {
+    basic: `
+import {
+  ColorPicker,
+  ColorPickerChangeEvent,
+  ColorPickerHSBType,
+  ColorPickerProps,
+  ColorPickerRGBType
+} from 'primereact/colorpicker'
+import { useCallback, useEffect, useState } from 'react'
+import { useStateTogether } from 'react-together'
+
+
+export default function ColorPickerTogether({
+  rtKey,
+  publishWhileOpen = false,
+  onChange,
+  ...props
+}) {
+  const [localValue, setLocalValue] = useState(undefined)
+  const [remoteValue, setRemoteValue] = useStateTogether(rtKey, undefined)
+
+  const inline = props.inline
+
+  const handleChange = useCallback(
+    (e: ColorPickerChangeEvent) => {
+      if (e.value === null) {
+        e.value = undefined
+      }
+      if (inline || publishWhileOpen) {
+        setRemoteValue(e.value)
+      } else {
+        setLocalValue(e.value)
+      }
+      onChange?.(e)
+    },
+    [setRemoteValue, setLocalValue, inline, publishWhileOpen, onChange]
+  )
+
+  const handleHide = useCallback(() => {
+    setRemoteValue(localValue)
+  }, [setRemoteValue, localValue])
+
+  useEffect(() => {
+    setLocalValue(remoteValue)
+  }, [remoteValue, setLocalValue])
+
+  return (
+    <ColorPicker
+      {...props}
+      value={localValue}
+      onChange={handleChange}
+      onHide={handleHide}
+    />
+  )
+}
+`,
+  },
+}
 
 export default function PrimeReactColorPickerTogetherDocumentationPage() {
   const api = (
@@ -52,7 +126,17 @@ export default function PrimeReactColorPickerTogetherDocumentationPage() {
       />
     </>
   )
-  const content = <PrimeReactComponentDocumentationPage {...{ name, originalName, docUrl, api }} />
+  const content = (
+    <PrimeReactComponentDocumentationPage
+      {...{
+        name,
+        originalName,
+        api,
+        demo: { code: codes.demo },
+        source: { code: codes.source },
+      }}
+    />
+  )
 
-  return <DocumentationPage content={content} navItems={GenericDocNav('ColorPickerTogether')} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('ColorPickerTogether') }} />
 }

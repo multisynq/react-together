@@ -1,6 +1,5 @@
-import { useViewId } from '@croquet/react'
 import ColorHash from 'color-hash'
-import { useHoveringUsers } from '../hooks'
+import { useHoveringUsers, useMyId } from '../hooks'
 
 const colorHash = new ColorHash()
 
@@ -18,7 +17,7 @@ export default function HoverHighlighter({
 }: HoverHighlighterProps) {
   const debug = false
   const [ref, hoveringUsers, isHovering] = useHoveringUsers(rtKey)
-  const myId = useViewId()
+  const myId = useMyId()
 
   let style = {}
   const users = highlightMyself

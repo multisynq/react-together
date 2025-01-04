@@ -12,7 +12,7 @@ export default function VenueInfo() {
       <div className='flex w-full sm:w-1/3 px-4 pb-3 sm:mt-[2rem] gap-2 sm:flex-col'>
         <h5 style={{ fontSize: '40px', fontFamily: 'poppins', margin: '8px' }}>Hood</h5>
         <a href={MAP_URL_LINK} target='_blank' rel='noopener noreferrer' className='text-start flex gap-2 m-2'>
-          <span className='font-light text-xl text-gray-950 hover:text-gray-600 leading-tight mt-4' style={{ fontFamily: 'poppins' }}>
+          <span className='font-light text-xl text-primary hover:text-gray-600 leading-tight mt-4' style={{ fontFamily: 'poppins' }}>
             <i className='pi pi-map text-xl mr-2'></i>
             Rua 3 da Matinha
             <br />

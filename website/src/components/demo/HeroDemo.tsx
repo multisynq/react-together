@@ -164,7 +164,7 @@ const DemoContent = () => (
 // Main components
 
 const NonHomePage = () => (
-  <div className='bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] flex w-full h-full items-center'>
+  <div className='bg-gradientBackground flex w-full h-full items-center'>
     <div className='w-full overflow-hidden' style={{ aspectRatio: '5 / 3' }}>
       <div className='w-full h-full px-2 py-4 flex ml-4'>
         <DemoContent />
@@ -176,7 +176,7 @@ const NonHomePage = () => (
 
 const HomePage = () => (
   <div className='w-full overflow-hidden shadow-lineStyleDark' style={{ aspectRatio: '5 / 3' }}>
-    <div className='w-full h-full bg-[radial-gradient(65.22%_99.35%_at_76.2%_118.78%,#D7E8F8_0%,#FFF_100%)] px-2 py-4 flex'>
+    <div className='w-full h-full bg-gradientBackground px-2 py-4 flex'>
       <DemoContent />
     </div>
     <ConnectedUsersWrapper />

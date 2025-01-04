@@ -1,15 +1,15 @@
-### Unreleased
-`0.3.0-2`
+## 0.3.0
+`2024-12-13`
+
  - Added `resetOnDisconnect` option flag in `useStateTogether`
  - Added `resetOnDisconnect` option flag in `useStateTogetherWithPerUserValues`
  - Added `resetOnConnect` option flag in `useStateTogetherWithPerUserValues`
  - Added `keepValues` option flag in `useStateTogetherWithPerUserValues`
- - Added `keyOverride` option flag in `useStateTogetherWithPerUserValues`
  - Added `overwriteSessionValue` option flag in `useStateTogetherWithPerUserValues`
-`0.3.0-1`
+ - Added `userId` prop to `ReactTogether` component
+ - Removed `sessionIgnoresUrl` attribute from `ReactTogether.sessionParams` property
+ - Added `sessionIgnoresUrl` prop to `ReactTogether` component
  - Include `CHANGELOG.md` in package
-`0.3.0-0`
- - Added support for viewInfo
 
 ## 0.2.0
 `2024-11-01`

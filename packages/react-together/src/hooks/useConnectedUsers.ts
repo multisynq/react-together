@@ -1,29 +1,37 @@
-import { useJoinedViews as ujv } from '@croquet/react'
+import { useJoinedViews as ujv, useModelRoot } from '@croquet/react'
 import {
   adjectives,
   animals,
   uniqueNamesGenerator
 } from 'unique-names-generator'
-import { useMyId } from '.'
+import ReactTogetherModel from '../models/ReactTogetherModel'
+import useMyId from './useMyId'
 
-export interface ConnectedUser<T = undefined> {
+export interface ConnectedUser {
   userId: string
   name: string
   isYou: boolean
-  info?: T
 }
 
-export default function useConnectedUsers<T = undefined>(): ConnectedUser<T>[] {
-  const { views } = ujv()
+const EMPTY_ARRAY: ConnectedUser[] = []
+
+export default function useConnectedUsers(): ConnectedUser[] {
+  // Use this hook to refresh every time the views change
+  ujv()
+
+  const model = useModelRoot<ReactTogetherModel>()
   const myId = useMyId()
 
-  return views.map(({ viewId, info }) => {
+  if (!model) {
+    return EMPTY_ARRAY
+  }
+
+  return Array.from(model.userIdCount.keys()).map((userId) => {
     return {
-      userId: viewId,
-      info,
-      isYou: viewId === myId,
+      userId,
+      isYou: userId === myId,
       name: uniqueNamesGenerator({
-        seed: viewId,
+        seed: userId,
         dictionaries: [adjectives, animals],
         length: 2,
         separator: ' ',

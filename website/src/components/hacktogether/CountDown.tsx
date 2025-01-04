@@ -43,7 +43,7 @@ export default function Countdown() {
           </div>
         ))}
       </div>
-      <a href={addToCalendarUrl} target='_blank' className='font-semibold cursor-pointer text-gray-900 hover:text-gray-700'>
+      <a href={addToCalendarUrl} target='_blank' className='font-semibold cursor-pointer text-primary hover:text-gray-700'>
         <span
           className='leading-loose'
           style={{

@@ -1,17 +1,29 @@
+import antDesignLogo from '@images/antDesignLogo.svg'
+import primeReactLogo from '@images/primeReactLogo.svg'
 import { useLocalStorage } from '@uidotdev/usehooks'
-import { MenuItem, MenuItemCommandEvent } from 'primereact/menuitem'
+import { MenuItem } from 'primereact/menuitem'
 import { PanelMenu } from 'primereact/panelmenu'
 import { classNames } from 'primereact/utils'
 
 // Add `key` and `to` properties to MenuItem and to its nested elements
-export interface PatchedMenuItem extends MenuItem {
+export interface PatchedMenuItem extends Omit<MenuItem, 'label' | 'items'> {
   key?: string
+  label: string | React.ReactNode | React.ReactNode[]
   items?: PatchedMenuItem[]
   to?: string
-  command?: (e: PatchedMenuItemCommandEvent) => void
 }
-interface PatchedMenuItemCommandEvent extends MenuItemCommandEvent {
-  item: PatchedMenuItem
+
+function LogoLabel(props: { logo: string; label: string }) {
+  return (
+    <div className='flex items-center'>
+      <img
+        src={props.logo}
+        alt={props.label}
+        style={{ height: '0.875rem', verticalAlign: 'middle', display: 'inline', marginRight: '0.5rem' }}
+      />
+      <span>{props.label}</span>
+    </div>
+  )
 }
 
 const baseUrl = ''
@@ -24,33 +36,6 @@ const items: PatchedMenuItem[] = [
     items: [
       { key: 'Getting Started', label: 'Getting Started', url: `${baseUrl}/Getting-Started` },
       { key: 'Dependencies', label: 'Dependencies', url: `${baseUrl}/Dependencies` },
-    ],
-  },
-  {
-    key: 'components',
-    label: 'Components',
-    items: [
-      { key: 'react-together', label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
-      { key: 'react-together-mgr', label: 'SessionManager', url: `${baseUrl}/SessionManager` },
-      { key: 'connected-views', label: 'ConnectedUsers', url: `${baseUrl}/ConnectedUsers` },
-      { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
-      {
-        key: 'prime-react',
-        label: 'Prime React',
-        items: [
-          { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
-          { key: 'color-picker-together', label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
-          { key: 'dropdown-together', label: 'DropdownTogether', url: `${baseUrl}/primereact/Dropdown` },
-          { key: 'input-switch-together', label: 'InputSwitchTogether', url: `${baseUrl}/primereact/InputSwitch` },
-          { key: 'knob-together', label: 'KnobTogether', url: `${baseUrl}/primereact/Knob` },
-          { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/primereact/MultiSelect` },
-          { key: 'rating-together', label: 'RatingTogether', url: `${baseUrl}/primereact/Rating` },
-          { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/primereact/SelectButton` },
-          { key: 'tab-view-together', label: 'TabViewTogether', url: `${baseUrl}/primereact/TabView` },
-          { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/primereact/ToggleButton` },
-          { key: 'tri-state-checkbox-together', label: 'TriStateCheckboxTogether', url: `${baseUrl}/primereact/TriStateCheckbox` },
-        ],
-      },
     ],
   },
   {
@@ -79,6 +64,49 @@ const items: PatchedMenuItem[] = [
       },
     ],
   },
+  {
+    key: 'components',
+    label: 'Components',
+    items: [
+      { key: 'react-together', label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
+      { key: 'react-together-mgr', label: 'SessionManager', url: `${baseUrl}/SessionManager` },
+      { key: 'connected-views', label: 'ConnectedUsers', url: `${baseUrl}/ConnectedUsers` },
+      { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
+    ],
+  },
+  {
+    key: 'antDesign',
+    label: <LogoLabel logo={antDesignLogo} label='Ant Design' />,
+    items: [
+      { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/antdesign/Checkbox` },
+      // { key: 'date-picker-together', label: 'DatePickerTogether', url: `${baseUrl}/antdesign/DatePicker` },
+      { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/antdesign/MultiSelect` },
+      { key: 'rate-together', label: 'RateTogether', url: `${baseUrl}/antdesign/Rate` },
+      { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/antdesign/SelectButton` },
+      { key: 'select-together', label: 'SelectTogether', url: `${baseUrl}/antdesign/Select` },
+      { key: 'slider-together', label: 'SliderTogether', url: `${baseUrl}/antdesign/Slider` },
+      { key: 'switch-together', label: 'SwitchTogether', url: `${baseUrl}/antdesign/Switch` },
+      { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/antdesign/ToggleButton` },
+    ],
+  },
+  {
+    key: 'prime-react',
+    label: <LogoLabel logo={primeReactLogo} label='Prime React' />,
+    items: [
+      { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
+      { key: 'color-picker-together', label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
+      { key: 'dropdown-together', label: 'DropdownTogether', url: `${baseUrl}/primereact/Dropdown` },
+      { key: 'input-switch-together', label: 'InputSwitchTogether', url: `${baseUrl}/primereact/InputSwitch` },
+      { key: 'knob-together', label: 'KnobTogether', url: `${baseUrl}/primereact/Knob` },
+      { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/primereact/MultiSelect` },
+      { key: 'rating-together', label: 'RatingTogether', url: `${baseUrl}/primereact/Rating` },
+      { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/primereact/SelectButton` },
+      { key: 'tab-view-together', label: 'TabViewTogether', url: `${baseUrl}/primereact/TabView` },
+      { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/primereact/ToggleButton` },
+      { key: 'tri-state-checkbox-together', label: 'TriStateCheckboxTogether', url: `${baseUrl}/primereact/TriStateCheckbox` },
+    ],
+  },
+
   {
     key: 'advanced',
     label: 'Advanced usage',
@@ -124,17 +152,21 @@ export default function DocumentNav() {
       model={items}
       expandedKeys={expandedKeys}
       onExpandedKeysChange={setExpandedKeys}
-      className='w-full md:w-20rem'
+      className='w-[]'
       pt={{
         root: classNames('sm:line-border overflow-hidden bg-white w-[200px] md:w-[240px]'),
         headerContent: classNames('border-0 bg-transparent'),
         headerAction: classNames('pt-4 pb-3'),
+        headersubmenuicon: classNames('mr-0'),
         panel: classNames('border-0'),
-        headerLabel: classNames('text-gray-900'),
-        menuContent: classNames('py-0 border-0 rounded-none bg-transparent'),
+        headerLabel: classNames('text-primary'),
+        menuContent: classNames('py-0 border-0 rounded-none bg-transparent flex-1'),
+        submenuicon: classNames('mr-[2px]'),
         action: classNames('py-2'),
-        label: classNames('text-gray-800 text-xs md:text-sm break-all'),
+        label: classNames('text-primary tracking-tight break-all text-sm'),
         content: classNames('rounded-md'),
+        toggleableContent: classNames('ml-4 flex item-center'),
+        icon: classNames('bg-lime-500'),
       }}
       multiple
     />
