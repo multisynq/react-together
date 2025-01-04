@@ -1,15 +1,18 @@
-import { useStateTogetherWithPerUserValues } from 'react-together'
+import { useMyId, useStateTogetherWithPerUserValues } from 'react-together'
 
 export function CountPerUser() {
+  const myId = useMyId()
   const [count, set_count, allValues] =
     useStateTogetherWithPerUserValues<number>('countPerUser', 0, {
-      keepValues: true
+      // keepValues: false
       // resetOnConnect: true,
       // resetOnDisconnect: true
+      omitLocalValue: true
     })
+  console.log(Object.keys(allValues))
   return (
     <>
-      <strong>You: </strong>
+      <strong>You ({myId}): </strong>
       <button
         onClick={() => set_count((p) => p + 1)}
         className="bg-neutral-500 py-1 px-3 rounded"
