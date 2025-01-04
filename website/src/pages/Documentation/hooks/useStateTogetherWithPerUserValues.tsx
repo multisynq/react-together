@@ -135,6 +135,12 @@ const api = (
       id='options'
       items={[
         {
+          name: 'omitLocalValue',
+          type: 'boolean',
+          default: 'false',
+          description: <Markdown>If this option is `true`, the local value will not be included in the `allValues` object.</Markdown>,
+        },
+        {
           name: 'resetOnConnect',
           type: 'boolean',
           default: 'false',
