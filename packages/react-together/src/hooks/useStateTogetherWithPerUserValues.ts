@@ -31,16 +31,25 @@ interface LocalState<T> {
 const EMPTY_OBJECT = Object.freeze({})
 
 // Converts a Map to an object
-function mapToObject<T>(
+function mapToObject<T>(map: Map<string, T>): ValueMap<T> {
+  return Object.fromEntries(map.entries())
+}
+
+function getAllValuesAndHash<T>(
   map: Map<string, T>,
-  omitLocalValue: boolean,
-  myId: string
-): ValueMap<T> {
-  return Object.fromEntries(
-    !omitLocalValue
-      ? map.entries()
-      : Array.from(map.entries()).filter(([id]) => id !== myId)
-  )
+  omitId?: string
+): { allValues: ValueMap<T>; allValuesHash: string } {
+  const allValues = mapToObject(map)
+  // Calculate the hash of all values, even if omitting the local value
+  // So that we detect when the local value changes
+  const allValuesHash = hash_fn(allValues)
+  if (omitId) {
+    delete allValues[omitId]
+  }
+  return {
+    allValues,
+    allValuesHash
+  }
 }
 
 export interface UseStateTogetherWithPerUserValuesOptions {
@@ -65,8 +74,6 @@ export default function useStateTogetherWithPerUserValues<
     omitLocalValue = false
   } = options
 
-  // console.log({ omitLocalValue })
-
   // Memoize the initial value to ignore subsequent changes
   // https://react.dev/reference/react/useState
   const [actualInitialValue] = useState(initialValue)
@@ -89,11 +96,14 @@ export default function useStateTogetherWithPerUserValues<
     const allValuesMap =
       (model.statePerUser.get(rtKey) as Map<string, T>) ??
       new Map([[myId, actualInitialValue]])
-    const allValues = mapToObject(allValuesMap, omitLocalValue, myId)
+    const { allValues, allValuesHash } = getAllValuesAndHash(
+      allValuesMap,
+      omitLocalValue ? myId : undefined
+    )
     return {
       localValue: allValuesMap.get(myId) ?? actualInitialValue,
       allValues,
-      allValuesHash: hash_fn(allValues)
+      allValuesHash
     }
   })
 
@@ -182,8 +192,8 @@ export default function useStateTogetherWithPerUserValues<
           map.set(myId, valueToUse)
         }
 
-        const newAllValues = mapToObject(map, omitLocalValue, myId)
-        const newAllValuesHash = hash_fn(newAllValues)
+        const { allValues: newAllValues, allValuesHash: newAllValuesHash } =
+          getAllValuesAndHash(map, omitLocalValue ? myId : undefined)
 
         // Only update state if values have changed
         return prev.allValuesHash === newAllValuesHash
@@ -201,11 +211,10 @@ export default function useStateTogetherWithPerUserValues<
     // This handler is called when the model state is updated
     const handleUpdate = () => {
       setAllValuesState((prev) => {
-        console.log('Handling update', { prev })
         const allValuesMap =
           (model.statePerUser.get(rtKey) as Map<string, T>) ?? new Map()
-        const newAllValues = mapToObject(allValuesMap, omitLocalValue, myId)
-        const newAllValuesHash = hash_fn(newAllValues)
+        const { allValues: newAllValues, allValuesHash: newAllValuesHash } =
+          getAllValuesAndHash(allValuesMap, omitLocalValue ? myId : undefined)
 
         // Only update state if values have changed
         return prev.allValuesHash === newAllValuesHash
@@ -272,7 +281,6 @@ export default function useStateTogetherWithPerUserValues<
           prevLocalValue = actualInitialValue
         }
         const newLocalValue = getNewValue<T>(prevLocalValue, newValueOrFn)
-        console.log({ newLocalValue, prevLocalValue })
 
         view.publish(model.id, 'setStatePerUser', {
           rtKey,
