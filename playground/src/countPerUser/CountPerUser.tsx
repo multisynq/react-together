@@ -1,15 +1,25 @@
-import { useStateTogetherWithPerUserValues } from 'react-together'
+import { InputSwitch } from 'primereact/inputswitch'
+import { useState } from 'react'
+import { useMyId, useStateTogetherWithPerUserValues } from 'react-together'
 
 export function CountPerUser() {
+  const myId = useMyId()
+  const [omitMyValue, setOmitMyValue] = useState(false)
   const [count, set_count, allValues] =
     useStateTogetherWithPerUserValues<number>('countPerUser', 0, {
-      keepValues: true
+      // keepValues: false
       // resetOnConnect: true,
       // resetOnDisconnect: true
+      omitMyValue
     })
+
   return (
     <>
-      <strong>You: </strong>
+      <InputSwitch
+        checked={omitMyValue}
+        onChange={(e) => setOmitMyValue(e.value)}
+      />
+      <strong>You ({myId}): </strong>
       <button
         onClick={() => set_count((p) => p + 1)}
         className="bg-neutral-500 py-1 px-3 rounded"
