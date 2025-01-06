@@ -1,3 +1,6 @@
+## Unpublished
+ - Added `omitMyValue` option flag in `useStateTogetherWithPerUserValues`
+
 ## 0.3.0
 `2024-12-13`
 
