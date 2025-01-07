@@ -27,6 +27,7 @@
     padding: var(--spacing-small);
     padding: 8px 12px;
     border-radius: var(--border-radius-large);
+    color: white;
     transition:
         background-color var(--transition-speed),
         box-shadow var(--transition-speed);

@@ -4,7 +4,9 @@ import { MessagesContainerProps } from './types'
 
 export default function MessagesContainer({
   messages,
-  MessageComponent
+  MessageComponent,
+  AvatarComponent,
+  MessageBodyComponent
 }: MessagesContainerProps) {
   const myId = useMyId()
   const lastMessageRef = useRef<HTMLDivElement>(null)
@@ -27,6 +29,8 @@ export default function MessagesContainer({
             message={message}
             timestamp={sentAt}
             isMe={senderId === myId}
+            AvatarComponent={AvatarComponent}
+            MessageBodyComponent={MessageBodyComponent}
           />
         </div>
       ))}

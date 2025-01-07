@@ -8,7 +8,9 @@ export default function ChatExpanded({
   collapseChat,
   chatName,
   onSend,
-  MessagesContainerComponent
+  MessagesContainerComponent,
+  MessageBodyComponent,
+  AvatarComponent
 }: ChatExpandedProps) {
   return (
     <div className="rt-chatContainer">
@@ -18,7 +20,11 @@ export default function ChatExpanded({
       />
       <MessagesContainerComponent
         messages={messages}
-        MessageComponent={MessageComponent}
+        {...{
+          MessageBodyComponent,
+          MessageComponent,
+          AvatarComponent
+        }}
       />
       <InputComponent onSend={onSend} />
     </div>

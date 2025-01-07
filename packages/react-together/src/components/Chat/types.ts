@@ -25,11 +25,15 @@ export interface MessageProps {
   sender: string
   timestamp: number
   isMe: boolean
+  AvatarComponent: Component<AvatarProps>
+  MessageBodyComponent: Component<MessageBodyProps>
 }
 
 export interface MessagesContainerProps {
   messages: ChatMessage[]
   MessageComponent: Component<MessageProps>
+  AvatarComponent: Component<AvatarProps>
+  MessageBodyComponent: Component<MessageBodyProps>
 }
 
 export interface ChatExpandedProps
@@ -49,9 +53,26 @@ export interface ChatComponents {
   input?: Component<ChatInputProps>
   expanded?: Component<ChatExpandedProps>
   messagesContainer?: Component<MessagesContainerProps>
+  avatar?: Component<AvatarProps>
+  messageBody?: Component<MessageBodyProps>
+}
+
+export interface MessageBodyProps {
+  isMe: boolean
+  sender: string
+  message: string
+  timestamp: number
+  formatTime?: (ts: number) => string
+}
+
+export interface AvatarProps {
+  isMe: boolean
+  sender: string
 }
 
 export interface ChatProps {
+  rtKey: string
   chatName?: string | React.ReactElement
   components?: ChatComponents
+  showWhenDisconnected?: boolean
 }
