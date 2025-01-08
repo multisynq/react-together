@@ -15,6 +15,8 @@ export interface ChatComponents {
   MessageAvatar?: Component<MessageAvatarProps>
   MessageBody?: Component<MessageBodyProps>
   ChatInput?: Component<ChatInputProps>
+  ConnectPrompt?: Component<unknown>
+  WelcomeMessage?: Component<unknown>
 }
 
 export interface ChatProps {
@@ -56,6 +58,8 @@ export interface MessageListProps {
   MessageRow: Component<MessageRowProps>
   MessageAvatar: Component<MessageAvatarProps>
   MessageBody: Component<MessageBodyProps>
+  ConnectPrompt: Component<unknown>
+  WelcomeMessage: Component<unknown>
 }
 
 export interface MessageAvatarProps {

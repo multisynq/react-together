@@ -1,3 +1,4 @@
+import { useIsTogether } from '../../hooks'
 import { ChatExpandedProps } from './types'
 
 export default function ChatExpanded({
@@ -10,8 +11,12 @@ export default function ChatExpanded({
   MessageRow,
   MessageAvatar,
   MessageBody,
-  ChatInput
+  ChatInput,
+  ConnectPrompt,
+  WelcomeMessage
 }: ChatExpandedProps) {
+  const isTogether = useIsTogether()
+
   return (
     <div className="rt-chatContainer">
       <ChatHeader chatName={chatName} minimizeChat={() => minimizeChat()} />
@@ -20,10 +25,12 @@ export default function ChatExpanded({
         {...{
           MessageRow,
           MessageBody,
-          MessageAvatar
+          MessageAvatar,
+          ConnectPrompt,
+          WelcomeMessage
         }}
       />
-      <ChatInput sendMessage={sendMessage} />
+      {isTogether && <ChatInput sendMessage={sendMessage} />}
     </div>
   )
 }

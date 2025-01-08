@@ -1,14 +1,17 @@
 import { useEffect, useRef } from 'react'
-import { useMyId } from '../../hooks'
+import { useIsTogether, useMyId } from '../../hooks'
 import { MessageListProps } from './types'
 
 export default function MessageList({
   messages,
   MessageRow,
   MessageAvatar,
-  MessageBody
+  MessageBody,
+  ConnectPrompt,
+  WelcomeMessage
 }: MessageListProps) {
   const myId = useMyId()
+  const isTogether = useIsTogether()
   const lastMessageRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -19,21 +22,29 @@ export default function MessageList({
 
   return (
     <div className="rt-messageContainer">
-      {messages.map(({ id, senderId, sentAt, message }, index) => (
-        <div
-          key={id}
-          ref={index === messages.length - 1 ? lastMessageRef : undefined}
-        >
-          <MessageRow
-            senderId={senderId}
-            message={message}
-            sentAt={sentAt}
-            isMe={senderId === myId}
-            MessageAvatar={MessageAvatar}
-            MessageBody={MessageBody}
-          />
-        </div>
-      ))}
+      {isTogether ? (
+        messages.length > 0 ? (
+          messages.map(({ id, senderId, sentAt, message }, index) => (
+            <div
+              key={id}
+              ref={index === messages.length - 1 ? lastMessageRef : undefined}
+            >
+              <MessageRow
+                senderId={senderId}
+                message={message}
+                sentAt={sentAt}
+                isMe={senderId === myId}
+                MessageAvatar={MessageAvatar}
+                MessageBody={MessageBody}
+              />
+            </div>
+          ))
+        ) : (
+          <WelcomeMessage />
+        )
+      ) : (
+        <ConnectPrompt />
+      )}
     </div>
   )
 }

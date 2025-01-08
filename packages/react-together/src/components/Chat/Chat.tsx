@@ -5,10 +5,12 @@ import _ChatExpanded from './ChatExpanded'
 import _ChatHeader from './ChatHeader'
 import _ChatInput from './ChatInput'
 import _ChatMinimized from './ChatMinimized'
+import _ConnectPrompt from './ConnectPrompt'
 import _MessageAvatar from './MessageAvatar'
 import _MessageBody from './MessageBody'
 import _MessagesList from './MessageList'
 import _MessageRow from './MessageRow'
+import _WelcomeMessage from './WelcomeMessage'
 import { ChatProps } from './types'
 
 export default function Chat({
@@ -28,6 +30,8 @@ export default function Chat({
   const MessageAvatar = components?.MessageAvatar ?? _MessageAvatar
   const MessageBody = components?.MessageBody ?? _MessageBody
   const ChatInput = components?.ChatInput ?? _ChatInput
+  const ConnectPrompt = components?.ConnectPrompt ?? _ConnectPrompt
+  const WelcomeMessage = components?.WelcomeMessage ?? _WelcomeMessage
 
   const [isMinimized, setIsMinimized] = useState(false)
 
@@ -53,7 +57,9 @@ export default function Chat({
               MessageBody,
               ChatInput,
               MessageList,
-              MessageAvatar
+              MessageAvatar,
+              ConnectPrompt,
+              WelcomeMessage
             }}
             sendMessage={sendMessage}
             minimizeChat={() => toggleMinimize()}
