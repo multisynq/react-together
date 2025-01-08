@@ -1,14 +1,14 @@
 import { useCallback, useState } from 'react'
 import { ChatInputProps } from './types'
 
-export default function ChatInput({ onSend }: ChatInputProps) {
+export default function ChatInput({ sendMessage }: ChatInputProps) {
   const [input, setInput] = useState('')
 
   const handleSend = useCallback(() => {
     if (input === '') return
-    onSend(input)
+    sendMessage(input)
     setInput('')
-  }, [input, onSend])
+  }, [input, sendMessage])
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {

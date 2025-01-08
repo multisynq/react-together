@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { useMyId } from '../../hooks'
-import { MessagesContainerProps } from './types'
+import { MessageListProps } from './types'
 
-export default function MessagesList({
+export default function MessageList({
   messages,
-  MessageComponent,
-  AvatarComponent,
-  MessageBodyComponent
-}: MessagesContainerProps) {
+  MessageRow,
+  MessageAvatar,
+  MessageBody
+}: MessageListProps) {
   const myId = useMyId()
   const lastMessageRef = useRef<HTMLDivElement>(null)
 
@@ -24,13 +24,13 @@ export default function MessagesList({
           key={id}
           ref={index === messages.length - 1 ? lastMessageRef : undefined}
         >
-          <MessageComponent
-            sender={senderId}
+          <MessageRow
+            senderId={senderId}
             message={message}
-            timestamp={sentAt}
+            sentAt={sentAt}
             isMe={senderId === myId}
-            AvatarComponent={AvatarComponent}
-            MessageBodyComponent={MessageBodyComponent}
+            MessageAvatar={MessageAvatar}
+            MessageBody={MessageBody}
           />
         </div>
       ))}

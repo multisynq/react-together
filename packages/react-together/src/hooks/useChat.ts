@@ -48,6 +48,8 @@ export default function useChat(rtKey: string) {
 
   const sendMessage = useCallback(
     (message: string) => {
+      if (message.trim() === '') return
+
       const now = Date.now()
       if (myId === null) {
         console.warn('Cannot send message outside of a session')

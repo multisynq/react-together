@@ -167,6 +167,7 @@
   color: black;
   text-wrap: wrap;
   word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .rt-chatHeader {

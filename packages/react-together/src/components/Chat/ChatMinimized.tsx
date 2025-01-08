@@ -1,9 +1,9 @@
-import { ChatCollapsedProps } from './types'
+import { ChatMinimizedProps } from './types'
 
 export default function ChatMinimized({
   chatName,
   expandChat
-}: ChatCollapsedProps) {
+}: ChatMinimizedProps) {
   return (
     <button className="rt-minChatContainer" onClick={() => expandChat()}>
       <span className="rt-chatHeader-title">{chatName}</span>

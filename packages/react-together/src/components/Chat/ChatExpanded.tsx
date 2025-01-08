@@ -1,32 +1,29 @@
 import { ChatExpandedProps } from './types'
 
 export default function ChatExpanded({
-  HeaderComponent,
-  MessageComponent,
-  InputComponent,
   messages,
-  collapseChat,
   chatName,
-  onSend,
-  MessagesContainerComponent,
-  MessageBodyComponent,
-  AvatarComponent
+  sendMessage,
+  minimizeChat,
+  ChatHeader,
+  MessageList,
+  MessageRow,
+  MessageAvatar,
+  MessageBody,
+  ChatInput
 }: ChatExpandedProps) {
   return (
     <div className="rt-chatContainer">
-      <HeaderComponent
-        chatName={chatName}
-        collapseChat={() => collapseChat()}
-      />
-      <MessagesContainerComponent
+      <ChatHeader chatName={chatName} minimizeChat={() => minimizeChat()} />
+      <MessageList
         messages={messages}
         {...{
-          MessageBodyComponent,
-          MessageComponent,
-          AvatarComponent
+          MessageRow,
+          MessageBody,
+          MessageAvatar
         }}
       />
-      <InputComponent onSend={onSend} />
+      <ChatInput sendMessage={sendMessage} />
     </div>
   )
 }

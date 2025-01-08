@@ -6,68 +6,15 @@ export type Component<P> =
   | React.FC<P>
   | keyof React.ReactHTML
 
-export interface ChatCollapsedProps {
-  chatName: string | React.ReactElement
-  expandChat: () => void
-}
-
-export interface ChatHeaderProps {
-  chatName: string | React.ReactElement
-  collapseChat: () => void
-}
-
-export interface ChatInputProps {
-  onSend: (message: string) => void
-}
-
-export interface MessageProps {
-  message: string
-  sender: string
-  timestamp: number
-  isMe: boolean
-  AvatarComponent: Component<AvatarProps>
-  MessageBodyComponent: Component<MessageBodyProps>
-}
-
-export interface MessagesContainerProps {
-  messages: ChatMessage[]
-  MessageComponent: Component<MessageProps>
-  AvatarComponent: Component<AvatarProps>
-  MessageBodyComponent: Component<MessageBodyProps>
-}
-
-export interface ChatExpandedProps
-  extends ChatHeaderProps,
-    ChatInputProps,
-    MessagesContainerProps {
-  HeaderComponent: Component<ChatHeaderProps>
-  MessageComponent: Component<MessageProps>
-  MessagesContainerComponent: Component<MessagesContainerProps>
-  InputComponent: Component<ChatInputProps>
-}
-
 export interface ChatComponents {
-  header?: Component<ChatHeaderProps>
-  collapsed?: Component<ChatCollapsedProps>
-  message?: Component<MessageProps>
-  input?: Component<ChatInputProps>
-  expanded?: Component<ChatExpandedProps>
-  messagesContainer?: Component<MessagesContainerProps>
-  avatar?: Component<AvatarProps>
-  messageBody?: Component<MessageBodyProps>
-}
-
-export interface MessageBodyProps {
-  isMe: boolean
-  sender: string
-  message: string
-  timestamp: number
-  formatTime?: (ts: number) => string
-}
-
-export interface AvatarProps {
-  isMe: boolean
-  sender: string
+  ChatMinimized?: Component<ChatMinimizedProps>
+  ChatExpanded?: Component<ChatExpandedProps>
+  ChatHeader?: Component<ChatHeaderProps>
+  MessageList?: Component<MessageListProps>
+  MessageRow?: Component<MessageRowProps>
+  MessageAvatar?: Component<MessageAvatarProps>
+  MessageBody?: Component<MessageBodyProps>
+  ChatInput?: Component<ChatInputProps>
 }
 
 export interface ChatProps {
@@ -75,4 +22,55 @@ export interface ChatProps {
   chatName?: string | React.ReactElement
   components?: ChatComponents
   showWhenDisconnected?: boolean
+}
+
+export interface ChatMinimizedProps {
+  chatName: string | React.ReactElement
+  expandChat: () => void
+}
+
+export interface ChatExpandedProps
+  extends ChatHeaderProps,
+    ChatInputProps,
+    MessageListProps {
+  ChatHeader: Component<ChatHeaderProps>
+  MessageList: Component<MessageListProps>
+  MessageRow: Component<MessageRowProps>
+  MessageAvatar: Component<MessageAvatarProps>
+  MessageBody: Component<MessageBodyProps>
+  ChatInput: Component<ChatInputProps>
+}
+
+export interface ChatHeaderProps {
+  chatName: string | React.ReactElement
+  minimizeChat: () => void
+}
+
+export interface MessageRowProps extends MessageBodyProps, MessageAvatarProps {
+  MessageAvatar: Component<MessageAvatarProps>
+  MessageBody: Component<MessageBodyProps>
+}
+
+export interface MessageListProps {
+  messages: ChatMessage[]
+  MessageRow: Component<MessageRowProps>
+  MessageAvatar: Component<MessageAvatarProps>
+  MessageBody: Component<MessageBodyProps>
+}
+
+export interface MessageAvatarProps {
+  senderId: string
+  isMe: boolean
+}
+
+export interface MessageBodyProps {
+  senderId: string
+  message: string
+  sentAt: number
+  isMe: boolean
+  formatTime?: (ts: number) => string
+}
+
+export interface ChatInputProps {
+  sendMessage: (message: string) => void
 }

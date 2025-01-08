@@ -1,15 +1,15 @@
 import { useMemo } from 'react'
 import { getUserColor } from '../../utils'
-import { AvatarProps } from './types'
+import { MessageAvatarProps } from './types'
 
-export default function MessageAvatar({ isMe, sender }: AvatarProps) {
-  const senderColor = useMemo(() => getUserColor(sender), [sender])
+export default function MessageAvatar({ isMe, senderId }: MessageAvatarProps) {
+  const senderColor = useMemo(() => getUserColor(senderId), [senderId])
 
   const initials = useMemo(() => {
-    if (!sender) return ''
-    const trimmedSender = sender.trim()
+    if (!senderId) return ''
+    const trimmedSender = senderId.trim()
     return `${trimmedSender[0]}${trimmedSender[trimmedSender.length - 1]}`.toUpperCase()
-  }, [sender])
+  }, [senderId])
 
   return (
     <div

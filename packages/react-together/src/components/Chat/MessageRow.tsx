@@ -1,20 +1,20 @@
-import { MessageProps } from './types'
+import { MessageRowProps } from './types'
 
 export default function MessageRow({
   message,
-  sender,
-  timestamp,
+  senderId,
+  sentAt,
   isMe,
-  AvatarComponent,
-  MessageBodyComponent
-}: MessageProps) {
+  MessageAvatar,
+  MessageBody
+}: MessageRowProps) {
   return (
     <div className={`rt-message-row ${isMe ? 'isMe' : ''}`}>
-      <AvatarComponent isMe={isMe} sender={sender} />
-      <MessageBodyComponent
+      <MessageAvatar isMe={isMe} senderId={senderId} />
+      <MessageBody
         isMe={isMe}
-        sender={sender}
-        timestamp={timestamp}
+        senderId={senderId}
+        sentAt={sentAt}
         message={message}
       />
     </div>

@@ -25,17 +25,18 @@ export default class ChatModel extends ReactModel {
     this.messages = []
     this.nextMessageId = 0
 
-    this.subscribe(rtKey, 'sendMessage', this.sendMessage)
+    this.subscribe(rtKey, 'sendMessage', this.handleNewMessage)
   }
 
-  sendMessage({ message, senderId, sentAt }: SendMessageArgs) {
-    this.messages.push({
+  handleNewMessage({ message, senderId, sentAt }: SendMessageArgs) {
+    const msg = {
       message,
       senderId,
       sentAt,
       id: this.nextMessageId++
-    })
-    this.publish(this.rtKey, 'messageSent', {})
+    }
+    this.messages.push(msg)
+    this.publish(this.rtKey, 'messageSent', msg)
   }
 }
 ChatModel.register('ChatModel')

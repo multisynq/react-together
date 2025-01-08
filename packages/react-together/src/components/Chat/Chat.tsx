@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { useChat, useIsTogether } from '../../hooks'
 import './Chat.css'
-import ChatExpanded from './ChatExpanded'
-import ChatHeader from './ChatHeader'
-import ChatInput from './ChatInput'
-import ChatMinimized from './ChatMinimized'
-import MessageAvatar from './MessageAvatar'
-import MessageBody from './MessageBody'
-import MessagesList from './MessageList'
-import MessageRow from './MessageRow'
+import _ChatExpanded from './ChatExpanded'
+import _ChatHeader from './ChatHeader'
+import _ChatInput from './ChatInput'
+import _ChatMinimized from './ChatMinimized'
+import _MessageAvatar from './MessageAvatar'
+import _MessageBody from './MessageBody'
+import _MessagesList from './MessageList'
+import _MessageRow from './MessageRow'
 import { ChatProps } from './types'
 
 export default function Chat({
@@ -20,15 +20,14 @@ export default function Chat({
   const { messages, sendMessage } = useChat(rtKey)
   const isTogether = useIsTogether()
 
-  const CollapsedComponent = components?.collapsed ?? ChatMinimized
-  const HeaderComponent = components?.header ?? ChatHeader
-  const MessageComponent = components?.message ?? MessageRow
-  const InputComponent = components?.input ?? ChatInput
-  const MessagesContainerComponent =
-    components?.messagesContainer ?? MessagesList
-  const ExpandedComponent = components?.expanded ?? ChatExpanded
-  const AvatarComponent = components?.avatar ?? MessageAvatar
-  const MessageBodyComponent = components?.messageBody ?? MessageBody
+  const ChatMinimized = components?.ChatMinimized ?? _ChatMinimized
+  const ChatExpanded = components?.ChatExpanded ?? _ChatExpanded
+  const ChatHeader = components?.ChatHeader ?? _ChatHeader
+  const MessageList = components?.MessageList ?? _MessagesList
+  const MessageRow = components?.MessageRow ?? _MessageRow
+  const MessageAvatar = components?.MessageAvatar ?? _MessageAvatar
+  const MessageBody = components?.MessageBody ?? _MessageBody
+  const ChatInput = components?.ChatInput ?? _ChatInput
 
   const [isMinimized, setIsMinimized] = useState(false)
 
@@ -37,31 +36,30 @@ export default function Chat({
   }
 
   return (
-    showWhenDisconnected ||
-    (isTogether && (
+    (showWhenDisconnected || isTogether) && (
       <div className="rt-chat">
         {isMinimized ? (
-          <CollapsedComponent
+          <ChatMinimized
             chatName={chatName}
             expandChat={() => toggleMinimize()}
           />
         ) : (
-          <ExpandedComponent
+          <ChatExpanded
             {...{
-              HeaderComponent,
-              MessageComponent,
-              MessageBodyComponent,
-              InputComponent,
-              MessagesContainerComponent,
-              AvatarComponent
+              messages,
+              chatName,
+              ChatHeader,
+              MessageRow,
+              MessageBody,
+              ChatInput,
+              MessageList,
+              MessageAvatar
             }}
-            messages={messages}
-            onSend={sendMessage}
-            collapseChat={() => toggleMinimize()}
-            chatName={chatName}
+            sendMessage={sendMessage}
+            minimizeChat={() => toggleMinimize()}
           />
         )}
       </div>
-    ))
+    )
   )
 }
