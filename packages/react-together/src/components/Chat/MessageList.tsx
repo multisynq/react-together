@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useMyId } from '../../hooks'
 import { MessagesContainerProps } from './types'
 
-export default function MessagesContainer({
+export default function MessagesList({
   messages,
   MessageComponent,
   AvatarComponent,

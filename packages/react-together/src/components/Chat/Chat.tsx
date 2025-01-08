@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { useChat, useIsTogether } from '../../hooks'
-import Avatar from './Avatar'
 import './Chat.css'
-import ChatCollapsed from './ChatCollapsed'
 import ChatExpanded from './ChatExpanded'
 import ChatHeader from './ChatHeader'
 import ChatInput from './ChatInput'
-import Message from './Message'
+import ChatMinimized from './ChatMinimized'
+import MessageAvatar from './MessageAvatar'
 import MessageBody from './MessageBody'
-import MessagesContainer from './MessagesContainer'
+import MessagesList from './MessageList'
+import MessageRow from './MessageRow'
 import { ChatProps } from './types'
 
 export default function Chat({
@@ -20,14 +20,14 @@ export default function Chat({
   const { messages, sendMessage } = useChat(rtKey)
   const isTogether = useIsTogether()
 
-  const CollapsedComponent = components?.collapsed ?? ChatCollapsed
+  const CollapsedComponent = components?.collapsed ?? ChatMinimized
   const HeaderComponent = components?.header ?? ChatHeader
-  const MessageComponent = components?.message ?? Message
+  const MessageComponent = components?.message ?? MessageRow
   const InputComponent = components?.input ?? ChatInput
   const MessagesContainerComponent =
-    components?.messagesContainer ?? MessagesContainer
+    components?.messagesContainer ?? MessagesList
   const ExpandedComponent = components?.expanded ?? ChatExpanded
-  const AvatarComponent = components?.avatar ?? Avatar
+  const AvatarComponent = components?.avatar ?? MessageAvatar
   const MessageBodyComponent = components?.messageBody ?? MessageBody
 
   const [isMinimized, setIsMinimized] = useState(false)

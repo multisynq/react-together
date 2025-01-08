@@ -1,6 +1,6 @@
 import { ChatCollapsedProps } from './types'
 
-export default function ChatCollapsed({
+export default function ChatMinimized({
   chatName,
   expandChat
 }: ChatCollapsedProps) {

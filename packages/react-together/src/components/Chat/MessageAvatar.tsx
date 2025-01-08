@@ -1,17 +1,9 @@
 import { useMemo } from 'react'
+import { getUserColor } from '../../utils'
 import { AvatarProps } from './types'
 
-function generateColor(name: string) {
-  let hash = 0
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash)
-  }
-  const h = hash % 360
-  return `hsl(${h}, 70%, 60%)`
-}
-
-export default function Avatar({ isMe, sender }: AvatarProps) {
-  const senderColor = useMemo(() => generateColor(sender), [sender])
+export default function MessageAvatar({ isMe, sender }: AvatarProps) {
+  const senderColor = useMemo(() => getUserColor(sender), [sender])
 
   const initials = useMemo(() => {
     if (!sender) return ''

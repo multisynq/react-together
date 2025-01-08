@@ -1,6 +1,6 @@
 import { MessageProps } from './types'
 
-export default function Message({
+export default function MessageRow({
   message,
   sender,
   timestamp,
@@ -9,7 +9,7 @@ export default function Message({
   MessageBodyComponent
 }: MessageProps) {
   return (
-    <div className={`rt-message-box ${isMe ? 'isMe' : ''}`}>
+    <div className={`rt-message-row ${isMe ? 'isMe' : ''}`}>
       <AvatarComponent isMe={isMe} sender={sender} />
       <MessageBodyComponent
         isMe={isMe}
