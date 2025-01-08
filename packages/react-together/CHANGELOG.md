@@ -1,5 +1,7 @@
 ## Unpublished
  - Added `omitMyValue` option flag in `useStateTogetherWithPerUserValues`
+ - Added `useChat` hook
+ - Added `<Chat/>` component
 
 ## 0.3.0
 `2024-12-13`
@@ -71,4 +73,4 @@
  - Added `useReactTogetherContext` hook
  - Added `<ConnectedViews/>` component
  - Added `<PresenceDiv/>` component
- - Added `<ReactTogether/>` context provider`
+ - Added `<ReactTogether/>` context provider
