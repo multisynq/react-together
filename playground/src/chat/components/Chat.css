@@ -108,12 +108,12 @@
   white-space: nowrap;
 }
 
-.rt-message-box {
+.rt-message-row {
   display: flex;
   align-items: end;
 }
 
-.rt-message-box.isMe {
+.rt-message-row.isMe {
   flex-direction: row-reverse;
 }
 

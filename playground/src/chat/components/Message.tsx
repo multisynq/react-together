@@ -37,7 +37,7 @@ export default function Message({
 
   return (
     <div>
-      <div className={`rt-message-box ${isMe ? 'isMe' : ''}`}>
+      <div className={`rt-message-row ${isMe ? 'isMe' : ''}`}>
         <div
           className={`rt-avatar ${isMe ? 'isMe' : ''}`}
           style={{ backgroundColor: senderColor }}
