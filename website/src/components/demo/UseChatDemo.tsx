@@ -16,32 +16,32 @@ export function UseChatDemo() {
 
   return (
     <DynamicUrlWrapper>
-      <div className='p-4 h-full flex flex-col gap-2'>
-        <div className='grow overflow-y-auto'>
-          <ul>
-            {messages.map(({ id, senderId, message, sentAt }) => (
-              <li key={id}>
-                [{formatTime(sentAt)}] <strong>{senderId}</strong>: {message}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className='flex gap-2'>
-          <input
-            className='border rounded-md p-2 grow'
-            type='text'
-            value={message}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                handleSendMessage(e)
-              }
-            }}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <button className='rounded-md p-2 bg-blue-500 text-white' onClick={handleSendMessage}>
-            Send
-          </button>
-        </div>
+      {/* ---MESSAGE CONTAINER--- */}
+      <div className='grow overflow-y-auto px-4'>
+        <ul className='flex gap-1 flex-col mb-2'>
+          {messages.map(({ id, senderId, message, sentAt }) => (
+            <li key={id}>
+              [{formatTime(sentAt)}] <strong>{senderId}</strong>: {message}
+            </li>
+          ))}
+        </ul>
+      </div>
+      {/* ---INPUT CONTAINER--- */}
+      <div className='flex gap-2 px-2'>
+        <input
+          className='border rounded-md p-2 grow'
+          type='text'
+          value={message}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSendMessage(e)
+            }
+          }}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button className='rounded-md p-2 bg-blue-500 text-white' onClick={handleSendMessage}>
+          Send
+        </button>
       </div>
     </DynamicUrlWrapper>
   )

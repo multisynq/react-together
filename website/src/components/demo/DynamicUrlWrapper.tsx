@@ -78,7 +78,7 @@ export function DynamicUrlWrapper({ children }: DynamicUrlWrapperProps) {
       <div className='px-2'>
         <UrlContainer {...{ localUrl, setLocalUrl, onSubmit }} />
       </div>
-      <div className='grow'>{children}</div>
+      {children}
     </div>
   )
 }
