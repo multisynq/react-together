@@ -17,7 +17,7 @@ export default function Chat({
   rtKey,
   chatName = 'Group Chat',
   components,
-  showWhenDisconnected
+  hideWhenDisconnected = false
 }: ChatProps) {
   const { messages, sendMessage } = useChat(rtKey)
   const isTogether = useIsTogether()
@@ -40,7 +40,7 @@ export default function Chat({
   }
 
   return (
-    (showWhenDisconnected || isTogether) && (
+    (!hideWhenDisconnected || isTogether) && (
       <div className="rt-chat">
         {isMinimized ? (
           <ChatMinimized
