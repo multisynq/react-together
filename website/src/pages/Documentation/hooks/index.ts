@@ -1,3 +1,4 @@
+import UseChatDocumentationPage from './useChat'
 import UseConnectedUsersDocumentationPage from './useConnectedUsers'
 import UseCreateRandomSessionDocumentationPage from './useCreateRandomSession'
 import UseFunctionTogetherDocumentationPage from './useFunctionTogether'
@@ -10,6 +11,7 @@ import UseStateTogetherDocumentationPage from './useStateTogether'
 import UseStateTogetherWithPerUserValuesDocumentationPage from './useStateTogetherWithPerUserValues'
 
 export {
+  UseChatDocumentationPage,
   UseConnectedUsersDocumentationPage,
   UseCreateRandomSessionDocumentationPage,
   UseFunctionTogetherDocumentationPage,

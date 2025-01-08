@@ -22,8 +22,8 @@ export interface ChatComponents {
 export interface ChatProps {
   rtKey: string
   chatName?: string | React.ReactElement
-  components?: ChatComponents
   hideWhenDisconnected?: boolean
+  components?: ChatComponents
 }
 
 export interface ChatMinimizedProps {
