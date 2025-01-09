@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useChat } from 'react-together'
 import { DynamicUrlWrapper } from './DynamicUrlWrapper'
 
@@ -7,6 +7,13 @@ export function UseChatDemo() {
   const { messages, sendMessage } = useChat('my-chat')
 
   const [message, setMessage] = useState('')
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight
+    }
+  }, [messages])
 
   function handleSendMessage(e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>) {
     e.preventDefault()
@@ -17,7 +24,7 @@ export function UseChatDemo() {
   return (
     <DynamicUrlWrapper>
       {/* ---MESSAGE CONTAINER--- */}
-      <div className='overflow-y-auto px-2 h-full w-full'>
+      <div className='overflow-y-auto px-2 h-full w-full' ref={messagesContainerRef}>
         <ul className='flex gap-1 flex-col mb-2'>
           {messages.map(({ id, senderId, message, sentAt }) => (
             <li key={id}>
