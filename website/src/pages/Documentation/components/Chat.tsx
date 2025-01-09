@@ -1,4 +1,5 @@
-import { CodeBlock } from '@components/ui'
+import { CodeBlock, CodeSpan } from '@components/ui'
+import ChatWireframe from '@images/chatWireframe.webp'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { PreviewSourceCodeTabs } from '@pages/Documentation/PreviewSourceCodeTabs'
 import { useLocalStorage } from '@uidotdev/usehooks'
@@ -132,6 +133,7 @@ const api = (
       ]}
     />
     {/* <h5>Chat Components</h5> */}
+
     <InterfaceApi
       title='ChatComponents'
       items={[
@@ -178,15 +180,27 @@ const api = (
         {
           name: 'ConnectPrompt',
           type: 'Component<unknown>',
-          description: <p>The component to use for the connect prompt.</p>,
+          description: (
+            <p>
+              The component to use for the connect prompt. This component is displayed inside the <CodeSpan text='MessageList' />
+              component when the user is not connected to a session.
+            </p>
+          ),
         },
         {
           name: 'WelcomeMessage',
           type: 'Component<unknown>',
-          description: <p>The component to use for the welcome message.</p>,
+          description: (
+            <p>
+              The component to use for the welcome message. This is displayed inside the <CodeSpan text='MessageList' /> component when the
+              user is connected to a session, but there are no messages yet.
+            </p>
+          ),
         },
       ]}
     />
+    <h5>Wireframe</h5>
+    <img src={ChatWireframe} alt='React Together Chat Wireframe. Shows the placement of each component within the chat interface.' />
   </>
 )
 
