@@ -20,6 +20,7 @@ export default defineConfig({
           'react',
           '@croquet',
           'color-hash',
+          'object-hash',
           'primereact',
           'primeicons',
           'unique-names-generator'
