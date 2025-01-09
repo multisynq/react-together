@@ -18,18 +18,44 @@ interface MessageProps {
   message: string
   sender: string
   timestamp: number
+  isMe: boolean
 }
-export default function Message({ message, sender, timestamp }: MessageProps) {
+
+export default function Message({
+  message,
+  sender,
+  timestamp,
+  isMe
+}: MessageProps) {
   const senderColor = useMemo(() => generateColor(sender), [sender])
+
+  const initials = useMemo(() => {
+    if (!sender) return ''
+    const trimmedSender = sender.trim()
+    return `${trimmedSender[0]}${trimmedSender[trimmedSender.length - 1]}`.toUpperCase()
+  }, [sender])
+
   return (
-    <div className="message">
-      <span className="timestamp">
-        {timestamp ? formatTime(timestamp) : '???'}
-      </span>
-      <span className="sender" style={{ color: senderColor }}>
-        {sender}
-      </span>
-      <span className="content">{message}</span>
+    <div>
+      <div className={`rt-message-row ${isMe ? 'isMe' : ''}`}>
+        <div
+          className={`rt-avatar ${isMe ? 'isMe' : ''}`}
+          style={{ backgroundColor: senderColor }}
+        >
+          <label className="rt-initials">{initials}</label>
+        </div>
+        <div className={`rt-message-divider ${isMe ? 'isMe' : ''}`}>
+          <div className={`rt-message-border ${isMe ? 'isMe' : ''}`}>
+            <span className="rt-messageLabel">{sender}</span>
+            <div>
+              <span className="rt-message-text text-wrap">{message}</span>{' '}
+              <span className="rt-messageLabel">
+                {timestamp ? formatTime(timestamp) : '???'}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

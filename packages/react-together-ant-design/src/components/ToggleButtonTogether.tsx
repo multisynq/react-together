@@ -2,7 +2,7 @@ import { Button, ButtonProps } from 'antd'
 import { useStateTogether } from 'react-together'
 
 export interface ToggleButtonTogetherProps
-  extends Omit<ButtonProps, 'checked' | 'onChange'> {
+  extends Omit<ButtonProps, 'onChange'> {
   rtKey: string
   onLabel?: string
   offLabel?: string

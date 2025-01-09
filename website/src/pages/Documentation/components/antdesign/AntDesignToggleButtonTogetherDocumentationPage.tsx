@@ -46,13 +46,16 @@ export default function ToggleButtonTogether({
   offIcon,
   ...props
 }: ToggleButtonTogetherProps) {
-  const [isOn, setIsOn] = useStateTogether<boolean>(rtKey, false)
-  const label = isOn ? onLabel : offLabel
-  const icon  = isOn ? onIcon  : offIcon
-  return <Button {...props} type={isOn ? 'primary' : 'default'} onClick={() => setIsOn(!isOn)}>
-    {icon}
-    {label}
-  </Button>
+  const [isOn, setIsOn] = useStateTogether<boolean>(rtKey, false);
+  const label = isOn ? onLabel : offLabel;
+  const icon  = isOn ? onIcon  : offIcon;
+
+  return (
+    <Button {...props} type={isOn ? 'primary' : 'default'} onClick={() => setIsOn(!isOn)}>
+      {icon}
+      {label}
+    </Button>
+  )
 }
 `,
   },
@@ -75,13 +78,28 @@ export function AntDesignToggleButtonTogetherDocumentationPage() {
             ),
           },
           {
-            removed: true,
-            name: 'checked',
-            description: (
-              <p>
-                Removed, as this value will be controlled by the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook
-              </p>
-            ),
+            removed: false,
+            name: 'onLabel',
+            type: 'string',
+            description: 'The label to display when the button is on.',
+          },
+          {
+            removed: false,
+            name: 'offLabel',
+            type: 'string',
+            description: 'The label to display when the button is off.',
+          },
+          {
+            removed: false,
+            name: 'onIcon',
+            type: 'React.ReactNode',
+            description: 'The icon to display when the button is on.',
+          },
+          {
+            removed: false,
+            name: 'offIcon',
+            type: 'React.ReactNode',
+            description: 'The icon to display when the button is off.',
           },
         ]}
       />

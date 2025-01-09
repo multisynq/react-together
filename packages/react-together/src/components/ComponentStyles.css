@@ -2,6 +2,8 @@
 :root {
     --color-primary: #3b82f6;
     --color-primary-hover: #2563eb;
+    --color-caution: #ff3d32;
+    --color-caution-hover: #d9342b;
     --color-border: #2d3748;
     --color-border-hover: #6b7280;
     --color-white: #ffffff;
@@ -17,26 +19,38 @@
     --transition-speed: 0.3s;
 }
 
-/* Button Styling */
-.sessionMenu-button,
-.primary-button {
-    width: 2.5rem;
-    height: 2.5rem;
-    background-color: var(--color-primary);
-    color: var(--color-white);
+/* Primary Button */
+.session-button {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: var(--spacing-small);
-    border-radius: var(--border-radius-small);
+    padding: 8px 12px;
+    border-radius: var(--border-radius-large);
+    color: white;
     transition:
         background-color var(--transition-speed),
         box-shadow var(--transition-speed);
+    label {
+        font-size: var(--font-size-medium);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-white);
+    }
+}
+.button-primary {
+    background-color: var(--color-primary);
 }
 
-.sessionMenu-button:hover,
-.primary-button:hover {
+.button-primary:hover {
     background-color: var(--color-primary-hover);
+}
+
+.button-caution {
+    background-color: var(--color-caution);
+}
+
+.button-caution:hover {
+    background-color: var(--color-caution-hover);
 }
 
 /* Interactive Borders */
@@ -49,18 +63,6 @@
     box-shadow: 0 1px 0 var(--color-border-hover);
 }
 
-/* Primary Button */
-.primary-button {
-    padding: 8px 16px;
-    border-radius: var(--border-radius-large);
-}
-
-.button-label {
-    font-size: var(--font-size-medium);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-white);
-}
-
 /* Containers */
 .input-container {
     display: flex;
@@ -69,14 +71,14 @@
     padding: var(--spacing-small) var(--spacing-large);
     border-radius: var(--border-radius-medium);
     justify-content: space-between;
-}
 
-.input-button {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    justify-content: space-between;
-    width: 100%;
+    .input-button {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: space-between;
+        width: 100%;
+    }
 }
 
 .url-container {

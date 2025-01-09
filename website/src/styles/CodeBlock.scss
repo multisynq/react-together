@@ -17,7 +17,6 @@
   --code-block-regex-color: #d16969;
   --code-block-number-color: #b5cea8;
   --code-block-tag-color: #569cd6;
-
   --code-block-min-height: 4rem;
 }
 
@@ -116,6 +115,7 @@
       display: none !important;
     }
     code {
+      white-space: pre-wrap;
       border-left: 1rem solid transparent;
       box-shadow: none;
       margin: 0;

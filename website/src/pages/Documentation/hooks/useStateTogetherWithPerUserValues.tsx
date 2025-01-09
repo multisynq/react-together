@@ -1,5 +1,7 @@
-import { CodeBlock, CodeSpan, Link } from '@components/ui'
+import { Markdown } from '@components/Markdown'
+import { CodeBlock, CodeSpan, Link, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import InterfaceApi from '@pages/Documentation/InterfaceApi'
 import getDocLinks from '@utils/getDocLinks'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
@@ -101,6 +103,11 @@ const api = (
           type: 'T',
           description: 'The initial value to use the first time the state is created.',
         },
+        {
+          name: 'options',
+          type: <LinkSpan text='UseStateTogetherWithPerUserValuesOptions' to='#options' />,
+          description: 'An option object that allows configuring the behavior of the hook. See more details below.',
+        },
       ]}
     />
     <HookReturnApi
@@ -120,6 +127,55 @@ const api = (
           type: '[key: string]: T',
           description:
             'An object containing a mapping between each user and its current state. Users that are not rendered in the hook will not appear in mapping, even if they are connected in the session.',
+        },
+      ]}
+    />
+    <InterfaceApi
+      title='UseStateTogetherWithPerUserValuesOptions'
+      id='options'
+      items={[
+        {
+          name: 'omitMyValue',
+          type: 'boolean',
+          default: 'false',
+          description: <Markdown>If this option is `true`, the local value will not be included in the `allValues` object.</Markdown>,
+        },
+        {
+          name: 'resetOnConnect',
+          type: 'boolean',
+          default: 'false',
+          description: (
+            <Markdown>If `true`, the user's state will be reset to `initialValue` when the user connects to the session.</Markdown>
+          ),
+        },
+        {
+          name: 'resetOnDisconnect',
+          type: 'boolean',
+          default: 'false',
+          description: (
+            <Markdown>
+              If `true`, the user's state will be reset to `initialValue` after the user disconnects from the session. Note that this only
+              affects the user's local state, *after* the user disconnects.
+            </Markdown>
+          ),
+        },
+        {
+          name: 'keepValues',
+          type: 'boolean',
+          default: 'false',
+          description: "If true, the user's state will be persisted in the session even after disconnection.",
+        },
+        {
+          name: 'overwriteSessionValue',
+          type: 'boolean',
+          default: 'false',
+          description: (
+            <Markdown>
+              By default, when a user connects to a session and a value associated with the user's identifier already exists (either a
+              persisted value or another user with the same identifier is already connected to the session), the connecting user will update
+              their local state to match the session value. If this flag is `true` the user will force its local value into the session.
+            </Markdown>
+          ),
         },
       ]}
     />
@@ -158,7 +214,6 @@ const content = (
               ),
             }}
           />
-          {/* <DocumentationDemo url='useStateTogetherWithPerUserValues' /> */}
         </>
       ),
       usage: (
@@ -172,5 +227,5 @@ const content = (
   />
 )
 export default function UseStateTogetherWithPerUserValuesDocumentationPage() {
-  return <DocumentationPage {...{ content, navItems: GenericDocNav('useStateTogetherWithPerUserValues') }} />
+  return <DocumentationPage {...{ content, navItems: GenericDocNav('useStateTogetherWithPerUserValues', { exclude: ['source'] }) }} />
 }

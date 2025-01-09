@@ -7,6 +7,7 @@ import SessionManager from './SessionManager'
 const ConnectedViews = ConnectedUsers
 const PresenceDiv = HoverHighlighter
 
+export * from './Chat'
 export {
   ConnectedUsers,
   ConnectedViews,

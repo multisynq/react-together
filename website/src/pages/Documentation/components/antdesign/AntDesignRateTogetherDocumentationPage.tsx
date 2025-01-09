@@ -61,7 +61,7 @@ export function AntDesignRateTogetherDocumentationPage() {
           },
           {
             removed: true,
-            name: 'checked',
+            name: 'value',
             description: (
               <p>
                 Removed, as this value will be controlled by the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook

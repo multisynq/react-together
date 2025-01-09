@@ -1,3 +1,4 @@
+import useChat from './useChat'
 import useConnectedUsers from './useConnectedUsers'
 import useCreateRandomSession from './useCreateRandomSession'
 import useFunctionTogether from './useFunctionTogether'
@@ -13,6 +14,7 @@ import { useIsJoined } from '@croquet/react'
 const useIsTogether = useIsJoined
 
 export {
+  useChat,
   useConnectedUsers,
   useCreateRandomSession,
   useFunctionTogether,

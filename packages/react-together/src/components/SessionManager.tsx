@@ -48,7 +48,7 @@ export default function SessionManager() {
   return (
     <>
       <button
-        className="sessionMenu-button interactive-border"
+        className="session-button button-primary interactive-border"
         onClick={() => setIsOpen(true)}
       >
         <Icons.logo style={{ width: '1.5rem' }} />
@@ -70,16 +70,11 @@ export default function SessionManager() {
       >
         {isTogether ? (
           <div className="sessionMenuContent-container">
-            <div className="flex flex-col">
-              <p className="sessionMenu-description">
-                Send this url to your friends to
-                <br /> join the current session!
-              </p>
-            </div>
-            <div
-              className="sessionMenuContent-container"
-              style={{ width: '100%' }}
-            >
+            <p className="sessionMenu-description">
+              Send this url to your friends to
+              <br /> join the current session!
+            </p>
+            <div className="sessionMenuContent-container">
               {showQRCode && joinUrl && (
                 <div className="qrCode-container">
                   <QRCode
@@ -92,18 +87,15 @@ export default function SessionManager() {
                   />
                 </div>
               )}
-              <div
-                className="interactive-border input-container"
-                style={{ display: 'flex' }}
-              >
+              <div className="input-container interactive-border">
                 <button
                   onClick={copyToClipboard}
                   className="input-button"
                   disabled={!joinUrl}
                 >
-                  <span className="url-container">
+                  <label className="url-container">
                     {copied ? 'Copied!' : joinUrl}
-                  </span>
+                  </label>
                   <i className={copied ? 'pi pi-check' : 'pi pi-copy'} />
                 </button>
                 <button onClick={toggleQRCode} disabled={!joinUrl}>
@@ -112,20 +104,20 @@ export default function SessionManager() {
               </div>
             </div>
             <button
-              className="primary-button interactive-border"
+              className="session-button button-caution interactive-border"
               onClick={handleLeaveSession}
               style={{ width: '100%' }}
             >
-              <span className="button-label">Leave Session</span>
+              <label>Leave Session</label>
             </button>
           </div>
         ) : (
           <button
-            className="primary-button interactive-border"
+            className="session-button button-primary interactive-border"
             onClick={handleCreateSession}
             style={{ width: '100%' }}
           >
-            <span className="button-label">Create Private Session</span>
+            <label>Create Private Session</label>
           </button>
         )}
       </Dialog>

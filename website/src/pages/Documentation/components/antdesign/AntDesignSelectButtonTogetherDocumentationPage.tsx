@@ -1,11 +1,12 @@
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { GenericDocNav } from '@pages/Documentation/GenericDocPage'
+import InterfaceApi from '@pages/Documentation/InterfaceApi'
 import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { AntDesignComponentDocumentationPage } from './AntDesignComponentDocumentationPage'
 
 const name = 'SelectButtonTogether'
-const originalName = 'SelectButton'
+const originalName = 'Radio'
 
 const codes = {
   demo: {
@@ -75,12 +76,34 @@ export function AntDesignSelectButtonTogetherDocumentationPage() {
           },
           {
             removed: true,
-            name: 'checked',
+            name: 'value',
             description: (
               <p>
                 Removed, as this value will be controlled by the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook
               </p>
             ),
+          },
+          {
+            removed: false,
+            name: 'items',
+            type: <LinkSpan to='#SelectButtonTogetherItem' text='SelectButtonTogetherItem[]' />,
+            description: 'The items to display in the select button group.',
+          },
+        ]}
+      />
+      <InterfaceApi
+        id='SelectButtonTogetherItem'
+        title='SelectButtonTogetherItem'
+        items={[
+          {
+            name: 'label',
+            type: 'string',
+            description: 'The label to display in the select button.',
+          },
+          {
+            name: 'value',
+            type: 'string',
+            description: 'The value to store in state.',
           },
         ]}
       />
@@ -94,6 +117,7 @@ export function AntDesignSelectButtonTogetherDocumentationPage() {
         api,
         demo: { code: codes.demo },
         source: { code: codes.source },
+        demoUrl: `antdesign/SelectButton`,
       }}
     />
   )

@@ -30,13 +30,13 @@ export function Markdown({ children }: MarkdownProps) {
         code: ({ className, children, ...props }) => {
           const isInline = children.toString().split('\n').length === 1
           const match = /language-(\w+)/.exec(className || '')
-          
+
           // make a code object with the language as the key
           let lang = match?.[1]
           if (lang == 'js') lang = 'javascript'
           console.log('match=', match?.[1], 'lang=', lang)
           // if (lang == 'ts') lang = 'typescript'
-          const code = { [lang]: String(children)}
+          const code = { [lang]: String(children) }
 
           return !isInline ? (
             <CodeBlock {...{ code, ...props }} />

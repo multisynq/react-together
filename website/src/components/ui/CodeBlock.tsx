@@ -1,11 +1,11 @@
 import '@styles/CodeBlock.scss'
 import { useEffect, useState } from 'react'
 
-import { PiCode, PiCopy, PiDatabase } from 'react-icons/pi'
+import { PiCode, PiCodepenLogo, PiCopy, PiDatabase } from 'react-icons/pi'
 import { SiGithub, SiStackblitz } from 'react-icons/si'
 
 import { Button as _Button, CodeHighlight } from '@components'
-import { openStackBlitz } from '@utils/codeeditor'
+import { openCodePen, openStackBlitz } from '@utils/codeeditor'
 import { Tooltip } from 'antd'
 
 export type CodeBlockCodeMetaData = {
@@ -26,6 +26,7 @@ export interface CodeBlockProps {
   embedded?: boolean
   hideToggleCode?: boolean
   stackBlitz?: boolean
+  codepen?: boolean
   codeClassName?: string
   github?: string
 }
@@ -36,6 +37,7 @@ export function CodeBlock({
   embedded = false,
   hideToggleCode = false,
   stackBlitz = false,
+  codepen = false,
   codeClassName,
   github,
 }: CodeBlockProps) {
@@ -51,12 +53,18 @@ export function CodeBlock({
       setCodeMode('typescript')
       setCodeLang('typescript')
     }
-  }, [codeLang, embedded, availableCodeTypes, code.typescript])
+
+    if (availableCodeTypes === 1 && code.bash) {
+      setCodeMode('bash')
+      setCodeLang('bash')
+    }
+  }, [codeLang, embedded, availableCodeTypes, code.typescript, code.bash])
 
   const toggleCodeMode = (content: string) => {
     if (codeMode === 'data') setCodeMode('typescript')
+    else if (codeMode === 'bash') setCodeMode('basic')
     else setCodeMode(codeMode === 'basic' ? content : 'basic')
-    setCodeLang('typescript')
+    setCodeLang(content)
   }
 
   const copyCode = async () => await navigator.clipboard.writeText(code[codeLang])
@@ -80,20 +88,30 @@ export function CodeBlock({
                     }}
                   />
                 )}
+                {code.bash && (
+                  <Button
+                    {...{
+                      onClick: () => setCodeLang('bash'),
+                      className: `py-0 px-2 border-round h-2rem shadow-none${codeLang === 'bash' ? ' code-active' : ''}`,
+                      tooltip: 'Bash Code',
+                      label: 'SH',
+                    }}
+                  />
+                )}
               </>
             )}
 
             {!hideToggleCode && multipleCodeTypes && (
               <Button
                 {...{
-                  onClick: () => toggleCodeMode('typescript'),
+                  onClick: () => toggleCodeMode(code.typescript ? 'typescript' : code.bash ? 'bash' : 'basic'),
                   tooltip: 'Toggle Full Code',
                   label: <PiCode />,
                 }}
               />
             )}
 
-            {!hideToggleCode && code?.data ? (
+            {!hideToggleCode && code?.data && (
               <Button
                 {...{
                   onClick: () => setCodeMode('data'),
@@ -101,7 +119,7 @@ export function CodeBlock({
                   label: <PiDatabase />,
                 }}
               />
-            ) : null}
+            )}
 
             {stackBlitz && (
               <Button
@@ -128,6 +146,21 @@ export function CodeBlock({
                     }),
                   tooltip: `Edit in StackBlitz (node)`,
                   label: <SiStackblitz />,
+                }}
+              />
+            )}
+
+            {codepen && (
+              <Button
+                {...{
+                  onClick: () =>
+                    openCodePen({
+                      template: 'typescript',
+                      files: { [`src/${codeMetadata?.componentName || 'Component'}.tsx`]: code[codeMode] },
+                      codeMetadata,
+                    }),
+                  tooltip: 'Edit in CodePen',
+                  label: <PiCodepenLogo />,
                 }}
               />
             )}

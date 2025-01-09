@@ -5,7 +5,7 @@ import WrappedComponentPropsTable from '../WrappedComponentPropsTable'
 import { AntDesignComponentDocumentationPage } from './AntDesignComponentDocumentationPage'
 
 const name = 'MultiSelectTogether'
-const originalName = 'MultiSelect'
+const originalName = 'Select'
 
 const codes = {
   demo: {
@@ -79,7 +79,7 @@ export function AntDesignMultiSelectTogetherDocumentationPage() {
           },
           {
             removed: true,
-            name: 'checked',
+            name: 'value',
             description: (
               <p>
                 Removed, as this value will be controlled by the <LinkSpan to='/useStateTogether' text='useStateTogether' /> hook
@@ -98,6 +98,7 @@ export function AntDesignMultiSelectTogetherDocumentationPage() {
         api,
         demo: { code: codes.demo },
         source: { code: codes.source },
+        demoUrl: `antdesign/MultiSelect`,
       }}
     />
   )

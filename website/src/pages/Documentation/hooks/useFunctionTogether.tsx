@@ -94,7 +94,7 @@ export function MeditationBell() {
   },
 
   usage_1: {
-    basic: `import { useLeaveSession } from 'react-together'`,
+    basic: `import { useFunctionTogether } from 'react-together'`,
   },
 
   usage_2: {
