@@ -17,7 +17,7 @@ export function UseChatDemo() {
   return (
     <DynamicUrlWrapper>
       {/* ---MESSAGE CONTAINER--- */}
-      <div className='grow overflow-y-auto px-4'>
+      <div className='overflow-y-auto px-2 h-full w-full'>
         <ul className='flex gap-1 flex-col mb-2'>
           {messages.map(({ id, senderId, message, sentAt }) => (
             <li key={id}>
@@ -27,9 +27,9 @@ export function UseChatDemo() {
         </ul>
       </div>
       {/* ---INPUT CONTAINER--- */}
-      <div className='flex gap-2 px-2'>
+      <div className='flex gap-2 px-2 w-full'>
         <input
-          className='border rounded-md p-2 grow'
+          className='border rounded-md p-2 w-full'
           type='text'
           value={message}
           onKeyDown={(e) => {
@@ -39,7 +39,7 @@ export function UseChatDemo() {
           }}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button className='rounded-md p-2 bg-blue-500 text-white' onClick={handleSendMessage}>
+        <button className='rounded-md p-2 bg-blue-500 text-white hover:bg-blue-600 mr-[5rem]' onClick={handleSendMessage}>
           Send
         </button>
       </div>

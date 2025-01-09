@@ -6,12 +6,10 @@ import { DynamicUrlWrapper } from './DynamicUrlWrapper'
 export function ChatDemo() {
   return (
     <DynamicUrlWrapper>
-      <div className='relative'>
-        <div className='fixed bottom-0 left-2'>
-          <Chat rtKey='chat' />
-        </div>
-        <SessionManagement />
+      <div className='fixed bottom-0 left-2'>
+        <Chat rtKey='chat' />
       </div>
+      <SessionManagement />
     </DynamicUrlWrapper>
   )
 }
@@ -41,7 +39,7 @@ function SessionManagement() {
   }
 
   return (
-    <div className='text-center px-8'>
+    <div className='text-center px-8 h-full'>
       <h3>Your Collaborative website</h3>
       <div className='mt-5 text-sm'>
         {joinUrl ? (
