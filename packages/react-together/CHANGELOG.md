@@ -1,4 +1,6 @@
-## Unpublished
+## 0.3.1
+`2025-01-09`
+
  - Added `omitMyValue` option flag in `useStateTogetherWithPerUserValues`
  - Added `useChat` hook
  - Added `<Chat/>` component
