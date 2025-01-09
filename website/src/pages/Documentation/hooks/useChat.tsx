@@ -1,5 +1,6 @@
 import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
+import { useLocalStorage } from '@uidotdev/usehooks'
 import getDocLinks from '@utils/getDocLinks'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
@@ -107,64 +108,73 @@ function YourComponent() {
   },
 }
 
-export default function UseConnectedUsersDocumentationPage() {
-  const api = (
-    <>
-      <HookParamsApi
-        items={[
-          {
-            name: 'rtKey',
-            type: 'string',
-            description: 'The key used to identify this chat',
-          },
-        ]}
-      />
-      <HookReturnApi
-        items={[
-          {
-            name: 'messages',
-            type: <LinkSpan text='ChatMessage[]' to='#chat-message' />,
-            description: 'The list of messages sent to the chat.',
-          },
-          {
-            name: 'sendMessage',
-            type: '(message: string) => void',
-            description: 'A function to send a message to the chat.',
-          },
-        ]}
-      />
-      <InterfaceApi
-        title='ChatMessage'
-        id='chat-message'
-        items={[
-          {
-            name: 'id',
-            type: 'number',
-            description: 'The unique identifier of the message.',
-          },
-          {
-            name: 'senderId',
-            type: 'string',
-            description: 'The userId of the user who sent the message.',
-          },
-          {
-            name: 'message',
-            type: 'string',
-            description: 'The content of the message.',
-          },
-          {
-            name: 'sentAt',
-            type: 'number',
-            description: 'The timestamp of when the message was sent.',
-          },
-        ]}
-      />
-    </>
-  )
+const api = (
+  <>
+    <HookParamsApi
+      items={[
+        {
+          name: 'rtKey',
+          type: 'string',
+          description: 'The key used to identify this chat',
+        },
+      ]}
+    />
+    <HookReturnApi
+      items={[
+        {
+          name: 'messages',
+          type: <LinkSpan text='ChatMessage[]' to='#chat-message' />,
+          description: 'The list of messages sent to the chat.',
+        },
+        {
+          name: 'sendMessage',
+          type: '(message: string) => void',
+          description: 'A function to send a message to the chat.',
+        },
+      ]}
+    />
+    <InterfaceApi
+      title='ChatMessage'
+      id='chat-message'
+      items={[
+        {
+          name: 'id',
+          type: 'number',
+          description: 'The unique identifier of the message.',
+        },
+        {
+          name: 'senderId',
+          type: 'string',
+          description: 'The userId of the user who sent the message.',
+        },
+        {
+          name: 'message',
+          type: 'string',
+          description: 'The content of the message.',
+        },
+        {
+          name: 'sentAt',
+          type: 'number',
+          description: 'The timestamp of when the message was sent.',
+        },
+      ]}
+    />
+  </>
+)
+
+export default function UseChatDocumentationPage() {
+  // This is used to generate a random session per browser, so that each user has their own session
+  // We're storing each session in local storate so that users can resume the chat they had previously
+  const [chatSessionName] = useLocalStorage('chat-session-name', Math.random().toString(36).substring(2, 15))
+  const sessionParams = {
+    name: chatSessionName,
+    password: 'secret-password',
+  }
+
   const content = (
     <GenericDocPage
       {...{
-        title: 'useConnectedUsers',
+        title: 'useChat',
         description: (
           <>
             <p>
@@ -173,7 +183,7 @@ export default function UseConnectedUsersDocumentationPage() {
             </p>
             <PreviewSourceCodeTabs
               {...{
-                preview: <DocumentationDemo url='useChat' />,
+                preview: <DocumentationDemo url='useChat' session1={sessionParams} session2={sessionParams} />,
                 code: (
                   <CodeBlock
                     {...{

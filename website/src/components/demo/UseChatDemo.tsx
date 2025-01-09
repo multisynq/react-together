@@ -3,8 +3,7 @@ import { useChat } from 'react-together'
 import { DynamicUrlWrapper } from './DynamicUrlWrapper'
 
 export function UseChatDemo() {
-  // const { messages, sendMessage } = useChat('use-chat-demo')
-  const { messages, sendMessage } = useChat('my-chat')
+  const { messages, sendMessage } = useChat('use-chat-demo')
 
   const [message, setMessage] = useState('')
   const messagesContainerRef = useRef<HTMLDivElement>(null)
