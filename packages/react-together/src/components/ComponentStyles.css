@@ -31,7 +31,7 @@
     transition:
         background-color var(--transition-speed),
         box-shadow var(--transition-speed);
-    label {
+    :is(label) {
         font-size: var(--font-size-medium);
         font-weight: var(--font-weight-bold);
         color: var(--color-white);
