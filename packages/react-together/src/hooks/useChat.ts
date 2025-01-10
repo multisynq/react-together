@@ -1,6 +1,6 @@
 import { useCroquetContext, usePublish } from '@croquet/react'
 import { useCallback, useEffect, useState } from 'react'
-import { ChatMessage } from '../models/ChatModel'
+import { ChatMessage } from '../components/Chat'
 import ReactTogetherModel, { getChat } from '../models/ReactTogetherModel'
 import useMyId from './useMyId'
 
