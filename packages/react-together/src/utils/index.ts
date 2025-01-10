@@ -4,3 +4,5 @@ export {
   getSessionNameFromUrl,
   getSessionPasswordFromUrl
 } from './urls'
+
+export * from './colors'

@@ -1,5 +1,6 @@
 import { ReactModel, ViewInfo } from '@croquet/react'
 import { UseStateTogetherWithPerUserValuesOptions } from '../hooks/useStateTogetherWithPerUserValues'
+import ChatModel from './ChatModel'
 
 interface setStateArgs<T> {
   rtKey: string
@@ -18,6 +19,10 @@ interface FunctionTogetherArgs {
   args: unknown[]
 }
 
+interface CreateChatArgs {
+  rtKey: string
+}
+
 interface ConfigureStatePerUserArgs {
   rtKey: string
   userId: string
@@ -34,6 +39,8 @@ export default class ReactTogetherModel extends ReactModel {
   statePerUser: Map<string, Map<string, unknown>>
   statePerUserConfig: Map<string, StatePerUserConfig>
 
+  chats: Map<string, ChatModel>
+
   viewIdUserIdMapping: Map<string, string>
   userIdCount: Map<string, number>
 
@@ -45,6 +52,8 @@ export default class ReactTogetherModel extends ReactModel {
     this.statePerUser = new Map()
     this.statePerUserConfig = new Map()
 
+    this.chats = new Map()
+
     this.viewIdUserIdMapping = new Map()
     this.userIdCount = new Map()
 
@@ -54,6 +63,8 @@ export default class ReactTogetherModel extends ReactModel {
     this.subscribe(this.id, 'configureStatePerUser', this.configureStatePerUser)
 
     this.subscribe(this.id, 'functionTogether', this.functionTogether)
+
+    this.subscribe(this.id, 'createChat', this.createChat)
   }
 
   handleViewJoin(viewId: string, viewInfo: ViewInfo<{ userId?: string }>) {
@@ -134,6 +145,11 @@ export default class ReactTogetherModel extends ReactModel {
   functionTogether({ rtKey, args }: FunctionTogetherArgs) {
     this.publish(rtKey, 'call', args)
   }
+
+  createChat({ rtKey }: CreateChatArgs) {
+    const chat = ChatModel.create({ rtKey })
+    this.chats.set(rtKey, chat)
+  }
 }
 ReactTogetherModel.register('ReactTogetherModel')
 
@@ -148,4 +164,8 @@ export function getUserId(model: ReactTogetherModel, viewId: string): string {
     return viewId
   }
   return userId
+}
+
+export function getChat(model: ReactTogetherModel, rtKey: string) {
+  return model.chats.get(rtKey)
 }

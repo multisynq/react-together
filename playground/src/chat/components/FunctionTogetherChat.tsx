@@ -49,6 +49,7 @@ export default function Chat() {
           )
         })}
       </div>
+      here
       <ChatInput onSend={send} />
     </div>
   )

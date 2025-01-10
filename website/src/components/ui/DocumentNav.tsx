@@ -49,6 +49,7 @@ const items: PatchedMenuItem[] = [
         url: `${baseUrl}/useStateTogetherWithPerUserValues`,
       },
       { key: 'use-function-together', label: 'useFunctionTogether', url: `${baseUrl}/useFunctionTogether` },
+      { key: 'use-chat', label: 'useChat', url: `${baseUrl}/useChat` },
       {
         key: 'useful-hooks',
         label: 'Other useful hooks',
@@ -69,6 +70,7 @@ const items: PatchedMenuItem[] = [
     label: 'Components',
     items: [
       { key: 'react-together', label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
+      { key: 'chat', label: 'Chat', url: `${baseUrl}/Chat` },
       { key: 'react-together-mgr', label: 'SessionManager', url: `${baseUrl}/SessionManager` },
       { key: 'connected-views', label: 'ConnectedUsers', url: `${baseUrl}/ConnectedUsers` },
       { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },

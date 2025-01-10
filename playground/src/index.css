@@ -17,9 +17,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #213547;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -36,20 +35,11 @@ body {
 
 nav {
   padding: 1rem;
-  background-color: #1b1b1b;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  background-color: #f2f2f2;
+  color: black;
+  border-bottom: 1px solid #a4a4a4;
+  margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .logo {
