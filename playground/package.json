@@ -28,7 +28,7 @@
     "react-router-dom": "^6.26.1",
     "react-together": "^0.3.2",
     "react-together-ant-design": "^0.0.1",
-    "react-together-primereact": "^0.1.1"
+    "react-together-primereact": "^0.1.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
