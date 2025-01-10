@@ -1,11 +1,5 @@
 import { ReactModel } from '@croquet/react'
-
-export interface ChatMessage {
-  id: number
-  senderId: string
-  message: string
-  sentAt: number
-}
+import { ChatMessage } from '../components/Chat'
 
 interface SendMessageArgs {
   message: string
