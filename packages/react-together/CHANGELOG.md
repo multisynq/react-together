@@ -1,3 +1,9 @@
+## 0.3.2
+`2025-01-10`
+
+ - Fixed `useStateTogether` bug with `undefined` values
+ - Added `ChatMessage` interface
+
 ## 0.3.1
 `2025-01-09`
 
