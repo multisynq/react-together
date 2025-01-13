@@ -1,9 +1,9 @@
 import {
-    ColorPicker,
-    ColorPickerChangeEvent,
-    ColorPickerHSBType,
-    ColorPickerProps,
-    ColorPickerRGBType
+  ColorPicker,
+  ColorPickerChangeEvent,
+  ColorPickerHSBType,
+  ColorPickerProps,
+  ColorPickerRGBType
 } from 'primereact/colorpicker'
 import { useCallback, useEffect, useState } from 'react'
 import { useStateTogether } from 'react-together'
@@ -25,9 +25,11 @@ export default function ColorPickerTogether({
   onChange,
   ...props
 }: ColorPickerTogetherProps) {
-  const [localValue, setLocalValue] = useState<ColorPickerValueType>(undefined)
+  const defaultColor = props.defaultColor ?? 'ff0000'
+  const [localValue, setLocalValue] =
+    useState<ColorPickerValueType>(defaultColor)
   const [sessionValue, setSessionValue] =
-    useStateTogether<ColorPickerValueType>(rtKey, undefined)
+    useStateTogether<ColorPickerValueType>(rtKey, localValue)
 
   const inline = props.inline
 

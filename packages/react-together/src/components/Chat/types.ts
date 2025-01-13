@@ -1,4 +1,9 @@
-import { ChatMessage } from '../../models/ChatModel'
+export interface ChatMessage {
+  id: number
+  senderId: string
+  message: string
+  sentAt: number
+}
 
 export type Component<P> =
   | React.ComponentType<P>

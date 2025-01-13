@@ -113,11 +113,7 @@ export default class ReactTogetherModel extends ReactModel {
   }
 
   setState<T>({ rtKey, value }: setStateArgs<T>) {
-    if (value === undefined) {
-      this.state.delete(rtKey)
-    } else {
-      this.state.set(rtKey, value)
-    }
+    this.state.set(rtKey, value)
     this.publish(rtKey, 'updated', {})
   }
 

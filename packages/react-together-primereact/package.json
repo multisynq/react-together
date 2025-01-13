@@ -1,7 +1,7 @@
 {
   "name": "react-together-primereact",
   "description": "A set of ready-to-use PrimeReact components that are synchronized across multiple users in real-time!",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "Apache-2.0",
   "type": "module",
   "main": "dist/index.js",
@@ -21,7 +21,7 @@
     "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
-    "react-together": "^0.3.1"
+    "react-together": "^0.3.2"
   },
   "peerDependencies": {
     "primereact": "^10.6.6"
