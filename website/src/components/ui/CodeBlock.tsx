@@ -125,7 +125,7 @@ export function CodeBlock({
               <Button
                 {...{
                   onClick: () => window.open(stackBlitz, '_blank'),
-                  tooltip: `Open in StackBlitz`,
+                  tooltip: 'Edit in StackBlitz',
                   label: <SiStackblitz />,
                 }}
               />
