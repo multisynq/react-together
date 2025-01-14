@@ -55,7 +55,7 @@ const items: PatchedMenuItem[] = [
         label: 'Other useful hooks',
         items: [
           { key: 'use-connected-users', label: 'useConnectedUsers', url: `${baseUrl}/useConnectedUsers` },
-          { key: 'use-hovering-views', label: 'useHoveringUsers', url: `${baseUrl}/useHoveringUsers` },
+          { key: 'use-hovering-users', label: 'useHoveringUsers', url: `${baseUrl}/useHoveringUsers` },
           { key: 'use-create-session', label: 'useCreateRandomSession', url: `${baseUrl}/useCreateRandomSession` },
           { key: 'use-is-together', label: 'useIsTogether', url: `${baseUrl}/useIsTogether` },
           { key: 'use-leave-session', label: 'useLeaveSession', url: `${baseUrl}/useLeaveSession` },

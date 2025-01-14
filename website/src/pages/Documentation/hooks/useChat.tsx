@@ -12,71 +12,85 @@ import HookReturnApi from './HookReturnApi'
 const codes = {
   demo: {
     basic: `
-import { useState } from 'react'
-import { useChat } from 'react-together'
-import { DynamicUrlWrapper } from './DynamicUrlWrapper'
+import { useEffect, useRef, useState } from 'react';
+import { useChat } from 'react-together';
 
-export function UseChatDemo() {
-  const { messages, sendMessage } = useChat('my-chat')
+export default function UseChatDemo() {
+  const { messages, sendMessage } = useChat('use-chat-demo');
 
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('');
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-  function handleSendMessage(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault()
-    sendMessage(message)
-    setMessage('')
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  function handleSendMessage(
+    e:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLInputElement>
+  ) {
+    e.preventDefault();
+    sendMessage(message);
+    setMessage('');
   }
 
   return (
-    <DynamicUrlWrapper>
-      <div className='p-4 h-full flex flex-col gap-2'>
-        <div className='grow'>
-          <ul>
-            {messages.map(({ id, senderId, message, sentAt }) => (
-              <li key={id}>
-                [{formatTime(sentAt)}] <strong>{senderId}</strong>: {message}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className='flex gap-2'>
-          <input
-            className='border rounded-md p-2 grow'
-            type='text'
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <button
-            className='rounded-md p-2 bg-blue-500 text-white'
-            onClick={handleSendMessage}
-          >
-            Send
-          </button>
-        </div>
+    <div className="max-h-[50vh] py-2 flex flex-col border rounded-md p-2">
+      {/* ---MESSAGE CONTAINER--- */}
+      <div
+        className="overflow-y-auto px-2 flex-grow text-left"
+        ref={messagesContainerRef}
+      >
+        <ul className="flex gap-1 flex-col mb-2">
+          {messages.map(({ id, senderId, message, sentAt }) => (
+            <li key={id}>
+              [{formatTime(sentAt)}] <strong>{senderId}</strong>: {message}
+            </li>
+          ))}
+        </ul>
       </div>
-    </DynamicUrlWrapper>
-  )
+      {/* ---INPUT CONTAINER--- */}
+      <div className="flex gap-2 px-2">
+        <input
+          className="border rounded-md p-2 grow"
+          type="text"
+          value={message}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSendMessage(e);
+            }
+          }}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button
+          className="rounded-md p-2 bg-blue-500 text-white hover:bg-blue-600"
+          onClick={handleSendMessage}
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  );
 }
 
 function formatTime(time: number) {
-  return new Date(time)
-    .toLocaleTimeString(
-      undefined,
-      {
-        hour: '2-digit',
-        minute: '2-digit'
-      }
-    )
+  return new Date(time).toLocaleTimeString(undefined, {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 }
+
 `,
   },
 
-  usage_1: {
-    basic: `import { useChat } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
+import { useChat } from 'react-together'
+
 function YourComponent() {
   const { messages, sendMessage } = useChat('my-chat')
 
@@ -178,8 +192,7 @@ export default function UseChatDocumentationPage() {
         description: (
           <>
             <p>
-              The <CodeSpan text='useChat' /> hook returns an object containing the list of messages sent to the chat and a function to send
-              a message to the chat.
+              The <CodeSpan text='useChat' /> hook allows users within the same session to send and receive messages.
             </p>
             <PreviewSourceCodeTabs
               {...{
@@ -189,6 +202,7 @@ export default function UseChatDocumentationPage() {
                     {...{
                       code: codes.demo,
                       github: getDocLinks({ rt_name: 'UseChat' }).github_demo,
+                      stackBlitz: 'https://stackblitz.com/edit/react-together-hello-world-hkkvvjpv?file=src%2FApp.tsx',
                     }}
                   />
                 ),
@@ -198,8 +212,7 @@ export default function UseChatDocumentationPage() {
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage_1 }} />
-            <CodeBlock {...{ code: codes.usage_2 }} />
+            <CodeBlock {...{ code: codes.usage }} />
           </>
         ),
         api,

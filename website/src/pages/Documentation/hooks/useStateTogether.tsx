@@ -11,7 +11,7 @@ import HookReturnApi from './HookReturnApi'
 
 const codes = {
   demo: {
-    basic: `
+    basic: ` 
 import { useStateTogether } from 'react-together'
 
 export default function CountButtonTogether() {
@@ -36,12 +36,10 @@ export default function CountButtonTogether() {
 `,
   },
 
-  usage_1: {
-    basic: `import { useStateTogether } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
+import { useStateTogether } from 'react-together'
+
 function YourComponent() {
   const [count, setCount] = useStateTogether('unique-key', 0)
         
@@ -134,15 +132,22 @@ const content = (
           <PreviewSourceCodeTabs
             {...{
               preview: <DocumentationDemo url='CountButtonTogether' />,
-              code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_path: 'CountButtonTogether.tsx' }).github_demo }} />,
+              code: (
+                <CodeBlock
+                  {...{
+                    code: codes.demo,
+                    github: getDocLinks({ rt_path: 'CountButtonTogether.tsx' }).github_demo,
+                    stackBlitz: 'https://stackblitz.com/edit/react-together-hello-world?file=src%2FApp.tsx',
+                  }}
+                />
+              ),
             }}
           />
         </>
       ),
       usage: (
         <>
-          <CodeBlock code={codes.usage_1} />
-          <CodeBlock code={codes.usage_2} />
+          <CodeBlock code={codes.usage} />
         </>
       ),
       api,

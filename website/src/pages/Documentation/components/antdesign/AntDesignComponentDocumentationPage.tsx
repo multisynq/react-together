@@ -1,8 +1,8 @@
 import { CodeBlock, type CodeBlockCodeType } from '@components/ui'
 import Link from '@components/ui/Link'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
+import { PreviewSourceCodeTabs } from '@pages/Documentation/PreviewSourceCodeTabs'
 import getDocLinks from '@utils/getDocLinks'
-import { TabPanel, TabView } from 'primereact/tabview'
 import { ReactNode } from 'react'
 import { GenericDocPage } from '../../GenericDocPage'
 import ApiChangesPrelude from './ApiChangesPrelude'
@@ -57,14 +57,12 @@ export function AntDesignComponentDocumentationPage({ name, originalName, docUrl
               </Link>{' '}
               component to synchronize the state across all users.
             </p>
-            <TabView className='w-full'>
-              <TabPanel header='Preview'>
-                <DocumentationDemo url={demoUrl ?? `antdesign/${originalName}`} />
-              </TabPanel>
-              <TabPanel header='Code'>
-                <CodeBlock {...demo} />
-              </TabPanel>
-            </TabView>
+            <PreviewSourceCodeTabs
+              {...{
+                preview: <DocumentationDemo url={demoUrl ?? `antdesign/${originalName}`} />,
+                code: <CodeBlock {...demo} />,
+              }}
+            />
           </>
         ),
         usage: (

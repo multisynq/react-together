@@ -1,8 +1,8 @@
 import { CodeBlock, CodeBlockProps } from '@components/ui'
 import Link from '@components/ui/Link'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
+import { PreviewSourceCodeTabs } from '@pages/Documentation/PreviewSourceCodeTabs'
 import getDocLinks from '@utils/getDocLinks'
-import { TabPanel, TabView } from 'primereact/tabview'
 import { ReactNode } from 'react'
 import { GenericDocPage } from '../../GenericDocPage'
 import ApiChangesPrelude from './ApiChangesPrelude'
@@ -58,14 +58,12 @@ export function PrimeReactComponentDocumentationPage({ name, originalName, docUr
               </Link>{' '}
               component to synchronized the state across all users.
             </p>
-            <TabView className='w-full'>
-              <TabPanel header='Preview'>
-                <DocumentationDemo url={`primereact/${originalName}`} />
-              </TabPanel>
-              <TabPanel header='Code'>
-                <CodeBlock {...demo} />
-              </TabPanel>
-            </TabView>
+            <PreviewSourceCodeTabs
+              {...{
+                preview: <DocumentationDemo url={`primereact/${originalName}`} />,
+                code: <CodeBlock {...demo} />,
+              }}
+            />
           </>
         ),
         usage: (

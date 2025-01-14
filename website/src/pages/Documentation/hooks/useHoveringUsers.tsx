@@ -18,7 +18,7 @@ const codes = {
   usage_2: {
     basic: `
 function YourComponent() {
-  const [ref, hoveringUsers, isHovering] = useHoveringUsers('hovering-views')
+  const [ref, hoveringUsers, isHovering] = useHoveringUsers('hovering-users')
 
   return (
     <div>

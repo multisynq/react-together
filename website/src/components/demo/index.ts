@@ -6,6 +6,7 @@ import { HoverHighlighterDemo } from './HoverHighlighterDemo'
 import { MeditationBell } from './MeditationBell'
 import { SessionManagerDemo } from './SessionManagerDemo'
 import { UseChatDemo } from './UseChatDemo'
+import { UseConnectedUsersDemo } from './UseConnectedUsersDemo'
 import { UseStateTogetherWPUVDemo } from './UseStateTogetherWPUVDemo'
 export * from './antdesign'
 export * from './primereact'
@@ -19,5 +20,6 @@ export {
   MeditationBell,
   SessionManagerDemo,
   UseChatDemo,
+  UseConnectedUsersDemo,
   UseStateTogetherWPUVDemo,
 }

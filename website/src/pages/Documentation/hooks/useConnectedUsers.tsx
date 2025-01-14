@@ -10,83 +10,39 @@ import HookReturnApi from './HookReturnApi'
 const codes = {
   demo: {
     basic: `
-import { Avatar } from 'primereact/avatar'
-import { AvatarGroup } from 'primereact/avatargroup'
-import { useConnectedUsers } from '../hooks'
+import { useConnectedUsers } from 'react-together';
 
-interface UserAvatarProps {
-  name: string
-}
-function UserAvatar({ name }: UserAvatarProps) {
-  return (
-    <Avatar
-      image={\`https://api.dicebear.com/8.x/initials/svg?seed=\${name}\`}
-      size="normal"
-      shape="circle"
-      label={name}
-      pt={{ root: { title: name } }}
-    />
-  )
-}
-
-type ConnectedUsersProps = {
-  maxAvatars?: number
-  debug?: boolean
-}
-export default function ConnectedUsers({
-  maxAvatars = 3,
-  debug = false
-}: ConnectedUsersProps) {
-  const users = useConnectedUsers()
-
-  const size = 'normal'
-  const nAvatars = Math.max(users.length - (maxAvatars - 1), 0)
+export default function UseConnectedUsersDemo() {
+  const connectedUsers = useConnectedUsers();
 
   return (
-    <>
-      <AvatarGroup pt={{ root: { style: { gap: '10px' } } }}>
-        {users.slice(0, maxAvatars - 1).map(({ name, userId }) => (
-          <UserAvatar key={userId} name={name} />
+    <div>
+      Connected users:
+      <ul>
+        {connectedUsers.map(({ userId, name, isYou }) => (
+          <li key={userId}>
+            {isYou ? (
+              <strong>
+                {userId}: {name}
+              </strong>
+            ) : (
+              <span>
+                {userId}: {name}
+              </span>
+            )}
+          </li>
         ))}
-        {nAvatars > 0 &&
-          (nAvatars === 1 ? (
-            <UserAvatar name={users[users.length - 1].name} />
-          ) : (
-            <Avatar label={\`+\${nAvatars}\`} shape="circle" size={size} />
-          ))}
-      </AvatarGroup>
-      {debug && (
-        <div style={{ textAlign: 'left' }}>
-          <p>Connected users:</p>
-          <ul>
-            {users.map(({ userId, name, isYou }) => (
-              <li key={userId}>
-                {isYou ? (
-                  <strong>
-                    {userId}: {name}
-                  </strong>
-                ) : (
-                  <span>
-                    {userId}: {name}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </>
-  )
+      </ul>
+    </div>
+  );
 }
 `,
   },
 
-  usage_1: {
-    basic: `import { useConnectedUsers } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
+import { useConnectedUsers } from 'react-together'
+
 function YourComponent() {
   const connectedUsers = useConnectedUsers()
 
@@ -99,7 +55,7 @@ function YourComponent() {
             {isYou ? <strong>{userId}: {name}</strong> : <span>{userId}: {name}</span>}
           </li>
         ))}
-      }</ul>
+      </ul>
     </div>
   )
 }
@@ -154,12 +110,13 @@ export default function UseConnectedUsersDocumentationPage() {
             </p>
             <PreviewSourceCodeTabs
               {...{
-                preview: <DocumentationDemo url='ConnectedUsers' />,
+                preview: <DocumentationDemo url='useConnectedUsers' />,
                 code: (
                   <CodeBlock
                     {...{
                       code: codes.demo,
-                      github: getDocLinks({ rt_name: 'ConnectedUsers' }).github_demo,
+                      github: getDocLinks({ rt_name: 'useConnectedUsers' }).github_demo,
+                      stackBlitz: 'https://stackblitz.com/edit/react-together-hello-world-3ybeuzy8?file=src%2FApp.tsx',
                     }}
                   />
                 ),
@@ -169,8 +126,7 @@ export default function UseConnectedUsersDocumentationPage() {
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage_1 }} />
-            <CodeBlock {...{ code: codes.usage_2 }} />
+            <CodeBlock {...{ code: codes.usage }} />
           </>
         ),
         api,

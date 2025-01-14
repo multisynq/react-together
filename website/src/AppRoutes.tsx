@@ -68,6 +68,7 @@ import {
   PrimeReactTriStateCheckboxTogetherDemo,
   SessionManagerDemo,
   UseChatDemo,
+  UseConnectedUsersDemo,
   UseStateTogetherWPUVDemo,
 } from '@components/demo'
 
@@ -170,6 +171,7 @@ export default function AppRoutes() {
         <Route path='SessionManager'                    element={<SessionManagerDemo       />} />
         <Route path='Chat'                              element={<ChatDemo                 />} />
         <Route path='useChat'                           element={<UseChatDemo              />} />
+        <Route path='useConnectedUsers'                 element={<UseConnectedUsersDemo />} />
         <Route path='ConnectedUsers'                    element={<ConnectedUsers           />} />
         <Route path='HoverHighlighter'                  element={<HoverHighlighterDemo     />} />
         <Route path='primereact'>
