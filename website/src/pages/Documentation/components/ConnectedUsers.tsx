@@ -124,7 +124,15 @@ export default function ConnectedUsersDocumentationPage() {
             <PreviewSourceCodeTabs
               {...{
                 preview: <DocumentationDemo url='ConnectedUsers' />,
-                code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_name: 'ConnectedUsers' }).github_demo }} />,
+                code: (
+                  <CodeBlock
+                    {...{
+                      code: codes.demo,
+                      github: getDocLinks({ rt_name: 'ConnectedUsers' }).github_demo,
+                      stackBlitz: 'https://stackblitz.com/edit/react-together-connected-users?file=src%2FApp.tsx',
+                    }}
+                  />
+                ),
               }}
             />
           </>

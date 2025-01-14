@@ -8,12 +8,10 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import ComponentPropsTable from './ComponentPropsTable'
 
 const codes = {
-  usage_1: {
-    basic: `import { ReactTogether } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
+import { ReactTogether } from 'react-together'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ReactTogether
@@ -151,8 +149,7 @@ export default function ReactTogetherDocumentationPage() {
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage_1 }} />
-            <CodeBlock {...{ code: codes.usage_2 }} />
+            <CodeBlock {...{ code: codes.usage }} />
           </>
         ),
         api,

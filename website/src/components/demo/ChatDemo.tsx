@@ -1,16 +1,20 @@
 import { Button } from 'primereact/button'
 import { useState } from 'react'
 import { Chat, useCreateRandomSession, useJoinUrl, useLeaveSession } from 'react-together'
-import { DynamicUrlWrapper } from './DynamicUrlWrapper'
 
 export function ChatDemo() {
+  // return (
+  //   <DynamicUrlWrapper>
+  //     <div className='fixed bottom-0 left-2'>
+  //       <Chat rtKey='chat' />
+  //     </div>
+  //     <SessionManagement />
+  //   </DynamicUrlWrapper>
+  // )
   return (
-    <DynamicUrlWrapper>
-      <div className='fixed bottom-0 left-2'>
-        <Chat rtKey='chat' />
-      </div>
-      <SessionManagement />
-    </DynamicUrlWrapper>
+    <div className='fixed bottom-0 left-2'>
+      <Chat rtKey='chat' />
+    </div>
   )
 }
 

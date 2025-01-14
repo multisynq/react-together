@@ -4,16 +4,18 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
 
 const codes = {
-  usage_1: {
-    basic: `import { useIsTogether } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
-function YourComponent() {
-  const isTogether = useIsTogether()
+import { useIsTogether } from 'react-together';
 
-  return <div>Is Together: {isTogether ? 'Yes' : 'No'}</div>
+function YourComponent() {
+  const isTogether = useIsTogether();
+
+  return isTogether ? (
+    <div>You're in a React Together session!</div>
+  ) : (
+    <div>You're not in a React Together session.</div>
+  );
 }
 `,
   },
@@ -45,8 +47,7 @@ export default function UseJoinUrlDocumentationPage() {
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage_1 }} />
-            <CodeBlock {...{ code: codes.usage_2 }} />
+            <CodeBlock {...{ code: codes.usage }} />
           </>
         ),
         api,
