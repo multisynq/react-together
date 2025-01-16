@@ -1,4 +1,5 @@
 interface CursorProps {
+  userId: string
   color: string
   pageX: number
   pageY: number
@@ -8,6 +9,7 @@ interface CursorProps {
 }
 
 export function Cursor({
+  userId,
   color,
   percentX,
   pageY,
@@ -22,12 +24,7 @@ export function Cursor({
   const y = pageY - window.scrollY
 
   return (
-    <svg
-      width={cursorWidth}
-      height={cursorHeight}
-      viewBox="0 0 12 18"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
       style={{
         position: 'fixed',
         left: 0,
@@ -36,10 +33,24 @@ export function Cursor({
         transition: `transform ${transitionTime}ms linear`
       }}
     >
-      <path
-        d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.500002 16.8829L0.500002 1.19841L11.7841 12.3673H5.65376Z"
-        fill={color}
-      />
-    </svg>
+      <svg
+        width={cursorWidth}
+        height={cursorHeight}
+        viewBox="0 0 12 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.500002 16.8829L0.500002 1.19841L11.7841 12.3673H5.65376Z"
+          fill={color}
+        />
+      </svg>
+      <div
+        className="px-1 rounded-full text-xs text-white relative left-[10px]"
+        style={{ backgroundColor: color }}
+      >
+        {userId}
+      </div>
+    </div>
   )
 }

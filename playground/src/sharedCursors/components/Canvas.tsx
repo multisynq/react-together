@@ -127,7 +127,12 @@ export function Canvas() {
         {Object.entries(allCursors).map(
           ([userId, cursor]) =>
             cursor && (
-              <Cursor key={userId} {...cursor} color={getUserColor(userId)} />
+              <Cursor
+                key={userId}
+                userId={userId}
+                {...cursor}
+                color={getUserColor(userId)}
+              />
             )
         )}
       </div>
