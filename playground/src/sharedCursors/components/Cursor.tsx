@@ -1,23 +1,40 @@
 interface CursorProps {
   color: string
-  x: number
-  y: number
+  pageX: number
+  pageY: number
+  percentX: number
+  percentY: number
 }
 
-export function Cursor({ color, x, y }: CursorProps) {
+export function Cursor({ color, percentX, pageY }: CursorProps) {
+  // get window dimensions:
+  const windowWidth = window.innerWidth
+  const windowHeight = window.innerHeight
+
+  const cursorWidth = 20
+  const cursorHeight = 18
+
+  const x = percentX * windowWidth
+  const y = pageY
+
+  if (x > windowWidth || y > windowHeight) {
+    return null
+  }
+
   return (
     <svg
+      width={cursorWidth}
+      height={cursorHeight}
+      viewBox="0 0 12 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       style={{
         position: 'absolute',
         left: 0,
         top: 0,
-        transform: `translateX(${x}px) translateY(${y}px)`
+        transform: `translateX(${x}px) translateY(${y}px)`,
+        transition: 'transform 60ms linear'
       }}
-      width="24"
-      height="36"
-      viewBox="0 0 24 36"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
     >
       <path
         d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.500002 16.8829L0.500002 1.19841L11.7841 12.3673H5.65376Z"
