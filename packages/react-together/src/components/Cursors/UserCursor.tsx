@@ -18,13 +18,13 @@ export default function UserCursor({
   transitionTime = 100,
   getUserColor = defaultGetUserColor
 }: UserCursorProps) {
-  const windowWidth = window.innerWidth
+  const windowWidth = document.body.scrollWidth
 
   const color = getUserColor(userId)
 
   // Convert X position to absolute position
   // Use original Y absolute position
-  const x = percentX * windowWidth
+  const x = percentX * windowWidth - window.scrollX
   const y = pageY - window.scrollY
 
   return (

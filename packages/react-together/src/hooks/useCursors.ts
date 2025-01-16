@@ -4,6 +4,8 @@ import { useStateTogetherWithPerUserValues } from '../hooks'
 export interface Cursor {
   pageX: number
   pageY: number
+  clientX: number
+  clientY: number
   percentX: number
   percentY: number
 }
@@ -33,21 +35,15 @@ export default function useCursors(
   const lastUpdateRef = useRef<number>(0)
   const timeoutRef = useRef<Timer | null>(null)
   const throttledEventsRef = useRef<number>(0)
+  const lastCursorRef = useRef<Cursor | null>(null)
 
   useEffect(() => {
     // Add event listener to the document
-    const handleMouseMove = (event: MouseEvent | Touch) => {
-      const updateCursor = () => {
-        const pageX = event.pageX
-        const pageY = event.pageY
-        const percentX = pageX / document.body.scrollWidth
-        const percentY = pageY / document.body.scrollHeight
-        setMyCursor({
-          pageX,
-          pageY,
-          percentX,
-          percentY
-        })
+    const updateCursor = (cursor: Cursor) => {
+      lastCursorRef.current = cursor
+
+      const doUpdate = () => {
+        setMyCursor(cursor)
         throttledEventsRef.current = 0
       }
 
@@ -56,7 +52,6 @@ export default function useCursors(
       // the update.
       const now = Date.now()
       if (now - lastUpdateRef.current < throttleTime) {
-        // console.log('throttling')
         throttledEventsRef.current++
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current)
@@ -64,13 +59,23 @@ export default function useCursors(
 
         const delta = throttleTime - (now - lastUpdateRef.current)
         timeoutRef.current = setTimeout(() => {
-          updateCursor()
+          doUpdate()
           lastUpdateRef.current = Date.now()
         }, delta)
         return
       }
       lastUpdateRef.current = now
-      updateCursor()
+      doUpdate()
+    }
+    const handleMouseMove = (event: MouseEvent | Touch) => {
+      updateCursor({
+        pageX: event.pageX,
+        pageY: event.pageY,
+        clientX: event.clientX,
+        clientY: event.clientY,
+        percentX: event.pageX / document.body.scrollWidth,
+        percentY: event.pageY / document.body.scrollHeight
+      })
     }
 
     const handleMouseLeave = () => {
@@ -95,15 +100,36 @@ export default function useCursors(
       }
     }
 
+    const handleScroll = () => {
+      if (lastCursorRef.current) {
+        const pageX = lastCursorRef.current.clientX + window.scrollX
+        const pageY = lastCursorRef.current.clientY + window.scrollY
+        const clientX = lastCursorRef.current.clientX
+        const clientY = lastCursorRef.current.clientY
+        const percentX = pageX / document.body.scrollWidth
+        const percentY = pageY / document.body.scrollHeight
+        updateCursor({
+          pageX,
+          pageY,
+          clientX,
+          clientY,
+          percentX,
+          percentY
+        })
+      }
+    }
+
     document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseleave', handleMouseLeave)
     document.addEventListener('touchstart', handleTouchStart)
     document.addEventListener('touchmove', handleTouchMove)
+    document.addEventListener('scroll', handleScroll)
     return () => {
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseleave', handleMouseLeave)
       document.removeEventListener('touchstart', handleTouchStart)
       document.removeEventListener('touchmove', handleTouchMove)
+      document.removeEventListener('scroll', handleScroll)
     }
   }, [setMyCursor, deleteOnLeave, throttleTime])
 
