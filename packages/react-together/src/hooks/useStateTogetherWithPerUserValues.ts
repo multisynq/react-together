@@ -283,7 +283,7 @@ export default function useStateTogetherWithPerUserValues<
       } else {
         // Update shared state when connected
         const allValues = model.statePerUser.get(rtKey) as Map<string, T>
-        let prevLocalValue = allValues.get(myId)
+        let prevLocalValue = allValues?.get(myId)
         if (prevLocalValue === undefined) {
           // If the key is not in the allValues mapping, it is because
           // the publish(initialValue) has not been received by the current user yet
