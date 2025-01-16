@@ -15,9 +15,14 @@ export function Cursor({ color, percentX, pageY }: CursorProps) {
   const cursorHeight = 18
 
   const x = percentX * windowWidth
-  const y = pageY
+  const y = pageY - window.scrollY
 
-  if (x > windowWidth || y > windowHeight) {
+  if (
+    x > windowWidth ||
+    x < -cursorWidth ||
+    y > windowHeight ||
+    y < -cursorHeight
+  ) {
     return null
   }
 
@@ -29,10 +34,13 @@ export function Cursor({ color, percentX, pageY }: CursorProps) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        position: 'absolute',
+        // position: 'absolute',
+        // left: x,
+        // top: y,
+        position: 'fixed',
         left: 0,
         top: 0,
-        transform: `translateX(${x}px) translateY(${y}px)`,
+        transform: `translate(${x}px, ${y}px)`,
         transition: 'transform 60ms linear'
       }}
     >
