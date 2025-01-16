@@ -27,16 +27,14 @@ interface Mouse {
 /*
 TO DO:
  - Scroll
- - Touch
  - Add `ref` parameter to do something related to that ref
   - Other configs that may come out of this
 */
 
 export function Canvas() {
   // Options
-  const THROTTLE_TIME = 55
-  const deleteOnLeave = true
-  const deleteOnTouchEnd = true
+  const THROTTLE_TIME = 75
+  const deleteOnLeave = false
 
   const [mouse, setMyCursor, allCursors] =
     useStateTogetherWithPerUserValues<Mouse | null>('cursors', null, {
@@ -47,81 +45,7 @@ export function Canvas() {
 
   useEffect(() => {
     // Add event listener to the document
-    // const handleMouseMove = (event: MouseEvent | Touch) => {
-    //   console.log('handleMouseMove', event)
-    //   const updateCursor = () => {
-    //     const pageX = event.pageX
-    //     const pageY = event.pageY
-    //     const percentX = pageX / window.innerWidth
-    //     const percentY = pageY / window.innerHeight
-    //     setMyCursor({
-    //       pageX,
-    //       pageY,
-    //       percentX,
-    //       percentY
-    //     })
-    //   }
-
-    //   // Make sure updateCursor is called at most every THROTTLE_TIME ms
-    //   // If the current event is too close to the last one, we schedule
-    //   // the update.
-    //   const now = Date.now()
-    //   if (now - lastUpdateRef.current < THROTTLE_TIME) {
-    //     if (timeoutRef.current) {
-    //       clearTimeout(timeoutRef.current)
-    //     }
-
-    //     const delta = THROTTLE_TIME - (now - lastUpdateRef.current)
-    //     timeoutRef.current = setTimeout(updateCursor, delta)
-    //     return
-    //   }
-    //   lastUpdateRef.current = now
-    //   updateCursor()
-    // }
-
-    // const handleMouseLeave = () => {
-    //   console.log('handleMouseLeave')
-    //   if (deleteOnLeave) {
-    //     setMyCursor(null)
-    //   }
-    // }
-
-    // const handleTouchMove = (event: TouchEvent) => {
-    //   console.log('handleTouchMove', event)
-    //   // Handling just the first touch point
-    //   const touch = event.touches[0]
-    //   if (touch) {
-    //     handleMouseMove(touch)
-    //   }
-    // }
-
-    // const handleTouchEnd = () => {
-    //   console.log('handleTouchEnd')
-    //   if (deleteOnTouchEnd) {
-    //     setMyCursor(null)
-    //   }
-    // }
-
-    // const handleTouchCancel = () => {
-    //   console.log('handleTouchCancel')
-    //   handleTouchEnd()
-    // }
-
-    // document.addEventListener('mousemove', handleMouseMove)
-    // document.addEventListener('mouseleave', handleMouseLeave)
-    // document.addEventListener('touchmove', handleTouchMove)
-    // document.addEventListener('touchend', handleTouchEnd)
-    // document.addEventListener('touchcancel', handleTouchCancel)
-    // return () => {
-    //   document.removeEventListener('mousemove', handleMouseMove)
-    //   document.removeEventListener('mouseleave', handleMouseLeave)
-    //   document.removeEventListener('touchmove', handleTouchMove)
-    //   document.removeEventListener('touchend', handleTouchEnd)
-    //   document.removeEventListener('touchcancel', handleTouchCancel)
-    // }
-    const handlePointerMove = (event: PointerEvent) => {
-      // console.log('handlePointerMove', event)
-      event.preventDefault()
+    const handleMouseMove = (event: MouseEvent | Touch) => {
       const updateCursor = () => {
         const pageX = event.pageX
         const pageY = event.pageY
@@ -152,20 +76,39 @@ export function Canvas() {
       updateCursor()
     }
 
-    const handlePointerOut = () => {
-      console.log('handlePointerOut')
+    const handleMouseLeave = () => {
       if (deleteOnLeave) {
         setMyCursor(null)
       }
     }
 
-    document.addEventListener('pointermove', handlePointerMove)
-    // document.addEventListener('pointerout', handlePointerOut)
-    return () => {
-      document.removeEventListener('pointermove', handlePointerMove)
-      // document.removeEventListener('pointerout', handlePointerOut)
+    const handleTouchStart = (event: TouchEvent) => {
+      // Handling just the first touch point
+      const touch = event.touches[0]
+      if (touch) {
+        handleMouseMove(touch)
+      }
     }
-  }, [setMyCursor, deleteOnLeave, deleteOnTouchEnd])
+
+    const handleTouchMove = (event: TouchEvent) => {
+      // Handling just the first touch point
+      const touch = event.touches[0]
+      if (touch) {
+        handleMouseMove(touch)
+      }
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('mouseleave', handleMouseLeave)
+    document.addEventListener('touchstart', handleTouchStart)
+    document.addEventListener('touchmove', handleTouchMove)
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseleave', handleMouseLeave)
+      document.removeEventListener('touchstart', handleTouchStart)
+      document.removeEventListener('touchmove', handleTouchMove)
+    }
+  }, [setMyCursor, deleteOnLeave])
 
   return (
     <>
@@ -194,7 +137,7 @@ export function Canvas() {
         {`(${formatPercent(mouse?.percentX)}, ${formatPercent(mouse?.percentY)})`}
       </div>
       <div className="w-[100px] h-[500px] bg-rose-500 rounded m-auto" />
-      <div className="w-[100px] h-[100px] bg-blue-500 rounded m-auto" />
+      <div className="w-[100px] h-[1000px] bg-blue-500 rounded m-auto" />
     </>
   )
 }
