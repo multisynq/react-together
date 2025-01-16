@@ -1,0 +1,24 @@
+.cursors-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.user-cursor-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  .cursor-label {
+    padding: 0 0.5rem;
+    border-radius: 9999px; /* rounded-full */
+    font-size: 0.75rem;
+    color: white;
+    position: relative;
+    left: 10px;
+  }
+}

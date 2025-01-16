@@ -1,6 +1,7 @@
 import useChat from './useChat'
 import useConnectedUsers from './useConnectedUsers'
 import useCreateRandomSession from './useCreateRandomSession'
+import useCursors from './useCursors'
 import useFunctionTogether from './useFunctionTogether'
 import useHoveringUsers from './useHoveringUsers'
 import useJoinUrl from './useJoinUrl'
@@ -17,6 +18,7 @@ export {
   useChat,
   useConnectedUsers,
   useCreateRandomSession,
+  useCursors,
   useFunctionTogether,
   useHoveringUsers,
   useIsTogether,
