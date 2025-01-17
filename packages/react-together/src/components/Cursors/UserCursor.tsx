@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Cursor } from '../../hooks/useCursors'
 import { getUserColor as defaultGetUserColor } from '../../utils'
 import CursorSVG from './CursorSVG'
@@ -10,33 +10,6 @@ export interface UserCursorOptions {
 
 export interface UserCursorProps extends Cursor, UserCursorOptions {
   userId: string
-}
-
-function DebugPanel(props: object) {
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        top: '20px',
-        right: '20px',
-        zIndex: 1000,
-        padding: '10px',
-        borderRadius: '4px',
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        backdropFilter: 'blur(10px)'
-      }}
-      className="text-xs border border-gray-200"
-    >
-      <h4 className="text-center text-xs font-bold">Debug panel</h4>
-      <ul>
-        {Object.entries(props).map(([key, value]) => (
-          <li key={key}>
-            <span className="font-bold">{key}:</span> {JSON.stringify(value)}
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
 }
 
 export default function UserCursor({
@@ -52,6 +25,23 @@ export default function UserCursor({
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
   const [scrollX, setScrollX] = useState(window.scrollX)
   const [scrollY, setScrollY] = useState(window.scrollY)
+
+  // Add state for label dimensions
+  const [labelDimensions, setLabelDimensions] = useState({
+    width: 0,
+    height: 0
+  })
+
+  // Add ref to measure label
+  const labelRef = useRef<HTMLDivElement>(null)
+
+  // Measure label dimensions after render
+  useEffect(() => {
+    if (labelRef.current) {
+      const { width, height } = labelRef.current.getBoundingClientRect()
+      setLabelDimensions({ width, height })
+    }
+  }, [userId, scrollX, scrollY]) // Re-measure when userId changes as it affects label size
 
   // Listen to window scroll and resize
   useEffect(() => {
@@ -89,15 +79,46 @@ export default function UserCursor({
     windowY > windowHeight
 
   // Calculate edge position and direction
-  const padding = 15 // 20
+  const padding = 15
   const edgeX = Math.max(padding, Math.min(windowWidth - padding, windowX))
   const edgeY = Math.max(padding, Math.min(windowHeight - padding, windowY))
 
+  // Calculate label position based on cursor position and label dimensions
+  const labelPosition = useMemo(() => {
+    const padding = 5
+    const overflowTolerance = 30
+    const defaultPosition = {
+      left: 20, // Default position to right of cursor
+      top: 20 // Default position below cursor
+    }
+
+    // Check if label would overflow right edge
+    const wouldOverflowRight =
+      windowX +
+        defaultPosition.left +
+        labelDimensions.width +
+        overflowTolerance >
+      windowWidth
+    // Check if label would overflow bottom edge
+    const wouldOverflowBottom =
+      windowY +
+        defaultPosition.top +
+        labelDimensions.height +
+        overflowTolerance >
+      windowHeight
+
+    return {
+      left: wouldOverflowRight
+        ? -(labelDimensions.width + padding)
+        : defaultPosition.left,
+      top: wouldOverflowBottom
+        ? -(labelDimensions.height + padding)
+        : defaultPosition.top
+    }
+  }, [windowX, windowY, windowWidth, windowHeight, labelDimensions])
+
   return (
     <>
-      <DebugPanel
-        {...{ bodyX, bodyY, scrollX, scrollY, edgeX, edgeY, isOutOfBounds }}
-      />
       <div
         className="user-cursor-container"
         style={{
@@ -118,7 +139,16 @@ export default function UserCursor({
         ) : (
           <>
             <CursorSVG width={20} height={18} color={color} />
-            <div className="cursor-label" style={{ backgroundColor: color }}>
+            <div
+              ref={labelRef}
+              className="cursor-label"
+              style={{
+                backgroundColor: color,
+                position: 'absolute',
+                transition: `all ${transitionTime * 2}ms linear`,
+                ...labelPosition
+              }}
+            >
               {userId}
             </div>
           </>

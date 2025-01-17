@@ -18,7 +18,6 @@
     border-radius: 9999px; /* rounded-full */
     font-size: 0.75rem;
     color: white;
-    position: relative;
-    left: 10px;
+    position: absolute;
   }
 }

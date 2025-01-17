@@ -27,16 +27,6 @@ export default function Cursors(options: CursorsProps = {}) {
             <UserCursorComponent key={userId} userId={userId} {...cursor} />
           )
       )}
-      <UserCursorComponent
-        userId="afonsocrg"
-        percentX={0.7}
-        pageY={550}
-        // Don't care
-        pageX={100}
-        percentY={0.5}
-        clientX={100}
-        clientY={100}
-      />
     </div>
   )
 }
