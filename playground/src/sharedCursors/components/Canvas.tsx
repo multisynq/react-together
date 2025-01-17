@@ -3,7 +3,7 @@ import { Cursors } from 'react-together'
 export function Canvas() {
   return (
     <>
-      <Cursors useCursorsOptions={{ throttleTime: 200 }} />
+      <Cursors useCursorsOptions={{ throttleDelay: 75 }} />
       {/* <div className="fixed bottom-0 left-0 text-sm pl-2">
         {`(${formatNumber(myCursor?.pageX)}, ${formatNumber(myCursor?.pageY)})`}
         <br />
