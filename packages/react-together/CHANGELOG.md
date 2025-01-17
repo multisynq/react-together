@@ -1,3 +1,9 @@
+## Next release
+ - Added `useCursors` hook
+ - Added `Cursors` component
+ - Added `throttleDelay` option to `useStateTogether`
+ - Added `throttleDelay` option to `useStateTogetherWithPerUserValues`
+
 ## 0.3.2
 `2025-01-10`
 

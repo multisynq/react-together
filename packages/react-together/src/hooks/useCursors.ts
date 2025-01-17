@@ -16,7 +16,7 @@ interface UseCursorsReturn {
 }
 
 export interface UseCursorsOptions {
-  throttleTime?: number
+  throttleDelay?: number
   deleteOnLeave?: boolean
   omitMyValue?: boolean
 }
@@ -24,48 +24,22 @@ export default function useCursors(
   options: UseCursorsOptions = {}
 ): UseCursorsReturn {
   const {
-    throttleTime = 50,
+    throttleDelay = 50,
     deleteOnLeave = false,
     omitMyValue = true
   } = options
   const [myCursor, setMyCursor, allCursors] =
     useStateTogetherWithPerUserValues<Cursor | null>('__cursors', null, {
-      omitMyValue
+      omitMyValue,
+      throttleDelay
     })
-  const lastUpdateRef = useRef<number>(0)
-  const timeoutRef = useRef<Timer | null>(null)
-  const throttledEventsRef = useRef<number>(0)
   const lastCursorRef = useRef<Cursor | null>(null)
 
   useEffect(() => {
     // Add event listener to the document
     const updateCursor = (cursor: Cursor) => {
       lastCursorRef.current = cursor
-
-      const doUpdate = () => {
-        setMyCursor(cursor)
-        throttledEventsRef.current = 0
-      }
-
-      // Make sure updateCursor is called at most every THROTTLE_TIME ms
-      // If the current event is too close to the last one, we schedule
-      // the update.
-      const now = Date.now()
-      if (now - lastUpdateRef.current < throttleTime) {
-        throttledEventsRef.current++
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current)
-        }
-
-        const delta = throttleTime - (now - lastUpdateRef.current)
-        timeoutRef.current = setTimeout(() => {
-          doUpdate()
-          lastUpdateRef.current = Date.now()
-        }, delta)
-        return
-      }
-      lastUpdateRef.current = now
-      doUpdate()
+      setMyCursor(cursor)
     }
     const handleMouseMove = (event: MouseEvent | Touch) => {
       updateCursor({
@@ -131,7 +105,7 @@ export default function useCursors(
       document.removeEventListener('touchmove', handleTouchMove)
       document.removeEventListener('scroll', handleScroll)
     }
-  }, [setMyCursor, deleteOnLeave, throttleTime])
+  }, [setMyCursor, deleteOnLeave, throttleDelay])
 
   return { myCursor, allCursors }
 }
