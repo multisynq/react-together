@@ -19,15 +19,15 @@ export default function UseConnectedUsersDemo() {
     <div>
       Connected users:
       <ul>
-        {connectedUsers.map(({ userId, name, isYou }) => (
+        {connectedUsers.map(({ userId, nickname, isYou }) => (
           <li key={userId}>
             {isYou ? (
               <strong>
-                {userId}: {name}
+                {userId}: {nickname}
               </strong>
             ) : (
               <span>
-                {userId}: {name}
+                {userId}: {nickname}
               </span>
             )}
           </li>
@@ -50,9 +50,9 @@ function YourComponent() {
     <div>
       Connected users:
       <ul>
-        {connectedUsers.map(({ userId, name, isYou }) => (
+        {connectedUsers.map(({ userId, nickname, isYou }) => (
           <li key={userId}>
-            {isYou ? <strong>{userId}: {name}</strong> : <span>{userId}: {name}</span>}
+            {isYou ? <strong>{userId}: {nickname}</strong> : <span>{userId}: {nickname}</span>}
           </li>
         ))}
       </ul>
@@ -90,9 +90,19 @@ export default function UseConnectedUsersDocumentationPage() {
             description: 'Indicates whether this is the current user.',
           },
           {
+            name: 'nickname',
+            type: 'string',
+            description: (
+              <p>
+                The nickname of the user. This can be changed using the <LinkSpan text='useNicknames' to='/useNicknames' /> hook.
+              </p>
+            ),
+          },
+          {
             name: 'name',
             type: 'string',
-            description: 'An alias to make the user more easily identifiable by other users.',
+            description: 'Deprecated since 0.3.3. Use `nickname` instead.',
+            deprecated: true,
           },
         ]}
       />

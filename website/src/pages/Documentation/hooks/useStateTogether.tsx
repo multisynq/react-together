@@ -109,6 +109,16 @@ const api = (
             </Markdown>
           ),
         },
+        {
+          name: 'throttleDelay',
+          type: 'number',
+          default: '100',
+          description: (
+            <Markdown>
+              The delay in milliseconds between consecutive updates to the state. This only applies when the user is connected to a session.
+            </Markdown>
+          ),
+        },
       ]}
     />
   </>
