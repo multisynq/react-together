@@ -1,5 +1,7 @@
 import { CroquetRoot } from '@croquet/react'
+import { ReactTogetherContext } from '../context'
 import ReactTogetherModel from '../models/ReactTogetherModel'
+import { deriveNickname as defaultDeriveNickname } from '../utils'
 
 import { getSessionNameFromUrl, getSessionPasswordFromUrl } from '../utils'
 
@@ -16,13 +18,15 @@ export type ReactTogetherProps<D = undefined> = {
   sessionParams: ReactTogetherSessionParams<D>
   sessionIgnoresUrl?: boolean
   userId?: string
+  deriveNickname?: (userId: string) => string
 }
 
 export default function ReactTogether<D>({
   children,
   sessionParams,
   sessionIgnoresUrl,
-  userId
+  userId,
+  deriveNickname = defaultDeriveNickname
 }: ReactTogetherProps<D & { userId?: string }>) {
   const { appId, apiKey } = sessionParams
 
@@ -70,7 +74,9 @@ export default function ReactTogether<D>({
       deferSession={!name || !password}
       showChildrenWithoutSession
     >
-      {children}
+      <ReactTogetherContext.Provider value={{ deriveNickname }}>
+        {children}
+      </ReactTogetherContext.Provider>
     </CroquetRoot>
   )
 }
