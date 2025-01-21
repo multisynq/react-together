@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import useAllNicknames from '../../hooks/useAllNicknames'
 import { Cursor } from '../../hooks/useCursors'
 import { getUserColor as defaultGetUserColor } from '../../utils'
 import CursorSVG from './CursorSVG'
@@ -25,6 +26,8 @@ export default function UserCursor({
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
   const [scrollX, setScrollX] = useState(window.scrollX)
   const [scrollY, setScrollY] = useState(window.scrollY)
+
+  const allNicknames = useAllNicknames()
 
   // Add state for label dimensions
   const [labelDimensions, setLabelDimensions] = useState({
@@ -144,12 +147,11 @@ export default function UserCursor({
               className="cursor-label"
               style={{
                 backgroundColor: color,
-                position: 'absolute',
                 transition: `all ${transitionTime * 2}ms linear`,
                 ...labelPosition
               }}
             >
-              {userId}
+              {allNicknames[userId] ?? userId}
             </div>
           </>
         )}

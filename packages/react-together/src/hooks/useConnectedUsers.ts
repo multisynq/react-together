@@ -1,10 +1,6 @@
 import { useJoinedViews as ujv, useModelRoot } from '@croquet/react'
-import {
-  adjectives,
-  animals,
-  uniqueNamesGenerator
-} from 'unique-names-generator'
 import ReactTogetherModel from '../models/ReactTogetherModel'
+import useAllNicknames from './useAllNicknames'
 import useMyId from './useMyId'
 
 export interface ConnectedUser {
@@ -19,6 +15,8 @@ export default function useConnectedUsers(): ConnectedUser[] {
   // Use this hook to refresh every time the views change
   ujv()
 
+  const allNicknames = useAllNicknames()
+
   const model = useModelRoot<ReactTogetherModel>()
   const myId = useMyId()
 
@@ -27,16 +25,18 @@ export default function useConnectedUsers(): ConnectedUser[] {
   }
 
   return Array.from(model.userIdCount.keys()).map((userId) => {
+    const nickname = allNicknames[userId]
     return {
       userId,
       isYou: userId === myId,
-      name: uniqueNamesGenerator({
-        seed: userId,
-        dictionaries: [adjectives, animals],
-        length: 2,
-        separator: ' ',
-        style: 'capital'
-      })
+      nickname,
+      get name() {
+        // deprecated: kept for compatibility
+        console.warn(
+          'useConnectedUsers: name is deprecated. Use nickname instead.'
+        )
+        return nickname
+      }
     }
   })
 }

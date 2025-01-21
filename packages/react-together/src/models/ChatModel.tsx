@@ -22,12 +22,14 @@ export default class ChatModel extends ReactModel {
     this.subscribe(rtKey, 'sendMessage', this.handleNewMessage)
   }
 
-  handleNewMessage({ message, senderId, sentAt }: SendMessageArgs) {
+  // Explicitly destructuring object to ensure
+  // message objects only contain the right properties
+  handleNewMessage({ sentAt, senderId, message }: SendMessageArgs) {
     const msg = {
-      message,
-      senderId,
+      id: this.nextMessageId++,
       sentAt,
-      id: this.nextMessageId++
+      senderId,
+      message
     }
     this.messages.push(msg)
     this.publish(this.rtKey, 'messageSent', msg)

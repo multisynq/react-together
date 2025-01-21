@@ -1,12 +1,12 @@
 import { MessageRowProps } from './types'
 
 export default function MessageRow({
-  message,
   senderId,
   sentAt,
   isMe,
   MessageAvatar,
-  MessageBody
+  MessageBody,
+  ...message
 }: MessageRowProps) {
   return (
     <div className={`rt-message-row ${isMe ? 'isMe' : ''}`}>
@@ -15,7 +15,7 @@ export default function MessageRow({
         isMe={isMe}
         senderId={senderId}
         sentAt={sentAt}
-        message={message}
+        {...message}
       />
     </div>
   )

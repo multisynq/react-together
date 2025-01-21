@@ -3,6 +3,9 @@
  - Added `Cursors` component
  - Added `throttleDelay` option to `useStateTogether`
  - Added `throttleDelay` option to `useStateTogetherWithPerUserValues`
+ - Added `useNicknames` hook
+ - Added `useAllNicknames` hook
+ - Added `nickname` property to `ConnectedUser` interface
 
 ## 0.3.2
 `2025-01-10`
