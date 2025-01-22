@@ -6,19 +6,15 @@ import useStateTogetherWithPerUserValues from './useStateTogetherWithPerUserValu
 
 const LOCAL_STORAGE_KEY = '__rt-nickname'
 
-interface UseNicknamesOptions {
-  persistNickname?: boolean
-}
-
-export default function useNicknames(
-  options: UseNicknamesOptions = {}
-): [string, (nickname: string) => void, Record<string, string>] {
-  const { persistNickname = false } = options
-
-  const { deriveNickname } = useReactTogetherContext()
+export default function useNicknames(): [
+  string,
+  (nickname: string) => void,
+  Record<string, string>
+] {
+  const { deriveNickname, rememberUsers } = useReactTogetherContext()
   const myId = useMyId() ?? Math.random().toString()
 
-  const initialNickname: string = persistNickname
+  const initialNickname: string = rememberUsers
     ? (localStorage.getItem(LOCAL_STORAGE_KEY) ?? deriveNickname(myId))
     : deriveNickname(myId)
 
@@ -31,12 +27,12 @@ export default function useNicknames(
 
   const setNickname = useCallback(
     (nickname: string) => {
-      if (persistNickname) {
+      if (rememberUsers) {
         localStorage.setItem(LOCAL_STORAGE_KEY, nickname)
       }
       _setNickname(nickname)
     },
-    [_setNickname, persistNickname]
+    [_setNickname, rememberUsers]
   )
 
   return [nickname, setNickname, allNicknames]
