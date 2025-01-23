@@ -1,4 +1,4 @@
-import { CodeBlock, CodeSpan } from '@components/ui'
+import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import getDocLinks from '@utils/getDocLinks'
@@ -141,8 +141,9 @@ export default function UseNicknamesDocumentationPage() {
         description: (
           <>
             <p>
-              The <CodeSpan text='useNicknames' /> hook provides functionality to manage user nicknames in a React Together session. It
-              returns the current user's nickname, a function to update it, and a record of all users' nicknames.
+              The <CodeSpan text='useNicknames' /> hook provides functionality to manage user nicknames in a React Together session. The
+              nickname for a user is derived using the <CodeSpan text='deriveNickname' /> prop passed to the{' '}
+              <LinkSpan text='ReactTogether' to='/reactTogether' /> component.
             </p>
             <PreviewSourceCodeTabs
               {...{

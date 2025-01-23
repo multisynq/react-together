@@ -6,6 +6,7 @@
  - Added `throttleDelay` option to `useStateTogether`
  - Added `throttleDelay` option to `useStateTogetherWithPerUserValues`
  - Added `rememberUsers` prop to `ReactTogether` component
+ - Added `deriveNickname` prop to `ReactTogether` component
  - Added `nickname` property to `ConnectedUser` interface
  - Deprecated `name` property in `ConnectedUser` interface
 

@@ -1,4 +1,4 @@
-import useAllNicknames from '../../hooks/useAllNicknames'
+import { useAllNicknames } from '../../hooks'
 import { MessageBodyProps } from './types'
 
 function timeToLocale(timestamp: number) {
