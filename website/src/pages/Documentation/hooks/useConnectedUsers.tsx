@@ -101,7 +101,11 @@ export default function UseConnectedUsersDocumentationPage() {
           {
             name: 'name',
             type: 'string',
-            description: 'Deprecated since 0.3.3. Use `nickname` instead.',
+            description: (
+              <p>
+                Deprecated since 0.3.3. Use <CodeSpan text='nickname' /> instead.
+              </p>
+            ),
             deprecated: true,
           },
         ]}

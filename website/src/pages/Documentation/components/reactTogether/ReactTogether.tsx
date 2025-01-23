@@ -4,8 +4,8 @@ import CodeSpan from '@components/ui/CodeSpan'
 import Link from '@components/ui/Link'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
-import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
-import ComponentPropsTable from './ComponentPropsTable'
+import { GenericDocNav, GenericDocPage } from '../../GenericDocPage'
+import ComponentPropsTable from '../ComponentPropsTable'
 
 const codes = {
   usage: {
@@ -58,6 +58,17 @@ export default function ReactTogetherDocumentationPage() {
                 Sessions with the same name are typically treated as separate if they are hosted at different URLs. However, if
                 <CodeSpan text='sessionIgnoresUrl' /> is set to <CodeSpan text='true' />, sessions with the same name will be considered the
                 same session regardless of their hosting URL.
+              </p>
+            ),
+          },
+          {
+            name: 'rememberUsers?',
+            type: 'boolean',
+            default: 'false',
+            description: (
+              <p>
+                If set to <CodeSpan text='true' />, persists the user's ID and nickname in the browser, allowing them to maintain their
+                identity when reconnecting to the same session or joining different sessions.
               </p>
             ),
           },

@@ -1,14 +1,12 @@
 interface CursorSVGProps {
-  width: number
-  height: number
   color: string
 }
 
-export default function CursorSVG({ width, height, color }: CursorSVGProps) {
+export default function CursorSVG({ color }: CursorSVGProps) {
   return (
     <svg
-      width={width}
-      height={height}
+      width={20}
+      height={18}
       viewBox="0 0 12 18"
       fill={color}
       xmlns="http://www.w3.org/2000/svg"

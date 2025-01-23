@@ -1,7 +1,7 @@
 import { CodeBlock, CodeSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import getDocLinks from '@utils/getDocLinks'
-import { codes as _codes } from '../components/HoverHighlighter'
+import { codes as _codes } from '../components/reactTogether/HoverHighlighter'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'

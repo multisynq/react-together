@@ -5,7 +5,7 @@ import { getUserColor as defaultGetUserColor } from '../../utils'
 import CursorSVG from './CursorSVG'
 
 export interface UserCursorOptions {
-  transitionTime?: number
+  transitionDuration?: number
   getUserColor?: (userId: string) => string
 }
 
@@ -17,7 +17,7 @@ export default function UserCursor({
   userId,
   percentX,
   pageY,
-  transitionTime = 100,
+  transitionDuration = 100,
   getUserColor = defaultGetUserColor
 }: UserCursorProps) {
   const bodyWidth = document.body.scrollWidth
@@ -38,13 +38,15 @@ export default function UserCursor({
   // Add ref to measure label
   const labelRef = useRef<HTMLDivElement>(null)
 
+  const nickName = allNicknames[userId]
+
   // Measure label dimensions after render
   useEffect(() => {
     if (labelRef.current) {
       const { width, height } = labelRef.current.getBoundingClientRect()
       setLabelDimensions({ width, height })
     }
-  }, [userId, scrollX, scrollY]) // Re-measure when userId changes as it affects label size
+  }, [userId, nickName, scrollX, scrollY]) // Re-measure when userId changes as it affects label size
 
   // Listen to window scroll and resize
   useEffect(() => {
@@ -126,7 +128,7 @@ export default function UserCursor({
         className="user-cursor-container"
         style={{
           transform: `translate(${edgeX}px, ${edgeY}px)`,
-          transition: `transform ${transitionTime}ms linear`
+          transition: `transform ${transitionDuration}ms linear`
         }}
       >
         {isOutOfBounds ? (
@@ -141,17 +143,17 @@ export default function UserCursor({
           />
         ) : (
           <>
-            <CursorSVG width={20} height={18} color={color} />
+            <CursorSVG color={color} />
             <div
               ref={labelRef}
               className="cursor-label"
               style={{
                 backgroundColor: color,
-                transition: `all ${transitionTime * 2}ms linear`,
+                transition: `all ${transitionDuration * 2}ms linear`,
                 ...labelPosition
               }}
             >
-              {allNicknames[userId] ?? userId}
+              {nickName ?? userId}
             </div>
           </>
         )}

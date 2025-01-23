@@ -4,10 +4,10 @@ import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { PreviewSourceCodeTabs } from '@pages/Documentation/PreviewSourceCodeTabs'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import getDocLinks from '@utils/getDocLinks'
-import DocumentationDemo from '../DocumentationDemo'
-import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
-import InterfaceApi from '../InterfaceApi'
-import ComponentPropsTable from './ComponentPropsTable'
+import DocumentationDemo from '../../DocumentationDemo'
+import { GenericDocNav, GenericDocPage } from '../../GenericDocPage'
+import InterfaceApi from '../../InterfaceApi'
+import ComponentPropsTable from '../ComponentPropsTable'
 
 const codes = {
   usage_1: {

@@ -1,10 +1,11 @@
 ## Next release
- - Added `useCursors` hook
  - Added `Cursors` component
+ - Added `useCursors` hook
  - Added `useNicknames` hook
  - Added `useAllNicknames` hook
  - Added `throttleDelay` option to `useStateTogether`
  - Added `throttleDelay` option to `useStateTogetherWithPerUserValues`
+ - Added `rememberUsers` prop to `ReactTogether` component
  - Added `nickname` property to `ConnectedUser` interface
  - Deprecated `name` property in `ConnectedUser` interface
 

@@ -26,15 +26,18 @@ import {
   PrimeReactTriStateCheckboxTogetherDocumentationPage,
   ReactTogetherDocumentationPage,
   SessionManagerDocumentationPage,
+  UseAllNicknamesDocumentationPage,
   UseChatDocumentationPage,
   UseConnectedUsersDocumentationPage,
   UseCreateRandomSessionDocumentationPage,
+  UseCursorsDocumentationPage,
   UseFunctionTogetherDocumentationPage,
   UseHoveringUsersDocumentationPage,
   UseIsTogetherDocumentationPage,
   UseJoinUrlDocumentationPage,
   UseLeaveSessionDocumentationPage,
   UseMyIdDocumentationPage,
+  UseNicknameDocumentationPage,
   UseStateTogetherDocumentationPage,
   UseStateTogetherWithPerUserValuesDocumentationPage,
 } from '@pages/Documentation'
@@ -53,6 +56,7 @@ import {
   AntDesignSwitchTogetherDemo,
   AntDesignToggleButtonTogetherDemo,
   ChatDemo,
+  CursorsDemo,
   HoverHighlighterDemo,
   MeditationBell,
   PrimeReactCheckboxTogetherDemo,
@@ -67,8 +71,11 @@ import {
   PrimeReactToggleButtonTogetherDemo,
   PrimeReactTriStateCheckboxTogetherDemo,
   SessionManagerDemo,
+  UseAllNicknamesDemo,
   UseChatDemo,
   UseConnectedUsersDemo,
+  UseCursorsDemo,
+  UseNicknamesDemo,
   UseStateTogetherWPUVDemo,
 } from '@components/demo'
 
@@ -77,6 +84,7 @@ import HeroDemo from '@components/demo/HeroDemo'
 import TinyRpgTogether from '@components/demo/TinyRpg'
 import { CookiePolicy } from '@pages/CookiePolicy'
 import { DemoWrapper } from '@pages/DemoWrapper'
+import CursorsDocumentationPage from '@pages/Documentation/components/reactTogether/Cursors'
 import DependenciesPage from '@pages/Documentation/DependenciesPage'
 import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
 import { MarkdownPage } from '@pages/Documentation/MarkdownPage'
@@ -115,6 +123,8 @@ export default function AppRoutes() {
             <Route path='SessionManager'                    element={<SessionManagerDocumentationPage                    />} />
             <Route path='ConnectedUsers'                    element={<ConnectedUsersDocumentationPage                    />} />
             <Route path='HoverHighlighter'                  element={<HoverHighlighterDocumentationPage                  />} />
+            <Route path='Cursors'                           element={<CursorsDocumentationPage                           />} />
+            <Route path='Chat'                              element={<ChatDocumentationPage                              />} />
             <Route path='useStateTogether'                  element={<UseStateTogetherDocumentationPage                  />} />
             <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWithPerUserValuesDocumentationPage />} />
             <Route path='useConnectedUsers'                 element={<UseConnectedUsersDocumentationPage                 />} />
@@ -126,7 +136,9 @@ export default function AppRoutes() {
             <Route path='useLeaveSession'                   element={<UseLeaveSessionDocumentationPage                   />} />
             <Route path='useFunctionTogether'               element={<UseFunctionTogetherDocumentationPage               />} />
             <Route path='useChat'                           element={<UseChatDocumentationPage                           />} />
-            <Route path='chat'                              element={<ChatDocumentationPage                              />} />
+            <Route path='useAllNicknames'                   element={<UseAllNicknamesDocumentationPage                   />} />
+            <Route path='useNicknames'                      element={<UseNicknameDocumentationPage                       />} />
+            <Route path='useCursors'                        element={<UseCursorsDocumentationPage                        />} />
             <Route path='utils'                             element={<HelpersDocumentationPage                           />} />
             <Route path='croquet'                           element={<MarkdownPage markdown={croquet}                    />} />
             <Route path='/contributing'                     element={<MarkdownPage markdown={contributing}               />} />
@@ -164,16 +176,20 @@ export default function AppRoutes() {
         <Route path='*' element={<NotFoundPage />} />
       </Route>
       <Route path='demos' element={<DemoWrapper />}>
-        <Route path='HeroDemo'                          element={<HeroDemo                 />} />
-        <Route path='CountButtonTogether'               element={<CountButtonTogether      />} />
-        <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWPUVDemo />} />
-        <Route path='useFunctionTogether'               element={<MeditationBell           />} />
-        <Route path='SessionManager'                    element={<SessionManagerDemo       />} />
         <Route path='Chat'                              element={<ChatDemo                 />} />
-        <Route path='useChat'                           element={<UseChatDemo              />} />
-        <Route path='useConnectedUsers'                 element={<UseConnectedUsersDemo />} />
         <Route path='ConnectedUsers'                    element={<ConnectedUsers           />} />
+        <Route path='CountButtonTogether'               element={<CountButtonTogether      />} />
+        <Route path='Cursors'                           element={<CursorsDemo              />} />
+        <Route path='HeroDemo'                          element={<HeroDemo                 />} />
         <Route path='HoverHighlighter'                  element={<HoverHighlighterDemo     />} />
+        <Route path='SessionManager'                    element={<SessionManagerDemo       />} />
+        <Route path='useAllNicknames'                   element={<UseAllNicknamesDemo      />} />
+        <Route path='useChat'                           element={<UseChatDemo              />} />
+        <Route path='useConnectedUsers'                 element={<UseConnectedUsersDemo    />} />
+        <Route path='useCursors'                        element={<UseCursorsDemo           />} />
+        <Route path='useFunctionTogether'               element={<MeditationBell           />} />
+        <Route path='useNicknames'                      element={<UseNicknamesDemo         />} />
+        <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWPUVDemo />} />
         <Route path='primereact'>
           {/* <Route path='Calendar'         element={<PrimeReactCalendarTogetherDemo         />} /> */}
           <Route path='Checkbox'         element={<PrimeReactCheckboxTogetherDemo         />} />

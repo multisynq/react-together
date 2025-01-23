@@ -50,12 +50,15 @@ const items: PatchedMenuItem[] = [
       },
       { key: 'use-function-together', label: 'useFunctionTogether', url: `${baseUrl}/useFunctionTogether` },
       { key: 'use-chat', label: 'useChat', url: `${baseUrl}/useChat` },
+      { key: 'use-cursors', label: 'useCursors', url: `${baseUrl}/useCursors` },
       {
         key: 'useful-hooks',
         label: 'Other useful hooks',
         items: [
           { key: 'use-connected-users', label: 'useConnectedUsers', url: `${baseUrl}/useConnectedUsers` },
           { key: 'use-hovering-users', label: 'useHoveringUsers', url: `${baseUrl}/useHoveringUsers` },
+          { key: 'use-nicknames', label: 'useNicknames', url: `${baseUrl}/useNicknames` },
+          { key: 'use-all-nicknames', label: 'useAllNicknames', url: `${baseUrl}/useAllNicknames` },
           { key: 'use-create-session', label: 'useCreateRandomSession', url: `${baseUrl}/useCreateRandomSession` },
           { key: 'use-is-together', label: 'useIsTogether', url: `${baseUrl}/useIsTogether` },
           { key: 'use-leave-session', label: 'useLeaveSession', url: `${baseUrl}/useLeaveSession` },
@@ -71,6 +74,7 @@ const items: PatchedMenuItem[] = [
     items: [
       { key: 'react-together', label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
       { key: 'chat', label: 'Chat', url: `${baseUrl}/Chat` },
+      { key: 'cursors', label: 'Cursors', url: `${baseUrl}/Cursors` },
       { key: 'react-together-mgr', label: 'SessionManager', url: `${baseUrl}/SessionManager` },
       { key: 'connected-views', label: 'ConnectedUsers', url: `${baseUrl}/ConnectedUsers` },
       { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },

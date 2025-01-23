@@ -1,6 +1,6 @@
 import { CroquetReact, SessionManager, useIsTogether } from 'react-together'
-import CountButtonTogether from './CountButtonTogether'
-import { DynamicUrlWrapper } from './DynamicUrlWrapper'
+import CountButtonTogether from '../CountButtonTogether'
+import { DynamicUrlWrapper } from '../DynamicUrlWrapper'
 
 const { useSessionParams } = CroquetReact
 

@@ -7,15 +7,15 @@ export function UseConnectedUsersDemo() {
     <div>
       Connected users:
       <ul>
-        {connectedUsers.map(({ userId, name, isYou }) => (
+        {connectedUsers.map(({ userId, nickname, isYou }) => (
           <li key={userId}>
             {isYou ? (
               <strong>
-                {userId}: {name}
+                {userId}: {nickname}
               </strong>
             ) : (
               <span>
-                {userId}: {name}
+                {userId}: {nickname}
               </span>
             )}
           </li>
