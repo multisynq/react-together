@@ -51,13 +51,18 @@ export default function CursorsDocumentationPage() {
             ),
           },
           {
-            name: 'throttleDelay',
-            type: 'number',
-            default: '50',
+            name: 'components',
+            type: 'CursorsComponents',
+            description: <p>The components to use for the cursors. This allows to customize the cursors interface.</p>,
+          },
+          {
+            name: 'getUserColor',
+            type: '(userId: string) => string',
+            // default: 'defaultGetUserColor',
             description: (
               <p>
-                Delay in milliseconds between cursor position updates. This option will be passed to{' '}
-                <LinkSpan to='/useCursors' text='useCursors' /> hook.
+                A function that returns the color for a given userId. This option will be passed to the <CodeSpan text='UserCursor' />{' '}
+                component.
               </p>
             ),
           },
@@ -73,6 +78,17 @@ export default function CursorsDocumentationPage() {
             ),
           },
           {
+            name: 'throttleDelay',
+            type: 'number',
+            default: '50',
+            description: (
+              <p>
+                Delay in milliseconds between cursor position updates. This option will be passed to{' '}
+                <LinkSpan to='/useCursors' text='useCursors' /> hook.
+              </p>
+            ),
+          },
+          {
             name: 'transitionDuration',
             type: 'number',
             default: '100',
@@ -82,22 +98,6 @@ export default function CursorsDocumentationPage() {
                 component.
               </p>
             ),
-          },
-          {
-            name: 'getUserColor',
-            type: '(userId: string) => string',
-            // default: 'defaultGetUserColor',
-            description: (
-              <p>
-                A function that returns the color for a given userId. This option will be passed to the <CodeSpan text='UserCursor' />{' '}
-                component.
-              </p>
-            ),
-          },
-          {
-            name: 'components',
-            type: 'CursorsComponents',
-            description: <p>The components to use for the cursors. This allows to customize the cursors interface.</p>,
           },
         ]}
       />

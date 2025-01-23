@@ -148,10 +148,28 @@ const api = (
       id='options'
       items={[
         {
+          name: 'keepValues',
+          type: 'boolean',
+          default: 'false',
+          description: "If true, the user's state will be persisted in the session even after disconnection.",
+        },
+        {
           name: 'omitMyValue',
           type: 'boolean',
           default: 'false',
           description: <Markdown>If this option is `true`, the local value will not be included in the `allValues` object.</Markdown>,
+        },
+        {
+          name: 'overwriteSessionValue',
+          type: 'boolean',
+          default: 'false',
+          description: (
+            <Markdown>
+              By default, when a user connects to a session and a value associated with the user's identifier already exists (either a
+              persisted value or another user with the same identifier is already connected to the session), the connecting user will update
+              their local state to match the session value. If this flag is `true` the user will force its local value into the session.
+            </Markdown>
+          ),
         },
         {
           name: 'resetOnConnect',
@@ -169,24 +187,6 @@ const api = (
             <Markdown>
               If `true`, the user's state will be reset to `initialValue` after the user disconnects from the session. Note that this only
               affects the user's local state, *after* the user disconnects.
-            </Markdown>
-          ),
-        },
-        {
-          name: 'keepValues',
-          type: 'boolean',
-          default: 'false',
-          description: "If true, the user's state will be persisted in the session even after disconnection.",
-        },
-        {
-          name: 'overwriteSessionValue',
-          type: 'boolean',
-          default: 'false',
-          description: (
-            <Markdown>
-              By default, when a user connects to a session and a value associated with the user's identifier already exists (either a
-              persisted value or another user with the same identifier is already connected to the session), the connecting user will update
-              their local state to match the session value. If this flag is `true` the user will force its local value into the session.
             </Markdown>
           ),
         },

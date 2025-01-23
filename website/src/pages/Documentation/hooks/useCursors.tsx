@@ -98,23 +98,23 @@ export default function UseCursors() {
             description: "Whether to remove the cursor when the user's mouse leaves the window.",
           },
           {
-            name: 'throttleDelay',
-            type: 'number',
-            default: '50',
-            description: (
-              <p>
-                Delay in milliseconds between cursor position updates. This will be passed to{' '}
-                <LinkSpan text='useStateTogetherWithPerUserValues' to='/useStateTogetherWithPerUserValues' />.
-              </p>
-            ),
-          },
-          {
             name: 'omitMyValue',
             type: 'boolean',
             default: 'true',
             description: (
               <p>
                 Whether to exclude the current user's cursor from allCursors. This will be passed to{' '}
+                <LinkSpan text='useStateTogetherWithPerUserValues' to='/useStateTogetherWithPerUserValues' />.
+              </p>
+            ),
+          },
+          {
+            name: 'throttleDelay',
+            type: 'number',
+            default: '50',
+            description: (
+              <p>
+                Delay in milliseconds between cursor position updates. This will be passed to{' '}
                 <LinkSpan text='useStateTogetherWithPerUserValues' to='/useStateTogetherWithPerUserValues' />.
               </p>
             ),
