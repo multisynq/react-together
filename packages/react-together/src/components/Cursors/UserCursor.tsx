@@ -20,35 +20,18 @@ export default function UserCursor({
   transitionDuration = 100,
   getUserColor = defaultGetUserColor
 }: UserCursorProps) {
-  const bodyWidth = document.body.scrollWidth
+  const allNicknames = useAllNicknames()
+  const nickName = allNicknames[userId]
 
+  // Calculate the cursor position on the local page
+  // We need to keep track of the window dimensions and scroll position
+  // to calculate the cursor position on the local viewport
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
   const [scrollX, setScrollX] = useState(window.scrollX)
   const [scrollY, setScrollY] = useState(window.scrollY)
 
-  const allNicknames = useAllNicknames()
-
-  // Add state for label dimensions
-  const [labelDimensions, setLabelDimensions] = useState({
-    width: 0,
-    height: 0
-  })
-
-  // Add ref to measure label
-  const labelRef = useRef<HTMLDivElement>(null)
-
-  const nickName = allNicknames[userId]
-
-  // Measure label dimensions after render
-  useEffect(() => {
-    if (labelRef.current) {
-      const { width, height } = labelRef.current.getBoundingClientRect()
-      setLabelDimensions({ width, height })
-    }
-  }, [userId, nickName, scrollX, scrollY]) // Re-measure when userId changes as it affects label size
-
-  // Listen to window scroll and resize
+  // Listen to window scroll and resize events
   useEffect(() => {
     const handleScroll = () => {
       setScrollX(window.scrollX)
@@ -66,28 +49,39 @@ export default function UserCursor({
     }
   }, [])
 
-  const color = getUserColor(userId)
+  // Horizontal coordinate is derived from the percentX value
+  const pageX = percentX * document.body.scrollWidth
+  const clientX = pageX - scrollX
 
-  // Convert X position to absolute position
-  // Use original Y absolute position
-  const bodyX = percentX * bodyWidth
-  const bodyY = pageY
-
-  const windowX = bodyX - scrollX
-  const windowY = bodyY - scrollY
+  // Vertical coordinate is derived from the pageY value
+  const clientY = pageY - scrollY
 
   // Check if cursor is out of bounds
   const isOutOfBounds =
-    windowX < 0 ||
-    windowX > windowWidth ||
-    windowY < 0 ||
-    windowY > windowHeight
+    clientX < 0 ||
+    clientX > windowWidth ||
+    clientY < 0 ||
+    clientY > windowHeight
 
   // Calculate edge position and direction
+  // This padding avoids the cursor from being too close to the edge of the viewport
   const padding = 15
-  const edgeX = Math.max(padding, Math.min(windowWidth - padding, windowX))
-  const edgeY = Math.max(padding, Math.min(windowHeight - padding, windowY))
+  const boundedX = Math.max(padding, Math.min(windowWidth - padding, clientX))
+  const boundedY = Math.max(padding, Math.min(windowHeight - padding, clientY))
 
+  // Track label dimensions to position it according to its size
+  // So that the label does not overflow the viewport
+  const labelRef = useRef<HTMLDivElement>(null)
+  const [labelDimensions, setLabelDimensions] = useState({
+    width: 0,
+    height: 0
+  })
+  useEffect(() => {
+    if (labelRef.current) {
+      const { width, height } = labelRef.current.getBoundingClientRect()
+      setLabelDimensions({ width, height })
+    }
+  }, [userId, nickName, scrollX, scrollY]) // Re-measure when userId changes as it affects label size
   // Calculate label position based on cursor position and label dimensions
   const labelPosition = useMemo(() => {
     const padding = 5
@@ -99,14 +93,14 @@ export default function UserCursor({
 
     // Check if label would overflow right edge
     const wouldOverflowRight =
-      windowX +
+      clientX +
         defaultPosition.left +
         labelDimensions.width +
         overflowTolerance >
       windowWidth
     // Check if label would overflow bottom edge
     const wouldOverflowBottom =
-      windowY +
+      clientY +
         defaultPosition.top +
         labelDimensions.height +
         overflowTolerance >
@@ -120,14 +114,17 @@ export default function UserCursor({
         ? -(labelDimensions.height + padding)
         : defaultPosition.top
     }
-  }, [windowX, windowY, windowWidth, windowHeight, labelDimensions])
+  }, [clientX, clientY, windowWidth, windowHeight, labelDimensions])
+
+  // Get cursor color
+  const color = getUserColor(userId)
 
   return (
     <>
       <div
         className="user-cursor-container"
         style={{
-          transform: `translate(${edgeX}px, ${edgeY}px)`,
+          transform: `translate(${boundedX}px, ${boundedY}px)`,
           transition: `transform ${transitionDuration}ms linear`
         }}
       >
