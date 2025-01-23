@@ -5,8 +5,9 @@ import useMyId from './useMyId'
 
 export interface ConnectedUser {
   userId: string
-  name: string
   isYou: boolean
+  nickname: string
+  name: string
 }
 
 const EMPTY_ARRAY: ConnectedUser[] = []
