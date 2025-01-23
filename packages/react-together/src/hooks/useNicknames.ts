@@ -12,17 +12,20 @@ export default function useNicknames(): [
   Record<string, string>
 ] {
   const { deriveNickname, rememberUsers } = useReactTogetherContext()
-  const myId = useMyId() ?? Math.random().toString()
+  const myId = useMyId() ?? Math.random().toString(36).substring(2, 15)
 
-  const initialNickname: string = rememberUsers
-    ? (localStorage.getItem(LOCAL_STORAGE_KEY) ?? deriveNickname(myId))
-    : deriveNickname(myId)
+  const storedNickname = localStorage.getItem(LOCAL_STORAGE_KEY)
+  const initialNickname: string =
+    rememberUsers && storedNickname !== null
+      ? storedNickname
+      : deriveNickname(myId)
 
   const [nickname, _setNickname, allNicknames] =
     useStateTogetherWithPerUserValues('__nicknames', initialNickname, {
       // Storing all nicknames in the session so that
-      // they are available after users leave the session
-      keepValues: true
+      // they are available even after users leave
+      keepValues: true,
+      overwriteSessionValue: true
     })
 
   const setNickname = useCallback(
