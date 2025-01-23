@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Chat,
   ChatInputProps,
@@ -49,12 +49,17 @@ function App() {
   const [nickname, setNickname] = useNicknames()
   const [localNickname, setLocalNickname] = useState(nickname)
 
+  useEffect(() => {
+    setLocalNickname(nickname)
+  }, [nickname])
+
   return (
     <>
       <div className="flex flex-col gap-2 bg-white p-2 rounded-md">
         <span className="text-sm font-bold">Nickname:</span>
         <input
           type="text"
+          className="rounded px-2 py-1"
           value={localNickname}
           onChange={(e) => setLocalNickname(e.target.value)}
         />
@@ -130,6 +135,7 @@ export default function Wrapper() {
         apiKey: import.meta.env['VITE_API_KEY']
       }}
       rememberUsers
+      userId="123"
     >
       <App />
       <SessionManager />
