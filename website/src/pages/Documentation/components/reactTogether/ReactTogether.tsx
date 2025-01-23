@@ -40,24 +40,13 @@ export default function ReactTogetherDocumentationPage() {
             description: 'The parameters passed to the Multisynq session.',
           },
           {
-            name: 'userId?',
-            type: 'string',
-            description: (
-              <Markdown>
-                An override for the `userId`. If this value is set, it will be used to identify the current user. If multiple windows are
-                opened with the same `userId`, they will be considered the same user and will share their state.
-              </Markdown>
-            ),
-          },
-          {
-            name: 'sessionIgnoresUrl?',
-            type: 'boolean',
-            default: 'false',
+            name: 'deriveNickname?',
+            type: '(userId: string) => string',
+            default: <LinkSpan text='deriveNickname' to='/utils#deriveNickname' />,
             description: (
               <p>
-                Sessions with the same name are typically treated as separate if they are hosted at different URLs. However, if
-                <CodeSpan text='sessionIgnoresUrl' /> is set to <CodeSpan text='true' />, sessions with the same name will be considered the
-                same session regardless of their hosting URL.
+                A function that returns the default nickname for a given userId. This function will be used by{' '}
+                <LinkSpan text='useNicknames' to='/useNicknames' /> to derive the nickname for a given userId if unspecified.
               </p>
             ),
           },
@@ -73,14 +62,25 @@ export default function ReactTogetherDocumentationPage() {
             ),
           },
           {
-            name: 'deriveNickname?',
-            type: '(userId: string) => string',
-            default: <LinkSpan text='deriveNickname' to='/utils#deriveNickname' />,
+            name: 'sessionIgnoresUrl?',
+            type: 'boolean',
+            default: 'false',
             description: (
               <p>
-                A function that returns the default nickname for a given userId. This function will be used by{' '}
-                <LinkSpan text='useNicknames' to='/useNicknames' /> to derive the nickname for a given userId if unspecified.
+                Sessions with the same name are typically treated as separate if they are hosted at different URLs. However, if
+                <CodeSpan text='sessionIgnoresUrl' /> is set to <CodeSpan text='true' />, sessions with the same name will be considered the
+                same session regardless of their hosting URL.
               </p>
+            ),
+          },
+          {
+            name: 'userId?',
+            type: 'string',
+            description: (
+              <Markdown>
+                An override for the `userId`. If this value is set, it will be used to identify the current user. If multiple windows are
+                opened with the same `userId`, they will be considered the same user and will share their state.
+              </Markdown>
             ),
           },
         ]}
