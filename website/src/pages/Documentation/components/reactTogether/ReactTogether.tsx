@@ -75,7 +75,7 @@ export default function ReactTogetherDocumentationPage() {
           {
             name: 'deriveNickname?',
             type: '(userId: string) => string',
-            default: 'undefined',
+            default: <LinkSpan text='deriveNickname' to='/utils#deriveNickname' />,
             description: (
               <p>
                 A function that returns the default nickname for a given userId. This function will be used by{' '}
