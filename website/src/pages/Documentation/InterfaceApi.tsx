@@ -5,6 +5,7 @@ interface PropObject {
   type: string | React.ReactNode
   description?: string | React.ReactNode
   default?: string
+  deprecated?: boolean
 }
 interface InterfaceApiProps {
   title: string
@@ -22,8 +23,8 @@ export default function InterfaceApi({ title, id = undefined, items }: Interface
           { key: 'default', label: 'Default value' },
           { key: 'description', label: 'Description' },
         ]}
-        data={items.map(({ name, type, ...fields }) => ({
-          name: <CodeSpan text={name} />,
+        data={items.map(({ name, type, deprecated, ...fields }) => ({
+          name: <CodeSpan text={name} className={deprecated ? 'line-through' : ''} />,
           type: typeof type === 'string' ? <CodeSpan text={type} /> : type,
           ...fields,
         }))}

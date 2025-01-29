@@ -72,10 +72,7 @@ export interface MessageAvatarProps {
   isMe: boolean
 }
 
-export interface MessageBodyProps {
-  senderId: string
-  message: string
-  sentAt: number
+export interface MessageBodyProps extends Omit<ChatMessage, 'id'> {
   isMe: boolean
   formatTime?: (ts: number) => string
 }

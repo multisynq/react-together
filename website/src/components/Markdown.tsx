@@ -34,7 +34,7 @@ export function Markdown({ children }: MarkdownProps) {
           // make a code object with the language as the key
           let lang = match?.[1]
           if (lang == 'js') lang = 'javascript'
-          console.log('match=', match?.[1], 'lang=', lang)
+          // console.log('match=', match?.[1], 'lang=', lang)
           // if (lang == 'ts') lang = 'typescript'
           const code = { [lang]: String(children) }
 

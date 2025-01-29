@@ -2,9 +2,9 @@ import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { PreviewSourceCodeTabs } from '@pages/Documentation/PreviewSourceCodeTabs'
 import getDocLinks from '@utils/getDocLinks'
-import DocumentationDemo from '../DocumentationDemo'
-import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
-import ComponentPropsTable from './ComponentPropsTable'
+import DocumentationDemo from '../../DocumentationDemo'
+import { GenericDocNav, GenericDocPage } from '../../GenericDocPage'
+import ComponentPropsTable from '../ComponentPropsTable'
 
 const codes = {
   demo: {
@@ -124,7 +124,15 @@ export default function ConnectedUsersDocumentationPage() {
             <PreviewSourceCodeTabs
               {...{
                 preview: <DocumentationDemo url='ConnectedUsers' />,
-                code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_name: 'ConnectedUsers' }).github_demo }} />,
+                code: (
+                  <CodeBlock
+                    {...{
+                      code: codes.demo,
+                      github: getDocLinks({ rt_name: 'ConnectedUsers' }).github_demo,
+                      stackBlitz: 'https://stackblitz.com/edit/react-together-connected-users?file=src%2FApp.tsx',
+                    }}
+                  />
+                ),
               }}
             />
           </>

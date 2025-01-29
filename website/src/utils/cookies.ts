@@ -59,13 +59,12 @@ export function setupGoogleAnalytics() {
   }
 
   // Setup consent mode
-  console.log('Setting cookie consent', consent)
   ReactGA.gtag('consent', 'default', getGoogleConsent(consent))
 
   // Initialize Google Tag Manager and Google Analytics
   TagManager.initialize({
     gtmId: import.meta.env.VITE_GTM_ID,
   })
-  
+
   ReactGA.initialize(import.meta.env.VITE_GA4_ID)
 }

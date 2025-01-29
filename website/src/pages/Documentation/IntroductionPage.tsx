@@ -1,8 +1,6 @@
 import { CodeBlock, CodeSpan, Link, LinkSpan } from '@components/ui'
 import DocumentationDemo from '@pages/Documentation/DocumentationDemo'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
-import getDocLinks from '@utils/getDocLinks'
-import { TabPanel, TabView } from 'primereact/tabview'
 import { NavItem } from './types'
 
 const codes = {
@@ -10,12 +8,10 @@ const codes = {
     basic: '$ npm i react-together',
   },
 
-  import: {
-    basic: `import { ReactTogether } from 'react-together'`,
-  },
-
   createRoot: {
     basic: `
+import { ReactTogether } from 'react-together'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ReactTogether
     sessionParams={{
@@ -33,45 +29,33 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 `,
   },
 
-  usage_1: {
+  usage: {
     basic: `
-function YourComponent() {
-  const [count, set_count] = useStateTogether('count', 0)
-
-  return (
-    <button 
-      onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
-      onContextMenu={(e) => { e.preventDefault(); set_count(0) }}
-    >
-      Count: {count}
-    </button>
-  )
-}
-`,
-  },
-
-  usage_2: {
-    basic: `
-import { useStateTogether } from './react-together'
+import { useStateTogether } from 'react-together';
 
 export default function CountButtonTogether() {
-  const [count, set_count] = useStateTogether('count', 0)
+  const [count, setCount] = useStateTogether('count', 0);
 
   return (
-    <div className='flex flex-col align-items-center'>
+    <div className="flex flex-row gap-2 justify-center m-auto">
       <button
-        className='bg-gray-400 py-2 px-4 rounded-md text-white'
-        onClick={() => set_count((prev) => (prev === undefined ? 1 : prev + 1))}
+        className="bg-gray-400 py-2 px-4 rounded-md text-white"
+        onClick={() => setCount(0)}
+      >
+        Reset
+      </button>
+      <button
+        className="bg-gray-400 py-2 px-4 rounded-md text-white"
+        onClick={() => setCount((prev) => (prev === undefined ? 1 : prev + 1))}
         onContextMenu={(e) => {
-          e.preventDefault()
-          set_count(0)
+          e.preventDefault();
+          setCount(0);
         }}
       >
         Count: {count}
       </button>
-      <p style={{ color: '#888888', fontSize: '0.7rem' }}>Right click to reset to zero</p>
     </div>
-  )
+  );
 }
 `,
   },
@@ -96,29 +80,22 @@ export default function IntroductionPage() {
       <h4 id='context'>Context</h4>
       <p>
         Wrap your application inside the <LinkSpan text='<ReactTogether/>' to='/ReactTogether' /> component, and configure it using your
-        Multisynq keys. The Multisynq keys are required to enable the synchronization magic that powers React Together. Get your keys at{' '}
+        Multisynq keys. The Multisynq keys are required to enable the synchronization magic that powers React Together. You can get your
+        free key at{' '}
         <Link to='https://multisynq.io/account' target='_blank'>
           multisynq.io/account
         </Link>
         .
       </p>
-      <CodeBlock code={codes.import} />
-      <CodeBlock code={codes.createRoot} />
+      <CodeBlock code={codes.createRoot} stackBlitz='https://stackblitz.com/edit/react-together-hello-world?file=src%2Fmain.tsx' />
 
       <h4 id='sdf'>Use ReactTogether</h4>
       <p>That's it! Now you just need to import and use our components to create awesome interactive websites!</p>
 
-      <CodeBlock code={codes.usage_1} />
+      <CodeBlock code={codes.usage} stackBlitz='https://stackblitz.com/edit/react-together-hello-world?file=src%2FApp.tsx' />
 
-      <h5>Example</h5>
-      <TabView className='w-full'>
-        <TabPanel header='Preview'>
-          <DocumentationDemo url='CountButtonTogether' />
-        </TabPanel>
-        <TabPanel header='Code'>
-          <CodeBlock {...{ code: codes.usage_2, github: getDocLinks({ rt_path: 'CountButtonTogether.tsx' }).github_demo }} />
-        </TabPanel>
-      </TabView>
+      <h5>Result</h5>
+      <DocumentationDemo url='CountButtonTogether' />
     </>
   )
 

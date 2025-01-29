@@ -1,10 +1,10 @@
 import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import getDocLinks from '@utils/getDocLinks'
-import DocumentationDemo from '../DocumentationDemo'
-import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
-import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
-import ComponentPropsTable from './ComponentPropsTable'
+import DocumentationDemo from '../../DocumentationDemo'
+import { GenericDocNav, GenericDocPage } from '../../GenericDocPage'
+import { PreviewSourceCodeTabs } from '../../PreviewSourceCodeTabs'
+import ComponentPropsTable from '../ComponentPropsTable'
 
 export const codes = {
   demo: {

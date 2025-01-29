@@ -10,6 +10,7 @@ import {
 import ReactTogetherModel from '../models/ReactTogetherModel'
 import getNewValue from './getNewValue'
 import useMyId from './useMyId'
+import useThrottle from './useThrottle'
 
 interface ValueMap<T> {
   [userId: string]: T
@@ -106,6 +107,7 @@ export interface UseStateTogetherWithPerUserValuesOptions {
   keepValues?: boolean
   overwriteSessionValue?: boolean
   omitMyValue?: boolean
+  throttleDelay?: number
 }
 export default function useStateTogetherWithPerUserValues<
   T extends NotUndefined
@@ -119,7 +121,8 @@ export default function useStateTogetherWithPerUserValues<
     resetOnConnect = false,
     keepValues = false,
     overwriteSessionValue = false,
-    omitMyValue = false
+    omitMyValue = false,
+    throttleDelay = 100
   } = options
 
   // Memoize the initial value to ignore subsequent changes
@@ -266,44 +269,47 @@ export default function useStateTogetherWithPerUserValues<
   ])
 
   // Setter function to update local and shared state
-  const setter = useCallback(
-    (newValueOrFn: SetStateAction<T>): void => {
-      if (!view || !model || myId === null) {
-        // Update local state when not connected
-        setAllValuesState((prev) => {
-          const newLocalValue = getNewValue(prev.localValue, newValueOrFn)
-          return prev.localValue === newLocalValue
-            ? prev
-            : {
-                localValue: newLocalValue,
-                allValues: EMPTY_OBJECT,
-                allValuesHash: null
-              }
-        })
-      } else {
-        // Update shared state when connected
-        const allValues = model.statePerUser.get(rtKey) as Map<string, T>
-        let prevLocalValue = allValues.get(myId)
-        if (prevLocalValue === undefined) {
-          // If the key is not in the allValues mapping, it is because
-          // the publish(initialValue) has not been received by the current user yet
-          // In that case, we use the initialValue
-          console.warn(
-            '[useStateTogetherWithPerUserValues:setter] prevLocalValue is undefined.' +
-              `Using initialValue: ${actualInitialValue}`
-          )
-          prevLocalValue = actualInitialValue
-        }
-        const newLocalValue = getNewValue<T>(prevLocalValue, newValueOrFn)
+  const setter = useThrottle(
+    throttleDelay,
+    useCallback(
+      (newValueOrFn: SetStateAction<T>): void => {
+        if (!view || !model || myId === null) {
+          // Update local state when not connected
+          setAllValuesState((prev) => {
+            const newLocalValue = getNewValue(prev.localValue, newValueOrFn)
+            return prev.localValue === newLocalValue
+              ? prev
+              : {
+                  localValue: newLocalValue,
+                  allValues: EMPTY_OBJECT,
+                  allValuesHash: null
+                }
+          })
+        } else {
+          // Update shared state when connected
+          const allValues = model.statePerUser.get(rtKey) as Map<string, T>
+          let prevLocalValue = allValues?.get(myId)
+          if (prevLocalValue === undefined) {
+            // If the key is not in the allValues mapping, it is because
+            // the publish(initialValue) has not been received by the current user yet
+            // In that case, we use the initialValue
+            console.warn(
+              '[useStateTogetherWithPerUserValues:setter] prevLocalValue is undefined.' +
+                `Using initialValue: ${actualInitialValue}`
+            )
+            prevLocalValue = actualInitialValue
+          }
+          const newLocalValue = getNewValue<T>(prevLocalValue, newValueOrFn)
 
-        view.publish(model.id, 'setStatePerUser', {
-          rtKey,
-          userId: myId,
-          value: newLocalValue
-        })
-      }
-    },
-    [rtKey, view, model, actualInitialValue, myId]
+          view.publish(model.id, 'setStatePerUser', {
+            rtKey,
+            userId: myId,
+            value: newLocalValue
+          })
+        }
+      },
+      [rtKey, view, model, actualInitialValue, myId]
+    )
   )
 
   const { localValue, allValues } = allValuesState

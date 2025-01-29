@@ -1,3 +1,17 @@
+## 0.3.3
+`2025-01-29`
+
+ - Added `Cursors` component
+ - Added `useCursors` hook
+ - Added `useNicknames` hook
+ - Added `useAllNicknames` hook
+ - Added `throttleDelay` option to `useStateTogether`
+ - Added `throttleDelay` option to `useStateTogetherWithPerUserValues`
+ - Added `rememberUsers` prop to `ReactTogether` component
+ - Added `deriveNickname` prop to `ReactTogether` component
+ - Added `nickname` property to `ConnectedUser` interface
+ - Deprecated `name` property in `ConnectedUser` interface
+
 ## 0.3.2
 `2025-01-10`
 

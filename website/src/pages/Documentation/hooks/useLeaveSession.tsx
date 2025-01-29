@@ -4,12 +4,10 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
 
 const codes = {
-  usage_1: {
-    basic: `import { useLeaveSession } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
+import { useLeaveSession } from 'react-together'
+
 export default function YourComponent() {
   const leaveSession = useLeaveSession()
 
@@ -57,8 +55,7 @@ export default function UseLeaveSessionDocumentationPage() {
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage_1 }} />
-            <CodeBlock {...{ code: codes.usage_2 }} />
+            <CodeBlock {...{ code: codes.usage }} />
           </>
         ),
         api,

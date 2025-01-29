@@ -27,17 +27,17 @@ fi
 case "$CF_PAGES_BRANCH" in
     deploy)
         X="🚀"
-        ENV_LABEL="Production"
+        ENV_LABEL="Production site"
         URL="https://reacttogether.dev"
         ;;
     main|develop|staging)
         X="👁️"
-        ENV_LABEL="${CF_PAGES_BRANCH^}"
+        ENV_LABEL="${CF_PAGES_BRANCH^} Preview site"
         URL="https://${CF_PAGES_BRANCH}.reacttogether.dev"
         ;;
     *)
         X="🔧"
-        ENV_LABEL="Branch"
+        ENV_LABEL="'${CF_PAGES_BRANCH}' branch"
         # guess Cloudflare's preview branch URL from the branch name
         BRANCH_HOST=$(echo $CF_PAGES_BRANCH | sed -r 's [^-a-zA-Z0-9] - g;s -+ - g' | tr A-Z a-z | cut -c 1-28)
         URL="https://${BRANCH_HOST}.reacttogether.pages.dev"

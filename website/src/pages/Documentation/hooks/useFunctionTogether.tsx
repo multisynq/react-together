@@ -93,12 +93,10 @@ export function MeditationBell() {
 `,
   },
 
-  usage_1: {
-    basic: `import { useFunctionTogether } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
+import { useFunctionTogether } from 'react-together'
+
 export default function YourComponent() {
   const ding = useFunctionTogether('ding', () => {
     alert('Dong!')
@@ -168,15 +166,19 @@ export default function UseFunctionTogetherDocumentationPage() {
             <PreviewSourceCodeTabs
               {...{
                 preview: <DocumentationDemo url='useFunctionTogether' />,
-                code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_path: 'MeditationBell.tsx' }).github_demo }} />,
+                code: (
+                  <CodeBlock
+                    {...{ code: codes.demo, github: getDocLinks({ rt_path: 'MeditationBell.tsx' }).github_demo }}
+                    stackBlitz='https://stackblitz.com/edit/react-together-hello-world-fbxbe29x?file=src%2FApp.tsx'
+                  />
+                ),
               }}
             />
           </>
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage_1 }} />
-            <CodeBlock {...{ code: codes.usage_2 }} />
+            <CodeBlock {...{ code: codes.usage }} />
           </>
         ),
         api,

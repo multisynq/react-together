@@ -4,12 +4,10 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
 
 const codes = {
-  usage_1: {
-    basic: `import { useJoinUrl } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
+import { useJoinUrl } from 'react-together'
+
 function YourComponent() {
   const joinUrl = useJoinUrl()
 
@@ -51,8 +49,7 @@ export default function UseJoinUrlDocumentationPage() {
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage_1 }} />
-            <CodeBlock {...{ code: codes.usage_2 }} />
+            <CodeBlock {...{ code: codes.usage }} />
           </>
         ),
         api,

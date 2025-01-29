@@ -2,9 +2,9 @@ import { Icons } from '@components/icons'
 import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import getDocLinks from '@utils/getDocLinks'
-import DocumentationDemo from '../DocumentationDemo'
-import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
-import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
+import DocumentationDemo from '../../DocumentationDemo'
+import { GenericDocNav, GenericDocPage } from '../../GenericDocPage'
+import { PreviewSourceCodeTabs } from '../../PreviewSourceCodeTabs'
 
 const codes = {
   demo: {

@@ -4,17 +4,15 @@ import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import HookReturnApi from './HookReturnApi'
 
 const codes = {
-  usage_1: {
-    basic: `import { useMyId } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
+import { useMyId } from 'react-together'
+
 function YourComponent() {
   const myId = useMyId()
 
   if (!myId) {
-    return <p>You are not in a React Together session...</p>
+    return <p>You don't have an ID because you're not in a React Together session.</p>
   }
 
   return <p>My ID: {myId}</p>
@@ -49,8 +47,7 @@ export default function UseMyIdDocumentationPage() {
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage_1 }} />
-            <CodeBlock {...{ code: codes.usage_2 }} />
+            <CodeBlock {...{ code: codes.usage }} />
           </>
         ),
         api,

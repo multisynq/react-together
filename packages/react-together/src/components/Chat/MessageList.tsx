@@ -24,15 +24,14 @@ export default function MessageList({
     <div className="rt-messageContainer">
       {isTogether ? (
         messages.length > 0 ? (
-          messages.map(({ id, senderId, sentAt, message }, index) => (
+          messages.map(({ id, senderId, ...message }, index) => (
             <div
               key={id}
               ref={index === messages.length - 1 ? lastMessageRef : undefined}
             >
               <MessageRow
                 senderId={senderId}
-                message={message}
-                sentAt={sentAt}
+                {...message}
                 isMe={senderId === myId}
                 MessageAvatar={MessageAvatar}
                 MessageBody={MessageBody}

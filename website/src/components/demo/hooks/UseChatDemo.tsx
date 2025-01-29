@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { useChat } from 'react-together'
-import { DynamicUrlWrapper } from './DynamicUrlWrapper'
 
 export function UseChatDemo() {
   const { messages, sendMessage } = useChat('use-chat-demo')
@@ -21,9 +20,9 @@ export function UseChatDemo() {
   }
 
   return (
-    <DynamicUrlWrapper>
+    <div className='h-screen w-screen py-2 flex flex-col'>
       {/* ---MESSAGE CONTAINER--- */}
-      <div className='overflow-y-auto px-2 h-full w-full' ref={messagesContainerRef}>
+      <div className='overflow-y-auto px-2 flex-grow' ref={messagesContainerRef}>
         <ul className='flex gap-1 flex-col mb-2'>
           {messages.map(({ id, senderId, message, sentAt }) => (
             <li key={id}>
@@ -49,7 +48,7 @@ export function UseChatDemo() {
           Send
         </button>
       </div>
-    </DynamicUrlWrapper>
+    </div>
   )
 }
 

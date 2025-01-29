@@ -1,7 +1,7 @@
 import { CodeBlock, CodeSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import getDocLinks from '@utils/getDocLinks'
-import { codes as _codes } from '../components/HoverHighlighter'
+import { codes as _codes } from '../components/reactTogether/HoverHighlighter'
 import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
@@ -11,14 +11,12 @@ import HookReturnApi from './HookReturnApi'
 const codes = {
   demo: _codes.demo,
 
-  usage_1: {
-    basic: `import { useHoveringUsers } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
+import { useHoveringUsers } from 'react-together'
+
 function YourComponent() {
-  const [ref, hoveringUsers, isHovering] = useHoveringUsers('hovering-views')
+  const [ref, hoveringUsers, isHovering] = useHoveringUsers('hovering-users')
 
   return (
     <div>
@@ -95,15 +93,22 @@ export default function UseHoveringUsersDocumentationPage() {
             <PreviewSourceCodeTabs
               {...{
                 preview: <DocumentationDemo url='HoverHighlighter' />,
-                code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_name: 'HoverHighlighter' }).github_demo }} />,
+                code: (
+                  <CodeBlock
+                    {...{
+                      code: codes.demo,
+                      github: getDocLinks({ rt_name: 'HoverHighlighter' }).github_demo,
+                      stackBlitz: 'https://stackblitz.com/edit/react-together-hello-world-6iajdiq5?file=src%2FApp.tsx',
+                    }}
+                  />
+                ),
               }}
             />
           </>
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage_1 }} />
-            <CodeBlock {...{ code: codes.usage_2 }} />
+            <CodeBlock {...{ code: codes.usage }} />
           </>
         ),
         api,

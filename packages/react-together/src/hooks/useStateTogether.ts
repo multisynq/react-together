@@ -8,16 +8,21 @@ import {
 } from 'react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 import getNewValue from './getNewValue'
+import useThrottle from './useThrottle'
 
 interface UseStateTogetherOptions {
   resetOnDisconnect?: boolean
+  throttleDelay?: number
 }
 
 export default function useStateTogether<T>(
   rtKey: string,
   initialValue: T,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  { resetOnDisconnect = false }: UseStateTogetherOptions = {}
+  {
+    resetOnDisconnect = false,
+    throttleDelay = 100
+  }: UseStateTogetherOptions = {}
 ): [T, Dispatch<SetStateAction<T>>] {
   // If a session is active, it uses the shared state from the session by
   // subscribing to updates and publishing changes.
@@ -65,20 +70,22 @@ export default function useStateTogether<T>(
     return () => view.unsubscribe(rtKey, 'updated', handler)
   }, [session, view, model, rtKey, set_value, initialValue, resetOnDisconnect])
 
-  const setter = useCallback(
-    (newValueOrFn: SetStateAction<T>): void => {
-      if (model && view) {
-        // Eventually we will want to throttle publish calls
-        const oldValue = model.state.get(rtKey) as T
-        view.publish(model.id, 'setState', {
-          rtKey,
-          value: getNewValue(oldValue, newValueOrFn)
-        })
-      } else {
-        set_value(newValueOrFn)
-      }
-    },
-    [set_value, model, view, rtKey]
+  const setter = useThrottle(
+    throttleDelay,
+    useCallback(
+      (newValueOrFn: SetStateAction<T>): void => {
+        if (model && view) {
+          const oldValue = model.state.get(rtKey) as T
+          view.publish(model.id, 'setState', {
+            rtKey,
+            value: getNewValue(oldValue, newValueOrFn)
+          })
+        } else {
+          set_value(newValueOrFn)
+        }
+      },
+      [set_value, model, view, rtKey]
+    )
   )
 
   return [value, setter]

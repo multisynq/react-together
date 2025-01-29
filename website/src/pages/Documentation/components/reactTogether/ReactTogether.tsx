@@ -4,16 +4,14 @@ import CodeSpan from '@components/ui/CodeSpan'
 import Link from '@components/ui/Link'
 import LinkSpan from '@components/ui/LinkSpan'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
-import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
-import ComponentPropsTable from './ComponentPropsTable'
+import { GenericDocNav, GenericDocPage } from '../../GenericDocPage'
+import ComponentPropsTable from '../ComponentPropsTable'
 
 const codes = {
-  usage_1: {
-    basic: `import { ReactTogether } from 'react-together'`,
-  },
-
-  usage_2: {
+  usage: {
     basic: `
+import { ReactTogether } from 'react-together'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ReactTogether
@@ -42,13 +40,25 @@ export default function ReactTogetherDocumentationPage() {
             description: 'The parameters passed to the Multisynq session.',
           },
           {
-            name: 'userId?',
-            type: 'string',
+            name: 'deriveNickname?',
+            type: '(userId: string) => string',
+            default: <LinkSpan text='deriveNickname' to='/utils#deriveNickname' />,
             description: (
-              <Markdown>
-                An override for the `userId`. If this value is set, it will be used to identify the current user. If multiple windows are
-                opened with the same `userId`, they will be considered the same user and will share their state.
-              </Markdown>
+              <p>
+                A function that returns the default nickname for a given userId. This function will be used by{' '}
+                <LinkSpan text='useNicknames' to='/useNicknames' /> to derive the nickname for a given userId if unspecified.
+              </p>
+            ),
+          },
+          {
+            name: 'rememberUsers?',
+            type: 'boolean',
+            default: 'false',
+            description: (
+              <p>
+                If set to <CodeSpan text='true' />, persists the user's ID and nickname in the browser, allowing them to maintain their
+                identity when reconnecting to the same session or joining different sessions.
+              </p>
             ),
           },
           {
@@ -61,6 +71,16 @@ export default function ReactTogetherDocumentationPage() {
                 <CodeSpan text='sessionIgnoresUrl' /> is set to <CodeSpan text='true' />, sessions with the same name will be considered the
                 same session regardless of their hosting URL.
               </p>
+            ),
+          },
+          {
+            name: 'userId?',
+            type: 'string',
+            description: (
+              <Markdown>
+                An override for the `userId`. If this value is set, it will be used to identify the current user. If multiple windows are
+                opened with the same `userId`, they will be considered the same user and will share their state.
+              </Markdown>
             ),
           },
         ]}
@@ -151,8 +171,7 @@ export default function ReactTogetherDocumentationPage() {
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage_1 }} />
-            <CodeBlock {...{ code: codes.usage_2 }} />
+            <CodeBlock {...{ code: codes.usage }} />
           </>
         ),
         api,

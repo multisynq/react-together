@@ -4,10 +4,10 @@ import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { PreviewSourceCodeTabs } from '@pages/Documentation/PreviewSourceCodeTabs'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import getDocLinks from '@utils/getDocLinks'
-import DocumentationDemo from '../DocumentationDemo'
-import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
-import InterfaceApi from '../InterfaceApi'
-import ComponentPropsTable from './ComponentPropsTable'
+import DocumentationDemo from '../../DocumentationDemo'
+import { GenericDocNav, GenericDocPage } from '../../GenericDocPage'
+import InterfaceApi from '../../InterfaceApi'
+import ComponentPropsTable from '../ComponentPropsTable'
 
 const codes = {
   usage_1: {
@@ -20,87 +20,16 @@ const codes = {
 
   demo: {
     basic: `
-import { useState } from 'react'
-import { Chat, useCreateRandomSession, useJoinUrl, useLeaveSession } from 'react-together'
-import { Button } from 'primereact/button'
+import { Chat } from 'react-together';
 
-export function ChatDemo() {
+export default function ChatDemo() {
   return (
-    <div className='relative h-full'>
-      <div className='fixed bottom-0 left-2'>
-        <Chat rtKey='chat' />
-      </div>
-      <SessionManagement />
+    <div className="fixed bottom-0 right-2">
+      <Chat rtKey="chat" />
     </div>
-  )
+  );
 }
-
-function ellipsify(text: string, maxLength = 30) {
-  if (text.length <= maxLength) return text
-  return text.slice(0, maxLength) + '...'
-}
-
-function SessionManagement() {
-  const createSession = useCreateRandomSession()
-  const joinUrl = useJoinUrl()
-  const leaveSession = useLeaveSession()
-
-  const [copySuccess, setCopySuccess] = useState(false)
-
-  const copyToClipboard = (e: React.MouseEvent<unknown>) => {
-    e.stopPropagation()
-    e.preventDefault()
-    navigator.clipboard
-      .writeText(joinUrl)
-      .then(() => {
-        setCopySuccess(true)
-        setTimeout(() => setCopySuccess(false), 2000)
-      })
-      .catch((err) => console.error('Failed to copy text: ', err))
-  }
-
-  return (
-    <div className='text-center px-8'>
-      <h3>Your Collaborative website</h3>
-      <div className='mt-5 text-sm'>
-        {joinUrl ? (
-          <>
-            <p>Invite your friends to this session using the link below</p>
-
-            <p className='cursor-pointer underline mt-2 text-blue-600 hover:text-blue-600' onClick={(e) => copyToClipboard(e)}>
-              {ellipsify(joinUrl)}
-              <span className='ml-2'>
-                <Button
-                  icon={copySuccess ? 'pi pi-check' : 'pi pi-copy'}
-                  text
-                  rounded
-                  severity='secondary'
-                  aria-label='Bookmark'
-                  className='w-7 h-6'
-                />
-              </span>
-            </p>
-
-            <p className='mt-2'>
-              <span className='cursor-pointer underline text-red-500 hover:text-red-600' onClick={leaveSession}>
-                Leave session
-              </span>
-            </p>
-          </>
-        ) : (
-          <p>
-            You are not inside a collaborative session.
-            <br />
-            <span onClick={createSession} className='cursor-pointer underline text-blue-600 hover:text-blue-800'>
-              Create a new session
-            </span>{' '}
-            or paste an invite link in the bar above
-          </p>
-        )}
-      </div>
-    </div>
-  )
-}`,
+`,
   },
 }
 const api = (
@@ -223,7 +152,15 @@ export default function ChatDocumentationPage() {
             <PreviewSourceCodeTabs
               {...{
                 preview: <DocumentationDemo url='Chat' session1={sessionParams} session2={sessionParams} aspectRatio='3 / 4' />,
-                code: <CodeBlock {...{ code: codes.demo, github: getDocLinks({ rt_name: 'Chat' }).github_demo }} />,
+                code: (
+                  <CodeBlock
+                    {...{
+                      code: codes.demo,
+                      github: getDocLinks({ rt_name: 'Chat' }).github_demo,
+                      stackBlitz: 'https://stackblitz.com/edit/react-together-chat?file=src%2FApp.tsx',
+                    }}
+                  />
+                ),
               }}
             />
           </>

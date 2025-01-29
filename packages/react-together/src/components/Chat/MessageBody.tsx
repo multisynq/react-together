@@ -1,3 +1,4 @@
+import { useAllNicknames } from '../../hooks'
 import { MessageBodyProps } from './types'
 
 function timeToLocale(timestamp: number) {
@@ -12,10 +13,12 @@ export default function MessageBody({
   sentAt,
   formatTime = timeToLocale
 }: MessageBodyProps) {
+  const allNicknames = useAllNicknames()
+  const senderNickname = allNicknames[senderId] ?? senderId
   return (
     <div className={`rt-message-divider ${isMe ? 'isMe' : ''}`}>
       <div className={`rt-message-border ${isMe ? 'isMe' : ''}`}>
-        <span className="rt-messageLabel">{senderId}</span>
+        <span className="rt-messageLabel">{senderNickname}</span>
         <div>
           <span className="rt-message-text">{message}</span>{' '}
           <span className="rt-messageLabel">

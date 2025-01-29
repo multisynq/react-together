@@ -8,6 +8,7 @@ const ConnectedViews = ConnectedUsers
 const PresenceDiv = HoverHighlighter
 
 export * from './Chat'
+export * from './Cursors'
 export {
   ConnectedUsers,
   ConnectedViews,

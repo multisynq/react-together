@@ -1,7 +1,11 @@
 import { CroquetRoot } from '@croquet/react'
+import { ReactTogetherContext } from '../context'
 import ReactTogetherModel from '../models/ReactTogetherModel'
+import { deriveNickname as defaultDeriveNickname } from '../utils'
 
 import { getSessionNameFromUrl, getSessionPasswordFromUrl } from '../utils'
+
+const USER_ID_LOCAL_STORAGE_KEY = '__rt-userId'
 
 type ReactTogetherSessionParams<D> = {
   apiKey: string
@@ -16,13 +20,17 @@ export type ReactTogetherProps<D = undefined> = {
   sessionParams: ReactTogetherSessionParams<D>
   sessionIgnoresUrl?: boolean
   userId?: string
+  deriveNickname?: (userId: string) => string
+  rememberUsers?: boolean
 }
 
 export default function ReactTogether<D>({
   children,
   sessionParams,
   sessionIgnoresUrl,
-  userId
+  userId,
+  deriveNickname = defaultDeriveNickname,
+  rememberUsers = false
 }: ReactTogetherProps<D & { userId?: string }>) {
   const { appId, apiKey } = sessionParams
 
@@ -47,6 +55,15 @@ export default function ReactTogether<D>({
   const name = searchName || sessionParams.name
   const password = searchPassword || sessionParams.password
 
+  if (rememberUsers && userId === undefined) {
+    let existing = localStorage.getItem(USER_ID_LOCAL_STORAGE_KEY)
+    if (existing === null) {
+      existing = Math.random().toString(36).substring(2, 15)
+      localStorage.setItem(USER_ID_LOCAL_STORAGE_KEY, existing)
+    }
+    userId = existing
+  }
+
   let viewData = sessionParams.viewData
   if (userId !== undefined) {
     if (viewData === undefined) {
@@ -70,7 +87,9 @@ export default function ReactTogether<D>({
       deferSession={!name || !password}
       showChildrenWithoutSession
     >
-      {children}
+      <ReactTogetherContext.Provider value={{ deriveNickname, rememberUsers }}>
+        {children}
+      </ReactTogetherContext.Provider>
     </CroquetRoot>
   )
 }

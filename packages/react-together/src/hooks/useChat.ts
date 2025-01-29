@@ -33,7 +33,7 @@ export default function useChat(rtKey: string) {
     const handler = () => {
       const chat = getChat(model, rtKey)
       if (!chat) {
-        console.warn(`Chat ${rtKey} not found`)
+        // console.warn(`Chat ${rtKey} not found`)
         return
       }
       setMessages([...chat.messages])
@@ -56,7 +56,11 @@ export default function useChat(rtKey: string) {
         return
       }
 
-      publishSendMessage({ message, senderId: myId, sentAt: now })
+      publishSendMessage({
+        message,
+        senderId: myId,
+        sentAt: now
+      })
     },
     [publishSendMessage, myId]
   )
