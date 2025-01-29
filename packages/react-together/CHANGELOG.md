@@ -1,4 +1,6 @@
-## Next release
+## 0.3.3
+`2025-01-29`
+
  - Added `Cursors` component
  - Added `useCursors` hook
  - Added `useNicknames` hook
