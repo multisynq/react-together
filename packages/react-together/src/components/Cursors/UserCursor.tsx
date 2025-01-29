@@ -21,7 +21,7 @@ export default function UserCursor({
   getUserColor = defaultGetUserColor
 }: UserCursorProps) {
   const allNicknames = useAllNicknames()
-  const nickName = allNicknames[userId]
+  const nickname = allNicknames[userId]
 
   // Calculate the cursor position on the local page
   // We need to keep track of the window dimensions and scroll position
@@ -81,7 +81,7 @@ export default function UserCursor({
       const { width, height } = labelRef.current.getBoundingClientRect()
       setLabelDimensions({ width, height })
     }
-  }, [userId, nickName, scrollX, scrollY]) // Re-measure when userId changes as it affects label size
+  }, [userId, nickname, scrollX, scrollY]) // Re-measure when userId changes as it affects label size
   // Calculate label position based on cursor position and label dimensions
   const labelPosition = useMemo(() => {
     const padding = 5
@@ -150,7 +150,7 @@ export default function UserCursor({
                 ...labelPosition
               }}
             >
-              {nickName ?? userId}
+              {nickname ?? userId}
             </div>
           </>
         )}
