@@ -13,9 +13,9 @@ function YourComponent() {
   const isTogether = useIsTogether();
 
   return isTogether ? (
-    <div>You're in a React Together session and you values are synchronised!</div>
+    <div>You're in a React Together session and you values are synchronized!</div>
   ) : (
-    <div>You're not in a React Together session or values are not synchronised yet!</div>
+    <div>You're not in a React Together session or values are not synchronized yet!</div>
   );
 }
 `,

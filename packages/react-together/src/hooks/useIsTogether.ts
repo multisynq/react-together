@@ -8,7 +8,7 @@ export default function useIsTogether(synchronized = true) {
   // It means the useStateTogether hook has been populated by the model.
   // We are using this as we always have at least one user (ourselves) if we are properly connected.
   const [, , allNicknames] = useNicknames()
-  const isSynchronised = Object.keys(allNicknames).length > 0
+  const isSynchronized = Object.keys(allNicknames).length > 0
 
-  return synchronized ? hasSession && isSynchronised : hasSession
+  return synchronized ? hasSession && isSynchronized : hasSession
 }
