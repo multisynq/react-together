@@ -1,10 +1,10 @@
-import { useCroquetContext } from '@croquet/react'
+import { useMultisynqContext } from '@multisynq/react'
 import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState
+    Dispatch,
+    SetStateAction,
+    useCallback,
+    useEffect,
+    useState
 } from 'react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 import getNewValue from './getNewValue'
@@ -29,7 +29,7 @@ export default function useStateTogether<T>(
   // If no session is active, it behaves like a normal useState hook,
   // maintaining local state only.
 
-  const { session, view, model } = useCroquetContext<ReactTogetherModel>()
+  const { session, view, model } = useMultisynqContext<ReactTogetherModel>()
 
   const [value, set_value] = useState<T>(() => {
     // This function runs only during the initial render.

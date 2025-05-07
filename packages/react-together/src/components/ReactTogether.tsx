@@ -1,4 +1,4 @@
-import { CroquetRoot } from '@croquet/react'
+import { MultisynqRoot } from '@multisynq/react'
 import { ReactTogetherContext } from '../context'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 import { deriveNickname as defaultDeriveNickname } from '../utils'
@@ -74,7 +74,7 @@ export default function ReactTogether<D>({
   }
 
   return (
-    <CroquetRoot
+    <MultisynqRoot
       sessionParams={{
         model,
         name,
@@ -90,6 +90,6 @@ export default function ReactTogether<D>({
       <ReactTogetherContext.Provider value={{ deriveNickname, rememberUsers }}>
         {children}
       </ReactTogetherContext.Provider>
-    </CroquetRoot>
+    </MultisynqRoot>
   )
 }

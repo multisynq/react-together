@@ -118,9 +118,9 @@ const items: PatchedMenuItem[] = [
     label: 'Advanced usage',
     items: [
       {
-        key: 'croquet',
-        label: 'Croquet',
-        url: `${baseUrl}/croquet`,
+        key: 'multisynq',
+        label: 'Multisynq',
+        url: `${baseUrl}/multisynq`,
       },
       {
         key: 'utils',

@@ -26,13 +26,9 @@ Many developers can enjoy our monthly free tier indefinitely. Build, experiment,
 
 For those with high-traffic applications, our clever Synchronizer technology often results in lower costs compared to traditional solutions. How? Synchronizers have a few tricks up our sleeve:
 
-1.  **Deterministic Magic**: Thanks to the innovative tech from Croquet & Multisynq, a significant portion of what would normally be network traffic never leaves your user’s device.
+1.  **Deterministic Magic**: Thanks to the innovative Multisynq tech, a significant portion of what would normally be network traffic never leaves your user’s device.
 2.  **On-Device Processing**: Rough estimates suggest that about 1/3 of the typical traffic becomes "on-device, on-silicon traffic." This means it's processed locally, never touching the network.
 3.  **Decentralized Infrastructure**: Rather than paying for expensive servers in the cloud, we use local Synchronizers that leverage (arbitrage) Synchronizer host available bandwidth at much lower costs.
-
-### Migration from Croquet to DePin
-
-ReactTogether is built using Croquet React, an open-source framework that runs on the current Croquet Legacy Network. ReactTogether will transition seamlessly to the Multisynq DePin Network.
 
 ### Join the ReactTogether Revolution!
 

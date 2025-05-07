@@ -1,10 +1,10 @@
-import { useCroquetContext } from '@croquet/react'
+import { useMultisynqContext } from '@multisynq/react'
 import { useCallback, useEffect } from 'react'
 
 export default function useFunctionTogether<
   T extends (...args: Parameters<T>) => void
 >(rtKey: string, callback: T): T {
-  const { view, model } = useCroquetContext()
+  const { view, model } = useMultisynqContext()
 
   useEffect(() => {
     if (view) {

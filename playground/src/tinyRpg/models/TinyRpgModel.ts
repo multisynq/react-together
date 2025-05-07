@@ -1,6 +1,6 @@
-import { CroquetReact } from 'react-together'
+import { MultisynqReact } from 'react-together';
 
-const { ReactModel } = CroquetReact
+const { ReactModel } = MultisynqReact
 
 export type Direction = 'up' | 'down' | 'left' | 'right'
 export type Position = { x: number; y: number }

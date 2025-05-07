@@ -1,4 +1,4 @@
-import { useJoinedViews as ujv, useModelRoot } from '@croquet/react'
+import { useJoinedViews as ujv, useModelRoot } from '@multisynq/react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 import useAllNicknames from './useAllNicknames'
 import useMyId from './useMyId'

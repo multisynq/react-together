@@ -161,7 +161,7 @@ export default function UseFunctionTogetherDocumentationPage() {
               Keep in mind that only the function arguments are guaranteed to be the same across every user. If the given function captures
               local variables, those may differ from user to user! If you want a perfectly synchronized state, with stronger guarantees, we
               invite you to take a look at the underlying library:{' '}
-              <LinkSpan text='@croquet/react' to='https://www.npmjs.com/package/@croquet/react' target='_blank' /> 😉.
+              <LinkSpan text='@multisynq/react' to='https://www.npmjs.com/package/@multisynq/react' target='_blank' /> 😉.
             </p>
             <PreviewSourceCodeTabs
               {...{
