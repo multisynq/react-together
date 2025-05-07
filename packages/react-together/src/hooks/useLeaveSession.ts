@@ -1,4 +1,4 @@
-import { useLeaveSession as uls } from '@croquet/react'
+import { useLeaveSession as uls } from '@multisynq/react'
 import { useCallback } from 'react'
 import { getCleanUrl } from '../utils'
 

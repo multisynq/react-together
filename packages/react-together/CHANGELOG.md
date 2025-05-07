@@ -1,7 +1,6 @@
-## 0.3.4
-`2025-04-30`
-
- - Improved `useIsTogether` hook
+## 0.4.0
+`2025-05-07`
+ - Switched to `@multisynq/client`
 
 ## 0.3.3
 `2025-01-29`
