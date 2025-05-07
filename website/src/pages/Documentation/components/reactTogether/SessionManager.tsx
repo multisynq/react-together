@@ -9,10 +9,10 @@ import { PreviewSourceCodeTabs } from '../../PreviewSourceCodeTabs'
 const codes = {
   demo: {
     basic: `
-import { CroquetReact, SessionManager, useIsTogether } from 'react-together'
+import { MultisynqReact, SessionManager, useIsTogether } from 'react-together'
 import CountButtonTogether from './CountButtonTogether'
 
-const { useSessionParams } = CroquetReact
+const { useSessionParams } = MultisynqReact
 
 function ConnectionStatus({ connectionStatus, name }: { connectionStatus: boolean; name: string | null }) {
   return (

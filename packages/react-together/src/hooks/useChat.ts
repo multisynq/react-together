@@ -1,4 +1,4 @@
-import { useCroquetContext, usePublish } from '@croquet/react'
+import { useMultisynqContext, usePublish } from '@multisynq/react'
 import { useCallback, useEffect, useState } from 'react'
 import { ChatMessage } from '../components/Chat'
 import ReactTogetherModel, { getChat } from '../models/ReactTogetherModel'
@@ -8,7 +8,7 @@ const EMPTY_ARRAY: ChatMessage[] = []
 
 export default function useChat(rtKey: string) {
   const myId = useMyId()
-  const { view, model } = useCroquetContext<ReactTogetherModel>()
+  const { view, model } = useMultisynqContext<ReactTogetherModel>()
 
   const [messages, setMessages] = useState<ChatMessage[]>(() => {
     if (!model) return EMPTY_ARRAY

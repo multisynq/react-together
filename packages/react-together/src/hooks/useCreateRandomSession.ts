@@ -1,4 +1,4 @@
-import { App, useSetSession } from '@croquet/react'
+import { App, useSetSession } from '@multisynq/react'
 import { useCallback } from 'react'
 
 export default function useCreateRandomSession() {

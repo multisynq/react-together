@@ -1,10 +1,10 @@
-# Croquet
+# Multisynq
 
-[Croquet](https://multisynq.io/docs/croquet/) is a framework that allows creating synchronized multi-user applications without writing any backend or network code.
+[Multisynq](https://multisynq.io/docs/client/) is a framework that allows creating synchronized multi-user applications without writing any backend or network code.
 It makes use of synchronizer servers to bounce events from one user to all users, ensuring event order and timing.
 
-React Together leverages Croquet to synchronize React applications.
-More specifically, it uses a thin wrapper for React, called `@croquet/react`, to maintain a synchronized state store, that is accessible via the React Together hooks.
+React Together leverages Multisynq to synchronize React applications.
+More specifically, it uses a thin wrapper for React, called `@multisynq/react`, to maintain a synchronized state store, that is accessible via the React Together hooks.
 
 However, certain applications require stronger consistency guarantees that currently cannot be implemented solely with React Together.
 Consider a game where multiple players move on a 2D board, and no two players can occupy the same square simultaneously.
@@ -15,20 +15,20 @@ For instance, if two players attempt to move to the same square and both check i
 
 ![Diagram: Running logic on React Side](../../images/tutorials/logic_react_side.png)
 
-Croquet elegantly solves this problem by design: Instead of broadcasting the result of each action, users broadcast the intended action.
+Multisynq elegantly solves this problem by design: Instead of broadcasting the result of each action, users broadcast the intended action.
 All actions from all users are then executed by everyone in the same order.
 This mechanism ensures that only one player can ultimately move to a specific square.
 
 ![Running logic on the Model side](../../images/tutorials/logic_model_side.png)
 
-For applications with such consistency requirements, we strongly recommend exploring @croquet/react and implementing such logic on the model side.
+For applications with such consistency requirements, we strongly recommend exploring @multisynq/react and implementing such logic on the model side.
 Rest assured, you can do this while continuing to use React Together.
 
 
-### React Together + @croquet/react
+### React Together + @multisynq/react
 
-`@croquet/react` allows you to define custom logic by implementing a model class.
-We recommend checking their [documentation](https://multisynq.io/docs/croquet-react/) and [tutorials](https://multisynq.io/docs/croquet-react/tutorial-1_React_Simple_Counter.html) for detailed guidance.
+`@multisynq/react` allows you to define custom logic by implementing a model class.
+We recommend checking their [documentation](https://multisynq.io/docs/multisynq-react/) and [tutorials](https://multisynq.io/docs/multisynq-react/tutorial-1_React_Simple_Counter.html) for detailed guidance.
 
 **Important:**
 Ensure your model extends `ReactTogetherModel` to maintain React Together functionality
@@ -76,9 +76,9 @@ export default function App() {
 Now that we have React Together running our model, we can use the `usePublish` hook to publish events to be executed on the model side:
 
 ```typescript
-import { CroquetReact } from 'react-together'
+import { MultisynqReact } from 'react-together'
 
-const { usePublish, useModelSelector } = CroquetReact
+const { usePublish, useModelSelector } = MultisynqReact
 
 function MyComponent() {
   const model = useModel()
@@ -87,4 +87,4 @@ function MyComponent() {
 }
 ```
 
-**Note:** We recommend you to import the `@croquet/react` API via the `CroquetReact` object.
+**Note:** We recommend you to import the `@multisynq/react` API via the `MultisynqReact` object.

@@ -1,6 +1,6 @@
-import { CroquetReact, useStateTogetherWithPerUserValues } from 'react-together'
+import { MultisynqReact, useStateTogetherWithPerUserValues } from 'react-together'
 
-const { useViewId } = CroquetReact
+const { useViewId } = MultisynqReact
 
 function Score({ score, clickable, onClick, onContextMenu }) {
   const clickableStyle = clickable ? 'cursor-pointer shadow-sm bg-gray-500 text-white' : ''

@@ -12,23 +12,24 @@ import useNicknames from './useNicknames'
 import useStateTogether from './useStateTogether'
 import useStateTogetherWithPerUserValues from './useStateTogetherWithPerUserValues'
 
-// Create hook alias from @croquet/react
-import { useIsJoined } from '@croquet/react'
+// Create hook alias from @multisynq/react
+import { useIsJoined } from '@multisynq/react'
 const useIsTogether = useIsJoined
 
 export {
-  useAllNicknames,
-  useChat,
-  useConnectedUsers,
-  useCreateRandomSession,
-  useCursors,
-  useFunctionTogether,
-  useHoveringUsers,
-  useIsTogether,
-  useJoinUrl,
-  useLeaveSession,
-  useMyId,
-  useNicknames,
-  useStateTogether,
-  useStateTogetherWithPerUserValues
+    useAllNicknames,
+    useChat,
+    useConnectedUsers,
+    useCreateRandomSession,
+    useCursors,
+    useFunctionTogether,
+    useHoveringUsers,
+    useIsTogether,
+    useJoinUrl,
+    useLeaveSession,
+    useMyId,
+    useNicknames,
+    useStateTogether,
+    useStateTogetherWithPerUserValues
 }
+

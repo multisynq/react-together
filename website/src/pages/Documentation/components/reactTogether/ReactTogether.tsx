@@ -139,8 +139,8 @@ export default function ReactTogetherDocumentationPage() {
             default: 'ReactTogetherModel',
             description: (
               <p>
-                If this parameter is set, the Croquet session will use the given class as the Root model. Please refer to{' '}
-                <LinkSpan text='Advanced Usage' to='/croquet' /> for more details.
+                If this parameter is set, the Multisynq session will use the given class as the Root model. Please refer to{' '}
+                <LinkSpan text='Advanced Usage' to='/multisynq' /> for more details.
               </p>
             ),
           },
