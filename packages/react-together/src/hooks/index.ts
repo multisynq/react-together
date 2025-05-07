@@ -5,7 +5,7 @@ import useCreateRandomSession from './useCreateRandomSession'
 import useCursors from './useCursors'
 import useFunctionTogether from './useFunctionTogether'
 import useHoveringUsers from './useHoveringUsers'
-import useIsTogether from './useIsTogether'
+import useIsSynchronized from './useIsSynchronized'
 import useJoinUrl from './useJoinUrl'
 import useLeaveSession from './useLeaveSession'
 import useMyId from './useMyId'
@@ -18,19 +18,19 @@ import { useIsJoined } from '@multisynq/react'
 const useIsTogether = useIsJoined
 
 export {
-    useAllNicknames,
-    useChat,
-    useConnectedUsers,
-    useCreateRandomSession,
-    useCursors,
-    useFunctionTogether,
-    useHoveringUsers,
-    useIsTogether,
-    useJoinUrl,
-    useLeaveSession,
-    useMyId,
-    useNicknames,
-    useStateTogether,
-    useStateTogetherWithPerUserValues
+  useAllNicknames,
+  useChat,
+  useConnectedUsers,
+  useCreateRandomSession,
+  useCursors,
+  useFunctionTogether,
+  useHoveringUsers,
+  useIsSynchronized,
+  useIsTogether,
+  useJoinUrl,
+  useLeaveSession,
+  useMyId,
+  useNicknames,
+  useStateTogether,
+  useStateTogetherWithPerUserValues
 }
-

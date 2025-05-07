@@ -1,7 +1,7 @@
-import { useView } from '@croquet/react'
+import { useView } from '@multisynq/react'
 import useNicknames from './useNicknames'
 
-export default function useIsTogether(synchronized = true) {
+export default function useIsSynchronized() {
   const hasSession = useView() !== null
 
   // If we have at least one nickname:
@@ -10,5 +10,5 @@ export default function useIsTogether(synchronized = true) {
   const [, , allNicknames] = useNicknames()
   const isSynchronized = Object.keys(allNicknames).length > 0
 
-  return synchronized ? hasSession && isSynchronized : hasSession
+  return hasSession && isSynchronized
 }
