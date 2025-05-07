@@ -1,8 +1,8 @@
-import { CroquetReact } from 'react-together'
+import { MultisynqReact } from 'react-together'
 import { OverrideModel } from '../models'
 import Label from './Label'
 
-const { useModelSelector } = CroquetReact
+const { useModelSelector } = MultisynqReact
 
 export default function TeamScoreLabel() {
   const value = useModelSelector((m: OverrideModel) =>

@@ -80,7 +80,7 @@ return (
 
   source: {
     basic: `
-import { useViewId } from '@croquet/react'
+import { useViewId } from '@multisynq/react'
 import ColorHash from 'color-hash'
 import { useHoveringUsers } from '../hooks'
 

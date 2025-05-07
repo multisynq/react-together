@@ -1,8 +1,8 @@
-import { CroquetReact } from 'react-together'
+import { MultisynqReact } from 'react-together'
 import { CELL_SIZE } from '../constants'
 import { OverrideModel } from '../models'
 
-const { useModelSelector } = CroquetReact
+const { useModelSelector } = MultisynqReact
 
 export default function Board() {
   const GRID_HEIGHT =

@@ -1,11 +1,11 @@
-import { useCroquetContext } from '@croquet/react'
+import { useMultisynqContext } from '@multisynq/react'
 import hash_fn, { NotUndefined } from 'object-hash'
 import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState
+    Dispatch,
+    SetStateAction,
+    useCallback,
+    useEffect,
+    useState
 } from 'react'
 import ReactTogetherModel from '../models/ReactTogetherModel'
 import getNewValue from './getNewValue'
@@ -129,7 +129,7 @@ export default function useStateTogetherWithPerUserValues<
   // https://react.dev/reference/react/useState
   const [actualInitialValue] = useState(initialValue)
 
-  const { session, view, model } = useCroquetContext<ReactTogetherModel>()
+  const { session, view, model } = useMultisynqContext<ReactTogetherModel>()
   const myId = useMyId()
 
   const [allValuesState, setAllValuesState] = useState<LocalState<T>>(() => {

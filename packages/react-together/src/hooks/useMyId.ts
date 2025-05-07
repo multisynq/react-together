@@ -1,4 +1,4 @@
-import { useModelRoot, useViewId } from '@croquet/react'
+import { useModelRoot, useViewId } from '@multisynq/react'
 import ReactTogetherModel, { getUserId } from '../models/ReactTogetherModel'
 
 export default function useMyId() {

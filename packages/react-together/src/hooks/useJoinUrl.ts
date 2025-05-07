@@ -1,4 +1,4 @@
-import { useSessionParams } from '@croquet/react'
+import { useSessionParams } from '@multisynq/react'
 import { useMemo } from 'react'
 import { useIsTogether } from '.'
 import { getJoinUrl } from '../utils'

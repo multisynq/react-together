@@ -1,4 +1,4 @@
-import { ReactModel, ViewInfo } from '@croquet/react'
+import { ReactModel, ViewInfo } from '@multisynq/react'
 import { UseStateTogetherWithPerUserValuesOptions } from '../hooks/useStateTogetherWithPerUserValues'
 import ChatModel from './ChatModel'
 

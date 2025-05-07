@@ -10,22 +10,22 @@ function DependenciesContent() {
       <ul>
         <li>
           <div>
-            <h4 id='Croquet-React'>
-              <Link target='_blank' to='https://multisynq.io/docs/croquet-react/'>
-                Croquet React
+            <h4 id='Multisynq-React'>
+              <Link target='_blank' to='https://multisynq.io/docs/multisynq-react/'>
+                Multisynq React
               </Link>
             </h4>
             <p className='pl-4 pt-2'>
-              A lower-level library that helps wire ReactTogether to Croquet. You might use this if you are making something fundamentally
+              A lower-level library that helps wire ReactTogether to Multisynq. You might use this if you are making something fundamentally
               novel.
             </p>
           </div>
         </li>
         <li>
           <div>
-            <h4 id='Croquet'>
-              <Link target='_blank' to='https://multisynq.io/docs/croquet/'>
-                Croquet
+            <h4 id='Multisynq'>
+              <Link target='_blank' to='https://multisynq.io/docs/client/'>
+                Multisynq
               </Link>
             </h4>
             <p className='pl-4 pt-2'>The futuristic networking system that makes it all possible and so easy. There is magic here.</p>
@@ -36,8 +36,8 @@ function DependenciesContent() {
   )
 }
 const dependenciesNavItems: NavItem[] = [
-  { key: 'Croquet-React', label: 'Croquet React' },
-  { key: 'Croquet', label: 'Croquet' },
+  { key: 'Multisynq-React', label: 'Multisynq React' },
+  { key: 'Multisynq', label: 'Multisynq' },
 ]
 
 export default function DependenciesPage() {
