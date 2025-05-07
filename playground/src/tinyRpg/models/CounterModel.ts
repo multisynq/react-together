@@ -1,6 +1,6 @@
-import { CroquetReact } from 'react-together'
+import { MultisynqReact } from 'react-together'
 
-const { Model } = CroquetReact
+const { Model } = MultisynqReact
 
 export default class CounterModel extends Model {
   count: number

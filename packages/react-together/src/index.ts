@@ -1,9 +1,10 @@
-// Re-export @croquet/react as is into CroquetReact
-// export type { CroquetSession, CroquetSessionParameters } from '@croquet/react'
-import * as CroquetReact from '@croquet/react'
-export { CroquetReact }
+// Re-export @multisynq/react as is into MultisynqReact
+// export type { MultisynqSession, MultisynqSessionParameters } from '@multisynq/react'
+import * as MultisynqReact from '@multisynq/react'
+export { MultisynqReact }
 
 export * from './components'
 export * from './hooks'
 export * from './models'
 export * as utils from './utils'
+

@@ -1,7 +1,7 @@
-import { CroquetReact } from 'react-together'
+import { MultisynqReact } from 'react-together'
 import { OverrideModel } from '../models'
 import Player from './Player'
-const { useModelSelector } = CroquetReact
+const { useModelSelector } = MultisynqReact
 
 export default function Players() {
   const players = useModelSelector((m: OverrideModel) => [

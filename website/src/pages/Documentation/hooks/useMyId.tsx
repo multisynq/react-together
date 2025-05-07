@@ -41,8 +41,8 @@ export default function UseMyIdDocumentationPage() {
         description: (
           <p>
             The <CodeSpan text='useMyId' /> hook returns the <CodeSpan text='userId' /> of the local user. This ID is an alias for the{' '}
-            <LinkSpan text='useViewId' to='https://multisynq.io/docs/croquet-react/global.html#useViewId' target='_blank' /> hook of{' '}
-            <CodeSpan text='@croquet/react' />.
+            <LinkSpan text='useViewId' to='https://multisynq.io/docs/multisynq-react/global.html#useViewId' target='_blank' /> hook of{' '}
+            <CodeSpan text='@multisynq/react' />.
           </p>
         ),
         usage: (

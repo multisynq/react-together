@@ -18,7 +18,7 @@ export default defineConfig({
       external: (id) =>
         [
           'react',
-          '@croquet',
+          '@multisynq',
           'color-hash',
           'object-hash',
           'primereact',

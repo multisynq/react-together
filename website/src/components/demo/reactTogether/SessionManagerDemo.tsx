@@ -1,8 +1,8 @@
-import { CroquetReact, SessionManager, useIsTogether } from 'react-together'
-import CountButtonTogether from '../CountButtonTogether'
-import { DynamicUrlWrapper } from '../DynamicUrlWrapper'
+import { MultisynqReact, SessionManager, useIsTogether } from 'react-together';
+import CountButtonTogether from '../CountButtonTogether';
+import { DynamicUrlWrapper } from '../DynamicUrlWrapper';
 
-const { useSessionParams } = CroquetReact
+const { useSessionParams } = MultisynqReact
 
 function ConnectionStatus({ connectionStatus, name }: { connectionStatus: boolean; name: string | null }) {
   return (
