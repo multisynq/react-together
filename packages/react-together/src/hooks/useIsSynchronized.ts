@@ -18,7 +18,10 @@ export default function useIsSynchronized() {
   // This will return false if the simulation has fallen behind.
   // This can happen if the Model is doing heavy processing and trying to catch up to the time+events sent by the reflector.
   useEffect(() => {
-    if (!view || !model) return
+    if (!view || !model) {
+      set_isSynced(false)
+      return
+    }
     view.subscribe(view.viewId, 'synced', set_isSynced)
     return () => view.unsubscribe(view.viewId, 'synced', set_isSynced)
   }, [view, model])
