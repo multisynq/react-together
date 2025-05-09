@@ -9,7 +9,7 @@ const codes = {
 import { useIsTogether } from 'react-together';
 
 function YourComponent() {
-  const isTogether = useIsTogether();
+  const isTogether = useIsTogether(false);
 
   return isTogether ? (
     <div>You're in a React Together session!</div>
@@ -23,17 +23,15 @@ function YourComponent() {
 
 export default function UseJoinUrlDocumentationPage() {
   const api = (
-    <>
-      <HookReturnApi
-        items={[
-          {
-            name: 'isTogether',
-            type: 'boolean',
-            description: 'Indicates whether the user is connected to a React Together session.',
-          },
-        ]}
-      />
-    </>
+    <HookReturnApi
+      items={[
+        {
+          name: 'isTogether',
+          type: 'boolean',
+          description: 'Indicates whether the user is connected to a React Together session.',
+        },
+      ]}
+    />
   )
   const content = (
     <GenericDocPage
@@ -47,7 +45,12 @@ export default function UseJoinUrlDocumentationPage() {
         ),
         usage: (
           <>
-            <CodeBlock {...{ code: codes.usage }} />
+            <CodeBlock
+              {...{
+                code: codes.usage,
+                github: 'https://github.com/multisynq/react-together/tree/develop/packages/react-together/src/hooks/useIsTogether',
+              }}
+            />
           </>
         ),
         api,

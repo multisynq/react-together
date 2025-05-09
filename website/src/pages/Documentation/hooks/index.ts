@@ -5,6 +5,7 @@ import UseCreateRandomSessionDocumentationPage from './useCreateRandomSession'
 import UseCursorsDocumentationPage from './useCursors'
 import UseFunctionTogetherDocumentationPage from './useFunctionTogether'
 import UseHoveringUsersDocumentationPage from './useHoveringUsers'
+import UseIsSynchronizedDocumentationPage from './useIsSynchronized'
 import UseIsTogetherDocumentationPage from './useIsTogether'
 import UseJoinUrlDocumentationPage from './useJoinUrl'
 import UseLeaveSessionDocumentationPage from './useLeaveSession'
@@ -21,6 +22,7 @@ export {
   UseCursorsDocumentationPage,
   UseFunctionTogetherDocumentationPage,
   UseHoveringUsersDocumentationPage,
+  UseIsSynchronizedDocumentationPage,
   UseIsTogetherDocumentationPage,
   UseJoinUrlDocumentationPage,
   UseLeaveSessionDocumentationPage,
