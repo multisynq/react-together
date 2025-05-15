@@ -1,82 +1,83 @@
 import {
-    AntDesignCheckboxTogetherDocumentationPage,
-    AntDesignDatePickerTogetherDocumentationPage,
-    AntDesignMultiSelectTogetherDocumentationPage,
-    AntDesignRateTogetherDocumentationPage,
-    AntDesignSelectButtonTogetherDocumentationPage,
-    AntDesignSelectTogetherDocumentationPage,
-    AntDesignSliderTogetherDocumentationPage,
-    AntDesignSwitchTogetherDocumentationPage,
-    AntDesignToggleButtonTogetherDocumentationPage,
-    ChatDocumentationPage,
-    ConnectedUsersDocumentationPage,
-    HelpersDocumentationPage,
-    HoverHighlighterDocumentationPage,
-    IntroductionPage,
-    PrimeReactCheckboxTogetherDocumentationPage,
-    PrimeReactColorPickerTogetherDocumentationPage,
-    PrimeReactDropdownTogetherDocumentationPage,
-    PrimeReactInputSwitchTogetherDocumentationPage,
-    PrimeReactKnobTogetherDocumentationPage,
-    PrimeReactMultiSelectTogetherDocumentationPage,
-    PrimeReactRatingTogetherDocumentationPage,
-    PrimeReactSelectButtonTogetherDocumentationPage,
-    PrimeReactTabViewTogetherDocumentationPage,
-    PrimeReactToggleButtonTogetherDocumentationPage,
-    PrimeReactTriStateCheckboxTogetherDocumentationPage,
-    ReactTogetherDocumentationPage,
-    SessionManagerDocumentationPage,
-    UseAllNicknamesDocumentationPage,
-    UseChatDocumentationPage,
-    UseConnectedUsersDocumentationPage,
-    UseCreateRandomSessionDocumentationPage,
-    UseCursorsDocumentationPage,
-    UseFunctionTogetherDocumentationPage,
-    UseHoveringUsersDocumentationPage,
-    UseIsTogetherDocumentationPage,
-    UseJoinUrlDocumentationPage,
-    UseLeaveSessionDocumentationPage,
-    UseMyIdDocumentationPage,
-    UseNicknameDocumentationPage,
-    UseStateTogetherDocumentationPage,
-    UseStateTogetherWithPerUserValuesDocumentationPage,
+  AntDesignCheckboxTogetherDocumentationPage,
+  AntDesignDatePickerTogetherDocumentationPage,
+  AntDesignMultiSelectTogetherDocumentationPage,
+  AntDesignRateTogetherDocumentationPage,
+  AntDesignSelectButtonTogetherDocumentationPage,
+  AntDesignSelectTogetherDocumentationPage,
+  AntDesignSliderTogetherDocumentationPage,
+  AntDesignSwitchTogetherDocumentationPage,
+  AntDesignToggleButtonTogetherDocumentationPage,
+  ChatDocumentationPage,
+  ConnectedUsersDocumentationPage,
+  HelpersDocumentationPage,
+  HoverHighlighterDocumentationPage,
+  IntroductionPage,
+  PrimeReactCheckboxTogetherDocumentationPage,
+  PrimeReactColorPickerTogetherDocumentationPage,
+  PrimeReactDropdownTogetherDocumentationPage,
+  PrimeReactInputSwitchTogetherDocumentationPage,
+  PrimeReactKnobTogetherDocumentationPage,
+  PrimeReactMultiSelectTogetherDocumentationPage,
+  PrimeReactRatingTogetherDocumentationPage,
+  PrimeReactSelectButtonTogetherDocumentationPage,
+  PrimeReactTabViewTogetherDocumentationPage,
+  PrimeReactToggleButtonTogetherDocumentationPage,
+  PrimeReactTriStateCheckboxTogetherDocumentationPage,
+  ReactTogetherDocumentationPage,
+  SessionManagerDocumentationPage,
+  UseAllNicknamesDocumentationPage,
+  UseChatDocumentationPage,
+  UseConnectedUsersDocumentationPage,
+  UseCreateRandomSessionDocumentationPage,
+  UseCursorsDocumentationPage,
+  UseFunctionTogetherDocumentationPage,
+  UseHoveringUsersDocumentationPage,
+  UseIsSynchronizedDocumentationPage,
+  UseIsTogetherDocumentationPage,
+  UseJoinUrlDocumentationPage,
+  UseLeaveSessionDocumentationPage,
+  UseMyIdDocumentationPage,
+  UseNicknameDocumentationPage,
+  UseStateTogetherDocumentationPage,
+  UseStateTogetherWithPerUserValuesDocumentationPage,
 } from '@pages/Documentation'
 import { ConnectedUsers } from 'react-together'
 import { HomePage } from './pages/HomePage'
 
 import { CookieBanner } from '@components/CookieBanner'
 import {
-    AntDesignCheckboxTogetherDemo,
-    AntDesignDatePickerTogetherDemo,
-    AntDesignMultiSelectTogetherDemo,
-    AntDesignRateTogetherDemo,
-    AntDesignSelectButtonTogetherDemo,
-    AntDesignSelectTogetherDemo,
-    AntDesignSliderTogetherDemo,
-    AntDesignSwitchTogetherDemo,
-    AntDesignToggleButtonTogetherDemo,
-    ChatDemo,
-    CursorsDemo,
-    HoverHighlighterDemo,
-    MeditationBell,
-    PrimeReactCheckboxTogetherDemo,
-    PrimeReactColorPickerTogetherDemo,
-    PrimeReactDropdownTogetherDemo,
-    PrimeReactInputSwitchTogetherDemo,
-    PrimeReactKnobTogetherDemo,
-    PrimeReactMultiSelectTogetherDemo,
-    PrimeReactRatingTogetherDemo,
-    PrimeReactSelectButtonTogetherDemo,
-    PrimeReactTabViewTogetherDemo,
-    PrimeReactToggleButtonTogetherDemo,
-    PrimeReactTriStateCheckboxTogetherDemo,
-    SessionManagerDemo,
-    UseAllNicknamesDemo,
-    UseChatDemo,
-    UseConnectedUsersDemo,
-    UseCursorsDemo,
-    UseNicknamesDemo,
-    UseStateTogetherWPUVDemo,
+  AntDesignCheckboxTogetherDemo,
+  AntDesignDatePickerTogetherDemo,
+  AntDesignMultiSelectTogetherDemo,
+  AntDesignRateTogetherDemo,
+  AntDesignSelectButtonTogetherDemo,
+  AntDesignSelectTogetherDemo,
+  AntDesignSliderTogetherDemo,
+  AntDesignSwitchTogetherDemo,
+  AntDesignToggleButtonTogetherDemo,
+  ChatDemo,
+  CursorsDemo,
+  HoverHighlighterDemo,
+  MeditationBell,
+  PrimeReactCheckboxTogetherDemo,
+  PrimeReactColorPickerTogetherDemo,
+  PrimeReactDropdownTogetherDemo,
+  PrimeReactInputSwitchTogetherDemo,
+  PrimeReactKnobTogetherDemo,
+  PrimeReactMultiSelectTogetherDemo,
+  PrimeReactRatingTogetherDemo,
+  PrimeReactSelectButtonTogetherDemo,
+  PrimeReactTabViewTogetherDemo,
+  PrimeReactToggleButtonTogetherDemo,
+  PrimeReactTriStateCheckboxTogetherDemo,
+  SessionManagerDemo,
+  UseAllNicknamesDemo,
+  UseChatDemo,
+  UseConnectedUsersDemo,
+  UseCursorsDemo,
+  UseNicknamesDemo,
+  UseStateTogetherWPUVDemo,
 } from '@components/demo'
 
 import CountButtonTogether from '@components/demo/CountButtonTogether'
@@ -130,6 +131,7 @@ export default function AppRoutes() {
             <Route path='useConnectedUsers'                 element={<UseConnectedUsersDocumentationPage                 />} />
             <Route path='useMyId'                           element={<UseMyIdDocumentationPage                           />} />
             <Route path='useHoveringUsers'                  element={<UseHoveringUsersDocumentationPage                  />} />
+            <Route path='useIsSynchronized'                 element={<UseIsSynchronizedDocumentationPage                 />} />
             <Route path='useIsTogether'                     element={<UseIsTogetherDocumentationPage                     />} />
             <Route path='useCreateRandomSession'            element={<UseCreateRandomSessionDocumentationPage            />} />
             <Route path='useJoinUrl'                        element={<UseJoinUrlDocumentationPage                        />} />
@@ -140,7 +142,7 @@ export default function AppRoutes() {
             <Route path='useNicknames'                      element={<UseNicknameDocumentationPage                       />} />
             <Route path='useCursors'                        element={<UseCursorsDocumentationPage                        />} />
             <Route path='utils'                             element={<HelpersDocumentationPage                           />} />
-            <Route path='multisynq'                           element={<MarkdownPage markdown={multisynq}                    />} />
+            <Route path='multisynq'                         element={<MarkdownPage markdown={multisynq}                  />} />
             <Route path='/contributing'                     element={<MarkdownPage markdown={contributing}               />} />
             <Route path='/pricing'                          element={<MarkdownPage markdown={pricing}                    />} />
             {/* <Route path='/examples'                         element={<DynamicsSession                                    />} /> */}
@@ -148,10 +150,10 @@ export default function AppRoutes() {
             <Route path='antdesign'>
               <Route path='Checkbox'     element={<AntDesignCheckboxTogetherDocumentationPage     />} />
               <Route path='DatePicker'   element={<AntDesignDatePickerTogetherDocumentationPage   />} />
-              <Route path='Select'       element={<AntDesignSelectTogetherDocumentationPage     />} />
-              <Route path='Switch'       element={<AntDesignSwitchTogetherDocumentationPage  />} />
+              <Route path='Select'       element={<AntDesignSelectTogetherDocumentationPage       />} />
+              <Route path='Switch'       element={<AntDesignSwitchTogetherDocumentationPage       />} />
               <Route path='MultiSelect'  element={<AntDesignMultiSelectTogetherDocumentationPage  />} />
-              <Route path='Rate'         element={<AntDesignRateTogetherDocumentationPage       />} />
+              <Route path='Rate'         element={<AntDesignRateTogetherDocumentationPage         />} />
               <Route path='SelectButton' element={<AntDesignSelectButtonTogetherDocumentationPage />} />
               <Route path='Slider'       element={<AntDesignSliderTogetherDocumentationPage       />} />
               <Route path='ToggleButton' element={<AntDesignToggleButtonTogetherDocumentationPage />} />
@@ -205,15 +207,15 @@ export default function AppRoutes() {
           <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDemo />} />
         </Route>
         <Route path='antdesign'>
-          <Route path='Checkbox'     element={ <AntDesignCheckboxTogetherDemo /> } />
-          <Route path='DatePicker'   element={ <AntDesignDatePickerTogetherDemo /> } />
-          <Route path='Select'       element={ <AntDesignSelectTogetherDemo /> } />
-          <Route path='Switch'       element={ <AntDesignSwitchTogetherDemo /> } />
-          <Route path='MultiSelect'  element={ <AntDesignMultiSelectTogetherDemo /> } />
-          <Route path='Rate'         element={ <AntDesignRateTogetherDemo /> } />
-          <Route path='SelectButton' element={ <AntDesignSelectButtonTogetherDemo /> } />
-          <Route path='Slider'       element={ <AntDesignSliderTogetherDemo /> } />
-          <Route path='Button'       element={ <AntDesignToggleButtonTogetherDemo /> } />
+          <Route path='Checkbox'     element={<AntDesignCheckboxTogetherDemo     />} />
+          <Route path='DatePicker'   element={<AntDesignDatePickerTogetherDemo   />} />
+          <Route path='Select'       element={<AntDesignSelectTogetherDemo       />} />
+          <Route path='Switch'       element={<AntDesignSwitchTogetherDemo       />} />
+          <Route path='MultiSelect'  element={<AntDesignMultiSelectTogetherDemo  />} />
+          <Route path='Rate'         element={<AntDesignRateTogetherDemo         />} />
+          <Route path='SelectButton' element={<AntDesignSelectButtonTogetherDemo />} />
+          <Route path='Slider'       element={<AntDesignSliderTogetherDemo       />} />
+          <Route path='Button'       element={<AntDesignToggleButtonTogetherDemo />} />
         </Route>
         <Route path='TinyRpg' element={<TinyRpgTogether />} />
       </Route>

@@ -1,3 +1,11 @@
+## 0.4.1
+`2025-05-07`
+ - Added `useIsSynchronized` hook
+
+## 0.4.0
+`2025-05-07`
+ - Switched to `@multisynq/client`
+
 ## 0.3.3
 `2025-01-29`
 
