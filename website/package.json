@@ -47,7 +47,7 @@
     "react-router-dom": "^6.25.1",
     "react-router-hash-link": "^2.4.3",
     "react-syntax-highlighter": "^15.5.0",
-    "react-together": "^0.4.0",
+    "react-together": "^0.4.1",
     "react-together-ant-design": "^0.0.1",
     "react-together-primereact": "^0.1.2",
     "rehype-raw": "^7.0.0",
