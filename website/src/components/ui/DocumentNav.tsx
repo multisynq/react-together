@@ -28,6 +28,7 @@ function LogoLabel(props: { logo: string; label: string }) {
 
 const baseUrl = ''
 
+//prettier-ignore
 const items: PatchedMenuItem[] = [
   {
     key: 'Introduction',
@@ -35,35 +36,32 @@ const items: PatchedMenuItem[] = [
     // url: `${baseUrl}/getting-started`,
     items: [
       { key: 'Getting Started', label: 'Getting Started', url: `${baseUrl}/Getting-Started` },
-      { key: 'Dependencies', label: 'Dependencies', url: `${baseUrl}/Dependencies` },
+      { key: 'Dependencies',    label: 'Dependencies',    url: `${baseUrl}/Dependencies`    },
     ],
   },
   {
     key: 'hooks',
     label: 'Hooks',
     items: [
-      { key: 'use-state-together', label: 'useStateTogether', url: `${baseUrl}/useStateTogether` },
-      {
-        key: 'use-state-together-with-per-user-values',
-        label: 'useStateTogetherWithPerUserValues',
-        url: `${baseUrl}/useStateTogetherWithPerUserValues`,
-      },
-      { key: 'use-function-together', label: 'useFunctionTogether', url: `${baseUrl}/useFunctionTogether` },
-      { key: 'use-chat', label: 'useChat', url: `${baseUrl}/useChat` },
-      { key: 'use-cursors', label: 'useCursors', url: `${baseUrl}/useCursors` },
+      { key: 'use-state-together',                      label: 'useStateTogether',                  url: `${baseUrl}/useStateTogether`                  },
+      { key: 'use-state-together-with-per-user-values', label: 'useStateTogetherWithPerUserValues', url: `${baseUrl}/useStateTogetherWithPerUserValues` },
+      { key: 'use-function-together',                   label: 'useFunctionTogether',               url: `${baseUrl}/useFunctionTogether`               },
+      { key: 'use-chat',                                label: 'useChat',                           url: `${baseUrl}/useChat`                           },
+      { key: 'use-cursors',                             label: 'useCursors',                        url: `${baseUrl}/useCursors`                        },
       {
         key: 'useful-hooks',
         label: 'Other useful hooks',
         items: [
-          { key: 'use-connected-users', label: 'useConnectedUsers', url: `${baseUrl}/useConnectedUsers` },
-          { key: 'use-hovering-users', label: 'useHoveringUsers', url: `${baseUrl}/useHoveringUsers` },
-          { key: 'use-nicknames', label: 'useNicknames', url: `${baseUrl}/useNicknames` },
-          { key: 'use-all-nicknames', label: 'useAllNicknames', url: `${baseUrl}/useAllNicknames` },
-          { key: 'use-create-session', label: 'useCreateRandomSession', url: `${baseUrl}/useCreateRandomSession` },
-          { key: 'use-is-together', label: 'useIsTogether', url: `${baseUrl}/useIsTogether` },
-          { key: 'use-leave-session', label: 'useLeaveSession', url: `${baseUrl}/useLeaveSession` },
-          { key: 'use-join-url', label: 'useJoinUrl', url: `${baseUrl}/useJoinUrl` },
-          { key: 'use-my-id', label: 'useMyId', url: `${baseUrl}/useMyId` },
+          { key: 'use-connected-users', label: 'useConnectedUsers',      url: `${baseUrl}/useConnectedUsers`      },
+          { key: 'use-hovering-users',  label: 'useHoveringUsers',       url: `${baseUrl}/useHoveringUsers`       },
+          { key: 'use-nicknames',       label: 'useNicknames',           url: `${baseUrl}/useNicknames`           },
+          { key: 'use-all-nicknames',   label: 'useAllNicknames',        url: `${baseUrl}/useAllNicknames`        },
+          { key: 'use-create-session',  label: 'useCreateRandomSession', url: `${baseUrl}/useCreateRandomSession` },
+          { key: 'use-is-synchronized', label: 'useIsSynchronized',      url: `${baseUrl}/useIsSynchronized`      },
+          { key: 'use-is-together',     label: 'useIsTogether',          url: `${baseUrl}/useIsTogether`          },
+          { key: 'use-leave-session',   label: 'useLeaveSession',        url: `${baseUrl}/useLeaveSession`        },
+          { key: 'use-join-url',        label: 'useJoinUrl',             url: `${baseUrl}/useJoinUrl`             },
+          { key: 'use-my-id',           label: 'useMyId',                url: `${baseUrl}/useMyId`                },
         ],
       },
     ],
@@ -72,26 +70,26 @@ const items: PatchedMenuItem[] = [
     key: 'components',
     label: 'Components',
     items: [
-      { key: 'react-together', label: 'ReactTogether', url: `${baseUrl}/ReactTogether` },
-      { key: 'chat', label: 'Chat', url: `${baseUrl}/Chat` },
-      { key: 'cursors', label: 'Cursors', url: `${baseUrl}/Cursors` },
-      { key: 'react-together-mgr', label: 'SessionManager', url: `${baseUrl}/SessionManager` },
-      { key: 'connected-views', label: 'ConnectedUsers', url: `${baseUrl}/ConnectedUsers` },
-      { key: 'hover-highlighter', label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
+      { key: 'react-together',     label: 'ReactTogether',    url: `${baseUrl}/ReactTogether`    },
+      { key: 'chat',               label: 'Chat',             url: `${baseUrl}/Chat`             },
+      { key: 'cursors',            label: 'Cursors',          url: `${baseUrl}/Cursors`          },
+      { key: 'react-together-mgr', label: 'SessionManager',   url: `${baseUrl}/SessionManager`   },
+      { key: 'connected-views',    label: 'ConnectedUsers',   url: `${baseUrl}/ConnectedUsers`   },
+      { key: 'hover-highlighter',  label: 'HoverHighlighter', url: `${baseUrl}/HoverHighlighter` },
     ],
   },
   {
     key: 'antDesign',
     label: <LogoLabel logo={antDesignLogo} label='Ant Design' />,
     items: [
-      { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/antdesign/Checkbox` },
-      // { key: 'date-picker-together', label: 'DatePickerTogether', url: `${baseUrl}/antdesign/DatePicker` },
-      { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/antdesign/MultiSelect` },
-      { key: 'rate-together', label: 'RateTogether', url: `${baseUrl}/antdesign/Rate` },
+      { key: 'checkbox-together',      label: 'CheckboxTogether',     url: `${baseUrl}/antdesign/Checkbox`     },
+      // { key: 'date-picker-together',   label: 'DatePickerTogether',   url: `${baseUrl}/antdesign/DatePicker`   },
+      { key: 'multi-select-together',  label: 'MultiSelectTogether',  url: `${baseUrl}/antdesign/MultiSelect`  },
+      { key: 'rate-together',          label: 'RateTogether',         url: `${baseUrl}/antdesign/Rate`         },
       { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/antdesign/SelectButton` },
-      { key: 'select-together', label: 'SelectTogether', url: `${baseUrl}/antdesign/Select` },
-      { key: 'slider-together', label: 'SliderTogether', url: `${baseUrl}/antdesign/Slider` },
-      { key: 'switch-together', label: 'SwitchTogether', url: `${baseUrl}/antdesign/Switch` },
+      { key: 'select-together',        label: 'SelectTogether',       url: `${baseUrl}/antdesign/Select`       },
+      { key: 'slider-together',        label: 'SliderTogether',       url: `${baseUrl}/antdesign/Slider`       },
+      { key: 'switch-together',        label: 'SwitchTogether',       url: `${baseUrl}/antdesign/Switch`       },
       { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/antdesign/ToggleButton` },
     ],
   },
@@ -99,16 +97,16 @@ const items: PatchedMenuItem[] = [
     key: 'prime-react',
     label: <LogoLabel logo={primeReactLogo} label='Prime React' />,
     items: [
-      { key: 'checkbox-together', label: 'CheckboxTogether', url: `${baseUrl}/primereact/Checkbox` },
-      { key: 'color-picker-together', label: 'ColorPickerTogether', url: `${baseUrl}/primereact/ColorPicker` },
-      { key: 'dropdown-together', label: 'DropdownTogether', url: `${baseUrl}/primereact/Dropdown` },
-      { key: 'input-switch-together', label: 'InputSwitchTogether', url: `${baseUrl}/primereact/InputSwitch` },
-      { key: 'knob-together', label: 'KnobTogether', url: `${baseUrl}/primereact/Knob` },
-      { key: 'multi-select-together', label: 'MultiSelectTogether', url: `${baseUrl}/primereact/MultiSelect` },
-      { key: 'rating-together', label: 'RatingTogether', url: `${baseUrl}/primereact/Rating` },
-      { key: 'select-button-together', label: 'SelectButtonTogether', url: `${baseUrl}/primereact/SelectButton` },
-      { key: 'tab-view-together', label: 'TabViewTogether', url: `${baseUrl}/primereact/TabView` },
-      { key: 'toggle-button-together', label: 'ToggleButtonTogether', url: `${baseUrl}/primereact/ToggleButton` },
+      { key: 'checkbox-together',           label: 'CheckboxTogether',         url: `${baseUrl}/primereact/Checkbox`         },
+      { key: 'color-picker-together',       label: 'ColorPickerTogether',      url: `${baseUrl}/primereact/ColorPicker`      },
+      { key: 'dropdown-together',           label: 'DropdownTogether',         url: `${baseUrl}/primereact/Dropdown`         },
+      { key: 'input-switch-together',       label: 'InputSwitchTogether',      url: `${baseUrl}/primereact/InputSwitch`      },
+      { key: 'knob-together',               label: 'KnobTogether',             url: `${baseUrl}/primereact/Knob`             },
+      { key: 'multi-select-together',       label: 'MultiSelectTogether',      url: `${baseUrl}/primereact/MultiSelect`      },
+      { key: 'rating-together',             label: 'RatingTogether',           url: `${baseUrl}/primereact/Rating`           },
+      { key: 'select-button-together',      label: 'SelectButtonTogether',     url: `${baseUrl}/primereact/SelectButton`     },
+      { key: 'tab-view-together',           label: 'TabViewTogether',          url: `${baseUrl}/primereact/TabView`          },
+      { key: 'toggle-button-together',      label: 'ToggleButtonTogether',     url: `${baseUrl}/primereact/ToggleButton`     },
       { key: 'tri-state-checkbox-together', label: 'TriStateCheckboxTogether', url: `${baseUrl}/primereact/TriStateCheckbox` },
     ],
   },
@@ -117,16 +115,8 @@ const items: PatchedMenuItem[] = [
     key: 'advanced',
     label: 'Advanced usage',
     items: [
-      {
-        key: 'multisynq',
-        label: 'Multisynq',
-        url: `${baseUrl}/multisynq`,
-      },
-      {
-        key: 'utils',
-        label: 'Utils module',
-        url: `${baseUrl}/utils`,
-      },
+      { key: 'multisynq', label: 'Multisynq',    url: `${baseUrl}/multisynq` },
+      { key: 'utils',     label: 'Utils module', url: `${baseUrl}/utils`     },
     ],
   },
   {
@@ -134,8 +124,8 @@ const items: PatchedMenuItem[] = [
     label: 'Discover',
     items: [
       { key: 'contributing', label: 'Contributing', url: `${baseUrl}/contributing` },
-      { key: 'pricing', label: 'Pricing', url: `${baseUrl}/pricing` },
-      { key: 'changelog', label: 'Change Log', url: `${baseUrl}/changelog` },
+      { key: 'pricing',      label: 'Pricing',      url: `${baseUrl}/pricing`      },
+      { key: 'changelog',    label: 'Change Log',   url: `${baseUrl}/changelog`    },
     ],
   },
 ]
@@ -143,9 +133,7 @@ const items: PatchedMenuItem[] = [
 const flattenKeys = (nodes, keys = {}) => {
   nodes.forEach((node) => {
     keys[node.key] = true
-    if (node.items) {
-      flattenKeys(node.items, keys)
-    }
+    if (node.items) flattenKeys(node.items, keys)
   })
   return keys
 }
