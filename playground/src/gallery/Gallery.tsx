@@ -1,4 +1,9 @@
-import { ConnectedUsers, SessionManager, useIsTogether } from 'react-together'
+import {
+  ConnectedUsers,
+  SessionManager,
+  useIsSynchronized,
+  useIsTogether
+} from 'react-together'
 import {
   CalendarTogether,
   CheckboxTogether,
@@ -19,6 +24,7 @@ import SyncedTabs from './components/SyncedTabs'
 
 export default function Gallery() {
   const isTogether = useIsTogether()
+  const isSynchronized = useIsSynchronized()
   const cities = [
     { name: 'New York', code: 'NY' },
     { name: 'Rome', code: 'RM' },
@@ -39,7 +45,10 @@ export default function Gallery() {
       </div>
       <div className="flex flex-col gap-2 items-center">
         <ConnectedUsers maxAvatars={5} debug />
-        {isTogether ? 'Connected' : 'Disconnected'}
+        <div className="flex gap-2 flex-column gap-2">
+          <span>{isTogether ? 'Connected' : 'Disconnected'}</span>
+          <span>{isSynchronized ? 'Synchronized' : 'Not Synchronized'}</span>
+        </div>
         <SamplePage />
         <SyncedTabs />
         <div className="flex gap-2 items-center">
