@@ -1,3 +1,7 @@
+## 0.4.2
+`2025-05-19`
+- update `@multisynq/react` to 1.0.1
+
 ## 0.4.1
 `2025-05-07`
  - Added `useIsSynchronized` hook
