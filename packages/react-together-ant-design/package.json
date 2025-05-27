@@ -20,7 +20,7 @@
     "clean": "rm -rf node_modules dist"
   },
   "dependencies": {
-    "react-together": "^0.4.2"
+    "react-together": "^0.4.3"
   },
   "peerDependencies": {
     "antd": "^5.19.0"

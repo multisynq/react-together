@@ -1,3 +1,7 @@
+## 0.4.3
+`2025-05-27`
+- update `react` peer-dependency to `18 - 19`
+
 ## 0.4.2
 `2025-05-19`
 - update `@multisynq/react` to 1.0.1
