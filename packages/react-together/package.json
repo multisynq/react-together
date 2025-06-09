@@ -1,7 +1,7 @@
 {
   "name": "react-together",
   "description": "A library to seamlessly add real-time multi-user interaction to your React app!",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "license": "Apache-2.0",
   "type": "module",
   "main": "dist/index.js",
@@ -26,7 +26,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@multisynq/react": "^1.0.1",
+    "@multisynq/react": "^1.0.2",
     "object-hash": "^3.0.0",
     "primeicons": "^7.0.0",
     "qrcode.react": "^3.1.0"
