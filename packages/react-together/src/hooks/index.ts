@@ -1,3 +1,4 @@
+import useActivitySynq from './useActivitySynq'
 import useAllNicknames from './useAllNicknames'
 import useChat from './useChat'
 import useConnectedUsers from './useConnectedUsers'
@@ -18,6 +19,7 @@ import { useIsJoined } from '@multisynq/react'
 const useIsTogether = useIsJoined
 
 export {
+  useActivitySynq,
   useAllNicknames,
   useChat,
   useConnectedUsers,

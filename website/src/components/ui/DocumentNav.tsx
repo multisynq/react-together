@@ -46,6 +46,7 @@ const items: PatchedMenuItem[] = [
       { key: 'use-state-together',                      label: 'useStateTogether',                  url: `${baseUrl}/useStateTogether`                  },
       { key: 'use-state-together-with-per-user-values', label: 'useStateTogetherWithPerUserValues', url: `${baseUrl}/useStateTogetherWithPerUserValues` },
       { key: 'use-function-together',                   label: 'useFunctionTogether',               url: `${baseUrl}/useFunctionTogether`               },
+      { key: 'use-activity-synq',                       label: 'useActivitySynq',                   url: `${baseUrl}/useActivitySynq`                   },
       { key: 'use-chat',                                label: 'useChat',                           url: `${baseUrl}/useChat`                           },
       { key: 'use-cursors',                             label: 'useCursors',                        url: `${baseUrl}/useCursors`                        },
       {
@@ -71,6 +72,7 @@ const items: PatchedMenuItem[] = [
     label: 'Components',
     items: [
       { key: 'react-together',     label: 'ReactTogether',    url: `${baseUrl}/ReactTogether`    },
+      { key: 'activity-synq',      label: 'ActivitySynq',     url: `${baseUrl}/ActivitySynq`     },
       { key: 'chat',               label: 'Chat',             url: `${baseUrl}/Chat`             },
       { key: 'cursors',            label: 'Cursors',          url: `${baseUrl}/Cursors`          },
       { key: 'react-together-mgr', label: 'SessionManager',   url: `${baseUrl}/SessionManager`   },

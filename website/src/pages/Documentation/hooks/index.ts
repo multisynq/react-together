@@ -1,3 +1,4 @@
+import UseActivitySynqDocumentationPage from './useActivitySynq'
 import UseAllNicknamesDocumentationPage from './useAllNicknames'
 import UseChatDocumentationPage from './useChat'
 import UseConnectedUsersDocumentationPage from './useConnectedUsers'
@@ -15,6 +16,7 @@ import UseStateTogetherDocumentationPage from './useStateTogether'
 import UseStateTogetherWithPerUserValuesDocumentationPage from './useStateTogetherWithPerUserValues'
 
 export {
+  UseActivitySynqDocumentationPage,
   UseAllNicknamesDocumentationPage,
   UseChatDocumentationPage,
   UseConnectedUsersDocumentationPage,

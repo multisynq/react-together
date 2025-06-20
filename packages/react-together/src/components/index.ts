@@ -1,3 +1,4 @@
+import ActivitySynq from './ActivitySynq'
 import ConnectedUsers from './ConnectedUsers'
 import HoverHighlighter from './HoverHighlighter'
 import ReactTogether from './ReactTogether'
@@ -10,6 +11,7 @@ const PresenceDiv = HoverHighlighter
 export * from './Chat'
 export * from './Cursors'
 export {
+  ActivitySynq,
   ConnectedUsers,
   ConnectedViews,
   HoverHighlighter,

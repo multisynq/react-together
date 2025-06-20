@@ -6,5 +6,7 @@ export { MultisynqReact }
 export * from './components'
 export * from './hooks'
 export * from './models'
+export * from './context'
 export * as utils from './utils'
+export * as testing from './testing'
 

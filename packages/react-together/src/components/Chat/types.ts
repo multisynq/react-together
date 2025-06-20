@@ -8,7 +8,6 @@ export interface ChatMessage {
 export type Component<P> =
   | React.ComponentType<P>
   | React.ForwardRefExoticComponent<P>
-  | React.FC<P>
   | keyof React.ReactHTML
 
 export interface ChatComponents {

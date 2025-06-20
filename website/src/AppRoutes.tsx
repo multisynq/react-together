@@ -1,4 +1,5 @@
 import {
+  ActivitySynqDocumentationPage,
   AntDesignCheckboxTogetherDocumentationPage,
   AntDesignDatePickerTogetherDocumentationPage,
   AntDesignMultiSelectTogetherDocumentationPage,
@@ -26,6 +27,7 @@ import {
   PrimeReactTriStateCheckboxTogetherDocumentationPage,
   ReactTogetherDocumentationPage,
   SessionManagerDocumentationPage,
+  UseActivitySynqDocumentationPage,
   UseAllNicknamesDocumentationPage,
   UseChatDocumentationPage,
   UseConnectedUsersDocumentationPage,
@@ -47,6 +49,7 @@ import { HomePage } from './pages/HomePage'
 
 import { CookieBanner } from '@components/CookieBanner'
 import {
+  ActivitySynqDemo,
   AntDesignCheckboxTogetherDemo,
   AntDesignDatePickerTogetherDemo,
   AntDesignMultiSelectTogetherDemo,
@@ -121,6 +124,7 @@ export default function AppRoutes() {
             <Route path='getting-started'                   element={<IntroductionPage                                   />} />
             <Route path='Dependencies'                      element={<DependenciesPage                                   />} />
             <Route path='ReactTogether'                     element={<ReactTogetherDocumentationPage                     />} />
+            <Route path='ActivitySynq'                      element={<ActivitySynqDocumentationPage                      />} />
             <Route path='SessionManager'                    element={<SessionManagerDocumentationPage                    />} />
             <Route path='ConnectedUsers'                    element={<ConnectedUsersDocumentationPage                    />} />
             <Route path='HoverHighlighter'                  element={<HoverHighlighterDocumentationPage                  />} />
@@ -128,6 +132,7 @@ export default function AppRoutes() {
             <Route path='Chat'                              element={<ChatDocumentationPage                              />} />
             <Route path='useStateTogether'                  element={<UseStateTogetherDocumentationPage                  />} />
             <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWithPerUserValuesDocumentationPage />} />
+            <Route path='useActivitySynq'                   element={<UseActivitySynqDocumentationPage                   />} />
             <Route path='useConnectedUsers'                 element={<UseConnectedUsersDocumentationPage                 />} />
             <Route path='useMyId'                           element={<UseMyIdDocumentationPage                           />} />
             <Route path='useHoveringUsers'                  element={<UseHoveringUsersDocumentationPage                  />} />
@@ -178,6 +183,7 @@ export default function AppRoutes() {
         <Route path='*' element={<NotFoundPage />} />
       </Route>
       <Route path='demos' element={<DemoWrapper />}>
+        <Route path='ActivitySynq'                      element={<ActivitySynqDemo         />} />
         <Route path='Chat'                              element={<ChatDemo                 />} />
         <Route path='ConnectedUsers'                    element={<ConnectedUsers           />} />
         <Route path='CountButtonTogether'               element={<CountButtonTogether      />} />
