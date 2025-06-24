@@ -34,52 +34,77 @@ function MyComponent() {
   },
 
   demo: {
-    basic: `
-import { ActivitySynqProvider, useActivitySynq } from 'react-together'
+    basic: `import { ActivitySynqProvider, useActivitySynq } from 'react-together'
+import { useState, useEffect } from 'react'
 
-function ActivitySynqDemo() {
+// Activity data interface for emoji voting
+interface EmojiVoteData {
+  emoji: string
+  timestamp: number
+}
+
+function EmojiVotingDemo() {
   const { registerActivity, isReady, status, bufferedEventCount } = useActivitySynq()
+  const [voteCount, setVoteCount] = useState<Record<string, number>>({})
   
-  const handleSignup = () => {
-    registerActivity('signup_attempt', { 
-      source: 'demo',
-      timestamp: Date.now() 
-    })
-  }
+  // Available emojis for voting
+  const emojis = ['😍', '🚀', '💡', '🎉', '❤️', '👍']
 
-  const handleFeatureClick = (feature: string) => {
-    registerActivity('feature_click', { 
-      feature,
-      userAgent: navigator.userAgent 
-    })
+  const handleEmojiVote = (emoji: string) => {
+    const voteData: EmojiVoteData = {
+      emoji,
+      timestamp: Date.now()
+    }
+    
+    registerActivity('emoji_vote', voteData)
+    
+    // Update local vote count immediately
+    setVoteCount(prev => ({
+      ...prev,
+      [emoji]: (prev[emoji] || 0) + 1
+    }))
   }
 
   return (
-    <div>
+    <div className="max-w-2xl mx-auto p-4">
+      <h1>🗳️ Emoji Voting Demo</h1>
+      
+      {/* Connection Status */}
       <div>Status: {status} | Ready: {isReady ? 'Yes' : 'No'}</div>
       {bufferedEventCount > 0 && (
         <div>Buffered events: {bufferedEventCount}</div>
       )}
       
-      <button onClick={handleSignup}>
-        Sign Up
-      </button>
-      
-      <button onClick={() => handleFeatureClick('dark-mode')}>
-        Toggle Dark Mode
-      </button>
+      {/* Emoji Voting Grid */}
+      <div className="grid grid-cols-3 gap-3 mt-4">
+        {emojis.map((emoji) => (
+          <button
+            key={emoji}
+            onClick={() => handleEmojiVote(emoji)}
+            disabled={!isReady}
+            className="p-3 border rounded-lg text-center hover:bg-blue-50"
+          >
+            <div className="text-2xl">{emoji}</div>
+            <div className="text-xs">{voteCount[emoji] || 0} votes</div>
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
 
 export default function App() {
   return (
-    <ActivitySynqProvider>
-      <ActivitySynqDemo />
+    <ActivitySynqProvider 
+      config={{
+        sessionName: 'emoji-voting-demo',
+        sessionPassword: 'vote-together'
+      }}
+    >
+      <EmojiVotingDemo />
     </ActivitySynqProvider>
   )
-}
-`,
+}`,
   },
 }
 
@@ -107,32 +132,92 @@ const api = (
         {
           name: 'apiKey',
           type: 'string',
-          description: <p>The Multisynq API key. Can also be set via environment variable VITE_API_KEY.</p>,
+          description: (
+            <div>
+              <p><strong>Required.</strong> Your Multisynq API key for authentication.</p>
+              <ul className="text-xs mt-1 ml-4 list-disc">
+                <li>Get your API key from <a href="https://multisynq.io" className="text-blue-600">multisynq.io</a></li>
+                <li>Can be set via environment variable <CodeSpan text="VITE_API_KEY" /></li>
+                <li>Without this, ActivitySynq will show an error state</li>
+              </ul>
+            </div>
+          ),
         },
         {
-          name: 'appUrl',
+          name: 'appId',
           type: 'string',
-          description: <p>The application URL identifier. Defaults to environment variables or 'default-app'.</p>,
+          description: (
+            <div>
+              <p><strong>Application identifier</strong> - Groups all sessions for your app.</p>
+              <ul className="text-xs mt-1 ml-4 list-disc">
+                <li>Think of it as your app's namespace in Multisynq</li>
+                <li>All sessions with the same appId can potentially communicate</li>
+                <li>Can be set via environment variable <CodeSpan text="VITE_APP_ID" /></li>
+                <li>Defaults to 'default-app' if not provided</li>
+              </ul>
+            </div>
+          ),
         },
         {
           name: 'sessionName',
           type: 'string',
-          description: <p>The session name for grouping users. Defaults to environment variables or 'default'.</p>,
+          description: (
+            <div>
+              <p><strong>Session name</strong> - Groups users together in the same activity session.</p>
+              <ul className="text-xs mt-1 ml-4 list-disc">
+                <li>Users with the same sessionName see each other's activities</li>
+                <li>Use unique names for different rooms/groups (e.g., 'game-room-1', 'meeting-abc')</li>
+                <li>Can be set via environment variable <CodeSpan text="VITE_SESSION_NAME" /></li>
+                <li>If not provided, generates a unique session automatically</li>
+              </ul>
+            </div>
+          ),
         },
         {
           name: 'sessionPassword',
           type: 'string',
-          description: <p>The session password for security. Defaults to environment variables or 'default-session'.</p>,
+          description: (
+            <div>
+              <p><strong>Session password</strong> - Secures access to the activity session.</p>
+              <ul className="text-xs mt-1 ml-4 list-disc">
+                <li>Only users with the same password can join the session</li>
+                <li>Prevents unauthorized access to your activity data</li>
+                <li>Can be set via environment variable <CodeSpan text="VITE_SESSION_PASSWORD" /></li>
+                <li>Defaults to 'activity-session-password' if not provided</li>
+              </ul>
+            </div>
+          ),
         },
         {
           name: 'userId',
           type: 'string',
-          description: <p>The user identifier. If not provided, a random ID will be generated and stored in localStorage.</p>,
+          description: (
+            <div>
+              <p><strong>User identifier</strong> - Identifies the current user in activity events.</p>
+              <ul className="text-xs mt-1 ml-4 list-disc">
+                <li>Used to distinguish activities from different users</li>
+                <li>If not provided, generates a random ID and stores it in localStorage</li>
+                <li>Use consistent userIds to track the same user across sessions</li>
+                <li>Consider using your app's user authentication ID</li>
+              </ul>
+            </div>
+          ),
         },
         {
           name: 'onActivity',
           type: '(activity: ActivityEvent) => void',
-          description: <p>Optional callback function that gets called whenever an activity is registered (both locally and from other users).</p>,
+          description: (
+            <div>
+              <p><strong>🔥 Multi-User Activity Callback</strong> - Called whenever ANY activity is registered by ANY user in the session.</p>
+              <ul className="text-xs mt-1 ml-4 list-disc">
+                <li><strong>Cross-user sync:</strong> Receives activities from ALL users in the same session (not just this user)</li>
+                <li><strong>Real-time updates:</strong> Perfect for live activity feeds, notifications, and collaborative features</li>
+                <li><strong>User identification:</strong> Use <code>activity.userId</code> to distinguish between users</li>
+                <li><strong>Use cases:</strong> Live dashboards, user activity logs, real-time analytics, collaboration notifications</li>
+                <li>The activity object includes type, data, userId, and timestamp</li>
+              </ul>
+            </div>
+          ),
         },
       ]}
     />
@@ -205,14 +290,30 @@ export default function ActivitySynqDocumentationPage() {
         description: (
           <>
             <p>
-              ActivitySynq provides real-time activity tracking across users with offline buffering capabilities. 
-              It allows you to track any user actions (clicks, form submissions, feature usage, etc.) and 
-              synchronize them with other users in the same session.
+              ActivitySynq provides <strong>real-time activity tracking and synchronization across all users</strong> in the same session, 
+              with automatic offline buffering capabilities. Track any user actions (clicks, form submissions, feature usage, etc.) 
+              and see them appear instantly across all connected users.
             </p>
             <p>
-              Key features include automatic offline buffering, connection status tracking, TypeScript support 
-              with generic event types, and environment variable configuration.
+              <strong>🚀 Multi-User Sync:</strong> Activities from ALL users in the session are automatically received via your 
+              <code>onActivity</code> callback, enabling real-time collaboration, live activity feeds, and cross-user notifications.
             </p>
+            <p>
+              Key features include <strong>cross-user real-time synchronization</strong>, automatic offline buffering, 
+              connection status tracking, TypeScript support with generic event types, and environment variable configuration.
+            </p>
+            
+            <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <h4 className="font-semibold text-yellow-900 mb-2">📋 Complete Setup Guide</h4>
+              <div className="text-sm text-yellow-800 space-y-2">
+                <p><strong>1. Get API Key:</strong> Sign up at <a href="https://multisynq.io" className="text-blue-600 underline">multisynq.io</a> to get your API key.</p>
+                <p><strong>2. Environment Variables:</strong> Set <CodeSpan text="VITE_API_KEY" /> and optionally <CodeSpan text="VITE_APP_ID" /> in your <CodeSpan text=".env" /> file.</p>
+                <p><strong>3. Configure Sessions:</strong> Use <CodeSpan text="sessionName" /> to group users and <CodeSpan text="sessionPassword" /> to secure access.</p>
+                <p><strong>4. Add onActivity Callback:</strong> Receive activities from ALL users in the session via <CodeSpan text="onActivity(activity)" />.</p>
+                <p><strong>5. Track Activities:</strong> Call <CodeSpan text="registerActivity(type, data)" /> to track any user action in real-time.</p>
+                <p><strong>6. Handle Offline:</strong> Activities are automatically buffered when offline and synced when reconnected.</p>
+              </div>
+            </div>
             <PreviewSourceCodeTabs
               {...{
                 preview: <DocumentationDemo url='ActivitySynq' session1={sessionParams} session2={sessionParams} aspectRatio='3 / 2' />,

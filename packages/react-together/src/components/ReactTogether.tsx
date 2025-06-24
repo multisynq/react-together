@@ -87,7 +87,15 @@ export default function ReactTogether<D>({
       deferSession={!name || !password}
       showChildrenWithoutSession
     >
-      <ReactTogetherContext.Provider value={{ deriveNickname, rememberUsers }}>
+      <ReactTogetherContext.Provider value={{ 
+        deriveNickname, 
+        rememberUsers,
+        sessionInfo: {
+          appId,
+          name: name || '',
+          password
+        }
+      }}>
         {children}
       </ReactTogetherContext.Provider>
     </MultisynqRoot>

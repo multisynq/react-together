@@ -1,3 +1,22 @@
+## 0.4.5 (Unreleased)
+`2025-06-23`
+- ✨ **ActivitySynq Multi-User Synchronization**: ActivitySynq now supports real-time cross-user activity synchronization
+  - Activities from ALL users in a session are automatically received via `onActivity` callback
+  - Enhanced ReactTogetherModel with activity broadcasting (`handleActivity` method)
+  - Added subscription to 'activity_received' events in ActivitySynqContext
+  - Complete activity flow: User A → publish('activity') → Model → broadcast('activity_received') → All Users
+- 📚 **Enhanced Documentation**: Updated ActivitySynq documentation with multi-user features
+  - Added comprehensive implementation guide (`ACTIVITYSYNQ_MULTI_USER.md`)
+  - Updated examples to demonstrate cross-user functionality
+  - Enhanced API documentation with multi-user sync details
+- 🧪 **Standalone Test Environment**: Created standalone ActivitySynq test application
+  - Located at `/standalone-activitysynq-test/`
+  - Demonstrates emoji voting with real-time multi-user sync
+  - Testing instructions for multi-tab scenarios
+- 🔧 **Bug Fixes**: Fixed TypeScript errors in ActivitySynq examples
+  - Added proper `userId` configuration in examples
+  - Resolved property access issues in configuration objects
+
 ## 0.4.4
 `2025-05-19`
 - update `@multisynq/react` to 1.0.2

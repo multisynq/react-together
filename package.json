@@ -11,6 +11,9 @@
     "website": "./scripts/run.sh website",
     "build": "npm run build -ws --if-present",
     "build-cf": "./scripts/cloudflare-build.sh main",
-    "clean": "rm -rf node_modules && npm run clean -ws --if-present"
+    "clean": "rm -rf node_modules && npm run clean -ws --if-present",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed --debug"
   }
 }

@@ -23,6 +23,13 @@ interface CreateChatArgs {
   rtKey: string
 }
 
+interface ActivityArgs {
+  type: string
+  data?: any
+  userId?: string
+  timestamp: number
+}
+
 interface ConfigureStatePerUserArgs {
   rtKey: string
   userId: string
@@ -44,6 +51,10 @@ export default class ReactTogetherModel extends ReactModel {
   viewIdUserIdMapping: Map<string, string>
   userIdCount: Map<string, number>
 
+  // ActivitySynq state storage
+  activities: ActivityArgs[]
+  maxActivities: number
+
   init(options: ReactTogetherModelOptions) {
     super.init({ ...options, trackViews: true })
 
@@ -57,6 +68,10 @@ export default class ReactTogetherModel extends ReactModel {
     this.viewIdUserIdMapping = new Map()
     this.userIdCount = new Map()
 
+    // Initialize ActivitySynq state
+    this.activities = []
+    this.maxActivities = 100 // Configurable limit
+
     this.subscribe(this.id, 'setState', this.setState)
 
     this.subscribe(this.id, 'setStatePerUser', this.setStatePerUser)
@@ -65,6 +80,8 @@ export default class ReactTogetherModel extends ReactModel {
     this.subscribe(this.id, 'functionTogether', this.functionTogether)
 
     this.subscribe(this.id, 'createChat', this.createChat)
+    
+    this.subscribe(this.id, 'activity', this.handleActivity)
   }
 
   handleViewJoin(viewId: string, viewInfo: ViewInfo<{ userId?: string }>) {
@@ -77,6 +94,19 @@ export default class ReactTogetherModel extends ReactModel {
     // Update number of views per userId
     const count = this.userIdCount.get(userId) ?? 0
     this.userIdCount.set(userId, count + 1)
+
+    // Send historical activities to new view
+    if (this.activities.length > 0) {
+      // Send historical activities in small delay to ensure view is ready
+      this.future(100).sendHistoricalActivities(viewId)
+    }
+  }
+
+  sendHistoricalActivities(viewId: string) {
+    // Send each historical activity to the specific view
+    this.activities.forEach(activity => {
+      this.publish(viewId, 'activity_received', activity)
+    })
   }
 
   handleViewExit(viewId: string) {
@@ -145,6 +175,24 @@ export default class ReactTogetherModel extends ReactModel {
   createChat({ rtKey }: CreateChatArgs) {
     const chat = ChatModel.create({ rtKey })
     this.chats.set(rtKey, chat)
+  }
+
+  handleActivity(activity: ActivityArgs) {
+    // Store activity in model state for historical access
+    this.activities.push(activity)
+    
+    // Maintain size limit to prevent memory bloat
+    if (this.activities.length > this.maxActivities) {
+      this.activities.shift() // Remove oldest activity
+    }
+    
+    // Broadcast activity to all views in the session
+    this.publish(this.id, 'activity_received', activity)
+  }
+
+  // Method to get historical activities for new views
+  getHistoricalActivities(): ActivityArgs[] {
+    return [...this.activities] // Return copy to prevent mutation
   }
 }
 ReactTogetherModel.register('ReactTogetherModel')

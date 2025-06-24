@@ -4,9 +4,15 @@ import { utils } from 'react-together'
 
 const { getJoinUrl } = utils
 
-function buildUrl(path: string, session: SessionParams | null): string {
+function buildUrl(path: string, session: SessionParams | null, userParam?: string): string {
   const url = new URL(window.location.href)
   url.pathname = path
+  
+  // Add user parameter for demo differentiation
+  if (userParam) {
+    url.searchParams.set('user', userParam)
+  }
+  
   if (!session) return url.toString()
 
   return getJoinUrl(url, session.name, session.password).toString()
@@ -32,8 +38,8 @@ export default function DocumentationDemo({ url, session1, session2, aspectRatio
   const demoPath = `/demos/${url}`
   if (session1 === undefined) session1 = defaultSession
   if (session2 === undefined) session2 = session1
-  const url1 = buildUrl(demoPath, session1)
-  const url2 = buildUrl(demoPath, session2)
+  const url1 = buildUrl(demoPath, session1, 'user1')
+  const url2 = buildUrl(demoPath, session2, 'user2')
 
   return (
     <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100'>

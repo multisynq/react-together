@@ -188,7 +188,7 @@ const api = (
         {
           name: 'registerActivity',
           type: '<T = any>(type: string, data?: T) => void',
-          description: 'Function to register a new activity. Activities are sent immediately when connected, or buffered when offline.',
+          description: 'Function to register a new activity. Activities are broadcast to ALL users in the session via their onActivity callbacks. Sent immediately when connected, or buffered when offline.',
         },
         {
           name: 'isReady',
@@ -280,7 +280,7 @@ const api = (
         {
           name: 'onActivity',
           type: '(activity: ActivityEvent) => void',
-          description: 'Optional callback for all activity events.',
+          description: '🔥 Multi-user callback that receives activities from ALL users in the session (not just this user). Essential for cross-user synchronization.',
         },
       ]}
     />
@@ -301,11 +301,14 @@ export default function UseActivitySynqDocumentationPage() {
         description: (
           <>
             <p>
-              The <CodeSpan text='useActivitySynq' /> hook provides access to real-time activity tracking functionality.
-              It allows you to register user activities that are automatically synchronized across all users in the same session.
+              The <CodeSpan text='useActivitySynq' /> hook provides access to <strong>real-time cross-user activity tracking</strong>.
+              Register activities that are instantly synchronized across ALL users in the same session, enabling collaborative 
+              features, live feeds, and real-time analytics.
             </p>
             <p>
-              Activities are sent immediately when connected, or automatically buffered when offline and sent when the connection is restored.
+              <strong>🚀 Multi-User Sync:</strong> All users in the session automatically receive each other's activities via 
+              the <code>onActivity</code> callback. Activities are sent immediately when connected, or automatically buffered 
+              when offline and sent when the connection is restored.
             </p>
             <PreviewSourceCodeTabs
               {...{

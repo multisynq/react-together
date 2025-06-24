@@ -34,8 +34,9 @@ function ActivityDemo() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>ActivitySynq Example - Context Pattern!</h1>
-      <p>Track user activities across multiple users in real-time using React Context (no globals!).</p>
+      <h1>ActivitySynq Example - Multi-User Real-Time Sync!</h1>
+      <p>Track user activities and see them synchronized instantly across ALL users in the same session.</p>
+      <p><strong>✨ NEW:</strong> Activities from other users are automatically received via onActivity callback!</p>
       
       <div style={{ 
         marginBottom: '20px', 
@@ -92,12 +93,13 @@ function ActivityDemo() {
       </div>
       
       <div style={{ marginTop: '20px', padding: '10px', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
-        <h3>New Usage Pattern:</h3>
+        <h3>Multi-User Sync Features:</h3>
         <ol>
-          <li>Wrap your app: <code>&lt;ActivitySynqProvider config={`{{...}}`}&gt;</code></li>
-          <li>Use the hook: <code>const {`{registerActivity}`} = useActivitySynq()</code></li>
-          <li>Type-safe events: <code>registerActivity&lt;MyData&gt;({`'event', data`})</code></li>
-          <li>No globals needed!</li>
+          <li><strong>Real-time sync:</strong> Activities from ALL users appear instantly via onActivity callback</li>
+          <li><strong>Type-safe events:</strong> <code>registerActivity&lt;MyData&gt;({`'event', data`})</code></li>
+          <li><strong>Session-based:</strong> Only users in the same session see each other's activities</li>
+          <li><strong>Offline buffering:</strong> Activities are queued when offline and sent when reconnected</li>
+          <li><strong>No globals needed:</strong> Clean React Context pattern</li>
         </ol>
         
         <h4>Environment Variables:</h4>
@@ -105,7 +107,7 @@ function ActivityDemo() {
           <li><code>VITE_API_KEY</code> - Your API key</li>
           <li><code>VITE_SESSION_NAME</code> - Session name (optional)</li>
           <li><code>VITE_SESSION_PASSWORD</code> - Session password (optional)</li>
-          <li><code>VITE_APP_URL</code> - App URL (optional)</li>
+          <li><code>VITE_APP_ID</code> - App ID (optional)</li>
         </ul>
       </div>
     </div>
@@ -115,8 +117,18 @@ function ActivityDemo() {
 export default function ActivitySynqExample() {
   const config = {
     // Configuration can be passed here or via environment variables
+    sessionName: 'activity-example-session', // Users with same sessionName see each other's activities
+    sessionPassword: 'example-password', // Secure the session
+    userId: 'example-user-' + Math.random().toString(36).substring(2, 8), // Unique user identifier
     onActivity: (activity: ActivityEvent) => {
-      console.log('Activity tracked:', activity)
+      // ✨ This callback receives activities from ALL users in the session!
+      // Perfect for updating UI, analytics, or triggering notifications
+      console.log('Activity from user:', activity.userId, '→', activity.type, activity.data)
+      
+      // Example: Show a toast notification for activities from other users
+      if (activity.userId !== config.userId) {
+        console.log(`🔔 Another user (${activity.userId}) performed: ${activity.type}`)
+      }
     }
   }
 

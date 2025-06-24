@@ -75,6 +75,7 @@ import {
   PrimeReactToggleButtonTogetherDemo,
   PrimeReactTriStateCheckboxTogetherDemo,
   SessionManagerDemo,
+  UseActivitySynqDemo,
   UseAllNicknamesDemo,
   UseChatDemo,
   UseConnectedUsersDemo,
@@ -88,6 +89,7 @@ import HeroDemo from '@components/demo/HeroDemo'
 import TinyRpgTogether from '@components/demo/TinyRpg'
 import { CookiePolicy } from '@pages/CookiePolicy'
 import { DemoWrapper } from '@pages/DemoWrapper'
+import { IsolatedDemoLayout } from '@pages/IsolatedDemoLayout'
 import CursorsDocumentationPage from '@pages/Documentation/components/reactTogether/Cursors'
 import DependenciesPage from '@pages/Documentation/DependenciesPage'
 import { DocumentationWrapper } from '@pages/Documentation/DocumentationWrapper'
@@ -182,23 +184,24 @@ export default function AppRoutes() {
         <Route path='docs' element={<Navigate to='/getting-started' />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
-      <Route path='demos' element={<DemoWrapper />}>
-        <Route path='ActivitySynq'                      element={<ActivitySynqDemo         />} />
-        <Route path='Chat'                              element={<ChatDemo                 />} />
-        <Route path='ConnectedUsers'                    element={<ConnectedUsers           />} />
-        <Route path='CountButtonTogether'               element={<CountButtonTogether      />} />
-        <Route path='Cursors'                           element={<CursorsDemo              />} />
-        <Route path='HeroDemo'                          element={<HeroDemo                 />} />
-        <Route path='HoverHighlighter'                  element={<HoverHighlighterDemo     />} />
-        <Route path='SessionManager'                    element={<SessionManagerDemo       />} />
-        <Route path='useAllNicknames'                   element={<UseAllNicknamesDemo      />} />
-        <Route path='useChat'                           element={<UseChatDemo              />} />
-        <Route path='useConnectedUsers'                 element={<UseConnectedUsersDemo    />} />
-        <Route path='useCursors'                        element={<UseCursorsDemo           />} />
-        <Route path='useFunctionTogether'               element={<MeditationBell           />} />
-        <Route path='useNicknames'                      element={<UseNicknamesDemo         />} />
-        <Route path='useStateTogetherWithPerUserValues' element={<UseStateTogetherWPUVDemo />} />
-        <Route path='primereact'>
+      {/* Standard demos that use the shared ReactTogether context */}
+      <Route element={<DemoWrapper />}>
+        <Route path='demos/Chat'                              element={<ChatDemo                 />} />
+        <Route path='demos/ConnectedUsers'                    element={<ConnectedUsers           />} />
+        <Route path='demos/CountButtonTogether'               element={<CountButtonTogether      />} />
+        <Route path='demos/Cursors'                           element={<CursorsDemo              />} />
+        <Route path='demos/HeroDemo'                          element={<HeroDemo                 />} />
+        <Route path='demos/HoverHighlighter'                  element={<HoverHighlighterDemo     />} />
+        <Route path='demos/SessionManager'                    element={<SessionManagerDemo       />} />
+        <Route path='demos/useActivitySynq'                   element={<UseActivitySynqDemo      />} />
+        <Route path='demos/useAllNicknames'                   element={<UseAllNicknamesDemo      />} />
+        <Route path='demos/useChat'                           element={<UseChatDemo              />} />
+        <Route path='demos/useConnectedUsers'                 element={<UseConnectedUsersDemo    />} />
+        <Route path='demos/useCursors'                        element={<UseCursorsDemo           />} />
+        <Route path='demos/useFunctionTogether'               element={<MeditationBell           />} />
+        <Route path='demos/useNicknames'                      element={<UseNicknamesDemo         />} />
+        <Route path='demos/useStateTogetherWithPerUserValues' element={<UseStateTogetherWPUVDemo />} />
+        <Route path='demos/primereact'>
           {/* <Route path='Calendar'         element={<PrimeReactCalendarTogetherDemo         />} /> */}
           <Route path='Checkbox'         element={<PrimeReactCheckboxTogetherDemo         />} />
           <Route path='ColorPicker'      element={<PrimeReactColorPickerTogetherDemo      />} />
@@ -212,7 +215,7 @@ export default function AppRoutes() {
           <Route path='ToggleButton'     element={<PrimeReactToggleButtonTogetherDemo     />} />
           <Route path='TriStateCheckbox' element={<PrimeReactTriStateCheckboxTogetherDemo />} />
         </Route>
-        <Route path='antdesign'>
+        <Route path='demos/antdesign'>
           <Route path='Checkbox'     element={<AntDesignCheckboxTogetherDemo     />} />
           <Route path='DatePicker'   element={<AntDesignDatePickerTogetherDemo   />} />
           <Route path='Select'       element={<AntDesignSelectTogetherDemo       />} />
@@ -223,7 +226,12 @@ export default function AppRoutes() {
           <Route path='Slider'       element={<AntDesignSliderTogetherDemo       />} />
           <Route path='Button'       element={<AntDesignToggleButtonTogetherDemo />} />
         </Route>
-        <Route path='TinyRpg' element={<TinyRpgTogether />} />
+        <Route path='demos/TinyRpg' element={<TinyRpgTogether />} />
+      </Route>
+
+      {/* Isolated demos that manage their own context providers */}
+      <Route element={<IsolatedDemoLayout />}>
+        <Route path='demos/ActivitySynq' element={<ActivitySynqDemo />} />
       </Route>
     </Routes>
   )

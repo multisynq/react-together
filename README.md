@@ -60,6 +60,52 @@ export function SynchronizedCounter() {
 }
 ```
 
+### 🎯 ActivitySynq - Real-Time Activity Tracking
+
+ActivitySynq enables real-time activity tracking and synchronization across all users in a session. Perfect for live activity feeds, collaborative features, and real-time analytics.
+
+```tsx
+import { ActivitySynqProvider, useActivitySynq } from 'react-together'
+
+function ActivityTrackingApp() {
+  const config = {
+    sessionName: 'my-app-session',
+    onActivity: (activity) => {
+      // Receives activities from ALL users in the session
+      console.log(`${activity.userId} performed ${activity.type}`)
+    }
+  }
+
+  return (
+    <ActivitySynqProvider config={config}>
+      <MyComponent />
+    </ActivitySynqProvider>
+  )
+}
+
+function MyComponent() {
+  const { registerActivity, isReady } = useActivitySynq()
+
+  const handleVote = (emoji) => {
+    // This activity will be seen by all users instantly
+    registerActivity('emoji_vote', { emoji })
+  }
+
+  return (
+    <button onClick={() => handleVote('👍')} disabled={!isReady}>
+      Vote 👍
+    </button>
+  )
+}
+```
+
+**Key Features:**
+- 🔄 **Cross-user sync** - Activities from ALL users appear instantly
+- ⚡ **Real-time** - Zero-latency activity broadcasting  
+- 🔒 **Session-based** - Secure user grouping with passwords
+- 📱 **Offline support** - Automatic buffering and sync when reconnected
+- 🎯 **Type-safe** - Full TypeScript support with generic activity types
+
 Ready to start using React Together? Check out our [Getting Started](https://react-together.dev/getting-started) guide.
 
 ## 🫂 Community
