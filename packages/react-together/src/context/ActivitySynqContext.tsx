@@ -1,7 +1,6 @@
 import { MultisynqRoot, useMultisynqContext, useView } from '@multisynq/react'
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import ReactTogetherModel from '../models/ReactTogetherModel'
-import { useReactTogetherContext } from './ReactTogetherContext'
+import ActivityModel from '../models/ActivityModel'
 
 export interface ActivityEvent<T = any> {
   type: string
@@ -261,18 +260,15 @@ export const ActivitySynqProvider = ({
   children, 
   config = {} 
 }: ActivitySynqProviderProps) => {
-  // Try to get ReactTogether context for appId inheritance
-  const rtContext = useReactTogetherContext()
-  
   // Generate unique session name only once per component instance
   const [defaultSessionName] = useState(() => generateUniqueSessionName())
   
   // Memoize config to prevent unnecessary re-renders from object recreation
   const memoizedConfig = useMemo(() => {
-    // Precedence for appId: explicit config > ReactTogether context > environment > error
-    const appId = config.appId || rtContext?.sessionInfo?.appId || import.meta.env.VITE_APP_ID
+    // Precedence for appId: explicit config > environment > error
+    const appId = config.appId || import.meta.env.VITE_APP_ID
     if (!appId) {
-      console.error('ActivitySynq Error: appId is missing. Provide it via the appId prop or by wrapping the component in a <ReactTogether> provider.')
+      console.error('ActivitySynq Error: appId is missing. Provide it via the appId prop.')
     }
     
     return {
@@ -284,17 +280,16 @@ export const ActivitySynqProvider = ({
       sessionPassword: config.sessionPassword || import.meta.env.VITE_SESSION_PASSWORD || 'activity-session-password',
       onActivity: config.onActivity,
     }
-  }, [config.apiKey, config.userId, config.sessionName, config.sessionPassword, config.appId, config.onActivity, rtContext?.sessionInfo?.appId, defaultSessionName])
+  }, [config.apiKey, config.userId, config.sessionName, config.sessionPassword, config.appId, config.onActivity, defaultSessionName])
 
   // Debug logging to show session isolation
   useEffect(() => {
     console.log('ActivitySynq session initialized:', {
       appId: memoizedConfig.appId,
       sessionName: memoizedConfig.sessionName,
-      inheritedFromReactTogether: !!rtContext?.sessionInfo?.appId,
       generatedUniqueSession: !config.sessionName && !import.meta.env.VITE_SESSION_NAME
     })
-  }, [memoizedConfig.appId, memoizedConfig.sessionName, rtContext?.sessionInfo?.appId, config.sessionName])
+  }, [memoizedConfig.appId, memoizedConfig.sessionName, config.sessionName])
 
   // Track config changes and create a key to force MultisynqRoot re-mount when critical config changes
   const sessionKey = useMemo(() => 
@@ -324,7 +319,7 @@ export const ActivitySynqProvider = ({
     <MultisynqRoot
       key={sessionKey} // Force re-mount on critical config changes
       sessionParams={{
-        model: ReactTogetherModel,
+        model: ActivityModel,
         name: memoizedConfig.sessionName!,
         password: memoizedConfig.sessionPassword!,
         appId: memoizedConfig.appId!,

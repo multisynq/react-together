@@ -1,4 +1,5 @@
+import ActivityModel from './ActivityModel'
 import ChatModel from './ChatModel'
 import ReactTogetherModel from './ReactTogetherModel'
 
-export { ChatModel, ReactTogetherModel }
+export { ActivityModel, ChatModel, ReactTogetherModel }
