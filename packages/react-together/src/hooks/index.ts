@@ -36,3 +36,6 @@ export {
   useStateTogether,
   useStateTogetherWithPerUserValues
 }
+
+// Global ActivitySynq exports
+export { useActivitySynqGlobal, registerActivityGlobal, getActivitySynqState } from './useActivitySynqGlobal'

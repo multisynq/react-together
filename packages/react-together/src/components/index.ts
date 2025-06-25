@@ -19,3 +19,6 @@ export {
   ReactTogether,
   SessionManager
 }
+
+// Global ActivitySynq component (single-line integration)
+export { ActivitySynqGlobal } from './ActivitySynqGlobal'
