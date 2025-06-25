@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { ActivitySynqProvider, useActivitySynq, ActivityEvent } from 'react-together'
 
 // Activity data interfaces for demo
@@ -34,17 +34,6 @@ export function UseActivitySynqDemo({
   sessionPassword = 'hook-demo-password-SHARED',
   userId = 'anonymous'
 }: UseActivitySynqDemoProps = {}) {
-  // If no props provided, fall back to URL parsing for iframe usage
-  if (!sessionName || sessionName === 'use-activity-synq-hook-demo-SHARED') {
-    const urlParams = new URLSearchParams(window.location.search)
-    const hashParams = new URLSearchParams(window.location.hash.slice(1))
-    const userParam = urlParams.get('user')
-    
-    sessionName = urlParams.get('rtName') || sessionName
-    sessionPassword = hashParams.get('rtPwd') || sessionPassword
-    userId = userParam ? `use-hook-demo-${userParam}` : userId
-  }
-
   return (
     <UseActivitySynqDemoContent 
       userId={userId} 
@@ -65,30 +54,15 @@ function UseActivitySynqDemoContent({
   sessionPassword: string 
 }) {
   const [activityLog, setActivityLog] = useState<ActivityLogEntry[]>([])
-  
-  // Get user info from URL params
-  const urlParams = new URLSearchParams(window.location.search)
-  const userParam = urlParams.get('user')
-
-  // Component-level deduplication for React Strict Mode
   const processedActivitiesRef = useRef<Set<string>>(new Set())
 
-  // Handle activity events - this will be called by ActivitySynqContext
+  // Stable callback reference using useCallback with consistent dependencies
   const handleActivityReceived = useCallback((activity: ActivityEvent) => {
-    console.log('UseActivitySynqDemo - Activity received:', activity)
-    
-    // Create unique ID for deduplication
     const activityId = `${activity.userId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
     
-    // Skip if already processed by this component
-    if (processedActivitiesRef.current.has(activityId)) {
-      console.log('Skipping duplicate activity:', activityId)
-      return
-    }
-    
+    if (processedActivitiesRef.current.has(activityId)) return
     processedActivitiesRef.current.add(activityId)
     
-    // Add to activity feed
     const feedEntry: ActivityLogEntry = {
       id: crypto.randomUUID(),
       type: activity.type,
@@ -101,23 +75,15 @@ function UseActivitySynqDemoContent({
     setActivityLog(prev => [feedEntry, ...prev].slice(0, 8))
   }, [userId])
 
-  // Configuration with onActivity callback - this is the proper pattern
-  const config = {
+  // Memoize config to prevent provider recreation
+  const config = useMemo(() => ({
     apiKey: import.meta.env.VITE_API_KEY,
     appId: import.meta.env.VITE_APP_ID,
-    sessionName: sessionName,
-    sessionPassword: sessionPassword,
-    userId: userId,
-    onActivity: handleActivityReceived // ActivitySynqContext will call this for all activities
-  }
-
-  // Debug logging to see what session parameters we're using
-  console.log('UseActivitySynqDemo - Final Session Config:', {
     sessionName,
     sessionPassword,
     userId,
-    source: sessionName === 'use-activity-synq-hook-demo-SHARED' ? 'fallback' : 'props/url'
-  })
+    onActivity: handleActivityReceived
+  }), [sessionName, sessionPassword, userId, handleActivityReceived])
 
   return (
     <ActivitySynqProvider config={config}>
@@ -141,10 +107,6 @@ function UseActivitySynqDemoInner({
   activityLog: ActivityLogEntry[]
 }) {
   const { registerActivity, isReady, status, error, bufferedEventCount } = useActivitySynq()
-  
-  // Get user info from URL params
-  const urlParams = new URLSearchParams(window.location.search)
-  const userParam = urlParams.get('user')
 
   const handleButtonClick = (buttonId: string) => {
     const activityData: ButtonClickData = {
@@ -177,20 +139,18 @@ function UseActivitySynqDemoInner({
   }
 
   // Get user display name for activities
-  const getUserDisplayName = (entry: ActivityLogEntry) => {
-    // Determine if this activity is from the current user
+  const getUserDisplayName = useCallback((entry: ActivityLogEntry) => {
     const isLocal = entry.userId === userId
     
     if (isLocal) {
-      if (userParam === 'user1') return 'User1 (You)'
-      if (userParam === 'user2') return 'User2 (You)'
+      if (userId.includes('user-1')) return 'User1 (You)'
+      if (userId.includes('user-2')) return 'User2 (You)'
       return 'You'
     }
-    // For remote activities, determine user based on userId
-    if (entry.userId?.includes('user1')) return 'User1'
-    if (entry.userId?.includes('user2')) return 'User2'
+    if (entry.userId?.includes('user-1')) return 'User1'
+    if (entry.userId?.includes('user-2')) return 'User2'
     return entry.userId?.slice(-8) || 'Other User'
-  }
+  }, [userId])
 
   return (
     <div className="flex flex-col h-full max-w-2xl mx-auto p-4">

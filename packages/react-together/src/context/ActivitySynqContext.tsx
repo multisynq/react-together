@@ -263,9 +263,8 @@ export const ActivitySynqProvider = ({
   // Generate unique session name only once per component instance
   const [defaultSessionName] = useState(() => generateUniqueSessionName())
   
-  // Memoize config to prevent unnecessary re-renders from object recreation
+  // Memoize config with stable references, excluding onActivity from session key
   const memoizedConfig = useMemo(() => {
-    // Precedence for appId: explicit config > environment > error
     const appId = config.appId || import.meta.env.VITE_APP_ID
     if (!appId) {
       console.error('ActivitySynq Error: appId is missing. Provide it via the appId prop.')
@@ -274,8 +273,7 @@ export const ActivitySynqProvider = ({
     return {
       userId: config.userId || generateUserId(),
       apiKey: config.apiKey || import.meta.env.VITE_API_KEY || import.meta.env.VITE_MULTISYNQ_API_KEY,
-      appId: appId || 'missing-app-id', // Fallback to avoid breaking
-      // Use unique session name by default, but allow override via config
+      appId: appId || 'missing-app-id',
       sessionName: config.sessionName || import.meta.env.VITE_SESSION_NAME || defaultSessionName,
       sessionPassword: config.sessionPassword || import.meta.env.VITE_SESSION_PASSWORD || 'activity-session-password',
       onActivity: config.onActivity,
@@ -291,10 +289,10 @@ export const ActivitySynqProvider = ({
     })
   }, [memoizedConfig.appId, memoizedConfig.sessionName, config.sessionName])
 
-  // Track config changes and create a key to force MultisynqRoot re-mount when critical config changes
+  // Stable session key that excludes onActivity callback to prevent restarts
   const sessionKey = useMemo(() => 
-    `${memoizedConfig.apiKey}_${memoizedConfig.userId}_${memoizedConfig.sessionName}_${memoizedConfig.sessionPassword}`,
-    [memoizedConfig.apiKey, memoizedConfig.userId, memoizedConfig.sessionName, memoizedConfig.sessionPassword]
+    `${memoizedConfig.apiKey}_${memoizedConfig.userId}_${memoizedConfig.sessionName}_${memoizedConfig.sessionPassword}_${memoizedConfig.appId}`,
+    [memoizedConfig.apiKey, memoizedConfig.userId, memoizedConfig.sessionName, memoizedConfig.sessionPassword, memoizedConfig.appId]
   )
 
   if (!memoizedConfig.apiKey) {
