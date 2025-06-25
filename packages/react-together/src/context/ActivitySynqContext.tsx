@@ -1,5 +1,5 @@
 import { MultisynqRoot, useMultisynqContext, useView } from '@multisynq/react'
-import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import ActivityModel from '../models/ActivityModel'
 
 export interface ActivityEvent<T = any> {
@@ -109,7 +109,7 @@ function ActivitySynqContextProvider({
       view.publish(model.id, 'activity', activity)
     }
     config.onActivity?.(activity)
-  }, [view, model, config])
+  }, [view, model, config.onActivity])
 
   const flushBuffer = useCallback((): void => {
     const bufferedEvents = buffer.flush()
@@ -167,7 +167,7 @@ function ActivitySynqContextProvider({
     return () => {
       view.unsubscribe(model.id, 'activity_received', handleActivityReceived)
     }
-  }, [view, model, config])
+  }, [view, model, config.onActivity])
 
   // Load historical activities when session becomes ready
   useEffect(() => {
@@ -188,7 +188,7 @@ function ActivitySynqContextProvider({
         console.log('ActivitySynq: Model does not have getHistoricalActivities method')
       }
     }
-  }, [view, model, isSynced, config])
+  }, [view, model, isSynced, config.onActivity])
 
   // Calculate overall status
   useEffect(() => {
@@ -232,7 +232,17 @@ function ActivitySynqContextProvider({
       // Still call onActivity callback for immediate feedback
       config.onActivity?.(activity)
     }
-  }, [config, isReady, status, buffer, sendActivity])
+  }, [config.userId, config.onActivity, isReady, status, buffer, sendActivity])
+
+  // Create stable config reference for context to prevent unnecessary rerenders
+  const stableConfig = useMemo(() => ({
+    apiKey: config.apiKey,
+    appId: config.appId,
+    sessionPassword: config.sessionPassword,
+    sessionName: config.sessionName,
+    userId: config.userId,
+    onActivity: config.onActivity,
+  }), [config.apiKey, config.appId, config.sessionPassword, config.sessionName, config.userId, config.onActivity])
 
   const contextValue: IActivitySynqContext = useMemo(() => ({
     registerActivity,
@@ -240,9 +250,9 @@ function ActivitySynqContextProvider({
     status,
     error,
     userId: config.userId,
-    config,
+    config: stableConfig,
     bufferedEventCount,
-  }), [registerActivity, isReady, status, error, config, bufferedEventCount])
+  }), [registerActivity, isReady, status, error, config.userId, stableConfig, bufferedEventCount])
 
   return (
     <ActivitySynqContext.Provider value={contextValue}>
@@ -256,14 +266,21 @@ interface ActivitySynqProviderProps {
   config?: ActivitySynqConfig
 }
 
+// Create stable default config to prevent object recreation
+const DEFAULT_CONFIG: ActivitySynqConfig = {}
+
 export const ActivitySynqProvider = ({ 
   children, 
-  config = {} 
+  config = DEFAULT_CONFIG 
 }: ActivitySynqProviderProps) => {
   // Generate unique session name only once per component instance
   const [defaultSessionName] = useState(() => generateUniqueSessionName())
   
-  // Memoize config with stable references, excluding onActivity from session key
+  // Use ref to store current onActivity callback to avoid recreation
+  const onActivityRef = useRef(config.onActivity)
+  onActivityRef.current = config.onActivity
+  
+  // Memoize config with stable references, excluding onActivity from dependencies to prevent session restarts
   const memoizedConfig = useMemo(() => {
     const appId = config.appId || import.meta.env.VITE_APP_ID
     if (!appId) {
@@ -276,9 +293,9 @@ export const ActivitySynqProvider = ({
       appId: appId || 'missing-app-id',
       sessionName: config.sessionName || import.meta.env.VITE_SESSION_NAME || defaultSessionName,
       sessionPassword: config.sessionPassword || import.meta.env.VITE_SESSION_PASSWORD || 'activity-session-password',
-      onActivity: config.onActivity,
+      onActivity: (activity: ActivityEvent) => onActivityRef.current?.(activity), // Stable wrapper
     }
-  }, [config.apiKey, config.userId, config.sessionName, config.sessionPassword, config.appId, config.onActivity, defaultSessionName])
+  }, [config.apiKey, config.userId, config.sessionName, config.sessionPassword, config.appId, defaultSessionName])
 
   // Debug logging to show session isolation
   useEffect(() => {

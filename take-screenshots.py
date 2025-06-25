@@ -38,7 +38,7 @@ def take_screenshots():
     try:
         # Navigate to demo
         print("Loading demo page...")
-        driver.get("http://localhost:3002")
+        driver.get("http://localhost:5174/demos/ActivitySynqGlobal")
         
         # Wait for page to load
         WebDriverWait(driver, 10).wait(
@@ -49,61 +49,70 @@ def take_screenshots():
         # Create screenshots directory
         os.makedirs("/mnt/c/git/multisynq/react-together/screenshots", exist_ok=True)
         
-        # Screenshot 1: Initial page load
+        # Screenshot 1: Initial page load (before any activities)
         print("Taking initial screenshot...")
-        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/global-demo-initial.png")
+        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/activitysynq-global-before.png")
         
         # Screenshot 2: Feature sections
         print("Taking feature sections screenshot...")
         driver.execute_script("window.scrollTo(0, 200)")
         time.sleep(1)
-        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/global-demo-features.png")
+        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/activitysynq-global-customization.png")
         
         # Click some buttons to generate activities
         print("Clicking feature buttons...")
         try:
-            search_btn = driver.find_element(By.XPATH, "//button[contains(text(), '🔍 Search')]")
+            # Click Search button
+            search_btn = driver.find_element(By.XPATH, "//button[contains(text(), 'Search')]")
             search_btn.click()
             time.sleep(0.5)
             
-            filter_btn = driver.find_element(By.XPATH, "//button[contains(text(), '🔽 Filter')]")
+            # Click Filter button  
+            filter_btn = driver.find_element(By.XPATH, "//button[contains(text(), 'Filter')]")
             filter_btn.click()
             time.sleep(0.5)
             
-            export_btn = driver.find_element(By.XPATH, "//button[contains(text(), '📁 Export')]")
+            # Click Export button
+            export_btn = driver.find_element(By.XPATH, "//button[contains(text(), 'Export')]")
             export_btn.click()
             time.sleep(0.5)
             
-            # Add some user activities
-            add_btn = driver.find_element(By.XPATH, "//button[contains(text(), '+ Add Activity')]")
-            add_btn.click()
+            # Click Random Activity button
+            random_btn = driver.find_element(By.XPATH, "//button[contains(text(), 'Generate Random Activity')]")
+            random_btn.click()
             time.sleep(0.5)
-            add_btn.click()
+            random_btn.click()
             time.sleep(1)
             
         except Exception as e:
             print(f"Could not click buttons: {e}")
         
-        # Screenshot 3: Activities generated
+        # Screenshot 3: Activities generated (after user activities)
         print("Taking activities screenshot...")
-        driver.execute_script("window.scrollTo(0, 600)")
+        driver.execute_script("window.scrollTo(0, 800)")
         time.sleep(1)
-        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/global-demo-activities.png")
+        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/activitysynq-global-after.png")
         
-        # Screenshot 4: Integration explanation
+        # Screenshot 4: Feed with customization controls
+        print("Taking feed customization screenshot...")
+        driver.execute_script("window.scrollTo(0, 400)")
+        time.sleep(1)
+        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/activitysynq-global-feed-controls.png")
+        
+        # Screenshot 5: Integration explanation
         print("Taking integration explanation screenshot...")
         driver.execute_script("window.scrollTo(0, 1200)")
         time.sleep(1)
-        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/global-demo-integration.png")
+        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/activitysynq-global-integration.png")
         
-        # Screenshot 5: Full page
+        # Screenshot 6: Full page
         print("Taking full page screenshot...")
         driver.execute_script("window.scrollTo(0, 0)")
         time.sleep(1)
         # Set larger window for full page
         driver.set_window_size(1920, 2400)
         time.sleep(1)
-        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/global-demo-fullpage.png")
+        driver.save_screenshot("/mnt/c/git/multisynq/react-together/screenshots/activitysynq-global-fullpage.png")
         
         print("Screenshots saved successfully!")
         

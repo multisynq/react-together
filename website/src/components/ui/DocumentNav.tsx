@@ -73,6 +73,7 @@ const items: PatchedMenuItem[] = [
     items: [
       { key: 'react-together',     label: 'ReactTogether',    url: `${baseUrl}/ReactTogether`    },
       { key: 'activity-synq',      label: 'ActivitySynq',     url: `${baseUrl}/ActivitySynq`     },
+      { key: 'activity-synq-global', label: 'ActivitySynq Global', url: `/demos/ActivitySynqGlobal` },
       { key: 'chat',               label: 'Chat',             url: `${baseUrl}/Chat`             },
       { key: 'cursors',            label: 'Cursors',          url: `${baseUrl}/Cursors`          },
       { key: 'react-together-mgr', label: 'SessionManager',   url: `${baseUrl}/SessionManager`   },
