@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { ActivitySynqProvider, useActivitySynq, ActivityEvent } from 'react-together'
+import { useMultisynqContext } from '@multisynq/react'
 
 // Activity data interfaces for emoji voting demo
 interface EmojiVoteData {
@@ -15,123 +16,38 @@ interface ActivityFeedEntry {
   timestamp: number
 }
 
-// Global activity handler for receiving activities from other users
-const ACTIVITY_RECEIVED_EVENT = 'activity-received'
-
-// Historical activity storage interface
-interface HistoricalActivityData {
-  activities: ActivityEvent[]
-  voteCounts: Record<string, number>
-  lastUpdated: number
-}
-
-// Global deduplication to handle React Strict Mode double-mounting
-const globalProcessedActivities = new Set<string>()
-const dispatchTimers = new Map<string, NodeJS.Timeout>()
-
-// Global historical data store
-let globalHistoricalData: HistoricalActivityData = {
-  activities: [],
-  voteCounts: {},
-  lastUpdated: Date.now()
-}
-
-// Additional event types for historical sync
-const HISTORICAL_SYNC_EVENT = 'activity-historical-sync-request'
-const HISTORICAL_SYNC_RESPONSE_EVENT = 'activity-historical-sync-response'
-
-// Global activity handler - only one instance processes each activity
-const handleGlobalActivity = (activity: ActivityEvent) => {
-  console.log('ActivitySynq Demo - Activity received:', activity)
-  
-  // Create unique ID for global deduplication 
-  const activityId = `${activity.userId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
-  
-  // Skip if already processed globally (handles React Strict Mode double-mounting)
-  if (globalProcessedActivities.has(activityId)) {
-    console.log('Global deduplication: Skipping duplicate activity:', activityId)
-    return
-  }
-  
-  // Mark as processed globally
-  globalProcessedActivities.add(activityId)
-  
-  // Store activity in global historical data
-  globalHistoricalData.activities.push(activity)
-  globalHistoricalData.lastUpdated = Date.now()
-  
-  // Update global vote counts
-  if (activity.type === 'emoji_vote' && activity.data?.emoji) {
-    globalHistoricalData.voteCounts[activity.data.emoji] = 
-      (globalHistoricalData.voteCounts[activity.data.emoji] || 0) + 1
-  }
-  
-  // Keep only last 100 activities to prevent memory bloat
-  if (globalHistoricalData.activities.length > 100) {
-    globalHistoricalData.activities = globalHistoricalData.activities.slice(-100)
-  }
-  
-  // Clear any existing timer for this activity
-  if (dispatchTimers.has(activityId)) {
-    clearTimeout(dispatchTimers.get(activityId)!)
-  }
-  
-  // Dispatch with a small delay to allow for potential duplicates
-  const timer = setTimeout(() => {
-    // Dispatch custom event for the component to catch
-    const event = new CustomEvent(ACTIVITY_RECEIVED_EVENT, {
-      detail: activity
-    })
-    window.dispatchEvent(event)
-    dispatchTimers.delete(activityId)
-  }, 10)
-  
-  dispatchTimers.set(activityId, timer)
-}
-
-// Handle requests for historical data sync
-const handleHistoricalSyncRequest = () => {
-  console.log('Historical sync requested - sending current data:', globalHistoricalData)
-  const event = new CustomEvent(HISTORICAL_SYNC_RESPONSE_EVENT, {
-    detail: globalHistoricalData
-  })
-  window.dispatchEvent(event)
-}
-
-// Set up global event listeners for historical sync
-if (typeof window !== 'undefined') {
-  window.addEventListener(HISTORICAL_SYNC_EVENT, handleHistoricalSyncRequest)
-}
-
 export function ActivitySynqDemo() {
-  // Get user-specific ID from URL parameters to differentiate between demo instances
+  // Get session and user parameters from URL
   const urlParams = new URLSearchParams(window.location.search)
+  const hashParams = new URLSearchParams(window.location.hash.slice(1))
+  
   const userParam = urlParams.get('user')
+  const sessionName = urlParams.get('rtName') || 'emoji-voting-demo-fixed'
+  const sessionPassword = hashParams.get('rtPwd') || 'vote-together'
   const userId = userParam ? `emoji-voter-${userParam}` : undefined
 
   const config = {
     // Essential configuration for ActivitySynq
     apiKey: import.meta.env.VITE_API_KEY,
     appId: import.meta.env.VITE_APP_ID,
-    sessionName: 'emoji-voting-demo-fixed', // Groups users together
-    sessionPassword: 'vote-together', // Secure session access
+    sessionName: sessionName, // Groups users together - from URL params
+    sessionPassword: sessionPassword, // Secure session access - from URL hash
     userId: userId, // Identify specific users
-    onActivity: handleGlobalActivity
   }
 
   return (
     <ActivitySynqProvider config={config}>
-      <ActivitySynqDemoContent />
+      <ActivitySynqDemoContent userId={userId || 'anonymous'} />
     </ActivitySynqProvider>
   )
 }
 
 // Demo content that shows emoji voting functionality
-function ActivitySynqDemoContent() {
+function ActivitySynqDemoContent({ userId }: { userId: string }) {
+  const { view, model } = useMultisynqContext()
   const { registerActivity, isReady, status, bufferedEventCount } = useActivitySynq()
   const [activityFeed, setActivityFeed] = useState<ActivityFeedEntry[]>([])
   const [voteCount, setVoteCount] = useState<Record<string, number>>({})
-  const [hasLoadedHistoricalData, setHasLoadedHistoricalData] = useState(false)
   
   // Available emojis for voting
   const emojis = ['😍', '🚀', '💡', '🎉', '❤️', '👍']
@@ -139,108 +55,64 @@ function ActivitySynqDemoContent() {
   // Component-level deduplication for React Strict Mode
   const processedActivitiesRef = useRef<Set<string>>(new Set())
 
-  // Load historical data when component mounts and session is ready
-  useEffect(() => {
-    if (isReady && !hasLoadedHistoricalData) {
-      console.log('Session ready - requesting historical data sync...')
-      
-      // Set up listener for historical data response
-      const handleHistoricalResponse = (event: Event) => {
-        if (event instanceof CustomEvent && event.detail) {
-          const historicalData: HistoricalActivityData = event.detail
-          console.log('Received historical data:', historicalData)
-          
-          // Apply historical vote counts
-          setVoteCount(historicalData.voteCounts)
-          
-          // Apply historical activities to feed (most recent first)
-          const historicalFeedEntries: ActivityFeedEntry[] = historicalData.activities
-            .slice(-10) // Only show last 10 activities
-            .reverse() // Most recent first
-            .map(activity => ({
-              id: crypto.randomUUID(),
-              type: activity.type,
-              userId: activity.userId || 'unknown',
-              data: activity.data,
-              timestamp: activity.timestamp
-            }))
-          
-          setActivityFeed(historicalFeedEntries)
-          
-          // Mark all historical activities as processed to avoid duplicates
-          historicalData.activities.forEach(activity => {
-            const activityId = `${activity.userId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
-            processedActivitiesRef.current.add(activityId)
-          })
-          
-          setHasLoadedHistoricalData(true)
-          console.log('Historical data loaded successfully')
-        }
-      }
-
-      // Listen for historical sync response
-      window.addEventListener(HISTORICAL_SYNC_RESPONSE_EVENT, handleHistoricalResponse)
-      
-      // Request historical data with a small delay to ensure other tabs can respond
-      setTimeout(() => {
-        window.dispatchEvent(new CustomEvent(HISTORICAL_SYNC_EVENT))
-      }, 100)
-      
-      // Cleanup listener after a reasonable timeout
-      setTimeout(() => {
-        window.removeEventListener(HISTORICAL_SYNC_RESPONSE_EVENT, handleHistoricalResponse)
-        if (!hasLoadedHistoricalData) {
-          setHasLoadedHistoricalData(true)
-          console.log('Historical sync timeout - proceeding without historical data')
-        }
-      }, 2000)
-    }
-  }, [isReady, hasLoadedHistoricalData])
-
-  // Listen for activities from all users (including self)
-  useEffect(() => {
-    const handleActivityReceived = (event: Event) => {
-      if (event instanceof CustomEvent && event.detail) {
-        const activity: ActivityEvent = event.detail
-        
-        // Create unique ID for component-level deduplication
-        const activityId = `${activity.userId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
-        
-        // Skip if this component instance already processed this activity
-        if (processedActivitiesRef.current.has(activityId)) {
-          console.log('Component deduplication: Skipping duplicate activity:', activityId)
-          return
-        }
-        
-        // Mark as processed by this component instance
-        processedActivitiesRef.current.add(activityId)
-        
-        const feedEntry: ActivityFeedEntry = {
-          id: crypto.randomUUID(),
-          type: activity.type,
-          userId: activity.userId || 'unknown',
-          data: activity.data,
-          timestamp: activity.timestamp
-        }
-        
-        setActivityFeed(prev => [feedEntry, ...prev].slice(0, 10))
-        
-        // Update vote count for emoji votes
-        if (activity.type === 'emoji_vote' && activity.data?.emoji) {
-          setVoteCount(prev => ({
-            ...prev,
-            [activity.data.emoji]: (prev[activity.data.emoji] || 0) + 1
-          }))
-        }
-      }
-    }
-
-    window.addEventListener(ACTIVITY_RECEIVED_EVENT, handleActivityReceived)
+  // Handle activity events from Croquet model
+  const handleActivityReceived = useCallback((activity: ActivityEvent) => {
+    console.log('ActivitySynq Demo - Activity received:', activity)
     
-    return () => {
-      window.removeEventListener(ACTIVITY_RECEIVED_EVENT, handleActivityReceived)
+    // Create unique ID for deduplication
+    const activityId = `${activity.userId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
+    
+    // Skip if already processed by this component
+    if (processedActivitiesRef.current.has(activityId)) {
+      console.log('Skipping duplicate activity:', activityId)
+      return
+    }
+    
+    processedActivitiesRef.current.add(activityId)
+    
+    // Add to activity feed
+    const feedEntry: ActivityFeedEntry = {
+      id: crypto.randomUUID(),
+      type: activity.type,
+      userId: activity.userId || 'unknown',
+      data: activity.data,
+      timestamp: activity.timestamp
+    }
+    
+    setActivityFeed(prev => [feedEntry, ...prev].slice(0, 10))
+    
+    // Update vote count for emoji votes
+    if (activity.type === 'emoji_vote' && activity.data?.emoji) {
+      setVoteCount(prev => ({
+        ...prev,
+        [activity.data.emoji]: (prev[activity.data.emoji] || 0) + 1
+      }))
     }
   }, [])
+
+  // Subscribe to activity events directly from Croquet model
+  useEffect(() => {
+    if (!view || !model) return
+    
+    view.subscribe(model.id, 'activity_received', handleActivityReceived)
+    
+    return () => {
+      view.unsubscribe(model.id, 'activity_received', handleActivityReceived)
+    }
+  }, [view, model, handleActivityReceived])
+
+  // Load historical activities when session becomes ready
+  useEffect(() => {
+    if (view && model && isReady) {
+      const modelWithActivities = model as any
+      if (typeof modelWithActivities.getHistoricalActivities === 'function') {
+        const historicalActivities = modelWithActivities.getHistoricalActivities()
+        historicalActivities.forEach((activity: ActivityEvent) => {
+          handleActivityReceived(activity)
+        })
+      }
+    }
+  }, [view, model, isReady, handleActivityReceived])
 
   const getStatusColor = () => {
     switch (status) {
@@ -266,13 +138,11 @@ function ActivitySynqDemoContent() {
 
   // Get user display name  
   const getUserDisplayName = (activityUserId: string) => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const userParam = urlParams.get('user')
-    
-    if (activityUserId?.includes('voter-1')) return 'Voter 1'
-    if (activityUserId?.includes('voter-2')) return 'Voter 2'
-    if (userParam === 'user1') return 'Voter 1'
-    if (userParam === 'user2') return 'Voter 2'
+    if (activityUserId === userId) return 'You'
+    if (activityUserId?.includes('user1')) return 'User 1'
+    if (activityUserId?.includes('user2')) return 'User 2'
+    if (activityUserId?.includes('voter-1')) return 'User 1'
+    if (activityUserId?.includes('voter-2')) return 'User 2'
     return activityUserId?.slice(-8) || 'Anonymous'
   }
 
@@ -298,7 +168,7 @@ function ActivitySynqDemoContent() {
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Status: {status} | Ready: {isReady ? 'Yes' : 'No'}</span>
           <div className="text-xs">
-            User: <span className="font-mono">{getUserDisplayName('current-user')}</span>
+            User: <span className="font-mono">{getUserDisplayName(userId)}</span>
             {bufferedEventCount > 0 && (
               <span className="ml-2 bg-yellow-200 px-2 py-1 rounded text-yellow-800">
                 {bufferedEventCount} buffered

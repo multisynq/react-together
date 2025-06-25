@@ -41,6 +41,14 @@ export default function DocumentationDemo({ url, session1, session2, aspectRatio
   const url1 = buildUrl(demoPath, session1, 'user1')
   const url2 = buildUrl(demoPath, session2, 'user2')
 
+  // Debug logging to see what URLs are being generated
+  console.log('DocumentationDemo - Generated URLs:', {
+    url1,
+    url2,
+    session1,
+    session2
+  })
+
   return (
     <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100'>
       <DocumentDemoContainer labelText='User 1' aspectRatio={aspectRatio}>

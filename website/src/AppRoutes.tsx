@@ -193,7 +193,6 @@ export default function AppRoutes() {
         <Route path='demos/HeroDemo'                          element={<HeroDemo                 />} />
         <Route path='demos/HoverHighlighter'                  element={<HoverHighlighterDemo     />} />
         <Route path='demos/SessionManager'                    element={<SessionManagerDemo       />} />
-        <Route path='demos/useActivitySynq'                   element={<UseActivitySynqDemo      />} />
         <Route path='demos/useAllNicknames'                   element={<UseAllNicknamesDemo      />} />
         <Route path='demos/useChat'                           element={<UseChatDemo              />} />
         <Route path='demos/useConnectedUsers'                 element={<UseConnectedUsersDemo    />} />
@@ -232,6 +231,7 @@ export default function AppRoutes() {
       {/* Isolated demos that manage their own context providers */}
       <Route element={<IsolatedDemoLayout />}>
         <Route path='demos/ActivitySynq' element={<ActivitySynqDemo />} />
+        <Route path='demos/useActivitySynq' element={<UseActivitySynqDemo />} />
       </Route>
     </Routes>
   )

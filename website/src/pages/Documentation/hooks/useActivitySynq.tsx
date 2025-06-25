@@ -2,12 +2,12 @@ import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import getDocLinks from '@utils/getDocLinks'
-import DocumentationDemo from '../DocumentationDemo'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import InterfaceApi from '../InterfaceApi'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
+import { UseActivitySynqDemo } from '@components/demo/reactTogether/UseActivitySynqDemo'
 
 const codes = {
   demo: {
@@ -287,12 +287,48 @@ const api = (
   </>
 )
 
+// Preview component that shows two synchronized demo instances
+function UseActivitySynqPreview({ sessionParams }: { sessionParams: { name: string, password: string } }) {
+  return (
+    <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100'>
+      <div className='flex-1 min-w-[400px] max-w-[500px]'>
+        <div className='bg-blue-50 border border-blue-200 rounded-t-lg px-3 py-2'>
+          <span className='text-sm font-medium text-blue-800'>User 1</span>
+        </div>
+        <div className='border-x border-b border-blue-200 rounded-b-lg overflow-hidden'>
+          <UseActivitySynqDemo 
+            sessionName={sessionParams.name} 
+            sessionPassword={sessionParams.password}
+            userId="demo-user-1"
+          />
+        </div>
+      </div>
+      
+      <div className='flex-1 min-w-[400px] max-w-[500px]'>
+        <div className='bg-green-50 border border-green-200 rounded-t-lg px-3 py-2'>
+          <span className='text-sm font-medium text-green-800'>User 2</span>
+        </div>
+        <div className='border-x border-b border-green-200 rounded-b-lg overflow-hidden'>
+          <UseActivitySynqDemo 
+            sessionName={sessionParams.name} 
+            sessionPassword={sessionParams.password}
+            userId="demo-user-2"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function UseActivitySynqDocumentationPage() {
   const [sessionName] = useLocalStorage('use-activity-synq-session-name', Math.random().toString(36).substring(2, 15))
   const sessionParams = {
     name: sessionName,
     password: 'use-activity-synq-demo-password',
   }
+
+  // Debug logging to see what session parameters we're creating
+  console.log('UseActivitySynqDocumentationPage - Session Params:', sessionParams)
 
   const content = (
     <GenericDocPage
@@ -312,7 +348,7 @@ export default function UseActivitySynqDocumentationPage() {
             </p>
             <PreviewSourceCodeTabs
               {...{
-                preview: <DocumentationDemo url='useActivitySynq' session1={sessionParams} session2={sessionParams} />,
+                preview: <UseActivitySynqPreview sessionParams={sessionParams} />,
                 code: (
                   <CodeBlock
                     {...{

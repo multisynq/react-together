@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test URL Parameters</title>
+</head>
+<body>
+    <h1>URL Parameter Test</h1>
+    <div id="output"></div>
+
+    <script>
+        // Test URL parsing for the useActivitySynq demo
+        const urlParams = new URLSearchParams(window.location.search)
+        const hashParams = new URLSearchParams(window.location.hash.slice(1))
+        
+        const sessionName = urlParams.get('rtName')
+        const sessionPassword = hashParams.get('rtPwd')
+        const user = urlParams.get('user')
+        
+        const output = document.getElementById('output')
+        output.innerHTML = `
+            <p><strong>Current URL:</strong> ${window.location.href}</p>
+            <p><strong>Search:</strong> ${window.location.search}</p>
+            <p><strong>Hash:</strong> ${window.location.hash}</p>
+            <p><strong>Session Name (rtName):</strong> ${sessionName}</p>
+            <p><strong>Session Password (rtPwd):</strong> ${sessionPassword}</p>
+            <p><strong>User:</strong> ${user}</p>
+            <p><strong>Session Name is null?:</strong> ${sessionName === null}</p>
+            <p><strong>Session Name is empty?:</strong> ${sessionName === ''}</p>
+        `
+
+        // Test with sample URL
+        const testUrl = 'http://localhost:5174/demos/useActivitySynq?user=user1&rtName=abc123#rtPwd=password123'
+        const testURL = new URL(testUrl)
+        const testUrlParams = new URLSearchParams(testURL.search)
+        const testHashParams = new URLSearchParams(testURL.hash.slice(1))
+        
+        output.innerHTML += `
+            <hr>
+            <h2>Test with sample URL:</h2>
+            <p><strong>Test URL:</strong> ${testUrl}</p>
+            <p><strong>Test Session Name:</strong> ${testUrlParams.get('rtName')}</p>
+            <p><strong>Test Session Password:</strong> ${testHashParams.get('rtPwd')}</p>
+        `
+    </script>
+</body>
+</html>

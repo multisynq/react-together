@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { useStateTogether } from 'react-together'
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { ActivitySynqProvider, useActivitySynq, ActivityEvent } from 'react-together'
 
 // Activity data interfaces for demo
 interface ButtonClickData {
@@ -23,21 +23,128 @@ interface ActivityLogEntry {
   userId?: string
 }
 
-export function UseActivitySynqDemo() {
-  return <UseActivitySynqDemoContent />
+interface UseActivitySynqDemoProps {
+  sessionName?: string
+  sessionPassword?: string
+  userId?: string
 }
 
-// Demo content that simulates useActivitySynq functionality using ReactTogether session
-function UseActivitySynqDemoContent() {
-  // Use the existing ReactTogether session to share activities
-  const [activityLog, setActivityLog] = useStateTogether<ActivityLogEntry[]>('useActivitySynqDemoLog', [])
-  const [bufferedCount] = useState(0)
-  const [status] = useState<'ready' | 'initializing' | 'disconnected' | 'error'>('ready')
+export function UseActivitySynqDemo({ 
+  sessionName = 'use-activity-synq-hook-demo-SHARED',
+  sessionPassword = 'hook-demo-password-SHARED',
+  userId = 'anonymous'
+}: UseActivitySynqDemoProps = {}) {
+  // If no props provided, fall back to URL parsing for iframe usage
+  if (!sessionName || sessionName === 'use-activity-synq-hook-demo-SHARED') {
+    const urlParams = new URLSearchParams(window.location.search)
+    const hashParams = new URLSearchParams(window.location.hash.slice(1))
+    const userParam = urlParams.get('user')
+    
+    sessionName = urlParams.get('rtName') || sessionName
+    sessionPassword = hashParams.get('rtPwd') || sessionPassword
+    userId = userParam ? `use-hook-demo-${userParam}` : userId
+  }
+
+  return (
+    <UseActivitySynqDemoContent 
+      userId={userId} 
+      sessionName={sessionName} 
+      sessionPassword={sessionPassword}
+    />
+  )
+}
+
+// Demo content that uses the actual useActivitySynq hook
+function UseActivitySynqDemoContent({ 
+  userId, 
+  sessionName, 
+  sessionPassword 
+}: { 
+  userId: string, 
+  sessionName: string,
+  sessionPassword: string 
+}) {
+  const [activityLog, setActivityLog] = useState<ActivityLogEntry[]>([])
   
   // Get user info from URL params
   const urlParams = new URLSearchParams(window.location.search)
   const userParam = urlParams.get('user')
-  const userId = userParam ? `demo-user-${userParam}` : 'anonymous'
+
+  // Component-level deduplication for React Strict Mode
+  const processedActivitiesRef = useRef<Set<string>>(new Set())
+
+  // Handle activity events - this will be called by ActivitySynqContext
+  const handleActivityReceived = useCallback((activity: ActivityEvent) => {
+    console.log('UseActivitySynqDemo - Activity received:', activity)
+    
+    // Create unique ID for deduplication
+    const activityId = `${activity.userId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
+    
+    // Skip if already processed by this component
+    if (processedActivitiesRef.current.has(activityId)) {
+      console.log('Skipping duplicate activity:', activityId)
+      return
+    }
+    
+    processedActivitiesRef.current.add(activityId)
+    
+    // Add to activity feed
+    const feedEntry: ActivityLogEntry = {
+      id: crypto.randomUUID(),
+      type: activity.type,
+      userId: activity.userId || 'unknown',
+      data: activity.data,
+      timestamp: activity.timestamp,
+      isLocal: activity.userId === userId
+    }
+    
+    setActivityLog(prev => [feedEntry, ...prev].slice(0, 8))
+  }, [userId])
+
+  // Configuration with onActivity callback - this is the proper pattern
+  const config = {
+    apiKey: import.meta.env.VITE_API_KEY,
+    appId: import.meta.env.VITE_APP_ID,
+    sessionName: sessionName,
+    sessionPassword: sessionPassword,
+    userId: userId,
+    onActivity: handleActivityReceived // ActivitySynqContext will call this for all activities
+  }
+
+  // Debug logging to see what session parameters we're using
+  console.log('UseActivitySynqDemo - Final Session Config:', {
+    sessionName,
+    sessionPassword,
+    userId,
+    source: sessionName === 'use-activity-synq-hook-demo-SHARED' ? 'fallback' : 'props/url'
+  })
+
+  return (
+    <ActivitySynqProvider config={config}>
+      <UseActivitySynqDemoInner 
+        userId={userId} 
+        sessionName={sessionName}
+        activityLog={activityLog}
+      />
+    </ActivitySynqProvider>
+  )
+}
+
+// Inner component that has access to useActivitySynq hook
+function UseActivitySynqDemoInner({ 
+  userId, 
+  sessionName, 
+  activityLog
+}: { 
+  userId: string, 
+  sessionName: string,
+  activityLog: ActivityLogEntry[]
+}) {
+  const { registerActivity, isReady, status, error, bufferedEventCount } = useActivitySynq()
+  
+  // Get user info from URL params
+  const urlParams = new URLSearchParams(window.location.search)
+  const userParam = urlParams.get('user')
 
   const handleButtonClick = (buttonId: string) => {
     const activityData: ButtonClickData = {
@@ -46,18 +153,7 @@ function UseActivitySynqDemoContent() {
       userId
     }
     
-    // Simulate registerActivity by adding to shared activity log
-    const logEntry: ActivityLogEntry = {
-      id: crypto.randomUUID(),
-      type: 'button_click',
-      data: activityData,
-      timestamp: Date.now(),
-      isLocal: true,
-      userId: userId
-    }
-    
-    // Add to shared log (simulates real-time sync)
-    setActivityLog(prev => [logEntry, ...prev].slice(0, 8))
+    registerActivity('button_click', activityData)
   }
 
   const handleFeatureUsage = (feature: string) => {
@@ -67,18 +163,7 @@ function UseActivitySynqDemoContent() {
       userId
     }
     
-    // Simulate registerActivity by adding to shared activity log
-    const logEntry: ActivityLogEntry = {
-      id: crypto.randomUUID(),
-      type: 'feature_usage',
-      data: activityData,
-      timestamp: Date.now(),
-      isLocal: true,
-      userId: userId
-    }
-    
-    // Add to shared log (simulates real-time sync)
-    setActivityLog(prev => [logEntry, ...prev].slice(0, 8))
+    registerActivity('feature_usage', activityData)
   }
 
   const getStatusColor = () => {
@@ -121,13 +206,21 @@ function UseActivitySynqDemoContent() {
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
             <p><strong>Status:</strong> {status}</p>
-            <p><strong>Ready:</strong> Yes</p>
+            <p><strong>Ready:</strong> {isReady ? 'Yes' : 'No'}</p>
           </div>
           <div>
             <p><strong>User ID:</strong> <span className="font-mono text-xs">{userId?.slice(-8) || 'N/A'}</span></p>
-            <p><strong>Buffered Events:</strong> {bufferedCount}</p>
+            <p><strong>Buffered Events:</strong> {bufferedEventCount}</p>
           </div>
         </div>
+        <div className="mt-2 text-xs text-gray-600">
+          <p><strong>Session:</strong> <span className="font-mono">{sessionName || 'N/A'}</span></p>
+        </div>
+        {error && (
+          <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded text-red-800 text-sm">
+            <strong>Error:</strong> {error.message}
+          </div>
+        )}
       </div>
 
       {/* Test Activities Section */}
