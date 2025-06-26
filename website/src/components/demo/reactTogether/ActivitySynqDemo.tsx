@@ -45,7 +45,7 @@ export function ActivitySynqDemo() {
 // Demo content that shows emoji voting functionality
 function ActivitySynqDemoContent({ userId }: { userId: string }) {
   const { view, model } = useMultisynqContext()
-  const { registerActivity, isReady, status, bufferedEventCount } = useActivitySynq()
+  const { registerActivity, isReady, status, activities } = useActivitySynq()
   const [activityFeed, setActivityFeed] = useState<ActivityFeedEntry[]>([])
   const [voteCount, setVoteCount] = useState<Record<string, number>>({})
   
@@ -169,9 +169,9 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
           <span className="text-sm font-medium">Status: {status} | Ready: {isReady ? 'Yes' : 'No'}</span>
           <div className="text-xs">
             User: <span className="font-mono">{getUserDisplayName(userId)}</span>
-            {bufferedEventCount > 0 && (
-              <span className="ml-2 bg-yellow-200 px-2 py-1 rounded text-yellow-800">
-                {bufferedEventCount} buffered
+            {activities.length > 0 && (
+              <span className="ml-2 bg-green-200 px-2 py-1 rounded text-green-800">
+                {activities.length} activities
               </span>
             )}
           </div>
@@ -203,7 +203,7 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
           ))}
         </div>
         <p className="text-xs text-gray-500 text-center mt-2">
-          {isReady ? '✅ Votes sync instantly across all users' : '📦 Votes will be sent when reconnected'}
+          {isReady ? '✅ Votes sync instantly across all users' : '⏳ Connecting to session...'}
         </p>
       </div>
 
@@ -244,7 +244,7 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
           <li>• <strong>Real-time sync</strong> - Vote in one tab, see it instantly in all other tabs</li>
           <li>• <strong>Historical sync</strong> - New tabs automatically load all previous votes</li>
           <li>• <strong>Session isolation</strong> - Only users with same session name/password see each other</li>
-          <li>• <strong>Offline buffering</strong> - Votes are saved and synced when reconnected</li>
+          <li>• <strong>Automatic sync</strong> - All votes are synchronized across users instantly</li>
           <li>• <strong>Cross-user feed</strong> - Activity feed shows actions from all participants</li>
         </ul>
         <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-xs">

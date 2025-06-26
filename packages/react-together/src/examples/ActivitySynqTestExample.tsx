@@ -3,7 +3,7 @@ import { ActivitySynqProvider, useActivitySynq } from '../context/ActivitySynqCo
 
 // Example test component showing different connection states
 function ConnectionStatusDemo() {
-  const { registerActivity, isReady, status, error, userId, bufferedEventCount } = useActivitySynq()
+  const { registerActivity, isReady, status, error, userId, activities } = useActivitySynq()
 
   const getStatusColor = () => {
     switch (status) {
@@ -47,7 +47,7 @@ function ConnectionStatusDemo() {
         <p><strong>Is Ready:</strong> {isReady ? 'Yes' : 'No'}</p>
         <p><strong>User ID:</strong> {userId}</p>
         <p><strong>Raw Status:</strong> {status}</p>
-        <p><strong>Buffered Events:</strong> {bufferedEventCount}</p>
+        <p><strong>Activities:</strong> {activities.length}</p>
         {error && (
           <div style={{ marginTop: '10px', padding: '10px', backgroundColor: '#f8d7da', borderRadius: '4px' }}>
             <strong>Error:</strong> {error.message}
@@ -68,19 +68,19 @@ function ConnectionStatusDemo() {
             cursor: 'pointer'
           }}
         >
-          {isReady ? 'Send Activity (Immediate)' : 'Send Activity (Buffered)'}
+          {isReady ? 'Send Activity (Live)' : 'Send Activity (Buffered)'}
         </button>
         
-        {bufferedEventCount > 0 && (
+        {activities.length > 0 && (
           <div style={{
             padding: '10px',
-            backgroundColor: '#ffc107',
-            color: 'black',
+            backgroundColor: '#28a745',
+            color: 'white',
             borderRadius: '4px',
             fontSize: '14px',
             alignSelf: 'center'
           }}>
-            📦 {bufferedEventCount} events buffered
+            📊 {activities.length} activities synchronized
           </div>
         )}
       </div>

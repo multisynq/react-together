@@ -1,75 +1,52 @@
-import { useStore } from 'zustand'
-import { activitySynqManager } from '../core/ActivitySynqManager'
+import { useContext } from 'react'
+import { ActivitySynqContext } from '../context/ActivitySynqContext'
+import type { ActivityEvent, ConnectionStatus, ActivitySynqConfig } from '../context/ActivitySynqContext'
+
+interface IActivitySynqGlobal {
+  registerActivity: <T = any>(type: string, data?: T) => void
+  activities: ActivityEvent[]
+  isReady: boolean
+  status: ConnectionStatus
+  error: Error | null
+  userId?: string
+  config: ActivitySynqConfig
+}
 
 /**
- * Global ActivitySynq hook that works anywhere without a context provider.
- * Requires a single <ActivitySynqGlobal /> component to be mounted somewhere in your app.
+ * Global hook for accessing ActivitySynq functionality from anywhere in the app.
+ * Must be used after ActivitySynqGlobal component is mounted somewhere in the app tree.
+ * 
+ * This hook provides the same interface as useActivitySynq but works globally
+ * without requiring a specific context wrapper around the calling component.
+ * 
+ * @returns ActivitySynq interface with methods and state
  * 
  * @example
- * ```jsx
- * // 1. Mount the component once in your app
- * function App() {
- *   return (
- *     <div>
- *       <Header />
- *       <MainContent />
- *       <ActivitySynqGlobal config={{ apiKey: '...', appId: '...' }} />
- *     </div>
- *   )
- * }
+ * ```tsx
+ * // Somewhere in your app root:
+ * <ActivitySynqGlobal config={config} />
  * 
- * // 2. Use the hook anywhere
- * function SomeComponent() {
- *   const { registerActivity, isReady } = useActivitySynqGlobal()
+ * // Anywhere else in your app:
+ * function MyComponent() {
+ *   const { registerActivity, isReady, activities } = useActivitySynqGlobal()
  *   
  *   const handleClick = () => {
- *     registerActivity('button_click', { buttonId: 'save' })
+ *     registerActivity('button_click', { buttonId: 'my-button' })
  *   }
  *   
- *   return <button onClick={handleClick}>Save</button>
+ *   return <button onClick={handleClick}>Track Click</button>
  * }
  * ```
  */
-export const useActivitySynqGlobal = () => {
-  const store = useStore(activitySynqManager.store)
+export default function useActivitySynqGlobal(): IActivitySynqGlobal {
+  const context = useContext(ActivitySynqContext)
   
-  if (!store.isConfigured) {
-    console.warn(
-      'ActivitySynq: Hook called before configuration. Add <ActivitySynqGlobal config={...} /> to your app first.'
+  if (context === undefined) {
+    throw new Error(
+      'useActivitySynqGlobal must be used within an app that has ActivitySynqGlobal component mounted. ' +
+      'Make sure to add <ActivitySynqGlobal config={config} /> somewhere in your app tree.'
     )
   }
-
-  return {
-    registerActivity: store.registerActivity,
-    isReady: store.isReady,
-    status: store.status,
-    error: store.error,
-    activities: store.activities,
-    config: store.config,
-    bufferedEventCount: store.bufferedEventCount,
-  }
-}
-
-/**
- * Direct function to register activities outside of React components
- * 
- * @example
- * ```js
- * import { registerActivityGlobal } from 'react-together'
- * 
- * // Use in event handlers, utility functions, etc.
- * window.addEventListener('beforeunload', () => {
- *   registerActivityGlobal('page_exit', { duration: Date.now() - startTime })
- * })
- * ```
- */
-export const registerActivityGlobal = <T = any>(type: string, data?: T) => {
-  return activitySynqManager.store.getState().registerActivity(type, data)
-}
-
-/**
- * Get current ActivitySynq state without subscribing to changes
- */
-export const getActivitySynqState = () => {
-  return activitySynqManager.store.getState()
+  
+  return context
 }

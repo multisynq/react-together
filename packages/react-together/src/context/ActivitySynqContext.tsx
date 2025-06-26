@@ -1,12 +1,11 @@
 import { MultisynqRoot, useMultisynqContext, useView } from '@multisynq/react'
-import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import ActivityModel from '../models/ActivityModel'
 
 export interface ActivityEvent<T = any> {
   type: string
   data?: T
-  userId?: string
-  timestamp: number
+  timestamp?: number
 }
 
 export interface ActivitySynqConfig {
@@ -22,12 +21,12 @@ export type ConnectionStatus = 'initializing' | 'ready' | 'disconnected' | 'erro
 
 interface IActivitySynqContext {
   registerActivity: <T = any>(type: string, data?: T) => void
+  activities: ActivityEvent[]
   isReady: boolean
   status: ConnectionStatus
   error: Error | null
   userId?: string
   config: ActivitySynqConfig
-  bufferedEventCount: number
 }
 
 export const ActivitySynqContext = createContext<IActivitySynqContext | undefined>(undefined)
@@ -50,43 +49,9 @@ const generateUserId = (): string => {
 }
 
 const generateUniqueSessionName = (): string => {
-  // Generate a unique session name to avoid conflicts with ReactTogether or other ActivitySynq instances
   const timestamp = Date.now().toString(36)
   const random = Math.random().toString(36).substring(2, 8)
   return `activity-session-${timestamp}-${random}`
-}
-
-// Activity buffer manager
-class ActivityBuffer {
-  private buffer: ActivityEvent[] = []
-  private readonly maxSize: number
-
-  constructor(maxSize = 100) {
-    this.maxSize = maxSize
-  }
-
-  add(activity: ActivityEvent): void {
-    if (this.buffer.length >= this.maxSize) {
-      // Remove oldest events to prevent memory bloat
-      this.buffer.shift()
-      console.warn('ActivitySynq: Buffer full, dropping oldest activity')
-    }
-    this.buffer.push(activity)
-  }
-
-  flush(): ActivityEvent[] {
-    const events = [...this.buffer]
-    this.buffer = []
-    return events
-  }
-
-  getCount(): number {
-    return this.buffer.length
-  }
-
-  clear(): void {
-    this.buffer = []
-  }
 }
 
 function ActivitySynqContextProvider({
@@ -98,27 +63,10 @@ function ActivitySynqContextProvider({
 }) {
   const { view, model } = useMultisynqContext()
   const hasSession = useView() !== null
+  const [activities, setActivities] = useState<ActivityEvent[]>([])
   const [isSynced, setIsSynced] = useState(false)
   const [status, setStatus] = useState<ConnectionStatus>('initializing')
   const [error, setError] = useState<Error | null>(null)
-  const [buffer] = useState(() => new ActivityBuffer(100))
-  const [bufferedEventCount, setBufferedEventCount] = useState(0)
-
-  const sendActivity = useCallback((activity: ActivityEvent): void => {
-    if (view && model) {
-      view.publish(model.id, 'activity', activity)
-    }
-    config.onActivity?.(activity)
-  }, [view, model, config.onActivity])
-
-  const flushBuffer = useCallback((): void => {
-    const bufferedEvents = buffer.flush()
-    if (bufferedEvents.length > 0) {
-      console.log(`ActivitySynq: Reconnected. Flushing ${bufferedEvents.length} buffered events`)
-      bufferedEvents.forEach(sendActivity)
-      setBufferedEventCount(buffer.getCount())
-    }
-  }, [buffer, sendActivity])
 
   // Track synchronization state
   useEffect(() => {
@@ -132,8 +80,11 @@ function ActivitySynqContextProvider({
       setIsSynced(synced)
       if (synced) {
         setError(null)
-        // Flush buffer when coming back online
-        flushBuffer()
+        // Read current activities from model when synced
+        const activityModel = model as ActivityModel
+        if (activityModel.getHistoricalActivities) {
+          setActivities(activityModel.getHistoricalActivities())
+        }
       }
     }
 
@@ -149,16 +100,19 @@ function ActivitySynqContextProvider({
       view.unsubscribe(view.viewId, 'synced', handleSyncChange)
       view.unsubscribe(view.viewId, 'error', handleError)
     }
-  }, [view, model, flushBuffer])
+  }, [view, model])
 
-  // Subscribe to activities from other users
+  // Subscribe to activities from model (proper Multisynq pattern)
   useEffect(() => {
     if (!view || !model) {
       return
     }
 
     const handleActivityReceived = (activity: ActivityEvent) => {
-      // Call the onActivity callback for activities from all users
+      // Update local activities array from model events
+      setActivities(prev => [activity, ...prev.slice(0, 999)]) // Keep recent 1000
+      
+      // Call the onActivity callback for all activities
       config.onActivity?.(activity)
     }
 
@@ -168,27 +122,6 @@ function ActivitySynqContextProvider({
       view.unsubscribe(model.id, 'activity_received', handleActivityReceived)
     }
   }, [view, model, config.onActivity])
-
-  // Load historical activities when session becomes ready
-  useEffect(() => {
-    if (view && model && isSynced) {
-      // Check if model has getHistoricalActivities method (it should be ReactTogetherModel)
-      const modelWithActivities = model as any
-      if (typeof modelWithActivities.getHistoricalActivities === 'function') {
-        console.log('ActivitySynq: Loading historical activities from model...')
-        const historicalActivities = modelWithActivities.getHistoricalActivities()
-
-        // Send each historical activity through the onActivity callback
-        historicalActivities.forEach((activity: ActivityEvent) => {
-          config.onActivity?.(activity)
-        })
-
-        console.log(`ActivitySynq: Loaded ${historicalActivities.length} historical activities`)
-      } else {
-        console.log('ActivitySynq: Model does not have getHistoricalActivities method')
-      }
-    }
-  }, [view, model, isSynced, config.onActivity])
 
   // Calculate overall status
   useEffect(() => {
@@ -212,29 +145,24 @@ function ActivitySynqContextProvider({
 
   const isReady = status === 'ready'
 
+  // Proper Multisynq pattern: View sends event to Model only
   const registerActivity = useCallback(<T = any>(type: string, data?: T): void => {
-    const activity: ActivityEvent<T> = {
+    if (!view || !model) {
+      console.warn('ActivitySynq: Cannot register activity - not connected')
+      return
+    }
+
+    // Enhance data with userId if provided
+    const enhancedData = config.userId ? { ...data, userId: config.userId } : data
+
+    // Send to model via proper event - let model handle timing and storage
+    view.publish(model.id, 'add_activity', {
       type,
-      data,
-      userId: config.userId,
-      timestamp: Date.now(),
-    }
+      data: enhancedData
+    })
+  }, [view, model, config.userId])
 
-    if (isReady) {
-      // Send immediately when ready
-      sendActivity(activity)
-    } else {
-      // Buffer when not ready
-      console.log(`ActivitySynq: Connection not ready (${status}). Buffering activity: ${type}`)
-      buffer.add(activity)
-      setBufferedEventCount(buffer.getCount())
-
-      // Still call onActivity callback for immediate feedback
-      config.onActivity?.(activity)
-    }
-  }, [config.userId, config.onActivity, isReady, status, buffer, sendActivity])
-
-  // Create stable config reference for context to prevent unnecessary rerenders
+  // Create stable config reference
   const stableConfig = useMemo(() => ({
     apiKey: config.apiKey,
     appId: config.appId,
@@ -246,13 +174,13 @@ function ActivitySynqContextProvider({
 
   const contextValue: IActivitySynqContext = useMemo(() => ({
     registerActivity,
+    activities,
     isReady,
     status,
     error,
     userId: config.userId,
     config: stableConfig,
-    bufferedEventCount,
-  }), [registerActivity, isReady, status, error, config.userId, stableConfig, bufferedEventCount])
+  }), [registerActivity, activities, isReady, status, error, config.userId, stableConfig])
 
   return (
     <ActivitySynqContext.Provider value={contextValue}>
@@ -276,61 +204,40 @@ export const ActivitySynqProvider = ({
   // Generate unique session name only once per component instance
   const [defaultSessionName] = useState(() => generateUniqueSessionName())
 
-  // Use ref to store current onActivity callback to avoid recreation
-  const onActivityRef = useRef(config.onActivity)
-  onActivityRef.current = config.onActivity
-
-  const stableOnActivity = useCallback(
-    (activity: ActivityEvent) => {
-      onActivityRef.current?.(activity)
-    },
-    [] // Never changes
-  )
-
-  // Memoize config with stable references, excluding onActivity from dependencies to prevent session restarts
+  // Memoize config with stable references
   const memoizedConfig = useMemo(() => {
     const appId = config.appId || import.meta.env.VITE_APP_ID
+    const apiKey = config.apiKey || import.meta.env.VITE_API_KEY || import.meta.env.VITE_MULTISYNQ_API_KEY
+    
     if (!appId) {
       console.error('ActivitySynq Error: appId is missing. Provide it via the appId prop.')
+    }
+    if (!apiKey) {
+      console.error('ActivitySynq Error: apiKey is missing. Set VITE_API_KEY environment variable.')
     }
 
     return {
       userId: config.userId || generateUserId(),
-      apiKey: config.apiKey || import.meta.env.VITE_API_KEY || import.meta.env.VITE_MULTISYNQ_API_KEY,
+      apiKey: apiKey || 'missing-api-key',
       appId: appId || 'missing-app-id',
       sessionName: config.sessionName || import.meta.env.VITE_SESSION_NAME || defaultSessionName,
       sessionPassword: config.sessionPassword || import.meta.env.VITE_SESSION_PASSWORD || 'activity-session-password',
-      onActivity: stableOnActivity, // Stable wrapper
+      onActivity: config.onActivity,
     }
-  }, [config.apiKey, config.userId, config.sessionName, config.sessionPassword, config.appId, defaultSessionName])
+  }, [config.apiKey, config.appId, config.sessionName, config.sessionPassword, config.userId, config.onActivity, defaultSessionName])
 
-  // Debug logging to show session isolation
-  useEffect(() => {
-    console.log('ActivitySynq session initialized:', {
-      appId: memoizedConfig.appId,
-      sessionName: memoizedConfig.sessionName,
-      generatedUniqueSession: !config.sessionName && !import.meta.env.VITE_SESSION_NAME
-    })
-  }, [memoizedConfig.appId, memoizedConfig.sessionName, config.sessionName])
-
-  // Stable session key that excludes onActivity callback to prevent restarts
-  const sessionKey = useMemo(() =>
-    `${memoizedConfig.apiKey}_${memoizedConfig.userId}_${memoizedConfig.sessionName}_${memoizedConfig.sessionPassword}_${memoizedConfig.appId}`,
-    [memoizedConfig.apiKey, memoizedConfig.userId, memoizedConfig.sessionName, memoizedConfig.sessionPassword, memoizedConfig.appId]
-  )
-
-  if (!memoizedConfig.apiKey) {
+  if (!memoizedConfig.apiKey || memoizedConfig.apiKey === 'missing-api-key') {
     const apiKeyError = new Error('No API key provided. Set VITE_API_KEY environment variable.')
     console.error('ActivitySynq:', apiKeyError.message)
     return (
       <ActivitySynqContext.Provider value={{
         registerActivity: () => console.warn('ActivitySynq: Not initialized - no API key'),
+        activities: [],
         isReady: false,
         status: 'error',
         error: apiKeyError,
         userId: memoizedConfig.userId,
         config: memoizedConfig,
-        bufferedEventCount: 0
       }}>
         {children}
       </ActivitySynqContext.Provider>
@@ -339,14 +246,12 @@ export const ActivitySynqProvider = ({
 
   return (
     <MultisynqRoot
-      key={sessionKey} // Force re-mount on critical config changes
       sessionParams={{
         model: ActivityModel,
         name: memoizedConfig.sessionName!,
         password: memoizedConfig.sessionPassword!,
         appId: memoizedConfig.appId!,
-        apiKey: memoizedConfig.apiKey!,
-        viewData: { userId: memoizedConfig.userId }
+        apiKey: memoizedConfig.apiKey!
       }}
       showChildrenWithoutSession
     >

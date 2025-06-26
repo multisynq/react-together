@@ -1,193 +1,88 @@
-import React, { useEffect, useState } from 'react'
-import { createPortal } from 'react-dom'
-import { useActivitySynqGlobal } from '../hooks/useActivitySynqGlobal'
-import { activitySynqManager } from '../core/ActivitySynqManager'
-import type { ActivitySynqConfig, ActivityEvent } from '../context/ActivitySynqContext'
+import { ReactNode, useEffect } from 'react'
+import { ActivitySynqProvider, ActivitySynqConfig } from '../context/ActivitySynqContext'
 
-// Prevent multiple instances
-let isMounted = false
-
-interface ActivitySynqProps {
+interface ActivitySynqGlobalProps {
   config: ActivitySynqConfig
-  /**
-   * Whether to render activity notifications as toast-like UI
-   * @default false
-   */
+  children?: ReactNode
   showNotifications?: boolean
-  /**
-   * Custom notification component
-   */
-  notificationComponent?: React.ComponentType<{ activity: ActivityEvent; onDismiss: () => void }>
-  /**
-   * Portal container selector (defaults to document.body)
-   */
   portalContainer?: string
 }
 
-/**
- * Single-line ActivitySynq integration component.
- * Mount this once anywhere in your app to enable global ActivitySynq functionality.
- * 
- * @example
- * ```jsx
- * // Basic usage
- * function App() {
- *   return (
- *     <div>
- *       <Header />
- *       <MainContent />
- *       <ActivitySynq config={{
- *         apiKey: process.env.REACT_APP_MULTISYNQ_API_KEY,
- *         appId: process.env.REACT_APP_MULTISYNQ_APP_ID,
- *         sessionName: 'my-app-session',
- *         userId: currentUser.id
- *       }} />
- *     </div>
- *   )
- * }
- * 
- * // With notifications
- * <ActivitySynqGlobal 
- *   config={config} 
- *   showNotifications={true}
- *   notificationComponent={CustomToast}
- * />
- * ```
- */
-export function ActivitySynqGlobal({ 
-  config, 
+// Global singleton instance manager
+class ActivitySynqGlobalManager {
+  private static instance: ActivitySynqGlobalManager | null = null
+  private initialized = false
+  private config: ActivitySynqConfig | null = null
+
+  static getInstance(): ActivitySynqGlobalManager {
+    if (!ActivitySynqGlobalManager.instance) {
+      ActivitySynqGlobalManager.instance = new ActivitySynqGlobalManager()
+    }
+    return ActivitySynqGlobalManager.instance
+  }
+
+  initialize(config: ActivitySynqConfig): void {
+    if (!this.initialized) {
+      this.config = config
+      this.initialized = true
+    }
+  }
+
+  getConfig(): ActivitySynqConfig | null {
+    return this.config
+  }
+
+  isInitialized(): boolean {
+    return this.initialized
+  }
+
+  reset(): void {
+    this.initialized = false
+    this.config = null
+  }
+}
+
+// Global component that initializes ActivitySynq session
+export default function ActivitySynqGlobal({
+  config,
+  children = null,
   showNotifications = false,
-  notificationComponent: NotificationComponent,
   portalContainer = 'body'
-}: ActivitySynqProps) {
-  const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null)
-  const { activities } = useActivitySynqGlobal()
+}: ActivitySynqGlobalProps) {
+  const manager = ActivitySynqGlobalManager.getInstance()
 
-  // Configure the global manager on mount
   useEffect(() => {
-    if (isMounted) {
-      console.warn(
-        '<ActivitySynq /> has been mounted more than once. Only the first instance will be active.'
-      )
-      return
-    }
+    // Initialize the global manager with config
+    manager.initialize(config)
 
-    isMounted = true
-    activitySynqManager.store.getState().configure(config)
-
+    // Cleanup on unmount
     return () => {
-      isMounted = false
-      // Optionally reset on unmount (for development/testing)
-      if (process.env.NODE_ENV === 'development') {
-        activitySynqManager.store.getState().reset()
-      }
+      // Don't reset on unmount to preserve session across navigation
+      // manager.reset()
     }
-  }, []) // Intentionally not including config to prevent reconfiguration
+  }, [config, manager])
 
-  // Set up portal for notifications
+  // Show notifications in portal if requested
   useEffect(() => {
-    if (!showNotifications) return
-
-    // Client-side only for SSR compatibility
-    if (typeof window === 'undefined') return
-
-    const container = document.querySelector(portalContainer) || document.body
-    const root = document.createElement('div')
-    root.setAttribute('id', 'activity-synq-notifications')
-    root.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 9999;
-      pointer-events: none;
-    `
-    container.appendChild(root)
-    setPortalRoot(root)
-
-    return () => {
-      if (container.contains(root)) {
-        container.removeChild(root)
+    if (showNotifications && typeof window !== 'undefined') {
+      const container = portalContainer === 'body' 
+        ? document.body 
+        : document.querySelector(portalContainer)
+      
+      if (container) {
+        // Could add notification portal here if needed
+        // For now, notifications are handled via onActivity callback
       }
     }
   }, [showNotifications, portalContainer])
 
-  // Don't render anything if notifications are disabled
-  if (!showNotifications || !portalRoot) {
-    return null
-  }
-
-  // Render notifications in portal
-  return createPortal(
-    <div className="activity-synq-notifications">
-      {activities.slice(0, 5).map((activity) => (
-        <ActivityNotification
-          key={`${activity.userId}-${activity.timestamp}-${activity.type}`}
-          activity={activity}
-          customComponent={NotificationComponent}
-          onDismiss={() => {
-            // Remove activity from display
-            const manager = activitySynqManager.store.getState()
-            manager.addActivity({ ...activity, dismissed: true } as any)
-          }}
-        />
-      ))}
-    </div>,
-    portalRoot
-  )
-}
-
-// Default notification component
-interface ActivityNotificationProps {
-  activity: ActivityEvent
-  customComponent?: React.ComponentType<{ activity: ActivityEvent; onDismiss: () => void }>
-  onDismiss: () => void
-}
-
-function ActivityNotification({ activity, customComponent: CustomComponent, onDismiss }: ActivityNotificationProps) {
-  const [isVisible, setIsVisible] = useState(true)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false)
-      setTimeout(onDismiss, 300) // Allow fade-out animation
-    }, 4000) // Auto-dismiss after 4 seconds
-
-    return () => clearTimeout(timer)
-  }, [onDismiss])
-
-  if (CustomComponent) {
-    return <CustomComponent activity={activity} onDismiss={onDismiss} />
-  }
-
+  // Provide the ActivitySynq context globally
   return (
-    <div 
-      className={`activity-notification ${isVisible ? 'visible' : 'hidden'}`}
-      style={{
-        background: 'rgba(0, 0, 0, 0.8)',
-        color: 'white',
-        padding: '12px 16px',
-        borderRadius: '8px',
-        marginBottom: '8px',
-        maxWidth: '300px',
-        pointerEvents: 'auto',
-        transform: isVisible ? 'translateX(0)' : 'translateX(100%)',
-        opacity: isVisible ? 1 : 0,
-        transition: 'all 0.3s ease',
-        cursor: 'pointer'
-      }}
-      onClick={onDismiss}
-    >
-      <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '4px' }}>
-        New Activity: {activity.type}
-      </div>
-      <div style={{ fontSize: '12px', opacity: 0.8 }}>
-        From: {activity.userId?.slice(-8) || 'Unknown'}
-      </div>
-      {activity.data && (
-        <div style={{ fontSize: '12px', marginTop: '4px' }}>
-          {JSON.stringify(activity.data)}
-        </div>
-      )}
-    </div>
+    <ActivitySynqProvider config={config}>
+      {children}
+    </ActivitySynqProvider>
   )
 }
+
+// Export the manager for hook access
+export { ActivitySynqGlobalManager }

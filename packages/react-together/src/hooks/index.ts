@@ -1,4 +1,5 @@
 import useActivitySynq from './useActivitySynq'
+import useActivitySynqGlobal from './useActivitySynqGlobal'
 import useAllNicknames from './useAllNicknames'
 import useChat from './useChat'
 import useConnectedUsers from './useConnectedUsers'
@@ -20,6 +21,7 @@ const useIsTogether = useIsJoined
 
 export {
   useActivitySynq,
+  useActivitySynqGlobal,
   useAllNicknames,
   useChat,
   useConnectedUsers,
@@ -37,5 +39,3 @@ export {
   useStateTogetherWithPerUserValues
 }
 
-// Global ActivitySynq exports
-export { useActivitySynqGlobal, registerActivityGlobal, getActivitySynqState } from './useActivitySynqGlobal'

@@ -3,85 +3,72 @@ import { ReactModel, ViewInfo } from '@multisynq/react'
 interface ActivityArgs {
   type: string
   data?: any
-  userId?: string
-  timestamp: number
+  timestamp?: number
 }
 
 interface ActivityModelOptions extends Record<string, unknown> {}
 
 export default class ActivityModel extends ReactModel {
-  // ActivitySynq state storage
+  // Model state: the single source of truth for all activity data
   activities: ActivityArgs[]
   maxActivities: number
-  viewIdUserIdMapping: Map<string, string>
+  connectedViews: Set<string>
 
   init(options: ActivityModelOptions) {
     super.init({ ...options, trackViews: true })
 
-    // Initialize ActivitySynq state
+    // Initialize model state - this is the canonical activity store
     this.activities = []
-    this.maxActivities = 100 // Configurable limit
-    this.viewIdUserIdMapping = new Map()
+    this.maxActivities = 1000 // Reasonable limit for memory management
+    this.connectedViews = new Set()
 
-    this.subscribe(this.id, 'activity', this.handleActivity)
+    // Subscribe to activity events from views
+    this.subscribe(this.id, 'add_activity', this.handleActivity)
   }
 
-  handleViewJoin(viewId: string, viewInfo: ViewInfo<{ userId?: string }>) {
-    // Every viewId has a userId. If userId is not provided, it defaults to viewId
-    const userId = viewInfo.viewData?.userId ?? viewId
-
-    // Update viewId -> userId mapping
-    this.viewIdUserIdMapping.set(viewId, userId)
-
-    // Send historical activities to new view
-    if (this.activities.length > 0) {
-      // Send historical activities in small delay to ensure view is ready
-      this.future(100).sendHistoricalActivities(viewId)
-    }
-  }
-
-  sendHistoricalActivities(viewId: string) {
-    // Send each historical activity to the specific view
+  handleViewJoin(viewId: string, _viewInfo: ViewInfo<{ userId?: string }>) {
+    // Track connected views for broadcasting
+    this.connectedViews.add(viewId)
+    
+    // Send all historical activities to the new view
     this.activities.forEach(activity => {
       this.publish(viewId, 'activity_received', activity)
     })
   }
 
   handleViewExit(viewId: string) {
-    // Update viewId -> userId mapping
-    this.viewIdUserIdMapping.delete(viewId)
+    // Remove from connected views
+    this.connectedViews.delete(viewId)
   }
 
-  handleActivity(activity: ActivityArgs) {
-    // Store activity in model state for historical access
+  handleActivity(activityData: ActivityArgs) {
+    // Add reflector timestamp (proper Multisynq pattern)
+    const activity: ActivityArgs = {
+      ...activityData,
+      timestamp: this.now() // Use reflector time, not client time
+    }
+
+    // Store in model state (synchronized across all users)
     this.activities.push(activity)
     
-    // Maintain size limit to prevent memory bloat
+    // Maintain size limit to prevent unbounded growth
     if (this.activities.length > this.maxActivities) {
       this.activities.shift() // Remove oldest activity
     }
     
-    // Broadcast activity to all views in the session
+    // Broadcast to all views (model-to-view events)
     this.publish(this.id, 'activity_received', activity)
   }
 
-  // Method to get historical activities for new views
+  // Helper method for views to get historical activities
   getHistoricalActivities(): ActivityArgs[] {
     return [...this.activities] // Return copy to prevent mutation
+  }
+
+  // Helper method to get activity count
+  getActivityCount(): number {
+    return this.activities.length
   }
 }
 
 ActivityModel.register('ActivityModel')
-
-// Keeping this access function outside of the model class
-// so that we can call it from the view side
-export function getUserId(model: ActivityModel, viewId: string): string {
-  const userId = model.viewIdUserIdMapping.get(viewId)
-  if (userId === undefined) {
-    console.warn(
-      `No userId found for viewId ${viewId}. This is likely a bug. Please report it to the ActivitySynq team.`
-    )
-    return viewId
-  }
-  return userId
-}

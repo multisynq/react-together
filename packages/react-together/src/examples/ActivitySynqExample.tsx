@@ -123,11 +123,12 @@ export default function ActivitySynqExample() {
     onActivity: (activity: ActivityEvent) => {
       // ✨ This callback receives activities from ALL users in the session!
       // Perfect for updating UI, analytics, or triggering notifications
-      console.log('Activity from user:', activity.userId, '→', activity.type, activity.data)
+      const activityUserId = activity.data?.userId || 'unknown'
+      console.log('Activity from user:', activityUserId, '→', activity.type, activity.data)
       
       // Example: Show a toast notification for activities from other users
-      if (activity.userId !== config.userId) {
-        console.log(`🔔 Another user (${activity.userId}) performed: ${activity.type}`)
+      if (activityUserId !== config.userId) {
+        console.log(`🔔 Another user (${activityUserId}) performed: ${activity.type}`)
       }
     }
   }

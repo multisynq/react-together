@@ -1,4 +1,5 @@
 import ActivitySynq from './ActivitySynq'
+import ActivitySynqGlobal from './ActivitySynqGlobal'
 import ConnectedUsers from './ConnectedUsers'
 import HoverHighlighter from './HoverHighlighter'
 import ReactTogether from './ReactTogether'
@@ -12,6 +13,7 @@ export * from './Chat'
 export * from './Cursors'
 export {
   ActivitySynq,
+  ActivitySynqGlobal,
   ConnectedUsers,
   ConnectedViews,
   HoverHighlighter,
@@ -20,5 +22,3 @@ export {
   SessionManager
 }
 
-// Global ActivitySynq component (single-line integration)
-export { ActivitySynqGlobal } from './ActivitySynqGlobal'

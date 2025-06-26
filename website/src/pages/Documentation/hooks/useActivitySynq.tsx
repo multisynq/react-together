@@ -24,7 +24,7 @@ function UseActivitySynqDemo() {
     status, 
     error, 
     userId, 
-    bufferedEventCount 
+    activities 
   } = useActivitySynq()
   
   const [activityLog, setActivityLog] = useState([])
@@ -58,7 +58,7 @@ function UseActivitySynqDemo() {
         <p><strong>Status:</strong> {status}</p>
         <p><strong>Ready:</strong> {isReady ? 'Yes' : 'No'}</p>
         <p><strong>User ID:</strong> {userId?.slice(0, 8)}...</p>
-        <p><strong>Buffered Events:</strong> {bufferedEventCount}</p>
+        <p><strong>Activities:</strong> {activities.length}</p>
         {error && <p style={{ color: 'red' }}><strong>Error:</strong> {error.message}</p>}
       </div>
 
@@ -218,9 +218,9 @@ const api = (
           description: 'The current ActivitySynq configuration object.',
         },
         {
-          name: 'bufferedEventCount',
-          type: 'number',
-          description: 'Number of activities currently buffered (waiting to be sent when connection is restored).',
+          name: 'activities',
+          type: 'ActivityEvent[]',
+          description: 'All synchronized activities from the session.',
         },
       ]}
     />
@@ -357,7 +357,7 @@ function UseActivitySynqDemoInstance({
   activityLog: ActivityEvent[]
   sessionName: string
 }) {
-  const { registerActivity, isReady, status, error, bufferedEventCount } = useActivitySynq()
+  const { registerActivity, isReady, status, error, activities } = useActivitySynq()
   
   const handleButtonClick = useCallback((buttonId: string) => {
     registerActivity('button_click', {
@@ -428,7 +428,7 @@ function UseActivitySynqDemoInstance({
           </div>
           <div>
             <p><strong>User ID:</strong> <span className="font-mono text-xs">{userId?.slice(-8) || 'N/A'}</span></p>
-            <p><strong>Buffered Events:</strong> {bufferedEventCount}</p>
+            <p><strong>Activities:</strong> {activities.length}</p>
           </div>
         </div>
         <div className="mt-2 text-xs text-gray-600">
@@ -525,7 +525,7 @@ function UseActivitySynqDemoInstance({
           <li>• <code>registerActivity(type, data)</code> - Register new activities</li>
           <li>• <code>isReady</code> - Connection status for immediate feedback</li>
           <li>• <code>status</code> - Detailed connection state</li>
-          <li>• <code>bufferedEventCount</code> - Offline activity count</li>
+          <li>• <code>activities</code> - All synchronized activities</li>
         </ul>
       </div>
     </div>

@@ -61,7 +61,8 @@ function CustomizableActivityFeed({
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {displayedActivities.map((activity, index) => {
-            const isLocal = activity.userId?.includes('demo-user')
+            const activityUserId = activity.data?.userId || 'Unknown'
+            const isLocal = activityUserId.includes('demo-user')
             return (
               <div
                 key={`${activity.timestamp}-${index}`}
@@ -98,7 +99,7 @@ function CustomizableActivityFeed({
                 
                 {showUserInfo && (
                   <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>
-                    👤 {activity.userId?.slice(-8) || 'Unknown'} | 
+                    👤 {activityUserId?.slice(-8) || 'Unknown'} | 
                     📊 {JSON.stringify(activity.data).slice(0, 60)}
                     {JSON.stringify(activity.data).length > 60 && '...'}
                   </div>

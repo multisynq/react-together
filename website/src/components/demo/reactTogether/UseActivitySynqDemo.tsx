@@ -58,7 +58,8 @@ function UseActivitySynqDemoContent({
 
   // Stable callback reference using useCallback with consistent dependencies
   const handleActivityReceived = useCallback((activity: ActivityEvent) => {
-    const activityId = `${activity.userId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
+    const activityUserId = activity.data?.userId || 'unknown'
+    const activityId = `${activityUserId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
     
     if (processedActivitiesRef.current.has(activityId)) return
     processedActivitiesRef.current.add(activityId)
@@ -66,10 +67,10 @@ function UseActivitySynqDemoContent({
     const feedEntry: ActivityLogEntry = {
       id: crypto.randomUUID(),
       type: activity.type,
-      userId: activity.userId || 'unknown',
+      userId: activityUserId,
       data: activity.data,
       timestamp: activity.timestamp,
-      isLocal: activity.userId === userId
+      isLocal: activityUserId === userId
     }
     
     setActivityLog(prev => [feedEntry, ...prev].slice(0, 8))
@@ -110,7 +111,7 @@ function UseActivitySynqDemoInner({
   sessionName: string,
   activityLog: ActivityLogEntry[]
 }) {
-  const { registerActivity, isReady, status, error, bufferedEventCount } = useActivitySynq()
+  const { registerActivity, isReady, status, error } = useActivitySynq()
 
   const handleButtonClick = (buttonId: string) => {
     const activityData: ButtonClickData = {
@@ -174,7 +175,7 @@ function UseActivitySynqDemoInner({
           </div>
           <div>
             <p><strong>User ID:</strong> <span className="font-mono text-xs">{userId?.slice(-8) || 'N/A'}</span></p>
-            <p><strong>Buffered Events:</strong> {bufferedEventCount}</p>
+            <p><strong>Activities:</strong> {activityLog.length}</p>
           </div>
         </div>
         <div className="mt-2 text-xs text-gray-600">
@@ -271,7 +272,7 @@ function UseActivitySynqDemoInner({
           <li>• <code>registerActivity(type, data)</code> - Register new activities</li>
           <li>• <code>isReady</code> - Connection status for immediate feedback</li>
           <li>• <code>status</code> - Detailed connection state</li>
-          <li>• <code>bufferedEventCount</code> - Offline activity count</li>
+          <li>• <code>activities</code> - All synchronized activities</li>
         </ul>
       </div>
     </div>

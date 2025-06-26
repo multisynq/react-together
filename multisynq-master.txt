@@ -1,0 +1,874 @@
+<multisynq-client/docs/QUICKSTART.md>
+	*Multisynq lets you build real-time multiuser apps without writing server-side code. Unlike traditional client/server architectures, the multiplayer code is executed on each client in a synchronized virtual machine, rather than on a server. Multisynq is available as a JavaScript library that synchronizes apps using Multisynq's global DePIN network.*
+
+	Please join the Multisynq [**Developer Discord**](https://multisynq.io/discord/) for any questions.
+
+	* [Quickstart](#quickstart)
+	* [What is Multisynq?](#what-is-multisynq%3F)
+	* [Main Concepts](#main-concepts)
+	* [Creating a Multisynq App](#creating-a-multisynq-app)
+	* [Models](#models)
+	* [Views](#views)
+	* [Events](#events)
+	* [Time](#time)
+	* [Snapshots](#snapshots)
+	* [Random](#random)
+
+	# Quickstart
+
+	**_First, get a free Multisynq API key from [multisynq.io/coder](https://multisynq.io/coder/)_**
+	_(you can also run your own server but you won't get the benefit of automatic global scaling)_
+
+	Multisynq runs fine without a bundler. Just put it in a script tag in your HTML:
+	```HTML
+	<meta charset="utf-8">
+	<script src="https://cdn.jsdelivr.net/npm/@multisynq/client@@CLIENT_VERSION@/bundled/multisynq-client.min.js"></script>
+	```
+	This makes `Multisynq` globally available. The `charset="utf-8"` declaration is necessary to get identical code hashing across browsers.
+
+	You can also import it directly as a module in your JS file:
+
+	```JS
+	import * as Multisynq from "https://cdn.jsdelivr.net/npm/@multisynq/client@@CLIENT_VERSION@/bundled/multisynq-client.esm.js";
+	```
+
+	That same module URL works fine in HTML in an import map.
+
+	**_Alternatively, use the package with a bundler:_**
+
+	```SH
+	npm install @multisynq/client
+	```
+
+	Then import it in your JS file:
+	```JS
+	import * as Multisynq from "@multisynq/client"
+	```
+
+	Again, make sure to specify the `charset` for your HTML or your script tags.
+
+	## Main Concepts
+
+	Every Multisynq application must consist of two largely independent parts:
+
+	* The **models** handle all calculation and simulation. This is where the actual work of the application takes place. The model computation is synchronized automatically.
+
+	* The **views** handle user input and output. They process all keyboard / mouse / touch events, and determine what is displayed on the screen.
+
+	**Models are guaranteed to always be identical for all users.** However, the views are not. Different users might be running on different hardware platforms, or might display different representations of the models.
+
+	When you launch a Multisynq application, you automatically join a shared **session**. As long as you're in the session, your models will be identical to the models of every other user in the session.
+
+	To maintain this synchronization, models for all users execute in lockstep based on a shared session **time**.
+
+	The views interact with the models through **events**. When you publish an event from a view, it's mirrored to everyone else in your session, so everyone's models receive exactly the same event stream.
+
+	**_THE MAIN RULE OF MULTISYNQ IS THAT THE MODEL MUST BE COMPLETELY SELF-CONTAINED!_**
+
+	_Model code must not access any state outside the model, and the model state must never be changed from the view directly. The view can read from a model but must never write. Any external change to the model must be via a published event that the model subscribes to._
+
+	There are no special data structures you need to use, and the whole model is synchronized automatically without designating which parts to synchronize. Inside the model you can use almost any JavaScript, *except* for storing functions (that precludes any async execution, too). That's because the entire state of the model needs to be snapshottable, and JavaScript code cannot access state captured in functions.
+
+	## Creating a Multisynq App
+
+	To create a new a Multisynq app, you define your own models and views. These classes inherit from the base classes {@link Model} and {@link View} in the Multisynq client library.
+
+	A simple app often only has one model and one view. In that case, the view contains all your input and output code, and the model contains all your simulation code.
+
+	```JS
+	class MyModel extends Multisynq.Model {
+		init() {
+			...
+		}
+	}
+	MyModel.register("MyModel");
+
+	class MyView extends Multisynq.View {
+		constructor(model) {
+			super(model);
+			...
+		}
+
+		update(time) {
+			...
+		}
+	}
+	```
+
+	You then join a session by calling [Session.join()]{@link Session.join} and passing it your model and view classes. `Session.join` automatically connects to a nearby reflector, synchronizes your model with the models of any other users already in the same session, and starts executing.
+
+	You do need to provide some session meta data, like your API key, an appId, session name, and a password. Below we use `autoSession`/`autoPassword` but you can instead use whatever makes most sense for your app. In the tutorials we even often use constants for all, but you should not do that in production because it wouldn't be end-to-end encrypted anymore if the password is known.
+
+	```JS
+	const apiKey = "your_api_key"; // paste from multisynq.io/coder
+	const appId = "com.example.myapp";
+	const name = Multisynq.App.autoSession();
+	const password = Multisynq.App.autoPassword();
+	Multisynq.Session.join({apiKey, appId, name, password, model: MyModel, view: MyView});
+	```
+
+	That's it. You don't need to worry about setting up a server, or writing special synchronization code. Multisynq handles all of that invisibly, allowing you to concentrate on what your app _does_.
+
+	# Models
+
+	Multisynq models are a little different from normal JavaScript classes. For one thing, instead of having a constructor, they have an [init()]{@link Model#init} method. `init` only executes the _very first time_ the model is instantiated within a brand new session. If you join a session that's already in progress, your model will be initialized from a snapshot instead.
+
+	```JS
+	class MyModel extends Multisynq.Model {
+		init() {
+			...
+		}
+	}
+	MyModel.register("MyModel");
+	```
+
+	Also, every Multisynq model class needs to have its static [register()]{@link Model.register} method called after it is defined. This registers the model class with Multisynq's internal class database so it can be properly retrieved when a snapshot is resumed.
+
+	The root model of your app (the one named in `Session.join()`) is instantiated automatically. If your application uses multiple models, you instantiate them by calling [create()]{@link Model.create} instead of `new`.
+
+	See {@link Model} for the full class documentation.
+
+	# Views
+
+	When {@link Session.join} creates the local root model and root view, it passes the view a reference to the model. This way the view can initialize itself to reflect whatever state the model may currently be in. Remember that when you join a session, your model might have been initalized by running its `init()` method, or it might have been loaded from an existing snapshot. Having direct access to the model allows the view to configure itself properly no matter how the model was initialized.
+
+	```JS
+	class MyView extends Multisynq.View {
+		constructor(model) {
+			super(model);
+			...
+		}
+
+		update(time) {
+			...
+		}
+	}
+	```
+
+	This illustrates an important feature of Multisynq: **A view can read directly from a model at any time.** A view doesn't need to receive an event from a model to update itself. It can just pull whatever data it needs directly from the model whenever it wants. (Of course, a view must never _write_ directly to a model, because that would break synchronization.)
+
+	The root view's [update()]{@link View#update} method is called automatically for every animation frame (usually 60 times a second). This allows the view to continually refresh itself, which is useful for continuous animation (as opposed to updating only when an event is received). Internally this uses a callback via the browser's `requestAnimationFrame` function, and the callback timestamp is passed as `update(timestamp)`.
+
+	If your app uses hierarchical views, your root view's `update` method needs to call all other views' `update`.
+
+	See {@link View} for the full class documentation.
+
+	# Events
+
+	Even though views can read directly from models, the only way for a view to interact with a model is through events.
+
+	To send an event, call `publish()`:
+
+		this.publish(scope, event, data)
+
+	* _Scope_ is a namespace so you can use the same event in different contexts.
+	* _Event_ is the name of the event itself.
+	* _Data_ is an optional data object containing addtional information.
+
+	And to receive an event, call `subscribe()`:
+
+		this.subscribe(scope, event, this.handler)
+
+	* _Scope_ is a namespace so you can use the same event in different contexts.
+	* _Event_ is the name of the event itself.
+	* _Handler_ is the method that will be called when the event is published. (The handler accepts the data object as an argument.)
+
+	An event is routed automatically based on who publishes and who subscribes to it:
+
+	**_Input events_ ([published]{@link View#publish} by a view and [handled]{@link Model#subscribe} by a model) are sent to every replica of the model in your current session.**
+
+	By sending view-to-model events to each participant, Multisynq ensures that all replicas of the model stay in sync. All replicas of the model receive exactly the same stream of events in exactly the same order.
+
+	**_Output events_ ([published]{@link Model#publish} by a model and [handled]{@link View#subscribe} by a view) are generated by each replica simultaneously and do not require a network roundtrip. Typically they are queued and handled before each frame is rendered.**
+
+	This is to ensure a strict separation between model code execution and view code execution. The model code must be executed precisely the same for every user to stay in sync, no matter if there are views subscribed on that user's machine or not. All event handlers are executed before invoking `update()`.
+
+	**_Model events_ ([published]{@link Model#publish} by a model and [handled]{@link Model#subscribe} by a model) are generated and handled by each replica locally. They are not sent via the network. Event handlers are invoked synchronously during publish.**
+
+	This allows you to use pub/sub inside of your model, if that makes sense for your app. It is equivalent to calling another model's method directly.
+
+	**_View events_ ([published]{@link View#publish} by a view and [handled]{@link View#subscribe} by a view) are also generated and handled locally. They are not sent via the network. Typically they are queued and handled before each frame is rendered.**
+
+	Again, this allows you to use pub/sub inside your view. It is *not* a way to communicate between different clients, for that, both clients need to communicate with the shared model.
+
+	Both models and views can subscribe to the same event. This can be used to implement immediate user feedback: the local view can update itself by listening to the same input event it is sending via the reflector to the model, anticipating what will happen once the event comes back from the reflector. Care has to be taken to handle the case that another event arrives in the mean time.
+
+	There are also two special events that are generated by the system itself: ["view-join"]{@link event:view-join} and ["view-exit"]{@link event:view-exit}. These are broadcast whenever a user joins or leaves a session.
+
+	# Time
+
+	Models have no concept of real-world time. All they know about is **simulation time**, which is governed by the reflector.
+
+	Every event that passes through the reflector is timestamped. The simulation time in the model is advanced up to the last event it received. This allows different replicas of the model to stay in sync even if their local real-world clocks diverge.
+
+	Calling [this.now()]{@link Model#now} will return the current simulation time.
+
+	In addition to normal events, the reflector also sends out a regular stream of **heartbeat ticks**. Heartbeat ticks advance the model's simulation time even if no view is sending any events. By default the reflector sends out heartbeat ticks 20 times a second, but you can change the frequency at session start.
+
+	The method [future()]{@link Model#future} can be used to schedule an event in the future. For example, if you wanted to create an animation routine in a model that executes every 100 milliseconds of simulation time, it would look like this:
+
+	```JS
+	step() {
+		// ... do some stuff ...
+		this.future(100).step();
+	}
+	```
+
+	Note that the ticks-per-second rate of the reflector is independent of the future interval used by your models. Individual models may use different future times.
+
+	## Random
+
+	Multisynq guarantees that the same sequence of random numbers is generated in every replica of your application. If you call `Math.random()` within a model it will return the same number for all replicas.
+
+	Calls to `Math.random()` within a view will behave normally. Different instances will receive different random numbers.
+</multisynq-client/docs/QUICKSTART.md>
+<multisynq-client/docs/tutorials/2_A_persistence.md>
+    Copyright © 2025 Croquet Labs
+
+    Multisynq automatically snapshots and
+    restores all model data. When you leave a session and come back later,
+    everything resumes exactly where you left off. As a developer, you don't
+    have to implement anything special to make that happen, it's part of the design.
+
+    However, whenever you change some model code, the model
+    is initialized from scratch and previous application data is lost. This is
+    because a Multisynq session is identified by the combination of
+    application ID (`appId`), the session name (`name`), and the content
+    of the model code (as a hashed value) along with the Multisynq Library
+    version. This means that replicated computation will use the identical
+    code, but also means that even a small change in code creates a new
+    session, even when the same `appId` and `name` are specified in
+    [Session.join()]{@link Session.join}.
+
+    For many apps and games this is perfectly fine. But imagine if you are
+    writing a collaborative shape editor or text editor
+    to which you will have to fix bugs and add new features over time. You
+    certainly would wish to keep user-generated contents in this
+    scenario. In other words, you would like to *persist* the application
+    data.
+
+    Multisynq provides a mechanism to support this. This mechanism allows you
+    to specify what data to save as the essential part of the application
+    data from the old version of application, and load it into a new
+    version of application. In addition to the `sessionId`` described above,
+    Multisynq uses a derived ID called `persistentId`, which is a
+    combination of `appId` and the session `name`, to identify an
+    application session independent of code changes.
+
+    When a session is joined for the first time (a session with a
+    never-seen-before `sessionId`), the root model's [init]{@link Model#init} function is
+    called. If persisted data created from a previous session of the same
+    persistentId, the data is passed into [init]{@link Model#init} as second argument.
+    (Side note: the root model's init will never be called again in this session,
+    because future session joins will resume a snapshot, rather running init)
+
+    An application specifies when and what to be saved as persistent data
+    by calling the [persistSession()]{@link Model#persistSession} method with a
+    function that returns the data to be saved.
+
+    Most simple apps can use [persistSession()]{@link Model#persistSession} directly
+    in the root model like this:
+
+    ~~~~ JS
+    class SimpleAppRootModel {
+        init(options, persisted) {
+            /* regular setup */
+    ​        ...
+            if (persisted) {
+                /* use persisted data */
+                ...
+            }
+        }
+    ​
+        save() {
+            this.persistSession(() => {
+                const data = { /* collect data to persist */ };
+                return data;
+            });
+        }
+    }
+    ~~~~
+
+    A full example of this simple scheme can be seen in the [Data API]{@tutorial 2_9_data} docs,
+    or in Step 8 of the
+    [Multiblaster tutorial]{@tutorial 1_6_multiblaster}.
+
+    It is important to know that [persistSession()]{@link Model#persistSession} uses a stable JSON
+    stringification implementation to store data. If you use your own
+    stringification and return the string from the function passed to
+    [persistSession()]{@link Model#persistSession}, make sure that you use an implementation that is
+    stable when it is run on different platforms or JS runtime. Also note that
+    unlike snapshotting, `Map`s and other non-JSON JavaScript types are *not* handled
+    by the [persistSession()]{@link Model#persistSession} directly. If you
+    use a `Map` in your model data structure, you need to handle them by
+    yourself.
+
+    For a more complex app, code below shows one way to structure your
+    code. Note that the only actual Multisynq APIs used here are
+    [persistSession()]{@link Model#persistSession},
+    and finding the root model via [wellKnownModel()]{@link Model#wellKnownModel}.
+    How the saved data is structured and interpreted is completely up to
+    the app/framework, and all the methods with "save" in their names are
+    unknown to Multisynq.
+
+    The persistent data should be as independent of the current
+    application structure as possible. In this example, the
+    persistent data uses "documents" whereas the app uses "submodels". Even
+    if all classes and properties were renamed in future versions, this
+    document structure should be simple to interpret and map to new code.
+
+    Note also that here we add a `version` property to the persisted data.
+    Again, this is not interpreted by Multisynq in any way, but by the app's
+    `fromSaveData()` method. This is a forward-thinking way to allow changing
+    the persistence format later.
+
+    ~~~~ JS
+    class SubModel {
+        init(options, persisted) {
+            /* ... regular setup ... */
+    ​
+            if (persisted) this.fromSaveData(persisted);
+        }
+    ​
+        save() { this.wellKnownModel("modelRoot").save(); }
+    ​
+        toSaveData() { return { /* ... some data ... */ };  }
+    ​
+        fromSaveData(data) { /* ... set up from data ... */ }
+    }
+    ​
+    class ComplexAppRootModel {
+        init(options, persisted) {
+            if (persisted) {
+                this.fromSaveData(persisted);
+            } else {
+                this.submodelA = SubModel.create(subopts);
+                this.submodelB = SubModel.create(subopts);
+            }
+        }
+    ​
+        save() {
+            this.persistSession(this.toSaveData);
+        }
+    ​
+        toSaveData() {
+            return {
+                version: 1,
+                documents: {
+                    a: this.submodelA.toSaveData(),
+                    b: this.submodelB.toSaveData(),
+                }
+            }
+        }
+    ​
+        fromSaveData(persisted) {
+            switch (persisted.version) {
+                case 1:
+                    const documents = persisted.documents;
+                    this.submodelA = SubModel.create(subopts, documents.a);
+                    this.submodelB = SubModel.create(subopts, documents.b);
+                    break;
+                default:
+                    /* ... */
+            }
+        }
+    }
+    ~~~~
+
+    A rather complex but real-world example of this appears in [Microverse]{@link https://github.com/croquet/microverse/blob/644544ed0734fd62939907bb9ddea0746667bc58/src/microverse.js#L542}
+    using its [WorldSaver]{https://github.com/croquet/microverse/blob/644544ed0734fd62939907bb9ddea0746667bc58/src/worldSaver.js#L12} class.
+
+    # Best Practices
+
+    Below are some best practices we learned from our experiences. You can find code examples in various apps provided by Multisynq.
+
+    ## When to think about adding the persistence to your app?
+    If your application does not need to save long-lasting data (for example, a simple realtime multi-player game), then there is no need to persist any data. But once, for example, you want to add a high score feature to entice users, chances are that you want to keep the score over different versions of code (your next code change may be a simple bug fix). Note that you *cannot* add the call to persistence mechanism as an afterthought to a session that already has model data you wish to save, as adding the call changes the model code and thus Multisynq treats it as a new session. So  when you add a new model property for a new feature, it is good to ask yourself if you will have to persist it.
+
+    ## When to call `persistSession`?
+    Once you determine that your application needs to persist data, you need to consider when is the right time to save it. Unlike automatic snapshotting, the application is responsible to decide when call [persistSession()]{@link Model#persistSession}. It is vital to save your important data while keeping the overhead of network and computation low. A common strategy is to trigger 'persistSession()` for a *major* data change in the model. For example, adding or deleting a graphical object in the shape editor would be major, while movements of a shared cursor is not. Another common strategy is to trigger it on a timer that is started when there are some data updates. In a text editor app, it may be overkill to store persistent data for every keystroke from any user, but you might also like to save persistent data 30 seconds after a burst of edit activity. (Note: if you call [persistSession()]{@link Model#persistSession} rapidly, Multisynq will not upload each data, but will wait a certain time before uploading again.)
+
+    ## How to test and debug
+    For testing and debugging purposes, it is important to recall how the persistent mechanism works. That is, *when* a 'never-seen-before sessionId` is encountered, *then* the reflector looks up the persistent data for the `persistentId` and passes it to Model's [init()]{@link Model#init} if it is available.
+
+    An implication of this is that if your test version of  the app had a bug and has written an invalid persistent data for a `persistentId`, fixing code afterwards could be too late, as critical user contents could have been lost already if you cannot find the right combination of code that produces the same `sessionId`. It is good to safeguard against this:
+
+    To do so, you write [init()]{@link Model#init} as follows:
+
+    ~~~~ JS
+    init(options, persisted) {
+        // ...
+        if (persisted) {
+            delete this.loadingPersistentDataErrored;
+            this.loadingPersistentData = true;
+            try {
+                this.fromSavedData(persisted);
+            } catch (error) {
+                console.error("error in loading persistent data", error);
+                this.loadingPersistentDataErrored = true;
+            } finally {
+                delete this.loadingPersistentData;
+            }
+        }
+    }
+
+    save() {
+        if (this.loadingPersistentData) {return;}
+        if (this.loadingPersistentDataErrored) {return;}
+        /* this.persistSession(...); */
+    }
+
+    fromSavedData(persisted) {
+        ...
+    }
+    ~~~~
+
+    where `fromSavedData()` interprets the incoming `persisted` data and sets up the data structures in the model. If that method raises an error, `loadingPersistentDataErrored` property becomes `true` so that `save()` skips the call to [persistSession()]{@link Model#persistSession}. The `loadingPersistentData` property above is set to be `true` during the execution of `fromSavedData()`. This is to prevent saving while persistent data is still being loaded. This can happen easily if the application uses the same methods to create objects from persistent data, as when the usewr creates those interactively. In the latter case you want to call `save()`, and with the `loadingPersistentData` guard in place it's fine to do so.
+
+    You may also encounter the case that your `save()` has a bug and raises an error. This usually is not a problem. If you relaunch the application with your old code (with the same `appId`, `name`, and the same Multisynq library version), the reflector will find the snapshot (not persistent data) to start the session. In this case, the user content is not lost.
+
+    While developing the persistent data mechanism for your app, a common workflow is as follows:
+
+    1. Put a break point in the `toSaveData()` method, and trigger it by publishing an event from the view.
+    2. Check the object it returns and make sure that it is structured as you expect. Repeat this step until you are satisfied.
+    3. If you think it is creating the right object to be saved, let your code run through to get the data to be stored.
+    4. Modify the model code just a little bit (it could be a change to a `console.log()` call in the model), and relaunch your application with a break point set in  `fromSavedData()`.
+    5. If loading fails due to a bug, fix it. You might have to go back to step 2 to fix the saving part also.
+    6. If it appears to load the correct data, try to trigger the persistent data saving logic from the loaded session. This often uncovers some bugs.
+
+    If you follow the above code pattern that skips a new persistent data store when it errored, you can start a debugging session with identical persistent data so it is easier to see that you are making progress.
+
+    It is handy to have two deployments of the same application. You would keep your old and working version of the application, from which you can create new persistent data. You update the other deployment (could be on your local machine) to try to load the data.
+
+    ### Debug Options
+    To log more useful info to the console, you can specify the `debug: "session"` option in [Session.join()]{@link Session.join}, or specify the equivalent URL option (`debug=session`). You see additional log messages when this debug option is specified, for example if a new session is loaded from a snapshot or persisted data.
+
+    ## End-to-End Encryption
+    Like everything in Multisynq, persistent data is encrypted, and as long as the session password is never transmitted to a server, it is
+    [end-to-end secure]{@link https://en.wikipedia.org/wiki/End-to-end_encryption} (this is the reason why by default, the session password is in the URL `#hash`, which is never transmitted over http, and why a good way to join a session is via QR code). Even if someone hacks our file servers, all they get is encrypted data with no way to decrypt it, the data is only ever decrypted on the client running the Multisynq app.
+
+    Conversely, it means that nobody, including Multisynq, can decrypt the contents of the data, unless the session password is known.
+    If a password is lost, the session data is lost too.
+    You may opt to store session names and passwords on a server where users log in.
+    That will not be end-to-end encrypted anymore, because it will only be as secure as that server (if someone breaks into that server with the passwords, they could decrypt the data).
+    But it would allow you to recover user data. You need to weigh convenience against privacy in the context of your app. Multisynq itself opts for end-to-end-security-by-default.
+</multisynq-client/docs/tutorials/2_A_persistence.md>
+<multisynq-client/docs/tutorials/2_1_model_view_synchronizer.md>
+	Copyright © 2025 Croquet Labs
+
+	<img alt="Multisynq Overview" style="width: 80%" src="images/overview.svg"/>
+
+	Every Multisynq application consists of two parts:
+
+	- The **view** handles user input and output by interacting with the DOM.
+	It processes all keyboard / mouse / touch events, and determines what is displayed on the screen.
+
+	- The **model** handles all calculation and simulation. This is where the actual work of the application takes place.
+
+	**The state of the model is guaranteed to always be identical for all users.** However, the state of the view is not. Different users might be running on different hardware platforms, or might display different representations of the simulation.
+
+	Internal communications between the model and view are handled through **events**. Whenever an object publishes an event, all objects that have subscribed to that event will execute a handler function.
+
+	When a Multisynq application starts up, it becomes part of a **session**. Other users running the same application with the same session ID will also join the same session. The state of the model on every device in the session will be identical.
+
+	The routing of events is handled automatically. If an event from a view is handled by a model, the model isn't sent the event directly. Instead Multisynq bounces the event off a synchronizer.
+
+	**Synchronizers** are stateless, public, message-passing services located in the cloud. When a synchronizer receives an event from a user, it mirrors it to all the other users in the same session.
+
+	**Snapshots** are archived copies of a model's state. Multisynq periodically takes snapshots of the model state and saves it to the cloud. When a new user joins a session, it can synch with the other users by loading one of these snapshots.
+
+	- Input/output is routed through the view.
+	- The view can read from the model, but can't write to it.
+	- Events from view to model are reflected to all users.
+	- All other events (model-model, view-view, and especially model-to-view) are only executed locally.
+	- Model state is automatically saved to (and loaded from) snapshots.
+</multisynq-client/docs/tutorials/2_1_model_view_synchronizer.md>
+<multisynq-client/docs/tutorials/2_2_writing_a_multisynq_app.md>
+	Copyright © 2025 Croquet Labs
+
+	To create a Multisynq application, you need to define two classes that inherit from the base classes {@link Model} and {@link View} from the Multisynq client library:
+
+	```
+	class MyModel extends Multisynq.Model {
+		init() {
+			...
+		}
+	}
+	MyModel.register("MyModel");
+
+	class MyView extends Multisynq.View {
+		constructor(model) {
+			super(model);
+			...
+		}
+	}
+	```
+
+	Your view will contain all your input and output code, and your model will contain all your simulation code.
+
+	(Note that every time you define a new model subclass, you must `register("name")` it so that Multisynq knows it exists, and under which name to find its instances in a snapshot.)
+
+	## Launching a session
+
+	You launch a session by calling {@link Session.join} from the Multisynq client library.  Its arguments are the id of your app (which needs to be unique, so using a reverse-DNS name like `"com.example.myapp"` is good), name and password of the session you're creating, the class types of your model and your view, and a set of session options (described below).
+
+	The session name exists to distinguish multiple sessions per app. You may use our `autoSession` helper which parses URL search parameters and creates a new random session name if necessary.
+	The session password encrypts all data sent via the internet. If your app does not use data worth protecting, you still need to provide a dummy password. You may use our `autoPassword` helper which parses the URL hash and creates a new random password if necessary, appending it to the url for sharing. (Note: both `autoSession` and `autoPassword` return promises. `Session.join` waits for all promises to resolve). In production you probably want to add some UI letting users type in the password.
+
+	```
+	const apiKey = "your_api_key";              // paste from multisynq.io/coder
+	const appId = "com.example.myapp";
+	const name = Multisynq.App.autoSession();
+	const password = Multisynq.App.autoPassword();
+	Multisynq.Session.join({ apiKey, appId, name, password, model: MyModel, view: MyView });
+	```
+
+	Starting the session will do the following things:
+
+	1. Connect to a nearby public synchronizer using the provided [API key](https://multisynq.io/coder)
+	2. Instantiate the model
+	3. a) Run the initialization code in the model's init routine -or-<br>
+	b) Initialize the model from a saved snapshot
+	4. Instantiate the view, passing the view constructor a reference to the model
+	5. Create a main event loop and begin executing
+
+	The main loop runs each time the window performs an animation update — commonly, 60 times per second. On each iteration of the main loop, it will first process all pending events in the model, then process all pending events in the view, then call {@link View#render}.
+
+	**Note that the code in your model's `init()` routine only runs the first time the application launches.** If another user joins a session that's in progress, they will load the most recent snapshot of model state. The same is true if you quit a session and rejoin it later.
+
+	**TODO:** mention how session ids are derived from code hashes and url session slugs
+
+	## Advanced Topic: Creating Your Own Main Loop
+
+	If you want more control over your main loop, you can pass out the `step: "manual"` directive and write a main loop yourself. For example:
+
+	```
+	const session = await Multisynq.Session.join({..., step: "manual"});
+	window.requestAnimationFrame(frame);
+
+	function frame(now) {
+		if (session.view) {
+			session.view.myInputMethod();
+			session.step(now);
+			session.view.myOutputMethod();
+		}
+		window.requestAnimationFrame(frame);
+	}
+	```
+</multisynq-client/docs/tutorials/2_2_writing_a_multisynq_app.md>
+<multisynq-client/docs/tutorials/2_3_writing_a_multisynq_view.md>
+    Copyright © 2025 Croquet Labs
+
+    Multisynq makes no assumptions about how you implement the view. It operates like a normal JS application. You can directly access the DOM and instantiate whatever sub-objects or data types that you need, use any libraries etc.
+
+    The contents of the view are not replicated across machines. Because of this, you generally use the view only for handling input and output. If the user taps a button or clicks somewhere on screen, the view turns this action into an event that it publishes for the model to receive. And whenever the model changes, the view updates the visual representation that it displays on the screen. But in general, all of the actual calculation of the application should be done inside the model.
+
+    In order to update output quickly, the view has a reference to the model and can _read_ from it directly. However …
+
+    ## **The view must NEVER write directly to the model!**
+
+    This is the **most important** rule of creating a stable Multisynq application. The view is given direct access to the model for efficiency, but in order for the local copy of the model to stay in synch with the remote copies of other users, _all changes to the model that originate in the view must be done through **events**_. That way they will be mirrored by the synchronizer to every user in the session.
+
+    ### Other good practices for writing views:
+
+    **Create sub-views inside your main view.** You can derive other classes from the {@link View} base class and instantiate them during execution. Sub-views have access to all the same services as your main view, so they can schedule their own tick operations and publish and subscribe to events.
+
+    **Access the model through your main view.** Your main view receives a permanent reference to the main model when it is created. This reference can be stored and used to read directly from the model.
+
+    **Use the `future()` operator to create ticks.** If you want something to happen regularly in the view, use the future operator to schedule a looping tick. This is just for readability, you're free to use `setTimeout` or `setInterval` etc. in view code.
+
+    **Don't reply to the model.** Avoid having the model send an event to the view that requires the view to send a "reply" event back. This will result in large cascades of events that will choke off normal execution.
+
+    **Anticipate the model for immediate feedback.** Latency in Multisynq is low, but it's not zero. If you want your application to feel extremely responsive (for example, if the player is controlling a first-person avatar) drive the output directly from the input, then correct the output when you get the official simulation state from the updated model.
+</multisynq-client/docs/tutorials/2_3_writing_a_multisynq_view.md>
+<multisynq-client/docs/tutorials/2_4_writing_a_multisynq_model.md>
+    Copyright © 2025 Croquet Labs
+
+    Unlike the view, there are limits to what the model can do if it is going to stay synched across all the machines in the session:
+
+    **Model classes must be registered when defined.** Call `MyModel.register("MyModel")` every time you define a new {@link Model} subclass.
+
+    **Use `create` and `destroy` to instantiate or dispose of models.** Do not use `new` to create sub-models. These models should be created/destroyed using the syntax `mySubModel.create()` and `mySubModel.destroy()`. Your `init` is called as part of the `create()` process.
+
+    **Use `init` to initialize models.** Do not implement a constructor. Model classes only call `init` when they are instantiated for the first time. Put all initialization code in this method. If you put initialization code in the constructor, it would also run when the model is reloaded from a snapshot.
+
+    **No global variables.** All variables in the model must be defined in the main model itself, or in sub-models instantiated by the main model. This way Multisynq can find them and save them to the snapshot. Instead, use Multisynq.Constants. The Constants object is recursively frozen once a session has started to avoid accidental modification. Here we assign the variable Q to Multisynq.Constants as a shorthand.
+
+    ```
+    const Q = Multisynq.Constants;
+    Q.BALL_NUM = 25;              // how many balls do we want?
+    Q.STEP_MS = 1000 / 30;       // bouncing ball speed in virtual pixels / step
+    Q.SPEED = 10;                // max speed on a dimension, in units/s
+    ```
+
+    This lets you use write ```this.future(Q.STEP_MS).step();``` where the STEP_MS value is registered and replicated. Just using a global STEP_MS could work in some cases, but there is no guarantee that the value will be replicated, so it could cause an accidental desyncing of the system.
+
+    **No regular classes.** All objects in the model must be derived from the Model base class. (Mostly. See below for more information.)
+
+    **No outside references.** The model must not use system services such as _Date.now()_, or reference JS globals such as _window_.
+
+    **No asynchronous functions.** Do not use _Promises_ or declare a function call with the _async_ keyword inside the model.
+
+    **Do not store function references or transmit them in events.** Functions cannot be serialized as part of the model state. (It's fine to use function references that exist temporarily, such as in a forEach call. You just shouldn't store them.)
+
+    **Don't query the view.** Don't publish events that trigger the view to respond to the model with another event. This can create a cascade of events that clogs the system.
+
+
+
+    ## Advanced Topic: Non-Model Objects in the Model
+
+    In general, every object in the model should be a subclass of {@link Model}. However, sometimes it's useful to be able to use the occasional non-model utility class inside your model code. This is allowed, as long as you provide Multisynq with information about how to save and restore the non-model class.
+
+    Model classes that use non-model objects must include a special static method named `types()` that declares all of the non-model classes:
+
+    ```
+    class MyModel extends Multisynq.Model {
+        static types() {
+            return {
+                "MyFile.MyClass": MyClass,
+            }
+        }
+    }
+    ```
+
+    This would use the default serializer to serialize the internals of that class. If you need to customize the serialization, add `write()` and `read()` methods that convert to and from the classes the serializer can handle (which is JSON plus built-in types like `Map`, `Set`, `Uint8Array` etc.):
+
+    ```
+    class MyModel extends Multisynq.Model {
+        static types() {
+            return {
+                "MyFile.MyClass": {
+                    cls: MyClass,
+                    write: c => ({x: c.x}),
+                    read: ({x}) => new MyClass(x)
+                }
+            }
+        }
+    }
+    ```
+
+    This example shows a type definition for a non-model class that stores a single piece of data, the variable x. It includes methods to extract the class data into a standard data format, and then restore a new version of the class from the stored data.
+</multisynq-client/docs/tutorials/2_4_writing_a_multisynq_model.md>
+<multisynq-client/docs/tutorials/2_6_events_pub_sub.md>
+    Copyright © 2025 Croquet Labs
+
+    Models and Views communicate using events. They use the same syntax for sending and receiving events. These functions are only available to classes that are derived from {@link Model} or {@link View}, so exposing them is one reason to define sub-models and sub-views.
+
+    - `publish(scope, event, data)`
+    - `subscribe(scope, event, this.handler)`
+    - `unsubscribe(scope, event)`
+    - `unsubscribeAll()`
+
+    **Publish** sends an event to all models and views that have subscribed to it.
+
+    - _Scope_ is a namespace so you can use the same event in different contexts (String).
+    - _Event_ is the name of the event itself (String).
+    - _Data_ is an optional argument containing additional information (any serializable type).
+
+    **Subscribe** registers a model or a view to receive the specified events.
+
+    - _handler_ is a function that accepts the event data structure as its argument.
+    - in a view, the handler can be any function
+    - in a model, the handler *must* use the form `this.someMethodName`.<br>
+    That's because functions cannot be serialized so actually only `"someMethodName"` is extracted from the function and stored.
+
+    **Unsubscribe** unregisters the model or view so it will no longer receive the event.
+
+    **UnsubscribeAll** unregisters all current subscriptions. Called automatically when you `destroy` a model or a view.
+
+    ## Scopes
+
+    _TODO: ... mention `model.id`, global scopes (`sessionId`, `viewId`) ..._
+
+    ## Event Handling
+
+    Depending on where the event originates and which objects are subscribed to it, the events are routed differently:
+
+    - _Model-to-Model_ - The event handler is executed immediately, before the publish call returns.
+
+    - _Model-to-View_ - By default, the event is queued and will be handled by the local view when the current model simulation has finished.
+
+    - _View-to-View_ - By default, the event is queued and will be handled in the same update cycle.
+
+    - _View-to-Model_ - The event is transmitted to the reflector and mirrored to all users. It will be handled during the next model simulation.
+
+    Note that multiple models and views can subscribe to the same event. Multisynq will take care of routing the event to each subscriber using the appropriate route, meaning that a view subscriber and a model subscriber will receive the event at slightly different times.
+
+    ## Best practices
+
+    Publish and subscribe can be used to establish a direct communications channel between different parts of the model and the view. For example, suppose you have several hundred AI agents that are running independently in the model, and each one has a graphical representation in the view. If you call publish and subscribe using the agent's id as the scope, an event from a particular actor will only be delivered to its corresponding representation and vice versa.
+
+    Avoid creating chains of events that run from the model to the view then back to the model. View events can be triggered by the user, or by a timer, or by some other external source, but they should never be triggered by the model. Doing so can trigger a large cascade of events that will choke the system.
+</multisynq-client/docs/tutorials/2_6_events_pub_sub.md>
+<multisynq-client/docs/tutorials/2_7_snapshots.md>
+    Copyright © 2025 Croquet Labs
+
+    Snapshots are copies of the model state that are saved to the cloud. When your Multisynq application is running, the reflector will periodically request one of the participants to perform a snapshot.
+
+    Snapshots provide automatic save functionality for your application. If you quit or reload while your application is running, it will automatically reload the last snapshot when the application restarts.
+
+    (When you write your initialization routine for your View, take into account that the Model may just have reloaded from a prior snapshot.)
+
+    More importantly, snapshots are how new users synchronize when they join an existing session. When you join an existing session, the following series of events will occur:
+
+    1. The local model is initialized with data from the last snapshot.
+    2. The reflector resends the local model all events that were transmitted after the last snapshot was taken.
+    3. The model simulates all the events to bring the snapshot up-to-date
+    4. The local view initializes itself to match the state of the model and subscribes to model events
+
+    The combination of loading the last snapshot and replaying all the intervening events brings the new user in sync with the other users in the session.
+
+    ## Snapshot Performance
+
+    The snapshot code is currently unoptimized, so you may experience a performance hitch when the snapshot is taken. The Multisynq development team is working to resolve this issue and make snapshots invisible to both the user and developer, but for the time being you may see your application occasionally pause if your model is very large.
+</multisynq-client/docs/tutorials/2_7_snapshots.md>
+<multisynq-client/docs/tutorials/2_9_data.md>
+	Copyright © 2025 Croquet Labs
+
+	Multisynq offers secure bulk data storage service for apps. A Multisynq application can upload a file, typically media content or a document file, to the Multisynq file server. The `store()` function returns a *data handle* that can be sent to replicated models in a Multisynq message, and then other participants can `fetch()` the stored data. Off-loading the actual bits of data to a file server and keeping only its meta data in the model is a lot more efficient than trying to send that data via `publish`/`subscribe`. It also allows caching.
+
+	Just like snapshots and persistent data, data uploaded via the Data API is end-to-end encrypted with the session password. That means it can only be decoded from within the session.
+
+	Optionally, you can create a *shareable handle* where each data is encrypted individually with a random key, which becomes part of the data handle.
+	Its string form can be shared between sessions and even apps. If you keep this kind of handle stored in the model it is protected by the general end-to-end encryption of the session.
+	If it leaks, however, anyone will be able to access and decrypt that data, unlike with the default, non-shareable handle.
+
+	Following is a full example of the Data API.
+
+	~~~~ HTML
+	<html>
+		<head>
+			<meta charset="utf-8">
+			<title>Data + Persistence Example</title>
+			<script src="https://cdn.jsdelivr.net/npm/@multisynq/client@@CLIENT_VERSION@""></script>
+		</head>
+		<body style="background-color: #666; background-size: contain; background-repeat: no-repeat; background-position: center;" onclick="imageinput.click()">
+			<input id="imageinput" type="file" accept="image/*" style="display:none;">
+			<span id="message" style="background-color: rgb(255,255,255,0.5);">click to import picture, or drag-and-drop one</i></span>
+			<script>
+
+	class DataTestModel extends Multisynq.Model {
+
+		init(options, persisted) {                                  // <== Multisynq Persistence
+			this.subscribe("global", "add-asset", this.addAsset);
+			if (persisted) this.restoreData(persisted);
+		}
+
+		addAsset(asset) {
+			this.asset = asset;
+			this.publish("global", "asset-added", asset);
+			this.persistSession(this.saveData);                     // <== Multisynq Persistence
+		}
+
+		saveData() {
+			const { name, type, size, handle } = this.asset;
+			const id = Multisynq.Data.toId(handle);
+			return { name, type, size, id };
+		}
+
+		restoreData(saved) {
+			const { name, type, size, id } = saved;
+			const handle = Multisynq.Data.fromId(id);
+			this.asset = { name, type, size, handle };
+		}
+	}
+	DataTestModel.register("DataTestModel");
+
+	let deferredUpload = null;
+
+	class DataTestView extends Multisynq.View {
+
+		constructor(model) {
+			super(model);
+			this.subscribe("global", "asset-added", this.assetAdded);
+			if (model.asset) this.assetAdded(model.asset);
+			if (deferredUpload) {
+				this.uploadFile(...deferredUpload);
+				deferredUpload = null;
+			}
+
+			window.ondragover = event => event.preventDefault();
+			window.ondrop = event => {
+				event.preventDefault();
+				this.addFile(event.dataTransfer.items[0].getAsFile());
+			}
+			imageinput.onchange = () => {
+				this.addFile(imageinput.files[0]);
+				imageinput.value = ''; // otherwise upload of another camera image won't trigger onchange
+			};
+		}
+
+		async addFile(file) {
+			if (!file.type.startsWith('image/')) return this.showMessage(`Not an image: "${file.name}" (${file.type})`);
+			// grab file data now, even if we're disconnected
+			this.showMessage(`reading "${file.name}" (${file.type})`);
+			const data = await new Promise(resolve => {
+				const reader = new FileReader();
+				reader.onload = () => resolve(reader.result);
+				reader.readAsArrayBuffer(file);
+			});
+			// the session may have been disconnected while the file chooser dialog was open
+			if (this.session) this.uploadFile(file, data);
+			else deferredUpload = [file, data]; // upload as soon as the session is back
+		}
+
+		// only uploading user does this
+		async uploadFile(file, data) {
+			this.showMessage(`uploading "${file.name}" (${data.byteLength} bytes}`);
+			const size = data.byteLength; // get size before store() destroys the data
+			const handle = await this.session.data.store(data);                     // <== Multisynq Data API
+			const asset = { name: file.name, type: file.type, size: size, handle };
+			this.publish("global", "add-asset", asset);
+		}
+
+		// every user gets this event via model
+		async assetAdded(asset) {
+			this.showMessage(`fetching "${asset.name}" (${asset.size} bytes}`);
+			this.showImage(asset);
+		}
+
+		showMessage(string) {
+			message.innerText = string;
+			console.log(string);
+		}
+
+		async showImage(asset) {
+			const data = await this.session.data.fetch(asset.handle);               // <== Multisynq Data API
+			this.showMessage(`fetched "${asset.name}" (${data.byteLength} bytes)`);
+			const blob = new Blob([data], { type: asset.type });
+			document.body.style.backgroundImage = `url(${URL.createObjectURL(blob)})`;
+		}
+	}
+
+
+	Multisynq.App.makeWidgetDock();     // show QR code
+	Multisynq.Session.join({
+		appId: "com.example.datatest",
+		apiKey: "<fill in>",            // get an API key from multisynq.io/coder
+		model: DataTestModel,
+		view: DataTestView,
+		tps: 0,
+	});
+
+			</script>
+		</body>
+	</html>
+	~~~~
+
+	When a user drops an image file onto the browser window, or clicks in the window to get the file dialog and chooses a file, the `addFile()` of the `DataTestView` is invoked. It calls [data.store()]{@link Data#store} with `data` as an `ArrayBuffer`. [data.store()]{@link Data#store} returns asynchronously the data handle, then an `"add-asset"` event with the handle is published and the handle gets stored in the model by the `addAsset()` event handler. In addition to the handle, this example also stores some meta data, like file name, MIME type, and file size.
+
+	In `addAsset()`, the model also publishes an `"asset-added"` event for all views. The views fetch the data from the file server by calling [data.fetch()]{@link Data#fetch}. Then they create a `Blob` object and use it as the `background-image` CSS style. Now the views of every user show the first user's image.
+
+	By default, [data.store()]{@link Data#store} does not preserve the `ArrayBuffer` data, it is detached when it is transferred to the WebWorker that handles encrypting and uploading data (see [ArrayBuffer]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer#transferring_arraybuffers} and [Transferable objects]{@link https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects}). This is done for efficiency, and the reason why in this example we put the file's size into a variable beforehand (after storing it would be `0`). If you need to use the same data after you call [data.store()]{@link Data#store}, pass `{keep: true}` in the store options, which will transfer a copy instead.
+
+	To be able to access the uploaded data even when the app code changes, the data handle needs to be [persisted]{@link Model#persistSession}, so the data handle can be recreated in a new session with the same `appId` and session `name` but modified code (see [Persistence]{@tutorial 2_A_persistence} tutorial). Since persistence needs JSON data, we use [Data.toId()]{@link Data.toId} to create a string representation of the handle, and recreate the equivalent data handle by calling [Data.fromId()]{@link Data.fromId}.
+
+	# Best Practices
+	Keep in mind that accessing external services is responsibility of the view, as the model should be concerned with the logical data.  Calling [data.store()]{@link Data#store} and  [data.fetch()]{@link Data#fetch} is done by the view asynchronously, and the view notifies the model via a Multisynq message.
+
+	You will most likely to store the `id` for the data handle created by [data.toId()]{@link Data.toId} for persistent data. It is indeed fine to store the id in the model as the primary data, and the view creates the data handle from it by calling [data.fromId()]{@link Data.fromId} before fetching data.
+
+	As in the example above, you can use an `input` DOM element with `type="file"` to get the browser's file dialog or camera roll dialog. However, while the dialog is opened, on some systems (like iOS) the JavaScript execution is suspended and the Multisynq network connection may disconnect while the user takes a long time to select a file or take a photo. We handle this case by storing the information of the chosen file in a global variable, and upload it when the view gets constructed again.
+
+	Notice that `init()` of the view calls `assetAdded` when there already is `model.asset` so that a view that joined later shows the same image. This is a common pattern that is not limited to apps that uses Data API, but in general Multisynq views should be initialized to reflect the current model state when constructed, without relying on events.
+</multisynq-client/docs/tutorials/2_9_data.md>

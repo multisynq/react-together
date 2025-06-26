@@ -13,7 +13,7 @@ export interface MockActivitySynqProviderProps {
   error?: Error | null
   userId?: string
   config?: Partial<ActivitySynqConfig>
-  bufferedEventCount?: number
+  activities?: ActivityEvent[]
 }
 
 export const MockActivitySynqProvider = ({
@@ -24,23 +24,23 @@ export const MockActivitySynqProvider = ({
   error = null,
   userId = 'test-user-123',
   config = {},
-  bufferedEventCount = 0
+  activities = []
 }: MockActivitySynqProviderProps) => {
   const value = {
     registerActivity,
+    activities,
     isReady,
     status,
     error,
     userId,
     config: {
       apiKey: 'test-api-key',
-      appUrl: 'test-app',
+      appId: 'test-app',
       sessionName: 'test-session',
       sessionPassword: 'test-password',
       userId,
       ...config
-    },
-    bufferedEventCount
+    }
   }
 
   return (
@@ -108,31 +108,31 @@ export const createActivitySynqTestScenarios = () => ({
     isReady: true,
     status: 'ready' as ConnectionStatus,
     error: null,
-    bufferedEventCount: 0,
+    activities: [],
   },
   initializing: {
     isReady: false,
     status: 'initializing' as ConnectionStatus,
     error: null,
-    bufferedEventCount: 0,
+    activities: [],
   },
   disconnected: {
     isReady: false,
     status: 'disconnected' as ConnectionStatus,
     error: null,
-    bufferedEventCount: 3, // Simulate some buffered events
+    activities: [{type: 'test', data: {}, timestamp: Date.now()}],
   },
   error: {
     isReady: false,
     status: 'error' as ConnectionStatus,
     error: new Error('Connection failed'),
-    bufferedEventCount: 0,
+    activities: [],
   },
   errorWithBuffer: {
     isReady: false,
     status: 'error' as ConnectionStatus,
     error: new Error('Network timeout'),
-    bufferedEventCount: 5,
+    activities: Array(5).fill(0).map((_, i) => ({type: 'buffered', data: {index: i}, timestamp: Date.now()})),
   },
 })
 
@@ -169,8 +169,7 @@ export const createMockActivityEvent = <T = any>(
   userId = 'test-user-123'
 ): ActivityEvent<T> => ({
   type,
-  data,
-  userId,
+  data: data ? { ...data, userId } : { userId } as T & { userId: string },
   timestamp: Date.now(),
 })
 
