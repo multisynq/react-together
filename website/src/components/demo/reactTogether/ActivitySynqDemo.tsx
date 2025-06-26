@@ -45,7 +45,7 @@ export function ActivitySynqDemo() {
 // Demo content that shows emoji voting functionality
 function ActivitySynqDemoContent({ userId }: { userId: string }) {
   const { view, model } = useMultisynqContext()
-  const { registerActivity, isReady, status, activities } = useActivitySynq()
+  const { registerActivity, clearActivities, isReady, status, activities } = useActivitySynq()
   const [activityFeed, setActivityFeed] = useState<ActivityFeedEntry[]>([])
   const [voteCount, setVoteCount] = useState<Record<string, number>>({})
   
@@ -94,10 +94,18 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
   useEffect(() => {
     if (!view || !model) return
     
+    const handleActivitiesCleared = () => {
+      // Reset local state when activities are cleared from model
+      setActivityFeed([])
+      setVoteCount({})
+    }
+    
     view.subscribe(model.id, 'activity_received', handleActivityReceived)
+    view.subscribe(model.id, 'activities_cleared', handleActivitiesCleared)
     
     return () => {
       view.unsubscribe(model.id, 'activity_received', handleActivityReceived)
+      view.unsubscribe(model.id, 'activities_cleared', handleActivitiesCleared)
     }
   }, [view, model, handleActivityReceived])
 
@@ -167,12 +175,21 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
       <div className={`rounded-lg border-2 p-3 mb-4 ${getStatusColor()}`}>
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Status: {status} | Ready: {isReady ? 'Yes' : 'No'}</span>
-          <div className="text-xs">
-            User: <span className="font-mono">{getUserDisplayName(userId)}</span>
+          <div className="text-xs flex items-center gap-2">
+            <span>User: <span className="font-mono">{getUserDisplayName(userId)}</span></span>
             {activities.length > 0 && (
-              <span className="ml-2 bg-green-200 px-2 py-1 rounded text-green-800">
+              <span className="bg-green-200 px-2 py-1 rounded text-green-800">
                 {activities.length} activities
               </span>
+            )}
+            {isReady && activities.length > 0 && (
+              <button 
+                onClick={clearActivities}
+                className="bg-red-100 hover:bg-red-200 text-red-800 px-2 py-1 rounded text-xs font-medium transition-colors"
+                title="Clear all activities for all users"
+              >
+                🗑️ Clear
+              </button>
             )}
           </div>
         </div>

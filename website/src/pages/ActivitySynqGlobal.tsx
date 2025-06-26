@@ -115,7 +115,7 @@ function CustomizableActivityFeed({
 
 // Feature Demo Section
 function FeatureDemo({ userId }: { userId: string }) {
-  const { registerActivity, isReady, status } = useActivitySynqGlobal()
+  const { registerActivity, clearActivities, isReady, status, activities } = useActivitySynqGlobal()
 
   const features = [
     { id: 'rolled_dice', icon: '🎲', label: 'Rolled Dice', color: '#3b82f6', activity: 'rolled dice' },
@@ -161,14 +161,34 @@ function FeatureDemo({ userId }: { userId: string }) {
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
         <h3 style={{ margin: 0, color: '#1f2937' }}>🎯 Feature Demo</h3>
-        <div style={{ 
-          padding: '4px 8px', 
-          borderRadius: '4px', 
-          fontSize: '12px',
-          backgroundColor: status === 'ready' ? '#dcfce7' : '#fef3c7',
-          color: status === 'ready' ? '#166534' : '#92400e'
-        }}>
-          {status === 'ready' ? '🟢 Ready' : '🟡 Connecting...'}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ 
+            padding: '4px 8px', 
+            borderRadius: '4px', 
+            fontSize: '12px',
+            backgroundColor: status === 'ready' ? '#dcfce7' : '#fef3c7',
+            color: status === 'ready' ? '#166534' : '#92400e'
+          }}>
+            {status === 'ready' ? '🟢 Ready' : '🟡 Connecting...'}
+          </div>
+          {isReady && activities.length > 0 && (
+            <button
+              onClick={clearActivities}
+              style={{
+                padding: '4px 8px',
+                borderRadius: '4px',
+                fontSize: '12px',
+                backgroundColor: '#fecaca',
+                color: '#991b1b',
+                border: 'none',
+                cursor: 'pointer',
+                fontWeight: 'bold'
+              }}
+              title="Clear all activities for all users"
+            >
+              🗑️ Clear All
+            </button>
+          )}
         </div>
       </div>
 
@@ -451,16 +471,6 @@ export default function ActivitySynqGlobalPage() {
     `demo-user-${Math.random().toString(36).substring(2, 8)}`
   )
 
-  // Feed customization state
-  const [maxItems, setMaxItems] = useState(10)
-  const [opacity, setOpacity] = useState(1)
-  const [backgroundColor, setBackgroundColor] = useState('#ffffff')
-  const [borderColor, setBorderColor] = useState('#e5e7eb')
-  const [scrollable, setScrollable] = useState(true)
-  const [showTimestamps, setShowTimestamps] = useState(true)
-  const [showUserInfo, setShowUserInfo] = useState(true)
-  const [height, setHeight] = useState('300px')
-
   // Stable onActivity callback to prevent config recreation
   const onActivity = useCallback((activity: ActivityEvent) => {
     console.log('🎉 Global ActivitySynq received:', activity)
@@ -475,6 +485,34 @@ export default function ActivitySynqGlobalPage() {
     userId: currentUser,
     onActivity
   }), [currentUser, onActivity])
+
+  return (
+    <ActivitySynqGlobal config={activityConfig} showNotifications={true} portalContainer="body">
+      <ActivitySynqGlobalPageContent 
+        currentUser={currentUser} 
+        setCurrentUser={setCurrentUser}
+      />
+    </ActivitySynqGlobal>
+  )
+}
+
+// Demo page content that has access to ActivitySynq global context
+function ActivitySynqGlobalPageContent({ 
+  currentUser, 
+  setCurrentUser 
+}: { 
+  currentUser: string
+  setCurrentUser: (userId: string) => void
+}) {
+  // Feed customization state
+  const [maxItems, setMaxItems] = useState(10)
+  const [opacity, setOpacity] = useState(1)
+  const [backgroundColor, setBackgroundColor] = useState('#ffffff')
+  const [borderColor, setBorderColor] = useState('#e5e7eb')
+  const [scrollable, setScrollable] = useState(true)
+  const [showTimestamps, setShowTimestamps] = useState(true)
+  const [showUserInfo, setShowUserInfo] = useState(true)
+  const [height, setHeight] = useState('300px')
 
   const simulateOtherUser = useCallback(() => {
     const otherUserId = `demo-user-${Math.random().toString(36).substring(2, 8)}`
@@ -654,12 +692,6 @@ export default function ActivitySynqGlobalPage() {
         </div>
       </div>
 
-      {/* Single line integration - enables everything above! */}
-      <ActivitySynqGlobal 
-        config={activityConfig}
-        showNotifications={true}
-        portalContainer="body"
-      />
     </div>
   )
 }

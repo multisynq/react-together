@@ -21,6 +21,7 @@ export type ConnectionStatus = 'initializing' | 'ready' | 'disconnected' | 'erro
 
 interface IActivitySynqContext {
   registerActivity: <T = any>(type: string, data?: T) => void
+  clearActivities: () => void
   activities: ActivityEvent[]
   isReady: boolean
   status: ConnectionStatus
@@ -116,10 +117,17 @@ function ActivitySynqContextProvider({
       config.onActivity?.(activity)
     }
 
+    const handleActivitiesCleared = () => {
+      // Clear local activities when model is cleared
+      setActivities([])
+    }
+
     view.subscribe(model.id, 'activity_received', handleActivityReceived)
+    view.subscribe(model.id, 'activities_cleared', handleActivitiesCleared)
 
     return () => {
       view.unsubscribe(model.id, 'activity_received', handleActivityReceived)
+      view.unsubscribe(model.id, 'activities_cleared', handleActivitiesCleared)
     }
   }, [view, model, config.onActivity])
 
@@ -162,6 +170,17 @@ function ActivitySynqContextProvider({
     })
   }, [view, model, config.userId])
 
+  // Clear all activities using proper Multisynq pattern
+  const clearActivities = useCallback((): void => {
+    if (!view || !model) {
+      console.warn('ActivitySynq: Cannot clear activities - not connected')
+      return
+    }
+
+    // Send clear command to model - let model handle the clearing
+    view.publish(model.id, 'clear_activities', {})
+  }, [view, model])
+
   // Create stable config reference
   const stableConfig = useMemo(() => ({
     apiKey: config.apiKey,
@@ -174,13 +193,14 @@ function ActivitySynqContextProvider({
 
   const contextValue: IActivitySynqContext = useMemo(() => ({
     registerActivity,
+    clearActivities,
     activities,
     isReady,
     status,
     error,
     userId: config.userId,
     config: stableConfig,
-  }), [registerActivity, activities, isReady, status, error, config.userId, stableConfig])
+  }), [registerActivity, clearActivities, activities, isReady, status, error, config.userId, stableConfig])
 
   return (
     <ActivitySynqContext.Provider value={contextValue}>
@@ -232,6 +252,7 @@ export const ActivitySynqProvider = ({
     return (
       <ActivitySynqContext.Provider value={{
         registerActivity: () => console.warn('ActivitySynq: Not initialized - no API key'),
+        clearActivities: () => console.warn('ActivitySynq: Not initialized - no API key'),
         activities: [],
         isReady: false,
         status: 'error',
@@ -251,7 +272,8 @@ export const ActivitySynqProvider = ({
         name: memoizedConfig.sessionName!,
         password: memoizedConfig.sessionPassword!,
         appId: memoizedConfig.appId!,
-        apiKey: memoizedConfig.apiKey!
+        apiKey: memoizedConfig.apiKey!,
+        tps: 10 // Reduce from default 20 to 10 ticks per second to reduce network load
       }}
       showChildrenWithoutSession
     >

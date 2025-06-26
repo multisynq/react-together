@@ -4,6 +4,7 @@ import type { ActivityEvent, ConnectionStatus, ActivitySynqConfig } from '../con
 
 interface IActivitySynqGlobal {
   registerActivity: <T = any>(type: string, data?: T) => void
+  clearActivities: () => void
   activities: ActivityEvent[]
   isReady: boolean
   status: ConnectionStatus

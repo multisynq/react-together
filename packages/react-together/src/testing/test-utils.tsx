@@ -8,6 +8,7 @@ export type MockFunction = (...args: any[]) => any
 export interface MockActivitySynqProviderProps {
   children: ReactNode
   registerActivity?: MockFunction
+  clearActivities?: MockFunction
   isReady?: boolean
   status?: ConnectionStatus
   error?: Error | null
@@ -19,6 +20,7 @@ export interface MockActivitySynqProviderProps {
 export const MockActivitySynqProvider = ({
   children,
   registerActivity = () => {},
+  clearActivities = () => {},
   isReady = true,
   status = 'ready',
   error = null,
@@ -28,6 +30,7 @@ export const MockActivitySynqProvider = ({
 }: MockActivitySynqProviderProps) => {
   const value = {
     registerActivity,
+    clearActivities,
     activities,
     isReady,
     status,

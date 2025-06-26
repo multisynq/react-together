@@ -24,6 +24,7 @@ export default class ActivityModel extends ReactModel {
 
     // Subscribe to activity events from views
     this.subscribe(this.id, 'add_activity', this.handleActivity)
+    this.subscribe(this.id, 'clear_activities', this.clearActivities)
   }
 
   handleViewJoin(viewId: string, _viewInfo: ViewInfo<{ userId?: string }>) {
@@ -68,6 +69,18 @@ export default class ActivityModel extends ReactModel {
   // Helper method to get activity count
   getActivityCount(): number {
     return this.activities.length
+  }
+
+  // Clear all activities (proper Multisynq pattern)
+  clearActivities() {
+    // Clear the model state (single source of truth)
+    this.activities = []
+    
+    // Broadcast clear event to all views using reflector timestamp
+    this.publish(this.id, 'activities_cleared', {
+      clearedAt: this.now(),
+      clearedBy: 'user_action'
+    })
   }
 }
 
