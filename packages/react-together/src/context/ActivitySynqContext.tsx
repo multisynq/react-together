@@ -122,6 +122,7 @@ function ActivitySynqContextProvider({
       setActivities([])
     }
 
+    // Keep default queued handling to ensure all activities are received
     view.subscribe(model.id, 'activity_received', handleActivityReceived)
     view.subscribe(model.id, 'activities_cleared', handleActivitiesCleared)
 
@@ -273,7 +274,8 @@ export const ActivitySynqProvider = ({
         password: memoizedConfig.sessionPassword!,
         appId: memoizedConfig.appId!,
         apiKey: memoizedConfig.apiKey!,
-        tps: 10 // Reduce from default 20 to 10 ticks per second to reduce network load
+        // Remove tps parameter - let Multisynq use default rate
+        // This should improve connection stability
       }}
       showChildrenWithoutSession
     >

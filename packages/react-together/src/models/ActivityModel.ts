@@ -19,7 +19,7 @@ export default class ActivityModel extends ReactModel {
 
     // Initialize model state - this is the canonical activity store
     this.activities = []
-    this.maxActivities = 1000 // Reasonable limit for memory management
+    this.maxActivities = 100 // Reduced limit to prevent memory issues and improve performance
     this.connectedViews = new Set()
 
     // Subscribe to activity events from views

@@ -22,7 +22,9 @@ export function ActivitySynqDemo() {
   const hashParams = new URLSearchParams(window.location.hash.slice(1))
   
   const userParam = urlParams.get('user')
-  const sessionName = urlParams.get('rtName') || 'emoji-voting-demo-fixed'
+  // Generate unique session name if not provided via URL to prevent conflicts
+  const defaultSessionName = `emoji-voting-demo-${Date.now().toString(36).slice(-6)}`
+  const sessionName = urlParams.get('rtName') || defaultSessionName
   const sessionPassword = hashParams.get('rtPwd') || 'vote-together'
   const userId = userParam ? `emoji-voter-${userParam}` : undefined
 
@@ -59,8 +61,11 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
   const handleActivityReceived = useCallback((activity: ActivityEvent) => {
     console.log('ActivitySynq Demo - Activity received:', activity)
     
+    // Extract userId from activity data (where it's actually stored)
+    const activityUserId = activity.data?.userId || 'unknown'
+    
     // Create unique ID for deduplication
-    const activityId = `${activity.userId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
+    const activityId = `${activityUserId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
     
     // Skip if already processed by this component
     if (processedActivitiesRef.current.has(activityId)) {
@@ -70,11 +75,19 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
     
     processedActivitiesRef.current.add(activityId)
     
+    // Prevent memory leak by limiting deduplication set size
+    if (processedActivitiesRef.current.size > 200) {
+      // Clear half the entries when limit is reached
+      const entries = Array.from(processedActivitiesRef.current)
+      processedActivitiesRef.current.clear()
+      entries.slice(-100).forEach(id => processedActivitiesRef.current.add(id))
+    }
+    
     // Add to activity feed
     const feedEntry: ActivityFeedEntry = {
       id: crypto.randomUUID(),
       type: activity.type,
-      userId: activity.userId || 'unknown',
+      userId: activityUserId,
       data: activity.data,
       timestamp: activity.timestamp
     }

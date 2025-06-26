@@ -1,5 +1,5 @@
-import { useContext } from 'react'
-import { ActivitySynqContext } from '../context/ActivitySynqContext'
+import { useEffect, useState } from 'react'
+import { ActivitySynqGlobalManager } from '../components/ActivitySynqGlobal'
 import type { ActivityEvent, ConnectionStatus, ActivitySynqConfig } from '../context/ActivitySynqContext'
 
 interface IActivitySynqGlobal {
@@ -15,7 +15,7 @@ interface IActivitySynqGlobal {
 
 /**
  * Global hook for accessing ActivitySynq functionality from anywhere in the app.
- * Must be used after ActivitySynqGlobal component is mounted somewhere in the app tree.
+ * Works with the singleton ActivitySynqGlobalManager, no React context needed.
  * 
  * This hook provides the same interface as useActivitySynq but works globally
  * without requiring a specific context wrapper around the calling component.
@@ -40,14 +40,18 @@ interface IActivitySynqGlobal {
  * ```
  */
 export default function useActivitySynqGlobal(): IActivitySynqGlobal {
-  const context = useContext(ActivitySynqContext)
-  
-  if (context === undefined) {
-    throw new Error(
-      'useActivitySynqGlobal must be used within an app that has ActivitySynqGlobal component mounted. ' +
-      'Make sure to add <ActivitySynqGlobal config={config} /> somewhere in your app tree.'
-    )
-  }
-  
-  return context
+  const manager = ActivitySynqGlobalManager.getInstance()
+  const [, forceUpdate] = useState({})
+
+  useEffect(() => {
+    // Subscribe to manager state changes to trigger re-renders
+    const unsubscribe = manager.addListener(() => {
+      forceUpdate({})
+    })
+
+    return unsubscribe
+  }, [manager])
+
+  // Return current state from the singleton manager
+  return manager.getState()
 }
