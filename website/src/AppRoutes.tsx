@@ -1,5 +1,6 @@
 import {
   ActivitySynqDocumentationPage,
+  ActivitySynqGlobalDocumentationPage,
   AntDesignCheckboxTogetherDocumentationPage,
   AntDesignDatePickerTogetherDocumentationPage,
   AntDesignMultiSelectTogetherDocumentationPage,
@@ -102,7 +103,6 @@ import changelog from 'react-together/CHANGELOG.md'
 import contributing from '../../contributing/CONTRIBUTING.md'
 import multisynq from './pages/Documentation/multisynq-react.md'
 import pricing from './pages/Documentation/pricing/PRICING.md'
-import ActivitySynqGlobalPage from './pages/ActivitySynqGlobal'
 
 function GlobalWrapper() {
   return (
@@ -128,6 +128,7 @@ export default function AppRoutes() {
             <Route path='Dependencies'                      element={<DependenciesPage                                   />} />
             <Route path='ReactTogether'                     element={<ReactTogetherDocumentationPage                     />} />
             <Route path='ActivitySynq'                      element={<ActivitySynqDocumentationPage                      />} />
+            <Route path='ActivitySynqGlobal'                element={<ActivitySynqGlobalDocumentationPage               />} />
             <Route path='SessionManager'                    element={<SessionManagerDocumentationPage                    />} />
             <Route path='ConnectedUsers'                    element={<ConnectedUsersDocumentationPage                    />} />
             <Route path='HoverHighlighter'                  element={<HoverHighlighterDocumentationPage                  />} />
@@ -233,7 +234,6 @@ export default function AppRoutes() {
       <Route element={<IsolatedDemoLayout />}>
         <Route path='demos/ActivitySynq' element={<ActivitySynqDemo />} />
         <Route path='demos/useActivitySynq' element={<UseActivitySynqDemo />} />
-        <Route path='demos/ActivitySynqGlobal' element={<ActivitySynqGlobalPage />} />
       </Route>
     </Routes>
   )

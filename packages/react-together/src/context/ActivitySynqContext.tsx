@@ -35,11 +35,11 @@ export const ActivitySynqContext = createContext<IActivitySynqContext | undefine
 const generateUserId = (): string => {
   const USER_ID_LOCAL_STORAGE_KEY = '__activity-synq-userId'
   let existing: string | null = null
-  
+
   if (typeof window !== 'undefined') {
     existing = localStorage.getItem(USER_ID_LOCAL_STORAGE_KEY)
   }
-  
+
   if (!existing) {
     existing = Math.random().toString(36).substring(2, 15)
     if (typeof window !== 'undefined') {
@@ -89,12 +89,12 @@ class ActivityBuffer {
   }
 }
 
-function ActivitySynqContextProvider({ 
-  children, 
-  config 
-}: { 
+function ActivitySynqContextProvider({
+  children,
+  config
+}: {
   children: ReactNode
-  config: ActivitySynqConfig 
+  config: ActivitySynqConfig
 }) {
   const { view, model } = useMultisynqContext()
   const hasSession = useView() !== null
@@ -127,7 +127,7 @@ function ActivitySynqContextProvider({
       setError(null)
       return
     }
-    
+
     const handleSyncChange = (synced: boolean) => {
       setIsSynced(synced)
       if (synced) {
@@ -136,15 +136,15 @@ function ActivitySynqContextProvider({
         flushBuffer()
       }
     }
-    
+
     const handleError = (err: Error) => {
       setError(err)
       setIsSynced(false)
     }
-    
+
     view.subscribe(view.viewId, 'synced', handleSyncChange)
     view.subscribe(view.viewId, 'error', handleError)
-    
+
     return () => {
       view.unsubscribe(view.viewId, 'synced', handleSyncChange)
       view.unsubscribe(view.viewId, 'error', handleError)
@@ -156,14 +156,14 @@ function ActivitySynqContextProvider({
     if (!view || !model) {
       return
     }
-    
+
     const handleActivityReceived = (activity: ActivityEvent) => {
       // Call the onActivity callback for activities from all users
       config.onActivity?.(activity)
     }
-    
+
     view.subscribe(model.id, 'activity_received', handleActivityReceived)
-    
+
     return () => {
       view.unsubscribe(model.id, 'activity_received', handleActivityReceived)
     }
@@ -177,12 +177,12 @@ function ActivitySynqContextProvider({
       if (typeof modelWithActivities.getHistoricalActivities === 'function') {
         console.log('ActivitySynq: Loading historical activities from model...')
         const historicalActivities = modelWithActivities.getHistoricalActivities()
-        
+
         // Send each historical activity through the onActivity callback
         historicalActivities.forEach((activity: ActivityEvent) => {
           config.onActivity?.(activity)
         })
-        
+
         console.log(`ActivitySynq: Loaded ${historicalActivities.length} historical activities`)
       } else {
         console.log('ActivitySynq: Model does not have getHistoricalActivities method')
@@ -228,7 +228,7 @@ function ActivitySynqContextProvider({
       console.log(`ActivitySynq: Connection not ready (${status}). Buffering activity: ${type}`)
       buffer.add(activity)
       setBufferedEventCount(buffer.getCount())
-      
+
       // Still call onActivity callback for immediate feedback
       config.onActivity?.(activity)
     }
@@ -269,31 +269,38 @@ interface ActivitySynqProviderProps {
 // Create stable default config to prevent object recreation
 const DEFAULT_CONFIG: ActivitySynqConfig = {}
 
-export const ActivitySynqProvider = ({ 
-  children, 
-  config = DEFAULT_CONFIG 
+export const ActivitySynqProvider = ({
+  children,
+  config = DEFAULT_CONFIG
 }: ActivitySynqProviderProps) => {
   // Generate unique session name only once per component instance
   const [defaultSessionName] = useState(() => generateUniqueSessionName())
-  
+
   // Use ref to store current onActivity callback to avoid recreation
   const onActivityRef = useRef(config.onActivity)
   onActivityRef.current = config.onActivity
-  
+
+  const stableOnActivity = useCallback(
+    (activity: ActivityEvent) => {
+      onActivityRef.current?.(activity)
+    },
+    [] // Never changes
+  )
+
   // Memoize config with stable references, excluding onActivity from dependencies to prevent session restarts
   const memoizedConfig = useMemo(() => {
     const appId = config.appId || import.meta.env.VITE_APP_ID
     if (!appId) {
       console.error('ActivitySynq Error: appId is missing. Provide it via the appId prop.')
     }
-    
+
     return {
       userId: config.userId || generateUserId(),
       apiKey: config.apiKey || import.meta.env.VITE_API_KEY || import.meta.env.VITE_MULTISYNQ_API_KEY,
       appId: appId || 'missing-app-id',
       sessionName: config.sessionName || import.meta.env.VITE_SESSION_NAME || defaultSessionName,
       sessionPassword: config.sessionPassword || import.meta.env.VITE_SESSION_PASSWORD || 'activity-session-password',
-      onActivity: (activity: ActivityEvent) => onActivityRef.current?.(activity), // Stable wrapper
+      onActivity: stableOnActivity, // Stable wrapper
     }
   }, [config.apiKey, config.userId, config.sessionName, config.sessionPassword, config.appId, defaultSessionName])
 
@@ -307,7 +314,7 @@ export const ActivitySynqProvider = ({
   }, [memoizedConfig.appId, memoizedConfig.sessionName, config.sessionName])
 
   // Stable session key that excludes onActivity callback to prevent restarts
-  const sessionKey = useMemo(() => 
+  const sessionKey = useMemo(() =>
     `${memoizedConfig.apiKey}_${memoizedConfig.userId}_${memoizedConfig.sessionName}_${memoizedConfig.sessionPassword}_${memoizedConfig.appId}`,
     [memoizedConfig.apiKey, memoizedConfig.userId, memoizedConfig.sessionName, memoizedConfig.sessionPassword, memoizedConfig.appId]
   )

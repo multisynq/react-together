@@ -75,15 +75,19 @@ function UseActivitySynqDemoContent({
     setActivityLog(prev => [feedEntry, ...prev].slice(0, 8))
   }, [userId])
 
-  // Memoize config to prevent provider recreation
+  // Use ref to store the callback to prevent config recreation
+  const onActivityRef = useRef(handleActivityReceived)
+  onActivityRef.current = handleActivityReceived
+
+  // Memoize config with stable onActivity reference to prevent provider recreation
   const config = useMemo(() => ({
     apiKey: import.meta.env.VITE_API_KEY,
     appId: import.meta.env.VITE_APP_ID,
     sessionName,
     sessionPassword,
     userId,
-    onActivity: handleActivityReceived
-  }), [sessionName, sessionPassword, userId, handleActivityReceived])
+    onActivity: (activity: ActivityEvent) => onActivityRef.current(activity)
+  }), [sessionName, sessionPassword, userId])
 
   return (
     <ActivitySynqProvider config={config}>
