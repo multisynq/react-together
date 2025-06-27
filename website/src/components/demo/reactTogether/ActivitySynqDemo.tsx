@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
-import { ActivitySynqProvider, useActivitySynq, ActivityEvent } from 'react-together'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
+import { ActivitySynqProvider, useActivitySynq, useActivitySynqStable, ActivityEvent } from 'react-together'
 import { useMultisynqContext } from '@multisynq/react'
 
 // Activity data interfaces for emoji voting demo
@@ -28,14 +28,15 @@ export function ActivitySynqDemo() {
   const sessionPassword = hashParams.get('rtPwd') || 'vote-together'
   const userId = userParam ? `emoji-voter-${userParam}` : undefined
 
-  const config = {
+  // Stable configuration to prevent session recreation
+  const config = useMemo(() => ({
     // Essential configuration for ActivitySynq
     apiKey: import.meta.env.VITE_API_KEY,
     appId: import.meta.env.VITE_APP_ID,
     sessionName: sessionName, // Groups users together - from URL params
     sessionPassword: sessionPassword, // Secure session access - from URL hash
     userId: userId, // Identify specific users
-  }
+  }), [sessionName, sessionPassword, userId])
 
   return (
     <ActivitySynqProvider config={config}>
