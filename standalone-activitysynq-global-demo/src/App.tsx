@@ -142,7 +142,7 @@ function ActivityFeed() {
               Showing {activities.length} recent activities
             </p>
             {activities.slice(0, 20).map((activity, index) => {
-              const isLocal = activity.userId?.includes('demo-user')
+              const isLocal = activity.data?.userId?.includes('demo-user')
               return (
                 <div 
                   key={`${activity.timestamp}-${index}`}
@@ -160,11 +160,11 @@ function ActivityFeed() {
                       {activity.type}
                     </span>
                     <span style={{ fontSize: '12px', color: '#6b7280' }}>
-                      {new Date(activity.timestamp).toLocaleTimeString()}
+                      {new Date(activity.timestamp || 0).toLocaleTimeString()}
                     </span>
                   </div>
                   <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>
-                    User: {activity.userId?.slice(-8) || 'Unknown'} | 
+                    User: {activity.data?.userId?.slice(-8) || 'Unknown'} | 
                     Data: {JSON.stringify(activity.data).slice(0, 80)}
                     {JSON.stringify(activity.data).length > 80 && '...'}
                   </div>
@@ -307,8 +307,6 @@ function App() {
       {/* Single line integration - this enables everything above! */}
       <ActivitySynqGlobal 
         config={activityConfig}
-        showNotifications={true}  // Enable toast-like notifications
-        portalContainer="body"    // Where to render notifications
       />
     </div>
   )

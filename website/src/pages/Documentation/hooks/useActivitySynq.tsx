@@ -2,14 +2,13 @@ import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import getDocLinks from '@utils/getDocLinks'
+import { useCallback, useMemo, useRef } from 'react'
+import { ActivityEvent, ActivitySynqProvider, useActivitySynq } from 'react-together'
 import { GenericDocNav, GenericDocPage } from '../GenericDocPage'
 import InterfaceApi from '../InterfaceApi'
 import { PreviewSourceCodeTabs } from '../PreviewSourceCodeTabs'
 import HookParamsApi from './HookParamsApi'
 import HookReturnApi from './HookReturnApi'
-import { UseActivitySynqDemo } from '@components/demo/reactTogether/UseActivitySynqDemo'
-import { useState, useCallback, useRef, useMemo } from 'react'
-import { ActivitySynqProvider, useActivitySynq, ActivityEvent } from 'react-together'
 
 const codes = {
   demo: {
@@ -17,100 +16,7 @@ const codes = {
 import { useState } from 'react'
 import { ActivitySynqProvider, useActivitySynq } from 'react-together'
 
-function UseActivitySynqDemo() {
-  const { 
-    registerActivity, 
-    isReady, 
-    status, 
-    error, 
-    userId, 
-    activities 
-  } = useActivitySynq()
-  
-  const [activityLog, setActivityLog] = useState([])
 
-  const handleButtonClick = (buttonId: string) => {
-    const activity = {
-      type: 'button_click',
-      data: { buttonId, timestamp: Date.now() }
-    }
-    
-    registerActivity(activity.type, activity.data)
-    
-    // Add to local log for display
-    setActivityLog(prev => [activity, ...prev].slice(0, 5))
-  }
-
-  const getStatusColor = () => {
-    switch (status) {
-      case 'ready': return 'green'
-      case 'initializing': return 'yellow'
-      case 'disconnected': return 'orange'
-      case 'error': return 'red'
-      default: return 'gray'
-    }
-  }
-
-  return (
-    <div className="p-4 border rounded-lg">
-      <div className="mb-4 p-3 rounded" style={{ backgroundColor: getStatusColor() + '20' }}>
-        <h3>Connection Status</h3>
-        <p><strong>Status:</strong> {status}</p>
-        <p><strong>Ready:</strong> {isReady ? 'Yes' : 'No'}</p>
-        <p><strong>User ID:</strong> {userId?.slice(0, 8)}...</p>
-        <p><strong>Activities:</strong> {activities.length}</p>
-        {error && <p style={{ color: 'red' }}><strong>Error:</strong> {error.message}</p>}
-      </div>
-
-      <div className="mb-4">
-        <h3>Test Activities</h3>
-        <div className="flex gap-2 flex-wrap">
-          <button 
-            className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            onClick={() => handleButtonClick('primary-cta')}
-          >
-            Primary Action
-          </button>
-          <button 
-            className="px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-            onClick={() => handleButtonClick('secondary-action')}
-          >
-            Secondary Action
-          </button>
-          <button 
-            className="px-3 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
-            onClick={() => registerActivity('feature_usage', { feature: 'demo-feature' })}
-          >
-            Feature Usage
-          </button>
-        </div>
-      </div>
-
-      <div>
-        <h3>Recent Activities (Local)</h3>
-        <div className="bg-gray-100 p-3 rounded max-h-40 overflow-y-auto">
-          {activityLog.length === 0 ? (
-            <p className="text-gray-500">No activities yet. Try clicking the buttons above!</p>
-          ) : (
-            <ul className="space-y-1">
-              {activityLog.map((activity, index) => (
-                <li key={index} className="text-sm">
-                  <strong>{activity.type}</strong>: {JSON.stringify(activity.data)}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default function App() {
-  return (
-    <ActivitySynqProvider>
-      <UseActivitySynqDemo />
-    </ActivitySynqProvider>
   )
 }
 `,
@@ -291,28 +197,27 @@ const api = (
 
 // Shared session wrapper for better performance
 function UseActivitySynqPreview({ sessionParams }: { sessionParams: { name: string, password: string } }) {
-  const [activityLog, setActivityLog] = useState<ActivityEvent[]>([])
-  const processedActivitiesRef = useRef<Set<string>>(new Set())
+  const processedActivitiesRef = useRef<ActivityEvent[]>([])
 
   // Single activity handler for both demo instances
   const handleSharedActivity = useCallback((activity: ActivityEvent) => {
-    const activityId = `${activity.data?.userId || 'unknown'}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
-    
-    if (processedActivitiesRef.current.has(activityId)) return
-    processedActivitiesRef.current.add(activityId)
-    
-    setActivityLog(prev => [activity, ...prev].slice(0, 20))
+    processedActivitiesRef.current = [activity, ...processedActivitiesRef.current].slice(0, 20)
+    processedActivitiesRef.current.push(activity)
   }, [])
 
-  // Shared configuration
+  // Stable onActivity reference to prevent config recreation
+  const onActivityRef = useRef(handleSharedActivity)
+  onActivityRef.current = handleSharedActivity
+
+  // Shared configuration - stable reference to prevent reconnections
   const sharedConfig = useMemo(() => ({
     apiKey: import.meta.env.VITE_API_KEY,
     appId: import.meta.env.VITE_APP_ID,
     sessionName: sessionParams.name,
     sessionPassword: sessionParams.password,
-    userId: 'preview-shared',
-    onActivity: handleSharedActivity
-  }), [sessionParams.name, sessionParams.password, handleSharedActivity])
+    // userId: 'preview-shared',
+    onActivity: (activity: ActivityEvent) => onActivityRef.current(activity)
+  }), [sessionParams.name, sessionParams.password])
 
   return (
     <ActivitySynqProvider config={sharedConfig}>
@@ -322,23 +227,19 @@ function UseActivitySynqPreview({ sessionParams }: { sessionParams: { name: stri
             <span className='text-sm font-medium text-blue-800'>User 1</span>
           </div>
           <div className='border-x border-b border-blue-200 rounded-b-lg overflow-hidden'>
-            <UseActivitySynqDemoInstance 
+            <UseActivitySynqDemoInstance
               userId="demo-user-1"
-              activityLog={activityLog}
-              sessionName={sessionParams.name}
             />
           </div>
         </div>
-        
+
         <div className='flex-1 min-w-[400px] max-w-[500px]'>
           <div className='bg-green-50 border border-green-200 rounded-t-lg px-3 py-2'>
             <span className='text-sm font-medium text-green-800'>User 2</span>
           </div>
           <div className='border-x border-b border-green-200 rounded-b-lg overflow-hidden'>
-            <UseActivitySynqDemoInstance 
+            <UseActivitySynqDemoInstance
               userId="demo-user-2"
-              activityLog={activityLog}
-              sessionName={sessionParams.name}
             />
           </div>
         </div>
@@ -348,32 +249,32 @@ function UseActivitySynqPreview({ sessionParams }: { sessionParams: { name: stri
 }
 
 // Demo instance that shares a session
-function UseActivitySynqDemoInstance({ 
-  userId, 
-  activityLog, 
-  sessionName 
-}: { 
+function UseActivitySynqDemoInstance({
+  userId,
+}: {
   userId: string
-  activityLog: ActivityEvent[]
-  sessionName: string
 }) {
-  const { registerActivity, isReady, status, error, activities } = useActivitySynq()
-  
-  const handleButtonClick = useCallback((buttonId: string) => {
-    registerActivity('button_click', {
-      buttonId,
-      timestamp: Date.now(),
-      userId
-    })
-  }, [registerActivity, userId])
+  const { registerActivity, isReady, status, error, activities, config } = useActivitySynq()
 
-  const handleFeatureUsage = useCallback((feature: string) => {
-    registerActivity('feature_usage', {
-      feature,
+  const handleButtonClick = useCallback((itemId: string) => {
+    registerActivity('button', {
+      itemId,
       timestamp: Date.now(),
       userId
     })
-  }, [registerActivity, userId])
+  }, [registerActivity])
+
+  const handleFeatureUsage = useCallback((itemId: string) => {
+    registerActivity<{
+      itemId: string;
+      timestamp: number;
+      userId: string;
+    }>('feature', {
+      itemId,
+      timestamp: Date.now(),
+      userId
+    })
+  }, [registerActivity])
 
   const getStatusColor = () => {
     switch (status) {
@@ -386,29 +287,29 @@ function UseActivitySynqDemoInstance({
   }
 
   // Filter activities for this specific user's UI perspective
-  const filteredActivityLog = useMemo(() => 
-    activityLog.slice(0, 8).map(activity => ({
-      id: crypto.randomUUID(),
-      type: activity.type,
-      userId: activity.data?.userId || 'unknown',
-      data: activity.data,
-      timestamp: activity.timestamp,
-      isLocal: activity.data?.userId === userId
-    })), [activityLog, userId]
-  )
+  // const filteredActivityLog = useMemo(() => 
+  //   activityLog.map(activity => ({
+  //     id: activity.data?.id,
+  //     type: activity.type,
+  //     userId: activity.data?.userId || 'unknown',
+  //     data: activity.data,
+  //     timestamp: activity.timestamp,
+  //     isLocal: activity.data?.userId === userId
+  //   })), [activityLog, userId]
+  // )
 
-  const getUserDisplayName = useCallback((entry: any) => {
-    const isLocal = entry.userId === userId
-    
-    if (isLocal) {
-      if (userId.includes('user-1')) return 'User1 (You)'
-      if (userId.includes('user-2')) return 'User2 (You)'
-      return 'You'
-    }
-    if (entry.userId?.includes('user-1')) return 'User1'
-    if (entry.userId?.includes('user-2')) return 'User2'
-    return entry.userId?.slice(-8) || 'Other User'
-  }, [userId])
+  // const getUserDisplayName = useCallback((entry: any) => {
+  //   const isLocal = entry.userId === userId
+
+  //   if (isLocal) {
+  //     if (userId.includes('user-1')) return 'User1 (You)'
+  //     if (userId.includes('user-2')) return 'User2 (You)'
+  //     return 'You'
+  //   }
+  //   if (entry.userId?.includes('user-1')) return 'User1'
+  //   if (entry.userId?.includes('user-2')) return 'User2'
+  //   return entry.userId?.slice(-8) || 'Other User'
+  // }, [userId])
 
   return (
     <div className="flex flex-col h-full max-w-2xl mx-auto p-4">
@@ -432,7 +333,7 @@ function UseActivitySynqDemoInstance({
           </div>
         </div>
         <div className="mt-2 text-xs text-gray-600">
-          <p><strong>Session:</strong> <span className="font-mono">{sessionName || 'N/A'}</span></p>
+          <p><strong>Session:</strong> <span className="font-mono">{config.sessionName || 'N/A'}</span></p>
         </div>
         {error && (
           <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded text-red-800 text-sm">
@@ -445,25 +346,25 @@ function UseActivitySynqDemoInstance({
       <div className="mb-4">
         <h3 className="text-lg font-semibold mb-3">Test Activities</h3>
         <div className="grid grid-cols-2 gap-3">
-          <button 
+          <button
             className="px-4 py-2 rounded-lg border-2 transition-all duration-200 border-blue-300 bg-blue-50 hover:bg-blue-100 hover:border-blue-400 text-blue-800 font-medium"
             onClick={() => handleButtonClick('primary-cta')}
           >
             Primary Action
           </button>
-          <button 
+          <button
             className="px-4 py-2 rounded-lg border-2 transition-all duration-200 border-green-300 bg-green-50 hover:bg-green-100 hover:border-green-400 text-green-800 font-medium"
             onClick={() => handleButtonClick('secondary-action')}
           >
             Secondary Action
           </button>
-          <button 
+          <button
             className="px-4 py-2 rounded-lg border-2 transition-all duration-200 border-purple-300 bg-purple-50 hover:bg-purple-100 hover:border-purple-400 text-purple-800 font-medium"
             onClick={() => handleFeatureUsage('demo-feature')}
           >
             Feature Usage
           </button>
-          <button 
+          <button
             className="px-4 py-2 rounded-lg border-2 transition-all duration-200 border-indigo-300 bg-indigo-50 hover:bg-indigo-100 hover:border-indigo-400 text-indigo-800 font-medium"
             onClick={() => handleFeatureUsage('advanced-tool')}
           >
@@ -479,31 +380,27 @@ function UseActivitySynqDemoInstance({
       <div className="flex-1">
         <h3 className="text-lg font-semibold mb-3">🔔 Activity Log</h3>
         <div className="bg-gray-50 rounded-lg p-3 h-48 overflow-y-auto border">
-          {filteredActivityLog.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
-              <div className="text-2xl mb-2">📝</div>
-              <p className="text-sm">Click buttons above to see activities!</p>
-            </div>
-          ) : (
+          {(
             <div className="space-y-2">
-              {filteredActivityLog.map((entry) => {
-                const isLocal = entry.userId === userId
+              {activities.map((entry) => {
+                const activityId = `${entry.data?.userId}-${entry.type}-${entry.timestamp}`
+                const isLocal = entry.data?.userId === userId || false
+                const userDisplayName = isLocal ?
+                  userId + '(You)' : entry.data?.userId || 'Other User'
                 return (
-                  <div key={entry.id} className={`rounded-lg p-2 border ${
-                    isLocal
-                      ? 'bg-blue-50 border-blue-200' 
-                      : 'bg-green-50 border-green-200'
-                  }`}>
+                  <div key={activityId} className={`rounded-lg p-2 border ${isLocal
+                    ? 'bg-blue-50 border-blue-200'
+                    : 'bg-green-50 border-green-200'
+                    }`}>
                     <div className="flex items-center justify-between text-sm">
                       <div className="flex items-center space-x-2">
-                        <span className={`font-medium ${
-                          isLocal ? 'text-blue-800' : 'text-green-800'
-                        }`}>
-                          {getUserDisplayName(entry)}
+                        <span className={`font-medium ${isLocal ? 'text-blue-800' : 'text-green-800'
+                          }`}>
+                          {userDisplayName}
                         </span>
                         <span className="text-gray-600">
-                          {entry.type === 'button_click' && `clicked "${entry.data?.buttonId}"`}
-                          {entry.type === 'feature_usage' && `used "${entry.data?.feature}"`}
+                          {entry.type === 'button' && `clicked "${entry.data?.itemId}"`}
+                          {entry.type === 'feature' && `used "${entry.data?.itemId}"`}
                         </span>
                       </div>
                       <span className="text-xs text-gray-500">
@@ -512,7 +409,14 @@ function UseActivitySynqDemoInstance({
                     </div>
                   </div>
                 )
-              })}
+              })
+                ||
+                (
+                  <div className="text-center py-8 text-gray-500">
+                    <div className="text-2xl mb-2">📝</div>
+                    <p className="text-sm">Click buttons above to see activities!</p>
+                  </div>
+                )}
             </div>
           )}
         </div>
@@ -550,12 +454,12 @@ export default function UseActivitySynqDocumentationPage() {
           <>
             <p>
               The <CodeSpan text='useActivitySynq' /> hook provides access to <strong>real-time cross-user activity tracking</strong>.
-              Register activities that are instantly synchronized across ALL users in the same session, enabling collaborative 
+              Register activities that are instantly synchronized across ALL users in the same session, enabling collaborative
               features, live feeds, and real-time analytics.
             </p>
             <p>
-              <strong>🚀 Multi-User Sync:</strong> All users in the session automatically receive each other's activities via 
-              the <code>onActivity</code> callback. Activities are sent immediately when connected, or automatically buffered 
+              <strong>🚀 Multi-User Sync:</strong> All users in the session automatically receive each other's activities via
+              the <code>onActivity</code> callback. Activities are sent immediately when connected, or automatically buffered
               when offline and sent when the connection is restored.
             </p>
             <PreviewSourceCodeTabs

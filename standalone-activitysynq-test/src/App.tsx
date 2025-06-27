@@ -38,7 +38,7 @@ function App() {
 // Demo content that shows emoji voting functionality
 function ActivitySynqDemoContent({ userId }: { userId: string }) {
   const { view, model } = useMultisynqContext()
-  const { registerActivity, isReady, status, bufferedEventCount } = useActivitySynq()
+  const { registerActivity, isReady, status } = useActivitySynq()
   const [activityFeed, setActivityFeed] = useState<ActivityFeedEntry[]>([])
   const [voteCount, setVoteCount] = useState<Record<string, number>>({})
   
@@ -53,7 +53,7 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
     console.log('🔥 Activity received via Croquet view subscription:', activity)
     
     // Create unique ID for deduplication
-    const activityId = `${activity.userId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
+    const activityId = `${activity.data?.userId || 'unknown'}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
     
     // Skip if already processed (React Strict Mode protection)
     if (processedActivitiesRef.current.has(activityId)) {
@@ -67,9 +67,9 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
     const feedEntry: ActivityFeedEntry = {
       id: crypto.randomUUID(),
       type: activity.type,
-      userId: activity.userId || 'unknown',
+      userId: activity.data?.userId || 'unknown',
       data: activity.data,
-      timestamp: activity.timestamp
+      timestamp: activity.timestamp || Date.now()
     }
     
     setActivityFeed(prev => [feedEntry, ...prev].slice(0, 10))
@@ -128,7 +128,6 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
       registerActivity={registerActivity}
       isReady={isReady}
       status={status}
-      bufferedEventCount={bufferedEventCount}
       userId={userId}
     />
   )
@@ -141,7 +140,6 @@ function ActivitySynqInnerContent({
   registerActivity,
   isReady,
   status,
-  bufferedEventCount,
   userId
 }: { 
   activityFeed: ActivityFeedEntry[]
@@ -150,7 +148,6 @@ function ActivitySynqInnerContent({
   registerActivity: (type: string, data?: any) => void
   isReady: boolean
   status: string
-  bufferedEventCount: number
   userId: string
 }) {
 
@@ -221,11 +218,6 @@ function ActivitySynqInnerContent({
           <span className="text-sm font-medium">Status: {status} | Ready: {isReady ? 'Yes' : 'No'}</span>
           <div className="text-xs">
             User: <span className="font-mono">{getUserDisplayName('current-user')}</span>
-            {bufferedEventCount > 0 && (
-              <span className="ml-2 bg-yellow-200 px-2 py-1 rounded text-yellow-800">
-                {bufferedEventCount} buffered
-              </span>
-            )}
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
-import { MultisynqRoot, useMultisynqContext, useView } from '@multisynq/react'
-import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import ActivityModel from '../models/ActivityModel'
+import { MultisynqRoot, useModelSelector, usePublish, useView } from '@multisynq/react'
+import { createContext, ReactNode, useContext, useMemo, useRef } from 'react'
 import { createStableActivityConfig } from '../utils/activityUtils'
+import ActivityModel from '../models/ActivityModel'
 
 export interface ActivityEvent<T = any> {
   type: string
@@ -20,15 +20,16 @@ export interface ActivitySynqConfig {
 
 export type ConnectionStatus = 'initializing' | 'ready' | 'disconnected' | 'error'
 
-// Split context for better performance - stable vs volatile values
+
+// Context for stable references (functions, config)
 interface IActivitySynqStableContext {
   registerActivity: <T = any>(type: string, data?: T) => void
   clearActivities: () => void
   userId?: string
   config: ActivitySynqConfig
-  model: ActivityModel | null
 }
 
+// Context for frequently changing data (activities, status)
 interface IActivitySynqVolatileContext {
   activities: ActivityEvent[]
   isReady: boolean
@@ -39,171 +40,95 @@ interface IActivitySynqVolatileContext {
 export const ActivitySynqStableContext = createContext<IActivitySynqStableContext | undefined>(undefined)
 export const ActivitySynqVolatileContext = createContext<IActivitySynqVolatileContext | undefined>(undefined)
 
-function ActivitySynqContextProvider({
+// Internal provider that uses @multisynq/react hooks properly
+function ActivitySynqInternalProvider({
   children,
   config
 }: {
   children: ReactNode
   config: ActivitySynqConfig
 }) {
-  const { view, model } = useMultisynqContext()
-  const hasSession = useView() !== null
-  const [isSynced, setIsSynced] = useState(false)
-  const [status, setStatus] = useState<ConnectionStatus>('initializing')
-  const [error, setError] = useState<Error | null>(null)
-  
-  // Use ref for onActivity callback to prevent session recreation
+  const view = useView<ActivityModel>()
   const onActivityRef = useRef(config.onActivity)
   onActivityRef.current = config.onActivity
 
-  // Track synchronization state
-  useEffect(() => {
-    if (!view || !model) {
-      setIsSynced(false)
-      setError(null)
-      return
-    }
-
-    const handleSyncChange = (synced: boolean) => {
-      setIsSynced(synced)
-      if (synced) {
-        setError(null)
-      }
-    }
-
-    const handleError = (err: Error) => {
-      setError(err)
-      setIsSynced(false)
-    }
-
-    view.subscribe(view.viewId, 'synced', handleSyncChange)
-    view.subscribe(view.viewId, 'error', handleError)
-
-    return () => {
-      view.unsubscribe(view.viewId, 'synced', handleSyncChange)
-      view.unsubscribe(view.viewId, 'error', handleError)
-    }
-  }, [view, model])
-
-  // Subscribe to activities from model for onActivity callback only
-  useEffect(() => {
-    if (!view || !model) {
-      return
-    }
-
-    const handleActivityReceived = (activity: ActivityEvent) => {
-      // Only call the onActivity callback - don't store state
-      onActivityRef.current?.(activity)
-    }
-
-    view.subscribe(model.id, 'activity_received', handleActivityReceived)
-
-    return () => {
-      view.unsubscribe(model.id, 'activity_received', handleActivityReceived)
-    }
-  }, [view, model])
-
-  // Calculate overall status
-  useEffect(() => {
-    if (!hasSession) {
-      setStatus('initializing')
-      setError(null)
-    } else if (error) {
-      setStatus('error')
-    } else if (view && model && isSynced) {
-      setStatus('ready')
-      setError(null)
-    } else if (view && model && !isSynced) {
-      setStatus('disconnected')
-    } else {
-      setStatus('error')
-      if (!error) {
-        setError(new Error('Unknown connection error'))
-      }
-    }
-  }, [hasSession, view, model, isSynced, error])
+  // Use useModelSelector for efficient activities updates
+  const activities = useModelSelector((model: ActivityModel) => model.activities) ?? []
+  
+  // Use useModelSelector for connection status
+  const isConnected = useModelSelector((model: ActivityModel) => model !== null)
+  
+  // Calculate status based on view state
+  const status: ConnectionStatus = useMemo(() => {
+    if (!view) return 'initializing'
+    if (!isConnected) return 'disconnected'
+    return 'ready'
+  }, [view, isConnected])
 
   const isReady = status === 'ready'
+  const error = null // @multisynq/react handles errors internally
 
-  // Proper Multisynq pattern: View sends event to Model only
-  const registerActivity = useCallback(<T = any>(type: string, data?: T): void => {
-    if (!view || !model) {
-      console.warn('ActivitySynq: Cannot register activity - not connected')
+  // Use usePublish hook for proper event publishing
+  const publishAddActivity = usePublish<{ type: string; data?: any }>((type: string, data?: any) => [
+    view?.model?.id || '',
+    'add_activity', 
+    { type, data: config.userId ? { ...data, userId: config.userId } : data }
+  ])
+
+  const publishClearActivities = usePublish<{}>(() => [
+    view?.model?.id || '',
+    'clear_activities',
+    {}
+  ])
+
+  // Register activity function using proper publish pattern
+  const registerActivity = <T = any>(type: string, data?: T): void => {
+    if (!isReady) {
+      console.warn('ActivitySynq: Cannot register activity - not ready')
       return
     }
+    publishAddActivity(type, data)
+  }
 
-    // Enhance data with userId if provided
-    const enhancedData = config.userId ? { ...data, userId: config.userId } : data
-
-    // Send to model via proper event - let model handle timing and storage
-    view.publish(model.id, 'add_activity', {
-      type,
-      data: enhancedData
-    })
-  }, [view, model, config.userId])
-
-  // Clear all activities using proper Multisynq pattern
-  const clearActivities = useCallback((): void => {
-    if (!view || !model) {
-      console.warn('ActivitySynq: Cannot clear activities - not connected')
+  // Clear activities function using proper publish pattern
+  const clearActivities = (): void => {
+    if (!isReady) {
+      console.warn('ActivitySynq: Cannot clear activities - not ready')
       return
     }
+    publishClearActivities()
+  }
 
-    // Send clear command to model - let model handle the clearing
-    view.publish(model.id, 'clear_activities', {})
-  }, [view, model])
+  // Subscribe to activity events for onActivity callback
+  // This uses the same useModelSelector pattern but for side effects
+  const lastActivityCount = useRef(0)
+  const currentActivityCount = activities.length
+  
+  if (currentActivityCount > lastActivityCount.current && activities.length > 0) {
+    // New activity received - call onActivity callback
+    const newActivity = activities[0]
+    onActivityRef.current?.(newActivity)
+    lastActivityCount.current = currentActivityCount
+  } else if (currentActivityCount < lastActivityCount.current) {
+    // Activities were cleared
+    lastActivityCount.current = currentActivityCount
+  }
 
-  // Create stable config reference (excluding onActivity to prevent session churn)
-  const stableConfig = useMemo(() => ({
-    apiKey: config.apiKey,
-    appId: config.appId,
-    sessionPassword: config.sessionPassword,
-    sessionName: config.sessionName,
-    userId: config.userId,
-    onActivity: config.onActivity, // Keep for compatibility but handle via ref
-  }), [config.apiKey, config.appId, config.sessionPassword, config.sessionName, config.userId, config.onActivity])
-
-  // Stable context value - functions and model reference
+  // Stable context value - memoized to prevent re-renders
   const stableContextValue: IActivitySynqStableContext = useMemo(() => ({
     registerActivity,
     clearActivities,
     userId: config.userId,
-    config: stableConfig,
-    model: model as ActivityModel
-  }), [registerActivity, clearActivities, config.userId, stableConfig, model])
+    config
+  }), [registerActivity, clearActivities, config.userId, config])
 
-  // Force re-render when activities change by listening to model events
-  const [activityChangeCounter, setActivityChangeCounter] = useState(0)
-  
-  useEffect(() => {
-    if (!view || !model) return
-
-    const handleActivityChange = () => {
-      setActivityChangeCounter(prev => prev + 1)
-    }
-
-    view.subscribe(model.id, 'activity_received', handleActivityChange)
-    view.subscribe(model.id, 'activities_cleared', handleActivityChange)
-
-    return () => {
-      view.unsubscribe(model.id, 'activity_received', handleActivityChange)
-      view.unsubscribe(model.id, 'activities_cleared', handleActivityChange)
-    }
-  }, [view, model])
-
-  // Volatile context value - state that changes frequently 
-  const volatileContextValue: IActivitySynqVolatileContext = useMemo(() => {
-    // Get activities directly from model (single source of truth)
-    const activities = model && (model as ActivityModel).getHistoricalActivities ? 
-      (model as ActivityModel).getHistoricalActivities() : []
-
-    return {
-      activities,
-      isReady,
-      status,
-      error
-    }
-  }, [model, isReady, status, error, activityChangeCounter])
+  // Volatile context value - contains frequently changing data
+  const volatileContextValue: IActivitySynqVolatileContext = useMemo(() => ({
+    activities,
+    isReady,
+    status,
+    error
+  }), [activities, isReady, status, error])
 
   return (
     <ActivitySynqStableContext.Provider value={stableContextValue}>
@@ -226,7 +151,7 @@ export const ActivitySynqProvider = ({
   children,
   config = DEFAULT_CONFIG
 }: ActivitySynqProviderProps) => {
-  // Use stable configuration helper to prevent session churn
+  // Create stable configuration to prevent session recreation
   const memoizedConfig = useMemo(() => {
     const stableConfig = createStableActivityConfig(config)
     
@@ -241,16 +166,17 @@ export const ActivitySynqProvider = ({
   }, [config.apiKey, config.appId, config.sessionName, config.sessionPassword, config.userId])
   // Note: Exclude config.onActivity from deps to prevent session recreation
 
+  // Error state for missing API key
   if (!memoizedConfig.apiKey || memoizedConfig.apiKey === 'missing-api-key') {
     const apiKeyError = new Error('No API key provided. Set VITE_API_KEY environment variable.')
     console.error('ActivitySynq:', apiKeyError.message)
+    
     return (
       <ActivitySynqStableContext.Provider value={{
         registerActivity: () => console.warn('ActivitySynq: Not initialized - no API key'),
         clearActivities: () => console.warn('ActivitySynq: Not initialized - no API key'),
         userId: memoizedConfig.userId,
-        config: memoizedConfig,
-        model: null
+        config: memoizedConfig
       }}>
         <ActivitySynqVolatileContext.Provider value={{
           activities: [],
@@ -264,6 +190,7 @@ export const ActivitySynqProvider = ({
     )
   }
 
+  // Use MultisynqRoot with proper session parameters
   return (
     <MultisynqRoot
       sessionParams={{
@@ -273,20 +200,20 @@ export const ActivitySynqProvider = ({
         appId: memoizedConfig.appId!,
         apiKey: memoizedConfig.apiKey!,
         viewData: { userId: memoizedConfig.userId },
-        // Use reduced tps for better connection stability
-        tps: 10
+        tps: 10, // Stable TPS for consistent performance
+        options: { trackViews: true } // Enable view tracking for multi-user features
       }}
       showChildrenWithoutSession
     >
-      <ActivitySynqContextProvider config={{ ...memoizedConfig, onActivity: config.onActivity }}>
+      <ActivitySynqInternalProvider config={{ ...memoizedConfig, onActivity: config.onActivity }}>
         {children}
-      </ActivitySynqContextProvider>
+      </ActivitySynqInternalProvider>
     </MultisynqRoot>
   )
 }
 
-// Legacy interface for backwards compatibility
-interface IActivitySynqContext {
+// Combined interface for backwards compatibility
+export interface IActivitySynqContext {
   registerActivity: <T = any>(type: string, data?: T) => void
   clearActivities: () => void
   activities: ActivityEvent[]
@@ -297,6 +224,7 @@ interface IActivitySynqContext {
   config: ActivitySynqConfig
 }
 
+// Main hook - combines stable and volatile contexts
 export const useActivitySynq = (): IActivitySynqContext => {
   const stableContext = useContext(ActivitySynqStableContext)
   const volatileContext = useContext(ActivitySynqVolatileContext)
@@ -305,14 +233,13 @@ export const useActivitySynq = (): IActivitySynqContext => {
     throw new Error('useActivitySynq must be used within an ActivitySynqProvider')
   }
   
-  // Combine both contexts for backwards compatibility
   return {
     ...stableContext,
     ...volatileContext
   }
 }
 
-// Optimized hooks for specific use cases
+// Optimized hooks for performance-critical components
 export const useActivitySynqStable = (): IActivitySynqStableContext => {
   const context = useContext(ActivitySynqStableContext)
   if (context === undefined) {

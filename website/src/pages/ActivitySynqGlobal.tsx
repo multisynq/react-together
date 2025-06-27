@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import type { ActivityEvent } from 'react-together'
 import { activitySynq, ActivitySynqContainer, useActivitySynqGlobal } from 'react-together'
 
@@ -476,6 +476,10 @@ export default function ActivitySynqGlobalPage() {
     console.log('🎉 Global ActivitySynq received:', activity)
   }, [])
 
+  // Stable onActivity reference to prevent config recreation
+  const onActivityRef = useRef(onActivity)
+  onActivityRef.current = onActivity
+
   // ActivitySynq configuration with stable references
   const activityConfig = useMemo(() => ({
     apiKey: import.meta.env.VITE_API_KEY || 'demo-api-key',
@@ -483,8 +487,8 @@ export default function ActivitySynqGlobalPage() {
     sessionName: 'global-website-demo',
     sessionPassword: 'website-demo-password',
     userId: currentUser,
-    onActivity
-  }), [currentUser, onActivity])
+    onActivity: (activity: ActivityEvent) => onActivityRef.current(activity)
+  }), [currentUser])
 
   return (
     <div>

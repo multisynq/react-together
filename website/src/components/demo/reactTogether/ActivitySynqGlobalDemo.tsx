@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { activitySynq, ActivitySynqContainer, useActivitySynqGlobal } from 'react-together'
 
 // Demo component that shows how to use the new global pattern
@@ -211,12 +211,18 @@ function MyComponent() {
 }
 
 export default function ActivitySynqGlobalDemo() {
-  const config = {
+  // Stable userId - generated only once to prevent reconnections
+  const [userId] = useState(() => 
+    `demo-user-${Math.random().toString(36).substring(2, 6)}`
+  )
+  
+  // Stable config - memoized to prevent recreation
+  const config = useMemo(() => ({
     apiKey: 'demo-api-key',
     appId: 'demo-app-id',
     sessionName: 'v2-demo-session',
-    userId: `demo-user-${Math.random().toString(36).substring(2, 6)}`
-  }
+    userId: userId
+  }), [userId])
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
