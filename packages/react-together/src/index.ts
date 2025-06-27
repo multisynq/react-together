@@ -4,9 +4,13 @@ import * as MultisynqReact from '@multisynq/react'
 export { MultisynqReact }
 
 export * from './components'
-export * from './hooks'
-export * from './models'
+export {
+  activitySynq,
+  default as ActivitySynqContainer
+} from './components/ActivitySynqGlobal'
 export * from './context'
-export * as utils from './utils'
+export * from './hooks'
+export { default as useActivitySynqGlobal } from './hooks/useActivitySynqGlobal'
+export * from './models'
 export * as testing from './testing'
-
+export * as utils from './utils'

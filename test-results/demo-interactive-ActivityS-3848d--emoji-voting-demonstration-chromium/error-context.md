@@ -1,0 +1,44 @@
+# Page snapshot
+
+```yaml
+- heading "🗳️ Emoji Voting Demo" [level=1]
+- paragraph: Vote with emojis and see real-time results across all users
+- text: "Status: ready | Ready: Yes User: You 2 activities"
+- button "🗑️ Clear"
+- heading "Vote for Your Favorite!" [level=3]
+- button "😍 1 votes"
+- button "🚀 1 votes"
+- button "💡 0 votes"
+- button "🎉 0 votes"
+- button "❤️ 0 votes"
+- button "👍 0 votes"
+- paragraph: ✅ Votes sync instantly across all users
+- heading "🔔 Live Activity Feed" [level=3]
+- text: You voted 🚀 7:00:05 PM You voted 😍 7:00:01 PM
+- heading "Multi-User ActivitySynq Features:" [level=4]
+- list:
+  - listitem:
+    - text: •
+    - strong: Real-time sync
+    - text: "- Vote in one tab, see it instantly in all other tabs"
+  - listitem:
+    - text: •
+    - strong: Historical sync
+    - text: "- New tabs automatically load all previous votes"
+  - listitem:
+    - text: •
+    - strong: Session isolation
+    - text: "- Only users with same session name/password see each other"
+  - listitem:
+    - text: •
+    - strong: Automatic sync
+    - text: "- All votes are synchronized across users instantly"
+  - listitem:
+    - text: •
+    - strong: Cross-user feed
+    - text: "- Activity feed shows actions from all participants"
+- strong: "✨ Test Instructions:"
+- text: Vote here, then open this page in new tabs with different
+- code: "?user="
+- text: parameters. New tabs will show all previous votes instantly!
+```

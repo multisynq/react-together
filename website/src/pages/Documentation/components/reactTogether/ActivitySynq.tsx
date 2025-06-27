@@ -212,9 +212,9 @@ const api = (
               <ul className="text-xs mt-1 ml-4 list-disc">
                 <li><strong>Cross-user sync:</strong> Receives activities from ALL users in the same session (not just this user)</li>
                 <li><strong>Real-time updates:</strong> Perfect for live activity feeds, notifications, and collaborative features</li>
-                <li><strong>User identification:</strong> Use <code>activity.userId</code> to distinguish between users</li>
+                <li><strong>User identification:</strong> Use <code>activity.data?.userId</code> to distinguish between users</li>
                 <li><strong>Use cases:</strong> Live dashboards, user activity logs, real-time analytics, collaboration notifications</li>
-                <li>The activity object includes type, data, userId, and timestamp</li>
+                <li>The activity object includes type, data, and timestamp</li>
               </ul>
             </div>
           ),
@@ -233,12 +233,7 @@ const api = (
         {
           name: 'data',
           type: 'T (generic)',
-          description: <p>Optional data payload associated with the activity. Can be any JSON-serializable object.</p>,
-        },
-        {
-          name: 'userId',
-          type: 'string',
-          description: <p>The ID of the user who triggered this activity.</p>,
+          description: <p>Optional data payload associated with the activity. Can be any JSON-serializable object. User identification is typically stored as <code>data.userId</code>.</p>,
         },
         {
           name: 'timestamp',

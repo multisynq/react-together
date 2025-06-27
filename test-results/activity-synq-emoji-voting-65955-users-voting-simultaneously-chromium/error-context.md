@@ -1,0 +1,545 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - link "ReactTogether":
+    - /url: /
+    - img
+    - text: ReactTogether
+  - navigation:
+    - link "Documentation":
+      - /url: /getting-started
+  - navigation:
+    - link "GitHub":
+      - /url: https://github.com/multisynq
+      - img
+      - text: GitHub
+    - link "Twitter":
+      - /url: https://x.com/multisynq
+      - img
+      - text: Twitter
+- main:
+  - button "Introduction" [expanded]:
+    - link "Introduction":
+      - /url: "#"
+      - img
+      - text: Introduction
+  - region "Introduction":
+    - tree:
+      - treeitem "Getting Started" [level=1]:
+        - link "Getting Started":
+          - /url: /Getting-Started
+      - treeitem "Dependencies" [level=1]:
+        - link "Dependencies":
+          - /url: /Dependencies
+  - button "Hooks" [expanded]:
+    - link "Hooks":
+      - /url: "#"
+      - img
+      - text: Hooks
+  - region "Hooks":
+    - tree:
+      - treeitem "useStateTogether" [level=1]:
+        - link "useStateTogether":
+          - /url: /useStateTogether
+      - treeitem "useStateTogetherWithPerUserValues" [level=1]:
+        - link "useStateTogetherWithPerUserValues":
+          - /url: /useStateTogetherWithPerUserValues
+      - treeitem "useFunctionTogether" [level=1]:
+        - link "useFunctionTogether":
+          - /url: /useFunctionTogether
+      - treeitem "useActivitySynq" [level=1]:
+        - link "useActivitySynq":
+          - /url: /useActivitySynq
+      - treeitem "useChat" [level=1]:
+        - link "useChat":
+          - /url: /useChat
+      - treeitem "useCursors" [level=1]:
+        - link "useCursors":
+          - /url: /useCursors
+      - treeitem "Other useful hooks" [expanded] [level=1]:
+        - link "Other useful hooks":
+          - /url: "#"
+          - img
+          - text: Other useful hooks
+        - group:
+          - treeitem "useConnectedUsers" [level=2]:
+            - link "useConnectedUsers":
+              - /url: /useConnectedUsers
+          - treeitem "useHoveringUsers" [level=2]:
+            - link "useHoveringUsers":
+              - /url: /useHoveringUsers
+          - treeitem "useNicknames" [level=2]:
+            - link "useNicknames":
+              - /url: /useNicknames
+          - treeitem "useAllNicknames" [level=2]:
+            - link "useAllNicknames":
+              - /url: /useAllNicknames
+          - treeitem "useCreateRandomSession" [level=2]:
+            - link "useCreateRandomSession":
+              - /url: /useCreateRandomSession
+          - treeitem "useIsSynchronized" [level=2]:
+            - link "useIsSynchronized":
+              - /url: /useIsSynchronized
+          - treeitem "useIsTogether" [level=2]:
+            - link "useIsTogether":
+              - /url: /useIsTogether
+          - treeitem "useLeaveSession" [level=2]:
+            - link "useLeaveSession":
+              - /url: /useLeaveSession
+          - treeitem "useJoinUrl" [level=2]:
+            - link "useJoinUrl":
+              - /url: /useJoinUrl
+          - treeitem "useMyId" [level=2]:
+            - link "useMyId":
+              - /url: /useMyId
+  - button "Components" [expanded]:
+    - link "Components":
+      - /url: "#"
+      - img
+      - text: Components
+  - region "Components":
+    - tree:
+      - treeitem "ReactTogether" [level=1]:
+        - link "ReactTogether":
+          - /url: /ReactTogether
+      - treeitem "ActivitySynq" [level=1]:
+        - link "ActivitySynq":
+          - /url: /ActivitySynq
+      - treeitem "ActivitySynq Global" [level=1]:
+        - link "ActivitySynq Global":
+          - /url: /ActivitySynqGlobal
+      - treeitem "Chat" [level=1]:
+        - link "Chat":
+          - /url: /Chat
+      - treeitem "Cursors" [level=1]:
+        - link "Cursors":
+          - /url: /Cursors
+      - treeitem "SessionManager" [level=1]:
+        - link "SessionManager":
+          - /url: /SessionManager
+      - treeitem "ConnectedUsers" [level=1]:
+        - link "ConnectedUsers":
+          - /url: /ConnectedUsers
+      - treeitem "HoverHighlighter" [level=1]:
+        - link "HoverHighlighter":
+          - /url: /HoverHighlighter
+  - button "[object Object]" [expanded]:
+    - link "Ant Design Ant Design":
+      - /url: "#"
+      - img
+      - img "Ant Design"
+      - text: Ant Design
+  - region "[object Object]":
+    - tree:
+      - treeitem "CheckboxTogether" [level=1]:
+        - link "CheckboxTogether":
+          - /url: /antdesign/Checkbox
+      - treeitem "MultiSelectTogether" [level=1]:
+        - link "MultiSelectTogether":
+          - /url: /antdesign/MultiSelect
+      - treeitem "RateTogether" [level=1]:
+        - link "RateTogether":
+          - /url: /antdesign/Rate
+      - treeitem "SelectButtonTogether" [level=1]:
+        - link "SelectButtonTogether":
+          - /url: /antdesign/SelectButton
+      - treeitem "SelectTogether" [level=1]:
+        - link "SelectTogether":
+          - /url: /antdesign/Select
+      - treeitem "SliderTogether" [level=1]:
+        - link "SliderTogether":
+          - /url: /antdesign/Slider
+      - treeitem "SwitchTogether" [level=1]:
+        - link "SwitchTogether":
+          - /url: /antdesign/Switch
+      - treeitem "ToggleButtonTogether" [level=1]:
+        - link "ToggleButtonTogether":
+          - /url: /antdesign/ToggleButton
+  - button "[object Object]" [expanded]:
+    - link "Prime React Prime React":
+      - /url: "#"
+      - img
+      - img "Prime React"
+      - text: Prime React
+  - region "[object Object]":
+    - tree:
+      - treeitem "CheckboxTogether" [level=1]:
+        - link "CheckboxTogether":
+          - /url: /primereact/Checkbox
+      - treeitem "ColorPickerTogether" [level=1]:
+        - link "ColorPickerTogether":
+          - /url: /primereact/ColorPicker
+      - treeitem "DropdownTogether" [level=1]:
+        - link "DropdownTogether":
+          - /url: /primereact/Dropdown
+      - treeitem "InputSwitchTogether" [level=1]:
+        - link "InputSwitchTogether":
+          - /url: /primereact/InputSwitch
+      - treeitem "KnobTogether" [level=1]:
+        - link "KnobTogether":
+          - /url: /primereact/Knob
+      - treeitem "MultiSelectTogether" [level=1]:
+        - link "MultiSelectTogether":
+          - /url: /primereact/MultiSelect
+      - treeitem "RatingTogether" [level=1]:
+        - link "RatingTogether":
+          - /url: /primereact/Rating
+      - treeitem "SelectButtonTogether" [level=1]:
+        - link "SelectButtonTogether":
+          - /url: /primereact/SelectButton
+      - treeitem "TabViewTogether" [level=1]:
+        - link "TabViewTogether":
+          - /url: /primereact/TabView
+      - treeitem "ToggleButtonTogether" [level=1]:
+        - link "ToggleButtonTogether":
+          - /url: /primereact/ToggleButton
+      - treeitem "TriStateCheckboxTogether" [level=1]:
+        - link "TriStateCheckboxTogether":
+          - /url: /primereact/TriStateCheckbox
+  - button "Advanced usage" [expanded]:
+    - link "Advanced usage":
+      - /url: "#"
+      - img
+      - text: Advanced usage
+  - region "Advanced usage":
+    - tree:
+      - treeitem "Multisynq" [level=1]:
+        - link "Multisynq":
+          - /url: /multisynq
+      - treeitem "Utils module" [level=1]:
+        - link "Utils module":
+          - /url: /utils
+  - button "Discover" [expanded]:
+    - link "Discover":
+      - /url: "#"
+      - img
+      - text: Discover
+  - region "Discover":
+    - tree:
+      - treeitem "Contributing" [level=1]:
+        - link "Contributing":
+          - /url: /contributing
+      - treeitem "Pricing" [level=1]:
+        - link "Pricing":
+          - /url: /pricing
+      - treeitem "Change Log" [level=1]:
+        - link "Change Log":
+          - /url: /changelog
+  - heading "ActivitySynq" [level=2]
+  - paragraph:
+    - text: ActivitySynq provides
+    - strong: real-time activity tracking and synchronization across all users
+    - text: in the same session, with automatic offline buffering capabilities. Track any user actions (clicks, form submissions, feature usage, etc.) and see them appear instantly across all connected users.
+  - paragraph:
+    - strong: "🚀 Multi-User Sync:"
+    - text: Activities from ALL users in the session are automatically received via your
+    - code: onActivity
+    - text: callback, enabling real-time collaboration, live activity feeds, and cross-user notifications.
+  - paragraph:
+    - text: Key features include
+    - strong: cross-user real-time synchronization
+    - text: ", automatic offline buffering, connection status tracking, TypeScript support with generic event types, and environment variable configuration."
+  - heading "📋 Complete Setup Guide" [level=4]
+  - paragraph:
+    - strong: "1. Get API Key:"
+    - text: Sign up at
+    - link "multisynq.io":
+      - /url: https://multisynq.io
+    - text: to get your API key.
+  - paragraph:
+    - strong: "2. Environment Variables:"
+    - text: Set VITE_API_KEY and optionally VITE_APP_ID in your .env file.
+  - paragraph:
+    - strong: "3. Configure Sessions:"
+    - text: Use sessionName to group users and sessionPassword to secure access.
+  - paragraph:
+    - strong: "4. Add onActivity Callback:"
+    - text: Receive activities from ALL users in the session via onActivity(activity) .
+  - paragraph:
+    - strong: "5. Track Activities:"
+    - text: Call registerActivity(type, data) to track any user action in real-time.
+  - paragraph:
+    - strong: "6. Handle Offline:"
+    - text: Activities are automatically buffered when offline and synced when reconnected.
+  - tablist:
+    - tab "Preview" [selected]
+    - tab "Code"
+  - tabpanel "Preview":
+    - paragraph: User 1
+    - iframe
+    - paragraph: User 2
+    - iframe
+  - heading "Usage" [level=3]
+  - paragraph: "Import the ActivitySynq provider and hook:"
+  - code: "import { ActivitySynqProvider, useActivitySynq } from 'react-together'"
+  - paragraph: "Wrap your app with the provider and use the hook to register activities:"
+  - code: "function App() { return ( <ActivitySynqProvider> <MyComponent /> </ActivitySynqProvider> ) } function MyComponent() { const { registerActivity } = useActivitySynq() return ( <button onClick={() => registerActivity('button_click', { buttonId: 'signup' })}> Sign Up </button> ) }"
+  - heading "API" [level=3]
+  - heading "ActivitySynqProvider Props" [level=5]
+  - table:
+    - rowgroup:
+      - row "Name Type Default Value Description":
+        - cell "Name"
+        - cell "Type"
+        - cell "Default Value"
+        - cell "Description"
+    - rowgroup:
+      - row "config ActivitySynqConfig -- Configuration object for ActivitySynq. See ActivitySynqConfig interface below.":
+        - cell "config"
+        - cell "ActivitySynqConfig"
+        - cell "--"
+        - cell "Configuration object for ActivitySynq. See ActivitySynqConfig interface below.":
+          - paragraph: Configuration object for ActivitySynq. See ActivitySynqConfig interface below.
+      - row "children ReactNode -- The components that will have access to ActivitySynq context.":
+        - cell "children"
+        - cell "ReactNode"
+        - cell "--"
+        - cell "The components that will have access to ActivitySynq context.":
+          - paragraph: The components that will have access to ActivitySynq context.
+  - heading "ActivitySynqConfig" [level=5]
+  - table:
+    - rowgroup:
+      - row "Name Type Default value Description":
+        - cell "Name"
+        - cell "Type"
+        - cell "Default value"
+        - cell "Description"
+    - rowgroup:
+      - row "apiKey string -- Required. Your Multisynq API key for authentication. Get your API key from multisynq.io Can be set via environment variable VITE_API_KEY Without this, ActivitySynq will show an error state":
+        - cell "apiKey"
+        - cell "string"
+        - cell "--"
+        - cell "Required. Your Multisynq API key for authentication. Get your API key from multisynq.io Can be set via environment variable VITE_API_KEY Without this, ActivitySynq will show an error state":
+          - paragraph:
+            - strong: Required.
+            - text: Your Multisynq API key for authentication.
+          - list:
+            - listitem:
+              - text: Get your API key from
+              - link "multisynq.io":
+                - /url: https://multisynq.io
+            - listitem: Can be set via environment variable VITE_API_KEY
+            - listitem: Without this, ActivitySynq will show an error state
+      - row "appId string -- Application identifier - Groups all sessions for your app. Think of it as your app's namespace in Multisynq All sessions with the same appId can potentially communicate Can be set via environment variable VITE_APP_ID Defaults to 'default-app' if not provided":
+        - cell "appId"
+        - cell "string"
+        - cell "--"
+        - cell "Application identifier - Groups all sessions for your app. Think of it as your app's namespace in Multisynq All sessions with the same appId can potentially communicate Can be set via environment variable VITE_APP_ID Defaults to 'default-app' if not provided":
+          - paragraph:
+            - strong: Application identifier
+            - text: "- Groups all sessions for your app."
+          - list:
+            - listitem: Think of it as your app's namespace in Multisynq
+            - listitem: All sessions with the same appId can potentially communicate
+            - listitem: Can be set via environment variable VITE_APP_ID
+            - listitem: Defaults to 'default-app' if not provided
+      - row "sessionName string -- Session name - Groups users together in the same activity session. Users with the same sessionName see each other's activities Use unique names for different rooms/groups (e.g., 'game-room-1', 'meeting-abc') Can be set via environment variable VITE_SESSION_NAME If not provided, generates a unique session automatically":
+        - cell "sessionName"
+        - cell "string"
+        - cell "--"
+        - cell "Session name - Groups users together in the same activity session. Users with the same sessionName see each other's activities Use unique names for different rooms/groups (e.g., 'game-room-1', 'meeting-abc') Can be set via environment variable VITE_SESSION_NAME If not provided, generates a unique session automatically":
+          - paragraph:
+            - strong: Session name
+            - text: "- Groups users together in the same activity session."
+          - list:
+            - listitem: Users with the same sessionName see each other's activities
+            - listitem: Use unique names for different rooms/groups (e.g., 'game-room-1', 'meeting-abc')
+            - listitem: Can be set via environment variable VITE_SESSION_NAME
+            - listitem: If not provided, generates a unique session automatically
+      - row "sessionPassword string -- Session password - Secures access to the activity session. Only users with the same password can join the session Prevents unauthorized access to your activity data Can be set via environment variable VITE_SESSION_PASSWORD Defaults to 'activity-session-password' if not provided":
+        - cell "sessionPassword"
+        - cell "string"
+        - cell "--"
+        - cell "Session password - Secures access to the activity session. Only users with the same password can join the session Prevents unauthorized access to your activity data Can be set via environment variable VITE_SESSION_PASSWORD Defaults to 'activity-session-password' if not provided":
+          - paragraph:
+            - strong: Session password
+            - text: "- Secures access to the activity session."
+          - list:
+            - listitem: Only users with the same password can join the session
+            - listitem: Prevents unauthorized access to your activity data
+            - listitem: Can be set via environment variable VITE_SESSION_PASSWORD
+            - listitem: Defaults to 'activity-session-password' if not provided
+      - row "userId string -- User identifier - Identifies the current user in activity events. Used to distinguish activities from different users If not provided, generates a random ID and stores it in localStorage Use consistent userIds to track the same user across sessions Consider using your app's user authentication ID":
+        - cell "userId"
+        - cell "string"
+        - cell "--"
+        - cell "User identifier - Identifies the current user in activity events. Used to distinguish activities from different users If not provided, generates a random ID and stores it in localStorage Use consistent userIds to track the same user across sessions Consider using your app's user authentication ID":
+          - paragraph:
+            - strong: User identifier
+            - text: "- Identifies the current user in activity events."
+          - list:
+            - listitem: Used to distinguish activities from different users
+            - listitem: If not provided, generates a random ID and stores it in localStorage
+            - listitem: Use consistent userIds to track the same user across sessions
+            - listitem: Consider using your app's user authentication ID
+      - 'row "onActivity (activity: ActivityEvent) => void -- 🔥 Multi-User Activity Callback - Called whenever ANY activity is registered by ANY user in the session. Cross-user sync: Receives activities from ALL users in the same session (not just this user) Real-time updates: Perfect for live activity feeds, notifications, and collaborative features User identification: Use activity.userId to distinguish between users Use cases: Live dashboards, user activity logs, real-time analytics, collaboration notifications The activity object includes type, data, userId, and timestamp"':
+        - cell "onActivity"
+        - 'cell "(activity: ActivityEvent) => void"'
+        - cell "--"
+        - 'cell "🔥 Multi-User Activity Callback - Called whenever ANY activity is registered by ANY user in the session. Cross-user sync: Receives activities from ALL users in the same session (not just this user) Real-time updates: Perfect for live activity feeds, notifications, and collaborative features User identification: Use activity.userId to distinguish between users Use cases: Live dashboards, user activity logs, real-time analytics, collaboration notifications The activity object includes type, data, userId, and timestamp"':
+          - paragraph:
+            - strong: 🔥 Multi-User Activity Callback
+            - text: "- Called whenever ANY activity is registered by ANY user in the session."
+          - list:
+            - listitem:
+              - strong: "Cross-user sync:"
+              - text: Receives activities from ALL users in the same session (not just this user)
+            - listitem:
+              - strong: "Real-time updates:"
+              - text: Perfect for live activity feeds, notifications, and collaborative features
+            - listitem:
+              - strong: "User identification:"
+              - text: Use
+              - code: activity.userId
+              - text: to distinguish between users
+            - listitem:
+              - strong: "Use cases:"
+              - text: Live dashboards, user activity logs, real-time analytics, collaboration notifications
+            - listitem: The activity object includes type, data, userId, and timestamp
+  - heading "ActivityEvent" [level=5]
+  - table:
+    - rowgroup:
+      - row "Name Type Default value Description":
+        - cell "Name"
+        - cell "Type"
+        - cell "Default value"
+        - cell "Description"
+    - rowgroup:
+      - row "type string -- The type/name of the activity (e.g., 'button_click', 'signup_attempt').":
+        - cell "type"
+        - cell "string"
+        - cell "--"
+        - cell "The type/name of the activity (e.g., 'button_click', 'signup_attempt').":
+          - paragraph: The type/name of the activity (e.g., 'button_click', 'signup_attempt').
+      - row "data T (generic) -- Optional data payload associated with the activity. Can be any JSON-serializable object.":
+        - cell "data"
+        - cell "T (generic)"
+        - cell "--"
+        - cell "Optional data payload associated with the activity. Can be any JSON-serializable object.":
+          - paragraph: Optional data payload associated with the activity. Can be any JSON-serializable object.
+      - row "userId string -- The ID of the user who triggered this activity.":
+        - cell "userId"
+        - cell "string"
+        - cell "--"
+        - cell "The ID of the user who triggered this activity.":
+          - paragraph: The ID of the user who triggered this activity.
+      - row "timestamp number -- The timestamp when the activity was registered (milliseconds since epoch).":
+        - cell "timestamp"
+        - cell "number"
+        - cell "--"
+        - cell "The timestamp when the activity was registered (milliseconds since epoch).":
+          - paragraph: The timestamp when the activity was registered (milliseconds since epoch).
+  - heading "ConnectionStatus" [level=5]
+  - table:
+    - rowgroup:
+      - row "Name Type Default value Description":
+        - cell "Name"
+        - cell "Type"
+        - cell "Default value"
+        - cell "Description"
+    - rowgroup:
+      - row "'initializing' string -- ActivitySynq is starting up and connecting to the session.":
+        - cell "'initializing'"
+        - cell "string"
+        - cell "--"
+        - cell "ActivitySynq is starting up and connecting to the session.":
+          - paragraph: ActivitySynq is starting up and connecting to the session.
+      - row "'ready' string -- Connected and ready to send/receive activities in real-time.":
+        - cell "'ready'"
+        - cell "string"
+        - cell "--"
+        - cell "Connected and ready to send/receive activities in real-time.":
+          - paragraph: Connected and ready to send/receive activities in real-time.
+      - row "'disconnected' string -- Temporarily disconnected from the session. Activities will be buffered.":
+        - cell "'disconnected'"
+        - cell "string"
+        - cell "--"
+        - cell "Temporarily disconnected from the session. Activities will be buffered.":
+          - paragraph: Temporarily disconnected from the session. Activities will be buffered.
+      - row "'error' string -- An error occurred with the connection. Check the error object for details.":
+        - cell "'error'"
+        - cell "string"
+        - cell "--"
+        - cell "An error occurred with the connection. Check the error object for details.":
+          - paragraph: An error occurred with the connection. Check the error object for details.
+  - button "On This Page" [expanded]:
+    - link "On This Page":
+      - /url: "#"
+  - region "On This Page":
+    - tree:
+      - treeitem "ActivitySynq" [level=1]:
+        - link "ActivitySynq":
+          - /url: "#"
+      - treeitem "Usage" [level=1]:
+        - link "Usage":
+          - /url: "#"
+      - treeitem "API" [level=1]:
+        - link "API":
+          - /url: "#"
+- contentinfo:
+  - img
+  - text: ReactTogether Built by
+  - link "Croquet Labs":
+    - /url: https://croquet.io
+  - text: for
+  - link "Multisynq":
+    - /url: https://multisynq.io
+  - text: . General
+  - list:
+    - listitem:
+      - link "Home":
+        - /url: /
+    - listitem:
+      - link "Contributing":
+        - /url: /contributing
+    - listitem:
+      - link "Pricing":
+        - /url: /pricing
+    - listitem:
+      - link "Cookie Policy":
+        - /url: /cookies
+  - text: Documentation
+  - list:
+    - listitem:
+      - link "Get Started":
+        - /url: /getting-started
+    - listitem:
+      - link "Components":
+        - /url: /ReactTogether
+    - listitem:
+      - link "Hooks":
+        - /url: /useStateTogether
+    - listitem:
+      - link "Change Log":
+        - /url: /changelog
+  - text: Resources
+  - list:
+    - listitem:
+      - link "Croquet Labs":
+        - /url: https://croquet.io/
+    - listitem:
+      - link "Multisynq":
+        - /url: https://multisynq.io/
+    - listitem:
+      - link "Github":
+        - /url: https://github.com/multisynq
+    - listitem:
+      - link "X/Twitter":
+        - /url: https://x.com/multisynq
+  - text: Archive
+  - list:
+    - listitem:
+      - link "Hackathon":
+        - /url: /hackathon
+- text: 0.4.4
+- dialog:
+  - text: Welcome to React Together
+  - button "Close"
+  - text: Would you mind if we gather a little information while you’re here? It’ll help us keep things running smoothly and make sure you have the best experience!
+  - link "Learn more about the policy here":
+    - /url: /cookies
+    - text: Learn more
+  - button "Decline cookie consent": No thanks...
+  - button "Accept cookie consent":  Sure thing!
+```

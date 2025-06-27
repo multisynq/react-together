@@ -296,7 +296,7 @@ function UseActivitySynqPreview({ sessionParams }: { sessionParams: { name: stri
 
   // Single activity handler for both demo instances
   const handleSharedActivity = useCallback((activity: ActivityEvent) => {
-    const activityId = `${activity.userId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
+    const activityId = `${activity.data?.userId || 'unknown'}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
     
     if (processedActivitiesRef.current.has(activityId)) return
     processedActivitiesRef.current.add(activityId)
@@ -390,10 +390,10 @@ function UseActivitySynqDemoInstance({
     activityLog.slice(0, 8).map(activity => ({
       id: crypto.randomUUID(),
       type: activity.type,
-      userId: activity.userId || 'unknown',
+      userId: activity.data?.userId || 'unknown',
       data: activity.data,
       timestamp: activity.timestamp,
-      isLocal: activity.userId === userId
+      isLocal: activity.data?.userId === userId
     })), [activityLog, userId]
   )
 

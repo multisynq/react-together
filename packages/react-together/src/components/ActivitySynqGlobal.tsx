@@ -366,7 +366,7 @@ interface ActivitySynqContainerProps {
  * 
  * // Use anywhere without any wrapper
  * function MyComponent() {
- *   const { registerActivity } = useActivitySynqGlobalV2()
+ *   const { registerActivity } = useActivitySynqGlobal()
  *   // Works anywhere!
  * }
  * ```

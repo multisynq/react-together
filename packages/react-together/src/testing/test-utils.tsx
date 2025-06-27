@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from 'react'
-import { ActivitySynqContext } from '../context/ActivitySynqContext'
+import { ActivitySynqStableContext, ActivitySynqVolatileContext } from '../context/ActivitySynqContext'
 import type { ConnectionStatus, ActivitySynqConfig, ActivityEvent } from '../context/ActivitySynqContext'
 
 // Generic mock function type (works with Jest, Vitest, etc.)
@@ -28,13 +28,9 @@ export const MockActivitySynqProvider = ({
   config = {},
   activities = []
 }: MockActivitySynqProviderProps) => {
-  const value = {
+  const stableValue = {
     registerActivity,
     clearActivities,
-    activities,
-    isReady,
-    status,
-    error,
     userId,
     config: {
       apiKey: 'test-api-key',
@@ -43,13 +39,23 @@ export const MockActivitySynqProvider = ({
       sessionPassword: 'test-password',
       userId,
       ...config
-    }
+    },
+    model: null
+  }
+
+  const volatileValue = {
+    activities,
+    isReady,
+    status,
+    error
   }
 
   return (
-    <ActivitySynqContext.Provider value={value}>
-      {children}
-    </ActivitySynqContext.Provider>
+    <ActivitySynqStableContext.Provider value={stableValue}>
+      <ActivitySynqVolatileContext.Provider value={volatileValue}>
+        {children}
+      </ActivitySynqVolatileContext.Provider>
+    </ActivitySynqStableContext.Provider>
   )
 }
 

@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useMemo } from 'react'
-import { ActivitySynqGlobal, useActivitySynqGlobal } from 'react-together'
+import { useCallback, useMemo, useState } from 'react'
 import type { ActivityEvent } from 'react-together'
+import { activitySynq, ActivitySynqContainer, useActivitySynqGlobal } from 'react-together'
 
 // Customizable Activity Feed Component
 interface ActivityFeedProps {
@@ -82,8 +82,8 @@ function CustomizableActivityFeed({
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ 
-                    fontWeight: 'bold', 
+                  <span style={{
+                    fontWeight: 'bold',
                     color: isLocal ? '#1d4ed8' : '#374151',
                     textTransform: 'capitalize'
                   }}>
@@ -96,10 +96,10 @@ function CustomizableActivityFeed({
                     </span>
                   )}
                 </div>
-                
+
                 {showUserInfo && (
                   <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>
-                    👤 {activityUserId?.slice(-8) || 'Unknown'} | 
+                    👤 {activityUserId?.slice(-8) || 'Unknown'} |
                     📊 {JSON.stringify(activity.data).slice(0, 60)}
                     {JSON.stringify(activity.data).length > 60 && '...'}
                   </div>
@@ -142,7 +142,7 @@ function FeatureDemo({ userId }: { userId: string }) {
   const handleCustomActivity = useCallback(() => {
     const activityTypes = ['user_action', 'page_view', 'form_submit', 'click_event', 'scroll_event']
     const randomType = activityTypes[Math.floor(Math.random() * activityTypes.length)]
-    
+
     registerActivity(randomType, {
       action: randomType,
       userId: userId,
@@ -152,19 +152,19 @@ function FeatureDemo({ userId }: { userId: string }) {
   }, [registerActivity, userId])
 
   return (
-    <div style={{ 
-      padding: '20px', 
-      border: '2px solid #e5e7eb', 
-      borderRadius: '12px', 
+    <div style={{
+      padding: '20px',
+      border: '2px solid #e5e7eb',
+      borderRadius: '12px',
       backgroundColor: '#f9fafb',
       marginBottom: '20px'
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
         <h3 style={{ margin: 0, color: '#1f2937' }}>🎯 Feature Demo</h3>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{ 
-            padding: '4px 8px', 
-            borderRadius: '4px', 
+          <div style={{
+            padding: '4px 8px',
+            borderRadius: '4px',
             fontSize: '12px',
             backgroundColor: status === 'ready' ? '#dcfce7' : '#fef3c7',
             color: status === 'ready' ? '#166534' : '#92400e'
@@ -301,17 +301,17 @@ function FeedCustomizationControls({
   ]
 
   return (
-    <div style={{ 
-      padding: '20px', 
-      border: '2px solid #d1d5db', 
-      borderRadius: '12px', 
+    <div style={{
+      padding: '20px',
+      border: '2px solid #d1d5db',
+      borderRadius: '12px',
       backgroundColor: '#f9fafb',
       marginBottom: '20px'
     }}>
       <h3 style={{ margin: '0 0 15px 0', color: '#1f2937' }}>⚙️ Feed Customization</h3>
-      
+
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '15px' }}>
-        
+
         {/* Quantity Controls */}
         <div>
           <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px', fontWeight: 'bold' }}>
@@ -357,11 +357,11 @@ function FeedCustomizationControls({
           <select
             value={height}
             onChange={(e) => setHeight(e.target.value)}
-            style={{ 
-              width: '100%', 
-              padding: '4px 8px', 
-              borderRadius: '4px', 
-              border: '1px solid #d1d5db' 
+            style={{
+              width: '100%',
+              padding: '4px 8px',
+              borderRadius: '4px',
+              border: '1px solid #d1d5db'
             }}
           >
             <option value="200px">Small (200px)</option>
@@ -467,7 +467,7 @@ function FeedCustomizationControls({
 // Main ActivitySynq Global Demo Page
 export default function ActivitySynqGlobalPage() {
   // User simulation
-  const [currentUser, setCurrentUser] = useState(() => 
+  const [currentUser, setCurrentUser] = useState(() =>
     `demo-user-${Math.random().toString(36).substring(2, 8)}`
   )
 
@@ -487,20 +487,22 @@ export default function ActivitySynqGlobalPage() {
   }), [currentUser, onActivity])
 
   return (
-    <ActivitySynqGlobal config={activityConfig} showNotifications={true} portalContainer="body">
-      <ActivitySynqGlobalPageContent 
-        currentUser={currentUser} 
+    <div>
+      <ActivitySynqGlobalPageContent
+        currentUser={currentUser}
         setCurrentUser={setCurrentUser}
       />
-    </ActivitySynqGlobal>
+      {/* Single component like ToastContainer - can be placed anywhere */}
+      <ActivitySynqContainer config={activityConfig} portalTarget="body" />
+    </div>
   )
 }
 
 // Demo page content that has access to ActivitySynq global context
-function ActivitySynqGlobalPageContent({ 
-  currentUser, 
-  setCurrentUser 
-}: { 
+function ActivitySynqGlobalPageContent({
+  currentUser,
+  setCurrentUser
+}: {
   currentUser: string
   setCurrentUser: (userId: string) => void
 }) {
@@ -516,9 +518,8 @@ function ActivitySynqGlobalPageContent({
 
   const simulateOtherUser = useCallback(() => {
     const otherUserId = `demo-user-${Math.random().toString(36).substring(2, 8)}`
-    const { registerActivity } = useActivitySynqGlobal()
-    
-    registerActivity('simulated_activity', {
+    // Use direct API instead of hook for simulated activities
+    activitySynq.registerActivity('simulated_activity', {
       simulatedBy: currentUser,
       actualUser: otherUserId,
       action: 'other_user_action',
@@ -527,9 +528,9 @@ function ActivitySynqGlobalPageContent({
   }, [currentUser])
 
   return (
-    <div style={{ 
-      maxWidth: '1200px', 
-      margin: '0 auto', 
+    <div style={{
+      maxWidth: '1200px',
+      margin: '0 auto',
       padding: '20px',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       backgroundColor: '#f8fafc',
@@ -537,8 +538,8 @@ function ActivitySynqGlobalPageContent({
     }}>
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <h1 style={{ 
-          fontSize: '48px', 
+        <h1 style={{
+          fontSize: '48px',
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
@@ -547,19 +548,19 @@ function ActivitySynqGlobalPageContent({
           🚀 ActivitySynq Global
         </h1>
         <p style={{ fontSize: '20px', color: '#6b7280', maxWidth: '800px', margin: '0 auto 20px' }}>
-          Single-line integration with customizable activity feeds. 
+          Single-line integration with customizable activity feeds.
           No context wrappers needed - just drop in <code>&lt;ActivitySynqGlobal /&gt;</code> and use the hook anywhere!
         </p>
-        
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
+
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           gap: '20px',
           flexWrap: 'wrap',
           marginTop: '20px'
         }}>
-          <div style={{ 
+          <div style={{
             padding: '12px 20px',
             backgroundColor: '#f0f9ff',
             border: '2px solid #0ea5e9',
@@ -568,7 +569,7 @@ function ActivitySynqGlobalPageContent({
           }}>
             👤 <strong>Current User:</strong> <code>{currentUser}</code>
           </div>
-          
+
           <button
             onClick={() => setCurrentUser(`demo-user-${Math.random().toString(36).substring(2, 8)}`)}
             style={{
@@ -623,9 +624,9 @@ function ActivitySynqGlobalPageContent({
       />
 
       {/* Integration Info */}
-      <div style={{ 
-        marginTop: '40px', 
-        padding: '30px', 
+      <div style={{
+        marginTop: '40px',
+        padding: '30px',
         backgroundColor: '#ffffff',
         border: '2px solid #e5e7eb',
         borderRadius: '12px',
@@ -634,60 +635,70 @@ function ActivitySynqGlobalPageContent({
         <h3 style={{ color: '#1e293b', marginTop: 0, fontSize: '24px' }}>
           🎯 Implementation Pattern
         </h3>
-        
+
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', marginBottom: '20px' }}>
           <div>
             <h4 style={{ color: '#dc2626', fontSize: '18px' }}>❌ Old Way (Context Wrapper)</h4>
-            <pre style={{ 
-              backgroundColor: '#fef2f2', 
-              padding: '20px', 
+            <pre style={{
+              backgroundColor: '#fef2f2',
+              padding: '20px',
               borderRadius: '8px',
               fontSize: '13px',
               overflow: 'auto',
               border: '1px solid #fecaca'
             }}>
-{`<ActivitySynqProvider config={config}>
+              {`<ActivitySynqProvider config={config}>
   <App />
-</ActivitySynqProvider>`}
+</ActivitySynqProvider>
+
+function MyComponent() {
+  const { registerActivity } = useActivitySynq()
+  // Must be inside provider
+}`}
             </pre>
           </div>
-          
+
           <div>
-            <h4 style={{ color: '#059669', fontSize: '18px' }}>✅ New Way (Single Line)</h4>
-            <pre style={{ 
-              backgroundColor: '#f0fdf4', 
-              padding: '20px', 
+            <h4 style={{ color: '#059669', fontSize: '18px' }}>✅ New Way (Single Component)</h4>
+            <pre style={{
+              backgroundColor: '#f0fdf4',
+              padding: '20px',
               borderRadius: '8px',
               fontSize: '13px',
               overflow: 'auto',
               border: '1px solid #bbf7d0'
             }}>
-{`function App() {
+              {`function App() {
   return (
     <div>
       <Header />
       <MainContent />
-      <ActivitySynqGlobal config={config} />
+      <ActivitySynqContainer config={config} />
     </div>
   )
+}
+
+function MyComponent() {
+  const { registerActivity } = useActivitySynqGlobal()
+  // Works anywhere!
 }`}
             </pre>
           </div>
         </div>
 
-        <div style={{ 
-          padding: '20px', 
-          backgroundColor: '#dbeafe', 
+        <div style={{
+          padding: '20px',
+          backgroundColor: '#dbeafe',
           borderRadius: '8px',
           border: '1px solid #93c5fd'
         }}>
           <h4 style={{ color: '#1e40af', margin: '0 0 10px 0' }}>✨ Key Benefits</h4>
           <ul style={{ margin: 0, color: '#1e40af', fontSize: '14px' }}>
-            <li><strong>Simple Setup:</strong> Single component instead of app wrapper</li>
+            <li><strong>Single Component:</strong> <code>&lt;ActivitySynqContainer /&gt;</code> like <code>&lt;ToastContainer /&gt;</code></li>
             <li><strong>Global Access:</strong> <code>useActivitySynqGlobal()</code> works anywhere</li>
-            <li><strong>Customizable Feeds:</strong> Built-in styling and behavior options</li>
+            <li><strong>No Wrapper Required:</strong> Place component anywhere in your app</li>
             <li><strong>Better Performance:</strong> Singleton pattern prevents multiple sessions</li>
-            <li><strong>Toast Notifications:</strong> Optional real-time activity notifications</li>
+            <li><strong>Portal Rendering:</strong> UI elements render in separate DOM tree</li>
           </ul>
         </div>
       </div>
