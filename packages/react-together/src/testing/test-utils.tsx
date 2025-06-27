@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from 'react'
-import { ActivitySynqStableContext, ActivitySynqVolatileContext } from '../context/ActivitySynqContext'
+import { ActivitySynqProvider } from '../context/ActivitySynqContext'
 import type { ConnectionStatus, ActivitySynqConfig, ActivityEvent } from '../context/ActivitySynqContext'
 
 // Generic mock function type (works with Jest, Vitest, etc.)
@@ -19,43 +19,24 @@ export interface MockActivitySynqProviderProps {
 
 export const MockActivitySynqProvider = ({
   children,
-  registerActivity = () => {},
-  clearActivities = () => {},
-  isReady = true,
-  status = 'ready',
-  error = null,
   userId = 'test-user-123',
   config = {},
-  activities = []
-}: MockActivitySynqProviderProps) => {
-  const stableValue = {
-    registerActivity,
-    clearActivities,
-    userId,
-    config: {
-      apiKey: 'test-api-key',
-      appId: 'test-app',
-      sessionName: 'test-session',
-      sessionPassword: 'test-password',
-      userId,
-      ...config
-    },
-    model: null
-  }
-
-  const volatileValue = {
-    activities,
-    isReady,
-    status,
-    error
-  }
-
+}: Pick<MockActivitySynqProviderProps, 'children' | 'userId' | 'config'>) => {
+  // For testing, just use a mock provider that provides the expected interface
+  // In real tests, you'd probably use ActivitySynqProvider with a test config
   return (
-    <ActivitySynqStableContext.Provider value={stableValue}>
-      <ActivitySynqVolatileContext.Provider value={volatileValue}>
-        {children}
-      </ActivitySynqVolatileContext.Provider>
-    </ActivitySynqStableContext.Provider>
+    <ActivitySynqProvider
+      config={{
+        apiKey: 'test-api-key',
+        appId: 'test-app',
+        sessionName: 'test-session',
+        sessionPassword: 'test-password',
+        userId,
+        ...config
+      }}
+    >
+      {children}
+    </ActivitySynqProvider>
   )
 }
 
@@ -80,8 +61,8 @@ export const createActivitySynqTestWrapper = (
   
   const Wrapper = ({ children }: { children: ReactNode }) => (
     <MockActivitySynqProvider
-      {...providerProps}
-      registerActivity={mockRegisterActivity}
+      userId={providerProps.userId}
+      config={providerProps.config}
     >
       {children}
     </MockActivitySynqProvider>

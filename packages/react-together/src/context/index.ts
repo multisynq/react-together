@@ -3,10 +3,6 @@ import { ReactTogetherContext, useReactTogetherContext } from './ReactTogetherCo
 export { ReactTogetherContext, useReactTogetherContext }
 export { 
   ActivitySynqProvider, 
-  ActivitySynqStableContext, 
-  ActivitySynqVolatileContext,
-  useActivitySynq,
-  useActivitySynqStable,
-  useActivitySynqVolatile
+  useActivitySynq
 } from './ActivitySynqContext'
-export type { ActivityEvent, ActivitySynqConfig, ConnectionStatus } from './ActivitySynqContext'
+export type { ActivityEvent, ActivitySynqConfig, ConnectionStatus, IActivitySynqContext } from './ActivitySynqContext'
