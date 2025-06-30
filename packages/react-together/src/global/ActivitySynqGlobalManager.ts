@@ -10,6 +10,11 @@ export class ActivitySynqGlobalManager {
   private eventEmitter: BrowserEventEmitter = new BrowserEventEmitter()
   private config: ActivitySynqConfig | null = null
   private initPromise: Promise<void> | null = null
+  
+  // Add reconnection properties
+  private reconnectAttempts: number = 0
+  private maxReconnectAttempts: number = 5
+  private isReconnecting: boolean = false
 
   static getInstance(): ActivitySynqGlobalManager {
     if (!this.instance) {
@@ -65,10 +70,24 @@ export class ActivitySynqGlobalManager {
         this.eventEmitter.emit('activities_cleared')
       })
 
+      // Add disconnection handlers
+      this.session.view.subscribe(this.session.view.model.id, 'view-synced', (synced: boolean) => {
+        if (synced) {
+          console.log('✅ ActivitySynq Global: Connected')
+          this.eventEmitter.emit('status_changed', 'ready')
+          this.reconnectAttempts = 0 // Reset on successful connection
+        } else {
+          console.warn('⚠️ ActivitySynq Global: Disconnected')
+          this.eventEmitter.emit('status_changed', 'disconnected')
+          this.attemptReconnection() // Add automatic reconnection
+        }
+      })
+
       this.eventEmitter.emit('status_changed', 'ready')
     } catch (error) {
       console.error('ActivitySynqGlobalManager: Failed to initialize:', error)
       this.eventEmitter.emit('status_changed', 'error')
+      this.attemptReconnection() // Try to reconnect on initialization failure
       throw error
     }
   }
@@ -117,6 +136,50 @@ export class ActivitySynqGlobalManager {
       this.config.sessionPassword === config.sessionPassword &&
       this.config.userId === config.userId
     )
+  }
+
+  private async attemptReconnection(): Promise<void> {
+    if (this.isReconnecting || this.reconnectAttempts >= this.maxReconnectAttempts) {
+      console.error('🚨 ActivitySynq Global: Max reconnection attempts reached')
+      this.eventEmitter.emit('status_changed', 'error')
+      return
+    }
+
+    this.isReconnecting = true
+    this.reconnectAttempts++
+    
+    const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), 30000) // Exponential backoff
+    console.log(`🔄 ActivitySynq Global: Reconnection attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts} in ${delay}ms`)
+
+    setTimeout(async () => {
+      try {
+        this.eventEmitter.emit('status_changed', 'initializing')
+        
+        // Clean up existing session
+        if (this.session) {
+          this.session.leave()
+          this.session = null
+        }
+
+        // Reinitialize with same config
+        await this.doInitialize(this.config!)
+        console.log('✅ ActivitySynq Global: Reconnection successful')
+        
+      } catch (error) {
+        console.error('❌ ActivitySynq Global: Reconnection failed:', error)
+        this.attemptReconnection() // Retry
+      } finally {
+        this.isReconnecting = false
+      }
+    }, delay)
+  }
+
+  // Add method to manually trigger reconnection
+  reconnect(): void {
+    if (!this.isReconnecting) {
+      this.reconnectAttempts = 0
+      this.attemptReconnection()
+    }
   }
 
   // Cleanup method

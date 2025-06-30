@@ -286,30 +286,6 @@ function UseActivitySynqDemoInstance({
     }
   }
 
-  // Filter activities for this specific user's UI perspective
-  // const filteredActivityLog = useMemo(() => 
-  //   activityLog.map(activity => ({
-  //     id: activity.data?.id,
-  //     type: activity.type,
-  //     userId: activity.data?.userId || 'unknown',
-  //     data: activity.data,
-  //     timestamp: activity.timestamp,
-  //     isLocal: activity.data?.userId === userId
-  //   })), [activityLog, userId]
-  // )
-
-  // const getUserDisplayName = useCallback((entry: any) => {
-  //   const isLocal = entry.userId === userId
-
-  //   if (isLocal) {
-  //     if (userId.includes('user-1')) return 'User1 (You)'
-  //     if (userId.includes('user-2')) return 'User2 (You)'
-  //     return 'You'
-  //   }
-  //   if (entry.userId?.includes('user-1')) return 'User1'
-  //   if (entry.userId?.includes('user-2')) return 'User2'
-  //   return entry.userId?.slice(-8) || 'Other User'
-  // }, [userId])
 
   return (
     <div className="flex flex-col h-full max-w-2xl mx-auto p-4">

@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
-import { ActivitySynqProvider, useActivitySynq, useActivitySynqStable, ActivityEvent } from 'react-together'
 import { useMultisynqContext } from '@multisynq/react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { ActivityEvent, ActivitySynqProvider, useActivitySynq } from 'react-together'
 
 // Activity data interfaces for emoji voting demo
 interface EmojiVoteData {
@@ -20,13 +20,15 @@ export function ActivitySynqDemo() {
   // Get session and user parameters from URL
   const urlParams = new URLSearchParams(window.location.search)
   const hashParams = new URLSearchParams(window.location.hash.slice(1))
-  
+
   const userParam = urlParams.get('user')
-  // Generate unique session name if not provided via URL to prevent conflicts
-  const defaultSessionName = `emoji-voting-demo-${Date.now().toString(36).slice(-6)}`
+  // Use stable session name to keep all users in same session
+  const defaultSessionName = 'emoji-voting-demo-stable'
   const sessionName = urlParams.get('rtName') || defaultSessionName
   const sessionPassword = hashParams.get('rtPwd') || 'vote-together'
-  const userId = userParam ? `emoji-voter-${userParam}` : undefined
+  const userId = userParam
+    ? `emoji-voter-${userParam}`
+    : `emoji-voter-${Math.random().toString(36).slice(2, 8)}` // Unique per session
 
   // Stable configuration to prevent session recreation
   const config = useMemo(() => ({
@@ -51,7 +53,7 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
   const { registerActivity, clearActivities, isReady, status, activities } = useActivitySynq()
   const [activityFeed, setActivityFeed] = useState<ActivityFeedEntry[]>([])
   const [voteCount, setVoteCount] = useState<Record<string, number>>({})
-  
+
   // Available emojis for voting
   const emojis = ['😍', '🚀', '💡', '🎉', '❤️', '👍']
 
@@ -61,21 +63,21 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
   // Handle activity events from Croquet model
   const handleActivityReceived = useCallback((activity: ActivityEvent) => {
     console.log('ActivitySynq Demo - Activity received:', activity)
-    
+
     // Extract userId from activity data (where it's actually stored)
     const activityUserId = activity.data?.userId || 'unknown'
-    
+
     // Create unique ID for deduplication
     const activityId = `${activityUserId}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
-    
+
     // Skip if already processed by this component
     if (processedActivitiesRef.current.has(activityId)) {
       console.log('Skipping duplicate activity:', activityId)
       return
     }
-    
+
     processedActivitiesRef.current.add(activityId)
-    
+
     // Prevent memory leak by limiting deduplication set size
     if (processedActivitiesRef.current.size > 200) {
       // Clear half the entries when limit is reached
@@ -83,7 +85,7 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
       processedActivitiesRef.current.clear()
       entries.slice(-100).forEach(id => processedActivitiesRef.current.add(id))
     }
-    
+
     // Add to activity feed
     const feedEntry: ActivityFeedEntry = {
       id: crypto.randomUUID(),
@@ -92,9 +94,9 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
       data: activity.data,
       timestamp: activity.timestamp
     }
-    
+
     setActivityFeed(prev => [feedEntry, ...prev].slice(0, 10))
-    
+
     // Update vote count for emoji votes
     if (activity.type === 'emoji_vote' && activity.data?.emoji) {
       setVoteCount(prev => ({
@@ -107,16 +109,16 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
   // Subscribe to activity events directly from Croquet model
   useEffect(() => {
     if (!view || !model) return
-    
+
     const handleActivitiesCleared = () => {
       // Reset local state when activities are cleared from model
       setActivityFeed([])
       setVoteCount({})
     }
-    
+
     view.subscribe(model.id, 'activity_received', handleActivityReceived)
     view.subscribe(model.id, 'activities_cleared', handleActivitiesCleared)
-    
+
     return () => {
       view.unsubscribe(model.id, 'activity_received', handleActivityReceived)
       view.unsubscribe(model.id, 'activities_cleared', handleActivitiesCleared)
@@ -136,6 +138,55 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
     }
   }, [view, model, isReady, handleActivityReceived])
 
+  // Simplified visibility handling - let Croquet manage sync naturally
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        console.log('🔄 Tab became visible - Croquet will handle sync')
+        // Let Croquet handle reconnection and sync naturally
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
+  }, [])
+
+  // Add connection health monitoring
+  useEffect(() => {
+    if (!view || !model || !isReady) return
+
+    let heartbeatInterval: NodeJS.Timeout
+    let lastActivityTime = Date.now()
+
+    // Send heartbeat every 30 seconds
+    heartbeatInterval = setInterval(() => {
+      if (isReady) {
+        registerActivity('heartbeat', {
+          userId,
+          timestamp: Date.now(),
+          lastActivity: lastActivityTime
+        })
+        console.log('💓 Heartbeat sent')
+      }
+    }, 30000)
+
+    // Track last activity time
+    const activityListener = () => {
+      lastActivityTime = Date.now()
+    }
+
+    if (view && model) {
+      view.subscribe(model.id, 'activity_received', activityListener)
+    }
+
+    return () => {
+      clearInterval(heartbeatInterval)
+      if (view && model) {
+        view.unsubscribe(model.id, 'activity_received', activityListener)
+      }
+    }
+  }, [view, model, isReady, registerActivity, userId])
+
   const getStatusColor = () => {
     switch (status) {
       case 'ready': return 'bg-green-100 border-green-300 text-green-800'
@@ -151,9 +202,9 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
       emoji,
       timestamp: Date.now()
     }
-    
+
     registerActivity('emoji_vote', voteData)
-    
+
     // Note: Vote count will be updated via the activity callback
     // This prevents double-counting when the activity is received back
   }
@@ -161,11 +212,22 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
   // Get user display name  
   const getUserDisplayName = (activityUserId: string) => {
     if (activityUserId === userId) return 'You'
-    if (activityUserId?.includes('user1')) return 'User 1'
-    if (activityUserId?.includes('user2')) return 'User 2'
-    if (activityUserId?.includes('voter-1')) return 'User 1'
-    if (activityUserId?.includes('voter-2')) return 'User 2'
-    return activityUserId?.slice(-8) || 'Anonymous'
+
+    // Extract numeric part for consistent display
+    const userMatch = activityUserId?.match(/(?:user|voter)-?(\d+)/)
+    if (userMatch) {
+      return `User ${userMatch[1]}`
+    }
+
+    // Better fallback for anonymous users
+    if (!activityUserId || activityUserId === 'undefined') {
+      return 'Anonymous'
+    }
+
+    // Show first 8 chars with "..." for very long IDs
+    return activityUserId.length > 12
+      ? `${activityUserId.slice(0, 8)}...`
+      : activityUserId
   }
 
   const getActivityDescription = (entry: ActivityFeedEntry) => {
@@ -197,7 +259,7 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
               </span>
             )}
             {isReady && activities.length > 0 && (
-              <button 
+              <button
                 onClick={clearActivities}
                 className="bg-red-100 hover:bg-red-200 text-red-800 px-2 py-1 rounded text-xs font-medium transition-colors"
                 title="Clear all activities for all users"
@@ -220,8 +282,8 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
               disabled={!isReady}
               className={`
                 px-4 py-3 rounded-lg border-2 transition-all duration-200 text-center
-                ${isReady 
-                  ? 'border-blue-300 bg-blue-50 hover:bg-blue-100 hover:border-blue-400 hover:scale-105' 
+                ${isReady
+                  ? 'border-blue-300 bg-blue-50 hover:bg-blue-100 hover:border-blue-400 hover:scale-105'
                   : 'border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed'
                 }
               `}
@@ -279,7 +341,7 @@ function ActivitySynqDemoContent({ userId }: { userId: string }) {
           <li>• <strong>Cross-user feed</strong> - Activity feed shows actions from all participants</li>
         </ul>
         <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-xs">
-          <strong>✨ Test Instructions:</strong> Vote here, then open this page in new tabs with different 
+          <strong>✨ Test Instructions:</strong> Vote here, then open this page in new tabs with different
           <code>?user=</code> parameters. New tabs will show all previous votes instantly!
         </div>
       </div>

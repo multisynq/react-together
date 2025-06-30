@@ -1,5 +1,5 @@
 import { MultisynqRoot, useModelSelector, usePublish, useView } from '@multisynq/react'
-import { createContext, ReactNode, useContext, useMemo, useCallback } from 'react'
+import { createContext, ReactNode, useContext, useMemo, useCallback, useState, useEffect } from 'react'
 import { createStableActivityConfig } from '../utils/activityUtils'
 import ActivityModel from '../models/ActivityModel'
 
@@ -90,6 +90,29 @@ function ActivitySynqInternalProvider({
     }
     publishClearActivities()
   }, [isReady, publishClearActivities])
+
+  // Add automatic reconnection logic
+  const [reconnectAttempts, setReconnectAttempts] = useState(0)
+  const maxReconnectAttempts = 5
+
+  useEffect(() => {
+    if (status === 'disconnected' && reconnectAttempts < maxReconnectAttempts) {
+      const delay = Math.min(1000 * Math.pow(2, reconnectAttempts), 30000) // Exponential backoff
+      
+      console.log(`🔄 Attempting reconnection ${reconnectAttempts + 1}/${maxReconnectAttempts} in ${delay}ms`)
+      
+      const timer = setTimeout(() => {
+        setReconnectAttempts(prev => prev + 1)
+        // Force component remount to trigger reconnection
+        window.location.reload()
+      }, delay)
+      
+      return () => clearTimeout(timer)
+    } else if (status === 'ready') {
+      // Reset reconnect attempts on successful connection
+      setReconnectAttempts(0)
+    }
+  }, [status, reconnectAttempts])
 
   // Handle onActivity callback when new activities arrive
   const prevActivitiesLength = useMemo(() => activities.length, [])
