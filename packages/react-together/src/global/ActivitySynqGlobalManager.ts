@@ -86,7 +86,7 @@ export class ActivitySynqGlobalManager {
       this.eventEmitter.emit('status_changed', 'ready')
     } catch (error) {
       console.error('ActivitySynqGlobalManager: Failed to initialize:', error)
-      this.eventEmitter.emit('status_changed', 'error')
+      this.eventEmitter.emit('status_changed', 'error', error as Error)
       this.attemptReconnection() // Try to reconnect on initialization failure
       throw error
     }
@@ -140,8 +140,10 @@ export class ActivitySynqGlobalManager {
 
   private async attemptReconnection(): Promise<void> {
     if (this.isReconnecting || this.reconnectAttempts >= this.maxReconnectAttempts) {
-      console.error('🚨 ActivitySynq Global: Max reconnection attempts reached')
-      this.eventEmitter.emit('status_changed', 'error')
+      if (!this.isReconnecting) {
+        console.error('🚨 ActivitySynq Global: Max reconnection attempts reached')
+        this.eventEmitter.emit('status_changed', 'error', new Error('Max reconnection attempts reached'))
+      }
       return
     }
 

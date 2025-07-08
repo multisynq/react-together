@@ -1,35 +1,29 @@
-import { CodeBlock, CodeSpan, LinkSpan } from '@components/ui'
+import { CodeBlock, CodeSpan } from '@components/ui'
 import { DocumentationPage } from '@pages/Documentation/DocumentationPage'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import getDocLinks from '@utils/getDocLinks'
+import { useMemo } from 'react'
+import { ActivitySynqGlobal, useActivitySynqGlobal } from 'react-together'
 import { GenericDocNav, GenericDocPage } from '../../GenericDocPage'
-import InterfaceApi from '../../InterfaceApi'
 import { PreviewSourceCodeTabs } from '../../PreviewSourceCodeTabs'
 import HookParamsApi from '../../hooks/HookParamsApi'
 import HookReturnApi from '../../hooks/HookReturnApi'
-import { useState, useCallback, useRef, useMemo } from 'react'
-import { ActivitySynqGlobal, useActivitySynqGlobal, ActivityEvent } from 'react-together'
 
+// Corrected code examples for the documentation view
 const codes = {
   demo: {
     basic: `
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 import { ActivitySynqGlobal, useActivitySynqGlobal } from 'react-together'
 
 function ActivityDemo() {
-  const { registerActivity, isReady, status } = useActivitySynqGlobal()
-  const [activities, setActivities] = useState([])
-
-  const handleActivity = useCallback((activity) => {
-    setActivities(prev => [activity, ...prev].slice(0, 10))
-  }, [])
+  // CORRECT: Get activities directly from the hook!
+  const { registerActivity, isReady, status, activities } = useActivitySynqGlobal()
 
   const gameActivities = [
     { id: 'rolled_dice', icon: '🎲', label: 'Rolled Dice', action: 'rolled dice' },
     { id: 'cast_spell', icon: '🪄', label: 'Cast Spell', action: 'cast fireball' },
     { id: 'bet_money', icon: '💰', label: 'Bet $20', action: 'bet $20' },
-    { id: 'pet_cat', icon: '🐱', label: 'Pet Cat', action: 'pet cat' },
-    { id: 'order_pizza', icon: '🍕', label: 'Order Pizza', action: 'ordered pizza' }
   ]
 
   const handleGameAction = (activity) => {
@@ -46,7 +40,6 @@ function ActivityDemo() {
       
       <div className="mb-4 p-3 rounded bg-gray-100">
         <p><strong>Status:</strong> {status}</p>
-        <p><strong>Ready:</strong> {isReady ? 'Yes' : 'No'}</p>
       </div>
 
       <div className="grid grid-cols-3 gap-2 mb-4">
@@ -55,6 +48,7 @@ function ActivityDemo() {
             key={activity.id}
             onClick={() => handleGameAction(activity)}
             className="p-3 border rounded hover:bg-blue-50"
+            disabled={!isReady}
           >
             <span className="text-xl">{activity.icon}</span>
             <div>{activity.label}</div>
@@ -63,17 +57,15 @@ function ActivityDemo() {
       </div>
 
       <div className="bg-gray-50 p-3 rounded">
-        <h3>Activity Feed</h3>
+        <h3>Live Activity Feed</h3>
+        {/* CORRECT: Use the 'activities' array from the hook directly */}
         {activities.length === 0 ? (
-          <p>No activities yet. Try the buttons above!</p>
+          <p>No activities yet.</p>
         ) : (
           <div className="space-y-2">
-            {activities.map((activity, index) => (
-              <div key={index} className="p-2 bg-white rounded border">
+            {activities.slice(-10).map((activity, index) => (
+              <div key={activity.timestamp + index} className="p-2 bg-white rounded border">
                 {activity.data?.icon} {activity.data?.action}
-                <span className="text-sm text-gray-500 ml-2">
-                  {new Date(activity.timestamp).toLocaleTimeString()}
-                </span>
               </div>
             ))}
           </div>
@@ -81,24 +73,19 @@ function ActivityDemo() {
       </div>
 
       {/* Single line enables everything above! */}
+      {/* CORRECT: No 'onActivity' callback needed in config */}
       <ActivitySynqGlobal 
         config={{
           apiKey: 'your-api-key',
           appId: 'your-app-id',
-          sessionName: 'game-session',
-          onActivity: handleActivity
+          sessionName: 'game-session'
         }} 
       />
     </div>
   )
 }
-
-export default function App() {
-  return <ActivityDemo />
-}
 `,
   },
-
   setup: {
     basic: `
 // 1. Add ActivitySynqGlobal component anywhere in your app
@@ -121,14 +108,13 @@ function App() {
 }
 `,
   },
-
   usage: {
     basic: `
 // 2. Use the hook anywhere in your app (no provider needed!)
 import { useActivitySynqGlobal } from 'react-together'
 
 function AnyComponent() {
-  const { registerActivity, isReady } = useActivitySynqGlobal()
+  const { registerActivity, isReady, activities } = useActivitySynqGlobal()
 
   const handleUserAction = () => {
     registerActivity('user_action', {
@@ -138,14 +124,21 @@ function AnyComponent() {
   }
 
   return (
-    <button onClick={handleUserAction}>
-      Track This Action
-    </button>
+    <div>
+      <button onClick={handleUserAction} disabled={!isReady}>
+        Track This Action
+      </button>
+      <div>
+        <h3>Recent Activities:</h3>
+        <ul>
+          {activities.slice(-5).map(act => <li key={act.timestamp}>{act.type}</li>)}
+        </ul>
+      </div>
+    </div>
   )
 }
 `,
   },
-
   notifications: {
     basic: `
 // 3. Optional: Enable toast-style notifications
@@ -171,82 +164,53 @@ function App() {
 
 // Shared session wrapper for better performance
 function ActivitySynqGlobalPreview({ sessionParams }: { sessionParams: { name: string, password: string } }) {
-  const [activityLog, setActivityLog] = useState<ActivityEvent[]>([])
-  const processedActivitiesRef = useRef<Set<string>>(new Set())
-
-  // Single activity handler for both demo instances
-  const handleSharedActivity = useCallback((activity: ActivityEvent) => {
-    const activityId = `${activity.data?.userId || 'unknown'}-${activity.type}-${activity.timestamp}-${JSON.stringify(activity.data)}`
-    
-    if (processedActivitiesRef.current.has(activityId)) return
-    processedActivitiesRef.current.add(activityId)
-    
-    setActivityLog(prev => [activity, ...prev].slice(0, 20))
-  }, [])
-
-  // Shared configuration with stable onActivity reference
-  const onActivityRef = useRef(handleSharedActivity)
-  onActivityRef.current = handleSharedActivity
+  // CORRECT: No local state for activities is needed here.
+  // The hook will provide the synchronized state to each instance.
 
   const sharedConfig = useMemo(() => ({
     apiKey: import.meta.env.VITE_API_KEY,
     appId: import.meta.env.VITE_APP_ID,
     sessionName: sessionParams.name,
     sessionPassword: sessionParams.password,
-    userId: 'global-preview-shared',
-    onActivity: (activity: ActivityEvent) => onActivityRef.current(activity)
   }), [sessionParams.name, sessionParams.password])
 
   return (
-    <div className='w-full flex items-center flex-wrap gap-3 justify-center bg-white-100'>
+    <div className='w-full flex items-start flex-wrap gap-3 justify-center bg-white-100'>
       <div className='flex-1 min-w-[400px] max-w-[500px]'>
         <div className='bg-blue-50 border border-blue-200 rounded-t-lg px-3 py-2'>
           <span className='text-sm font-medium text-blue-800'>User 1</span>
         </div>
         <div className='border-x border-b border-blue-200 rounded-b-lg overflow-hidden'>
-          <ActivitySynqGlobalDemoInstance 
+          {/* CORRECT: No longer passing activityLog as a prop */}
+          <ActivitySynqGlobalDemoInstance
             userId="global-user-1"
-            activityLog={activityLog}
-            sessionName={sessionParams.name}
-            config={sharedConfig}
           />
         </div>
       </div>
-      
+
       <div className='flex-1 min-w-[400px] max-w-[500px]'>
         <div className='bg-green-50 border border-green-200 rounded-t-lg px-3 py-2'>
           <span className='text-sm font-medium text-green-800'>User 2</span>
         </div>
         <div className='border-x border-b border-green-200 rounded-b-lg overflow-hidden'>
-          <ActivitySynqGlobalDemoInstance 
+          {/* CORRECT: No longer passing activityLog as a prop */}
+          <ActivitySynqGlobalDemoInstance
             userId="global-user-2"
-            activityLog={activityLog}
-            sessionName={sessionParams.name}
-            config={sharedConfig}
           />
         </div>
       </div>
 
-      {/* Single line enables global functionality */}
+      {/* Single line enables global functionality for both instances above */}
       <ActivitySynqGlobal config={sharedConfig} />
     </div>
   )
 }
 
-// Demo instance that uses global hook
-function ActivitySynqGlobalDemoInstance({ 
-  userId, 
-  activityLog, 
-  sessionName,
-  config
-}: { 
-  userId: string
-  activityLog: ActivityEvent[]
-  sessionName: string
-  config: any
-}) {
-  const { registerActivity, isReady, status, error } = useActivitySynqGlobal()
-  
+// Demo instance that correctly uses the global hook
+function ActivitySynqGlobalDemoInstance({ userId }: { userId: string }) {
+  // CORRECT: Get the activities array directly from the hook.
+  const { registerActivity, isReady, status, error, activities } = useActivitySynqGlobal()
+
   const gameActivities = [
     { id: 'rolled_dice', icon: '🎲', label: 'Roll Dice', action: 'rolled dice', color: '#3b82f6' },
     { id: 'cast_spell', icon: '🪄', label: 'Cast Spell', action: 'cast fireball', color: '#dc2626' },
@@ -255,14 +219,15 @@ function ActivitySynqGlobalDemoInstance({
     { id: 'order_pizza', icon: '🍕', label: 'Order Pizza', action: 'ordered pizza', color: '#8b5cf6' }
   ]
 
-  const handleGameAction = useCallback((activity: any) => {
+  const handleGameAction = (activity: any) => {
+    // The hook's function handles sending the activity to the global state
     registerActivity('user_action', {
       action: activity.action,
       icon: activity.icon,
-      userId: userId,
+      userId: userId, // Identify which user performed the action
       timestamp: Date.now()
     })
-  }, [registerActivity, userId])
+  }
 
   const getStatusColor = () => {
     switch (status) {
@@ -274,59 +239,27 @@ function ActivitySynqGlobalDemoInstance({
     }
   }
 
-  // Filter activities for this user's perspective
-  const filteredActivityLog = useMemo(() => 
-    activityLog.slice(0, 6).map(activity => ({
-      id: crypto.randomUUID(),
-      type: activity.type,
-      userId: activity.data?.userId || 'unknown',
-      data: activity.data,
-      timestamp: activity.timestamp,
-      isLocal: activity.data?.userId === userId
-    })), [activityLog, userId]
-  )
-
-  const getUserDisplayName = useCallback((entry: any) => {
-    const isLocal = entry.userId === userId
-    
-    if (isLocal) {
-      if (userId.includes('user-1')) return 'User1 (You)'
-      if (userId.includes('user-2')) return 'User2 (You)'
-      return 'You'
-    }
-    if (entry.userId?.includes('user-1')) return 'User1'
-    if (entry.userId?.includes('user-2')) return 'User2'
-    return entry.userId?.slice(-8) || 'Other User'
-  }, [userId])
+  const getUserDisplayName = (entryUserId: string) => {
+    if (entryUserId === userId) return 'You'
+    if (entryUserId?.includes('user-1')) return 'User 1'
+    if (entryUserId?.includes('user-2')) return 'User 2'
+    return 'Other'
+  }
 
   return (
     <div className="flex flex-col h-full max-w-2xl mx-auto p-4">
-      {/* Header */}
       <div className="text-center mb-4">
         <h1 className="text-xl font-bold mb-2">🌍 ActivitySynq Global Demo</h1>
-        <p className="text-gray-600 text-xs">Single-line integration • No context wrapper needed</p>
       </div>
 
-      {/* Connection Status */}
       <div className={`rounded-lg border-2 p-3 mb-4 text-sm ${getStatusColor()}`}>
         <div className="flex justify-between items-center">
-          <div>
-            <strong>Status:</strong> {status} • <strong>Ready:</strong> {isReady ? 'Yes' : 'No'}
-          </div>
-          <div className="text-xs">
-            {userId?.slice(-8) || 'N/A'}
-          </div>
+          <strong>Status:</strong> {status}
         </div>
-        {error && (
-          <div className="mt-2 text-xs text-red-600">
-            <strong>Error:</strong> {error.message}
-          </div>
-        )}
       </div>
 
-      {/* Game Activities */}
       <div className="mb-4">
-        <h3 className="text-sm font-semibold mb-2">🎮 Game Activities</h3>
+        <h3 className="text-sm font-semibold mb-2">🎮 Your Actions</h3>
         <div className="grid grid-cols-2 gap-2">
           {gameActivities.map((activity) => (
             <button
@@ -347,36 +280,30 @@ function ActivitySynqGlobalDemoInstance({
             </button>
           ))}
         </div>
-        <p className="text-xs text-gray-500 text-center mt-2">
-          ✨ Activities sync globally across all users
-        </p>
       </div>
 
-      {/* Activity Feed */}
       <div className="flex-1">
-        <h3 className="text-sm font-semibold mb-2">🔔 Live Activity Feed</h3>
+        <h3 className="text-sm font-semibold mb-2">🔔 Live Activity Feed (Last 6)</h3>
         <div className="bg-gray-50 rounded-lg p-2 h-32 overflow-y-auto border text-xs">
-          {filteredActivityLog.length === 0 ? (
+          {activities.length === 0 ? (
             <div className="text-center py-4 text-gray-500">
-              <div className="text-lg mb-1">🎮</div>
-              <p>Click game buttons to see activities!</p>
+              <p>Click buttons to see activities!</p>
             </div>
           ) : (
             <div className="space-y-1">
-              {filteredActivityLog.map((entry) => {
-                const isLocal = entry.userId === userId
+              {activities.slice(-6).map((entry) => {
+                const entryUserId = entry.data?.userId || 'unknown'
+                const isLocal = entryUserId === userId
                 return (
-                  <div key={entry.id} className={`rounded p-2 border ${
-                    isLocal
-                      ? 'bg-blue-50 border-blue-200' 
-                      : 'bg-green-50 border-green-200'
-                  }`}>
+                  <div key={`${entry.timestamp}-${entryUserId}`} className={`rounded p-2 border ${isLocal
+                    ? 'bg-blue-50 border-blue-200'
+                    : 'bg-green-50 border-green-200'
+                    }`}>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-1">
-                        <span className={`font-medium ${
-                          isLocal ? 'text-blue-800' : 'text-green-800'
-                        }`}>
-                          {getUserDisplayName(entry)}
+                        <span className={`font-medium ${isLocal ? 'text-blue-800' : 'text-green-800'
+                          }`}>
+                          {getUserDisplayName(entryUserId)}
                         </span>
                         <span className="text-gray-600">
                           {entry.data?.icon} {entry.data?.action}
@@ -393,21 +320,11 @@ function ActivitySynqGlobalDemoInstance({
           )}
         </div>
       </div>
-
-      {/* Benefits */}
-      <div className="mt-3 p-2 bg-blue-50 rounded-lg border border-blue-200 text-xs">
-        <h4 className="font-semibold text-blue-900 mb-1">✨ Global Benefits:</h4>
-        <ul className="text-blue-800 space-y-0.5">
-          <li>• <code>useActivitySynqGlobal()</code> works anywhere</li>
-          <li>• No provider wrapper needed</li>
-          <li>• Single-line setup</li>
-          <li>• Real-time cross-user sync</li>
-        </ul>
-      </div>
     </div>
   )
 }
 
+// --- The rest of the documentation page component ---
 const api = (
   <>
     <HookParamsApi
@@ -417,21 +334,6 @@ const api = (
           type: 'ActivitySynqConfig',
           description: 'Configuration object for ActivitySynq Global setup.',
         },
-        {
-          name: 'showNotifications',
-          type: 'boolean',
-          description: 'Optional. Enable toast-style notifications for activities. Default: false.',
-        },
-        {
-          name: 'notificationComponent',
-          type: 'React.ComponentType',
-          description: 'Optional. Custom notification component to use instead of the default.',
-        },
-        {
-          name: 'portalContainer',
-          type: 'string | HTMLElement',
-          description: 'Optional. Container for notification portal. Default: "body".',
-        },
       ]}
     />
     <HookReturnApi
@@ -439,7 +341,12 @@ const api = (
         {
           name: 'registerActivity',
           type: '<T = any>(type: string, data?: T) => void',
-          description: 'Function to register activities globally. Works from any component without provider.',
+          description: 'Function to register activities globally.',
+        },
+        {
+          name: 'activities',
+          type: 'ActivityEvent[]',
+          description: 'Array of recent activities from all users in the session.',
         },
         {
           name: 'isReady',
@@ -451,23 +358,13 @@ const api = (
           type: 'ConnectionStatus',
           description: 'Current connection status of the global session.',
         },
-        {
-          name: 'error',
-          type: 'Error | null',
-          description: 'Any connection error that occurred.',
-        },
-        {
-          name: 'activities',
-          type: 'ActivityEvent[]',
-          description: 'Array of recent activities from all users in the session.',
-        },
       ]}
     />
   </>
 )
 
 export default function ActivitySynqGlobalDocumentationPage() {
-  const [sessionName] = useLocalStorage('activity-synq-global-session-name', Math.random().toString(36).substring(2, 15))
+  const [sessionName] = useLocalStorage('activity-synq-global-session-name-2', Math.random().toString(36).substring(2, 15))
   const sessionParams = {
     name: sessionName,
     password: 'activity-synq-global-demo-password',
@@ -480,14 +377,8 @@ export default function ActivitySynqGlobalDocumentationPage() {
         description: (
           <>
             <p>
-              <CodeSpan text='ActivitySynqGlobal' /> provides a <strong>single-line integration</strong> for real-time 
-              activity tracking without context wrappers. Simply drop in the component anywhere and use{' '}
-              <code>useActivitySynqGlobal()</code> in any component to register and track activities across all users.
-            </p>
-            <p>
-              <strong>🌍 Global Access:</strong> Unlike the traditional context pattern, this approach allows you to 
-              access ActivitySynq functionality from anywhere in your app without provider setup, making it perfect 
-              for modern component architectures and micro-frontends.
+              <CodeSpan text='ActivitySynqGlobal' /> provides a <strong>single-line integration</strong> for real-time
+              activity tracking without context wrappers.
             </p>
             <PreviewSourceCodeTabs
               {...{
@@ -497,7 +388,6 @@ export default function ActivitySynqGlobalDocumentationPage() {
                     {...{
                       code: codes.demo,
                       github: getDocLinks({ rt_name: 'ActivitySynqGlobal' }).github_demo,
-                      stackBlitz: 'https://stackblitz.com/edit/react-together-activity-synq-global?file=src%2FApp.tsx',
                     }}
                   />
                 ),
@@ -507,40 +397,11 @@ export default function ActivitySynqGlobalDocumentationPage() {
         ),
         usage: (
           <>
-            <p>Setup ActivitySynq Global in 3 simple steps:</p>
-            
+            <p>Setup ActivitySynq Global in 2 simple steps:</p>
             <h4>1. Add the Global Component</h4>
             <CodeBlock {...{ code: codes.setup }} />
-            
             <h4>2. Use the Hook Anywhere</h4>
             <CodeBlock {...{ code: codes.usage }} />
-            
-            <h4>3. Optional: Enable Notifications</h4>
-            <CodeBlock {...{ code: codes.notifications }} />
-            
-            <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <h4 className="font-semibold text-blue-900 mb-2">🎯 Key Benefits vs Context Pattern</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div>
-                  <h5 className="font-medium text-blue-800 mb-1">❌ Old Way (Context)</h5>
-                  <ul className="text-blue-700 space-y-1">
-                    <li>• Wrap entire app in provider</li>
-                    <li>• Complex provider setup</li>
-                    <li>• Hook only works inside provider</li>
-                    <li>• Performance overhead</li>
-                  </ul>
-                </div>
-                <div>
-                  <h5 className="font-medium text-green-800 mb-1">✅ New Way (Global)</h5>
-                  <ul className="text-green-700 space-y-1">
-                    <li>• Single component anywhere</li>
-                    <li>• Zero provider setup</li>
-                    <li>• Hook works everywhere</li>
-                    <li>• Better performance</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </>
         ),
         api,

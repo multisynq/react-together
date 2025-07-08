@@ -27,12 +27,14 @@ export function useActivitySynqGlobal(): IActivitySynqGlobalContext {
       setActivities([])
     }
 
-    const handleStatusChanged = (newStatus: ConnectionStatus) => {
+    const handleStatusChanged = (newStatus: ConnectionStatus, err?: Error) => {
       setStatus(newStatus)
       if (newStatus === 'ready') {
         setError(null)
         // Load current activities
         setActivities(manager.getActivities())
+      } else if (newStatus === 'error') {
+        setError(err || new Error('An unknown error occurred'))
       }
     }
 

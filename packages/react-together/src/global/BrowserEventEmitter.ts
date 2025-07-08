@@ -22,7 +22,8 @@ export class BrowserEventEmitter {
   emit(event: string, ...args: any[]): void {
     const callbacks = this.events.get(event)
     if (callbacks) {
-      callbacks.forEach(callback => {
+      // Create a copy of the set to prevent issues if a listener unsubscribes during emit
+      ;[...callbacks].forEach(callback => {
         try {
           callback(...args)
         } catch (error) {
